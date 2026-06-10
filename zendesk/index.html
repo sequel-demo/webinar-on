@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CX Trends Live: AI-First Service in 2026 | Zendesk Webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11110d;          /* Zendesk near-black */
+    --sub:#5d5d59;          /* Zendesk secondary text */
+    --oat:#f8f6f2;          /* warm oat background */
+    --kale:#03363d;         /* Zendesk kale green */
+    --pear:#d6f7a3;         /* bright accent */
+    --line:#e8e5df;
+    --blue:#1f73b7;         /* Garden link blue */
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.wordmark{font-family:'Archivo',sans-serif;line-height:1.15;letter-spacing:-0.015em}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* ---------- ANNOUNCE BAR ---------- */
+  .announce{background:var(--kale);color:#fff;font-size:14px;text-align:center;padding:10px 16px}
+  .announce a{text-decoration:underline;font-weight:600;color:var(--pear)}
+
+  /* ---------- NAV ---------- */
+  .nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .wordmark{font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.03em}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink)}
+  .nav-links a:hover{color:var(--sub)}
+  .pill{display:inline-block;background:var(--ink);color:#fff;font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;padding:11px 26px;border-radius:999px;transition:opacity .15s}
+  .pill:hover{opacity:.82}
+  .pill-light{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .pill-light:hover{background:var(--ink);color:#fff;opacity:1}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--oat);padding:80px 0 64px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  .tag{display:inline-flex;align-items:center;gap:8px;background:var(--pear);color:var(--kale);font-family:'Archivo',sans-serif;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+  .tag .dot{width:8px;height:8px;border-radius:50%;background:var(--kale);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:700;margin-bottom:18px}
+  .hero p.sub{font-size:18px;color:var(--sub);max-width:560px;margin-bottom:30px}
+  .meta{display:flex;flex-direction:column;gap:12px;font-size:15px;font-weight:500}
+  .meta span{display:flex;align-items:center;gap:10px}
+  .meta svg{width:19px;height:19px;stroke:var(--kale);flex-shrink:0}
+  .stat-card{background:var(--kale);color:#fff;border-radius:18px;padding:40px 36px}
+  .stat-card h3{font-size:15px;font-weight:600;color:var(--pear);text-transform:uppercase;letter-spacing:.08em;margin-bottom:26px}
+  .stat{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .stat:last-child{border:none}
+  .stat .n{font-family:'Archivo',sans-serif;font-size:34px;font-weight:700}
+  .stat .l{font-size:14px;color:#bcd0cd}
+
+  /* ---------- EMBED ---------- */
+  .embed-section{padding:72px 0}
+  .embed-section h2{font-size:clamp(26px,3vw,38px);font-weight:700;text-align:center;margin-bottom:10px}
+  .embed-section p.lead{text-align:center;color:var(--sub);margin-bottom:40px;font-size:17px}
+  .embed-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(17,17,13,.09);padding:16px;min-height:540px}
+  #sequel_root{min-height:520px}
+
+  /* ---------- LEARN ---------- */
+  .learn{background:var(--oat);padding:88px 0}
+  .learn h2{font-size:clamp(26px,3vw,38px);font-weight:700;text-align:center;margin-bottom:52px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px 30px;transition:transform .15s, box-shadow .15s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(17,17,13,.08)}
+  .card .icon{width:44px;height:44px;border-radius:12px;background:var(--pear);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .card .icon svg{width:22px;height:22px;stroke:var(--kale)}
+  .card h3{font-size:19px;font-weight:600;margin-bottom:10px}
+  .card p{font-size:15px;color:var(--sub)}
+
+  /* ---------- SPEAKERS ---------- */
+  .speakers{padding:84px 0}
+  .speakers h2{font-size:clamp(26px,3vw,38px);font-weight:700;text-align:center;margin-bottom:50px}
+  .speaker-row{display:flex;gap:44px;justify-content:center;flex-wrap:wrap}
+  .speaker{text-align:center;width:230px}
+  .avatar{width:108px;height:108px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-size:30px;font-weight:700;color:#fff}
+  .a1{background:var(--kale)}
+  .a2{background:var(--ink)}
+  .speaker h3{font-size:17px;font-weight:600}
+  .speaker p{font-size:14px;color:var(--sub)}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--ink);color:#fff;padding:76px 0;text-align:center}
+  .cta-band h2{font-size:clamp(26px,3.2vw,40px);font-weight:700;margin-bottom:14px}
+  .cta-band p{color:#a8a8a2;max-width:540px;margin:0 auto 32px;font-size:16px}
+  .cta-band .pill{background:var(--pear);color:var(--kale)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--oat);border-top:1px solid var(--line);color:var(--sub);padding:64px 0 36px;font-size:14px}
+  .foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-bottom:52px}
+  .foot-grid h4{font-family:'Archivo',sans-serif;color:var(--ink);font-size:14px;font-weight:600;margin-bottom:16px}
+  .foot-grid a{display:block;margin-bottom:10px}
+  .foot-grid a:hover{color:var(--ink)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot-bottom .wordmark{font-size:20px}
+  .foot-legal{display:flex;gap:20px;flex-wrap:wrap}
+  .foot-legal a:hover{color:var(--ink)}
+
+  @media(max-width:900px){
+    .nav-links a:not(.pill){display:none}
+    .hero-grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR : Zendesk-style eyebrow promo -->
+<div class="announce">
+  The future of AI-first service, live. Join us for an exclusive session on the trends shaping 2026. <a href="#register">Save your seat</a>
+</div>
+
+<!-- NAV : mirrors zendesk.com -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="https://www.zendesk.com/" target="_blank" rel="noopener">zendesk</a>
+    <div class="nav-links">
+      <a href="https://www.zendesk.com/platform/" target="_blank" rel="noopener">Platform</a>
+      <a href="https://www.zendesk.com/service/" target="_blank" rel="noopener">Products</a>
+      <a href="https://www.zendesk.com/industries/" target="_blank" rel="noopener">Solutions</a>
+      <a href="https://www.zendesk.com/blog/" target="_blank" rel="noopener">Resources</a>
+      <a href="https://www.zendesk.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+      <a class="pill" href="#register">Register now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="tag"><span class="dot"></span> Live webinar</div>
+      <h1>CX Trends Live: Move beyond deflection in 2026</h1>
+      <p class="sub">Join Zendesk experts for a live deep-dive into the five trends shaping AI-first service — and how self-improving AI agents are turning deflection into real, end-to-end resolutions.</p>
+      <div class="meta">
+        <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Thursday, June 25, 2026 · 10:00 AM PT</span>
+        <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>45 minutes, with live Q&amp;A</span>
+        <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M15 10l4.55-2.27A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.89L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>Streaming right here on zendesk.com</span>
+      </div>
+    </div>
+    <aside class="stat-card">
+      <h3>Why this matters</h3>
+      <div class="stat"><div class="n">22K+</div><div class="l">service teams running Zendesk AI</div></div>
+      <div class="stat"><div class="n">830M</div><div class="l">AI interactions and counting</div></div>
+      <div class="stat"><div class="n">4.8B</div><div class="l">resolutions delivered</div></div>
+    </aside>
+  </div>
+</header>
+
+<!-- LIVE SEQUEL EMBED -->
+<section class="embed-section" id="register">
+  <div class="wrap">
+    <h2>Join us live</h2>
+    <p class="lead">Register below — no downloads, no redirects. The session streams right on this page.</p>
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn">
+  <div class="wrap">
+    <h2>What you'll take away</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <h3>Resolve, don't deflect</h3>
+        <p>See how AI agents that learn from every interaction resolve even complex issues end-to-end — on every channel, without human intervention.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <h3>Scale without headcount</h3>
+        <p>Learn how leading teams achieve up to 80% automation while absorbing 24/7 ticket spikes — keeping their existing team focused on high-value work.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Trust every resolution</h3>
+        <p>Get the playbook for built-in QA scoring across 100% of AI interactions, so every automated answer stays accurate, compliant, and on-brand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="wrap">
+    <h2>Meet your speakers</h2>
+    <div class="speaker-row">
+      <div class="speaker">
+        <div class="avatar a1">JD</div>
+        <h3>Jane Doe</h3>
+        <p>Director of Product Marketing, Zendesk</p>
+      </div>
+      <div class="speaker">
+        <div class="avatar a2">MS</div>
+        <h3>Michael Smith</h3>
+        <p>Principal Solutions Consultant, Zendesk AI</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway and we'll send the on-demand recording, plus the full CX Trends 2026 report, straight to your inbox.</p>
+    <a class="pill" href="#register">Save my seat</a>
+  </div>
+</section>
+
+<!-- FOOTER : mirrors zendesk.com -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Products</h4>
+        <a href="https://www.zendesk.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+        <a href="https://www.zendesk.com/service/" target="_blank" rel="noopener">Zendesk for customer service</a>
+        <a href="https://www.zendesk.com/employee-service/" target="_blank" rel="noopener">Zendesk for employee service</a>
+        <a href="https://www.zendesk.com/marketplace/" target="_blank" rel="noopener">Integrations</a>
+      </div>
+      <div>
+        <h4>Features</h4>
+        <a href="https://www.zendesk.com/service/ai/ai-agents/" target="_blank" rel="noopener">AI agents</a>
+        <a href="https://www.zendesk.com/service/ai/copilot/" target="_blank" rel="noopener">Copilot</a>
+        <a href="https://www.zendesk.com/service/messaging/" target="_blank" rel="noopener">Messaging and live chat</a>
+        <a href="https://www.zendesk.com/service/analytics/" target="_blank" rel="noopener">Reporting and analytics</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="https://support.zendesk.com/hc/en-us/" target="_blank" rel="noopener">Help center</a>
+        <a href="https://www.zendesk.com/blog/" target="_blank" rel="noopener">Blog</a>
+        <a href="https://www.zendesk.com/company/events/" target="_blank" rel="noopener">Events and webinars</a>
+        <a href="https://www.zendesk.com/why-zendesk/customers/" target="_blank" rel="noopener">Customer stories</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="https://www.zendesk.com/company/" target="_blank" rel="noopener">About us</a>
+        <a href="https://www.zendesk.com/newsroom/" target="_blank" rel="noopener">Newsroom</a>
+        <a href="https://www.zendesk.com/company/careers/" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.zendesk.com/company/legal/" target="_blank" rel="noopener">Legal</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="wordmark">zendesk</span>
+      <div class="foot-legal">
+        <a href="https://www.zendesk.com/company/agreements-and-terms/terms-of-use/" target="_blank" rel="noopener">Terms of Use</a>
+        <a href="https://www.zendesk.com/company/agreements-and-terms/privacy-notice/" target="_blank" rel="noopener">Privacy Notice</a>
+        <a href="https://www.zendesk.com/trust-center/" target="_blank" rel="noopener">Trust Center</a>
+      </div>
+      <span>© 2026 Zendesk, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SEQUEL EMBED -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    Sequel.renderEvent({
+      eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b"
+    });
+  });
+</script>
+
+</body>
+</html>
