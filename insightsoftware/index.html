@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in the Office of the CFO | insightsoftware Webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b2240;        /* insightsoftware navy */
+    --red:#d91f3d;        /* CTA crimson */
+    --red-dark:#b71832;
+    --gray-bg:#f5f7fa;
+    --gray-line:#e4e8ef;
+    --gray-text:#5a627a;
+    --footer:#14172e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.2}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* ---------- NAV ---------- */
+  .nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--gray-line);z-index:50}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-logo img{height:30px;display:block}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink);transition:color .15s}
+  .nav-links a:hover{color:var(--red)}
+  .btn{display:inline-block;background:var(--red);color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;padding:12px 26px;border-radius:6px;transition:background .15s}
+  .btn:hover{background:var(--red-dark)}
+  .btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 24px}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+
+  /* ---------- HERO ---------- */
+  .hero{background:linear-gradient(180deg,#fff 0%,var(--gray-bg) 100%);padding:72px 0 56px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(32px,4.5vw,52px);font-weight:700;max-width:840px;margin:0 auto 20px}
+  .hero p.sub{font-size:18px;color:var(--gray-text);max-width:680px;margin:0 auto 28px}
+  .meta{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:15px;font-weight:500;color:var(--ink)}
+  .meta span{display:flex;align-items:center;gap:8px}
+  .meta svg{width:18px;height:18px;stroke:var(--red)}
+
+  /* ---------- EMBED ---------- */
+  .embed-section{background:var(--gray-bg);padding:0 0 80px}
+  .embed-card{background:#fff;border:1px solid var(--gray-line);border-radius:14px;box-shadow:0 20px 50px rgba(27,34,64,.10);padding:16px;min-height:540px}
+  #sequel_root{min-height:520px}
+
+  /* ---------- LEARN ---------- */
+  .learn{padding:88px 0}
+  .learn h2{font-size:clamp(26px,3vw,36px);font-weight:700;text-align:center;margin-bottom:12px}
+  .learn p.lead{text-align:center;color:var(--gray-text);max-width:640px;margin:0 auto 52px;font-size:17px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:#fff;border:1px solid var(--gray-line);border-radius:12px;padding:32px 28px;transition:transform .15s, box-shadow .15s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(27,34,64,.10)}
+  .card .num{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--red);margin-bottom:14px}
+  .card h3{font-size:19px;font-weight:600;margin-bottom:10px}
+  .card p{font-size:15px;color:var(--gray-text)}
+
+  /* ---------- SPEAKERS ---------- */
+  .speakers{background:var(--gray-bg);padding:80px 0}
+  .speakers h2{font-size:clamp(26px,3vw,36px);font-weight:700;text-align:center;margin-bottom:52px}
+  .speaker-row{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+  .speaker{text-align:center;width:220px}
+  .avatar{width:104px;height:104px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:30px;font-weight:600;color:#fff}
+  .a1{background:linear-gradient(135deg,#1b2240,#3a4675)}
+  .a2{background:linear-gradient(135deg,#d91f3d,#8f1029)}
+  .speaker h3{font-size:17px;font-weight:600}
+  .speaker p{font-size:14px;color:var(--gray-text)}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--ink);color:#fff;padding:72px 0;text-align:center}
+  .cta-band h2{font-size:clamp(24px,3vw,34px);font-weight:700;margin-bottom:14px}
+  .cta-band p{color:#aeb6cf;max-width:560px;margin:0 auto 30px;font-size:16px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--footer);color:#9aa1bd;padding:64px 0 36px;font-size:14px}
+  .foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-bottom:48px}
+  .foot-grid h4{font-family:'Poppins',sans-serif;color:#fff;font-size:14px;font-weight:600;margin-bottom:16px}
+  .foot-grid a{display:block;margin-bottom:10px;transition:color .15s}
+  .foot-grid a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid #262b47;padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot-bottom img{height:24px;filter:brightness(0) invert(1);opacity:.9}
+  .foot-legal{display:flex;gap:22px}
+  .foot-legal a:hover{color:#fff}
+
+  @media(max-width:860px){
+    .nav-links a:not(.btn){display:none}
+    .cards{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV : mirrors insightsoftware.com -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="https://insightsoftware.com/" target="_blank" rel="noopener">
+      <img src="https://insightsoftware.com/wp-content/themes/insightsoftware/images/insightsoftware-logo-new.svg" alt="insightsoftware">
+    </a>
+    <div class="nav-links">
+      <a href="https://insightsoftware.com/erp-reporting/" target="_blank" rel="noopener">Products</a>
+      <a href="https://insightsoftware.com/erp-software/" target="_blank" rel="noopener">Integrations</a>
+      <a href="https://insightsoftware.com/resources/" target="_blank" rel="noopener">Resources</a>
+      <a href="https://insightsoftware.com/request-a-price/" target="_blank" rel="noopener">Pricing</a>
+      <a class="btn" href="#register">Register Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Live Webinar</div>
+    <h1>AI in the Office of the CFO: From Connected Data to Faster Decisions</h1>
+    <p class="sub">Join our product experts for a live look at how finance, accounting, and operations teams are using AI to see what matters and make smarter decisions — right inside the tools they already use.</p>
+    <div class="meta">
+      <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Thursday, June 25, 2026</span>
+      <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>11:00 AM ET · 45 min</span>
+      <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M15 10l4.55-2.27A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.89L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>Hosted on insightsoftware.com</span>
+    </div>
+  </div>
+</header>
+
+<!-- LIVE SEQUEL EMBED -->
+<section class="embed-section" id="register">
+  <div class="wrap">
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn">
+  <div class="wrap">
+    <h2>What You'll Learn</h2>
+    <p class="lead">Actionable business strategy begins and ends with accessible financial data. In this session we'll cover:</p>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Automate Routine Workflows</h3>
+        <p>Free up time and minimize errors by automating routine data workflows — so your team focuses on strategic analysis, not manual data entry.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Connect 200+ Data Environments</h3>
+        <p>See how an AI-enabled data virtualization layer connects every major ERP, data warehouse, and cloud vendor with pre-built content and logic.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Get Insights in Real Time</h3>
+        <p>Eliminate static reports. Gain immediate visibility into performance with real-time data inside the applications you already use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="wrap">
+    <h2>Meet Your Speakers</h2>
+    <div class="speaker-row">
+      <div class="speaker">
+        <div class="avatar a1">JD</div>
+        <h3>Jane Doe</h3>
+        <p>VP of Product, insightsoftware</p>
+      </div>
+      <div class="speaker">
+        <div class="avatar a2">MS</div>
+        <h3>Michael Smith</h3>
+        <p>Director of Solutions Engineering</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway — we'll send the full recording and resources straight to your inbox after the session.</p>
+    <a class="btn" href="#register">Save My Seat</a>
+  </div>
+</section>
+
+<!-- FOOTER : mirrors insightsoftware.com -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>ERP Reporting</h4>
+        <a href="https://insightsoftware.com/oracle/" target="_blank" rel="noopener">Oracle</a>
+        <a href="https://insightsoftware.com/sap/" target="_blank" rel="noopener">SAP</a>
+        <a href="https://insightsoftware.com/microsoft/" target="_blank" rel="noopener">Microsoft</a>
+        <a href="https://insightsoftware.com/erp-software/" target="_blank" rel="noopener">All ERPs</a>
+      </div>
+      <div>
+        <h4>Accounting</h4>
+        <a href="https://insightsoftware.com/plan-close-disclose/" target="_blank" rel="noopener">Plan, Close &amp; Disclose</a>
+        <a href="https://insightsoftware.com/tax-reporting/" target="_blank" rel="noopener">Tax &amp; Reporting</a>
+        <a href="https://insightsoftware.com/equity-management/" target="_blank" rel="noopener">Equity Management</a>
+        <a href="https://insightsoftware.com/lease-lifecycle-management/" target="_blank" rel="noopener">Lease Lifecycle</a>
+      </div>
+      <div>
+        <h4>Data &amp; Analytics</h4>
+        <a href="https://insightsoftware.com/simba/data-connectivity-for-enterprise/" target="_blank" rel="noopener">Data Connectivity</a>
+        <a href="https://insightsoftware.com/data-management/" target="_blank" rel="noopener">Data Management</a>
+        <a href="https://insightsoftware.com/solutions/data-visualization/" target="_blank" rel="noopener">Data Visualization</a>
+      </div>
+      <div>
+        <h4>About</h4>
+        <a href="https://insightsoftware.com/about/" target="_blank" rel="noopener">Corporate Overview</a>
+        <a href="https://insightsoftware.com/insightsoftware-ai/" target="_blank" rel="noopener">Lineos AI</a>
+        <a href="https://insightsoftware.com/careers/" target="_blank" rel="noopener">Careers</a>
+        <a href="https://insightsoftware.com/resources/newsroom/" target="_blank" rel="noopener">Newsroom</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <img src="https://insightsoftware.com/wp-content/themes/insightsoftware/images/insightsoftware-logo-new.svg" alt="insightsoftware">
+      <span>© insightsoftware. All Rights Reserved.</span>
+      <div class="foot-legal">
+        <a href="https://insightsoftware.com/legal/terms-of-use/" target="_blank" rel="noopener">Terms of Use</a>
+        <a href="https://insightsoftware.com/legal/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SEQUEL EMBED -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    Sequel.renderEvent({
+      eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b"
+    });
+  });
+</script>
+
+</body>
+</html>
