@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Webinar — Build and Run AI Agents on Your Data | Databricks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B3139;            /* Databricks body/ink */
+  --ink-deep:#0B2026;       /* dark band */
+  --red:#EB1600;            /* CTA red */
+  --accent:#FF3621;         /* headline accent */
+  --logo-red:#EE3D2C;
+  --bg:#FFFFFF;
+  --bg-soft:#F6F7F9;
+  --line:rgba(27,49,57,.12);
+  --sans:"DM Sans",-apple-system,sans-serif;
+  --mono:"DM Mono",monospace;
+  --sh-sm:0 2px 8px rgba(11,32,38,.07);
+  --sh-md:0 10px 26px rgba(11,32,38,.10);
+  --sh-lg:0 22px 48px rgba(11,32,38,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+a{text-decoration:none;color:inherit}
+img,svg{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* announce bar */
+.announce{background:var(--red);color:#fff;text-align:center;padding:9px 16px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.announce a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease)}
+header.scrolled{box-shadow:var(--sh-md)}
+.nav{display:flex;align-items:center;gap:26px;height:64px;transition:height .3s var(--ease)}
+header.scrolled .nav{height:56px}
+.logo{color:var(--ink);flex:none}
+.logo svg{height:22px;width:auto}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:16px;flex:1}
+.nav-links a{color:var(--ink);position:relative;white-space:nowrap}
+.nav-links a:not(.dais):after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--red);transition:width .3s var(--ease)}
+.nav-links a:not(.dais):hover:after{width:100%}
+.caret{display:inline-block;width:8px;height:8px;border-right:1.6px solid var(--ink);border-bottom:1.6px solid var(--ink);transform:rotate(45deg) translateY(-2px);margin-left:6px;opacity:.65}
+.dais{background:var(--red);color:#fff !important;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:5px 8px;border-radius:6px}
+.nav-right{display:flex;align-items:center;gap:18px;margin-left:auto}
+.icon-btn{width:20px;height:20px;color:var(--ink);opacity:.85}
+.login{font-size:16px;white-space:nowrap}
+.btn{display:inline-block;background:var(--red);color:#fff !important;font-weight:500;font-size:16px;padding:12px 20px;border-radius:0;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);white-space:nowrap}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-md);background:#d31400}
+.nav .btn{padding:10px 16px}
+.btn-dark{background:var(--ink)}
+.btn-dark:hover{background:var(--ink-deep)}
+
+/* hero */
+.hero{padding:84px 0 72px;background:
+  radial-gradient(circle at 88% 18%, rgba(255,54,33,.06), transparent 42%),
+  radial-gradient(circle at 8% 90%, rgba(27,49,57,.05), transparent 40%),#fff}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--red);border:1px solid rgba(235,22,0,.35);padding:7px 13px;border-radius:6px;margin-bottom:26px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(235,22,0,.45)}70%{box-shadow:0 0 0 9px rgba(235,22,0,0)}100%{box-shadow:0 0 0 0 rgba(235,22,0,0)}}
+h1{font-size:clamp(40px,5vw,60px);font-weight:500;line-height:1.08;letter-spacing:-.02em;margin-bottom:22px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:19px;color:rgba(27,49,57,.78);max-width:54ch;margin-bottom:26px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:13.5px;text-transform:uppercase;letter-spacing:.04em;color:rgba(27,49,57,.75);margin-bottom:30px}
+.meta span{display:flex;align-items:center;gap:8px}
+.meta svg{width:15px;height:15px;flex:none}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:18px}
+.cal-row{display:flex;gap:18px;font-size:14.5px}
+.cal-row a{color:var(--red);font-weight:500;display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid transparent;transition:border-color .2s}
+.cal-row a:hover{border-color:var(--red)}
+.streamline{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:rgba(27,49,57,.55);margin-top:14px}
+
+/* countdown card */
+.count-card{background:#fff;border:1px solid var(--line);box-shadow:var(--sh-lg);padding:36px 32px}
+.count-label{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:rgba(27,49,57,.6);margin-bottom:18px;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:var(--bg-soft);border:1px solid var(--line);text-align:center;padding:16px 4px 12px}
+.tile b{display:block;font-size:34px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.tile span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:rgba(27,49,57,.55)}
+.live-now{display:none;text-align:center;font-weight:700;font-size:21px;color:var(--red)}
+.count-foot{margin-top:20px;text-align:center}
+.count-foot .btn{width:100%;text-align:center}
+.dais-note{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:rgba(27,49,57,.65);text-align:center}
+.dais-note b{color:var(--ink)}
+
+/* trust strip */
+.trust{background:var(--ink-deep);color:#fff;padding:22px 0}
+.trust-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.trust-grid span{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:10px;opacity:.92}
+.trust-grid svg{width:15px;height:15px;color:var(--accent);flex:none}
+
+/* embed */
+.embed-sec{padding:80px 0;background:var(--bg-soft)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--red);margin-bottom:12px}
+h2{font-size:clamp(28px,3.4vw,40px);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.sec-sub{color:rgba(27,49,57,.72);max-width:62ch;margin-bottom:38px;font-size:17px}
+.embed-card{position:relative;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-lg);padding:14px}
+#sequel_root{min-height:520px}
+.skeleton{position:absolute;inset:14px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5}
+.spinner{width:42px;height:42px;border:3px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:spin 0.9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skeleton p{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:rgba(27,49,57,.55)}
+
+/* learn */
+.learn{padding:84px 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:#fff;border:1px solid var(--line);padding:30px 26px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.card .num{font-family:var(--mono);font-size:13px;color:var(--red);margin-bottom:14px;display:block}
+.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.card p{font-size:15.5px;color:rgba(27,49,57,.72)}
+
+/* speakers */
+.speakers{padding:0 0 84px}
+.sp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:860px}
+.sp{display:flex;gap:20px;align-items:center;background:#fff;border:1px solid var(--line);padding:26px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--ink) 0%,var(--ink-deep) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;flex:none}
+.avatar.alt{background:linear-gradient(135deg,var(--red),var(--accent))}
+.sp h4{font-size:17.5px;font-weight:700}
+.sp p{font-size:14.5px;color:rgba(27,49,57,.65)}
+
+/* cta band */
+.band{background:var(--ink-deep);color:#fff;padding:72px 0;text-align:center}
+.band h2{color:#fff;margin-bottom:12px}
+.band p{color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 30px}
+
+/* footer */
+footer{background:var(--ink);color:#fff;padding:64px 0 32px;font-size:14.5px}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.f-logo{color:#fff;margin-bottom:18px}
+.f-logo svg{height:20px;width:auto}
+.f-col h5{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.55);margin-bottom:16px;font-weight:500}
+.f-col a{display:block;color:rgba(255,255,255,.82);margin-bottom:10px;transition:color .2s}
+.f-col a:hover{color:#fff}
+.f-social{display:flex;gap:14px;margin-top:8px}
+.f-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;border-radius:0;transition:border-color .2s,background .2s}
+.f-social a:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.f-social svg{width:15px;height:15px;fill:#fff}
+.legal{border-top:1px solid rgba(255,255,255,.16);padding-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;color:rgba(255,255,255,.6);font-size:13px}
+.legal a{color:rgba(255,255,255,.7)}
+.legal a:hover{color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+.stagger.in>*:nth-child(4){transition-delay:.36s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*:before,*:after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+@media (max-width: 960px){
+  .nav-links a:not(.dais){display:none}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .cards{grid-template-columns:1fr}
+  .sp-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .trust-grid{flex-direction:column;gap:12px}
+  .login{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Live webinar · June 24 · Build and run AI agents on your data — <a href="#register">Save your seat</a></div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="https://www.databricks.com/" target="_blank" rel="noopener" aria-label="Databricks">
+      <svg width="132" height="22" viewBox="0 0 132 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m18.318 9.275-8.631 4.859L.445 8.942 0 9.182v3.77l9.687 5.431 8.63-4.84v1.995l-8.63 4.86-9.242-5.192-.445.24v.646l9.687 5.432 9.668-5.432v-3.769l-.445-.24-9.223 5.173-8.65-4.84V10.42l8.65 4.84 9.668-5.43V6.114l-.482-.277-9.186 5.155L1.482 6.41l8.205-4.6 6.741 3.787.593-.332v-.462L9.687.684 0 6.115v.592l9.687 5.432 8.63-4.86z" fill="#EE3D2C"/><path d="M37.449 18.443V1.852h-2.556v6.207c0 .093-.056.167-.148.204a.23.23 0 0 1-.24-.056c-.871-1.016-2.223-1.589-3.705-1.589-3.167 0-5.65 2.66-5.65 6.06 0 1.663.575 3.197 1.63 4.324a5.44 5.44 0 0 0 4.02 1.736c1.463 0 2.815-.61 3.704-1.662.056-.074.167-.093.24-.074.093.037.15.11.15.203v1.238zm-6.093-2.014c-2.038 0-3.63-1.644-3.63-3.75 0-2.107 1.592-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m19.762 2.016V6.896h-2.537V8.06c0 .093-.056.166-.149.203a.2.2 0 0 1-.24-.073c-.852-1.017-2.186-1.59-3.705-1.59-3.167 0-5.649 2.661-5.649 6.06 0 3.4 2.482 6.06 5.65 6.06 1.463 0 2.815-.61 3.704-1.68.055-.075.166-.093.24-.075.093.037.149.111.149.204v1.256h2.537zm-6.056-2.014c-2.038 0-3.63-1.645-3.63-3.75 0-2.107 1.592-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m27.781 2.015V6.896h-2.538V8.06c0 .093-.055.166-.148.203s-.185 0-.24-.073c-.853-1.017-2.186-1.59-3.705-1.59-3.186 0-5.649 2.661-5.649 6.08 0 3.417 2.482 6.06 5.649 6.06 1.463 0 2.815-.61 3.704-1.682.056-.074.167-.093.241-.074.093.037.148.11.148.203v1.256zm-6.057-2.014c-2.037 0-3.63-1.645-3.63-3.75 0-2.107 1.593-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m10.706.647c.019 0 .056-.019.074-.019.056 0 .13.037.167.074.87 1.016 2.222 1.589 3.704 1.589 3.167 0 5.65-2.66 5.65-6.06 0-1.663-.575-3.196-1.63-4.323a5.44 5.44 0 0 0-4.02-1.737c-1.463 0-2.815.61-3.704 1.663-.056.074-.148.092-.24.074-.093-.037-.149-.111-.149-.204V1.852h-2.556v16.59h2.556V17.28c0-.093.056-.166.148-.203m-.26-4.398c0-2.106 1.594-3.75 3.631-3.75s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75-3.63-1.662-3.63-3.75m17.244-3.416c.24 0 .463.019.61.056V6.695a2.4 2.4 0 0 0-.425-.037c-1.334 0-2.556.684-3.204 1.774-.056.092-.149.13-.241.092a.22.22 0 0 1-.167-.203V6.898h-2.537v11.566h2.556v-5.1c0-2.53 1.296-4.1 3.408-4.1m4.815-2.367h-2.593v11.566h2.593zM97.958 1.87a1.571 1.571 0 1 0 0 3.141 1.571 1.571 0 1 0 0-3.14m8.928 4.729c-3.556 0-6.131 2.55-6.131 6.08 0 1.717.612 3.25 1.704 4.36 1.112 1.108 2.667 1.718 4.408 1.718 1.445 0 2.556-.277 4.668-1.83l-1.463-1.533c-1.038.684-2.001 1.016-2.945 1.016-2.149 0-3.76-1.607-3.76-3.732s1.611-3.732 3.76-3.732c1.018 0 1.963.333 2.908 1.016l1.629-1.533c-1.907-1.626-3.63-1.83-4.778-1.83m9.149 6.762a.2.2 0 0 1 .149-.055h.018c.056 0 .111.037.167.073l4.093 5.063h3.149l-5.297-6.393c-.075-.092-.075-.222.018-.295l4.871-4.86h-3.13l-4.204 4.213c-.056.055-.148.074-.241.055a.23.23 0 0 1-.13-.203V1.87h-2.574v16.591h2.556v-4.508c0-.055.018-.13.074-.166z" fill="currentColor"/><path d="M127.776 18.739c2.093 0 4.223-1.275 4.223-3.695 0-1.589-1-2.68-3.037-3.344l-1.39-.462c-.944-.314-1.389-.758-1.389-1.367 0-.702.63-1.183 1.519-1.183.852 0 1.611.555 2.093 1.515l2.056-1.108c-.759-1.552-2.334-2.513-4.149-2.513-2.297 0-3.963 1.478-3.963 3.492 0 1.607.963 2.679 2.944 3.307l1.427.462c1 .314 1.426.72 1.426 1.367 0 .98-.908 1.33-1.686 1.33-1.037 0-1.963-.665-2.407-1.755l-2.093 1.109c.685 1.755 2.37 2.845 4.426 2.845m-69.546-.111c.815 0 1.538-.074 1.945-.13v-2.216a14 14 0 0 1-1.278.073c-1.037 0-1.833-.184-1.833-2.42V9.187c0-.13.092-.222.222-.222h2.5V6.877h-2.5a.214.214 0 0 1-.222-.221V3.33h-2.556v3.344c0 .13-.093.222-.223.222h-1.778v2.088h1.778c.13 0 .223.092.223.221v5.377c0 4.046 2.704 4.046 3.722 4.046" fill="currentColor"/></svg>
+    </a>
+    <nav class="nav-links">
+      <a href="https://www.databricks.com/why-databricks" target="_blank" rel="noopener">Why Databricks<span class="caret"></span></a>
+      <a href="https://www.databricks.com/product/data-intelligence-platform" target="_blank" rel="noopener">Product<span class="caret"></span></a>
+      <a href="https://www.databricks.com/solutions" target="_blank" rel="noopener">Solutions<span class="caret"></span></a>
+      <a href="https://www.databricks.com/resources" target="_blank" rel="noopener">Resources<span class="caret"></span></a>
+      <a href="https://www.databricks.com/company/about-us" target="_blank" rel="noopener">About<span class="caret"></span></a>
+      <a class="dais" href="https://www.databricks.com/dataaisummit" target="_blank" rel="noopener">Data + AI Summit</a>
+    </nav>
+    <div class="nav-right">
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      <a class="login" href="https://www.databricks.com/login" target="_blank" rel="noopener">Login</a>
+      <a class="btn" href="https://www.databricks.com/try-databricks" target="_blank" rel="noopener">Try Databricks</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="badge"><span class="dot"></span>Live Webinar</span>
+      <h1>Build and run <em>AI&nbsp;agents</em> on your data</h1>
+      <p class="sub">Fresh off Data + AI Summit, join us live to see how teams put the Databricks Platform to work — turning governed enterprise data into production AI agents and apps.</p>
+      <div class="meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Wed, June 24, 2026</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>9:00 AM PT</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3v18l7-5 7 5V3z"/></svg>45 min + live Q&amp;A</span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn" href="#register">Save your seat</a>
+        <div class="cal-row">
+          <a id="gcal" href="#" target="_blank" rel="noopener">+ Google Calendar</a>
+          <a id="ics" href="#" download="databricks-webinar.ics">+ iCal / Outlook</a>
+        </div>
+      </div>
+      <p class="streamline">Streaming right here on databricks.com</p>
+    </div>
+    <div class="count-card reveal in">
+      <p class="count-label">The live experience begins in</p>
+      <div class="tiles" id="tiles">
+        <div class="tile"><b id="d">--</b><span>Days</span></div>
+        <div class="tile"><b id="h">--</b><span>Hours</span></div>
+        <div class="tile"><b id="m">--</b><span>Min</span></div>
+        <div class="tile"><b id="s">--</b><span>Sec</span></div>
+      </div>
+      <p class="live-now" id="livenow">We're live now — join below ↓</p>
+      <div class="count-foot"><a class="btn" href="#register">Register free</a></div>
+      <p class="dais-note">Coming to <b>Data + AI Summit</b>, June 15–18 in San Francisco? This session picks up where the keynotes leave off.</p>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap trust-grid">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Hosted natively on databricks.com</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.4-.7L3 21l1.8-5.6A8.38 8.38 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>Live chat + Q&amp;A with the speakers</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4z"/></svg>Recording sent to every registrant</span>
+  </div>
+</div>
+
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <p class="eyebrow reveal in">Register &amp; watch</p>
+    <h2 class="reveal in">Join the live experience</h2>
+    <p class="sec-sub reveal in">Register below — the session streams on this page, with live chat, Q&amp;A, and polls. No downloads, no redirects.</p>
+    <div class="embed-card reveal in">
+      <div class="skeleton" id="skeleton"><div class="spinner"></div><p>Loading the live experience…</p></div>
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <p class="eyebrow reveal">What you'll learn</p>
+    <h2 class="reveal">From governed data to production agents</h2>
+    <p class="sec-sub reveal">Three practical takeaways, drawn from how data + AI teams ship today.</p>
+    <div class="cards stagger">
+      <div class="card"><span class="num">01</span><h3>Apps, agents and AI on your data</h3><p>How to build and run AI agents directly on your enterprise data — without moving it out of your governance perimeter.</p></div>
+      <div class="card"><span class="num">02</span><h3>Better data pipelines, faster</h3><p>Patterns for building reliable pipelines that keep agents grounded in fresh, trusted data — with less engineering overhead.</p></div>
+      <div class="card"><span class="num">03</span><h3>How innovators win with data + AI</h3><p>What separates teams that get agents into production from teams stuck in proof-of-concept — and how to be the former.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <p class="eyebrow reveal">Speakers</p>
+    <h2 class="reveal">Meet your hosts</h2>
+    <div class="sp-grid stagger" style="margin-top:34px">
+      <div class="sp"><div class="avatar">SP</div><div><h4>Speaker Name</h4><p>Field Engineering — Data &amp; AI<br>Databricks</p></div></div>
+      <div class="sp"><div class="avatar alt">SP</div><div><h4>Speaker Name</h4><p>Product, AI Agents<br>Databricks</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway — every registrant gets the full recording and resources in their inbox the morning after the session.</p>
+    <a class="btn" href="#register">Register free</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-col">
+        <a class="f-logo" href="https://www.databricks.com/" target="_blank" rel="noopener" aria-label="Databricks">
+          <svg width="132" height="22" viewBox="0 0 132 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m18.318 9.275-8.631 4.859L.445 8.942 0 9.182v3.77l9.687 5.431 8.63-4.84v1.995l-8.63 4.86-9.242-5.192-.445.24v.646l9.687 5.432 9.668-5.432v-3.769l-.445-.24-9.223 5.173-8.65-4.84V10.42l8.65 4.84 9.668-5.43V6.114l-.482-.277-9.186 5.155L1.482 6.41l8.205-4.6 6.741 3.787.593-.332v-.462L9.687.684 0 6.115v.592l9.687 5.432 8.63-4.86z" fill="#EE3D2C"/><path d="M37.449 18.443V1.852h-2.556v6.207c0 .093-.056.167-.148.204a.23.23 0 0 1-.24-.056c-.871-1.016-2.223-1.589-3.705-1.589-3.167 0-5.65 2.66-5.65 6.06 0 1.663.575 3.197 1.63 4.324a5.44 5.44 0 0 0 4.02 1.736c1.463 0 2.815-.61 3.704-1.662.056-.074.167-.093.24-.074.093.037.15.11.15.203v1.238zm-6.093-2.014c-2.038 0-3.63-1.644-3.63-3.75 0-2.107 1.592-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m19.762 2.016V6.896h-2.537V8.06c0 .093-.056.166-.149.203a.2.2 0 0 1-.24-.073c-.852-1.017-2.186-1.59-3.705-1.59-3.167 0-5.649 2.661-5.649 6.06 0 3.4 2.482 6.06 5.65 6.06 1.463 0 2.815-.61 3.704-1.68.055-.075.166-.093.24-.075.093.037.149.111.149.204v1.256h2.537zm-6.056-2.014c-2.038 0-3.63-1.645-3.63-3.75 0-2.107 1.592-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m27.781 2.015V6.896h-2.538V8.06c0 .093-.055.166-.148.203s-.185 0-.24-.073c-.853-1.017-2.186-1.59-3.705-1.59-3.186 0-5.649 2.661-5.649 6.08 0 3.417 2.482 6.06 5.649 6.06 1.463 0 2.815-.61 3.704-1.682.056-.074.167-.093.241-.074.093.037.148.11.148.203v1.256zm-6.057-2.014c-2.037 0-3.63-1.645-3.63-3.75 0-2.107 1.593-3.751 3.63-3.751s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75m10.706.647c.019 0 .056-.019.074-.019.056 0 .13.037.167.074.87 1.016 2.222 1.589 3.704 1.589 3.167 0 5.65-2.66 5.65-6.06 0-1.663-.575-3.196-1.63-4.323a5.44 5.44 0 0 0-4.02-1.737c-1.463 0-2.815.61-3.704 1.663-.056.074-.148.092-.24.074-.093-.037-.149-.111-.149-.204V1.852h-2.556v16.59h2.556V17.28c0-.093.056-.166.148-.203m-.26-4.398c0-2.106 1.594-3.75 3.631-3.75s3.63 1.644 3.63 3.75-1.593 3.75-3.63 3.75-3.63-1.662-3.63-3.75m17.244-3.416c.24 0 .463.019.61.056V6.695a2.4 2.4 0 0 0-.425-.037c-1.334 0-2.556.684-3.204 1.774-.056.092-.149.13-.241.092a.22.22 0 0 1-.167-.203V6.898h-2.537v11.566h2.556v-5.1c0-2.53 1.296-4.1 3.408-4.1m4.815-2.367h-2.593v11.566h2.593zM97.958 1.87a1.571 1.571 0 1 0 0 3.141 1.571 1.571 0 1 0 0-3.14m8.928 4.729c-3.556 0-6.131 2.55-6.131 6.08 0 1.717.612 3.25 1.704 4.36 1.112 1.108 2.667 1.718 4.408 1.718 1.445 0 2.556-.277 4.668-1.83l-1.463-1.533c-1.038.684-2.001 1.016-2.945 1.016-2.149 0-3.76-1.607-3.76-3.732s1.611-3.732 3.76-3.732c1.018 0 1.963.333 2.908 1.016l1.629-1.533c-1.907-1.626-3.63-1.83-4.778-1.83m9.149 6.762a.2.2 0 0 1 .149-.055h.018c.056 0 .111.037.167.073l4.093 5.063h3.149l-5.297-6.393c-.075-.092-.075-.222.018-.295l4.871-4.86h-3.13l-4.204 4.213c-.056.055-.148.074-.241.055a.23.23 0 0 1-.13-.203V1.87h-2.574v16.591h2.556v-4.508c0-.055.018-.13.074-.166z" fill="currentColor"/><path d="M127.776 18.739c2.093 0 4.223-1.275 4.223-3.695 0-1.589-1-2.68-3.037-3.344l-1.39-.462c-.944-.314-1.389-.758-1.389-1.367 0-.702.63-1.183 1.519-1.183.852 0 1.611.555 2.093 1.515l2.056-1.108c-.759-1.552-2.334-2.513-4.149-2.513-2.297 0-3.963 1.478-3.963 3.492 0 1.607.963 2.679 2.944 3.307l1.427.462c1 .314 1.426.72 1.426 1.367 0 .98-.908 1.33-1.686 1.33-1.037 0-1.963-.665-2.407-1.755l-2.093 1.109c.685 1.755 2.37 2.845 4.426 2.845m-69.546-.111c.815 0 1.538-.074 1.945-.13v-2.216a14 14 0 0 1-1.278.073c-1.037 0-1.833-.184-1.833-2.42V9.187c0-.13.092-.222.222-.222h2.5V6.877h-2.5a.214.214 0 0 1-.222-.221V3.33h-2.556v3.344c0 .13-.093.222-.223.222h-1.778v2.088h1.778c.13 0 .223.092.223.221v5.377c0 4.046 2.704 4.046 3.722 4.046" fill="currentColor"/></svg>
+        </a>
+        <div class="f-social">
+          <a href="https://www.linkedin.com/company/databricks" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56z"/></svg></a>
+          <a href="https://twitter.com/databricks" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2.1h3.4l-7.4 8.5 8.7 11.3h-6.8l-5.3-7-6.1 7H2l7.9-9.1L1.5 2.1h7l4.8 6.3zm-1.2 17.8h1.9L7.4 4H5.4z"/></svg></a>
+          <a href="https://www.youtube.com/@Databricks" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg></a>
+          <a href="https://www.facebook.com/pages/Databricks/560203607379694" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h5>Why Databricks</h5>
+        <a href="https://www.databricks.com/developers" target="_blank" rel="noopener">For App Developers</a>
+        <a href="https://www.databricks.com/why-databricks/executives" target="_blank" rel="noopener">For Executives</a>
+        <a href="https://www.databricks.com/product/startups" target="_blank" rel="noopener">For Startups</a>
+        <a href="https://www.databricks.com/customers" target="_blank" rel="noopener">Customer Stories</a>
+        <a href="https://www.databricks.com/research/databricks-ai-research" target="_blank" rel="noopener">Databricks AI Research</a>
+      </div>
+      <div class="f-col">
+        <h5>Product</h5>
+        <a href="https://www.databricks.com/product/data-intelligence-platform" target="_blank" rel="noopener">Platform Overview</a>
+        <a href="https://www.databricks.com/product/data-lakehouse" target="_blank" rel="noopener">Lakehouse Architecture</a>
+        <a href="https://www.databricks.com/product/unity-catalog" target="_blank" rel="noopener">Governance</a>
+        <a href="https://www.databricks.com/product/delta-sharing" target="_blank" rel="noopener">Sharing</a>
+        <a href="https://www.databricks.com/product/artificial-intelligence" target="_blank" rel="noopener">Artificial Intelligence</a>
+      </div>
+      <div class="f-col">
+        <h5>Partners</h5>
+        <a href="https://www.databricks.com/partners" target="_blank" rel="noopener">Partner Overview</a>
+        <a href="https://www.databricks.com/partners/partner-directory" target="_blank" rel="noopener">Find a Partner</a>
+        <a href="https://www.databricks.com/partners/cloud-partners" target="_blank" rel="noopener">Cloud Providers</a>
+        <a href="https://www.databricks.com/partners/consulting-and-si/partner-solutions" target="_blank" rel="noopener">Partner Solutions</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© Databricks 2026. All rights reserved.</span>
+      <a href="https://www.databricks.com/legal/privacynotice" target="_blank" rel="noopener">Privacy Notice</a>
+      <a href="https://www.databricks.com/legal/terms-of-use" target="_blank" rel="noopener">Terms of Use</a>
+      <a href="https://www.databricks.com/legal/california-privacy" target="_blank" rel="noopener">California Privacy</a>
+      <a href="https://www.databricks.com/trust" target="_blank" rel="noopener">Security and Trust</a>
+    </div>
+  </div>
+</footer>
+
+<div id="sequel_anchor"></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+// ---- Event object (single source of truth) ----
+const EVENT = {
+  title: "Build and Run AI Agents on Your Data — Live Webinar",
+  description: "Live on databricks.com: how teams turn governed enterprise data into production AI agents and apps. 45 min + live Q&A.",
+  location: "https://sequel-demo.github.io/webinar-on/databricks/",
+  start: new Date("2026-06-24T09:00:00-07:00"),
+  end:   new Date("2026-06-24T09:45:00-07:00")
+};
+const pad = n => String(n).padStart(2, "0");
+const utc = d => d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + "T" + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + "00Z";
+
+// Google Calendar
+document.getElementById("gcal").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + utc(EVENT.start) + "/" + utc(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.description) +
+  "&location=" + encodeURIComponent(EVENT.location);
+
+// .ics
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Databricks Webinar//EN","BEGIN:VEVENT",
+  "UID:databricks-webinar-2026-06-24@sequel.io","DTSTAMP:" + utc(new Date()),
+  "DTSTART:" + utc(EVENT.start),"DTEND:" + utc(EVENT.end),
+  "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.description.replace(/,/g,"\\,"),
+  "LOCATION:" + EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ics").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+// ---- Countdown ----
+(function(){
+  const d=document.getElementById("d"),h=document.getElementById("h"),m=document.getElementById("m"),s=document.getElementById("s");
+  function tick(){
+    const diff = EVENT.start - new Date();
+    if (diff <= 0){
+      document.getElementById("tiles").style.display = "none";
+      document.getElementById("livenow").style.display = "block";
+      return;
+    }
+    d.textContent = pad(Math.floor(diff/864e5));
+    h.textContent = pad(Math.floor(diff/36e5)%24);
+    m.textContent = pad(Math.floor(diff/6e4)%60);
+    s.textContent = pad(Math.floor(diff/1e3)%60);
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
+// ---- Nav shrink ----
+window.addEventListener("scroll", () => {
+  document.getElementById("hdr").classList.toggle("scrolled", window.scrollY > 8);
+}, { passive: true });
+
+// ---- Scroll reveal ----
+(function(){
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll(".reveal:not(.in), .stagger").forEach(el => io.observe(el));
+})();
+
+// ---- Sequel embed + skeleton removal ----
+document.addEventListener("DOMContentLoaded", () => {
+  Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" });
+  const root = document.getElementById("sequel_root"), sk = document.getElementById("skeleton");
+  const kill = () => { if (sk) sk.style.display = "none"; };
+  new MutationObserver((muts, obs) => {
+    if (root.childElementCount > 0){ setTimeout(kill, 1200); obs.disconnect(); }
+  }).observe(root, { childList: true, subtree: true });
+  setTimeout(kill, 12000);
+});
+</script>
+</body>
+</html>
