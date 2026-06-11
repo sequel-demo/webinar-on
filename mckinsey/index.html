@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generative AI in 2026: From Pilots to Enterprise Value | McKinsey Webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#051c2c;        /* McKinsey deep blue */
+    --blue:#2251ff;        /* McKinsey blue (accent/CTA) */
+    --blue-dark:#1a3fcc;
+    --ink:#1f2429;         /* body text on light */
+    --sub:#5a626b;         /* secondary text */
+    --line:#e3e6ea;
+    --section:#f4f5f7;     /* light section bg */
+    --navy-line:rgba(255,255,255,.16);
+    --sh-sm:0 2px 8px rgba(5,28,44,.06);
+    --sh-md:0 16px 38px rgba(5,28,44,.10);
+    --sh-lg:0 28px 64px rgba(5,28,44,.16);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3,.serif{font-family:'Source Serif 4',Georgia,serif;line-height:1.1;letter-spacing:-0.01em;font-weight:400}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  ::selection{background:var(--blue);color:#fff}
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.09s}
+  .stagger.in>*:nth-child(3){transition-delay:.18s}
+
+  /* ANNOUNCE BAR */
+  .announce{background:var(--blue);color:#fff;font-size:13.5px;text-align:center;padding:9px 16px;letter-spacing:.01em}
+  .announce a{text-decoration:underline;font-weight:600;color:#fff}
+
+  /* HEADER (mirrors mckinsey.com — dark navy, serif logo, carets, Sign In | Subscribe, search) */
+  .nav{position:sticky;top:0;background:var(--navy);z-index:50;transition:box-shadow .25s;border-bottom:1px solid var(--navy-line)}
+  .nav.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.35)}
+  .nav-inner{display:flex;align-items:center;gap:26px;height:88px;transition:height .25s var(--ease)}
+  .nav.scrolled .nav-inner{height:68px}
+  .burger{display:flex;flex-direction:column;gap:4px;cursor:pointer;flex-shrink:0}
+  .burger span{display:block;width:24px;height:2px;background:#fff}
+  .logo{color:#fff;flex-shrink:0;line-height:.98}
+  .logo .l1,.logo .l2{display:block;font-family:'Source Serif 4',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.005em}
+  .nav.scrolled .logo .l1,.nav.scrolled .logo .l2{font-size:18px}
+  .nav-links{display:flex;gap:22px;align-items:center;margin:0 auto}
+  .nav-links a{display:inline-flex;align-items:center;gap:5px;font-size:14.5px;font-weight:500;color:#fff}
+  .nav-links a .caret{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2.4;opacity:.8;transition:transform .2s var(--ease)}
+  .nav-links a:hover{color:#bcd0ff}
+  .nav-links a:hover .caret{transform:translateY(2px)}
+  .nav-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+  .nav-util{font-size:13.5px;color:#fff;font-weight:500}
+  .nav-util a:hover{color:#bcd0ff}
+  .nav-util .sep{opacity:.5;margin:0 8px}
+  .search{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;cursor:pointer}
+  .btn-blue{background:var(--blue);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:2px;transition:background .15s,transform .18s var(--ease),box-shadow .18s var(--ease)}
+  .btn-blue:hover{background:#3a64ff;transform:translateY(-2px);box-shadow:var(--sh-md)}
+  .btn-blue:active{transform:translateY(0)}
+
+  /* HERO */
+  .hero{background:var(--navy);color:#fff;padding:74px 0 84px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-160px;top:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(34,81,255,.22),transparent 70%)}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7ea0ff;margin-bottom:24px}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+  .hero h1{font-size:clamp(38px,5.2vw,62px);font-weight:400;letter-spacing:-0.02em;margin-bottom:22px}
+  .hero p.sub{font-size:18px;font-weight:300;color:#c5cdd6;max-width:560px;margin-bottom:30px;line-height:1.55}
+  .meta{display:flex;flex-direction:column;gap:12px;font-size:15px;color:#e6eaef;margin-bottom:28px}
+  .meta span{display:flex;align-items:center;gap:11px}
+  .meta svg{width:19px;height:19px;stroke:#7ea0ff;fill:none;stroke-width:1.8;flex-shrink:0}
+  .countdown{display:flex;gap:10px;margin-bottom:28px}
+  .cd-tile{background:rgba(255,255,255,.06);border:1px solid var(--navy-line);border-radius:4px;padding:12px 0 10px;width:74px;text-align:center}
+  .cd-n{display:block;font-family:'Source Serif 4',serif;font-size:30px;font-weight:500;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+  .cd-l{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9aa6b2;margin-top:6px}
+  .cd-live{font-family:'Source Serif 4',serif;font-weight:500;color:#7ea0ff;font-size:19px}
+  .hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:14px 30px;border-radius:2px;transition:background .15s,transform .18s var(--ease),box-shadow .18s var(--ease)}
+  .cta:hover{background:#3a64ff;transform:translateY(-2px);box-shadow:0 16px 38px rgba(34,81,255,.4)}
+  .cta:active{transform:translateY(0)}
+  .cal{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#9aa6b2}
+  .cal-link{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--navy-line);border-radius:2px;padding:8px 13px;font-weight:600;font-size:13px;color:#fff;transition:border-color .15s,transform .18s var(--ease)}
+  .cal-link:hover{border-color:#7ea0ff;transform:translateY(-2px)}
+  .cal-link svg{width:14px;height:14px;stroke:#7ea0ff;fill:none;stroke-width:1.8}
+
+  .stat-card{border:1px solid var(--navy-line);border-radius:6px;padding:38px 34px;background:rgba(255,255,255,.03)}
+  .stat-card .ey{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7ea0ff;margin-bottom:24px}
+  .stat{padding:18px 0;border-bottom:1px solid var(--navy-line)}
+  .stat:last-of-type{border:none}
+  .stat .n{font-family:'Source Serif 4',serif;font-size:40px;font-weight:400;color:#fff;letter-spacing:-0.01em;line-height:1}
+  .stat .l{font-size:13.5px;color:#aeb8c2;margin-top:7px}
+  .stat-src{font-size:11.5px;color:#7c8893;margin-top:18px;font-style:italic}
+
+  /* EMBED */
+  .embed-section{padding:80px 0;background:#fff}
+  .embed-section h2{font-size:clamp(30px,3.4vw,44px);font-weight:400;text-align:center;margin-bottom:12px;color:var(--navy)}
+  .embed-section p.lead{text-align:center;color:var(--sub);margin-bottom:40px;font-size:17px}
+  .embed-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--sh-lg);padding:16px;min-height:540px}
+  #sequel_root{min-height:520px;position:relative;z-index:2}
+  .embed-skeleton{position:absolute;inset:16px;border-radius:6px;background:var(--section);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:1}
+  .embed-skeleton .spin{width:40px;height:40px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--blue);animation:spin .8s linear infinite}
+  .embed-skeleton p{color:var(--sub);font-size:14px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* LEARN */
+  .learn{background:var(--section);padding:92px 0}
+  .learn h2{font-size:clamp(30px,3.4vw,44px);font-weight:400;text-align:center;margin-bottom:12px;color:var(--navy)}
+  .learn p.lead{text-align:center;color:var(--sub);max-width:660px;margin:0 auto 54px;font-size:17px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .card{background:#fff;border-top:3px solid var(--blue);padding:34px 30px 36px;box-shadow:var(--sh-sm);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+  .card .num{font-family:'Source Serif 4',serif;font-size:38px;font-weight:400;color:var(--blue);line-height:1;margin-bottom:16px}
+  .card h3{font-size:21px;font-weight:500;margin-bottom:11px;color:var(--navy)}
+  .card p{font-size:15px;color:var(--sub)}
+
+  /* SPEAKERS */
+  .speakers{padding:90px 0;background:#fff}
+  .speakers h2{font-size:clamp(30px,3.4vw,44px);font-weight:400;text-align:center;margin-bottom:52px;color:var(--navy)}
+  .speaker-row{display:flex;gap:48px;justify-content:center;flex-wrap:wrap}
+  .speaker{text-align:center;width:240px}
+  .avatar{width:110px;height:110px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-size:32px;font-weight:500;color:#fff;transition:transform .25s var(--ease)}
+  .speaker:hover .avatar{transform:scale(1.05)}
+  .a1{background:var(--navy)}
+  .a2{background:linear-gradient(135deg,#2251ff,#0b2a8f)}
+  .speaker h3{font-size:18px;font-weight:600;color:var(--navy)}
+  .speaker p{font-size:14px;color:var(--sub);margin-top:3px}
+
+  /* CTA BAND */
+  .cta-band{background:var(--navy);color:#fff;padding:84px 0;text-align:center}
+  .cta-band h2{font-size:clamp(28px,3.4vw,42px);font-weight:400;margin-bottom:16px}
+  .cta-band p{color:#c5cdd6;max-width:560px;margin:0 auto 32px;font-size:16px;font-weight:300}
+
+  /* FOOTER (mirrors mckinsey.com) */
+  footer{background:#fff;border-top:1px solid var(--line);color:var(--ink);padding:64px 0 40px;font-size:14px}
+  .foot-logo{line-height:.98;margin-bottom:36px}
+  .foot-logo .l1,.foot-logo .l2{display:block;font-family:'Source Serif 4',serif;font-weight:500;font-size:30px;color:var(--navy)}
+  .foot-top{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:30px;margin-bottom:44px}
+  .foot-col a{display:block;margin-bottom:13px;color:var(--ink);font-weight:500}
+  .foot-col a:hover{color:var(--blue)}
+  .foot-sub h4{font-family:'Source Serif 4',serif;font-weight:500;font-size:18px;color:var(--navy);margin-bottom:8px}
+  .foot-sub p{color:var(--sub);font-size:14px;margin-bottom:14px}
+  .sub-form{display:flex;gap:10px;max-width:380px}
+  .sub-form input{flex:1;border:1px solid var(--line);border-radius:2px;padding:11px 13px;font-family:inherit;font-size:14px}
+  .sub-form a{background:var(--blue);color:#fff;font-weight:600;padding:11px 22px;border-radius:2px;transition:background .15s}
+  .sub-form a:hover{background:var(--blue-dark)}
+  .foot-social{display:flex;gap:12px;margin:8px 0 28px}
+  .foot-social a{width:34px;height:34px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .foot-social a:hover{background:var(--blue)}
+  .foot-social svg{width:16px;height:16px;fill:#fff}
+  .foot-legal{display:flex;flex-wrap:wrap;gap:8px 22px;border-top:1px solid var(--line);padding-top:24px;font-size:13px}
+  .foot-legal a{color:var(--sub);font-weight:500}
+  .foot-legal a:hover{color:var(--blue)}
+  .foot-copy{color:var(--sub);font-size:13px;margin-top:18px}
+
+  @media(max-width:980px){
+    .nav-links,.nav-util,.btn-blue{display:none}
+    .nav-inner{height:64px}
+    .hero{padding:54px 0 60px}
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .cards{grid-template-columns:1fr}
+    .foot-top{grid-template-columns:1fr 1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+    .eyebrow .dot,.embed-skeleton .spin{animation:none}
+    .cta:hover,.btn-blue:hover,.card:hover,.cal-link:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce">
+  New from McKinsey research — live. Turning generative AI from pilots into enterprise value. <a href="#register">Save your seat</a>
+</div>
+
+<!-- HEADER : mirrors mckinsey.com -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
+    <a class="logo" href="https://www.mckinsey.com/" target="_blank" rel="noopener" aria-label="McKinsey &amp; Company home">
+      <span class="l1">McKinsey</span><span class="l2">&amp; Company</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://www.mckinsey.com/industries" target="_blank" rel="noopener">Industries <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.mckinsey.com/capabilities" target="_blank" rel="noopener">Capabilities <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.mckinsey.com/tech-and-ai" target="_blank" rel="noopener">Tech &amp; AI</a>
+      <a href="https://www.mckinsey.com/featured-insights" target="_blank" rel="noopener">Our Insights <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.mckinsey.com/careers/home" target="_blank" rel="noopener">Careers <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.mckinsey.com/about-us/overview" target="_blank" rel="noopener">About Us <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.mckinsey.com/about-us/new-at-mckinsey-blog" target="_blank" rel="noopener">McKinsey Blog</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-util"><a href="https://www.mckinsey.com/" target="_blank" rel="noopener">Sign In</a><span class="sep">|</span><a href="https://www.mckinsey.com/user-registration/newsletter" target="_blank" rel="noopener">Subscribe</a></span>
+      <svg class="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <a class="btn-blue" href="#register">Register</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Live Webinar</div>
+      <h1>Generative AI in 2026: From pilots to enterprise value</h1>
+      <p class="sub">Join McKinsey experts for a live session on how leading organizations are moving generative AI beyond isolated experiments — and capturing measurable, enterprise-wide value at scale.</p>
+      <div class="meta">
+        <span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Thursday, June 25, 2026 · 11:00 AM ET</span>
+        <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>45 minutes, with live audience Q&amp;A</span>
+        <span><svg viewBox="0 0 24 24"><path d="M15 10l4.55-2.27A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.89L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>Streaming right here on mckinsey.com</span>
+      </div>
+      <div class="countdown" id="countdown" aria-label="Time remaining until the webinar">
+        <div class="cd-tile"><span class="cd-n" data-cd="d">00</span><span class="cd-l">Days</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="h">00</span><span class="cd-l">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="m">00</span><span class="cd-l">Min</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="s">00</span><span class="cd-l">Sec</span></div>
+      </div>
+      <div class="hero-actions">
+        <a class="cta" href="#register">Register now</a>
+        <div class="cal">
+          <span>Add to calendar:</span>
+          <a class="cal-link" id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Google</a>
+          <a class="cal-link" id="ical" download="mckinsey-genai-2026.ics"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>iCal</a>
+        </div>
+      </div>
+    </div>
+    <aside class="stat-card reveal">
+      <div class="ey">Why this matters</div>
+      <div class="stat"><div class="n">$4.4T</div><div class="l">potential annual value generative AI could add to the global economy</div></div>
+      <div class="stat"><div class="n">63</div><div class="l">gen AI use cases analyzed across 16 business functions</div></div>
+      <div class="stat"><div class="n">~75%</div><div class="l">of the value concentrated in four functions, led by customer ops and marketing</div></div>
+      <div class="stat-src">Source: McKinsey research, “The economic potential of generative AI.”</div>
+    </aside>
+  </div>
+</header>
+
+<!-- LIVE SEQUEL EMBED -->
+<section class="embed-section" id="register">
+  <div class="wrap">
+    <h2 class="reveal">Join us live</h2>
+    <p class="lead reveal">Register below — no downloads, no redirects. The session streams right on this page.</p>
+    <div class="embed-card reveal">
+      <div class="embed-skeleton" id="embSkel"><div class="spin"></div><p>Loading the live experience…</p></div>
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn">
+  <div class="wrap">
+    <h2 class="reveal">What you'll take away</h2>
+    <p class="lead reveal">A practical view of where generative AI value is real today — and what separates the organizations capturing it from those still stuck in pilots.</p>
+    <div class="cards stagger">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Where the value is</h3>
+        <p>The functions capturing the majority of generative AI's economic potential — and a framework for prioritizing the use cases that matter most for your business.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>From pilot to scale</h3>
+        <p>The operating-model, data, and talent moves that distinguish leaders who scale generative AI from the many organizations still stuck in experimentation.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Responsible by design</h3>
+        <p>Practical governance, risk, and trust frameworks for deploying AI responsibly across the enterprise — without slowing the pace of innovation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="wrap">
+    <h2 class="reveal">Meet your speakers</h2>
+    <div class="speaker-row stagger">
+      <div class="speaker">
+        <div class="avatar a1">SP</div>
+        <h3>Speaker name</h3>
+        <p>Senior Partner, QuantumBlack, AI by McKinsey</p>
+      </div>
+      <div class="speaker">
+        <div class="avatar a2">SP</div>
+        <h3>Speaker name</h3>
+        <p>Partner, McKinsey Global Institute</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway and we'll send the on-demand recording, plus the related McKinsey research, straight to your inbox.</p>
+    <a class="cta" href="#register">Save my seat</a>
+  </div>
+</section>
+
+<!-- FOOTER : mirrors mckinsey.com -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo"><span class="l1">McKinsey</span><span class="l2">&amp; Company</span></div>
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="https://www.mckinsey.com/careers/home" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.mckinsey.com/alumni" target="_blank" rel="noopener">Alumni</a>
+        <a href="https://www.mckinsey.com/about-us/locations" target="_blank" rel="noopener">Global locations</a>
+      </div>
+      <div class="foot-col">
+        <a href="https://www.mckinsey.com/about-us/overview" target="_blank" rel="noopener">About us</a>
+        <a href="https://www.mckinsey.com/contact-us" target="_blank" rel="noopener">Contact us</a>
+      </div>
+      <div class="foot-sub">
+        <h4>Subscribe</h4>
+        <p>Select topics and stay current with our latest insights.</p>
+        <div class="sub-form">
+          <input type="email" placeholder="Email address" aria-label="Email address">
+          <a href="https://www.mckinsey.com/user-registration/newsletter" target="_blank" rel="noopener">Submit</a>
+        </div>
+        <div class="foot-social">
+          <a href="https://www.linkedin.com/company/mckinsey" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 102.5 6 2.5 2.5 0 004.98 3.5zM3 8.98h4V21H3zM9 8.98h3.8v1.64h.05a4.17 4.17 0 013.75-2.06c4 0 4.75 2.64 4.75 6.07V21h-4v-5.4c0-1.29 0-2.94-1.8-2.94s-2.07 1.4-2.07 2.85V21H9z"/></svg></a>
+          <a href="https://twitter.com/McKinsey" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.5 3h3.2l-7 8 8.2 10.9h-6.4l-5-6.6-5.8 6.6H1.5l7.5-8.6L1 3h6.6l4.5 6zm-1.1 16.9h1.8L7.6 4.9H5.7z"/></svg></a>
+          <a href="https://www.facebook.com/McKinsey" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></a>
+          <a href="https://www.youtube.com/user/McKinsey" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 001.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 001.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <a href="https://www.mckinsey.com/about-us/scam-warning" target="_blank" rel="noopener">Scam warning</a>
+      <a href="https://www.mckinsey.com/faq" target="_blank" rel="noopener">FAQ</a>
+      <a href="https://www.mckinsey.com/privacy-policy" target="_blank" rel="noopener">Privacy policy</a>
+      <a href="https://www.mckinsey.com/cookie-policy" target="_blank" rel="noopener">Cookie preferences</a>
+      <a href="https://www.mckinsey.com/terms-of-use" target="_blank" rel="noopener">Terms of use</a>
+      <a href="https://www.mckinsey.com/accessibility-statement" target="_blank" rel="noopener">Accessibility statement</a>
+    </div>
+    <div class="foot-copy">© 1996-2026 McKinsey &amp; Company</div>
+  </div>
+</footer>
+
+<!-- POLISH: countdown, add-to-calendar, scroll-reveal, nav-shrink, embed skeleton -->
+<script>
+(function(){
+  var EVENT={
+    title:"Generative AI in 2026: From pilots to enterprise value (McKinsey)",
+    start:"2026-06-25T11:00:00-04:00",
+    startUTC:"20260625T150000Z",
+    endUTC:"20260625T154500Z",
+    details:"Join McKinsey experts live for how organizations turn generative AI from pilots into enterprise value. Streaming on mckinsey.com.",
+    location:window.location.href
+  };
+  var target=new Date(EVENT.start).getTime();
+  var cd=document.getElementById('countdown');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){cd.innerHTML='<div class="cd-live">● We’re live now — join below</div>';return;}
+    var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);
+    var set={d:d,h:h,m:m,s:s};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(set[el.getAttribute('data-cd')]);});
+  }
+  tick();setInterval(tick,1000);
+  document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sequel//Webinar//EN","BEGIN:VEVENT","UID:"+Date.now()+"@mckinsey-demo","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+  var root=document.getElementById('sequel_root'),skel=document.getElementById('embSkel');
+  var mo=new MutationObserver(function(){if(root.children.length||root.innerHTML.trim().length>40){skel.style.opacity='0';skel.style.transition='opacity .4s';setTimeout(function(){skel.remove();},400);mo.disconnect();}});
+  mo.observe(root,{childList:true,subtree:true});
+  setTimeout(function(){if(skel&&skel.parentNode){skel.remove();}},12000);
+})();
+</script>
+
+<!-- SEQUEL EMBED -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    Sequel.renderEvent({
+      eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b"
+    });
+  });
+</script>
+
+</body>
+</html>
