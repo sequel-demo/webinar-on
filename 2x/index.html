@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Webinar | How AI Is Reshaping B2B GTM — 2X</title>
+<title>Live Webinar | The AI Visibility Index — 2X</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,26 +15,21 @@
     --accent: #f50000;
     --accent-hover: #cc0000;
     --bg: #151515;
-    --bg-header: #282828;
+    --bg-header: #151515;
     --bg-card: #1e1e1e;
-    --bg-card-hover: #242424;
-    --bg-dark: #0f0f0f;
-    --border: rgba(255,255,255,0.08);
-    --border-subtle: rgba(255,255,255,0.05);
+    --border: rgba(208,208,208,0.25);
+    --border-strong: rgb(208,208,208);
     --sh-sm: 0 4px 12px rgba(0,0,0,0.3);
     --sh-md: 0 16px 38px rgba(0,0,0,0.4);
     --sh-lg: 0 32px 64px rgba(0,0,0,0.5);
-    --sh-accent: 0 8px 32px rgba(245,0,0,0.25);
     --ease: cubic-bezier(.16,1,.3,1);
+    --container-pad: 63px;
     --radius: 6px;
-    --radius-sm: 4px;
     --radius-lg: 12px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
@@ -42,140 +37,153 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  /* ── ANNOUNCE BAR ── */
-  .announce-bar {
-    background: #1a1a1a;
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-    padding: 10px 24px;
-    font-size: 13px;
-    color: var(--ink-muted);
-    letter-spacing: 0.01em;
+  .container {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
   }
-  .announce-bar a { color: var(--accent); text-decoration: none; font-weight: 600; }
-  .announce-bar a:hover { text-decoration: underline; }
 
-  /* ── HEADER ── */
+  /* ── PREHEADER (search bar row) ── */
+  .preheader {
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border-strong);
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .preheader-inner {
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  .search-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--ink-subtle);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 180px;
+  }
+  .search-input::placeholder { color: var(--ink-subtle); }
+
+  /* ── MAIN HEADER ── */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: var(--bg-header);
-    border-bottom: 1px solid var(--border);
-    transition: box-shadow 0.3s var(--ease), padding 0.3s var(--ease);
+    transition: box-shadow 0.3s var(--ease);
   }
-  .site-header.scrolled {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-  }
+  .site-header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
   .header-inner {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: 0 auto;
-    padding: 0 32px;
-    height: 72px;
+    padding: 18px var(--container-pad);
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 48px;
   }
-  .site-header.scrolled .header-inner { height: 64px; }
 
-  .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-  .logo-icon {
-    width: 40px;
-    height: 40px;
+  /* Logo — exact 111×56 from site */
+  .logo-wrap {
     display: flex;
     align-items: center;
-    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
   }
-  .logo-text {
-    font-size: 22px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .logo-text span { color: var(--accent); }
+  .logo-wrap svg { display: block; }
 
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    list-style: none;
-    flex: 1;
-  }
-  .nav-links a {
-    font-size: 14px;
+  /* Nav */
+  .main-nav { display: flex; align-items: center; gap: 36px; flex: 1; }
+  .main-nav ul { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .main-nav ul li a {
+    font-size: 18px;
     font-weight: 600;
     color: var(--ink);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 4px;
-    opacity: 0.85;
+    gap: 5px;
+    white-space: nowrap;
     transition: opacity 0.2s;
-    position: relative;
   }
-  .nav-links a:hover { opacity: 1; }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.25s var(--ease);
-  }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-caret {
-    width: 10px;
-    height: 6px;
-    opacity: 0.6;
-    flex-shrink: 0;
+  .main-nav ul li a:hover { opacity: 0.75; }
+  .caret {
+    width: 10px; height: 6px; flex-shrink: 0; opacity: 0.7;
   }
 
-  .nav-cta {
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-  /* Specificity fix: override generic nav-links a rule for CTA */
-  .nav-links a.nav-cta-link {
-    font-size: 14px;
+  /* "Get in touch" — underlined text link */
+  .nav-cta-wrap { margin-left: auto; }
+  /* Specificity fix */
+  .main-nav ul li a.nav-git {
+    font-size: 18px;
     font-weight: 600;
     color: #fff !important;
-    text-decoration: none;
+    text-decoration: underline;
     opacity: 1;
-    letter-spacing: 0.01em;
-    padding: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.4);
-    padding-bottom: 2px;
   }
-  .nav-links a.nav-cta-link::after { display: none; }
-  .nav-links a.nav-cta-link:hover { border-color: #fff; }
+  .main-nav ul li a.nav-git:hover { opacity: 0.75; }
+
+  /* ── TICKER BAR ── */
+  .ticker-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 14px var(--container-pad);
+    font-size: 15px;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+  .ticker-bar a { color: var(--ink); font-weight: 600; text-decoration: underline; }
 
   /* ── HERO ── */
   .hero {
     background: var(--bg);
-    padding: 96px 32px 80px;
+    min-height: 540px;
+    display: flex;
+    align-items: center;
     position: relative;
     overflow: hidden;
+    padding: 80px 0;
   }
-  .hero::before {
-    content: '';
+  /* Red circle decoration — exact from site */
+  .hero-circle {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245,0,0,0.07) 0%, transparent 70%);
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(260px, 30vw, 460px);
+    height: clamp(260px, 30vw, 460px);
+    border-radius: 50%;
+    background: var(--accent);
     pointer-events: none;
   }
-  .hero-inner {
-    max-width: 860px;
+  .hero-content {
+    max-width: 1920px;
+    width: 100%;
     margin: 0 auto;
-    text-align: center;
+    padding: 0 var(--container-pad);
     position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin-left: var(--container-pad);
   }
   .live-badge {
     display: inline-flex;
@@ -183,494 +191,249 @@
     gap: 8px;
     background: rgba(245,0,0,0.12);
     border: 1px solid rgba(245,0,0,0.3);
-    color: #ff3333;
-    font-size: 12px;
+    color: #ff4444;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 100px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .live-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: var(--accent);
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(245,0,0,0.4); }
-    50% { opacity: 0.7; transform: scale(0.9); box-shadow: 0 0 0 6px rgba(245,0,0,0); }
+    0%,100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 rgba(245,0,0,0.4); }
+    50% { opacity:.7; transform:scale(.9); box-shadow:0 0 0 5px rgba(245,0,0,0); }
   }
 
-  .hero-headline {
-    font-size: clamp(36px, 6vw, 64px);
+  .hero h1 {
+    font-size: clamp(42px, 5vw, 70px);
     font-weight: 800;
-    line-height: 1.08;
+    line-height: 1.06;
     letter-spacing: -0.03em;
     color: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
-  .hero-headline em {
-    font-style: normal;
-    color: var(--accent);
-  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
 
   .hero-sub {
-    font-size: clamp(16px, 2.2vw, 20px);
+    font-size: 18px;
     color: var(--ink-muted);
-    max-width: 640px;
-    margin: 0 auto 36px;
     line-height: 1.65;
+    margin-bottom: 20px;
+    max-width: 560px;
   }
 
   .hero-meta {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
-    font-size: 14px;
+    margin-bottom: 32px;
+    font-size: 15px;
     color: var(--ink-muted);
   }
-  .hero-meta-item { display: flex; align-items: center; gap: 7px; }
-  .hero-meta-icon { color: var(--accent); font-size: 16px; }
+  .hero-meta-item { display: flex; align-items: center; gap: 6px; }
 
-  .streaming-line {
-    font-size: 13px;
-    color: var(--ink-subtle);
-    margin-bottom: 40px;
-    letter-spacing: 0.02em;
-  }
-
-  /* Countdown */
-  .countdown-wrap {
-    margin-bottom: 44px;
-  }
-  .countdown-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-subtle);
-    margin-bottom: 16px;
-  }
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .cd-tile {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 16px 20px;
-    min-width: 80px;
-    text-align: center;
-    box-shadow: var(--sh-sm);
-  }
-  .cd-num {
-    font-size: 36px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-    display: block;
-  }
-  .cd-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-subtle);
-    margin-top: 6px;
-    display: block;
-  }
-  .countdown-live {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.01em;
-    padding: 20px;
-    display: none;
-  }
-
-  /* Calendar buttons */
-  .cal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-  .cal-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--ink-muted);
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 9px 18px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s var(--ease);
-  }
-  .cal-btn:hover {
-    border-color: rgba(255,255,255,0.25);
-    color: #fff;
-    background: rgba(255,255,255,0.04);
-    transform: translateY(-1px);
-  }
-
-  /* Register CTA */
-  .btn-register {
+  /* White pill CTA — exact from site */
+  .btn-pill {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--accent);
-    color: #fff;
+    background: #ffffff;
+    color: #151515;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 15px 36px;
-    border-radius: var(--radius);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 9px 22px;
+    border-radius: 9999px;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    box-shadow: var(--sh-accent);
-    transition: background 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
-    letter-spacing: -0.01em;
+    transition: background 0.2s, transform 0.2s var(--ease);
+    white-space: nowrap;
   }
-  .btn-register:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(245,0,0,0.35);
+  .btn-pill:hover { background: #f0f0f0; transform: translateY(-1px); }
+  .btn-pill-red {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 28px rgba(245,0,0,0.25);
   }
-  .btn-register-wrap { margin-top: 8px; }
+  .btn-pill-red:hover { background: var(--accent-hover); box-shadow: 0 12px 36px rgba(245,0,0,0.35); }
 
-  /* Stat card */
-  .stat-card {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    background: var(--bg-card);
+  .hero-ctas { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+
+  /* Countdown */
+  .countdown-wrap { margin-bottom: 0; }
+  .countdown-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-subtle); margin-bottom: 12px;
+  }
+  .countdown { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cd-tile {
+    background: rgba(255,255,255,0.06);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 18px 28px;
-    margin-top: 52px;
-    text-align: left;
-    box-shadow: var(--sh-sm);
+    padding: 12px 16px; min-width: 70px; text-align: center;
   }
-  .stat-card-divider { width: 1px; height: 40px; background: var(--border); }
-  .stat-item { text-align: center; }
-  .stat-num { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1; }
-  .stat-desc { font-size: 12px; color: var(--ink-subtle); margin-top: 4px; }
+  .cd-num {
+    font-size: 30px; font-weight: 800; color: #fff;
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+    line-height: 1; display: block;
+  }
+  .cd-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-subtle); margin-top: 4px; display: block;
+  }
+  .countdown-live { font-size: 16px; font-weight: 700; color: var(--accent); display: none; padding: 12px 0; }
+
+  /* Cal buttons */
+  .cal-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .cal-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--ink-muted); font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500; padding: 7px 14px;
+    border-radius: var(--radius); text-decoration: none; cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .cal-btn:hover { border-color: rgba(255,255,255,0.3); color: #fff; background: rgba(255,255,255,0.04); }
 
   /* ── TRUST STRIP ── */
   .trust-strip {
-    background: var(--bg-dark);
+    background: #0f0f0f;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 24px 32px;
+    padding: 20px var(--container-pad);
   }
   .trust-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
+    max-width: 1920px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    gap: 40px; flex-wrap: wrap;
   }
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--ink-muted);
-    font-weight: 500;
-  }
-  .trust-icon {
-    width: 28px;
-    height: 28px;
-    background: rgba(245,0,0,0.12);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .trust-sep { width: 1px; height: 20px; background: var(--border); }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-muted); font-weight: 500; }
+  .trust-sep { width: 1px; height: 16px; background: var(--border); }
 
-  /* ── EMBED SECTION ── */
-  .embed-section {
-    padding: 80px 32px;
-    background: var(--bg);
-  }
-  .section-inner { max-width: 1000px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  .section-title {
-    font-size: clamp(26px, 4vw, 40px);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.12;
-    margin-bottom: 16px;
-    color: #fff;
-  }
-  .section-sub {
-    font-size: 16px;
-    color: var(--ink-muted);
-    margin-bottom: 40px;
-    max-width: 580px;
-    line-height: 1.65;
-  }
+  /* ── EMBED ── */
+  .embed-section { padding: 80px var(--container-pad); background: var(--bg); }
+  .section-inner { max-width: 980px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .section-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 14px; }
+  .section-sub { font-size: 16px; color: var(--ink-muted); margin-bottom: 36px; line-height: 1.65; max-width: 560px; }
 
   .embed-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--sh-lg);
-    position: relative;
-    min-height: 540px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--sh-lg); position: relative; min-height: 540px;
   }
   .embed-skeleton {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    background: var(--bg-card);
-    z-index: 1;
-    transition: opacity 0.4s var(--ease);
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    background: var(--bg-card); z-index: 1;
+    transition: opacity .4s var(--ease);
   }
   .embed-skeleton.hidden { opacity: 0; pointer-events: none; }
   .skeleton-spinner {
-    width: 36px;
-    height: 36px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
+    width: 32px; height: 32px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .skeleton-text { font-size: 14px; color: var(--ink-subtle); }
-
+  .skeleton-text { font-size: 13px; color: var(--ink-subtle); }
   #sequel_root { min-height: 540px; width: 100%; }
 
-  /* ── LEARN SECTION ── */
+  /* ── LEARN ── */
   .learn-section {
-    padding: 80px 32px;
-    background: var(--bg-dark);
-    border-top: 1px solid var(--border);
+    padding: 80px var(--container-pad);
+    background: #0f0f0f; border-top: 1px solid var(--border);
   }
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 48px;
-  }
+  .cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 44px; }
   @media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
   }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--sh-md);
-    border-color: rgba(255,255,255,0.14);
-  }
-  .card-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(245,0,0,0.12);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 18px;
-    flex-shrink: 0;
-  }
-  .card h3 {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-    color: #fff;
-  }
+  .card:hover { transform: translateY(-5px); box-shadow: var(--sh-md); border-color: rgba(255,255,255,0.15); }
+  .card-icon { width: 40px; height: 40px; background: rgba(245,0,0,0.1); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+  .card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
   .card p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
 
   /* ── SPEAKERS ── */
-  .speakers-section {
-    padding: 80px 32px;
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-  }
-  .speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 48px;
-    max-width: 700px;
-  }
+  .speakers-section { padding: 80px var(--container-pad); background: var(--bg); border-top: 1px solid var(--border); }
+  .speakers-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 44px; max-width: 640px; }
   @media (max-width: 600px) { .speakers-grid { grid-template-columns: 1fr; } }
-  .speaker-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .speaker-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #282828, #1a1a1a);
-    border: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-  .speaker-name { font-size: 15px; font-weight: 700; color: #fff; }
+  .speaker-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; display: flex; align-items: center; gap: 14px; }
+  .speaker-avatar { width: 52px; height: 52px; border-radius: 50%; background: #282828; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .speaker-name { font-size: 15px; font-weight: 700; }
   .speaker-title { font-size: 12px; color: var(--ink-subtle); margin-top: 3px; }
-  .placeholder-note { font-size: 11px; color: rgba(245,0,0,0.5); margin-top: 4px; font-style: italic; }
+  .placeholder-note { font-size: 11px; color: rgba(245,0,0,0.5); margin-top: 3px; font-style: italic; }
 
   /* ── CTA BAND ── */
-  .cta-band {
-    background: var(--bg-dark);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 72px 32px;
-    text-align: center;
-  }
-  .cta-band h2 {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    margin-bottom: 16px;
-    color: #fff;
-  }
-  .cta-band p { font-size: 17px; color: var(--ink-muted); margin-bottom: 36px; }
+  .cta-band { background: #0f0f0f; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px var(--container-pad); text-align: center; }
+  .cta-band h2 { font-size: clamp(28px,4vw,44px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 14px; }
+  .cta-band p { font-size: 17px; color: var(--ink-muted); margin-bottom: 32px; }
 
   /* ── FOOTER ── */
-  .site-footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 64px 32px 32px;
-  }
-  .footer-inner { max-width: 1200px; margin: 0 auto; }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 48px;
-  }
+  .site-footer { background: var(--bg); border-top: 1px solid var(--border); padding: 64px var(--container-pad) 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
   @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
   .footer-brand p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; margin-top: 16px; max-width: 260px; }
-  .footer-col h4 {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-subtle);
-    margin-bottom: 16px;
-  }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-subtle); margin-bottom: 14px; }
   .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul li a {
-    font-size: 13px;
-    color: var(--ink-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .footer-col ul li { margin-bottom: 9px; }
+  .footer-col ul li a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color .2s; }
   .footer-col ul li a:hover { color: #fff; }
-  .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   .footer-copy { font-size: 12px; color: var(--ink-subtle); }
   .footer-legal { display: flex; gap: 20px; }
   .footer-legal a { font-size: 12px; color: var(--ink-subtle); text-decoration: none; }
   .footer-legal a:hover { color: var(--ink-muted); }
-  .social-icons { display: flex; gap: 12px; margin-top: 16px; }
-  .social-icon {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: var(--ink-muted);
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .social-icon:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+  .social-icons { display: flex; gap: 10px; margin-top: 14px; }
+  .social-icon { width: 32px; height: 32px; border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: border-color .2s, color .2s; }
+  .social-icon:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
 
-  /* ── REVEAL ANIMATION ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-  }
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
   .reveal.visible { opacity: 1; transform: none; }
   .stagger > *:nth-child(1) { transition-delay: 0ms; }
-  .stagger > *:nth-child(2) { transition-delay: 80ms; }
-  .stagger > *:nth-child(3) { transition-delay: 160ms; }
+  .stagger > *:nth-child(2) { transition-delay: 70ms; }
+  .stagger > *:nth-child(3) { transition-delay: 140ms; }
 
-  /* Mobile nav */
+  /* ── STAT CARD ── */
+  .stat-card { display: inline-flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 24px; margin-top: 36px; }
+  .stat-card-sep { width: 1px; height: 36px; background: var(--border); }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+  .stat-desc { font-size: 11px; color: var(--ink-subtle); margin-top: 3px; }
+
   @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .header-inner { gap: 0; }
+    .main-nav ul { display: none; }
+    :root { --container-pad: 24px; }
+    .hero-circle { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCE BAR -->
-<div class="announce-bar">
-  2X Acquires Knownwell to Build the 1st GTM Human-Agentic Services Company &mdash; <a href="https://2x.marketing" target="_blank">Read More</a>
+<!-- PREHEADER (search bar) -->
+<div class="preheader">
+  <div class="preheader-inner">
+    <span class="search-label">Search</span>
+    <input class="search-input" type="text" placeholder="Type something…" aria-label="Search">
+  </div>
 </div>
 
-<!-- HEADER -->
+<!-- MAIN HEADER -->
 <header class="site-header" id="site-header">
   <div class="header-inner">
-    <a href="https://2x.marketing" target="_blank" class="logo-wrap" aria-label="2X">
-      <!-- 2X Logo: actual SVG from 2x.marketing -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1331.9433264 674" width="90" height="46" aria-hidden="true">
+    <a href="https://2x.marketing/" target="_blank" class="logo-wrap" aria-label="2X">
+      <!-- Real 2X SVG — paths extracted directly from 2x.marketing DOM -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1331.9433264 674" width="111" height="56" aria-hidden="true">
         <defs><style>.st11{fill:#f50000}.st10{fill:#fff}</style></defs>
         <path class="st10" d="M1149.0596346,503.1211586h-100.6644598c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923Z"/>
         <path class="st10" d="M973.3183798,466.227374h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z"/>
@@ -682,40 +445,59 @@
         <path class="st10" d="M1228.1887776,59.8999996c7.4142008,0,14.5129775,1.8930083,21.6117541,5.6790189,7.0987767,3.7860166,12.4623353,9.1495332,16.4061001,16.2483098s5.8366949,14.3553015,5.8366949,22.0850829-1.8929301,14.8285581-5.8366949,21.7695866c-3.7860527,6.9410285-9.3073235,12.4622992-16.248388,16.2483158s-14.1975533,5.8367671-21.9273709,5.8367671-14.8285942-1.8930023-21.9273709-5.8367671c-6.9410646-3.7860166-12.4623353-9.3072874-16.248388-16.2483158-3.9437648-6.9410285-5.8366949-14.1975533-5.8366949-21.7695866s1.8929301-14.9863063,5.8366949-22.0850829,9.4650355-12.4622992,16.4061001-16.2483098c7.0987767-3.7860166,14.1975533-5.6790189,21.6117541-5.6790189h.3158093ZM1228.1887776,67.1565245c-6.1523116,0-12.1467186,1.5775059-17.983606,4.7325238-5.8366949,3.1550118-10.4115006,7.7297814-13.7242245,13.5665485-3.3127239,5.8367671-4.8902299,11.9890426-4.8902299,18.2990663s1.5775059,12.4622992,4.8902299,18.1413181c3.3127239,5.8367671,7.7298175,10.2537885,13.5665124,13.5665485,5.8366949,3.31276,11.8312944,4.890266,18.2990302,4.890266s12.4623353-1.5775059,18.2990302-4.890266c5.8366949-3.31276,10.4115006-7.7297814,13.5665124-13.5665485,3.1550118-5.8367671,4.8902299-11.8312944,4.8902299-18.1413181s-1.5775059-12.4622992-4.8902299-18.2990663c-3.3127239-5.8367671-7.8875296-10.4115367-13.7242245-13.5665485-5.8366949-3.1550118-11.8312944-4.7325178-17.983606-4.7325178,0,0-.3154242,0-.3154242-.000006ZM1210.8362125,128.2060049v-47.3251777h16.248388c5.5212707,0,9.6227476.4732566,11.9890065,1.2620096,2.523971.9465011,4.4170936,2.3662589,5.9945995,4.5747696,1.4197938,2.2085107,2.2085468,4.4170214,2.2085468,6.9410285s-1.2620818,6.4677719-3.6283407,8.991779c-2.523971,2.5240071-5.6789828,3.9437648-9.7804597,4.2592612,1.735218.6310048,2.9972998,1.5775059,3.9437648,2.5240071,1.8929301,1.8930023,4.259189,5.0480141,6.9410646,9.3072874l5.8366949,9.3072874h-9.3073235l-4.259189-7.414273c-3.3127239-5.8367671-5.9945995-9.4650355-8.0452417-11.0425415-1.4197938-1.1042493-3.470436-1.5775059-6.1523116-1.5775059h-4.4170936v20.0343204h-7.5721055v.1577482ZM1218.4083179,101.5461524h9.3073235c4.4170936,0,7.4142008-.6310048,8.9917067-2.0507625,1.5775059-1.2620096,2.3662589-2.9972637,2.3662589-5.2057744s-.3154242-2.6817553-1.1041771-3.7860166-1.8929301-1.8930023-3.1550118-2.5240071c-1.4197938-.4732566-3.9437648-.788753-7.7298175-.788753h-8.6762826v14.1975533h0v.1577602Z"/>
       </svg>
     </a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="https://2x.marketing/services/" target="_blank">What we do <svg class="nav-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="https://2x.marketing/strengths/" target="_blank">How we do it <svg class="nav-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="https://2x.marketing/about/" target="_blank">Who we are <svg class="nav-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="https://2x.marketing/resources/" target="_blank">What we think <svg class="nav-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li><a href="https://2x.marketing/careers/" target="_blank">Careers <svg class="nav-caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
-        <li class="nav-cta"><a href="https://2x.marketing/contact/" target="_blank" class="nav-cta-link">Get in touch</a></li>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="https://2x.marketing/services/" target="_blank">What we do <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a href="https://2x.marketing/strengths/" target="_blank">How we do it <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a href="https://2x.marketing/about/" target="_blank">Who we are <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a href="https://2x.marketing/resources/" target="_blank">What we think <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a href="https://2x.marketing/careers/" target="_blank">Careers <svg class="caret" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li class="nav-cta-wrap"><a href="https://2x.marketing/contact/" target="_blank" class="nav-git">Get in touch</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<!-- TICKER BAR (below header, matches real site) -->
+<div class="ticker-bar">
+  2X Acquires Knownwell to Build 1st GTM Human-Agentic Services Company &nbsp;|&nbsp; <a href="https://2x.marketing" target="_blank">Read More</a>
+</div>
+
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-inner">
+  <!-- Red circle — exact decoration from real site -->
+  <div class="hero-circle" aria-hidden="true"></div>
+
+  <div class="hero-content">
     <div class="live-badge reveal visible">
       <span class="live-dot"></span> Live Webinar
     </div>
-    <h1 class="hero-headline reveal visible">
-      The AI Visibility Index:<br>
-      <em>Win Pipeline You Can't See</em>
-    </h1>
-    <p class="hero-sub reveal visible">
-      The 2026 AI GTM landscape is changing what B2B buyers see and what they act on. Join 2X's revenue and AI experts to see exactly how top CMOs are rewriting their GTM playbook—before the rest of the market catches on.
-    </p>
-    <div class="hero-meta reveal visible">
-      <span class="hero-meta-item"><span class="hero-meta-icon">📅</span> Wednesday, July 16, 2026</span>
-      <span class="hero-meta-item"><span class="hero-meta-icon">🕐</span> 1:00 PM ET / 10:00 AM PT</span>
-      <span class="hero-meta-item"><span class="hero-meta-icon">⏱</span> 45 minutes</span>
-    </div>
-    <p class="streaming-line reveal visible">Streaming live right here on 2x.marketing</p>
 
-    <!-- COUNTDOWN -->
+    <h1 class="reveal visible">
+      The AI Visibility Index:<br>
+      <em>Win Pipeline<br>You Can't See</em>
+    </h1>
+
+    <p class="hero-sub reveal visible">
+      The 2026 AI GTM landscape is changing what B2B buyers see — and act on. Join 2X's revenue and AI experts to see how top CMOs are rewriting their playbook before the rest of the market catches on.
+    </p>
+
+    <div class="hero-meta reveal visible">
+      <span class="hero-meta-item">📅 Wednesday, July 16, 2026</span>
+      <span class="hero-meta-item">🕐 1:00 PM ET / 10:00 AM PT</span>
+      <span class="hero-meta-item">⏱ 45 min</span>
+    </div>
+
+    <div class="hero-ctas reveal visible">
+      <!-- White pill — matches real site "Let's talk" style -->
+      <a href="#register" class="btn-pill">
+        Reserve my spot &nbsp;→
+      </a>
+    </div>
+
+    <p style="font-size:13px;color:var(--ink-subtle);margin-bottom:28px;">Streaming live right here on 2x.marketing</p>
+
+    <!-- Countdown -->
     <div class="countdown-wrap reveal visible">
       <p class="countdown-label">Event starts in</p>
       <div class="countdown" id="countdown">
@@ -727,41 +509,24 @@
       <div class="countdown-live" id="countdown-live">🔴 We're live now — join below</div>
     </div>
 
-    <!-- CALENDAR -->
     <div class="cal-buttons reveal visible">
       <a class="cal-btn" id="gcal-link" href="#" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         Add to Google Calendar
       </a>
       <a class="cal-btn" id="ics-link" href="#" download="2x-ai-visibility-webinar.ics">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M8 2v4M16 2v4M12 13v4M10 15l2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M8 2v4M16 2v4M12 13v4M10 15l2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Download .ics
       </a>
     </div>
 
-    <div class="btn-register-wrap reveal visible">
-      <a href="#register" class="btn-register">
-        Reserve my spot
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <!-- STAT CARD -->
+    <!-- Stat strip -->
     <div class="stat-card reveal">
-      <div class="stat-item">
-        <div class="stat-num">$100B+</div>
-        <div class="stat-desc">client revenue driven</div>
-      </div>
-      <div class="stat-card-divider"></div>
-      <div class="stat-item">
-        <div class="stat-num">63%</div>
-        <div class="stat-desc">lift in ad performance</div>
-      </div>
-      <div class="stat-card-divider"></div>
-      <div class="stat-item">
-        <div class="stat-num">Inc. 5000</div>
-        <div class="stat-desc">5 consecutive years</div>
-      </div>
+      <div class="stat-item"><div class="stat-num">$100B+</div><div class="stat-desc">client revenue driven</div></div>
+      <div class="stat-card-sep"></div>
+      <div class="stat-item"><div class="stat-num">63%</div><div class="stat-desc">lift in ad performance</div></div>
+      <div class="stat-card-sep"></div>
+      <div class="stat-item"><div class="stat-num">Inc. 5000</div><div class="stat-desc">5 consecutive years</div></div>
     </div>
   </div>
 </section>
@@ -769,20 +534,11 @@
 <!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-inner">
-    <div class="trust-item">
-      <div class="trust-icon">🏠</div>
-      Hosted natively on 2x.marketing
-    </div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">
-      <div class="trust-icon">💬</div>
-      Live Q&amp;A with 2X experts
-    </div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">
-      <div class="trust-icon">📹</div>
-      Recording sent to every registrant
-    </div>
+    <span class="trust-item">🏠 Hosted natively on 2x.marketing</span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">💬 Live Q&amp;A with 2X experts</span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">📹 Recording sent to every registrant</span>
   </div>
 </div>
 
@@ -791,9 +547,7 @@
   <div class="section-inner">
     <div class="section-label">Join Live</div>
     <h2 class="section-title reveal">Register &amp; Watch Here</h2>
-    <p class="section-sub reveal">
-      Register below to save your seat. The live stream will appear in this window at event time — no separate link needed.
-    </p>
+    <p class="section-sub reveal">Register below to save your seat. The live stream appears in this window at event time — no separate link needed.</p>
     <div class="embed-card">
       <div class="embed-skeleton" id="embed-skeleton">
         <div class="skeleton-spinner"></div>
@@ -814,17 +568,17 @@
       <div class="card">
         <div class="card-icon">🔭</div>
         <h3>AI Visibility Benchmarks</h3>
-        <p>See exactly where your brand shows up (or disappears) in AI-generated buying journeys—and how leading B2B CMOs are closing the gap using the 2026 AI Visibility Index.</p>
+        <p>See where your brand shows up — or disappears — in AI-generated buying journeys, using the 2026 AI Visibility Index as your benchmark.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚡</div>
         <h3>GTM Plays That Drive Pipeline Now</h3>
-        <p>Discover the AI-enabled demand creation tactics 2X uses with enterprise clients to accelerate pipeline without adding headcount or operational drag.</p>
+        <p>The AI-enabled demand creation tactics 2X deploys with enterprise clients to accelerate pipeline without adding headcount or operational drag.</p>
       </div>
       <div class="card">
         <div class="card-icon">📐</div>
         <h3>Your 30-Day AI GTM Roadmap</h3>
-        <p>Walk away with a prioritized action plan—tailored to your MarTech stack and team size—to start compounding the 2X Effect in your next quarter.</p>
+        <p>Walk away with a prioritized action plan — tailored to your MarTech stack and team size — to start compounding the 2X Effect next quarter.</p>
       </div>
     </div>
   </div>
@@ -841,7 +595,7 @@
         <div>
           <div class="speaker-name">TBD — 2X Speaker</div>
           <div class="speaker-title">Chief Marketing Officer, 2X</div>
-          <div class="placeholder-note">⚠ Placeholder — confirm before sending</div>
+          <div class="placeholder-note">⚠ Confirm before sending</div>
         </div>
       </div>
       <div class="speaker-card">
@@ -849,7 +603,7 @@
         <div>
           <div class="speaker-name">TBD — 2X Speaker</div>
           <div class="speaker-title">VP, AI &amp; Intelligent Automation, 2X</div>
-          <div class="placeholder-note">⚠ Placeholder — confirm before sending</div>
+          <div class="placeholder-note">⚠ Confirm before sending</div>
         </div>
       </div>
     </div>
@@ -858,73 +612,69 @@
 
 <!-- CTA BAND -->
 <section class="cta-band">
-  <div class="section-inner" style="text-align:center;">
-    <h2 class="reveal">Can't make it live?</h2>
-    <p class="reveal">Register anyway — we'll send the full recording and takeaways straight to your inbox.</p>
-    <a href="#register" class="btn-register reveal">Get the recording</a>
-  </div>
+  <h2 class="reveal">Can't make it live?</h2>
+  <p class="reveal">Register anyway — we'll send the full recording and takeaways straight to your inbox.</p>
+  <a href="#register" class="btn-pill btn-pill-red reveal">Get the recording &nbsp;→</a>
 </section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="https://2x.marketing" target="_blank" style="text-decoration:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1331.9433264 674" width="70" height="35" aria-label="2X">
-            <defs><style>.ft11{fill:#f50000}.ft10{fill:#fff}</style></defs>
-            <path class="ft10" d="M1149.0596346,503.1211586h-100.6644598c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923Z"/>
-            <path class="ft10" d="M973.3183798,466.227374h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z"/>
-            <path class="ft10" d="M1050.5771372,207.6734393c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z"/>
-            <path class="ft10" d="M898.1423111,392.3406523h113.1607134c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h0Z"/>
-            <path class="ft10" d="M956.6566276,300.0070382c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z"/>
-            <path class="ft10" d="M1149.0596346,577.1070632h-292.373217c-10.1160465,0-18.446862-8.3308761-18.446862-18.446862s8.3308761-18.446862,18.446862-18.446862h117.0286331c10.1160465,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923h-133.5911721c-26.0834883-.2975183-49.0925198-14.2814543-61.7871391-33.4225963l-86.7797068-132.7977395,53.0595921-80.3332143c4.8596878-7.23991,13.0913507-12.0003998,22.4139343-12.0003998h141.0294327c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-96.1023509c-10.1160465,0-18.446862-8.3308458-18.446862-18.4468923s8.3308761-18.4468923,18.446862-18.4468923h318.9525894c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-273.3312579c-10.1160465,0-18.446862-8.3308534-18.446862-18.4468847s8.3308761-18.4468847,18.446862-18.4468847h131.8060017c10.1160465,0,18.446862-8.3308534,18.446862-18.4468847s-8.3308761-18.4468847-18.446862-18.4468847h-235.2474c-29.3563109,0-54.8447626,15.8682892-66.5476138,38.7781303l-73.8867217,115.739324v245.9584831l73.3908377,114.5492129h.1983657c11.7028512,22.9098184,36.9929372,38.7781076,66.3493086,38.7781076h395.418005c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.446862-18.446862-18.446862h0l-.0001211-.0992131Z"/>
-            <path class="ft11" d="M539.898902,98.9473681c-11.7063621-22.8957748-37.2148804-38.7935737-66.5823898-38.7935737l-223.4092582.0369287h-5.0592188v.0369287c-100.0582398,1.4956122-184.8187869,59.3259241-184.8187869,163.4462953l-.1292487,3.0373805v.3231388c0,9.7399416,7.7088608,17.6980723,17.3195498,18.2520072l101.8954457-.1292525c8.5951468-1.0986235,15.3161703-8.1335394,15.9254927-16.8671699.0184625-.0092312.036925-.0276937.0553874-.036925,3.7020903-34.5929359,30.8169805-43.7512488,53.7127704-43.7512488,34.4729298,0,52.5310507,20.3476953,52.5310507,49.7336975,0,22.6095761-8.2074196,36.1716292-29.5521948,57.2671609l-188.4100872,188.13315c-14.309863,14.2360245-23.1819773,33.9374271-23.1819773,55.7161311l.0184663,60.3414362c-.0184663,2.3173136.2585012,4.6622301,1.2001822,6.9426187,2.9173669,7.044132,9.7861016,11.290926,16.9964224,11.3001876l.0646262.0646489h395.3214932c29.3767709,0,54.6451862-15.8977687,66.3608098-38.793604h.2308113l73.3772784-114.5435228v-245.9911254l-73.8573634-115.7344663-.0092615.0092237v-.0000454ZM449.1467052,469.8590043c-12.6942258,19.138297-35.6361871,32.2941151-61.7539974,32.6265002h-139.5534634c-5.3084925,0-9.6106891-4.3021814-9.6106891-9.6199203,0-2.8065995,1.1263323-5.2808139,3.055843-7.0072071l122.4277885-119.0118969c46.7886142-45.2099209,72.2324836-75.3529453,72.2324836-131.8630689,0-12.3895646-1.2463384-24.1513596-3.5358977-35.2945858l-.1384686-1.5509996c0-3.0004556,2.4373197-5.437745,5.4377753-5.437745,1.9941596,0,3.6559341,1.1263323,4.6068426,2.7234881l93.6419077,141.6583979-86.8100942,132.7770373.0000303-.0000303-.0000605.0000303Z"/>
-          </svg>
-        </a>
-        <p>Scale your marketing with on-demand, AI-enabled B2B marketing specialists. No added headcount—just sustainable growth.</p>
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/company/2xmarketing/" target="_blank" class="social-icon" aria-label="LinkedIn">in</a>
-          <a href="https://www.facebook.com/2xmarketing" target="_blank" class="social-icon" aria-label="Facebook">f</a>
-          <a href="https://www.instagram.com/2xmarketing/" target="_blank" class="social-icon" aria-label="Instagram">ig</a>
-          <a href="https://www.youtube.com/@2xmarketing" target="_blank" class="social-icon" aria-label="YouTube">▶</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>What We Do</h4>
-        <ul>
-          <li><a href="https://2x.marketing/services/intelligent-demand-2x-integrated-revenue-growth/" target="_blank">Growth Strategy</a></li>
-          <li><a href="https://2x.marketing/services/campaigns-and-demand/" target="_blank">Campaigns &amp; Demand</a></li>
-          <li><a href="https://2x.marketing/services/content-and-creative/" target="_blank">Creative &amp; Content</a></li>
-          <li><a href="https://2x.marketing/services/mops-data-and-tech/" target="_blank">Data &amp; Tech</a></li>
-          <li><a href="https://2x.marketing/services/enterprise-ai-adoption-b2b-marketing/" target="_blank">AI &amp; Automation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>What We Think</h4>
-        <ul>
-          <li><a href="https://2x.marketing/resources/blogs/" target="_blank">Blog</a></li>
-          <li><a href="https://2x.marketing/resources/webinars/" target="_blank">Webinars</a></li>
-          <li><a href="https://2x.marketing/resources/whitepapers/" target="_blank">Whitepapers</a></li>
-          <li><a href="https://2x.marketing/resources/case-studies/" target="_blank">Case Studies</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="https://2x.marketing/about/" target="_blank">About Us</a></li>
-          <li><a href="https://2x.marketing/services/customer-stories/" target="_blank">Customer Stories</a></li>
-          <li><a href="https://2x.marketing/careers/" target="_blank">Careers</a></li>
-          <li><a href="https://2x.marketing/contact/" target="_blank">Get in Touch</a></li>
-        </ul>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="https://2x.marketing/" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1331.9433264 674" width="80" height="40" aria-label="2X">
+          <defs><style>.ft11{fill:#f50000}.ft10{fill:#fff}</style></defs>
+          <path class="ft10" d="M1149.0596346,503.1211586h-100.6644598c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923Z"/>
+          <path class="ft10" d="M973.3183798,466.227374h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z"/>
+          <path class="ft10" d="M1050.5771372,207.6734393c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z"/>
+          <path class="ft10" d="M898.1423111,392.3406523h113.1607134c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h0Z"/>
+          <path class="ft10" d="M956.6566276,300.0070382c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z"/>
+          <path class="ft10" d="M1149.0596346,577.1070632h-292.373217c-10.1160465,0-18.446862-8.3308761-18.446862-18.446862s8.3308761-18.446862,18.446862-18.446862h117.0286331c10.1160465,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923h-133.5911721c-26.0834883-.2975183-49.0925198-14.2814543-61.7871391-33.4225963l-86.7797068-132.7977395,53.0595921-80.3332143c4.8596878-7.23991,13.0913507-12.0003998,22.4139343-12.0003998h141.0294327c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-96.1023509c-10.1160465,0-18.446862-8.3308458-18.446862-18.4468923s8.3308761-18.4468923,18.446862-18.4468923h318.9525894c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-273.3312579c-10.1160465,0-18.446862-8.3308534-18.446862-18.4468847s8.3308761-18.4468847,18.446862-18.4468847h131.8060017c10.1160465,0,18.446862-8.3308534,18.446862-18.4468847s-8.3308761-18.4468847-18.446862-18.4468847h-235.2474c-29.3563109,0-54.8447626,15.8682892-66.5476138,38.7781303l-73.8867217,115.739324v245.9584831l73.3908377,114.5492129h.1983657c11.7028512,22.9098184,36.9929372,38.7781076,66.3493086,38.7781076h395.418005c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.446862-18.446862-18.446862h0l-.0001211-.0992131Z"/>
+          <path class="ft11" d="M539.898902,98.9473681c-11.7063621-22.8957748-37.2148804-38.7935737-66.5823898-38.7935737l-223.4092582.0369287h-5.0592188v.0369287c-100.0582398,1.4956122-184.8187869,59.3259241-184.8187869,163.4462953l-.1292487,3.0373805v.3231388c0,9.7399416,7.7088608,17.6980723,17.3195498,18.2520072l101.8954457-.1292525c8.5951468-1.0986235,15.3161703-8.1335394,15.9254927-16.8671699.0184625-.0092312.036925-.0276937.0553874-.036925,3.7020903-34.5929359,30.8169805-43.7512488,53.7127704-43.7512488,34.4729298,0,52.5310507,20.3476953,52.5310507,49.7336975,0,22.6095761-8.2074196,36.1716292-29.5521948,57.2671609l-188.4100872,188.13315c-14.309863,14.2360245-23.1819773,33.9374271-23.1819773,55.7161311l.0184663,60.3414362c-.0184663,2.3173136.2585012,4.6622301,1.2001822,6.9426187,2.9173669,7.044132,9.7861016,11.290926,16.9964224,11.3001876l.0646262.0646489h395.3214932c29.3767709,0,54.6451862-15.8977687,66.3608098-38.793604h.2308113l73.3772784-114.5435228v-245.9911254l-73.8573634-115.7344663-.0092615.0092237v-.0000454ZM449.1467052,469.8590043c-12.6942258,19.138297-35.6361871,32.2941151-61.7539974,32.6265002h-139.5534634c-5.3084925,0-9.6106891-4.3021814-9.6106891-9.6199203,0-2.8065995,1.1263323-5.2808139,3.055843-7.0072071l122.4277885-119.0118969c46.7886142-45.2099209,72.2324836-75.3529453,72.2324836-131.8630689,0-12.3895646-1.2463384-24.1513596-3.5358977-35.2945858l-.1384686-1.5509996c0-3.0004556,2.4373197-5.437745,5.4377753-5.437745,1.9941596,0,3.6559341,1.1263323,4.6068426,2.7234881l93.6419077,141.6583979-86.8100942,132.7770373.0000303-.0000303-.0000605.0000303Z"/>
+        </svg>
+      </a>
+      <p>Scale your marketing with on-demand, AI-enabled B2B marketing specialists. No added headcount—just sustainable growth.</p>
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/company/2xmarketing/" target="_blank" class="social-icon">in</a>
+        <a href="https://www.facebook.com/2xmarketing" target="_blank" class="social-icon">f</a>
+        <a href="https://www.instagram.com/2xmarketing/" target="_blank" class="social-icon">ig</a>
+        <a href="https://www.youtube.com/@2xmarketing" target="_blank" class="social-icon">▶</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">Copyright &copy; 2026 2X LLC. 2X is a registered trademark. All rights reserved.</p>
-      <div class="footer-legal">
-        <a href="https://2x.marketing/privacy-policy/" target="_blank">Privacy Policy</a>
-        <a href="https://2x.marketing/ai-usage-policy/" target="_blank">AI Usage Policy</a>
-      </div>
+    <div class="footer-col">
+      <h4>What We Do</h4>
+      <ul>
+        <li><a href="https://2x.marketing/services/intelligent-demand-2x-integrated-revenue-growth/" target="_blank">Growth Strategy</a></li>
+        <li><a href="https://2x.marketing/services/campaigns-and-demand/" target="_blank">Campaigns &amp; Demand</a></li>
+        <li><a href="https://2x.marketing/services/content-and-creative/" target="_blank">Creative &amp; Content</a></li>
+        <li><a href="https://2x.marketing/services/mops-data-and-tech/" target="_blank">Data &amp; Tech</a></li>
+        <li><a href="https://2x.marketing/services/enterprise-ai-adoption-b2b-marketing/" target="_blank">AI &amp; Automation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>What We Think</h4>
+      <ul>
+        <li><a href="https://2x.marketing/resources/blogs/" target="_blank">Blog</a></li>
+        <li><a href="https://2x.marketing/resources/webinars/" target="_blank">Webinars</a></li>
+        <li><a href="https://2x.marketing/resources/whitepapers/" target="_blank">Whitepapers</a></li>
+        <li><a href="https://2x.marketing/resources/case-studies/" target="_blank">Case Studies</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://2x.marketing/about/" target="_blank">About Us</a></li>
+        <li><a href="https://2x.marketing/services/customer-stories/" target="_blank">Customer Stories</a></li>
+        <li><a href="https://2x.marketing/careers/" target="_blank">Careers</a></li>
+        <li><a href="https://2x.marketing/contact/" target="_blank">Get in Touch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">Copyright &copy; 2026 2X LLC. 2X is a registered trademark. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="https://2x.marketing/privacy-policy/" target="_blank">Privacy Policy</a>
+      <a href="https://2x.marketing/ai-usage-policy/" target="_blank">AI Usage Policy</a>
     </div>
   </div>
 </footer>
@@ -944,82 +694,47 @@ const EVENT = {
   end:   new Date("2026-07-16T13:45:00-04:00"),
   title: "The AI Visibility Index: Win Pipeline You Can't See — 2X Webinar",
   location: "https://2x.marketing",
-  description: "Join 2X revenue and AI experts to see how top CMOs are rewriting their GTM playbook with AI. Hosted live on 2x.marketing."
+  description: "Join 2X revenue and AI experts live. Streaming at 2x.marketing."
 };
-
-function pad(n) { return String(n).padStart(2, '0'); }
-
+function pad(n) { return String(n).padStart(2,'0'); }
 function updateCountdown() {
-  const now = Date.now();
-  const diff = EVENT.start - now;
+  const diff = EVENT.start - Date.now();
   const cdEl = document.getElementById('countdown');
   const liveEl = document.getElementById('countdown-live');
-  if (diff <= 0) {
-    cdEl.style.display = 'none';
-    liveEl.style.display = 'block';
-    return;
-  }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-d').textContent = pad(d);
-  document.getElementById('cd-h').textContent = pad(h);
-  document.getElementById('cd-m').textContent = pad(m);
-  document.getElementById('cd-s').textContent = pad(s);
+  if (diff <= 0) { cdEl.style.display='none'; liveEl.style.display='block'; return; }
+  document.getElementById('cd-d').textContent = pad(Math.floor(diff/86400000));
+  document.getElementById('cd-h').textContent = pad(Math.floor((diff%86400000)/3600000));
+  document.getElementById('cd-m').textContent = pad(Math.floor((diff%3600000)/60000));
+  document.getElementById('cd-s').textContent = pad(Math.floor((diff%60000)/1000));
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+updateCountdown(); setInterval(updateCountdown, 1000);
 
 // ── CALENDAR LINKS ──
-function toISOCompact(d) {
-  return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-}
-const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-  `&text=${encodeURIComponent(EVENT.title)}` +
-  `&dates=${toISOCompact(EVENT.start)}/${toISOCompact(EVENT.end)}` +
-  `&details=${encodeURIComponent(EVENT.description)}` +
-  `&location=${encodeURIComponent(EVENT.location)}`;
-document.getElementById('gcal-link').href = gcalUrl;
-
-const icsContent = [
-  'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//2X//Webinar//EN',
-  'BEGIN:VEVENT',
-  `DTSTART:${toISOCompact(EVENT.start)}`,
-  `DTEND:${toISOCompact(EVENT.end)}`,
-  `SUMMARY:${EVENT.title}`,
-  `DESCRIPTION:${EVENT.description}`,
-  `LOCATION:${EVENT.location}`,
-  `URL:${EVENT.location}`,
-  'END:VEVENT', 'END:VCALENDAR'
-].join('\r\n');
-const icsBlob = new Blob([icsContent], { type: 'text/calendar' });
-document.getElementById('ics-link').href = URL.createObjectURL(icsBlob);
+function toISO(d) { return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
+document.getElementById('gcal-link').href =
+  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(EVENT.title)}&dates=${toISO(EVENT.start)}/${toISO(EVENT.end)}&details=${encodeURIComponent(EVENT.description)}&location=${encodeURIComponent(EVENT.location)}`;
+const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//2X//Webinar//EN','BEGIN:VEVENT',
+  `DTSTART:${toISO(EVENT.start)}`,`DTEND:${toISO(EVENT.end)}`,
+  `SUMMARY:${EVENT.title}`,`DESCRIPTION:${EVENT.description}`,
+  `LOCATION:${EVENT.location}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+document.getElementById('ics-link').href = URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
 
 // ── EMBED SKELETON ──
 const skeleton = document.getElementById('embed-skeleton');
 const root = document.getElementById('sequel_root');
-const observer = new MutationObserver(() => {
-  if (root.childNodes.length > 0) {
-    skeleton.classList.add('hidden');
-    observer.disconnect();
-  }
-});
-observer.observe(root, { childList: true, subtree: true });
-setTimeout(() => skeleton.classList.add('hidden'), 12000);
+new MutationObserver((_, obs) => { if(root.childNodes.length>0){skeleton.classList.add('hidden');obs.disconnect();} })
+  .observe(root,{childList:true,subtree:true});
+setTimeout(()=>skeleton.classList.add('hidden'),12000);
 
-// ── SCROLL EFFECTS ──
+// ── SCROLL ──
 const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 8);
-}, { passive: true });
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>8),{passive:true});
 
-// ── REVEAL ON SCROLL ──
-const reveals = document.querySelectorAll('.reveal:not(.visible)');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.15 });
-reveals.forEach(el => io.observe(el));
+// ── REVEAL ──
+const io = new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+}),{threshold:.15});
+document.querySelectorAll('.reveal:not(.visible)').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
