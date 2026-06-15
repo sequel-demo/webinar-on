@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Webinar — Networking as a Service | Meter</title>
+<meta name="description" content="Join Meter live: how vertically integrated infrastructure replaces the enterprise networking patchwork. Streaming right here on meter.com." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#363a5b;            /* headings */
+    --body:#575c7b;           /* body text */
+    --muted:#727694;          /* nav / muted */
+    --page:#e9eaf0;           /* page background */
+    --surface:#ffffff;        /* cards */
+    --accent:#4e62c4;         /* primary CTA */
+    --accent-2:#5461c8;       /* accent alt */
+    --accent-ink:#3a4aa3;     /* darker accent for hover */
+    --dark:#26283a;           /* near-black indigo */
+    --dark-2:#40425b;
+    --line:#d8dae6;           /* hairlines */
+    --sh-sm:0 2px 8px rgba(38,40,58,.06);
+    --sh-md:0 16px 38px rgba(38,40,58,.10);
+    --sh-lg:0 30px 70px rgba(38,40,58,.16);
+    --ease:cubic-bezier(.16,1,.3,1);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--page);color:var(--body);line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{color:var(--ink);letter-spacing:-.025em;line-height:1.08;font-weight:700}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* ---------- Announce bar ---------- */
+  .announce{
+    background:var(--accent);color:#fff;text-align:center;
+    font-size:14px;font-weight:500;padding:9px 16px;
+  }
+  .announce a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
+  .announce .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:8px;vertical-align:middle;animation:pulse 1.8s infinite}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(233,234,240,.82);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease)}
+  header.scrolled{box-shadow:var(--sh-sm);background:rgba(233,234,240,.95);border-color:var(--line)}
+  .nav{display:flex;align-items:center;gap:28px;height:66px;transition:height .3s var(--ease)}
+  header.scrolled .nav{height:58px}
+  .logo{color:var(--ink);display:flex;align-items:center}
+  .logo svg{height:22px;width:auto;display:block}
+  .nav-links{display:flex;align-items:center;gap:22px;margin-left:8px}
+  .nav-links>a{color:var(--muted);font-size:14.5px;font-weight:500;position:relative;padding:4px 0;transition:color .2s var(--ease)}
+  .nav-links>a:not(.pill):not(.ghost)::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--accent);transition:width .25s var(--ease)}
+  .nav-links>a:not(.pill):not(.ghost):hover{color:var(--ink)}
+  .nav-links>a:not(.pill):not(.ghost):hover::after{width:100%}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .ghost{color:var(--muted);font-size:14.5px;font-weight:500;padding:8px 12px;transition:color .2s var(--ease)}
+  .ghost:hover{color:var(--ink)}
+  .pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font-weight:600;font-size:14.5px;padding:9px 18px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+  .nav-links a.pill,a.pill{background:var(--accent);color:#fff}
+  a.pill:hover{background:var(--accent-ink);transform:translateY(-2px);box-shadow:0 8px 20px rgba(78,98,196,.35)}
+  .menu-btn{display:none;background:none;border:0;cursor:pointer;color:var(--ink);padding:6px}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:62px 0 40px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(900px 380px at 78% -8%, rgba(78,98,196,.16), transparent 60%),
+    radial-gradient(640px 320px at 6% 16%, rgba(84,97,200,.10), transparent 60%);pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center;position:relative}
+  .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(78,98,196,.12);color:var(--accent-ink);font-weight:600;font-size:13px;letter-spacing:.02em;text-transform:uppercase;padding:7px 14px;border-radius:999px}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(78,98,196,.5);animation:pulse 1.8s infinite}
+  h1.hl{font-size:clamp(34px,5vw,56px);font-weight:800;margin:20px 0 16px;letter-spacing:-.03em}
+  .hl .accent{color:var(--accent)}
+  .lede{font-size:clamp(17px,2vw,20px);max-width:560px;color:var(--body)}
+  .meta{display:flex;flex-wrap:wrap;gap:14px 26px;margin:26px 0 6px;font-size:15px;color:var(--ink);font-weight:500}
+  .meta .it{display:flex;align-items:center;gap:9px}
+  .meta svg{width:18px;height:18px;color:var(--accent)}
+  .stream-on{font-size:14px;color:var(--muted);margin-top:8px}
+  .stream-on b{color:var(--ink)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;align-items:center}
+  .btn-primary{background:var(--accent);color:#fff;border-radius:999px;font-weight:600;font-size:16px;padding:14px 28px;box-shadow:0 10px 26px rgba(78,98,196,.30);transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+  .btn-primary:hover{background:var(--accent-ink);transform:translateY(-2px);box-shadow:0 14px 32px rgba(78,98,196,.42)}
+  .cal{position:relative}
+  .cal-btn{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:13px 20px;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+  .cal-btn:hover{transform:translateY(-2px);box-shadow:var(--sh-sm)}
+  .cal-menu{position:absolute;top:calc(100% + 8px);left:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh-md);padding:6px;min-width:200px;display:none;z-index:20}
+  .cal-menu.open{display:block}
+  .cal-menu a{display:block;padding:10px 14px;border-radius:8px;font-size:14.5px;font-weight:500;color:var(--ink)}
+  .cal-menu a:hover{background:var(--page)}
+
+  /* countdown */
+  .countcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-md);padding:26px}
+  .countcard .lab{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:16px}
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .count .u{background:var(--page);border-radius:12px;padding:14px 6px;text-align:center}
+  .count .n{font-size:clamp(26px,4vw,34px);font-weight:800;color:var(--ink);line-height:1}
+  .count .t{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:7px}
+  .live-now{display:none;text-align:center;padding:16px;border-radius:12px;background:rgba(78,98,196,.12);color:var(--accent-ink);font-weight:700}
+  .stat-strip{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+  .stat-strip .s{text-align:center;flex:1}
+  .stat-strip .sn{font-size:20px;font-weight:800;color:var(--accent)}
+  .stat-strip .st{font-size:11.5px;color:var(--muted);font-weight:500;line-height:1.3;margin-top:3px}
+
+  /* ---------- Trust strip ---------- */
+  .trust{background:var(--dark);color:#cfd2e6}
+  .trust .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;padding:16px 24px;font-size:14px;font-weight:500}
+  .trust .it{display:flex;align-items:center;gap:9px}
+  .trust svg{width:17px;height:17px;color:#9aa6ee}
+
+  /* ---------- Embed ---------- */
+  .embed-sec{padding:56px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 30px}
+  .sec-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
+  .sec-head p{margin-top:12px;font-size:17px}
+  .embed-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-lg);padding:14px;min-height:540px;overflow:hidden}
+  #sequel_root{min-height:512px;border-radius:12px;overflow:hidden}
+  .skeleton{position:absolute;inset:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--surface);border-radius:12px;z-index:2}
+  .spinner{width:42px;height:42px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:spin 1s linear infinite}
+  .skeleton p{font-size:15px;color:var(--muted);font-weight:500}
+
+  /* ---------- Learn ---------- */
+  .learn{padding:20px 0 56px}
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+  .card .ic{width:44px;height:44px;border-radius:11px;background:rgba(78,98,196,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:16px}
+  .card .ic svg{width:22px;height:22px}
+  .card h3{font-size:18.5px;margin-bottom:8px}
+  .card p{font-size:15px}
+
+  /* ---------- Speakers ---------- */
+  .speakers{padding:8px 0 56px}
+  .cards2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:30px}
+  .spk{display:flex;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .spk:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+  .spk .av{width:66px;height:66px;border-radius:50%;flex:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px}
+  .spk h3{font-size:17px;margin-bottom:3px}
+  .spk .role{font-size:14px;color:var(--accent-ink);font-weight:600}
+  .spk .org{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- CTA band ---------- */
+  .ctaband{margin:10px 0 64px}
+  .ctaband .inner{background:linear-gradient(135deg,var(--dark),var(--dark-2));border-radius:22px;padding:48px 40px;text-align:center;color:#fff;box-shadow:var(--sh-lg)}
+  .ctaband h2{color:#fff;font-size:clamp(24px,3.2vw,34px);font-weight:800}
+  .ctaband p{color:#c3c7e0;margin:12px auto 24px;max-width:520px;font-size:17px}
+  .ctaband .btn-primary{background:#fff;color:var(--accent-ink)}
+  .ctaband .btn-primary:hover{background:#eef0ff;box-shadow:0 14px 32px rgba(0,0,0,.3)}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:54px 0 34px;color:var(--body)}
+  .fgrid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:30px}
+  .fbrand .logo{color:var(--ink);margin-bottom:14px}
+  .fbrand p{font-size:14px;max-width:240px;color:var(--muted)}
+  .fcol h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);margin-bottom:14px;font-weight:700}
+  .fcol a{display:block;font-size:14px;color:var(--muted);margin-bottom:9px;transition:color .2s var(--ease)}
+  .fcol a:hover{color:var(--accent)}
+  .fbot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  .fsoc{display:flex;align-items:center;gap:16px}
+  .fsoc a{color:var(--muted);transition:color .2s var(--ease)}
+  .fsoc a:hover{color:var(--ink)}
+  .fsoc svg{width:18px;height:18px;display:block}
+  .soc2{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+  /* ---------- Motion ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.08s}
+  .stagger.in>*:nth-child(3){transition-delay:.16s}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(78,98,196,.5)}70%{box-shadow:0 0 0 8px rgba(78,98,196,0)}100%{box-shadow:0 0 0 0 rgba(78,98,196,0)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .countcard{order:2}
+    .nav-links,.ghost{display:none}
+    .menu-btn{display:block;margin-left:auto}
+    .nav-right{margin-left:0}
+    .cards3{grid-template-columns:1fr}
+    .cards2{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){
+    .fgrid{grid-template-columns:1fr}
+    .meta{gap:10px 18px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- Announce bar -->
+<div class="announce">
+  <span class="dot"></span> Live webinar · Thu, Jul 9 · <a href="#register">Save your seat →</a>
+</div>
+
+<!-- Header (faithful replica of meter.com top chrome) -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="https://www.meter.com/" target="_blank" rel="noopener" aria-label="Meter">
+      <svg viewBox="0 0 56 21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" d="M12.914 4.282c2.357 0 3.706 1.415 3.706 3.88v8.648h-2.227V9.275c0-2.336-.925-2.96-2.163-2.96-1.706 0-2.807 1.847-2.807 5.011v5.484H7.196V9.275c0-2.186-.815-2.96-2.177-2.96-1.72 0-2.794 1.997-2.794 5.011v5.484H0V4.474h2.227v1.94C2.983 5 4.212 4.28 5.815 4.28s2.918.855 3.371 2.359c.667-1.444 2.034-2.36 3.728-2.36M33.597.138 31.37 1.543v2.932h-2.094v2.036h2.094v6.397c0 2.605 1.318 4.098 3.617 4.098.651 0 1.394-.206 1.747-.388V14.5c-.642.351-1.175.47-1.627.47-.973 0-1.51-.673-1.51-1.896V6.509h3.137V4.474h-3.137V.137Zm21.49 4.145c-1.3 0-2.745.668-3.46 2.136V4.474H49.4V16.81h2.227v-5.488c0-2.87 1.097-5.007 3.291-5.007.549 0 1.082.163 1.082.163V4.359a5.095 5.095 0 0 0-.913-.077ZM28.683 13.73c-1.196 2.277-2.686 3.274-5.166 3.274-1.773 0-3.169-.62-4.148-1.844-.971-1.27-1.442-2.747-1.442-4.516 0-1.77.484-3.267 1.442-4.492.987-1.258 2.344-1.868 4.148-1.868 1.805 0 3.127.58 4.098 1.72 1.004 1.127 1.493 2.48 1.493 4.136v1.04h-8.9c.033 2.26 1.386 3.79 3.31 3.79 1.566 0 2.506-.616 3.211-2.115l1.954.877v-.002Zm-8.335-4.587h6.412c-.186-1.814-1.572-2.828-3.24-2.828-1.67 0-2.854 1-3.17 2.828h-.002Zm27.354 4.587c-1.197 2.277-2.687 3.274-5.166 3.274-1.774 0-3.17-.62-4.149-1.844-.971-1.27-1.442-2.747-1.442-4.516 0-1.77.485-3.267 1.442-4.492.987-1.258 2.344-1.868 4.148-1.868 1.805 0 3.127.58 4.098 1.72 1.005 1.127 1.493 2.48 1.493 4.136v1.04h-8.9c.034 2.26 1.386 3.79 3.31 3.79 1.566 0 2.506-.616 3.212-2.115l1.954.877v-.002Zm-8.336-4.587h6.413c-.187-1.814-1.573-2.828-3.242-2.828s-2.853 1-3.169 2.828h-.002Z"></path></svg>
+    </a>
+    <nav class="nav-links">
+      <a href="https://www.meter.com/network" target="_blank" rel="noopener">Products</a>
+      <a href="https://www.meter.com/customers" target="_blank" rel="noopener">Customers</a>
+      <a href="https://www.meter.com/pricing" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://www.meter.com/resources" target="_blank" rel="noopener">Resources</a>
+      <a href="https://www.meter.com/careers" target="_blank" rel="noopener">Careers</a>
+      <a href="https://www.meter.com/partners" target="_blank" rel="noopener">Partners</a>
+    </nav>
+    <div class="nav-right">
+      <a class="ghost" href="https://dashboard.meter.com/" target="_blank" rel="noopener">Dashboard</a>
+      <a class="pill" href="https://www.meter.com/demo" target="_blank" rel="noopener">Demo</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav-links').scrollIntoView()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="badge"><span class="dot"></span> Live Webinar</span>
+      <h1 class="hl">Enterprise networks, <span class="accent">built from the ground up</span></h1>
+      <p class="lede">Internet, wired, Wi-Fi, and cellular — one vertically integrated stack. Join us live to see how leading teams replace the networking patchwork with infrastructure built by network engineers.</p>
+      <div class="meta">
+        <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Thursday, July 9, 2026</span>
+        <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 10:00 AM PT</span>
+        <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> 45 minutes</span>
+      </div>
+      <p class="stream-on">Streaming live right here on <b>meter.com</b> — no new tab, no download.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="#register">Save my seat</a>
+        <div class="cal">
+          <button class="cal-btn" id="calBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Add to calendar
+          </button>
+          <div class="cal-menu" id="calMenu">
+            <a id="gcal" href="#" target="_blank" rel="noopener">Google Calendar</a>
+            <a id="ical" href="#">Apple / Outlook (.ics)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="countcard reveal in">
+      <div class="lab">Webinar starts in</div>
+      <div class="count" id="count">
+        <div class="u"><div class="n tnum" id="d">00</div><div class="t">Days</div></div>
+        <div class="u"><div class="n tnum" id="h">00</div><div class="t">Hrs</div></div>
+        <div class="u"><div class="n tnum" id="m">00</div><div class="t">Min</div></div>
+        <div class="u"><div class="n tnum" id="s">00</div><div class="t">Sec</div></div>
+      </div>
+      <div class="live-now" id="liveNow">● We're live now — join below</div>
+      <div class="stat-strip">
+        <div class="s"><div class="sn">4-in-1</div><div class="st">Internet · Wired · Wi-Fi · Cellular</div></div>
+        <div class="s"><div class="sn">SOC 2</div><div class="st">Type II compliant</div></div>
+        <div class="s"><div class="sn">NaaS</div><div class="st">Network as a service</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<div class="trust">
+  <div class="wrap">
+    <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg> Hosted natively on meter.com</span>
+    <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Live Q&amp;A with the Meter team</span>
+    <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.17L4 17.17z"/><path d="M8 9h8M8 12h5"/></svg> Recording sent to every registrant</span>
+  </div>
+</div>
+
+<!-- Embed -->
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Join the live session</h2>
+      <p>Register and watch right here. The room opens 10 minutes before we start.</p>
+    </div>
+    <div class="embed-card reveal">
+      <div class="skeleton" id="skeleton">
+        <div class="spinner"></div>
+        <p>Loading the live experience…</p>
+      </div>
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- What you'll learn -->
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What you'll learn</h2>
+      <p>Three ways a vertically integrated network changes the day-to-day for enterprise IT.</p>
+    </div>
+    <div class="cards3 stagger">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M9 16v4M15 16v4"/></svg></div>
+        <h3>One stack, no patchwork</h3>
+        <p>How designing the hardware and software together — internet, wired, Wi-Fi, and cellular — removes the integration tax of stitching vendors.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Enterprise controls by default</h3>
+        <p>Configurability, security, and visibility built into the software — see how teams enforce policy and stay audit-ready (SOC 2 Type II).</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Built to scale &amp; stay up</h3>
+        <p>From install to refresh — how resiliency and managed rollout keep networks live across offices, warehouses, retail, and campuses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Speakers -->
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Your hosts</h2>
+      <p>Network engineers and product leaders from the Meter team.</p>
+    </div>
+    <div class="cards2 stagger">
+      <div class="spk">
+        <div class="av">M</div>
+        <div>
+          <h3>Speaker Name</h3>
+          <div class="role">Network Engineer</div>
+          <div class="org">Meter</div>
+        </div>
+      </div>
+      <div class="spk">
+        <div class="av">M</div>
+        <div>
+          <h3>Speaker Name</h3>
+          <div class="role">Product Lead</div>
+          <div class="org">Meter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="ctaband">
+  <div class="wrap">
+    <div class="inner reveal">
+      <h2>Can't make it live?</h2>
+      <p>Register anyway — we'll send the full recording and resources straight to your inbox.</p>
+      <a class="btn-primary" href="#register">Register to get the recording</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer (mirrors meter.com) -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="logo" href="https://www.meter.com/" target="_blank" rel="noopener" aria-label="Meter">
+          <svg viewBox="0 0 56 21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="height:22px"><path fill="currentColor" d="M12.914 4.282c2.357 0 3.706 1.415 3.706 3.88v8.648h-2.227V9.275c0-2.336-.925-2.96-2.163-2.96-1.706 0-2.807 1.847-2.807 5.011v5.484H7.196V9.275c0-2.186-.815-2.96-2.177-2.96-1.72 0-2.794 1.997-2.794 5.011v5.484H0V4.474h2.227v1.94C2.983 5 4.212 4.28 5.815 4.28s2.918.855 3.371 2.359c.667-1.444 2.034-2.36 3.728-2.36M33.597.138 31.37 1.543v2.932h-2.094v2.036h2.094v6.397c0 2.605 1.318 4.098 3.617 4.098.651 0 1.394-.206 1.747-.388V14.5c-.642.351-1.175.47-1.627.47-.973 0-1.51-.673-1.51-1.896V6.509h3.137V4.474h-3.137V.137Zm21.49 4.145c-1.3 0-2.745.668-3.46 2.136V4.474H49.4V16.81h2.227v-5.488c0-2.87 1.097-5.007 3.291-5.007.549 0 1.082.163 1.082.163V4.359a5.095 5.095 0 0 0-.913-.077ZM28.683 13.73c-1.196 2.277-2.686 3.274-5.166 3.274-1.773 0-3.169-.62-4.148-1.844-.971-1.27-1.442-2.747-1.442-4.516 0-1.77.484-3.267 1.442-4.492.987-1.258 2.344-1.868 4.148-1.868 1.805 0 3.127.58 4.098 1.72 1.004 1.127 1.493 2.48 1.493 4.136v1.04h-8.9c.033 2.26 1.386 3.79 3.31 3.79 1.566 0 2.506-.616 3.211-2.115l1.954.877v-.002Zm-8.335-4.587h6.412c-.186-1.814-1.572-2.828-3.24-2.828-1.67 0-2.854 1-3.17 2.828h-.002Zm27.354 4.587c-1.197 2.277-2.687 3.274-5.166 3.274-1.774 0-3.17-.62-4.149-1.844-.971-1.27-1.442-2.747-1.442-4.516 0-1.77.485-3.267 1.442-4.492.987-1.258 2.344-1.868 4.148-1.868 1.805 0 3.127.58 4.098 1.72 1.005 1.127 1.493 2.48 1.493 4.136v1.04h-8.9c.034 2.26 1.386 3.79 3.31 3.79 1.566 0 2.506-.616 3.212-2.115l1.954.877v-.002Zm-8.336-4.587h6.413c-.187-1.814-1.573-2.828-3.242-2.828s-2.853 1-3.169 2.828h-.002Z"></path></svg>
+        </a>
+        <p>Vertically integrated networking as a service — internet, wired, Wi-Fi, and cellular.</p>
+      </div>
+      <div class="fcol">
+        <h4>Products</h4>
+        <a href="https://www.meter.com/network" target="_blank" rel="noopener">Network</a>
+        <a href="https://www.meter.com/connect" target="_blank" rel="noopener">Connect</a>
+        <a href="https://www.meter.com/cellular" target="_blank" rel="noopener">Cellular</a>
+        <a href="https://www.meter.com/security" target="_blank" rel="noopener">Security</a>
+        <a href="https://dashboard.meter.com/" target="_blank" rel="noopener">Dashboard</a>
+      </div>
+      <div class="fcol">
+        <h4>Solutions</h4>
+        <a href="https://www.meter.com/how-it-works" target="_blank" rel="noopener">How it works</a>
+        <a href="https://www.meter.com/pricing" target="_blank" rel="noopener">Pricing</a>
+        <a href="https://www.meter.com/customers" target="_blank" rel="noopener">Customers</a>
+        <a href="https://www.meter.com/case-studies" target="_blank" rel="noopener">Case studies</a>
+        <a href="https://www.meter.com/trial" target="_blank" rel="noopener">Free trial</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="https://www.meter.com/about" target="_blank" rel="noopener">About</a>
+        <a href="https://www.meter.com/careers" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.meter.com/newsroom" target="_blank" rel="noopener">Newsroom</a>
+        <a href="https://www.meter.com/events" target="_blank" rel="noopener">Events</a>
+        <a href="https://www.meter.com/blog" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <div class="fcol">
+        <h4>Resources</h4>
+        <a href="https://docs.meter.com/" target="_blank" rel="noopener">Support center</a>
+        <a href="https://www.meter.com/trust" target="_blank" rel="noopener">Trust</a>
+        <a href="https://partners.meter.com/" target="_blank" rel="noopener">Partner portal</a>
+        <a href="https://www.meter.com/contact" target="_blank" rel="noopener">Contact us</a>
+        <a href="mailto:hello@meter.com">hello@meter.com</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© Meter, Inc. · <a href="https://www.meter.com/privacy" target="_blank" rel="noopener">Privacy</a> · <a href="https://www.meter.com/terms" target="_blank" rel="noopener">Terms</a></span>
+      <div class="fsoc">
+        <span class="soc2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg> SOC 2 Type II</span>
+        <a href="https://x.com/meter" target="_blank" rel="noopener" aria-label="X (@meter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/company/meter" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14M7.12 20.45H3.56V9h3.56z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Sequel embed (light) -->
+<div id="sequel_anchor"></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+
+<script>
+  // ---- Event definition (single source of truth) ----
+  var EVENT = {
+    title: "Live Webinar — Enterprise networks, built from the ground up",
+    details: "Join Meter live: how vertically integrated infrastructure (internet, wired, Wi-Fi, and cellular) replaces the enterprise networking patchwork. Streaming on meter.com.",
+    location: "https://www.meter.com/ (live webinar)",
+    start: new Date("2026-07-09T10:00:00-07:00"),
+    end:   new Date("2026-07-09T10:45:00-07:00")
+  };
+
+  // ---- Countdown ----
+  (function(){
+    var d=document.getElementById('d'),h=document.getElementById('h'),
+        m=document.getElementById('m'),s=document.getElementById('s'),
+        grid=document.getElementById('count'),live=document.getElementById('liveNow');
+    function pad(n){return String(n).padStart(2,'0');}
+    function tick(){
+      var diff=EVENT.start-new Date();
+      if(diff<=0){grid.style.display='none';live.style.display='block';return;}
+      var dd=Math.floor(diff/864e5),hh=Math.floor(diff%864e5/36e5),
+          mm=Math.floor(diff%36e5/6e4),ss=Math.floor(diff%6e4/1e3);
+      d.textContent=pad(dd);h.textContent=pad(hh);m.textContent=pad(mm);s.textContent=pad(ss);
+    }
+    tick();setInterval(tick,1000);
+  })();
+
+  // ---- Add to calendar ----
+  (function(){
+    function fmt(dt){return dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');}
+    var g="https://calendar.google.com/calendar/render?action=TEMPLATE"
+      +"&text="+encodeURIComponent(EVENT.title)
+      +"&dates="+fmt(EVENT.start)+"/"+fmt(EVENT.end)
+      +"&details="+encodeURIComponent(EVENT.details)
+      +"&location="+encodeURIComponent(EVENT.location);
+    document.getElementById('gcal').href=g;
+
+    var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Meter//Webinar//EN","BEGIN:VEVENT",
+      "UID:meter-webinar-20260709@meter.com","DTSTAMP:"+fmt(new Date()),
+      "DTSTART:"+fmt(EVENT.start),"DTEND:"+fmt(EVENT.end),
+      "SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details.replace(/,/g,'\\,'),
+      "LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+    var ical=document.getElementById('ical');
+    ical.href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+    ical.setAttribute('download','meter-webinar.ics');
+
+    var btn=document.getElementById('calBtn'),menu=document.getElementById('calMenu');
+    btn.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('open');});
+    document.addEventListener('click',function(){menu.classList.remove('open');});
+  })();
+
+  // ---- Nav shrink ----
+  (function(){
+    var hdr=document.getElementById('hdr');
+    function on(){hdr.classList.toggle('scrolled',window.scrollY>8);}
+    on();window.addEventListener('scroll',on,{passive:true});
+  })();
+
+  // ---- Scroll reveal ----
+  (function(){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.15});
+    document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+  })();
+
+  // ---- Embed skeleton removal ----
+  (function(){
+    var root=document.getElementById('sequel_root'),sk=document.getElementById('skeleton');
+    if(!root||!sk)return;
+    var done=function(){if(sk){sk.style.display='none';}};
+    var mo=new MutationObserver(function(){if(root.childNodes.length>0){done();mo.disconnect();}});
+    mo.observe(root,{childList:true,subtree:true});
+    setTimeout(done,12000);
+  })();
+</script>
+</body>
+</html>
