@@ -3,404 +3,632 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Webinar — The Human-Agentic GTM Playbook | 2X</title>
+<title>Live Webinar: The AI-Powered GTM Playbook | 2X</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#151515;            /* 2X body */
-  --panel:#282828;         /* 2X header */
-  --panel-2:#1E1E1E;
-  --ink:#FFFFFF;
-  --muted:rgba(255,255,255,.72);
-  --red:#F50000;           /* 2X logo red */
-  --red-bright:#FF0F0F;
-  --line:rgba(255,255,255,.14);
-  --sans:"Inter",-apple-system,sans-serif;
-  --sh-sm:0 2px 10px rgba(0,0,0,.35);
-  --sh-md:0 12px 30px rgba(0,0,0,.45);
-  --sh-lg:0 26px 60px rgba(0,0,0,.55);
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
-a{text-decoration:none;color:inherit}
-svg{display:block}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  :root {
+    --ink: #ffffff;
+    --ink-muted: rgba(255,255,255,0.65);
+    --accent: #e02020;
+    --accent-hover: #c01818;
+    --bg: #151515;
+    --bg-card: #1e1e1e;
+    --bg-card2: #252525;
+    --footer-bg: #0d0d0d;
+    --border: rgba(255,255,255,0.1);
+    --sh-sm: 0 4px 12px rgba(0,0,0,0.4);
+    --sh-md: 0 16px 38px rgba(0,0,0,0.5);
+    --sh-lg: 0 32px 64px rgba(0,0,0,0.6);
+    --ease: cubic-bezier(.16,1,.3,1);
+    --radius: 6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-variant-numeric: tabular-nums;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
 
-/* utility strip */
-.util{background:var(--bg);border-bottom:1px solid var(--line);font-size:13px}
-.util .wrap{display:flex;justify-content:flex-end;align-items:center;gap:10px;height:38px}
-.util b{letter-spacing:.08em;font-weight:700}
-.util span{color:rgba(255,255,255,.45)}
+  /* Announce bar */
+  .announce-bar {
+    background: #2a2a2a;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .announce-bar a { color: var(--accent); font-weight: 600; }
 
-/* header */
-header{position:sticky;top:0;z-index:50;background:var(--panel);transition:box-shadow .3s var(--ease)}
-header.scrolled{box-shadow:var(--sh-md)}
-.nav{display:flex;align-items:center;gap:34px;height:76px;transition:height .3s var(--ease)}
-header.scrolled .nav{height:64px}
-.logo{flex:none;color:#fff}
-.logo svg{height:34px;width:auto}
-.nav-links{display:flex;align-items:center;gap:32px;font-size:18px;font-weight:600;margin-left:auto}
-.nav-links a{color:#fff;position:relative;white-space:nowrap}
-.nav-links a:not(.git):after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--red-bright);transition:width .3s var(--ease)}
-.nav-links a:not(.git):hover:after{width:100%}
-.caret{display:inline-block;width:7px;height:7px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg) translateY(-2px);margin-left:7px;opacity:.85}
-.git{text-decoration:underline;text-underline-offset:5px}
-.git:hover{color:var(--red-bright)}
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s var(--ease), padding 0.3s var(--ease);
+    padding: 0 48px;
+  }
+  header.scrolled { box-shadow: var(--sh-md); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; max-width: 1200px; margin: 0 auto;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 8px; }
+  .logo-svg { height: 42px; width: auto; }
 
-/* announce */
-.announce{background:linear-gradient(90deg,#3a3a3a,#6b6b6b,#3a3a3a);color:#fff;text-align:center;padding:11px 16px;font-size:15.5px}
-.announce a{text-decoration:underline;text-underline-offset:3px;font-weight:600}
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links li a {
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    display: flex; align-items: center; gap: 4px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links li a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 2px; background: var(--accent); border-radius: 2px;
+    transform: scaleX(0); transition: transform 0.25s var(--ease);
+  }
+  .nav-links li a:hover::after { transform: scaleX(1); }
+  .nav-links li a:hover { color: var(--ink); }
+  .nav-links li a .caret { font-size: 10px; opacity: 0.6; }
+  .nav-links a.nav-cta {
+    color: var(--ink) !important;
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+  .nav-links a.nav-cta::after { display: none; }
 
-/* buttons */
-.pill{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--bg) !important;font-weight:600;font-size:18px;padding:12px 26px;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease)}
-.pill:hover{transform:translateY(-2px);box-shadow:var(--sh-md);background:#ededed}
-.pill .arr{transition:transform .25s var(--ease)}
-.pill:hover .arr{transform:translateX(4px)}
-.pill-red{background:var(--red);color:#fff !important}
-.pill-red:hover{background:var(--red-bright)}
+  /* Hero */
+  .hero {
+    padding: 72px 48px 80px;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(224,32,32,0.15); border: 1px solid rgba(224,32,32,0.3);
+    color: #ff5555; padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #ff5555;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-meta { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .hero-meta-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-muted); }
+  .hero-meta-row svg { width: 16px; height: 16px; opacity: 0.7; flex-shrink: 0; }
+  .streaming-line {
+    font-size: 13px; color: var(--ink-muted); margin-bottom: 28px;
+    border-left: 3px solid var(--accent); padding-left: 12px;
+  }
 
-/* hero */
-.hero{padding:88px 0 76px;background:
-  radial-gradient(circle at 85% 30%, rgba(245,0,0,.16), transparent 46%),
-  var(--bg)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#fff;border:1px solid rgba(245,0,0,.6);background:rgba(245,0,0,.12);padding:8px 15px;border-radius:999px;margin-bottom:26px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--red-bright);animation:pulse 1.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,15,15,.5)}70%{box-shadow:0 0 0 9px rgba(255,15,15,0)}100%{box-shadow:0 0 0 0 rgba(255,15,15,0)}}
-h1{font-size:clamp(40px,4.8vw,58px);font-weight:700;line-height:1.07;letter-spacing:-.015em;margin-bottom:22px}
-h1 em{font-style:normal;color:var(--red-bright)}
-.sub{font-size:19px;color:var(--muted);max-width:54ch;margin-bottom:26px}
-.meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14.5px;font-weight:600;color:var(--muted);margin-bottom:30px}
-.meta span{display:flex;align-items:center;gap:8px}
-.meta svg{width:16px;height:16px;flex:none;color:var(--red-bright)}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-bottom:16px}
-.cal-row{display:flex;gap:18px;font-size:14.5px}
-.cal-row a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:4px;opacity:.85;transition:opacity .2s,color .2s}
-.cal-row a:hover{opacity:1;color:var(--red-bright)}
-.streamline{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.45);margin-top:14px}
+  /* Countdown */
+  .countdown-wrap { margin-bottom: 32px; }
+  .countdown-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 12px; }
+  .countdown {
+    display: flex; gap: 12px;
+  }
+  .cd-tile {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 12px 16px; min-width: 64px; text-align: center;
+  }
+  .cd-num { font-size: 28px; font-weight: 800; line-height: 1; }
+  .cd-unit { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-top: 4px; }
+  .live-now { font-size: 18px; font-weight: 700; color: #ff5555; animation: pulse 2s infinite; }
 
-/* countdown card */
-.count-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-lg);padding:34px 30px}
-.count-label{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.55);margin-bottom:18px;text-align:center}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.tile{background:var(--bg);border:1px solid var(--line);border-radius:12px;text-align:center;padding:16px 4px 12px}
-.tile b{display:block;font-size:33px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
-.tile span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.5)}
-.live-now{display:none;text-align:center;font-weight:800;font-size:21px;color:var(--red-bright)}
-.count-foot{margin-top:20px;text-align:center}
-.count-foot .pill{width:100%;justify-content:center}
-.stat-note{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-.stat-note .row{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}
-.stat-note b{font-size:20px;font-weight:800;color:#fff;white-space:nowrap}
-.stat-note span{font-size:13px;color:rgba(255,255,255,.6);text-align:right}
-.src{font-size:11px;color:rgba(255,255,255,.35);text-align:center;margin-top:8px}
+  /* Calendar buttons */
+  .cal-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+  .cal-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--ink);
+    cursor: pointer; transition: all 0.2s var(--ease);
+    text-decoration: none;
+  }
+  .cal-btn:hover { background: var(--bg-card2); border-color: rgba(255,255,255,0.2); transform: translateY(-1px); box-shadow: var(--sh-sm); }
 
-/* trust strip */
-.trust{background:#000;padding:20px 0}
-.trust-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.trust-grid span{font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.85)}
-.trust-grid svg{width:16px;height:16px;color:var(--red-bright);flex:none}
+  /* Hero CTA */
+  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff !important;
+    padding: 14px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 700;
+    transition: all 0.2s var(--ease); cursor: pointer; border: none;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,32,32,0.35); }
 
-/* sections */
-.eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--red-bright);margin-bottom:12px}
-h2{font-size:clamp(28px,3.3vw,40px);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin-bottom:14px}
-.sec-sub{color:var(--muted);max-width:62ch;margin-bottom:38px;font-size:17px}
+  /* Stat card */
+  .stat-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px; display: flex; flex-direction: column; gap: 24px;
+  }
+  .stat-card-title { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-item .stat-num { font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat-item .stat-desc { font-size: 13px; color: var(--ink-muted); margin-top: 4px; }
 
-/* embed */
-.embed-sec{padding:80px 0;background:var(--panel-2)}
-.embed-card{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-lg);padding:14px}
-#sequel_root{min-height:520px}
-.skeleton{position:absolute;inset:14px;background:var(--bg);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5}
-.spinner{width:42px;height:42px;border:3px solid var(--line);border-top-color:var(--red-bright);border-radius:50%;animation:spin .9s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.skeleton p{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.5)}
+  /* Trust strip */
+  .trust-strip {
+    background: #1a1a1a; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 20px 48px;
+  }
+  .trust-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-muted); }
+  .trust-item svg { color: var(--accent); flex-shrink: 0; }
 
-/* learn */
-.learn{padding:84px 0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:30px 26px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
-.card:hover{transform:translateY(-6px);box-shadow:var(--sh-md);border-color:rgba(245,0,0,.5)}
-.card .num{font-size:13px;font-weight:800;color:var(--red-bright);margin-bottom:14px;display:block}
-.card h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
-.card p{font-size:15.5px;color:var(--muted)}
+  /* Embed section */
+  .embed-section {
+    padding: 64px 48px; max-width: 1200px; margin: 0 auto;
+  }
+  .embed-section h2 {
+    font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .embed-sub { color: var(--ink-muted); margin-bottom: 32px; }
+  .embed-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: var(--sh-lg);
+    position: relative; min-height: 520px;
+  }
+  .embed-skeleton {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+    background: var(--bg-card);
+    z-index: 2; transition: opacity 0.5s var(--ease);
+  }
+  .embed-skeleton.hidden { opacity: 0; pointer-events: none; }
+  .spinner {
+    width: 40px; height: 40px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .embed-skeleton p { color: var(--ink-muted); font-size: 14px; }
+  #sequel_root { min-height: 520px; }
 
-/* speakers */
-.speakers{padding:0 0 84px}
-.sp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:860px;margin-top:34px}
-.sp{display:flex;gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.sp:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
-.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#3a3a3a,#202020);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;flex:none;border:1px solid var(--line)}
-.avatar.alt{background:linear-gradient(135deg,var(--red),#8f0000)}
-.sp h4{font-size:17.5px;font-weight:700}
-.sp p{font-size:14.5px;color:rgba(255,255,255,.6)}
+  /* Learn section */
+  .learn-section {
+    padding: 64px 48px; background: #111111;
+  }
+  .learn-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .section-h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .learn-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; transition: all 0.25s var(--ease);
+  }
+  .learn-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); border-color: rgba(224,32,32,0.3); }
+  .learn-icon { font-size: 28px; margin-bottom: 16px; }
+  .learn-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .learn-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
 
-/* cta band */
-.band{background:linear-gradient(120deg,#1c1c1c, #251515 60%, #3a0d0d);padding:76px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.band h2{margin-bottom:12px}
-.band p{color:var(--muted);max-width:56ch;margin:0 auto 30px}
+  /* Speakers */
+  .speakers-section { padding: 64px 48px; max-width: 1200px; margin: 0 auto; }
+  .speakers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+  .speaker-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px; display: flex; gap: 20px; align-items: flex-start;
+    transition: all 0.25s var(--ease);
+  }
+  .speaker-card:hover { transform: translateY(-2px); box-shadow: var(--sh-sm); }
+  .speaker-avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent), #8b0000);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; color: #fff;
+    border: 2px solid rgba(224,32,32,0.3);
+  }
+  .speaker-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .speaker-title { font-size: 13px; color: var(--ink-muted); margin-bottom: 8px; }
+  .placeholder-tag {
+    display: inline-block; background: rgba(224,32,32,0.15); color: var(--accent);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 100px;
+  }
 
-/* footer */
-footer{background:var(--bg);color:#fff;padding:64px 0 32px;font-size:15px}
-.f-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
-.f-logo{color:#fff;display:inline-block;margin-bottom:20px}
-.f-logo svg{height:38px;width:auto}
-.f-col h5{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:16px}
-.f-col a{display:block;color:rgba(255,255,255,.82);margin-bottom:10px;transition:color .2s}
-.f-col a:hover{color:var(--red-bright)}
-.f-social{display:flex;gap:12px;margin-top:6px}
-.f-social a{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s}
-.f-social a:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.f-social svg{width:15px;height:15px;fill:#fff}
-.legal{border-top:1px solid var(--line);padding-top:26px;display:flex;flex-wrap:wrap;gap:10px 26px;color:rgba(255,255,255,.5);font-size:13.5px}
-.legal a{color:rgba(255,255,255,.65);text-decoration:underline;text-underline-offset:3px}
-.legal a:hover{color:#fff}
+  /* CTA band */
+  .cta-band {
+    background: var(--accent); padding: 56px 48px; text-align: center;
+  }
+  .cta-band h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .cta-band p { color: rgba(255,255,255,0.85); margin-bottom: 28px; font-size: 16px; }
+  .btn-white {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff; color: var(--accent) !important;
+    padding: 14px 28px; border-radius: var(--radius); font-size: 15px; font-weight: 800;
+    transition: all 0.2s var(--ease);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.stagger.in>*{opacity:1;transform:none}
-.stagger.in>*:nth-child(2){transition-delay:.12s}
-.stagger.in>*:nth-child(3){transition-delay:.24s}
+  /* Footer */
+  footer {
+    background: var(--footer-bg); border-top: 1px solid var(--border);
+    padding: 48px 48px 24px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: flex; gap: 64px; margin-bottom: 48px; flex-wrap: wrap; }
+  .footer-brand { flex: 0 0 220px; }
+  .footer-brand p { font-size: 13px; color: var(--ink-muted); margin-top: 16px; line-height: 1.7; }
+  .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 14px; color: var(--ink-muted); transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--ink); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 12px; color: var(--ink-muted); }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a { color: var(--ink-muted); font-size: 18px; transition: color 0.2s; }
+  .footer-socials a:hover { color: var(--ink); }
 
-@media (prefers-reduced-motion: reduce){
-  *,*:before,*:after{animation:none !important;transition:none !important}
-  .reveal,.stagger>*{opacity:1;transform:none}
-}
-@media (max-width: 960px){
-  .nav-links a:not(.git){display:none}
-  .hero-grid{grid-template-columns:1fr;gap:44px}
-  .cards{grid-template-columns:1fr}
-  .sp-grid{grid-template-columns:1fr}
-  .f-grid{grid-template-columns:1fr 1fr}
-  .trust-grid{flex-direction:column;gap:12px}
-  .util{display:none}
-}
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .reveal.visible { opacity: 1; transform: none; }
+  .stagger > * { opacity: 0; transform: translateY(26px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  .stagger > *.visible { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .stagger > * { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    header { padding: 0 20px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 48px; }
+    .learn-grid { grid-template-columns: 1fr; }
+    .speakers-grid { grid-template-columns: 1fr; }
+    .trust-inner { gap: 24px; flex-direction: column; align-items: center; }
+    .embed-section, .speakers-section, .cta-band { padding: 48px 20px; }
+    .learn-section { padding: 48px 20px; }
+    .footer-top { gap: 32px; }
+    .footer-inner { padding: 0; }
+    footer { padding: 40px 20px 20px; }
+    .nav-links { display: none; }
+  }
 </style>
 </head>
 <body>
 
-<div class="util"><div class="wrap"><b>SEARCH</b><span>Type something…</span></div></div>
+<!-- Announce bar -->
+<div class="announce-bar">
+  🚀 2X Acquires Knownwell to Build 1st GTM Human-Agentic Services Company &nbsp;<a href="https://2x.marketing" target="_blank">Read More →</a>
+</div>
 
-<header id="hdr">
-  <div class="wrap nav">
-    <a class="logo" href="https://2x.marketing/" target="_blank" rel="noopener" aria-label="2X">
-      <svg viewBox="0 0 1331.9433264 674" xmlns="http://www.w3.org/2000/svg"><path d="M1149.0596346,503.1211586h-100.6644598c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923Z" fill="currentColor"/><path d="M973.3183798,466.227374h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z" fill="currentColor"/><path d="M1050.5771372,207.6734393c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z" fill="currentColor"/><path d="M898.1423111,392.3406523h113.1607134c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h0Z" fill="currentColor"/><path d="M956.6566276,300.0070382c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z" fill="currentColor"/><path d="M1149.0596346,577.1070632h-292.373217c-10.1160465,0-18.446862-8.3308761-18.446862-18.446862s8.3308761,-18.446862,18.446862,-18.446862h117.0286331c10.1160465,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923h-133.5911721c-26.0834883-.2975183-49.0925198-14.2814543-61.7871391-33.4225963l-86.7797068-132.7977395,53.0595921-80.3332143c4.8596878-7.23991,13.0913507-12.0003998,22.4139343-12.0003998h141.0294327c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-96.1023509c-10.1160465,0-18.446862-8.3308458-18.446862-18.4468923s8.3308761,-18.4468923,18.446862,-18.4468923h318.9525894c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-273.3312579c-10.1160465,0-18.446862-8.3308534-18.446862-18.4468847s8.3308761,-18.4468847,18.446862,-18.4468847h131.8060017c10.1160465,0,18.446862-8.3308534,18.446862-18.4468847s-8.3308761-18.4468847-18.446862-18.4468847h-235.2474c-29.3563109,0-54.8447626,15.8682892-66.5476138,38.7781303l-73.8867217,115.739324v245.9584831l73.3908377,114.5492129h.1983657c11.7028512,22.9098184,36.9929372,38.7781076,66.3493086,38.7781076h395.418005c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.446862-18.446862-18.446862h0l-.0001211-.0992131Z" fill="currentColor"/><path d="M1149.0596346,503.2203415h-100.6644598c-10.115986,0-18.446862,8.3308761-18.446862,18.446862s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923v.0000303Z" fill="currentColor"/><path d="M973.4175324,466.3265569h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z" fill="currentColor"/><path d="M1050.5771372,207.8717899c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z" fill="currentColor"/><path d="M898.2415242,392.4398351h113.1607134c10.1160465,0,18.4469226-8.3308458,18.4469226-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h-.0000605Z" fill="currentColor"/><path d="M956.7558408,300.205404c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z" fill="currentColor"/><path d="M539.898902,98.9473681c-11.7063621-22.8957748-37.2148804-38.7935737-66.5823898-38.7935737l-223.4092582.0369287h-5.0592188v.0369287c-100.0582398,1.4956122-184.8187869,59.3259241-184.8187869,163.4462953l-.1292487,3.0373805v.3231388c0,9.7399416,7.7088608,17.6980723,17.3195498,18.2520072l101.8954457-.1292525c8.5951468-1.0986235,15.3161703-8.1335394,15.9254927-16.8671699.0184625-.0092312.036925-.0276937.0553874-.036925,3.7020903-34.5929359,30.8169805-43.7512488,53.7127704-43.7512488,34.4729298,0,52.5310507,20.3476953,52.5310507,49.7336975,0,22.6095761-8.2074196,36.1716292-29.5521948,57.2671609l-188.4100872,188.13315c-14.309863,14.2360245-23.1819773,33.9374271-23.1819773,55.7161311l.0184663,60.3414362c-.0184663,2.3173136.2585012,4.6622301,1.2001822,6.9426187,2.9173669,7.044132,9.7861016,11.290926,16.9964224,11.3001876l.0646262.0646489h395.3214932c29.3767709,0,54.6451862-15.8977687,66.3608098-38.793604h.2308113l73.3772784-114.5435228v-245.9911254l-73.8573634-115.7344663-.0092615.0092237v-.0000454ZM449.1467052,469.8590043c-12.6942258,19.138297-35.6361871,32.2941151-61.7539974,32.6265002h-139.5534634c-5.3084925,0-9.6106891-4.3021814-9.6106891-9.6199203,0-2.8065995,1.1263323-5.2808139,3.055843-7.0072071l122.4277885-119.0118969c46.7886142-45.2099209,72.2324836-75.3529453,72.2324836-131.8630689,0-12.3895646-1.2463384-24.1513596-3.5358977-35.2945858l-.1384686-1.5509996c0-3.0004556,2.4373197-5.437745,5.4377753-5.437745,1.9941596,0,3.6559341,1.1263323,4.6068426,2.7234881l93.6419077,141.6583979-86.8100942,132.7770373.0000303-.0000303-.0000605.0000303Z" fill="#F50000"/><path d="M1228.1887776,59.8999996c7.4142008,0,14.5129775,1.8930083,21.6117541,5.6790189,7.0987767,3.7860166,12.4623353,9.1495332,16.4061001,16.2483098s5.8366949,14.3553015,5.8366949,22.0850829-1.8929301,14.8285581-5.8366949,21.7695866c-3.7860527,6.9410285-9.3073235,12.4622992-16.248388,16.2483158s-14.1975533,5.8367671-21.9273709,5.8367671-14.8285942-1.8930023-21.9273709-5.8367671c-6.9410646-3.7860166-12.4623353-9.3072874-16.248388-16.2483158-3.9437648-6.9410285-5.8366949-14.1975533-5.8366949-21.7695866s1.8929301-14.9863063,5.8366949-22.0850829,9.4650355-12.4622992,16.4061001-16.2483098c7.0987767-3.7860166,14.1975533-5.6790189,21.6117541-5.6790189h.3158093ZM1228.1887776,67.1565245c-6.1523116,0-12.1467186,1.5775059-17.983606,4.7325238-5.8366949,3.1550118-10.4115006,7.7297814-13.7242245,13.5665485-3.3127239,5.8367671-4.8902299,11.9890426-4.8902299,18.2990663s1.5775059,12.4622992,4.8902299,18.1413181c3.3127239,5.8367671,7.7298175,10.2537885,13.5665124,13.5665485,5.8366949,3.31276,11.8312944,4.890266,18.2990302,4.890266s12.4623353-1.5775059,18.2990302-4.890266c5.8366949-3.31276,10.4115006-7.7297814,13.5665124-13.5665485,3.1550118-5.8367671,4.8902299-11.8312944,4.8902299-18.1413181s-1.5775059-12.4622992-4.8902299-18.2990663c-3.3127239-5.8367671-7.8875296-10.4115367-13.7242245-13.5665485-5.8366949-3.1550118-11.8312944-4.7325178-17.983606-4.7325178,0,0-.3154242,0-.3154242-.000006ZM1210.8362125,128.2060049v-47.3251777h16.248388c5.5212707,0,9.6227476.4732566,11.9890065,1.2620096,2.523971.9465011,4.4170936,2.3662589,5.9945995,4.5747696,1.4197938,2.2085107,2.2085468,4.4170214,2.2085468,6.9410285s-1.2620818,6.4677719-3.6283407,8.991779c-2.523971,2.5240071-5.6789828,3.9437648-9.7804597,4.2592612,1.735218.6310048,2.9972998,1.5775059,3.9437648,2.5240071,1.8929301,1.8930023,4.259189,5.0480141,6.9410646,9.3072874l5.8366949,9.3072874h-9.3073235l-4.259189-7.414273c-3.3127239-5.8367671-5.9945995-9.4650355-8.0452417-11.0425415-1.4197938-1.1042493-3.470436-1.5775059-6.1523116-1.5775059h-4.4170936v20.0343204h-7.5721055v.1577482ZM1218.4083179,101.5461524h9.3073235c4.4170936,0,7.4142008-.6310048,8.9917067-2.0507625,1.5775059-1.2620096,2.3662589-2.9972637,2.3662589-5.2057744s-.3154242-2.6817553-1.1041771-3.7860166-1.8929301-1.8930023-3.1550118-2.5240071c-1.4197938-.4732566-3.9437648-.788753-7.7298175-.788753h-8.6762826v14.1975533h0v.1577602Z" fill="currentColor"/></svg>
+<!-- Header -->
+<header id="site-header">
+  <div class="nav-inner">
+    <a href="https://2x.marketing" target="_blank" class="logo-wrap" aria-label="2X home">
+      <!-- Faithful 2X logo recreation -->
+      <svg class="logo-svg" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="2X">
+        <!-- Red "2" -->
+        <text x="4" y="56" font-family="Inter,sans-serif" font-weight="900" font-size="58" fill="#e02020" style="font-variant-numeric:tabular-nums">2</text>
+        <!-- White X made of speed lines -->
+        <g transform="translate(70, 8)">
+          <!-- Diagonal lines forming X -->
+          <rect x="0" y="0" width="52" height="8" rx="4" fill="#ffffff" transform="rotate(0)"/>
+          <rect x="0" y="14" width="44" height="8" rx="4" fill="#ffffff"/>
+          <rect x="0" y="28" width="36" height="8" rx="4" fill="#ffffff"/>
+          <rect x="0" y="42" width="44" height="8" rx="4" fill="#ffffff"/>
+          <rect x="0" y="56" width="52" height="8" rx="4" fill="#ffffff"/>
+        </g>
+        <!-- ® mark -->
+        <text x="138" y="16" font-family="Inter,sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">®</text>
+      </svg>
     </a>
-    <nav class="nav-links">
-      <a href="https://2x.marketing/services/" target="_blank" rel="noopener">What we do<span class="caret"></span></a>
-      <a href="https://2x.marketing/strengths/" target="_blank" rel="noopener">How we do it<span class="caret"></span></a>
-      <a href="https://2x.marketing/about/" target="_blank" rel="noopener">Who we are<span class="caret"></span></a>
-      <a href="https://2x.marketing/insights/" target="_blank" rel="noopener">What we think<span class="caret"></span></a>
-      <a href="https://2x.marketing/careers/" target="_blank" rel="noopener">Careers<span class="caret"></span></a>
-      <a class="git" href="https://2x.marketing/contact/" target="_blank" rel="noopener">Get in touch</a>
-    </nav>
+
+    <ul class="nav-links">
+      <li><a href="https://2x.marketing/services/" target="_blank">What we do <span class="caret">▾</span></a></li>
+      <li><a href="https://2x.marketing/strengths/" target="_blank">How we do it <span class="caret">▾</span></a></li>
+      <li><a href="https://2x.marketing/about/" target="_blank">Who we are <span class="caret">▾</span></a></li>
+      <li><a href="https://2x.marketing/resources/" target="_blank">What we think <span class="caret">▾</span></a></li>
+      <li><a href="https://2x.marketing/careers/" target="_blank">Careers <span class="caret">▾</span></a></li>
+      <li><a href="https://2x.marketing/contact/" target="_blank" class="nav-cta">Get in touch</a></li>
+    </ul>
   </div>
 </header>
 
-<div class="announce">Live webinar · June 25 · The Human-Agentic GTM Playbook | <a href="#register">Save your seat</a></div>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="reveal in">
-      <span class="badge"><span class="dot"></span>Live Webinar</span>
-      <h1>Get the 2X Effect: the <em>human-agentic</em> GTM playbook</h1>
-      <p class="sub">Humans + AI agents in one GTM engine. Join us live to see how AI-enabled marketing teams scale pipeline with unmatched efficiency — no added headcount, no operational burden.</p>
-      <div class="meta">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Thu, June 25, 2026</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>11:00 AM ET</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v18l7-5 7 5V3z"/></svg>45 min + live Q&amp;A</span>
+<!-- Hero -->
+<section style="background: var(--bg); padding: 0 0;">
+<div class="hero">
+  <div>
+    <div class="live-badge"><span class="live-dot"></span> Live Webinar</div>
+    <h1>The AI-Powered <span>GTM Playbook</span> for B2B Marketing Leaders</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Tuesday, July 15, 2026 &nbsp;·&nbsp; 11:00 AM – 12:00 PM PT</span>
       </div>
-      <div class="hero-ctas">
-        <a class="pill" href="#register">Save your seat <span class="arr">→</span></a>
-        <div class="cal-row">
-          <a id="gcal" href="#" target="_blank" rel="noopener">+ Google Calendar</a>
-          <a id="ics" href="#" download="2x-webinar.ics">+ iCal / Outlook</a>
-        </div>
+      <div class="hero-meta-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>60 minutes · Live Q&amp;A included</span>
       </div>
-      <p class="streamline">Streaming right here on 2x.marketing</p>
     </div>
-    <div class="count-card reveal in">
-      <p class="count-label">The live experience begins in</p>
-      <div class="tiles" id="tiles">
-        <div class="tile"><b id="d">--</b><span>Days</span></div>
-        <div class="tile"><b id="h">--</b><span>Hours</span></div>
-        <div class="tile"><b id="m">--</b><span>Min</span></div>
-        <div class="tile"><b id="s">--</b><span>Sec</span></div>
+    <p class="streaming-line">Streaming right here on 2x.marketing</p>
+
+    <div class="countdown-wrap">
+      <div class="countdown-label">Event starts in</div>
+      <div class="countdown" id="countdown">
+        <div class="cd-tile"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
+        <div class="cd-tile"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hrs</div></div>
+        <div class="cd-tile"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Min</div></div>
+        <div class="cd-tile"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">Sec</div></div>
       </div>
-      <p class="live-now" id="livenow">We're live now — join below ↓</p>
-      <div class="count-foot"><a class="pill pill-red" href="#register">Register free <span class="arr">→</span></a></div>
-      <div class="stat-note">
-        <div class="row"><b>90+%</b><span>enterprise client retention over 7 years</span></div>
-        <div class="row"><b>5.2M</b><span>marketing hours delivered annually</span></div>
-        <div class="row"><b>$100B+</b><span>client revenue impact</span></div>
-        <p class="src">Source: 2x.marketing</p>
-      </div>
+    </div>
+
+    <div class="cal-buttons">
+      <a id="gcal-link" href="#" target="_blank" class="cal-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Add to Google Calendar
+      </a>
+      <a id="ical-link" href="#" download="sequel-webinar-2x.ics" class="cal-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download .ics
+      </a>
+    </div>
+
+    <div class="hero-cta-row">
+      <a href="#register" class="btn-primary">Reserve your spot →</a>
     </div>
   </div>
+
+  <!-- Stat card -->
+  <div class="stat-card reveal">
+    <div class="stat-card-title">The 2X Effect — By the Numbers</div>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">2×</div><div class="stat-desc">Average pipeline growth for clients in year one</div></div>
+      <div class="stat-item"><div class="stat-num">300+</div><div class="stat-desc">B2B marketing specialists on demand</div></div>
+      <div class="stat-item"><div class="stat-num">40%</div><div class="stat-desc">Faster time to market vs. in-house builds</div></div>
+      <div class="stat-item"><div class="stat-num">60+</div><div class="stat-desc">Enterprise B2B CMOs served globally</div></div>
+    </div>
+    <p style="font-size:11px; color:var(--ink-muted)">Source: 2X client outcomes data</p>
+  </div>
+</div>
 </section>
 
-<div class="trust">
-  <div class="wrap trust-grid">
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Hosted natively on 2x.marketing</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.4-.7L3 21l1.8-5.6A8.38 8.38 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg>Live chat + Q&amp;A with the speakers</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4z"/></svg>Recording sent to every registrant</span>
+<!-- Trust strip -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Hosted natively on 2x.marketing
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Live Q&amp;A with the speakers
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      On-demand recording sent to every registrant
+    </div>
   </div>
 </div>
 
-<section class="embed-sec" id="register">
-  <div class="wrap">
-    <p class="eyebrow reveal in">Register &amp; watch</p>
-    <h2 class="reveal in">Join the live experience</h2>
-    <p class="sec-sub reveal in">Register below — the session streams on this page with live chat, Q&amp;A, and polls. No downloads, no redirects.</p>
-    <div class="embed-card reveal in">
-      <div class="skeleton" id="skeleton"><div class="spinner"></div><p>Loading the live experience…</p></div>
-      <div id="sequel_root"></div>
+<!-- Embed -->
+<div class="embed-section" id="register">
+  <p class="section-label">Join the live session</p>
+  <h2 class="reveal">Get the 2X Effect — Live</h2>
+  <p class="embed-sub reveal">Register and watch live, or get the recording delivered to your inbox.</p>
+  <div class="embed-card">
+    <div class="embed-skeleton" id="embed-skeleton">
+      <div class="spinner"></div>
+      <p>Loading the live experience…</p>
+    </div>
+    <div id="sequel_root"></div>
+  </div>
+</div>
+
+<!-- What you'll learn -->
+<div class="learn-section">
+  <div class="learn-inner">
+    <p class="section-label reveal">What you'll learn</p>
+    <h2 class="section-h2 reveal">Strategy, execution, and scale — in one hour</h2>
+    <div class="learn-grid stagger">
+      <div class="learn-card">
+        <div class="learn-icon">🚀</div>
+        <h3>AI-enabled GTM at scale</h3>
+        <p>How leading B2B marketing teams are blending AI-powered workflows with on-demand specialists to double pipeline without adding headcount.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">📊</div>
+        <h3>Revenue-tied marketing operations</h3>
+        <p>The MOps and MarTech frameworks that eliminate the gap between marketing spend and revenue outcomes — with real client benchmarks.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-icon">🎯</div>
+        <h3>ABX that actually converts</h3>
+        <p>Account-based execution playbooks from 60+ enterprise CMOs — including how to move from intent signals to pipeline in under 30 days.</p>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="learn">
-  <div class="wrap">
-    <p class="eyebrow reveal">What you'll learn</p>
-    <h2 class="reveal">From strategy to execution — at 2X speed</h2>
-    <p class="sec-sub reveal">Three practical takeaways for B2B marketing and demand gen leaders.</p>
-    <div class="cards stagger">
-      <div class="card"><span class="num">01</span><h3>The human-agentic operating model</h3><p>What happens when AI agents and on-demand specialists work as one GTM team — across marketing, sales, and customer success.</p></div>
-      <div class="card"><span class="num">02</span><h3>AI-powered workflows that scale</h3><p>How AI-enabled teams compress campaign cycles — from strategy and MOps to content, creative, and demand execution.</p></div>
-      <div class="card"><span class="num">03</span><h3>Growth without added headcount</h3><p>How CMOs improve budget efficiency and accelerate pipeline while keeping the org lean — and where to start.</p></div>
+<!-- Speakers -->
+<div class="speakers-section">
+  <p class="section-label reveal">Featured speakers</p>
+  <h2 class="section-h2 reveal">Hear from B2B marketing leaders</h2>
+  <div class="speakers-grid stagger">
+    <div class="speaker-card">
+      <div class="speaker-avatar">S1</div>
+      <div>
+        <div class="speaker-name">Speaker TBD</div>
+        <div class="speaker-title">Senior Marketing Leader · 2X</div>
+        <span class="placeholder-tag">Placeholder</span>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">S2</div>
+      <div>
+        <div class="speaker-name">Speaker TBD</div>
+        <div class="speaker-title">VP Marketing · 2X Client</div>
+        <span class="placeholder-tag">Placeholder</span>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="speakers">
-  <div class="wrap">
-    <p class="eyebrow reveal">Speakers</p>
-    <h2 class="reveal">Meet your hosts</h2>
-    <div class="sp-grid stagger">
-      <div class="sp"><div class="avatar">SP</div><div><h4>Speaker Name</h4><p>Revenue Consulting<br>2X</p></div></div>
-      <div class="sp"><div class="avatar alt">SP</div><div><h4>Speaker Name</h4><p>AI &amp; Intelligent Automation<br>2X</p></div></div>
-    </div>
-  </div>
-</section>
+<!-- CTA band -->
+<div class="cta-band">
+  <h2>Can't make it live?</h2>
+  <p>Register anyway — we'll send the on-demand recording directly to your inbox.</p>
+  <a href="#register" class="btn-white">Get the recording →</a>
+</div>
 
-<section class="band">
-  <div class="wrap reveal">
-    <h2>Can't make it live?</h2>
-    <p>Register anyway — every registrant gets the full recording and resources in their inbox the morning after the session.</p>
-    <a class="pill" href="#register">Register free <span class="arr">→</span></a>
-  </div>
-</section>
-
+<!-- Footer -->
 <footer>
-  <div class="wrap">
-    <div class="f-grid">
-      <div class="f-col">
-        <a class="f-logo" href="https://2x.marketing/" target="_blank" rel="noopener" aria-label="2X">
-          <svg viewBox="0 0 1331.9433264 674" xmlns="http://www.w3.org/2000/svg"><path d="M1149.0596346,503.1211586h-100.6644598c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923Z" fill="currentColor"/><path d="M973.3183798,466.227374h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z" fill="currentColor"/><path d="M1050.5771372,207.6734393c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z" fill="currentColor"/><path d="M898.1423111,392.3406523h113.1607134c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h0Z" fill="currentColor"/><path d="M956.6566276,300.0070382c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z" fill="currentColor"/><path d="M1149.0596346,577.1070632h-292.373217c-10.1160465,0-18.446862-8.3308761-18.446862-18.446862s8.3308761,-18.446862,18.446862,-18.446862h117.0286331c10.1160465,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923h-133.5911721c-26.0834883-.2975183-49.0925198-14.2814543-61.7871391-33.4225963l-86.7797068-132.7977395,53.0595921-80.3332143c4.8596878-7.23991,13.0913507-12.0003998,22.4139343-12.0003998h141.0294327c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-96.1023509c-10.1160465,0-18.446862-8.3308458-18.446862-18.4468923s8.3308761,-18.4468923,18.446862,-18.4468923h318.9525894c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-273.3312579c-10.1160465,0-18.446862-8.3308534-18.446862-18.4468847s8.3308761,-18.4468847,18.446862,-18.4468847h131.8060017c10.1160465,0,18.446862-8.3308534,18.446862-18.4468847s-8.3308761-18.4468847-18.446862-18.4468847h-235.2474c-29.3563109,0-54.8447626,15.8682892-66.5476138,38.7781303l-73.8867217,115.739324v245.9584831l73.3908377,114.5492129h.1983657c11.7028512,22.9098184,36.9929372,38.7781076,66.3493086,38.7781076h395.418005c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.446862-18.446862-18.446862h0l-.0001211-.0992131Z" fill="currentColor"/><path d="M1149.0596346,503.2203415h-100.6644598c-10.115986,0-18.446862,8.3308761-18.446862,18.446862s8.3308761,18.446862,18.446862,18.446862h100.6644598c10.115986,0,18.446862-8.3308761,18.446862-18.446862s-8.3308761-18.4468923-18.446862-18.4468923v.0000303Z" fill="currentColor"/><path d="M973.4175324,466.3265569h113.1607134c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923Z" fill="currentColor"/><path d="M1050.5771372,207.8717899c-10.115986,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h98.6809237c10.115986,0,18.446862-8.3308458,18.446862-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-98.6809237Z" fill="currentColor"/><path d="M898.2415242,392.4398351h113.1607134c10.1160465,0,18.4469226-8.3308458,18.4469226-18.4468923s-8.3308761-18.4468923-18.446862-18.4468923h-113.1607134c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h-.0000605Z" fill="currentColor"/><path d="M956.7558408,300.205404c0-10.1160465-8.3308761-18.4468923-18.446862-18.4468923h-109.4912199c-10.1160465,0-18.446862,8.3308458-18.446862,18.4468923s8.3308761,18.4468923,18.446862,18.4468923h109.4912199c10.1160465,0,18.446862-8.3308458,18.446862-18.4468923Z" fill="currentColor"/><path d="M539.898902,98.9473681c-11.7063621-22.8957748-37.2148804-38.7935737-66.5823898-38.7935737l-223.4092582.0369287h-5.0592188v.0369287c-100.0582398,1.4956122-184.8187869,59.3259241-184.8187869,163.4462953l-.1292487,3.0373805v.3231388c0,9.7399416,7.7088608,17.6980723,17.3195498,18.2520072l101.8954457-.1292525c8.5951468-1.0986235,15.3161703-8.1335394,15.9254927-16.8671699.0184625-.0092312.036925-.0276937.0553874-.036925,3.7020903-34.5929359,30.8169805-43.7512488,53.7127704-43.7512488,34.4729298,0,52.5310507,20.3476953,52.5310507,49.7336975,0,22.6095761-8.2074196,36.1716292-29.5521948,57.2671609l-188.4100872,188.13315c-14.309863,14.2360245-23.1819773,33.9374271-23.1819773,55.7161311l.0184663,60.3414362c-.0184663,2.3173136.2585012,4.6622301,1.2001822,6.9426187,2.9173669,7.044132,9.7861016,11.290926,16.9964224,11.3001876l.0646262.0646489h395.3214932c29.3767709,0,54.6451862-15.8977687,66.3608098-38.793604h.2308113l73.3772784-114.5435228v-245.9911254l-73.8573634-115.7344663-.0092615.0092237v-.0000454ZM449.1467052,469.8590043c-12.6942258,19.138297-35.6361871,32.2941151-61.7539974,32.6265002h-139.5534634c-5.3084925,0-9.6106891-4.3021814-9.6106891-9.6199203,0-2.8065995,1.1263323-5.2808139,3.055843-7.0072071l122.4277885-119.0118969c46.7886142-45.2099209,72.2324836-75.3529453,72.2324836-131.8630689,0-12.3895646-1.2463384-24.1513596-3.5358977-35.2945858l-.1384686-1.5509996c0-3.0004556,2.4373197-5.437745,5.4377753-5.437745,1.9941596,0,3.6559341,1.1263323,4.6068426,2.7234881l93.6419077,141.6583979-86.8100942,132.7770373.0000303-.0000303-.0000605.0000303Z" fill="#F50000"/><path d="M1228.1887776,59.8999996c7.4142008,0,14.5129775,1.8930083,21.6117541,5.6790189,7.0987767,3.7860166,12.4623353,9.1495332,16.4061001,16.2483098s5.8366949,14.3553015,5.8366949,22.0850829-1.8929301,14.8285581-5.8366949,21.7695866c-3.7860527,6.9410285-9.3073235,12.4622992-16.248388,16.2483158s-14.1975533,5.8367671-21.9273709,5.8367671-14.8285942-1.8930023-21.9273709-5.8367671c-6.9410646-3.7860166-12.4623353-9.3072874-16.248388-16.2483158-3.9437648-6.9410285-5.8366949-14.1975533-5.8366949-21.7695866s1.8929301-14.9863063,5.8366949-22.0850829,9.4650355-12.4622992,16.4061001-16.2483098c7.0987767-3.7860166,14.1975533-5.6790189,21.6117541-5.6790189h.3158093ZM1228.1887776,67.1565245c-6.1523116,0-12.1467186,1.5775059-17.983606,4.7325238-5.8366949,3.1550118-10.4115006,7.7297814-13.7242245,13.5665485-3.3127239,5.8367671-4.8902299,11.9890426-4.8902299,18.2990663s1.5775059,12.4622992,4.8902299,18.1413181c3.3127239,5.8367671,7.7298175,10.2537885,13.5665124,13.5665485,5.8366949,3.31276,11.8312944,4.890266,18.2990302,4.890266s12.4623353-1.5775059,18.2990302-4.890266c5.8366949-3.31276,10.4115006-7.7297814,13.5665124-13.5665485,3.1550118-5.8367671,4.8902299-11.8312944,4.8902299-18.1413181s-1.5775059-12.4622992-4.8902299-18.2990663c-3.3127239-5.8367671-7.8875296-10.4115367-13.7242245-13.5665485-5.8366949-3.1550118-11.8312944-4.7325178-17.983606-4.7325178,0,0-.3154242,0-.3154242-.000006ZM1210.8362125,128.2060049v-47.3251777h16.248388c5.5212707,0,9.6227476.4732566,11.9890065,1.2620096,2.523971.9465011,4.4170936,2.3662589,5.9945995,4.5747696,1.4197938,2.2085107,2.2085468,4.4170214,2.2085468,6.9410285s-1.2620818,6.4677719-3.6283407,8.991779c-2.523971,2.5240071-5.6789828,3.9437648-9.7804597,4.2592612,1.735218.6310048,2.9972998,1.5775059,3.9437648,2.5240071,1.8929301,1.8930023,4.259189,5.0480141,6.9410646,9.3072874l5.8366949,9.3072874h-9.3073235l-4.259189-7.414273c-3.3127239-5.8367671-5.9945995-9.4650355-8.0452417-11.0425415-1.4197938-1.1042493-3.470436-1.5775059-6.1523116-1.5775059h-4.4170936v20.0343204h-7.5721055v.1577482ZM1218.4083179,101.5461524h9.3073235c4.4170936,0,7.4142008-.6310048,8.9917067-2.0507625,1.5775059-1.2620096,2.3662589-2.9972637,2.3662589-5.2057744s-.3154242-2.6817553-1.1041771-3.7860166-1.8929301-1.8930023-3.1550118-2.5240071c-1.4197938-.4732566-3.9437648-.788753-7.7298175-.788753h-8.6762826v14.1975533h0v.1577602Z" fill="currentColor"/></svg>
-        </a>
-        <div class="f-social">
-          <a href="https://www.linkedin.com/company/2xmarketing" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56z"/></svg></a>
-          <a href="https://www.facebook.com/2XMarketing" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12z"/></svg></a>
-          <a href="https://www.instagram.com/2x_marketing" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9s.7.8.9 1.4c.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4 3.8 3.8 0 0 1-1.4.9c-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4s.8-.7 1.4-.9c.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1m0 2.2c-3.1 0-3.5 0-4.7.1-1.1.1-1.4.2-1.8.3-.4.2-.7.4-1 .7s-.5.6-.7 1c-.1.4-.3.7-.3 1.8-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.4.3 1.8.2.4.4.7.7 1s.6.5 1 .7c.4.1.7.3 1.8.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.4-.2 1.8-.3.4-.2.7-.4 1-.7s.5-.6.7-1c.1-.4.3-.7.3-1.8.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.4-.3-1.8-.2-.4-.4-.7-.7-1s-.6-.5-1-.7c-.4-.1-.7-.3-1.8-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.7a5.9 5.9 0 1 1 0 11.8 5.9 5.9 0 0 1 0-11.8zm0 9.7a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6zm7.5-9.9a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0z"/></svg></a>
-          <a href="https://www.youtube.com/@2xmarketing" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg></a>
-        </div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:36px">
+          <text x="2" y="42" font-family="Inter,sans-serif" font-weight="900" font-size="44" fill="#e02020">2</text>
+          <g transform="translate(52,6)">
+            <rect x="0" y="0" width="40" height="6" rx="3" fill="#ffffff"/>
+            <rect x="0" y="11" width="34" height="6" rx="3" fill="#ffffff"/>
+            <rect x="0" y="22" width="28" height="6" rx="3" fill="#ffffff"/>
+            <rect x="0" y="33" width="34" height="6" rx="3" fill="#ffffff"/>
+            <rect x="0" y="44" width="40" height="6" rx="3" fill="#ffffff"/>
+          </g>
+        </svg>
+        <p>AI-enabled B2B marketing specialists that deliver results with unmatched efficiency.</p>
       </div>
-      <div class="f-col">
-        <h5>What we do</h5>
-        <a href="https://2x.marketing/services/strategy-and-consulting/" target="_blank" rel="noopener">Revenue Consulting</a>
-        <a href="https://2x.marketing/services/content-and-creative/" target="_blank" rel="noopener">Creative &amp; Content Studio</a>
-        <a href="https://2x.marketing/services/enterprise-ai-adoption-b2b-marketing/" target="_blank" rel="noopener">AI &amp; Intelligent Automation</a>
-        <a href="https://2x.marketing/services/embedded-gtm-team-revenue-operating-partner/" target="_blank" rel="noopener">Revenue Tech Services</a>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://2x.marketing/services/" target="_blank">Strategy & Consulting</a></li>
+          <li><a href="https://2x.marketing/services/" target="_blank">MOps & MarTech</a></li>
+          <li><a href="https://2x.marketing/services/" target="_blank">Campaigns & Demand</a></li>
+          <li><a href="https://2x.marketing/services/" target="_blank">Content & Creative</a></li>
+        </ul>
       </div>
-      <div class="f-col">
-        <h5>Who we are</h5>
-        <a href="https://2x.marketing/about/" target="_blank" rel="noopener">About us</a>
-        <a href="https://2x.marketing/about/awards/" target="_blank" rel="noopener">Awards</a>
-        <a href="https://2x.marketing/about/in-the-news/" target="_blank" rel="noopener">In the news</a>
-        <a href="https://2x.marketing/services/customer-stories/" target="_blank" rel="noopener">Customer stories</a>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://2x.marketing/about/" target="_blank">Who we are</a></li>
+          <li><a href="https://2x.marketing/resources/" target="_blank">What we think</a></li>
+          <li><a href="https://2x.marketing/careers/" target="_blank">Careers</a></li>
+          <li><a href="https://2x.marketing/contact/" target="_blank">Get in touch</a></li>
+        </ul>
       </div>
-      <div class="f-col">
-        <h5>What we think</h5>
-        <a href="https://2x.marketing/b2b-ai-visibility-by-growth-stage-report/" target="_blank" rel="noopener">2026 2X AI Visibility Index</a>
-        <a href="https://2x.marketing/insights/" target="_blank" rel="noopener">All resources</a>
-        <a href="https://2x.marketing/insights/" target="_blank" rel="noopener">Webinars</a>
-        <a href="https://2x.marketing/strengths/" target="_blank" rel="noopener">How we do it</a>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://2x.marketing/privacy-policy/" target="_blank">Privacy Policy</a></li>
+          <li><a href="https://2x.marketing/terms-of-use/" target="_blank">Terms of Use</a></li>
+        </ul>
       </div>
     </div>
-    <div class="legal">
-      <span>© 2026 2X LLC. 2X is a registered trademark. All rights reserved.</span>
-      <a href="https://2x.marketing/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a>
+    <div class="footer-bottom">
+      <p>© 2026 2X Marketing. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/2x-marketing" target="_blank" title="LinkedIn">in</a>
+        <a href="https://twitter.com/2xmarketing" target="_blank" title="X/Twitter">𝕏</a>
+      </div>
     </div>
   </div>
 </footer>
 
+<!-- Sequel embed (dark) -->
 <script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
 <script>
-const EVENT = {
-  title: "The Human-Agentic GTM Playbook — Live Webinar",
-  description: "Live on 2x.marketing: how humans + AI agents work as one GTM engine to scale pipeline without added headcount. 45 min + live Q&A.",
-  location: "https://sequel-demo.github.io/webinar-on/2x-marketing/",
-  start: new Date("2026-06-25T11:00:00-04:00"),
-  end:   new Date("2026-06-25T11:45:00-04:00")
-};
-const pad = n => String(n).padStart(2, "0");
-const utc = d => d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + "T" + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + "00Z";
-
-document.getElementById("gcal").href =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(EVENT.title) +
-  "&dates=" + utc(EVENT.start) + "/" + utc(EVENT.end) +
-  "&details=" + encodeURIComponent(EVENT.description) +
-  "&location=" + encodeURIComponent(EVENT.location);
-
-const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//2X Webinar//EN","BEGIN:VEVENT",
-  "UID:2x-webinar-2026-06-25@sequel.io","DTSTAMP:" + utc(new Date()),
-  "DTSTART:" + utc(EVENT.start),"DTEND:" + utc(EVENT.end),
-  "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.description.replace(/,/g,"\\,"),
-  "LOCATION:" + EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
-document.getElementById("ics").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-
-(function(){
-  const d=document.getElementById("d"),h=document.getElementById("h"),m=document.getElementById("m"),s=document.getElementById("s");
-  function tick(){
-    const diff = EVENT.start - new Date();
-    if (diff <= 0){
-      document.getElementById("tiles").style.display = "none";
-      document.getElementById("livenow").style.display = "block";
-      return;
-    }
-    d.textContent = pad(Math.floor(diff/864e5));
-    h.textContent = pad(Math.floor(diff/36e5)%24);
-    m.textContent = pad(Math.floor(diff/6e4)%60);
-    s.textContent = pad(Math.floor(diff/1e3)%60);
-    setTimeout(tick, 1000);
-  }
-  tick();
-})();
-
-window.addEventListener("scroll", () => {
-  document.getElementById("hdr").classList.toggle("scrolled", window.scrollY > 8);
-}, { passive: true });
-
-(function(){
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-  }), { threshold: .15 });
-  document.querySelectorAll(".reveal:not(.in), .stagger").forEach(el => io.observe(el));
-})();
-
 document.addEventListener("DOMContentLoaded", () => {
   Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
-  const root = document.getElementById("sequel_root"), sk = document.getElementById("skeleton");
-  const kill = () => { if (sk) sk.style.display = "none"; };
-  new MutationObserver((muts, obs) => {
-    if (root.childElementCount > 0){ setTimeout(kill, 1200); obs.disconnect(); }
-  }).observe(root, { childList: true, subtree: true });
-  setTimeout(kill, 12000);
+
+  // Remove skeleton when Sequel paints
+  const skeleton = document.getElementById('embed-skeleton');
+  const root = document.getElementById('sequel_root');
+  const observer = new MutationObserver(() => {
+    if (root.children.length > 0) {
+      skeleton.classList.add('hidden');
+      observer.disconnect();
+    }
+  });
+  observer.observe(root, { childList: true, subtree: true });
+  setTimeout(() => skeleton.classList.add('hidden'), 12000);
+
+  // Countdown
+  const EVENT = {
+    start: new Date('2026-07-15T11:00:00-07:00'),
+    end:   new Date('2026-07-15T12:00:00-07:00'),
+    title: 'The AI-Powered GTM Playbook | 2X Webinar',
+    desc:  'Live webinar on ai-powered gtm strategy for B2B marketing leaders.',
+    location: 'https://2x.marketing'
+  };
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    const now = Date.now();
+    const diff = EVENT.start - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<span class="live-now">🔴 We\'re live now — join below!</span>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Google Calendar link
+  function fmt(d) { return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''); }
+  const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(EVENT.title)}&dates=${fmt(EVENT.start)}/${fmt(EVENT.end)}&details=${encodeURIComponent(EVENT.desc)}&location=${encodeURIComponent(EVENT.location)}`;
+  document.getElementById('gcal-link').href = gcal;
+
+  // iCal download
+  const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nDTSTART:${fmt(EVENT.start)}\r\nDTEND:${fmt(EVENT.end)}\r\nSUMMARY:${EVENT.title}\r\nDESCRIPTION:${EVENT.desc}\r\nLOCATION:${EVENT.location}\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+  document.getElementById('ical-link').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+
+  // Nav shrink on scroll
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Scroll-reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const staggerParents = document.querySelectorAll('.stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+  staggerParents.forEach(parent => {
+    [...parent.children].forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.1}s`;
+      io.observe(child);
+    });
+  });
+  // Above-fold reveals
+  document.querySelectorAll('.reveal, .stagger > *').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
 });
 </script>
 </body>
