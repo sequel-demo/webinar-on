@@ -53,8 +53,9 @@
   .nav-inner{display:flex;align-items:center;gap:28px;height:78px;transition:height .25s var(--ease)}
   .nav.scrolled .nav-inner{height:62px}
   .logo{display:block;flex-shrink:0}
-  .logo img{height:32px;width:auto;display:block;transition:height .25s var(--ease)}
-  .nav.scrolled .logo img{height:27px}
+  .logo .lk{font-family:'Inter',sans-serif;font-weight:700;font-size:25px;letter-spacing:-0.02em;color:var(--navy);transition:font-size .25s var(--ease)}
+  .nav.scrolled .logo .lk{font-size:22px}
+  .foot-bottom .lk{font-family:'Inter',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.02em;color:var(--navy)}
   .nav-links{display:flex;gap:26px;align-items:center;margin:0 auto}
   .nav-links a{display:inline-flex;align-items:center;gap:5px;font-size:15px;font-weight:600;color:var(--ink);position:relative}
   .nav-links a .caret{width:11px;height:11px;stroke:var(--ink);fill:none;stroke-width:2.4;opacity:.55;transition:transform .2s var(--ease)}
@@ -185,7 +186,7 @@
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="logo" href="https://www.betterup.com/" target="_blank" rel="noopener" aria-label="BetterUp home">
-      <img src="https://39486681.fs1.hubspotusercontent-na1.net/hub/39486681/hubfs/M516385.png" alt="BetterUp">
+      <span class="lk">BetterUp</span>
     </a>
     <div class="nav-links">
       <a href="https://www.betterup.com/platform" target="_blank" rel="noopener">Platform <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -334,7 +335,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <a class="logo" href="https://www.betterup.com/" target="_blank" rel="noopener"><img src="https://39486681.fs1.hubspotusercontent-na1.net/hub/39486681/hubfs/M516385.png" alt="BetterUp" style="height:26px"></a>
+      <a class="logo" href="https://www.betterup.com/" target="_blank" rel="noopener"><span class="lk">BetterUp</span></a>
       <div class="foot-legal">
         <a href="https://www.betterup.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
         <a href="https://www.betterup.com/terms-and-conditions" target="_blank" rel="noopener">Terms</a>
