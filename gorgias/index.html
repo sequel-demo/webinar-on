@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Webinar | Gorgias — Conversations That Convert</title>
+<meta name="description" content="Join Gorgias live: how ecommerce brands turn support conversations into revenue with AI Agents. Streaming right here on gorgias.com." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1A1E23;
+    --ink-70: rgba(26,30,35,.70);
+    --ink-50: rgba(26,30,35,.50);
+    --accent: #FF9780;
+    --accent-soft: #FFE7E0;
+    --bg: #ffffff;
+    --cream: #FBF7F2;
+    --line: rgba(26,30,35,.10);
+    --dark: #1A1E23;
+    --radius: 7px;
+    --radius-lg: 14px;
+    --sh-sm: 0 2px 8px rgba(26,30,35,.06);
+    --sh-md: 0 16px 38px rgba(26,30,35,.10);
+    --sh-lg: 0 30px 70px rgba(26,30,35,.16);
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter Tight", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { letter-spacing: -.025em; line-height: 1.08; margin: 0; font-weight: 600; }
+
+  /* ---- announce bar ---- */
+  .announce {
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    padding: 9px 16px;
+  }
+  .announce a { font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ---- header ---- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow .3s var(--ease), padding .3s var(--ease);
+  }
+  header.scrolled { box-shadow: var(--sh-sm); }
+  .nav { display: flex; align-items: center; gap: 28px; height: 72px; transition: height .3s var(--ease); }
+  header.scrolled .nav { height: 62px; }
+  .logo img { height: 26px; width: auto; display: block; transition: height .3s var(--ease); }
+  header.scrolled .logo img { height: 23px; }
+  .nav-links { display: flex; align-items: center; gap: 22px; margin-left: 6px; }
+  .nav-links > a { font-size: 15px; font-weight: 500; color: var(--ink); display: inline-flex; align-items: center; gap: 5px; position: relative; padding: 4px 0; }
+  .nav-links > a .caret { width: 8px; height: 8px; border-right: 2px solid var(--ink-50); border-bottom: 2px solid var(--ink-50); transform: rotate(45deg); margin-top: -3px; }
+  .nav-links > a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--ink); transition: width .25s var(--ease); }
+  .nav-links > a:hover::after { width: 100%; }
+  .nav-actions { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+  .nav-actions a { font-size: 15px; font-weight: 500; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 15px; cursor: pointer;
+    border-radius: var(--radius); padding: 10px 18px;
+    transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+    border: 1px solid var(--ink);
+  }
+  .btn-primary { background: var(--accent); color: var(--ink); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--sh-md); }
+  /* nav-CTA specificity guard: keep CTA label visible (ink on coral) */
+  .nav-actions a.btn-primary { color: var(--ink); }
+  .login-link { color: var(--ink); }
+
+  /* ---- hero ---- */
+  .hero { padding: 70px 0 50px; background:
+      radial-gradient(1100px 460px at 85% -8%, var(--accent-soft) 0%, rgba(255,231,224,0) 60%),
+      var(--bg); }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: 56px; align-items: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: #fff; font-size: 13px; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+    padding: 7px 14px; border-radius: 100px;
+  }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(255,151,128,.7); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,151,128,.7);} 70%{box-shadow:0 0 0 9px rgba(255,151,128,0);} 100%{box-shadow:0 0 0 0 rgba(255,151,128,0);} }
+  .hero h1 { font-size: clamp(38px, 5vw, 60px); font-weight: 600; margin: 22px 0 18px; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .lede { font-size: 19px; color: var(--ink-70); max-width: 540px; margin: 0 0 26px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 12px; }
+  .meta .item { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 500; }
+  .meta .ic { width: 18px; height: 18px; color: var(--accent); flex: none; }
+  .streaming { font-size: 14px; color: var(--ink-50); margin: 4px 0 26px; }
+  .streaming b { color: var(--ink); font-weight: 600; }
+
+  /* countdown */
+  .countdown { display: flex; gap: 12px; margin-bottom: 26px; }
+  .cd-tile { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 6px; min-width: 70px; text-align: center; box-shadow: var(--sh-sm); }
+  .cd-num { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+  .cd-lab { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-50); margin-top: 6px; }
+  .cd-live { font-size: 22px; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn-lg { padding: 14px 26px; font-size: 16px; }
+  .cal-links { display: flex; gap: 16px; font-size: 14px; font-weight: 600; }
+  .cal-links a { display: inline-flex; align-items: center; gap: 6px; border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color .2s var(--ease); }
+  .cal-links a:hover { border-color: var(--ink); }
+
+  /* hero stat card */
+  .stat-card { background: var(--ink); color: #fff; border-radius: var(--radius-lg); padding: 34px 32px; box-shadow: var(--sh-lg); }
+  .stat-card .eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .stat-card .big { font-size: 58px; font-weight: 700; line-height: 1; margin: 14px 0 6px; }
+  .stat-card .big span { color: var(--accent); }
+  .stat-card p { color: rgba(255,255,255,.72); font-size: 15px; margin: 0; }
+  .stat-card .rule { height: 1px; background: rgba(255,255,255,.14); margin: 24px 0; }
+  .stat-card .mini { display: flex; gap: 26px; }
+  .stat-card .mini div .n { font-size: 26px; font-weight: 700; }
+  .stat-card .mini div .l { font-size: 12.5px; color: rgba(255,255,255,.6); }
+
+  /* ---- trust strip ---- */
+  .trust { background: var(--dark); color: #fff; }
+  .trust .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding: 18px 24px; }
+  .trust .t { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.9); }
+  .trust .t svg { color: var(--accent); flex: none; }
+
+  /* ---- sections ---- */
+  section.block { padding: 76px 0; }
+  .cream { background: var(--cream); }
+  .sec-head { text-align: center; max-width: 680px; margin: 0 auto 46px; }
+  .sec-head .eyebrow { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .sec-head h2 { font-size: clamp(28px, 3.4vw, 40px); margin: 12px 0 14px; }
+  .sec-head p { font-size: 18px; color: var(--ink-70); margin: 0; }
+
+  /* embed */
+  .embed-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-lg); padding: 14px; min-height: 540px; overflow: hidden; }
+  #sequel_root { min-height: 512px; border-radius: 8px; overflow: hidden; }
+  .skeleton { position: absolute; inset: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: linear-gradient(180deg,#fff, #faf8f5); border-radius: 8px; z-index: 2; }
+  .spinner { width: 42px; height: 42px; border: 3px solid var(--accent-soft); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .skeleton p { color: var(--ink-50); font-size: 15px; font-weight: 500; }
+
+  /* learn cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 26px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--sh-md); }
+  .card .num { width: 38px; height: 38px; border-radius: var(--radius); background: var(--accent-soft); color: var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 16px; }
+  .card h3 { font-size: 20px; margin-bottom: 8px; }
+  .card p { color: var(--ink-70); font-size: 15px; margin: 0; }
+
+  /* speakers */
+  .speakers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
+  .speaker { display: flex; gap: 18px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 22px; color: var(--ink); flex: none; }
+  .speaker .nm { font-weight: 700; font-size: 17px; }
+  .speaker .rl { color: var(--ink-70); font-size: 14px; }
+
+  /* cta band */
+  .cta-band { background: var(--ink); color: #fff; text-align: center; padding: 70px 24px; }
+  .cta-band h2 { font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 14px; }
+  .cta-band p { color: rgba(255,255,255,.72); font-size: 18px; margin: 0 auto 28px; max-width: 560px; }
+  .cta-band .btn-primary { border-color: var(--accent); }
+
+  /* footer */
+  footer.ft { background: var(--dark); color: rgba(255,255,255,.75); padding: 60px 0 34px; }
+  .ft-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .ft .logo img { height: 26px; filter: brightness(0) invert(1); }
+  .ft .blurb { margin-top: 16px; font-size: 14px; max-width: 280px; }
+  .ft h4 { color: #fff; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 14px; }
+  .ft ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ft ul a { font-size: 14px; color: rgba(255,255,255,.7); transition: color .2s var(--ease); }
+  .ft ul a:hover { color: var(--accent); }
+  .ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding-top: 24px; font-size: 13px; color: rgba(255,255,255,.55); }
+  .ft-bottom .legal { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .stagger > * { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .stagger.in > * { opacity: 1; transform: none; }
+  .stagger.in > *:nth-child(2) { transition-delay: .09s; }
+  .stagger.in > *:nth-child(3) { transition-delay: .18s; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .speakers { grid-template-columns: 1fr; }
+    .ft-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 560px) {
+    .countdown { gap: 8px; }
+    .cd-tile { min-width: 0; flex: 1; }
+    .nav-actions .login-link { display: none; }
+    .ft-top { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    🔴 Live Webinar — Thurs, July 16 @ 11:00 AM PT &nbsp;·&nbsp; Conversations That Convert &nbsp;<a href="#register">Save your seat →</a>
+  </div>
+
+  <header id="hdr">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="logo" href="#"><img src="https://cdn.prod.website-files.com/5e4ff204e7b6f80e402d407a/669a5ab4a69be50c3a94800a_Gorgias%20Logo%20-%20Black.svg" alt="Gorgias" /></a>
+        <div class="nav-links">
+          <a href="#">Product <i class="caret"></i></a>
+          <a href="#">Solutions <i class="caret"></i></a>
+          <a href="https://www.gorgias.com/pricing" target="_blank" rel="noopener">Pricing</a>
+          <a href="#">Integrations <i class="caret"></i></a>
+          <a href="#">Resources <i class="caret"></i></a>
+        </div>
+        <div class="nav-actions">
+          <a class="login-link" href="https://www.gorgias.com/login" target="_blank" rel="noopener">Login</a>
+          <a class="btn btn-primary" href="#register">Book a demo</a>
+          <a href="https://www.gorgias.com/signup" target="_blank" rel="noopener">Sign up free</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal in">
+          <span class="badge"><span class="live-dot"></span> Live Webinar</span>
+          <h1>Conversations that <span class="accent">convert</span>, not just close tickets.</h1>
+          <p class="lede">Join the Gorgias team live to see how leading ecommerce brands turn every support conversation into revenue — and reach 50% AI automation in their first 50 days.</p>
+          <div class="meta">
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Thursday, July 16, 2026</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 11:00 AM PT</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/></svg> 45 minutes</div>
+          </div>
+          <p class="streaming">Streaming right here on <b>gorgias.com</b> — no new tab, no download.</p>
+
+          <div class="countdown" id="countdown" aria-label="Time until webinar starts">
+            <div class="cd-tile"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">Days</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">Hours</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-m">00</div><div class="cd-lab">Mins</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-s">00</div><div class="cd-lab">Secs</div></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="#register">Save your seat</a>
+            <div class="cal-links">
+              <a id="gcal" href="#" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Google Calendar</a>
+              <a id="ics" href="#" download="gorgias-webinar.ics">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Add to calendar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal in">
+          <div class="stat-card">
+            <div class="eyebrow">The 50-in-50 promise</div>
+            <div class="big"><span>50%</span></div>
+            <p>of support conversations automated within the first 50 days with Gorgias AI Agent.</p>
+            <div class="rule"></div>
+            <div class="mini">
+              <div><div class="n">15,000+</div><div class="l">ecommerce brands</div></div>
+              <div><div class="n">Shopify</div><div class="l">built into its DNA</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Hosted natively on gorgias.com</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Live Q&amp;A with the Gorgias team</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Recording sent to every registrant</div>
+    </div>
+  </div>
+
+  <!-- EMBED -->
+  <section class="block" id="register">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Join the live experience</div>
+        <h2>Save your seat below</h2>
+        <p>Register and watch live in the player below. Questions welcome — we'll answer them on air.</p>
+      </div>
+      <div class="embed-card reveal">
+        <div class="skeleton" id="skeleton">
+          <div class="spinner"></div>
+          <p>Loading the live experience…</p>
+        </div>
+        <div id="sequel_root"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="block cream">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">What you'll learn</div>
+        <h2>Turn support from a cost center into a revenue engine</h2>
+      </div>
+      <div class="cards stagger reveal">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>AI Agent + Helpdesk as one</h3>
+          <p>See how a single platform resolves tickets and recommends products — so every conversation can drive an order, not just an answer.</p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>Reach 50% automation in 50 days</h3>
+          <p>The playbook behind the 50-in-50 program: how brands ramp AI resolution fast without sacrificing CX quality.</p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>Measure revenue, not just resolutions</h3>
+          <p>The metrics that matter for ecommerce CX — and how to connect support conversations directly to revenue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Your hosts</div>
+        <h2>Meet the speakers</h2>
+      </div>
+      <div class="speakers stagger reveal">
+        <div class="speaker">
+          <div class="avatar">SP</div>
+          <div>
+            <div class="nm">Speaker Name</div>
+            <div class="rl">VP, Customer Experience · Gorgias</div>
+          </div>
+        </div>
+        <div class="speaker">
+          <div class="avatar">SP</div>
+          <div>
+            <div class="nm">Speaker Name</div>
+            <div class="rl">Ecommerce Growth Lead · Guest Brand</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway and we'll send you the full recording, plus the 50-in-50 playbook, the moment we wrap.</p>
+    <a class="btn btn-primary btn-lg" href="#register">Register for the recording</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-top">
+        <div>
+          <a class="logo" href="#"><img src="https://cdn.prod.website-files.com/5e4ff204e7b6f80e402d407a/669a5ab4a69be50c3a94800a_Gorgias%20Logo%20-%20Black.svg" alt="Gorgias" /></a>
+          <p class="blurb">The conversational AI platform for ecommerce. Turn every customer conversation into revenue.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="https://www.gorgias.com/pricing" target="_blank" rel="noopener">Pricing</a></li>
+            <li><a href="#">AI Agent</a></li>
+            <li><a href="#">Helpdesk</a></li>
+            <li><a href="#">Integrations</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.gorgias.com/customer-resources" target="_blank" rel="noopener">Customer resources</a></li>
+            <li><a href="#">Customer stories</a></li>
+            <li><a href="#">50-in-50 program</a></li>
+            <li><a href="https://www.gorgias.com/demo" target="_blank" rel="noopener">Book a demo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://www.gorgias.com/security" target="_blank" rel="noopener">Security</a></li>
+            <li><a href="https://www.gorgias.com/legal/privacy" target="_blank" rel="noopener">Privacy</a></li>
+            <li><a href="https://www.gorgias.com/legal" target="_blank" rel="noopener">Legal</a></li>
+            <li><a href="https://www.gorgias.com/legal/accessibility" target="_blank" rel="noopener">Accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <div>© 2026 Gorgias, Inc. All rights reserved.</div>
+        <div class="legal">
+          <a href="https://www.gorgias.com/legal/privacy" target="_blank" rel="noopener">Privacy</a>
+          <a href="https://www.gorgias.com/legal/terms-of-use" target="_blank" rel="noopener">Terms of Use</a>
+          <a href="https://www.gorgias.com/legal/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // ---- header scroll shrink ----
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+  // ---- reveal on scroll ----
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  // ---- event + countdown + calendar ----
+  const EVENT = {
+    title: "Gorgias Live: Conversations That Convert",
+    startUTC: "20260716T180000Z",   // 11:00 AM PT
+    endUTC:   "20260716T184500Z",   // 11:45 AM PT
+    start: new Date("2026-07-16T11:00:00-07:00"),
+    details: "Join Gorgias live to see how ecommerce brands turn support conversations into revenue with AI Agents, and reach 50% automation in 50 days. Streaming on gorgias.com.",
+    location: "https://www.gorgias.com/"
+  };
+
+  // Google Calendar link
+  const g = new URL("https://calendar.google.com/calendar/render");
+  g.searchParams.set("action", "TEMPLATE");
+  g.searchParams.set("text", EVENT.title);
+  g.searchParams.set("dates", EVENT.startUTC + "/" + EVENT.endUTC);
+  g.searchParams.set("details", EVENT.details);
+  g.searchParams.set("location", EVENT.location);
+  document.getElementById('gcal').href = g.toString();
+
+  // ICS download
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Gorgias//Webinar//EN","BEGIN:VEVENT",
+    "UID:gorgias-webinar-20260716@gorgias.com",
+    "DTSTAMP:" + EVENT.startUTC,
+    "DTSTART:" + EVENT.startUTC,
+    "DTEND:" + EVENT.endUTC,
+    "SUMMARY:" + EVENT.title,
+    "DESCRIPTION:" + EVENT.details,
+    "LOCATION:" + EVENT.location,
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  document.getElementById('ics').href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  // Countdown
+  const pad = n => String(n).padStart(2, '0');
+  const cd = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+  function tick() {
+    const diff = EVENT.start - new Date();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="cd-live"><span class="live-dot"></span> We\'re live now — join below</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff % 86400000 / 3600000);
+    const m = Math.floor(diff % 3600000 / 60000);
+    const s = Math.floor(diff % 60000 / 1000);
+    cd.d.textContent = pad(d); cd.h.textContent = pad(h); cd.m.textContent = pad(m); cd.s.textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ---- embed skeleton removal ----
+  const root = document.getElementById('sequel_root');
+  const sk = document.getElementById('skeleton');
+  const mo = new MutationObserver(() => {
+    if (root.childElementCount > 0) { sk.style.display = 'none'; mo.disconnect(); }
+  });
+  mo.observe(root, { childList: true, subtree: true });
+  setTimeout(() => { sk.style.display = 'none'; }, 12000);
+</script>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+</body>
+</html>
