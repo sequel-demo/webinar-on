@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Webinar | Ferrum Health — Keeping Clinical AI Honest</title>
+<meta name="description" content="Join Ferrum Health live: governance, ground truth, and measurable ROI for clinical AI. Streaming right here on ferrumhealth.com." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #040214;
+    --ink2: #0B0920;
+    --ink3: #15122F;
+    --orange: #F89522;
+    --magenta: #EB1B60;
+    --grad: linear-gradient(110deg, #F89522 0%, #EE5B3E 42%, #EB1B60 100%);
+    --grad-soft: linear-gradient(110deg, rgba(248,149,34,.16), rgba(235,27,96,.16));
+    --line: rgba(255,255,255,.13);
+    --w70: rgba(255,255,255,.70);
+    --w50: rgba(255,255,255,.50);
+    --radius: 5px;
+    --radius-lg: 16px;
+    --sh-md: 0 18px 44px rgba(0,0,0,.45);
+    --sh-lg: 0 34px 80px rgba(0,0,0,.55);
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: "Inter", system-ui, sans-serif;
+    color: #fff; background: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 26px; }
+  h1, h2, h3 { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; line-height: 1; margin: 0; letter-spacing: -.01em; }
+
+  /* announce */
+  .announce { background: var(--grad); color: #fff; font-size: 14px; font-weight: 600; text-align: center; padding: 10px 16px; }
+  .announce a { text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
+
+  /* header — floating dark rounded bar */
+  header { position: sticky; top: 0; z-index: 50; padding: 14px 0; transition: padding .3s var(--ease); }
+  .navbar { background: var(--ink2); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    display: flex; align-items: center; gap: 28px; padding: 0 14px 0 22px; height: 66px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35); transition: height .3s var(--ease); }
+  header.scrolled .navbar { height: 58px; }
+  .logo img { height: 26px; width: auto; display: block; filter: brightness(0) invert(1); }
+  .nav-links { display: flex; align-items: center; gap: 26px; margin-left: 8px; }
+  .nav-links > a { font-size: 15px; font-weight: 500; color: rgba(255,255,255,.86); position: relative; padding: 4px 0; display: inline-flex; align-items: center; gap: 5px; }
+  .nav-links > a .caret { width: 7px; height: 7px; border-right: 2px solid var(--w50); border-bottom: 2px solid var(--w50); transform: rotate(45deg); margin-top: -3px; }
+  .nav-links > a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--magenta); transition: width .25s var(--ease); }
+  .nav-links > a:hover::after { width: 100%; }
+  .nav-right { margin-left: auto; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; border-radius: var(--radius); padding: 12px 20px; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), color .2s var(--ease); border: 1px solid transparent; }
+  .btn-white { background: #fff; color: var(--ink); }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.4); }
+  .btn-dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-dark:hover { transform: translateY(-2px); box-shadow: var(--sh-md); }
+  .btn-dark .arrow { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: #fff; color: var(--ink); margin: -6px -10px -6px 2px; }
+  .nav-right a.btn-white { color: var(--ink); }
+
+  /* hero */
+  .hero { background: var(--grad); color: var(--ink); padding: 66px 0 74px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: 52px; align-items: center; }
+  .eyebrow-box { display: inline-block; background: var(--ink); color: #fff; font-family: "Barlow Semi Condensed", sans-serif; font-weight: 700; font-size: 19px; padding: 12px 16px; line-height: 1.25; margin-bottom: 22px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(4,2,20,.85); color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 7px 14px; border-radius: 100px; margin-bottom: 18px; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,.7); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,255,255,.7);} 70%{box-shadow:0 0 0 9px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+  .hero h1 { font-style: italic; font-size: clamp(42px, 5.6vw, 72px); margin: 0 0 18px; color: var(--ink); }
+  .hero .lede { font-size: 19px; color: rgba(4,2,20,.82); max-width: 540px; margin: 0 0 24px; font-weight: 500; }
+  .meta { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 10px; }
+  .meta .item { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: var(--ink); }
+  .meta .ic { width: 18px; height: 18px; flex: none; }
+  .streaming { font-size: 14px; color: rgba(4,2,20,.62); margin: 4px 0 24px; font-weight: 500; }
+  .streaming b { color: var(--ink); }
+
+  .countdown { display: flex; gap: 12px; margin-bottom: 26px; }
+  .cd-tile { background: var(--ink); border-radius: var(--radius); padding: 13px 6px; min-width: 72px; text-align: center; }
+  .cd-num { font-family: "Barlow Semi Condensed", sans-serif; font-size: 32px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; color: #fff; }
+  .cd-lab { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.6); margin-top: 6px; }
+  .cd-live { font-family: "Barlow Semi Condensed", sans-serif; font-style: italic; font-size: 24px; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+  .cd-live .live-dot { background: var(--ink); }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .btn-lg { padding: 15px 26px; font-size: 16px; }
+  .cal-links { display: flex; gap: 18px; font-size: 14px; font-weight: 700; }
+  .cal-links a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color .2s var(--ease); }
+  .cal-links a:hover { border-color: var(--ink); }
+
+  /* hero stat card */
+  .stat-card { background: var(--ink2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 30px; box-shadow: var(--sh-lg); }
+  .stat-card .eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .stat-card h3 { font-family: "Barlow Semi Condensed", sans-serif; font-size: 24px; margin: 12px 0 22px; color: #fff; }
+  .stat-row { display: flex; flex-direction: column; gap: 20px; }
+  .stat { display: flex; align-items: baseline; gap: 14px; }
+  .stat .n { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; font-size: 40px; line-height: 1; min-width: 110px;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat .l { font-size: 14px; color: var(--w70); }
+
+  /* trust strip */
+  .trust { background: var(--ink2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .trust .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding: 18px 26px; }
+  .trust .t { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,.9); }
+  .trust .t svg { color: var(--orange); flex: none; }
+
+  /* sections */
+  section.block { padding: 80px 0; }
+  .alt { background: var(--ink2); }
+  .sec-head { text-align: center; max-width: 720px; margin: 0 auto 46px; }
+  .sec-head .eyebrow { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .sec-head h2 { font-size: clamp(30px, 3.8vw, 46px); margin: 12px 0 14px; }
+  .sec-head p { font-size: 18px; color: var(--w70); margin: 0; font-family: "Inter", sans-serif; }
+
+  /* embed */
+  .embed-card { position: relative; background: var(--ink2); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-lg); padding: 14px; min-height: 540px; overflow: hidden; }
+  #sequel_root { min-height: 512px; border-radius: 8px; overflow: hidden; }
+  .skeleton { position: absolute; inset: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: var(--ink2); border-radius: 8px; z-index: 2; }
+  .spinner { width: 42px; height: 42px; border: 3px solid rgba(248,149,34,.25); border-top-color: var(--orange); border-radius: 50%; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .skeleton p { color: var(--w50); font-size: 15px; font-weight: 600; }
+
+  /* learn cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 26px; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--sh-md); border-color: rgba(248,149,34,.4); }
+  .card .num { width: 42px; height: 42px; border-radius: var(--radius); background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: center; font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; font-size: 20px; margin-bottom: 16px; }
+  .card h3 { font-size: 23px; margin-bottom: 8px; }
+  .card p { color: var(--w70); font-size: 15px; margin: 0; }
+
+  /* speaker (single, centered) */
+  .speaker { max-width: 440px; margin: 0 auto; display: flex; gap: 18px; align-items: center; justify-content: center; background: var(--ink2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 28px; }
+  .avatar { width: 70px; height: 70px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; font-size: 24px; color: #fff; flex: none; }
+  .speaker .nm { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; font-size: 22px; }
+  .speaker .rl { color: var(--w70); font-size: 14.5px; }
+
+  /* cta band */
+  .cta-band { background: var(--grad); color: var(--ink); text-align: center; padding: 76px 24px; }
+  .cta-band h2 { font-style: italic; font-size: clamp(30px, 3.8vw, 48px); margin-bottom: 14px; }
+  .cta-band p { color: rgba(4,2,20,.8); font-size: 18px; margin: 0 auto 28px; max-width: 560px; font-weight: 500; }
+
+  /* footer */
+  footer.ft { background: var(--ink); padding: 58px 0 34px; border-top: 1px solid var(--line); color: var(--w70); }
+  .ft-top { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 30px; padding-bottom: 38px; border-bottom: 1px solid var(--line); }
+  .ft .logo img { height: 28px; filter: brightness(0) invert(1); }
+  .ft .blurb { margin-top: 16px; font-size: 14px; max-width: 280px; }
+  .ft h4 { color: #fff; font-family: "Barlow Semi Condensed", sans-serif; font-size: 16px; letter-spacing: .03em; margin: 0 0 14px; font-weight: 700; }
+  .ft ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ft ul a { font-size: 14px; color: var(--w70); transition: color .2s var(--ease); }
+  .ft ul a:hover { color: var(--orange); }
+  .ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding-top: 24px; font-size: 13px; color: var(--w50); }
+  .ft-bottom .legal { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .stagger > * { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .stagger.in > * { opacity: 1; transform: none; }
+  .stagger.in > *:nth-child(2) { transition-delay: .09s; }
+  .stagger.in > *:nth-child(3) { transition-delay: .18s; }
+
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+    .cards { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .ft-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .countdown { gap: 8px; }
+    .cd-tile { min-width: 0; flex: 1; }
+    .ft-top { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    🔴 Live Webinar — Thurs, July 23 @ 10:00 AM PT &nbsp;·&nbsp; Keeping Clinical AI Honest &nbsp;<a href="#register">Save your seat →</a>
+  </div>
+
+  <header id="hdr">
+    <div class="wrap">
+      <div class="navbar">
+        <a class="logo" href="#"><img src="https://cdn.prod.website-files.com/68dab5010b8629fb1e89546e/68de67dd2f97b06d91a8e101_ferrum-logo.svg" alt="Ferrum Health" /></a>
+        <div class="nav-links">
+          <a href="https://www.ferrumhealth.com/platform-and-tech" target="_blank" rel="noopener">Platform &amp; Tech</a>
+          <a href="https://www.ferrumhealth.com/solutions" target="_blank" rel="noopener">Solutions</a>
+          <a href="https://www.ferrumhealth.com/partnerships" target="_blank" rel="noopener">Partnerships</a>
+          <a href="#">Resources <i class="caret"></i></a>
+          <a href="#">Company <i class="caret"></i></a>
+        </div>
+        <div class="nav-right">
+          <a class="btn btn-white" href="#register">Request a Demo</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal in">
+          <span class="badge"><span class="live-dot"></span> Live Webinar</span>
+          <div class="eyebrow-box">A live session on making clinical AI adoption<br>simple, secure, and accountable.</div>
+          <h1>Keeping clinical AI honest.</h1>
+          <p class="lede">Governance, ground truth, and measurable ROI — live with the Ferrum Health team. AI adoption you can trust. Results you can measure.</p>
+          <div class="meta">
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Thursday, July 23, 2026</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 10:00 AM PT</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/></svg> 45 minutes</div>
+          </div>
+          <p class="streaming">Streaming right here on <b>ferrumhealth.com</b> — no new tab, no download.</p>
+
+          <div class="countdown" id="countdown" aria-label="Time until webinar starts">
+            <div class="cd-tile"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">Days</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">Hours</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-m">00</div><div class="cd-lab">Mins</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-s">00</div><div class="cd-lab">Secs</div></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-dark btn-lg" href="#register">Save your seat <span class="arrow">↗</span></a>
+            <div class="cal-links">
+              <a id="gcal" href="#" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Google Calendar</a>
+              <a id="ics" href="#" download="ferrum-webinar.ics">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Add to calendar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal in">
+          <div class="stat-card">
+            <div class="eyebrow">Proven at leading health systems</div>
+            <h3>The numbers behind ground truth</h3>
+            <div class="stat-row">
+              <div class="stat"><div class="n">40M</div><div class="l">lives governed across leading health systems.</div></div>
+              <div class="stat"><div class="n">10 wks</div><div class="l">typical time from decision to first production go-live.</div></div>
+              <div class="stat"><div class="n">75%</div><div class="l">lower local compute cost vs typical vendor cloud.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Hosted natively on ferrumhealth.com</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Live Q&amp;A with the Ferrum team</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Recording sent to every registrant</div>
+    </div>
+  </div>
+
+  <!-- EMBED -->
+  <section class="block" id="register">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Join the live experience</div>
+        <h2>Save your seat below</h2>
+        <p>Register and watch live in the player below. Bring your questions — we'll answer them on air.</p>
+      </div>
+      <div class="embed-card reveal">
+        <div class="skeleton" id="skeleton">
+          <div class="spinner"></div>
+          <p>Loading the live experience…</p>
+        </div>
+        <div id="sequel_root"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">What you'll learn</div>
+        <h2>Where ground truth drives decisions</h2>
+      </div>
+      <div class="cards stagger reveal">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>Unify everything</h3>
+          <p>One integration, any model or source. How a single deployment fabric brings every clinical AI tool under one governed roof.</p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>Keep clinical AI honest</h3>
+          <p>The ground truth that catches drift and bias — continuous observability so the models you deploy stay safe and accurate.</p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>Automate ROI</h3>
+          <p>Measure the impact of every model without the guesswork — results you can take to the board, your environment, your rules.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKER -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Your host</div>
+        <h2>Meet the speaker</h2>
+      </div>
+      <div class="speaker reveal">
+        <div class="avatar">AH</div>
+        <div>
+          <div class="nm">Austin Hyslip</div>
+          <div class="rl">Communications &amp; PR Manager · Ferrum Health</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>AI adoption you can trust.</h2>
+    <p>Register for the live session. Can't make it? Sign up anyway and we'll send you the full recording.</p>
+    <a class="btn btn-dark btn-lg" href="#register">Save your seat <span class="arrow">↗</span></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-top">
+        <div>
+          <a class="logo" href="#"><img src="https://cdn.prod.website-files.com/68dab5010b8629fb1e89546e/68de67dd2f97b06d91a8e101_ferrum-logo.svg" alt="Ferrum Health" /></a>
+          <p class="blurb">The AI Governance Suite that makes clinical AI adoption simple, secure, and scalable.</p>
+        </div>
+        <div>
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="https://www.ferrumhealth.com/platform-and-tech" target="_blank" rel="noopener">Platform &amp; Tech</a></li>
+            <li><a href="https://www.ferrumhealth.com/solutions" target="_blank" rel="noopener">Solutions</a></li>
+            <li><a href="https://www.ferrumhealth.com/partnerships" target="_blank" rel="noopener">Partnerships</a></li>
+            <li><a href="https://www.ferrumhealth.com/customer-stories" target="_blank" rel="noopener">Customer Stories</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.ferrumhealth.com/events" target="_blank" rel="noopener">Events</a></li>
+            <li><a href="https://www.ferrumhealth.com/video" target="_blank" rel="noopener">Video</a></li>
+            <li><a href="https://www.ferrumhealth.com/resource-center" target="_blank" rel="noopener">Resource Center</a></li>
+            <li><a href="https://www.ferrumhealth.com/newsroom" target="_blank" rel="noopener">Newsroom</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://www.ferrumhealth.com/company" target="_blank" rel="noopener">About Us</a></li>
+            <li><a href="https://www.ferrumhealth.com/contact-us" target="_blank" rel="noopener">Contact Us</a></li>
+            <li><a href="#register">Request a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <div>© 2026 Ferrum Health. All rights reserved.</div>
+        <div class="legal">
+          <a href="https://www.ferrumhealth.com/contact-us" target="_blank" rel="noopener">Contact Us</a>
+          <a href="https://www.ferrumhealth.com/company" target="_blank" rel="noopener">About</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  const EVENT = {
+    title: "Ferrum Health Live: Keeping Clinical AI Honest",
+    startUTC: "20260723T170000Z",
+    endUTC:   "20260723T174500Z",
+    start: new Date("2026-07-23T10:00:00-07:00"),
+    details: "Join Ferrum Health live for a session on governance, ground truth, and measurable ROI for clinical AI. Streaming on ferrumhealth.com.",
+    location: "https://www.ferrumhealth.com/"
+  };
+
+  const g = new URL("https://calendar.google.com/calendar/render");
+  g.searchParams.set("action", "TEMPLATE");
+  g.searchParams.set("text", EVENT.title);
+  g.searchParams.set("dates", EVENT.startUTC + "/" + EVENT.endUTC);
+  g.searchParams.set("details", EVENT.details);
+  g.searchParams.set("location", EVENT.location);
+  document.getElementById('gcal').href = g.toString();
+
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ferrum Health//Webinar//EN","BEGIN:VEVENT",
+    "UID:ferrum-webinar-20260723@ferrumhealth.com",
+    "DTSTAMP:" + EVENT.startUTC,
+    "DTSTART:" + EVENT.startUTC,
+    "DTEND:" + EVENT.endUTC,
+    "SUMMARY:" + EVENT.title,
+    "DESCRIPTION:" + EVENT.details,
+    "LOCATION:" + EVENT.location,
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  document.getElementById('ics').href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  const pad = n => String(n).padStart(2, '0');
+  const cd = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+  function tick() {
+    const diff = EVENT.start - new Date();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="cd-live"><span class="live-dot"></span> We\'re live now — join below</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff % 86400000 / 3600000);
+    const m = Math.floor(diff % 3600000 / 60000);
+    const s = Math.floor(diff % 60000 / 1000);
+    cd.d.textContent = pad(d); cd.h.textContent = pad(h); cd.m.textContent = pad(m); cd.s.textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  const root = document.getElementById('sequel_root');
+  const sk = document.getElementById('skeleton');
+  const mo = new MutationObserver(() => {
+    if (root.childElementCount > 0) { sk.style.display = 'none'; mo.disconnect(); }
+  });
+  mo.observe(root, { childList: true, subtree: true });
+  setTimeout(() => { sk.style.display = 'none'; }, 12000);
+</script>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+</body>
+</html>
