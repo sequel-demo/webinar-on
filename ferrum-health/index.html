@@ -37,8 +37,9 @@
   h1, h2, h3 { font-family: "Barlow Semi Condensed", sans-serif; font-weight: 800; line-height: 1; margin: 0; letter-spacing: -.01em; }
 
   /* announce */
-  .announce { background: var(--grad); color: #fff; font-size: 14px; font-weight: 600; text-align: center; padding: 10px 16px; }
-  .announce a { text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
+  .announce { display: block; background: var(--grad); color: #fff; font-size: 14px; font-weight: 600; text-align: center; padding: 10px 16px; transition: filter .2s var(--ease); }
+  .announce:hover { filter: brightness(1.06); }
+  .announce .announce-cta { text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
 
   /* header — floating dark rounded bar */
   header { position: sticky; top: 0; z-index: 50; padding: 14px 0; transition: padding .3s var(--ease); }
@@ -181,9 +182,9 @@
 </head>
 <body>
 
-  <div class="announce">
-    🔴 Live Webinar — Thurs, July 23 @ 10:00 AM PT &nbsp;·&nbsp; Keeping Clinical AI Honest &nbsp;<a href="#register">Save your seat →</a>
-  </div>
+  <a class="announce" href="https://www.ferrumhealth.com/resource-center/webinar-from-cleared-to-clinical-making-ai-work-at-the-bedside?utm_campaign=46213491-July%20Webinar&utm_source=email&utm_content=Banner" target="_blank" rel="noopener">
+    🔴 Live Webinar — Thurs, July 9 &nbsp;·&nbsp; From FDA Cleared to Clinical: Making AI Work at the Bedside &nbsp;<span class="announce-cta">Save your seat →</span>
+  </a>
 
   <header id="hdr">
     <div class="wrap">
