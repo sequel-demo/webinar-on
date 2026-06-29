@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Webinar | FounderLink — Founders Who Refuse to Stay Small</title>
+<meta name="description" content="Join FounderLink live: a roundtable for founders who refuse to build alone. Streaming right here on founderlink.com." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue: #3366FF;
+    --blue-dark: #244fd6;
+    --blue-soft: #EAF0FF;
+    --ink: #2B2B2B;
+    --ink-70: rgba(43,43,43,.70);
+    --ink-50: rgba(43,43,43,.52);
+    --bg: #ffffff;
+    --tint: #F4F6FF;
+    --dark: #16161C;
+    --line: rgba(43,43,43,.12);
+    --radius: 6px;
+    --radius-btn: 4px;
+    --radius-lg: 14px;
+    --sh-sm: 0 2px 8px rgba(43,43,43,.07);
+    --sh-md: 0 16px 38px rgba(43,43,43,.10);
+    --sh-lg: 0 30px 70px rgba(22,22,28,.30);
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 26px; }
+  h1, h2, h3 { letter-spacing: -.02em; line-height: 1.06; margin: 0; font-weight: 700; }
+
+  /* announce */
+  .announce {
+    background: var(--blue); color: #fff; font-size: 14px; font-weight: 600;
+    text-align: center; padding: 10px 16px;
+  }
+  .announce a { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* header */
+  header {
+    position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94);
+    backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--line);
+    transition: box-shadow .3s var(--ease);
+  }
+  header.scrolled { box-shadow: var(--sh-sm); }
+  .nav { display: flex; align-items: center; gap: 30px; height: 76px; transition: height .3s var(--ease); }
+  header.scrolled .nav { height: 64px; }
+  .logo img { height: 34px; width: auto; display: block; transition: height .3s var(--ease); }
+  header.scrolled .logo img { height: 30px; }
+  .nav-links { display: flex; align-items: center; gap: 26px; margin-left: 14px; }
+  .nav-links > a { font-size: 16px; font-weight: 600; color: var(--ink); position: relative; padding: 4px 0; display: inline-flex; align-items: center; gap: 5px; }
+  .nav-links > a .caret { width: 7px; height: 7px; border-right: 2px solid var(--ink-50); border-bottom: 2px solid var(--ink-50); transform: rotate(45deg); margin-top: -3px; }
+  .nav-links > a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--blue); transition: width .25s var(--ease); }
+  .nav-links > a:hover::after { width: 100%; }
+  .nav-right { display: flex; align-items: center; gap: 18px; margin-left: auto; }
+  .socials { display: flex; gap: 12px; }
+  .socials a { color: var(--ink); opacity: .75; transition: opacity .2s var(--ease), color .2s var(--ease); }
+  .socials a:hover { opacity: 1; color: var(--blue); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit;
+    border-radius: var(--radius-btn); padding: 11px 20px;
+    transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  }
+  .btn-outline { border: 1px solid var(--blue); color: var(--blue); background: transparent; }
+  .btn-outline:hover { background: var(--blue); color: #fff; transform: translateY(-2px); }
+  .btn-primary { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
+  .btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); transform: translateY(-2px); box-shadow: var(--sh-md); }
+  /* nav-CTA specificity guards */
+  .nav-right a.btn-outline { color: var(--blue); }
+  .nav-right a.btn-outline:hover { color: #fff; }
+
+  /* hero */
+  .hero { position: relative; background:
+      radial-gradient(900px 500px at 80% 0%, rgba(51,102,255,.30) 0%, rgba(51,102,255,0) 60%),
+      linear-gradient(180deg, #1b1b22 0%, var(--dark) 100%);
+    color: #fff; padding: 80px 0 64px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr .8fr; gap: 54px; align-items: center; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 7px 14px; border-radius: 100px; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF5A5A; box-shadow: 0 0 0 0 rgba(255,90,90,.7); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,90,90,.7);} 70%{box-shadow:0 0 0 9px rgba(255,90,90,0);} 100%{box-shadow:0 0 0 0 rgba(255,90,90,0);} }
+  .eyebrow-q { font-size: 16px; font-weight: 600; color: rgba(255,255,255,.7); margin: 22px 0 8px; }
+  .hero h1 { font-size: clamp(40px, 5.4vw, 66px); font-weight: 800; margin: 0 0 18px; }
+  .hero h1 .accent { color: #8FA9FF; }
+  .hero .lede { font-size: 19px; color: rgba(255,255,255,.78); max-width: 540px; margin: 0 0 26px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 10px; }
+  .meta .item { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; }
+  .meta .ic { width: 18px; height: 18px; color: #8FA9FF; flex: none; }
+  .streaming { font-size: 14px; color: rgba(255,255,255,.6); margin: 4px 0 26px; }
+  .streaming b { color: #fff; }
+
+  .countdown { display: flex; gap: 12px; margin-bottom: 26px; }
+  .cd-tile { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius); padding: 12px 6px; min-width: 72px; text-align: center; }
+  .cd-num { font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+  .cd-lab { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.55); margin-top: 6px; }
+  .cd-live { font-size: 22px; font-weight: 800; color: #8FA9FF; display: flex; align-items: center; gap: 10px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .btn-lg { padding: 15px 28px; font-size: 16px; }
+  .cal-links { display: flex; gap: 18px; font-size: 14px; font-weight: 700; }
+  .cal-links a { display: inline-flex; align-items: center; gap: 6px; color: #fff; border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color .2s var(--ease); }
+  .cal-links a:hover { border-color: #8FA9FF; }
+
+  .hero-card { background: #fff; color: var(--ink); border-radius: var(--radius-lg); padding: 30px 30px; box-shadow: var(--sh-lg); }
+  .hero-card .eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); font-weight: 700; }
+  .hero-card h3 { font-size: 22px; margin: 12px 0 16px; }
+  .hero-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+  .hero-card li { display: flex; gap: 11px; font-size: 15px; font-weight: 500; color: var(--ink-70); align-items: flex-start; }
+  .hero-card li svg { color: var(--blue); flex: none; margin-top: 2px; }
+
+  /* trust strip */
+  .trust { background: var(--blue); color: #fff; }
+  .trust .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding: 18px 26px; }
+  .trust .t { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 600; }
+  .trust .t svg { flex: none; }
+
+  /* sections */
+  section.block { padding: 78px 0; }
+  .tint { background: var(--tint); }
+  .sec-head { text-align: center; max-width: 700px; margin: 0 auto 46px; }
+  .sec-head .eyebrow { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); font-weight: 700; }
+  .sec-head h2 { font-size: clamp(28px, 3.6vw, 42px); margin: 12px 0 14px; font-weight: 800; }
+  .sec-head p { font-size: 18px; color: var(--ink-70); margin: 0; }
+
+  /* embed */
+  .embed-card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--sh-md); padding: 14px; min-height: 540px; overflow: hidden; }
+  #sequel_root { min-height: 512px; border-radius: 8px; overflow: hidden; }
+  .skeleton { position: absolute; inset: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: linear-gradient(180deg,#fff,#f5f7ff); border-radius: 8px; z-index: 2; }
+  .spinner { width: 42px; height: 42px; border: 3px solid var(--blue-soft); border-top-color: var(--blue); border-radius: 50%; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .skeleton p { color: var(--ink-50); font-size: 15px; font-weight: 600; }
+
+  /* learn cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 26px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--sh-md); }
+  .card .num { width: 40px; height: 40px; border-radius: var(--radius); background: var(--blue-soft); color: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 16px; }
+  .card h3 { font-size: 20px; margin-bottom: 8px; }
+  .card p { color: var(--ink-70); font-size: 15px; margin: 0; }
+
+  /* speakers */
+  .speakers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
+  .speaker { display: flex; gap: 18px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; color: #fff; flex: none; }
+  .speaker .nm { font-weight: 800; font-size: 17px; }
+  .speaker .rl { color: var(--ink-70); font-size: 14px; }
+
+  /* cta band */
+  .cta-band { background: var(--blue); color: #fff; text-align: center; padding: 74px 24px; }
+  .cta-band h2 { font-size: clamp(28px, 3.6vw, 42px); margin-bottom: 14px; font-weight: 800; }
+  .cta-band p { color: rgba(255,255,255,.85); font-size: 18px; margin: 0 auto 28px; max-width: 560px; }
+  .cta-band .btn-white { background: #fff; color: var(--blue); border: 1px solid #fff; }
+  .cta-band .btn-white:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(0,0,0,.18); }
+
+  /* footer */
+  footer.ft { background: #fff; color: var(--ink-70); padding: 56px 0 34px; border-top: 1px solid var(--line); }
+  .ft-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 34px; border-bottom: 1px solid var(--line); }
+  .ft .logo img { height: 32px; }
+  .ft .socials a { color: var(--ink); opacity: .7; }
+  .ft .socials a:hover { color: var(--blue); opacity: 1; }
+  .ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; padding-top: 24px; font-size: 13.5px; color: var(--ink-50); }
+  .ft-bottom .legal { display: flex; gap: 20px; flex-wrap: wrap; }
+  .ft-bottom a:hover { color: var(--blue); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .stagger > * { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .stagger.in > * { opacity: 1; transform: none; }
+  .stagger.in > *:nth-child(2) { transition-delay: .09s; }
+  .stagger.in > *:nth-child(3) { transition-delay: .18s; }
+
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .speakers { grid-template-columns: 1fr; }
+    .nav-links, .nav-right .socials { display: none; }
+  }
+  @media (max-width: 560px) {
+    .countdown { gap: 8px; }
+    .cd-tile { min-width: 0; flex: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    🔴 Live Webinar — Wed, July 22 @ 12:00 PM PT &nbsp;·&nbsp; Founders Who Refuse to Stay Small &nbsp;<a href="#register">Save your seat →</a>
+  </div>
+
+  <header id="hdr">
+    <div class="wrap">
+      <nav class="nav">
+        <a class="logo" href="#"><img src="https://images.squarespace-cdn.com/content/v1/67ee67213c92504a938d2125/a5e55fcd-999a-4b74-b923-7278701f764c/Asset+3.jpg" alt="FounderLink" /></a>
+        <div class="nav-links">
+          <a href="https://founderlink.com/membership" target="_blank" rel="noopener">Membership</a>
+          <a href="https://www.graemebarlow.com/foundersdinners" target="_blank" rel="noopener">Dinners</a>
+          <a href="#">More <i class="caret"></i></a>
+        </div>
+        <div class="nav-right">
+          <div class="socials">
+            <a href="https://www.linkedin.com/company/founderlinkcommunity/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4zM8 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V24H8z"/></svg></a>
+            <a href="https://www.instagram.com/founderlinkcommunity/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://x.com/FounderLinkComm" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.7l-8 9.1L24 22.8h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9zM17.6 20.6h2L6.5 3.3H4.3z"/></svg></a>
+            <a href="https://www.youtube.com/@graemebarlow" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          </div>
+          <a class="btn btn-outline" href="https://www.founderlink.io" target="_blank" rel="noopener">Members</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal in">
+          <span class="badge"><span class="live-dot"></span> Live Webinar</span>
+          <p class="eyebrow-q">Who can entrepreneurs turn to for support?</p>
+          <h1>Founders who refuse to <span class="accent">stay small.</span></h1>
+          <p class="lede">A live roundtable from the FounderLink community — for business owners who connect, learn, and grow together. You don't have to build alone.</p>
+          <div class="meta">
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Wednesday, July 22, 2026</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 12:00 PM PT</div>
+            <div class="item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M2 12h20"/></svg> 60 minutes</div>
+          </div>
+          <p class="streaming">Streaming right here on <b>founderlink.com</b> — no new tab, no download.</p>
+
+          <div class="countdown" id="countdown" aria-label="Time until webinar starts">
+            <div class="cd-tile"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">Days</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">Hours</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-m">00</div><div class="cd-lab">Mins</div></div>
+            <div class="cd-tile"><div class="cd-num" id="cd-s">00</div><div class="cd-lab">Secs</div></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="#register">Save your seat</a>
+            <div class="cal-links">
+              <a id="gcal" href="#" target="_blank" rel="noopener">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Google Calendar</a>
+              <a id="ics" href="#" download="founderlink-webinar.ics">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Add to calendar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal in">
+          <div class="hero-card">
+            <div class="eyebrow">What this is</div>
+            <h3>A growth support network, live.</h3>
+            <ul>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Real founders sharing what actually worked</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Live Q&amp;A — bring the problem you're stuck on</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Not another time sink — 60 focused minutes</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Curated community, without the $$$ price tag</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust">
+    <div class="wrap">
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Hosted natively on founderlink.com</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Live Q&amp;A with the community</div>
+      <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> Recording sent to every registrant</div>
+    </div>
+  </div>
+
+  <!-- EMBED -->
+  <section class="block" id="register">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Join the live experience</div>
+        <h2>Save your seat below</h2>
+        <p>Register and watch live in the player below. Bring your questions — we'll answer them on air.</p>
+      </div>
+      <div class="embed-card reveal">
+        <div class="skeleton" id="skeleton">
+          <div class="spinner"></div>
+          <p>Loading the live experience…</p>
+        </div>
+        <div id="sequel_root"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="block tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">What you'll take away</div>
+        <h2>You don't have to build alone</h2>
+      </div>
+      <div class="cards stagger reveal">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>Find your people</h3>
+          <p>How founders build a real support network — peers who get the late nights, the hard calls, and the wins worth celebrating.</p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>Grow without the burnout</h3>
+          <p>The habits and playbooks behind founders who scale their business without scaling their stress.</p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>Build in good company</h3>
+          <p>Why the right room changes everything — and how to surround yourself with founders who refuse to stay small.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Your hosts</div>
+        <h2>Led by someone who's been there</h2>
+      </div>
+      <div class="speakers stagger reveal">
+        <div class="speaker">
+          <div class="avatar">SP</div>
+          <div>
+            <div class="nm">Speaker Name</div>
+            <div class="rl">Founder &amp; Host · FounderLink</div>
+          </div>
+        </div>
+        <div class="speaker">
+          <div class="avatar">SP</div>
+          <div>
+            <div class="nm">Speaker Name</div>
+            <div class="rl">Founder · Guest Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Ready to build in good company?</h2>
+    <p>Register for the live roundtable. Can't make it? Sign up anyway and we'll send you the full recording.</p>
+    <a class="btn btn-white btn-lg" href="#register">Save your seat</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-top">
+        <a class="logo" href="#"><img src="https://images.squarespace-cdn.com/content/v1/67ee67213c92504a938d2125/a5e55fcd-999a-4b74-b923-7278701f764c/Asset+3.jpg" alt="FounderLink" /></a>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/founderlinkcommunity/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4zM8 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V24H8z"/></svg></a>
+          <a href="https://www.instagram.com/founderlinkcommunity/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://x.com/FounderLinkComm" target="_blank" rel="noopener" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.7l-8 9.1L24 22.8h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9zM17.6 20.6h2L6.5 3.3H4.3z"/></svg></a>
+          <a href="https://www.youtube.com/@graemebarlow" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          <a href="https://www.tiktok.com/@founderlinkcommunity" target="_blank" rel="noopener" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.3 1.6 3.8 3.9 4v2.6c-1.3.1-2.6-.3-3.9-1v6.6c0 3.4-2.6 5.8-5.8 5.8A5.7 5.7 0 0 1 5 15.4c0-3.3 3-5.9 6.4-5.3v2.8c-.4-.1-.9-.2-1.3-.2-1.5 0-2.6 1.2-2.6 2.7s1.2 2.7 2.7 2.7 2.7-1.2 2.7-2.7V3z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <div>© 2026 – FounderLink</div>
+        <div class="legal">
+          <a href="https://founderlink.com/apply" target="_blank" rel="noopener">Apply for an Invite</a>
+          <a href="mailto:info@graemebarlow.com">Reach out</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 8), { passive: true });
+
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  const EVENT = {
+    title: "FounderLink Live: Founders Who Refuse to Stay Small",
+    startUTC: "20260722T190000Z",
+    endUTC:   "20260722T200000Z",
+    start: new Date("2026-07-22T12:00:00-07:00"),
+    details: "A live roundtable from the FounderLink community for business owners who connect, learn, and grow together. Streaming on founderlink.com.",
+    location: "https://founderlink.com/"
+  };
+
+  const g = new URL("https://calendar.google.com/calendar/render");
+  g.searchParams.set("action", "TEMPLATE");
+  g.searchParams.set("text", EVENT.title);
+  g.searchParams.set("dates", EVENT.startUTC + "/" + EVENT.endUTC);
+  g.searchParams.set("details", EVENT.details);
+  g.searchParams.set("location", EVENT.location);
+  document.getElementById('gcal').href = g.toString();
+
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FounderLink//Webinar//EN","BEGIN:VEVENT",
+    "UID:founderlink-webinar-20260722@founderlink.com",
+    "DTSTAMP:" + EVENT.startUTC,
+    "DTSTART:" + EVENT.startUTC,
+    "DTEND:" + EVENT.endUTC,
+    "SUMMARY:" + EVENT.title,
+    "DESCRIPTION:" + EVENT.details,
+    "LOCATION:" + EVENT.location,
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  document.getElementById('ics').href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  const pad = n => String(n).padStart(2, '0');
+  const cd = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+  function tick() {
+    const diff = EVENT.start - new Date();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="cd-live"><span class="live-dot"></span> We\'re live now — join below</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor(diff % 86400000 / 3600000);
+    const m = Math.floor(diff % 3600000 / 60000);
+    const s = Math.floor(diff % 60000 / 1000);
+    cd.d.textContent = pad(d); cd.h.textContent = pad(h); cd.m.textContent = pad(m); cd.s.textContent = pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  const root = document.getElementById('sequel_root');
+  const sk = document.getElementById('skeleton');
+  const mo = new MutationObserver(() => {
+    if (root.childElementCount > 0) { sk.style.display = 'none'; mo.disconnect(); }
+  });
+  mo.observe(root, { childList: true, subtree: true });
+  setTimeout(() => { sk.style.display = 'none'; }, 12000);
+</script>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+</body>
+</html>
