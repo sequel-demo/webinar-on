@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vespa.ai Live — Real-Time RAG at Enterprise Scale | Webinar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#61D790;
+  --ink:#000000;
+  --dark:#2E2F27;
+  --paper:#ffffff;
+  --grey:#f4f6f4;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'Instrument Sans',Roobert,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 2px 8px rgba(46,47,39,.08);
+  --sh-md:0 10px 26px rgba(46,47,39,.10);
+  --sh-lg:0 18px 44px rgba(46,47,39,.14);
+  --r:2px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img,svg{display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ---------- announce bar ---------- */
+.announce{background:var(--ink);color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.02em;text-transform:uppercase;padding:9px 0;text-align:center}
+.announce a{color:var(--green);border-bottom:1px solid var(--green);padding-bottom:1px;transition:opacity .3s var(--ease)}
+.announce a:hover{opacity:.75}
+
+/* ---------- header ---------- */
+header{background:var(--green);position:sticky;top:0;z-index:50;transition:box-shadow .35s var(--ease)}
+header.scrolled{box-shadow:var(--sh-md)}
+.topline{display:flex;justify-content:flex-end;align-items:center;gap:22px;padding:10px 0 2px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:-.02em}
+.topline a{display:flex;align-items:center;gap:6px;transition:opacity .3s var(--ease)}
+.topline a:hover{opacity:.6}
+.topline .sep{width:1px;height:14px;background:rgba(0,0,0,.35)}
+.navrow{display:flex;align-items:center;justify-content:space-between;padding:14px 0 18px}
+.logo svg{height:30px;width:auto;transition:height .35s var(--ease)}
+header.scrolled .logo svg{height:26px}
+.nav{display:flex;align-items:center;gap:30px;font-size:15.5px;font-weight:500}
+.nav>a{position:relative;display:flex;align-items:center;gap:5px;padding:4px 0;color:var(--ink)}
+.nav>a:not(.btn)::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--ink);transition:width .35s var(--ease)}
+.nav>a:not(.btn):hover::after{width:100%}
+.caret{width:9px;height:9px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg) translateY(-2px)}
+.ctas{display:flex;gap:10px}
+.btn{font-family:var(--sans);font-size:14px;font-weight:500;padding:9px 18px;border-radius:var(--r);border:1px solid var(--ink);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),color .3s var(--ease);display:inline-block}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-sm)}
+.btn-solid{background:var(--ink);color:#fff}
+.nav a.btn-solid,.ctas a.btn-solid{color:#fff} /* specificity guard: keep CTA label visible */
+.btn-solid:hover{background:#1c1d18}
+.btn-outline{background:rgba(255,255,255,.85);color:var(--ink)}
+.btn-outline:hover{background:#fff}
+.burger{display:none}
+
+/* ---------- hero ---------- */
+.hero{background:var(--green);padding:64px 0 80px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--ink);border-radius:var(--r);padding:7px 14px;background:rgba(255,255,255,.55)}
+.dot{width:8px;height:8px;border-radius:50%;background:#d43c3c;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(212,60,60,.5)}70%{box-shadow:0 0 0 9px rgba(212,60,60,0)}100%{box-shadow:0 0 0 0 rgba(212,60,60,0)}}
+.hero h1{font-size:clamp(44px,7.4vw,96px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin:26px 0 22px;max-width:15ch}
+.hero .sub{font-size:clamp(17px,1.6vw,20px);max-width:640px;line-height:1.55}
+.meta{display:flex;flex-wrap:wrap;gap:12px 28px;margin:28px 0 8px;font-family:var(--mono);font-size:13.5px;text-transform:uppercase;letter-spacing:-.01em}
+.meta span{display:flex;align-items:center;gap:8px}
+.meta svg{flex:none}
+.hostline{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;opacity:.75;margin-bottom:30px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:40px}
+.btn-lg{font-size:16px;padding:14px 28px}
+.cal-links{display:flex;gap:16px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase}
+.cal-links a{border-bottom:1px solid var(--ink);padding-bottom:2px;transition:opacity .3s var(--ease)}
+.cal-links a:hover{opacity:.6}
+
+/* countdown */
+.count{display:flex;gap:12px;flex-wrap:wrap}
+.tile{background:var(--ink);color:#fff;border-radius:var(--r);padding:14px 0;width:86px;text-align:center;box-shadow:var(--sh-md)}
+.tile b{display:block;font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.tile span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;opacity:.65}
+.live-now{display:none;font-family:var(--mono);font-size:15px;text-transform:uppercase;background:var(--ink);color:var(--green);padding:14px 22px;border-radius:var(--r)}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--ink);color:#fff;padding:18px 0}
+.trust .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.trust span{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.02em}
+.trust i{width:7px;height:7px;background:var(--green);display:inline-block;flex:none}
+
+/* ---------- embed ---------- */
+.embed-sec{padding:84px 0;background:var(--paper)}
+.k{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--dark);opacity:.7;display:block;margin-bottom:14px}
+.embed-sec h2,.learn h2,.speaker-sec h2{font-size:clamp(30px,3.6vw,46px);font-weight:500;letter-spacing:-.025em;line-height:1.08}
+.embed-card{position:relative;margin-top:38px;background:#fff;border:1px solid rgba(46,47,39,.14);border-radius:6px;box-shadow:var(--sh-lg);overflow:hidden}
+#sequel_root{min-height:560px}
+.skel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--grey);z-index:2;transition:opacity .5s var(--ease)}
+.spinner{width:40px;height:40px;border:3px solid rgba(46,47,39,.15);border-top-color:var(--ink);border-radius:50%;animation:spin
+.9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skel p{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--dark)}
+
+/* ---------- learn ---------- */
+.learn{background:var(--grey);padding:84px 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+.card{background:#fff;border:1px solid rgba(46,47,39,.12);border-radius:6px;padding:32px 28px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.card:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.card .num{font-family:var(--mono);font-size:12.5px;color:var(--dark);opacity:.6;display:block;margin-bottom:16px}
+.card h3{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:12px;line-height:1.25}
+.card p{font-size:15px;color:#3c3d36;line-height:1.6}
+
+/* ---------- speaker ---------- */
+.speaker-sec{padding:84px 0;background:var(--paper)}
+.sp-card{margin-top:42px;display:flex;gap:34px;align-items:center;background:var(--green);border-radius:6px;padding:44px 48px;max-width:720px;box-shadow:var(--sh-md);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
+.avatar{width:104px;height:104px;flex:none;border-radius:50%;background:var(--ink);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:600;letter-spacing:-.02em}
+.sp-card h3{font-size:26px;font-weight:600;letter-spacing:-.02em}
+.sp-card .role{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.03em;margin:6px 0 14px}
+.sp-card p{font-size:15px;line-height:1.6;max-width:44ch}
+
+/* ---------- cta band ---------- */
+.band{background:var(--dark);color:#fff;padding:76px 0;text-align:center}
+.band h2{font-size:clamp(28px,3.4vw,42px);font-weight:500;letter-spacing:-.025em;max-width:22ch;margin:0 auto 16px}
+.band p{opacity:.75;max-width:52ch;margin:0 auto 32px;font-size:16px}
+.band .btn{background:var(--green);border-color:var(--green);color:var(--ink);font-weight:600}
+.band .btn:hover{background:#79e2a4}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#fff;padding:70px 0 36px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:56px}
+.fbrand svg path{fill:#fff}
+.fbrand svg{height:26px;width:auto;margin-bottom:18px}
+.fbrand p{font-size:13.5px;opacity:.6;max-width:26ch;line-height:1.55}
+.fcol h4{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.55;margin-bottom:16px;font-weight:500}
+.fcol a{display:block;font-size:14.5px;opacity:.85;margin-bottom:11px;transition:opacity .3s var(--ease)}
+.fcol a:hover{opacity:1}
+.legal{border-top:1px solid rgba(255,255,255,.15);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:12px;text-transform:uppercase;opacity:.55}
+.legal a{margin-left:22px}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .nav{display:none}
+  .burger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .burger span{width:22px;height:2px;background:var(--ink)}
+  .cards{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .sp-card{flex-direction:column;text-align:center;align-items:center;padding:36px 26px}
+  .sp-card p{max-width:none}
+  .trust .wrap{justify-content:center}
+}
+@media (max-width:640px){
+  .topline{display:none}
+  .tile{width:72px}
+  .hero{padding:44px 0 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- announce bar -->
+<div class="announce">Vespa.ai Live · Webinar — Real-Time RAG at Enterprise Scale · July 16 · <a href="#register">Save your seat</a></div>
+
+<!-- header -->
+<header id="hdr">
+  <div class="wrap">
+    <div class="topline">
+      <a href="https://docs.vespa.ai/" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://vespa.ai/support/" target="_blank" rel="noopener">Support</a>
+      <a href="https://blog.vespa.ai/" target="_blank" rel="noopener">Blog</a>
+      <span class="sep"></span>
+      <a href="https://github.com/vespa-engine/vespa" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 21 20" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.0055 7.62939e-06C4.47748 7.62939e-06 6.10352e-05 4.47743 6.10352e-05 10.0054C6.10352e-05 14.4328 2.86411 18.1723 6.84126 19.498C7.34153 19.5856 7.52913 19.2854 7.52913 19.0228C7.52913 18.7852 7.51662 17.9972 7.51662 17.1593C5.00276 17.622 4.35241 16.5464 4.1523 15.9836C4.03974 15.696 3.55198 14.808 3.12675 14.5704C2.77656 14.3828 2.27629 13.92 3.11424 13.9075C3.90217 13.895 4.46497 14.6329 4.65257 14.9331C5.55306 16.4464 6.99134 16.0212 7.56665 15.7585C7.6542 15.1082 7.91684 14.6704 8.20449 14.4203C5.97829 14.1702 3.65203 13.3072 3.65203 9.48013C3.65203 8.39204 4.03974 7.49155 4.67759 6.79118C4.57753 6.54104 4.22734 5.51549 4.77764 4.13977C4.77764 4.13977 5.61559 3.87713 7.52913 5.16529C8.32957 4.94017 9.18003 4.82761 10.0305 4.82761C10.881 4.82761 11.7314 4.94017 12.5319 5.16529C14.4454 3.86462 15.2834 4.13977 15.2834 4.13977C15.8337 5.51549 15.4835 6.54104 15.3834 6.79118C16.0213 7.49155 16.409 8.37953 16.409 9.48013C16.409 13.3197 14.0702 14.1702 11.844 14.4203C12.2067 14.733 12.5194 15.3333 12.5194 16.2713C12.5194 17.6095 12.5069 18.6851 12.5069 19.0228C12.5069 19.2854 12.6945 19.5981 13.1948 19.498C17.1594 18.1598 20.0104 14.4203 20.0104 10.0054C20.0104 4.47743 15.5335 7.62939e-06 10.0055 7.62939e-06Z" fill="black"/></svg>
+        GitHub</a>
+      <a href="https://console.vespa-cloud.com/" target="_blank" rel="noopener">Login</a>
+    </div>
+    <div class="navrow">
+      <a class="logo" href="https://vespa.ai" target="_blank" rel="noopener" aria-label="Vespa.ai">
+        <svg width="211" height="48" viewBox="0 0 211 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5876 32.2135H56.2925L42.7049 45.2039H0V26.6467L13.5876 13.6562V32.2135Z" fill="black"></path><path d="M69.8804 0.666016V19.2233L56.2928 32.213V13.6558H13.5879L27.1762 0.666016H69.8804Z" fill="black"></path><path d="M95.7499 38.7409L83.4688 7.16113H88.5697L98.5833 34.049L108.691 7.16113H113.698L101.417 38.7409H95.7485H95.7499Z" fill="black"></path><path d="M133.678 20.8978C132.765 19.2598 131.475 17.9441 129.805 16.9512C128.136 15.9583 126.137 15.4619 123.807 15.4619C121.477 15.4619 119.429 15.9649 117.665 16.9735C115.901 17.9821 114.525 19.381 113.534 21.1689C112.54 22.9588 112.045 25.0565 112.045 27.4621C112.045 29.8676 112.541 31.8684 113.534 33.6426C114.525 35.4168 115.901 36.8006 117.665 37.7928C119.429 38.7857 121.444 39.2821 123.712 39.2821C125.57 39.2821 127.214 38.9658 128.647 38.3345C130.079 37.7031 131.284 36.8386 132.261 35.7403C133.236 34.642 133.929 33.4022 134.34 32.0184H129.616C129.144 33.101 128.419 33.9589 127.444 34.5903C126.467 35.2216 125.222 35.5379 123.712 35.5379C122.452 35.5379 121.286 35.2439 120.216 34.6577C119.145 34.0716 118.287 33.1999 117.641 32.0413C117.084 31.0432 116.768 29.8467 116.692 28.4543H134.954C134.984 28.0338 135.008 27.65 135.024 27.3042C135.04 26.9584 135.047 26.6349 135.047 26.3343C135.047 24.3492 134.592 22.5384 133.678 20.8971V20.8978ZM116.746 25.2524C116.873 24.1803 117.171 23.2548 117.641 22.4788C118.287 21.4099 119.144 20.5991 120.216 20.0418C121.286 19.4851 122.468 19.2068 123.76 19.2068C125.585 19.2068 127.114 19.7412 128.342 20.8081C129.57 21.8769 130.231 23.357 130.325 25.2524H116.747H116.746Z" fill="black"></path><path d="M148.274 39.2821C146.258 39.2821 144.495 38.9665 142.984 38.3345C141.472 37.7031 140.275 36.8164 139.394 35.6729C138.512 34.53 137.977 33.1913 137.788 31.6575H142.606C142.763 32.3792 143.071 33.0414 143.527 33.6426C143.983 34.2445 144.613 34.7252 145.416 35.086C146.219 35.4469 147.171 35.6277 148.274 35.6277C149.313 35.6277 150.171 35.4849 150.848 35.1993C151.525 34.9138 152.021 34.5228 152.336 34.0264C152.651 33.5299 152.809 32.9968 152.809 32.4251C152.809 31.5835 152.596 30.9443 152.171 30.5075C151.746 30.0719 151.115 29.7255 150.282 29.4701C149.447 29.2147 148.447 28.9815 147.282 28.7706C146.179 28.5899 145.117 28.3423 144.094 28.0266C143.071 27.7109 142.157 27.3128 141.355 26.8314C140.552 26.3507 139.914 25.7416 139.441 25.0041C138.969 24.2674 138.733 23.3577 138.733 22.2744C138.733 20.9816 139.094 19.8158 139.819 18.7778C140.543 17.7404 141.574 16.9283 142.913 16.3415C144.251 15.7547 145.833 15.4619 147.66 15.4619C150.305 15.4619 152.431 16.0638 154.036 17.2662C155.642 18.4693 156.587 20.1688 156.871 22.3642H152.289C152.163 21.3418 151.69 20.5526 150.872 19.9959C150.053 19.4399 148.966 19.1616 147.613 19.1616C146.259 19.1616 145.219 19.4177 144.495 19.9285C143.77 20.44 143.408 21.1172 143.408 21.9588C143.408 22.5004 143.613 22.9817 144.022 23.4022C144.431 23.824 145.037 24.177 145.841 24.4625C146.644 24.7487 147.628 25.0114 148.793 25.2517C150.462 25.553 151.958 25.9282 153.28 26.3795C154.603 26.8307 155.657 27.4929 156.445 28.3646C157.232 29.2369 157.626 30.4845 157.626 32.1088C157.657 33.5227 157.288 34.7704 156.516 35.853C155.744 36.9355 154.658 37.7784 153.258 38.3797C151.856 38.9809 150.195 39.2821 148.274 39.2821H148.274Z" fill="black"></path><path d="M161.971 48.6662V16.0039H166.222L166.694 19.5228C167.198 18.8312 167.828 18.1769 168.584 17.5606C169.339 16.9443 170.244 16.4407 171.3 16.049C172.354 15.6587 173.591 15.4629 175.007 15.4629C177.274 15.4629 179.266 15.9894 180.983 17.0419C182.699 18.095 184.037 19.5162 184.998 21.3055C185.958 23.0954 186.438 25.1328 186.438 27.4185C186.438 29.7042 185.95 31.7423 184.974 33.5316C183.998 35.3215 182.652 36.7276 180.936 37.7499C179.219 38.7723 177.228 39.2838 174.961 39.2838C173.102 39.2838 171.466 38.9301 170.048 38.2235C168.632 37.5168 167.514 36.5318 166.695 35.2684V48.6675H161.971L161.971 48.6662ZM174.205 35.3575C175.653 35.3575 176.936 35.0268 178.054 34.3653C179.171 33.7038 180.054 32.7712 180.699 31.5681C181.344 30.3657 181.667 28.9668 181.667 27.3727C181.667 25.7786 181.344 24.3882 180.699 23.1995C180.053 22.0115 179.171 21.0789 178.054 20.4023C176.936 19.7258 175.653 19.3872 174.205 19.3872C172.756 19.3872 171.425 19.7258 170.308 20.4023C169.19 21.0789 168.316 22.0115 167.686 23.1995C167.056 24.3882 166.741 25.7786 166.741 27.3727C166.741 28.9668 167.056 30.3657 167.686 31.5681C168.316 32.7712 169.189 33.7038 170.308 34.3653C171.425 35.0274 172.724 35.3575 174.205 35.3575Z" fill="black"></path><path d="M198.625 39.2821C196.672 39.2821 195.051 38.9665 193.76 38.3345C192.468 37.7031 191.508 36.8537 190.878 35.7855C190.248 34.718 189.934 33.5679 189.934 32.3341C189.934 30.8303 190.343 29.5447 191.162 28.4766C191.981 27.409 193.146 26.5897 194.657 26.018C196.168 25.4469 197.979 25.1607 200.089 25.1607H206.277C206.277 23.8377 206.071 22.7401 205.663 21.8677C205.253 20.996 204.647 20.3417 203.845 19.9056C203.042 19.47 202.026 19.2513 200.798 19.2513C199.381 19.2513 198.169 19.5748 197.161 20.2212C196.153 20.8683 195.523 21.8225 195.272 23.0859H190.548C190.737 21.4918 191.311 20.1309 192.272 19.0031C193.233 17.8753 194.469 17.0029 195.98 16.3867C197.492 15.7704 199.098 15.4619 200.798 15.4619C203.033 15.4619 204.908 15.8385 206.419 16.5897C207.93 17.3415 209.072 18.4019 209.844 19.77C210.615 21.1388 211.001 22.7702 211.001 24.6649V38.7405H206.891L206.513 34.9059C206.166 35.5078 205.757 36.0789 205.285 36.6205C204.813 37.1621 204.253 37.6285 203.607 38.0188C202.961 38.4098 202.222 38.7182 201.388 38.9435C200.553 39.1688 199.632 39.2821 198.624 39.2821H198.625ZM199.522 35.6277C200.529 35.6277 201.443 35.4325 202.262 35.0409C203.081 34.6505 203.781 34.1161 204.364 33.4396C204.946 32.763 205.387 31.9961 205.686 31.1388C205.985 30.2815 206.15 29.402 206.182 28.4995V28.3639H200.561C199.207 28.3639 198.112 28.5217 197.278 28.8374C196.444 29.1531 195.837 29.5821 195.459 30.123C195.081 30.6647 194.893 31.296 194.893 32.0177C194.893 32.7394 195.074 33.4094 195.436 33.9353C195.798 34.4619 196.325 34.8758 197.019 35.1758C197.711 35.477 198.546 35.627 199.522 35.627L199.522 35.6277Z" fill="black"></path></svg>
+      </a>
+      <nav class="nav">
+        <a href="https://vespa.ai/why-vespa/" target="_blank" rel="noopener">Why Vespa <span class="caret"></span></a>
+        <a href="https://vespa.ai/features/" target="_blank" rel="noopener">Product <span class="caret"></span></a>
+        <a href="https://vespa.ai/industries/" target="_blank" rel="noopener">Industries <span class="caret"></span></a>
+        <a href="https://vespa.ai/resources/" target="_blank" rel="noopener">Resources <span class="caret"></span></a>
+        <a href="https://vespa.ai/company/" target="_blank" rel="noopener">Company <span class="caret"></span></a>
+        <a href="https://vespa.ai/pricing/" target="_blank" rel="noopener">Pricing</a>
+      </nav>
+      <div class="ctas">
+        <a class="btn btn-solid" href="https://vespa.ai/free-trial/" target="_blank" rel="noopener">Free trial</a>
+        <a class="btn btn-outline" href="https://vespa.ai/get-in-touch/" target="_blank" rel="noopener">Contact us</a>
+      </div>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="badge reveal in"><span class="dot"></span>Live Webinar · Vespa.ai Live</span>
+    <h1 class="reveal in">Real-Time RAG, at Enterprise Scale</h1>
+    <p class="sub reveal in">How teams combine big data, vector search, and machine-learned ranking to make AI work in production — and how to plan, promote, and run sessions like this one natively on your own platform.</p>
+    <div class="meta reveal in">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Thursday, July 16, 2026</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>10:00 AM PT · 1:00 PM ET</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>45 minutes + live Q&amp;A</span>
+    </div>
+    <p class="hostline">Streaming right here on vespa.ai — no downloads, no redirects</p>
+    <div class="hero-cta reveal in">
+      <a class="btn btn-solid btn-lg" href="#register">Save your seat</a>
+      <div class="cal-links">
+        <a id="gcal" href="#" target="_blank" rel="noopener">+ Google Calendar</a>
+        <a id="ics" href="#" download="vespa-ai-live-webinar.ics">+ iCal / Outlook</a>
+      </div>
+    </div>
+    <div class="count reveal in" id="count" aria-label="Countdown to webinar">
+      <div class="tile"><b id="cd">00</b><span>Days</span></div>
+      <div class="tile"><b id="ch">00</b><span>Hours</span></div>
+      <div class="tile"><b id="cm">00</b><span>Minutes</span></div>
+      <div class="tile"><b id="cs">00</b><span>Seconds</span></div>
+      <div class="live-now" id="livenow">● We're live now — join below</div>
+    </div>
+  </div>
+</section>
+
+<!-- trust strip -->
+<div class="trust">
+  <div class="wrap">
+    <span><i></i>Hosted natively on vespa.ai</span>
+    <span><i></i>Live Q&amp;A, polls &amp; chat in the stream</span>
+    <span><i></i>Recording sent to every registrant</span>
+  </div>
+</div>
+
+<!-- embed -->
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <span class="k reveal">Register &amp; watch</span>
+    <h2 class="reveal">Join the live experience</h2>
+    <div class="embed-card reveal">
+      <div class="skel" id="skel"><div class="spinner"></div><p>Loading the live experience…</p></div>
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- learn -->
+<section class="learn">
+  <div class="wrap">
+    <span class="k reveal">What you'll learn</span>
+    <h2 class="reveal">All you need to make AI work</h2>
+    <div class="cards stagger">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>RAG that holds up in production</h3>
+        <p>How to architect retrieval-augmented generation that combines text search, vector search, and structured data — with real-time inference at enterprise scale.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Ranking with machine-learned models</h3>
+        <p>Why integrated, distributed model inference for relevance changes what's possible in search, recommendation, and personalization quality.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Events that convert on your own site</h3>
+        <p>How the most innovative teams run webinars natively on their platform — keeping the audience, the data, and the pipeline on their own domain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- speaker -->
+<section class="speaker-sec">
+  <div class="wrap">
+    <span class="k reveal">Speaker</span>
+    <h2 class="reveal">Who you'll hear from</h2>
+    <div class="sp-card reveal">
+      <div class="avatar">FM</div>
+      <div>
+        <h3>Fernando Mora</h3>
+        <p class="role">Head of Growth</p>
+        <p>Fernando works with engineering-led teams on turning technical depth into demand — including how live sessions like this one become a repeatable growth channel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cta band -->
+<section class="band">
+  <div class="wrap">
+    <h2 class="reveal">Can't make it live?</h2>
+    <p class="reveal">Register anyway — every registrant gets the full recording and resources, delivered right after the session ends.</p>
+    <a class="btn btn-lg reveal" href="#register">Register for the recording</a>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <svg width="211" height="48" viewBox="0 0 211 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5876 32.2135H56.2925L42.7049 45.2039H0V26.6467L13.5876 13.6562V32.2135Z"></path><path d="M69.8804 0.666016V19.2233L56.2928 32.213V13.6558H13.5879L27.1762 0.666016H69.8804Z"></path><path d="M95.7499 38.7409L83.4688 7.16113H88.5697L98.5833 34.049L108.691 7.16113H113.698L101.417 38.7409H95.7485H95.7499Z"></path><path d="M133.678 20.8978C132.765 19.2598 131.475 17.9441 129.805 16.9512C128.136 15.9583 126.137 15.4619 123.807 15.4619C121.477 15.4619 119.429 15.9649 117.665 16.9735C115.901 17.9821 114.525 19.381 113.534 21.1689C112.54 22.9588 112.045 25.0565 112.045 27.4621C112.045 29.8676 112.541 31.8684 113.534 33.6426C114.525 35.4168 115.901 36.8006 117.665 37.7928C119.429 38.7857 121.444 39.2821 123.712 39.2821C125.57 39.2821 127.214 38.9658 128.647 38.3345C130.079 37.7031 131.284 36.8386 132.261 35.7403C133.236 34.642 133.929 33.4022 134.34 32.0184H129.616C129.144 33.101 128.419 33.9589 127.444 34.5903C126.467 35.2216 125.222 35.5379 123.712 35.5379C122.452 35.5379 121.286 35.2439 120.216 34.6577C119.145 34.0716 118.287 33.1999 117.641 32.0413C117.084 31.0432 116.768 29.8467 116.692 28.4543H134.954C134.984 28.0338 135.008 27.65 135.024 27.3042C135.04 26.9584 135.047 26.6349 135.047 26.3343C135.047 24.3492 134.592 22.5384 133.678 20.8971V20.8978ZM116.746 25.2524C116.873 24.1803 117.171 23.2548 117.641 22.4788C118.287 21.4099 119.144 20.5991 120.216 20.0418C121.286 19.4851 122.468 19.2068 123.76 19.2068C125.585 19.2068 127.114 19.7412 128.342 20.8081C129.57 21.8769 130.231 23.357 130.325 25.2524H116.747H116.746Z"></path><path d="M148.274 39.2821C146.258 39.2821 144.495 38.9665 142.984 38.3345C141.472 37.7031 140.275 36.8164 139.394 35.6729C138.512 34.53 137.977 33.1913 137.788 31.6575H142.606C142.763 32.3792 143.071 33.0414 143.527 33.6426C143.983 34.2445 144.613 34.7252 145.416 35.086C146.219 35.4469 147.171 35.6277 148.274 35.6277C149.313 35.6277 150.171 35.4849 150.848 35.1993C151.525 34.9138 152.021 34.5228 152.336 34.0264C152.651 33.5299 152.809 32.9968 152.809 32.4251C152.809 31.5835 152.596 30.9443 152.171 30.5075C151.746 30.0719 151.115 29.7255 150.282 29.4701C149.447 29.2147 148.447 28.9815 147.282 28.7706C146.179 28.5899 145.117 28.3423 144.094 28.0266C143.071 27.7109 142.157 27.3128 141.355 26.8314C140.552 26.3507 139.914 25.7416 139.441 25.0041C138.969 24.2674 138.733 23.3577 138.733 22.2744C138.733 20.9816 139.094 19.8158 139.819 18.7778C140.543 17.7404 141.574 16.9283 142.913 16.3415C144.251 15.7547 145.833 15.4619 147.66 15.4619C150.305 15.4619 152.431 16.0638 154.036 17.2662C155.642 18.4693 156.587 20.1688 156.871 22.3642H152.289C152.163 21.3418 151.69 20.5526 150.872 19.9959C150.053 19.4399 148.966 19.1616 147.613 19.1616C146.259 19.1616 145.219 19.4177 144.495 19.9285C143.77 20.44 143.408 21.1172 143.408 21.9588C143.408 22.5004 143.613 22.9817 144.022 23.4022C144.431 23.824 145.037 24.177 145.841 24.4625C146.644 24.7487 147.628 25.0114 148.793 25.2517C150.462 25.553 151.958 25.9282 153.28 26.3795C154.603 26.8307 155.657 27.4929 156.445 28.3646C157.232 29.2369 157.626 30.4845 157.626 32.1088C157.657 33.5227 157.288 34.7704 156.516 35.853C155.744 36.9355 154.658 37.7784 153.258 38.3797C151.856 38.9809 150.195 39.2821 148.274 39.2821H148.274Z"></path><path d="M161.971 48.6662V16.0039H166.222L166.694 19.5228C167.198 18.8312 167.828 18.1769 168.584 17.5606C169.339 16.9443 170.244 16.4407 171.3 16.049C172.354 15.6587 173.591 15.4629 175.007 15.4629C177.274 15.4629 179.266 15.9894 180.983 17.0419C182.699 18.095 184.037 19.5162 184.998 21.3055C185.958 23.0954 186.438 25.1328 186.438 27.4185C186.438 29.7042 185.95 31.7423 184.974 33.5316C183.998 35.3215 182.652 36.7276 180.936 37.7499C179.219 38.7723 177.228 39.2838 174.961 39.2838C173.102 39.2838 171.466 38.9301 170.048 38.2235C168.632 37.5168 167.514 36.5318 166.695 35.2684V48.6675H161.971L161.971 48.6662ZM174.205 35.3575C175.653 35.3575 176.936 35.0268 178.054 34.3653C179.171 33.7038 180.054 32.7712 180.699 31.5681C181.344 30.3657 181.667 28.9668 181.667 27.3727C181.667 25.7786 181.344 24.3882 180.699 23.1995C180.053 22.0115 179.171 21.0789 178.054 20.4023C176.936 19.7258 175.653 19.3872 174.205 19.3872C172.756 19.3872 171.425 19.7258 170.308 20.4023C169.19 21.0789 168.316 22.0115 167.686 23.1995C167.056 24.3882 166.741 25.7786 166.741 27.3727C166.741 28.9668 167.056 30.3657 167.686 31.5681C168.316 32.7712 169.189 33.7038 170.308 34.3653C171.425 35.0274 172.724 35.3575 174.205 35.3575Z"></path><path d="M198.625 39.2821C196.672 39.2821 195.051 38.9665 193.76 38.3345C192.468 37.7031 191.508 36.8537 190.878 35.7855C190.248 34.718 189.934 33.5679 189.934 32.3341C189.934 30.8303 190.343 29.5447 191.162 28.4766C191.981 27.409 193.146 26.5897 194.657 26.018C196.168 25.4469 197.979 25.1607 200.089 25.1607H206.277C206.277 23.8377 206.071 22.7401 205.663 21.8677C205.253 20.996 204.647 20.3417 203.845 19.9056C203.042 19.47 202.026 19.2513 200.798 19.2513C199.381 19.2513 198.169 19.5748 197.161 20.2212C196.153 20.8683 195.523 21.8225 195.272 23.0859H190.548C190.737 21.4918 191.311 20.1309 192.272 19.0031C193.233 17.8753 194.469 17.0029 195.98 16.3867C197.492 15.7704 199.098 15.4619 200.798 15.4619C203.033 15.4619 204.908 15.8385 206.419 16.5897C207.93 17.3415 209.072 18.4019 209.844 19.77C210.615 21.1388 211.001 22.7702 211.001 24.6649V38.7405H206.891L206.513 34.9059C206.166 35.5078 205.757 36.0789 205.285 36.6205C204.813 37.1621 204.253 37.6285 203.607 38.0188C202.961 38.4098 202.222 38.7182 201.388 38.9435C200.553 39.1688 199.632 39.2821 198.624 39.2821H198.625ZM199.522 35.6277C200.529 35.6277 201.443 35.4325 202.262 35.0409C203.081 34.6505 203.781 34.1161 204.364 33.4396C204.946 32.763 205.387 31.9961 205.686 31.1388C205.985 30.2815 206.15 29.402 206.182 28.4995V28.3639H200.561C199.207 28.3639 198.112 28.5217 197.278 28.8374C196.444 29.1531 195.837 29.5821 195.459 30.123C195.081 30.6647 194.893 31.296 194.893 32.0177C194.893 32.7394 195.074 33.4094 195.436 33.9353C195.798 34.4619 196.325 34.8758 197.019 35.1758C197.711 35.477 198.546 35.627 199.522 35.627L199.522 35.6277Z"></path></svg>
+        <p>The AI Search Platform. Big data, vector search &amp; machine-learned ranking — real-time, at scale.</p>
+      </div>
+      <div class="fcol">
+        <h4>Why Vespa</h4>
+        <a href="https://vespa.ai/why-vespa/" target="_blank" rel="noopener">Vespa Overview</a>
+        <a href="https://vespa.ai/case-studies/" target="_blank" rel="noopener">Case Studies</a>
+        <a href="https://vespa.ai/competitors/" target="_blank" rel="noopener">Compare Vespa</a>
+        <a href="https://vespa.ai/benchmarks/" target="_blank" rel="noopener">Performance Benchmarks</a>
+      </div>
+      <div class="fcol">
+        <h4>Product</h4>
+        <a href="https://vespa.ai/features/" target="_blank" rel="noopener">Features</a>
+        <a href="https://vespa.ai/use-cases/" target="_blank" rel="noopener">Use Cases</a>
+        <a href="https://vespa.ai/solutions/vespa-cloud/" target="_blank" rel="noopener">Vespa Cloud</a>
+        <a href="https://vespa.ai/solutions/vespa-cloud/vespa-on-aws/" target="_blank" rel="noopener">Vespa on AWS</a>
+      </div>
+      <div class="fcol">
+        <h4>Industries</h4>
+        <a href="https://vespa.ai/industries/adtech/" target="_blank" rel="noopener">AdTech</a>
+        <a href="https://vespa.ai/industries/digital-commerce/" target="_blank" rel="noopener">Digital Commerce</a>
+        <a href="https://vespa.ai/industries/fintech/" target="_blank" rel="noopener">FinTech</a>
+      </div>
+      <div class="fcol">
+        <h4>Resources</h4>
+        <a href="https://docs.vespa.ai/" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://blog.vespa.ai/" target="_blank" rel="noopener">Blog</a>
+        <a href="https://vespa.ai/support/" target="_blank" rel="noopener">Support</a>
+        <a href="https://vespa.ai/subscribe/" target="_blank" rel="noopener">Newsletter Sign up</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Vespa.ai. All rights reserved.</span>
+      <span>
+        <a href="https://vespa.ai/privacy-policy/" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://vespa.ai/terms-of-service/" target="_blank" rel="noopener">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => { Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" }); });
+
+/* ---------- one EVENT object drives countdown + calendar links ---------- */
+const EVENT = {
+  title: "Vespa.ai Live — Real-Time RAG at Enterprise Scale",
+  desc: "Live webinar: how teams combine big data, vector search and machine-learned ranking to make AI work in production. Streaming natively on vespa.ai.",
+  loc: "https://sequel-demo.github.io/webinar-on/vespa/",
+  start: new Date("2026-07-16T10:00:00-07:00"),
+  end:   new Date("2026-07-16T10:45:00-07:00")
+};
+const pad = n => String(n).padStart(2, "0");
+const utc = d => d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + "T" + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + "00Z";
+
+/* Google Calendar */
+document.getElementById("gcal").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + utc(EVENT.start) + "/" + utc(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.desc) +
+  "&location=" + encodeURIComponent(EVENT.loc);
+
+/* .ics */
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//vespa.ai//webinar//EN","BEGIN:VEVENT",
+  "UID:vespa-live-" + utc(EVENT.start) + "@vespa.ai",
+  "DTSTAMP:" + utc(new Date()),
+  "DTSTART:" + utc(EVENT.start),
+  "DTEND:" + utc(EVENT.end),
+  "SUMMARY:" + EVENT.title,
+  "DESCRIPTION:" + EVENT.desc,
+  "LOCATION:" + EVENT.loc,
+  "END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ics").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* countdown */
+const tiles = { d: document.getElementById("cd"), h: document.getElementById("ch"), m: document.getElementById("cm"), s: document.getElementById("cs") };
+function tick() {
+  const diff = EVENT.start - Date.now();
+  if (diff <= 0) {
+    document.querySelectorAll("#count .tile").forEach(t => t.style.display = "none");
+    document.getElementById("livenow").style.display = "block";
+    return;
+  }
+  tiles.d.textContent = pad(Math.floor(diff / 864e5));
+  tiles.h.textContent = pad(Math.floor(diff / 36e5) % 24);
+  tiles.m.textContent = pad(Math.floor(diff / 6e4) % 60);
+  tiles.s.textContent = pad(Math.floor(diff / 1e3) % 60);
+  setTimeout(tick, 1000);
+}
+tick();
+
+/* embed skeleton: remove once Sequel paints (12s fallback) */
+const root = document.getElementById("sequel_root"), skel = document.getElementById("skel");
+function hideSkel(){ if(!skel) return; skel.style.opacity = "0"; setTimeout(() => skel.remove(), 500); }
+new MutationObserver((m, o) => { if (root.children.length) { hideSkel(); o.disconnect(); } }).observe(root, { childList: true, subtree: true });
+setTimeout(hideSkel, 12000);
+
+/* nav shrink */
+addEventListener("scroll", () => document.getElementById("hdr").classList.toggle("scrolled", scrollY > 8), { passive: true });
+
+/* scroll reveal */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll(".reveal:not(.in), .stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
