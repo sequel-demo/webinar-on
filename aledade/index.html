@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The LEAD Model explained: A deep dive into the new ACO design | Aledade</title>
+<link rel="icon" href="https://aledade.com/hubfs/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#003DA5; --blue-dark:#00307f;
+  --salmon:#FDA179; --salmon-dark:#fc8a57;
+  --teal:#003642; --ink:#091F31; --ink-soft:#3d5266;
+  --util:#EAF2FF; --line:#e3e9f0; --bg-soft:#f4f8fd;
+  --sh-sm:0 2px 8px rgba(9,31,49,.07);
+  --sh-md:0 10px 26px rgba(9,31,49,.10);
+  --sh-lg:0 22px 48px rgba(9,31,49,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3.serif{font-family:'Literata',Georgia,serif;font-weight:400;color:var(--teal)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- announce bar ---------- */
+.announce{background:var(--blue);color:#fff;font-size:14px;text-align:center;padding:9px 16px;position:relative;z-index:60}
+.announce a{color:#fff;font-weight:600;border-bottom:1px solid rgba(255,255,255,.55);transition:border-color .25s var(--ease)}
+.announce a:hover{border-color:#fff}
+.announce .dot-sep{opacity:.55;margin:0 8px}
+
+/* ---------- utility strip ---------- */
+.util{background:var(--util);font-size:14.5px}
+.util-inner{display:flex;justify-content:flex-end;align-items:center;padding:8px 0}
+.util a{color:var(--ink);padding:0 14px;transition:color .2s}
+.util a:hover{color:var(--blue)}
+.util .pipe{color:#F26B3A;font-weight:700}
+.util .caret{font-size:10px;margin-left:4px;color:var(--ink-soft)}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;background:#fff;z-index:50;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:var(--sh-md)}
+.nav-inner{display:flex;align-items:center;gap:28px;padding:20px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:12px 0}
+.logo img{width:150px;height:30px;display:block}
+nav.main{display:flex;gap:26px;flex:1;justify-content:center}
+nav.main a{color:var(--ink);font-size:15.5px;position:relative;padding:4px 0;white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .3s var(--ease)}
+nav.main a:hover::after{width:100%}
+nav.main .caret{font-size:10px;margin-left:3px;color:var(--ink-soft)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.search-box{display:flex;align-items:center;border:1px solid var(--line);border-radius:20px;padding:8px 14px;color:#8b99a8;font-size:14px;gap:8px;min-width:150px}
+.pill{background:var(--salmon);border-radius:18px;padding:10px 22px;font-size:15px;font-weight:500;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.pill:hover{background:var(--salmon-dark);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+nav a.pill, .nav-right a.pill{color:var(--ink)}   /* specificity guard: keep CTA label visible */
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);padding:72px 0 64px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:30px;padding:7px 16px;font-size:13.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);box-shadow:var(--sh-sm)}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#e0442c;position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(224,68,44,.5);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(30px,4vw,46px);line-height:1.15;letter-spacing:-.02em;margin:22px 0 18px}
+.hero-sub{color:var(--ink-soft);font-size:17px;max-width:560px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;margin:24px 0 6px;font-size:15px;font-weight:500;color:var(--teal)}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none}
+.stream-note{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:26px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-blue{background:var(--blue);color:#fff !important;border-radius:18px;padding:13px 30px;font-size:16px;font-weight:500;display:inline-block;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.btn-blue:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-ghost{border:1.5px solid var(--blue);color:var(--blue);border-radius:18px;padding:11.5px 24px;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+
+/* countdown card */
+.count-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-lg);padding:34px 34px 30px;text-align:center}
+.count-card h3{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:20px;font-family:'IBM Plex Sans',sans-serif}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.count-tile{background:var(--bg-soft);border-radius:14px;padding:16px 6px 12px}
+.count-tile b{display:block;font-size:34px;line-height:1;color:var(--blue);font-variant-numeric:tabular-nums;font-weight:700}
+.count-tile span{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft)}
+.live-now{display:none;font-family:'Literata',serif;font-size:24px;color:var(--blue);padding:22px 0}
+.count-foot{margin-top:20px;font-size:14px;color:var(--ink-soft)}
+.count-foot a{color:var(--blue);font-weight:600}
+.count-foot a:hover{text-decoration:underline}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--teal);color:#fff;padding:20px 0}
+.trust-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.trust span{display:flex;align-items:center;gap:10px;font-size:14.5px;opacity:.95}
+.trust svg{flex:none}
+
+/* ---------- embed ---------- */
+.embed-sec{padding:76px 0 70px;background:#fff}
+.sec-head{text-align:center;max-width:660px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(26px,3vw,36px);letter-spacing:-.02em;margin-bottom:12px}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+.embed-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh-lg);padding:14px;position:relative;min-height:548px}
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+.skeleton{position:absolute;inset:14px;border-radius:14px;background:var(--bg-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5;transition:opacity .5s var(--ease)}
+.spinner{width:42px;height:42px;border:4px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skeleton p{color:var(--ink-soft);font-size:15px}
+
+/* ---------- learn ---------- */
+.learn{background:var(--bg-soft);padding:76px 0}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.learn-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 28px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.learn-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.learn-num{width:44px;height:44px;border-radius:12px;background:var(--util);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-bottom:18px}
+.learn-card h3{font-size:19px;margin-bottom:10px;color:var(--teal);font-weight:600;font-family:'IBM Plex Sans',sans-serif}
+.learn-card p{color:var(--ink-soft);font-size:15px}
+
+/* ---------- speakers ---------- */
+.speakers{padding:76px 0;background:#fff}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:980px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:36px 26px 30px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-photo{width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 20px;display:block;border:4px solid var(--util);box-shadow:var(--sh-sm)}
+.sp-card h3{font-size:19px;color:var(--teal);font-weight:600;font-family:'IBM Plex Sans',sans-serif}
+.sp-role{color:var(--blue);font-size:14.5px;font-weight:500;margin-top:4px}
+.sp-tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--bg-soft);border-radius:20px;padding:4px 12px}
+
+/* ---------- cta band ---------- */
+.cta-band{background:var(--blue);color:#fff;padding:64px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.12) 0,transparent 65%)}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative}
+.cta-inner h2{color:#fff;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em}
+.cta-inner p{opacity:.85;margin-top:8px;max-width:520px}
+a.pill.big{padding:14px 32px;font-size:16px;white-space:nowrap;color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer{background:#fff;padding:64px 0 0;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px}
+.foot-left img{width:150px;margin-bottom:22px}
+.foot-left a.mail{color:var(--blue);display:block;margin-bottom:14px}
+.foot-left p{color:var(--ink-soft);font-size:15px;margin-bottom:4px}
+.foot-left .phone{color:var(--blue);display:block;margin:12px 0 20px}
+.foot-col h4{color:var(--blue);font-size:17px;margin-bottom:18px}
+.foot-col a{display:block;color:var(--ink);font-size:15px;margin-bottom:12px;transition:color .2s}
+.foot-col a:hover{color:var(--blue)}
+.legal{background:var(--util);padding:18px 0}
+.legal-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft)}
+.legal a{color:var(--ink-soft)}
+.legal a:hover{color:var(--blue)}
+.socials{display:flex;gap:16px}
+.socials a{color:var(--ink-soft);transition:color .2s,transform .2s}
+.socials a:hover{color:var(--blue);transform:translateY(-2px)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  nav.main{display:none}
+  .search-box{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .card-grid,.sp-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .trust-inner{justify-content:center}
+  .util-inner{justify-content:center;flex-wrap:wrap}
+  .util a{padding:0 8px}
+}
+@media(max-width:560px){
+  .foot-grid{grid-template-columns:1fr}
+  .count-tile b{font-size:26px}
+  .util{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- announce -->
+<div class="announce">
+  <span class="live-dot" style="display:inline-block;vertical-align:middle;margin-right:8px"></span>
+  Live webinar · Tuesday, July 21 at 1:00 PM ET <span class="dot-sep">·</span> The LEAD Model explained <span class="dot-sep">·</span> <a href="#register">Save your seat →</a>
+</div>
+
+<!-- utility strip -->
+<div class="util">
+  <div class="wrap util-inner">
+    <a href="https://aledade.com/about-aledade" target="_blank" rel="noopener">About Aledade<span class="caret">▾</span></a><span class="pipe">|</span>
+    <a href="https://aledade.com/careers" target="_blank" rel="noopener">Careers</a><span class="pipe">|</span>
+    <a href="https://aledade.com/newsroom" target="_blank" rel="noopener">Newsroom</a><span class="pipe">|</span>
+    <a href="https://aledade.com/current-partner-resources" target="_blank" rel="noopener">Current Partner Resources</a><span class="pipe">|</span>
+    <a href="https://app.aledade.com" target="_blank" rel="noopener">App Login</a>
+  </div>
+</div>
+
+<!-- header -->
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://aledade.com" target="_blank" rel="noopener" aria-label="Aledade">
+      <img src="https://aledade.com/hs-fs/hubfs/Aledade-Logo_Blue-1-300x60.png" alt="Aledade" width="150" height="30">
+    </a>
+    <nav class="main">
+      <a href="https://aledade.com/what-is-value-based-care" target="_blank" rel="noopener">What&rsquo;s Value-Based Care</a>
+      <a href="https://aledade.com/why-aledade" target="_blank" rel="noopener">Why Aledade</a>
+      <a href="https://aledade.com/what-we-offer" target="_blank" rel="noopener">What We Offer</a>
+      <a href="https://aledade.com/our-partners" target="_blank" rel="noopener">Our Partners<span class="caret">▾</span></a>
+      <a href="https://aledade.com/where-we-are" target="_blank" rel="noopener">Where We Are</a>
+    </nav>
+    <div class="nav-right">
+      <div class="search-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Search...</div>
+      <a class="pill" href="https://aledade.com/contact-us" target="_blank" rel="noopener">Contact us</a>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="badge"><span class="live-dot"></span>Live Webinar</span>
+      <h1>The LEAD Model explained: A&nbsp;deep dive into the new ACO&nbsp;design</h1>
+      <p class="hero-sub">CMMI&rsquo;s Long-term Enhanced ACO Design (LEAD) Model will replace ACO REACH in 2027. Join Aledade&rsquo;s policy leaders for a live deep dive into the model &mdash; and what it means for your primary care organization.</p>
+      <div class="meta-row">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Tuesday, July 21, 2026</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1:00 PM ET &middot; 55 minutes</span>
+      </div>
+      <p class="stream-note">Streaming live right here on aledade.com &mdash; no downloads, no third-party platform.</p>
+      <div class="hero-ctas">
+        <a class="btn-blue" href="#register">Save your seat</a>
+        <a class="btn-ghost" id="gcalBtn" href="#" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>Google Calendar</a>
+        <a class="btn-ghost" id="icsBtn" href="#" download="aledade-lead-model-webinar.ics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>.ics</a>
+      </div>
+    </div>
+    <div class="reveal in" style="transition-delay:.15s">
+      <div class="count-card">
+        <h3>The live session starts in</h3>
+        <div class="count-grid" id="countGrid">
+          <div class="count-tile"><b id="cd">--</b><span>Days</span></div>
+          <div class="count-tile"><b id="ch">--</b><span>Hours</span></div>
+          <div class="count-tile"><b id="cm">--</b><span>Min</span></div>
+          <div class="count-tile"><b id="cs">--</b><span>Sec</span></div>
+        </div>
+        <p class="live-now" id="liveNow">We&rsquo;re live now &mdash; join below&nbsp;↓</p>
+        <p class="count-foot">Can&rsquo;t make it? <a href="#register">Register anyway</a> and we&rsquo;ll send the recording.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- trust strip -->
+<div class="trust">
+  <div class="wrap trust-inner">
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Hosted natively on aledade.com</span>
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Live Q&amp;A with Aledade&rsquo;s policy team</span>
+    <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Recording sent to every registrant</span>
+  </div>
+</div>
+
+<!-- embed -->
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Join the live experience</h2>
+      <p>Register below to watch live, ask the panel your questions, and get the recording &mdash; all without leaving aledade.com.</p>
+    </div>
+    <div class="embed-card reveal">
+      <div class="skeleton" id="skeleton"><div class="spinner"></div><p>Loading the live experience&hellip;</p></div>
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- learn -->
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What you&rsquo;ll learn</h2>
+      <p>Expert analysis of the model replacing ACO REACH &mdash; from the team that helped thousands of practices navigate value-based care.</p>
+    </div>
+    <div class="card-grid stagger">
+      <div class="learn-card">
+        <div class="learn-num">1</div>
+        <h3>LEAD Model fundamentals</h3>
+        <p>The fundamental structure and basics of the LEAD Model &mdash; and which ACO REACH policies will remain in effect through the 2027 transition.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">2</div>
+        <h3>Benchmarks &amp; risk adjustment</h3>
+        <p>How the model&rsquo;s 10-year period affects risk adjustment and benchmarks, and what that means for your organization&rsquo;s planning.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">3</div>
+        <h3>Strategic considerations</h3>
+        <p>Strategic considerations for primary care organizations based on the latest CMMI updates, with live Q&amp;A to pressure-test your questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- speakers -->
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Meet your speakers</h2>
+      <p>The policy leaders who track every CMMI move &mdash; so your practice doesn&rsquo;t have to.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-photo" src="https://aledade.com/hs-fs/hubfs/Team%20Members/Travis-Broome.jpg" alt="Travis Broome" loading="lazy">
+        <h3>Travis Broome</h3>
+        <p class="sp-role">SVP Policy &amp; Economics, Aledade</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+      <div class="sp-card">
+        <img class="sp-photo" src="https://aledade.com/hs-fs/hubfs/Headshot%20-%20CavanaughSean%20copy.webp" alt="Sean Cavanaugh" loading="lazy">
+        <h3>Sean Cavanaugh</h3>
+        <p class="sp-role">Chief Policy Officer, Aledade</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+      <div class="sp-card">
+        <img class="sp-photo" src="data:image/jpeg;base64,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" alt="Bridget Griffith">
+        <h3>Bridget Griffith, Ed.S</h3>
+        <p class="sp-role">Senior Director, Field Marketing, Aledade</p>
+        <span class="sp-tag">Moderator</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cta band -->
+<section class="cta-band">
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>Can&rsquo;t make it live?</h2>
+      <p>Register anyway &mdash; every registrant gets the full recording and the panel&rsquo;s LEAD Model resources the moment we wrap.</p>
+    </div>
+    <a class="pill big" href="#register">Register for the recording</a>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-left">
+      <img src="https://aledade.com/hs-fs/hubfs/Aledade-Logo_Blue-1-300x60.png" alt="Aledade">
+      <a class="mail" href="mailto:info@aledade.com">info@aledade.com</a>
+      <p>4550 Montgomery Ave #1050N</p>
+      <p>Bethesda, MD 20814</p>
+      <a class="phone" href="tel:+12028037979">(202) 803-7979</a>
+      <a class="pill" href="https://aledade.com/contact-us" target="_blank" rel="noopener">Contact us</a>
+    </div>
+    <div class="foot-col">
+      <h4>Our Partners</h4>
+      <a href="https://aledade.com/primary-care-practices" target="_blank" rel="noopener">Primary Care Practices</a>
+      <a href="https://aledade.com/community-health-centers" target="_blank" rel="noopener">Community Health Centers</a>
+      <a href="https://aledade.com/health-systems" target="_blank" rel="noopener">Health Systems</a>
+      <a href="https://aledade.com/health-plans" target="_blank" rel="noopener">Health Plans</a>
+    </div>
+    <div class="foot-col">
+      <h4>Resources</h4>
+      <a href="https://aledade.com/newsroom" target="_blank" rel="noopener">Newsroom</a>
+      <a href="https://aledade.com/success-stories" target="_blank" rel="noopener">Success Stories</a>
+      <a href="https://aledade.com/value-based-care-resources" target="_blank" rel="noopener">Learning and Education</a>
+    </div>
+    <div class="foot-col">
+      <h4>About Aledade</h4>
+      <a href="https://aledade.com/our-team-and-story" target="_blank" rel="noopener">Our Team &amp; Story</a>
+      <a href="https://aledade.com/careers" target="_blank" rel="noopener">Careers</a>
+      <a href="https://aledade.com/policy-institute" target="_blank" rel="noopener">The Aledade Policy Institute</a>
+      <a href="https://aledade.com/public-benefit-corporation" target="_blank" rel="noopener">Public Benefit Corporation</a>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="wrap legal-inner">
+      <span>&copy; 2026 Aledade. All Rights Reserved. &nbsp;|&nbsp; <a href="https://aledade.com/transparency-in-coverage" target="_blank" rel="noopener">Transparency in Coverage</a> &nbsp;|&nbsp; <a href="https://aledade.com/trust-center" target="_blank" rel="noopener">Trust Center</a> &nbsp;|&nbsp; <a href="https://aledade.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://aledade.com/your-privacy-choices" target="_blank" rel="noopener">Your Privacy Choices</a></span>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/aledade" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        <a href="https://www.facebook.com/AledadeACO" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.09 24 18.1 24 12.07z"/></svg></a>
+        <a href="https://x.com/AledadeACO" target="_blank" rel="noopener" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
+        <a href="https://www.youtube.com/@aledade" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+        <a href="https://www.instagram.com/aledadeinc" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm7.85-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- event object (single source of truth) ---------- */
+const EVENT = {
+  title: "The LEAD Model explained: A deep dive into the new ACO design",
+  start: new Date("2026-07-21T13:00:00-04:00"),
+  end:   new Date("2026-07-21T13:55:00-04:00"),
+  utcStart: "20260721T170000Z",
+  utcEnd:   "20260721T175500Z",
+  location: "Live on aledade.com",
+  description: "Aledade's policy leaders break down CMMI's LEAD Model, the ACO design replacing REACH in 2027. Streaming live on aledade.com."
+};
+
+/* ---------- countdown ---------- */
+const pad = n => String(n).padStart(2,"0");
+function tick(){
+  const diff = EVENT.start - new Date();
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  document.getElementById("cd").textContent = pad(Math.floor(diff/864e5));
+  document.getElementById("ch").textContent = pad(Math.floor(diff/36e5)%24);
+  document.getElementById("cm").textContent = pad(Math.floor(diff/6e4)%60);
+  document.getElementById("cs").textContent = pad(Math.floor(diff/1e3)%60);
+  setTimeout(tick, 1000);
+}
+tick();
+
+/* ---------- add to calendar ---------- */
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + EVENT.utcStart + "/" + EVENT.utcEnd +
+  "&details=" + encodeURIComponent(EVENT.description) +
+  "&location=" + encodeURIComponent(EVENT.location);
+
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Aledade//Webinar//EN","BEGIN:VEVENT",
+  "UID:lead-model-webinar@aledade.com","DTSTAMP:" + EVENT.utcStart,
+  "DTSTART:" + EVENT.utcStart,"DTEND:" + EVENT.utcEnd,
+  "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.description,
+  "LOCATION:" + EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* ---------- nav shrink ---------- */
+const header = document.getElementById("siteHeader");
+addEventListener("scroll", () => header.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+
+/* ---------- embed skeleton ---------- */
+const skel = document.getElementById("skeleton");
+const root = document.getElementById("sequel_root");
+function hideSkel(){ if(!skel.dataset.done){ skel.dataset.done=1; skel.style.opacity=0; setTimeout(()=>skel.remove(), 550); } }
+new MutationObserver((m,obs) => { if (root.childElementCount > 0){ setTimeout(hideSkel, 800); obs.disconnect(); } })
+  .observe(root, {childList:true, subtree:true});
+setTimeout(hideSkel, 12000);
+</script>
+
+<div id="sequel_anchor"></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+</body>
+</html>
