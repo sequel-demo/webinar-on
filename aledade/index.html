@@ -442,12 +442,16 @@ const skel = document.getElementById("skeleton");
 const root = document.getElementById("sequel_root");
 function hideSkel(){ if(!skel.dataset.done){ skel.dataset.done=1; skel.style.opacity=0; setTimeout(()=>skel.remove(), 550); } }
 function playerReady(){
-  return root.querySelector("iframe") || (root.innerText && root.innerText.trim().length > 0);
+  // Sequel renders inside an open Shadow DOM - pierce it to detect the player
+  const host = [...root.children].find(c => c.shadowRoot);
+  if (host) {
+    const sh = host.shadowRoot;
+    return !!(sh.querySelector("iframe") || (sh.textContent && sh.textContent.trim().length > 50));
+  }
+  return !!(root.querySelector("iframe") || (root.innerText && root.innerText.trim().length > 0));
 }
-const mo = new MutationObserver(() => { if (playerReady()){ setTimeout(hideSkel, 600); mo.disconnect(); } });
-mo.observe(root, {childList:true, subtree:true, characterData:true});
-setTimeout(() => { if (playerReady()) hideSkel(); }, 6000);
-setTimeout(hideSkel, 25000);
+const skelPoll = setInterval(() => { if (playerReady()){ clearInterval(skelPoll); setTimeout(hideSkel, 500); } }, 400);
+setTimeout(() => { clearInterval(skelPoll); hideSkel(); }, 25000);
 </script>
 
 <div id="sequel_anchor"></div>
