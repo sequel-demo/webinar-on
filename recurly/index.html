@@ -87,10 +87,6 @@ nav a.pill, .nav-right a.pill{color:var(--ink)}   /* specificity guard */
 #register{scroll-margin-top:96px}
 .embed-card{position:relative;min-height:520px;border-radius:18px;overflow:hidden;box-shadow:var(--sh-lg)}
 #sequel_root{min-height:520px}
-.skeleton{position:absolute;inset:0;border-radius:18px;background:var(--ink-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:5;transition:opacity .5s var(--ease)}
-.spinner{width:42px;height:42px;border:4px solid rgba(255,255,255,.12);border-top-color:var(--yellow);border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.skeleton p{color:var(--text-inv-soft);font-size:15px}
 
 /* ---------- learn ---------- */
 .learn{background:#fff;padding:72px 0}
@@ -236,7 +232,6 @@ footer{background:var(--ink);color:#fff;padding:60px 0 0}
 <section class="embed-sec" id="register">
   <div class="wrap">
     <div class="embed-card">
-      <div class="skeleton" id="skeleton"><div class="spinner"></div><p>Loading the live experience&hellip;</p></div>
       <div id="sequel_root"></div>
     </div>
   </div>
@@ -427,21 +422,6 @@ const io = new IntersectionObserver(entries => {
 },{threshold:.15});
 document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
 
-/* ---------- embed skeleton (hide only on real player) ---------- */
-const skel = document.getElementById("skeleton");
-const root = document.getElementById("sequel_root");
-function hideSkel(){ if(!skel.dataset.done){ skel.dataset.done=1; skel.style.opacity=0; setTimeout(()=>skel.remove(), 550); } }
-function playerReady(){
-  // Sequel renders inside an open Shadow DOM - pierce it to detect the player
-  const host = [...root.children].find(c => c.shadowRoot);
-  if (host) {
-    const sh = host.shadowRoot;
-    return !!(sh.querySelector("iframe") || (sh.textContent && sh.textContent.trim().length > 50));
-  }
-  return !!(root.querySelector("iframe") || (root.innerText && root.innerText.trim().length > 0));
-}
-const skelPoll = setInterval(() => { if (playerReady()){ clearInterval(skelPoll); setTimeout(hideSkel, 500); } }, 400);
-setTimeout(() => { clearInterval(skelPoll); hideSkel(); }, 25000);
 
 /* ---------- host photo (loaded from repo to guarantee byte-integrity) ---------- */
 fetch("georgianne.txt").then(r => r.text()).then(t => { document.getElementById("hostPhoto").src = t.trim(); });
