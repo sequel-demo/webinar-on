@@ -441,9 +441,13 @@ document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
 const skel = document.getElementById("skeleton");
 const root = document.getElementById("sequel_root");
 function hideSkel(){ if(!skel.dataset.done){ skel.dataset.done=1; skel.style.opacity=0; setTimeout(()=>skel.remove(), 550); } }
-new MutationObserver((m,obs) => { if (root.childElementCount > 0){ setTimeout(hideSkel, 800); obs.disconnect(); } })
-  .observe(root, {childList:true, subtree:true});
-setTimeout(hideSkel, 12000);
+function playerReady(){
+  return root.querySelector("iframe") || (root.innerText && root.innerText.trim().length > 0);
+}
+const mo = new MutationObserver(() => { if (playerReady()){ setTimeout(hideSkel, 600); mo.disconnect(); } });
+mo.observe(root, {childList:true, subtree:true, characterData:true});
+setTimeout(() => { if (playerReady()) hideSkel(); }, 6000);
+setTimeout(hideSkel, 25000);
 </script>
 
 <div id="sequel_anchor"></div>
