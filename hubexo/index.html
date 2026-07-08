@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connecting the World of Construction — Live | Hubexo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lime:#DCFF3C; --plum:#321432; --plum-soft:#4a2a4a; --off:#F7F7F2;
+  --ink:#321432; --ink-soft:#5d4a5d;
+  --line:#e6e6df;
+  --sh-sm:0 2px 10px rgba(50,20,50,.08);
+  --sh-md:0 12px 30px rgba(50,20,50,.13);
+  --sh-lg:0 26px 56px rgba(50,20,50,.18);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',-apple-system,sans-serif;color:var(--ink);background:var(--off);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{font-weight:400;letter-spacing:-.02em}
+a{text-decoration:none;color:inherit}
+img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- announce ---------- */
+.announce{background:var(--plum);color:#fff;font-size:14px;text-align:center;padding:9px 16px;position:relative;z-index:60}
+.announce a{color:var(--lime);font-weight:600;transition:opacity .2s}
+.announce a:hover{opacity:.8}
+.announce .dot-sep{opacity:.5;margin:0 8px}
+
+/* ---------- header (on lime, white pill nav like theirs) ---------- */
+header.site{position:sticky;top:0;background:var(--lime);z-index:50;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:var(--sh-md)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:20px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:12px 0}
+.logo{display:block;color:var(--plum)}
+.logo svg{height:42px;width:auto;display:block}
+.navpill{background:var(--off);border-radius:100px;padding:8px 14px;display:flex;align-items:center;gap:4px;box-shadow:var(--sh-sm)}
+.navpill a{color:var(--plum);font-size:15.5px;font-weight:500;padding:9px 20px;border-radius:100px;transition:background .25s var(--ease)}
+.navpill a:hover{background:rgba(50,20,50,.08)}
+
+/* ---------- hero (lime, like hubexo.com) ---------- */
+.hero{background:var(--lime);padding:56px 0 64px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--plum);font-size:13.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--plum);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(50,20,50,.4);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.04;color:var(--plum);margin:18px 0 16px}
+.hero-sub{color:var(--plum);opacity:.8;font-size:17.5px;max-width:540px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;margin:24px 0 8px;font-size:15.5px;font-weight:600;color:var(--plum)}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none}
+.stream-note{font-size:14.5px;color:var(--plum);font-weight:700;margin-bottom:26px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-plum{background:var(--plum);color:var(--lime) !important;border-radius:100px;padding:15px 32px;font-size:16px;font-weight:600;display:inline-flex;align-items:center;gap:9px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-plum:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(50,20,50,.35)}
+.btn-ghost{border:1.5px solid var(--plum);color:var(--plum);border-radius:100px;padding:13px 26px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{background:var(--plum);color:var(--lime);transform:translateY(-2px)}
+
+/* countdown card */
+.count-card{background:var(--off);border-radius:12px;box-shadow:var(--sh-lg);padding:36px 34px 30px;text-align:center;color:var(--plum)}
+.count-card h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:20px}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.count-tile{background:#fff;border-radius:10px;padding:16px 6px 12px;box-shadow:var(--sh-sm)}
+.count-tile b{display:block;font-size:33px;line-height:1;color:var(--plum);font-variant-numeric:tabular-nums;font-weight:700}
+.count-tile span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:600}
+.live-now{display:none;font-size:23px;color:var(--plum);font-weight:600;padding:22px 0}
+.count-foot{margin-top:20px;font-size:14px;color:var(--ink-soft)}
+.count-foot a{color:var(--plum);font-weight:700;text-decoration:underline}
+
+/* ---------- embed (seamless) ---------- */
+.embed-sec{padding:34px 0 68px;background:linear-gradient(180deg,var(--lime) 0%,var(--lime) 8%,var(--off) 8%)}
+#register{scroll-margin-top:110px}
+.embed-card{position:relative;min-height:520px;border-radius:12px;overflow:hidden;box-shadow:var(--sh-lg);background:#fff}
+#sequel_root{min-height:520px}
+
+/* ---------- learn (their real "Why choose us?" pillars) ---------- */
+.learn{background:var(--off);padding:64px 0 70px}
+.sec-head{text-align:center;max-width:700px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(28px,3.4vw,42px);color:var(--plum);margin-bottom:12px}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.learn-card{background:#fff;border-radius:12px;padding:34px 28px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.learn-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.learn-num{width:46px;height:46px;border-radius:50%;background:var(--lime);color:var(--plum);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-bottom:18px}
+.learn-card h3{font-size:20px;margin-bottom:10px;color:var(--plum);font-weight:600}
+.learn-card p{color:var(--ink-soft);font-size:15px}
+
+/* ---------- host ---------- */
+.speakers{padding:70px 0;background:#fff}
+.sp-grid{display:grid;grid-template-columns:1fr;gap:26px;max-width:340px;margin:0 auto}
+.sp-card{background:var(--off);border-radius:12px;padding:36px 26px 30px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-photo{width:132px;height:132px;border-radius:50%;object-fit:cover;margin:0 auto 20px;display:block;border:4px solid var(--lime)}
+.sp-card h3{font-size:19px;color:var(--plum);font-weight:600}
+.sp-role{color:var(--ink-soft);font-size:14.5px;font-weight:500;margin-top:4px}
+.sp-tag{display:inline-block;margin-top:14px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--plum);background:var(--lime);border-radius:100px;padding:5px 14px}
+
+/* ---------- cta band ---------- */
+.cta-band{background:var(--plum);color:#fff;padding:60px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(220,255,60,.15) 0,transparent 65%)}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;position:relative}
+.cta-inner h2{color:#fff;font-size:clamp(26px,3.2vw,36px)}
+.cta-inner p{opacity:.85;margin-top:8px;max-width:520px}
+.btn-lime{background:var(--lime);color:var(--plum) !important;border-radius:100px;padding:15px 32px;font-size:16px;font-weight:600;white-space:nowrap;display:inline-block;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(220,255,60,.3)}
+.cta-points{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px}
+.cta-points span{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:500;opacity:.95}
+.cta-points svg{flex:none;color:var(--lime)}
+
+/* ---------- footer (plum replica) ---------- */
+footer{background:var(--plum);color:#fff;padding:56px 0 0}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;padding-bottom:44px}
+.foot-logo{color:var(--lime)}
+.foot-logo svg{height:38px;width:auto}
+.foot-links{display:flex;gap:30px;flex-wrap:wrap}
+.foot-links a{color:#fff;font-size:15px;font-weight:500;transition:color .2s}
+.foot-links a:hover{color:var(--lime)}
+.legal{border-top:1px solid rgba(255,255,255,.18);padding:18px 0 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.75)}
+.legal a:hover{color:var(--lime)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+
+/* ---------- responsive ---------- */
+@media(max-width:1020px){
+  .navpill{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .card-grid{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+}
+@media(max-width:560px){
+  .count-tile b{font-size:26px}
+  .hero h1{font-size:38px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- announce -->
+<div class="announce">
+  Live Webinar · Tuesday, July 21 at 1:00 PM ET <span class="dot-sep">·</span> Connecting the World of Construction <span class="dot-sep">·</span> <a href="#register">Save your seat →</a>
+</div>
+
+<!-- header -->
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" id="logoBox" href="https://hubexo.com" target="_blank" rel="noopener" aria-label="Hubexo"></a>
+    <nav class="navpill">
+      <a href="https://hubexo.com/products/" target="_blank" rel="noopener">Products</a>
+      <a href="https://hubexo.com/about/" target="_blank" rel="noopener">About</a>
+      <a href="https://hubexo.com/news/" target="_blank" rel="noopener">News</a>
+      <a href="https://hubexo.com/contact/" target="_blank" rel="noopener">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow"><span class="live-dot"></span>Live Webinar</span>
+      <h1>Connecting the world of construction. Live.</h1>
+      <p class="hero-sub">We help the world build better by delivering unrivalled insights and technology to the construction industry &mdash; join Hubexo for a live session on turning construction data into your next project win.</p>
+      <div class="meta-row">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Tuesday, July 21, 2026</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1:00 PM ET &middot; 45 minutes</span>
+      </div>
+      <p class="stream-note">Streaming live and on-demand on hubexo.com</p>
+      <div class="hero-ctas">
+        <a class="btn-plum" href="#register">Save your seat <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="btn-ghost" id="gcalBtn" href="#" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>Google Calendar</a>
+        <a class="btn-ghost" id="icsBtn" href="#" download="hubexo-construction-webinar.ics"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>.ics</a>
+      </div>
+    </div>
+    <div class="count-card reveal in" style="transition-delay:.15s">
+      <h3>The live session starts in</h3>
+      <div class="count-grid" id="countGrid">
+        <div class="count-tile"><b id="cd">--</b><span>Days</span></div>
+        <div class="count-tile"><b id="ch">--</b><span>Hours</span></div>
+        <div class="count-tile"><b id="cm">--</b><span>Min</span></div>
+        <div class="count-tile"><b id="cs">--</b><span>Sec</span></div>
+      </div>
+      <p class="live-now" id="liveNow">We&rsquo;re live now &mdash; join below&nbsp;↓</p>
+      <p class="count-foot">Can&rsquo;t make it? <a href="#register">Register anyway</a> and we&rsquo;ll send the recording.</p>
+    </div>
+  </div>
+</section>
+
+<!-- embed (seamless) -->
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<!-- learn -->
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Why join live?</h2>
+      <p>A working session built around what Hubexo does for the construction ecosystem.</p>
+    </div>
+    <div class="card-grid stagger">
+      <div class="learn-card">
+        <div class="learn-num">1</div>
+        <h3>Sell more</h3>
+        <p>How to boost growth by increasing your visibility &mdash; and connecting and engaging with the construction ecosystem at the right moment.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">2</div>
+        <h3>Improve efficiency</h3>
+        <p>Reach your goals faster: how teams optimise processes and drive efficiencies with project information and market intelligence.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">3</div>
+        <h3>Build more sustainably</h3>
+        <p>How better data availability from the centre of the construction ecosystem supports more sustainable building decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- host -->
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Meet your host</h2>
+      <p>Your host from the events team at Hubexo.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-photo" id="hostPhoto" alt="Kathleen Meadowcroft">
+        <h3>Kathleen Meadowcroft, CTSM</h3>
+        <p class="sp-role">Trade Show and Marketing Operations Specialist, Hubexo</p>
+        <span class="sp-tag">Host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cta band -->
+<section class="cta-band">
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>Can&rsquo;t make it live?</h2>
+      <p>Register anyway &mdash; every registrant gets the full recording and the session takeaways the moment we wrap.</p>
+      <div class="cta-points">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Hosted natively on hubexo.com</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Live Q&amp;A with the panel</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Recording sent to every registrant</span>
+      </div>
+    </div>
+    <a class="btn-lime" href="#register">Register for the recording</a>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="foot-logo" id="footLogoBox" href="https://hubexo.com" target="_blank" rel="noopener" aria-label="Hubexo"></a>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/company/hubexo" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://hubexo.com/products/" target="_blank" rel="noopener">Products</a>
+        <a href="https://hubexo.com/about/" target="_blank" rel="noopener">About</a>
+        <a href="https://hubexo.com/news/" target="_blank" rel="noopener">News</a>
+        <a href="https://hubexo.com/contact/" target="_blank" rel="noopener">Contact</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; Hubexo, 2026</span>
+      <a href="https://hubexo.com/modern-slavery-act-statement/" target="_blank" rel="noopener">Modern Slavery Act Statement</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- event object ---------- */
+const EVENT = {
+  title: "Connecting the World of Construction — Live with Hubexo",
+  start: new Date("2026-07-21T13:00:00-04:00"),
+  end:   new Date("2026-07-21T13:45:00-04:00"),
+  utcStart: "20260721T170000Z",
+  utcEnd:   "20260721T174500Z",
+  location: "Live on hubexo.com",
+  description: "Join Hubexo for a live session on turning construction data into your next project win — unrivalled insights and technology for the construction industry. Streaming live on hubexo.com."
+};
+
+/* ---------- countdown ---------- */
+const pad = n => String(n).padStart(2,"0");
+function tick(){
+  const diff = EVENT.start - new Date();
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  document.getElementById("cd").textContent = pad(Math.floor(diff/864e5));
+  document.getElementById("ch").textContent = pad(Math.floor(diff/36e5)%24);
+  document.getElementById("cm").textContent = pad(Math.floor(diff/6e4)%60);
+  document.getElementById("cs").textContent = pad(Math.floor(diff/1e3)%60);
+  setTimeout(tick, 1000);
+}
+tick();
+
+/* ---------- add to calendar ---------- */
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + EVENT.utcStart + "/" + EVENT.utcEnd +
+  "&details=" + encodeURIComponent(EVENT.description) +
+  "&location=" + encodeURIComponent(EVENT.location);
+
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Hubexo//Webinar//EN","BEGIN:VEVENT",
+  "UID:construction-live-webinar@hubexo.com","DTSTAMP:" + EVENT.utcStart,
+  "DTSTART:" + EVENT.utcStart,"DTEND:" + EVENT.utcEnd,
+  "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.description,
+  "LOCATION:" + EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* ---------- nav shrink ---------- */
+const header = document.getElementById("siteHeader");
+addEventListener("scroll", () => header.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+
+/* ---------- real Hubexo logo (inlined so currentColor applies) ---------- */
+fetch("logo.svg").then(r => r.text()).then(t => {
+  document.getElementById("logoBox").innerHTML = t;
+  document.getElementById("footLogoBox").innerHTML = t;
+});
+
+/* ---------- host photo (loaded from repo to guarantee byte-integrity) ---------- */
+fetch("kathleen.txt").then(r => r.text()).then(t => { document.getElementById("hostPhoto").src = t.trim(); });
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+</body>
+</html>
