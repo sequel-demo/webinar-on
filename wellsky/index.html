@@ -83,8 +83,8 @@ nav.main .sep{color:#c9ced4;font-size:12px}
 .count-foot a{color:var(--teal);font-weight:700}
 .count-foot a:hover{text-decoration:underline}
 
-/* ---------- embed (seamless navy → white) ---------- */
-.embed-sec{padding:30px 0 70px;background:linear-gradient(180deg,var(--navy) 0%,var(--bg-soft) 46%,#fff 100%)}
+/* ---------- embed (solid navy band, clean edge) ---------- */
+.embed-sec{padding:30px 0 72px;background:var(--navy)}
 #register{scroll-margin-top:100px}
 .embed-card{position:relative;min-height:520px;border-radius:10px;overflow:hidden;box-shadow:var(--sh-lg);background:#fff}
 #sequel_root{min-height:520px}
@@ -103,10 +103,11 @@ nav.main .sep{color:#c9ced4;font-size:12px}
 
 /* ---------- host ---------- */
 .speakers{padding:70px 0;background:var(--bg-soft)}
-.sp-grid{display:grid;grid-template-columns:1fr;gap:26px;max-width:340px;margin:0 auto}
+.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:720px;margin:0 auto}
+@media (max-width:700px){.sp-grid{grid-template-columns:1fr;max-width:340px}}
 .sp-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:34px 28px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
-.sp-ava{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;color:#fff;font-size:34px;font-weight:700;border:3px solid #fff;box-shadow:0 0 0 3px var(--teal)}
+.sp-ava{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;object-fit:cover;display:block;background:linear-gradient(135deg,var(--teal),var(--navy));border:3px solid #fff;box-shadow:0 0 0 3px var(--teal)}
 .sp-card h3{font-size:19px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .sp-role{font-size:14.5px;color:var(--ink-soft);margin-bottom:14px}
 .sp-tag{display:inline-block;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:4px 14px;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal)}
@@ -247,15 +248,21 @@ footer.site{background:var(--navy);color:#fff;padding:56px 0 0}
 <section class="speakers">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2 style="color:var(--navy);font-weight:500">Meet your host</h2>
-      <p>Your host from the WellSky team.</p>
+      <h2 style="color:var(--navy);font-weight:500">Meet your speakers</h2>
+      <p>Your hosts from the WellSky team.</p>
     </div>
     <div class="sp-grid stagger">
       <div class="sp-card">
-        <div class="sp-ava">WS</div>
-        <h3>Your WellSky Speaker</h3>
-        <p class="sp-role">SkySense AI&trade; Product Team, WellSky</p>
-        <span class="sp-tag">Host</span>
+        <img class="sp-ava" id="shannonPhoto" alt="Shannon Pike">
+        <h3>Shannon Pike</h3>
+        <p class="sp-role">VP, Growth Marketing, WellSky</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+      <div class="sp-card">
+        <img class="sp-ava" id="lauriePhoto" alt="Laurie Donohue">
+        <h3>Laurie Donohue</h3>
+        <p class="sp-role">Marketing Operations Manager, WellSky</p>
+        <span class="sp-tag">Speaker</span>
       </div>
     </div>
   </div>
@@ -331,6 +338,10 @@ const EVENT = {
 };
 
 Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" });
+
+/* speaker photos */
+fetch("shannon.txt").then(r => r.text()).then(t => { document.getElementById("shannonPhoto").src = t.trim(); });
+fetch("laurie.txt").then(r => r.text()).then(t => { document.getElementById("lauriePhoto").src = t.trim(); });
 
 /* countdown */
 function tick(){
