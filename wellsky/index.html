@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlock the Power of AI in Home-Based Care — Live | WellSky</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#93272C; --maroon-dark:#7d2025;
+  --orange:#D38335; --teal:#588D9D; --teal-btn:#418B98; --teal-dark:#3d7f8b;
+  --navy:#263747; --navy-2:#1d2b38;
+  --ink:#444444; --ink-soft:#6b7280;
+  --line:#e5e8ec; --bg-soft:#f4f7f9;
+  --sh-sm:0 2px 10px rgba(38,55,71,.08);
+  --sh-md:0 12px 28px rgba(38,55,71,.14);
+  --sh-lg:0 24px 52px rgba(38,55,71,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{font-weight:500;letter-spacing:-.01em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- announce (CareForum, teal) ---------- */
+.announce{background:var(--teal-btn);color:#fff;font-size:14px;text-align:center;padding:9px 16px;position:relative;z-index:60}
+.announce b{font-weight:700}
+.announce a{color:#fff;font-weight:700;border-bottom:1.5px solid rgba(255,255,255,.55);transition:border-color .25s}
+.announce a:hover{border-color:#fff}
+.announce .dot-sep{opacity:.55;margin:0 8px}
+
+/* ---------- header replica ---------- */
+header.site{position:sticky;top:0;background:#fff;z-index:50;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:var(--sh-md)}
+.nav-inner{display:flex;align-items:center;gap:30px;padding:16px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:10px 0}
+.logo img{height:40px;display:block}
+nav.main{display:flex;align-items:center;gap:0;flex:1;justify-content:flex-end}
+nav.main a{color:var(--orange);font-size:15px;font-weight:400;padding:4px 12px;white-space:nowrap;transition:color .2s}
+nav.main a:hover{color:var(--maroon)}
+nav.main a.login{color:var(--orange);font-weight:700}
+nav.main .sep{color:#c9ced4;font-size:12px}
+.btn-maroon{background:var(--maroon);color:#fff !important;padding:13px 24px;font-size:15px;font-weight:500;display:inline-block;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-maroon:hover{background:var(--maroon-dark);transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.hdr-cta{margin-left:16px}
+
+/* ---------- hero (navy, like their dark band) ---------- */
+.hero{background:var(--navy);color:#fff;padding:74px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-180px;top:-140px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(88,141,157,.35) 0%,transparent 68%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-160px;bottom:-220px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(211,131,53,.22) 0%,transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.14fr .86fr;gap:52px;align-items:center;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--orange);font-size:13.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--orange);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(211,131,53,.5);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(31px,4vw,48px);line-height:1.13;color:#fff;margin:18px 0 16px;font-weight:500}
+.hero-sub{color:rgba(255,255,255,.82);font-size:17px;max-width:560px;font-weight:300}
+.hero-sub b{font-weight:500;color:#fff}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;margin:24px 0 8px;font-size:15px;font-weight:500;color:#fff}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none;color:var(--teal)}
+.stream-note{font-size:14.5px;color:var(--orange);font-weight:700;margin-bottom:26px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-hero{background:var(--maroon);color:#fff !important;border-radius:7px;padding:14px 30px;font-size:16px;font-weight:500;display:inline-flex;align-items:center;gap:9px;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-hero:hover{background:var(--maroon-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(147,39,44,.35)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:7px;padding:12.5px 22px;font-size:15px;font-weight:400;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+/* countdown card */
+.count-card{background:#fff;border-radius:10px;box-shadow:var(--sh-lg);padding:34px 32px 30px;text-align:center}
+.count-card h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:20px}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.count-tile{background:var(--bg-soft);border-radius:8px;padding:16px 6px 12px;border-top:3px solid var(--teal)}
+.count-tile b{display:block;font-size:33px;line-height:1;color:var(--maroon);font-variant-numeric:tabular-nums;font-weight:700}
+.count-tile span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:500}
+.live-now{display:none;font-size:23px;color:var(--maroon);font-weight:700;padding:22px 0}
+.count-foot{margin-top:20px;font-size:14px;color:var(--ink-soft)}
+.count-foot a{color:var(--teal);font-weight:700}
+.count-foot a:hover{text-decoration:underline}
+
+/* ---------- embed (seamless navy → white) ---------- */
+.embed-sec{padding:30px 0 70px;background:linear-gradient(180deg,var(--navy) 0%,var(--bg-soft) 46%,#fff 100%)}
+#register{scroll-margin-top:100px}
+.embed-card{position:relative;min-height:520px;border-radius:10px;overflow:hidden;box-shadow:var(--sh-lg);background:#fff}
+#sequel_root{min-height:520px}
+
+/* ---------- learn ---------- */
+.learn{background:#fff;padding:70px 0}
+.sec-head{text-align:center;max-width:700px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(26px,3vw,36px);color:var(--orange);font-weight:300;margin-bottom:12px}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.learn-card{background:#fff;border:1px solid var(--line);border-top:5px solid var(--teal);border-radius:6px;padding:32px 28px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.learn-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.learn-num{width:44px;height:44px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-bottom:18px}
+.learn-card h3{font-size:19px;margin-bottom:10px;font-weight:700;color:var(--teal)}
+.learn-card p{color:var(--ink);font-size:15px}
+
+/* ---------- host ---------- */
+.speakers{padding:70px 0;background:var(--bg-soft)}
+.sp-grid{display:grid;grid-template-columns:1fr;gap:26px;max-width:340px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:34px 28px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ava{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;color:#fff;font-size:34px;font-weight:700;border:3px solid #fff;box-shadow:0 0 0 3px var(--teal)}
+.sp-card h3{font-size:19px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.sp-role{font-size:14.5px;color:var(--ink-soft);margin-bottom:14px}
+.sp-tag{display:inline-block;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:4px 14px;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal)}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--navy);color:#fff;padding:64px 0}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.cta-band h2{font-size:clamp(26px,3vw,36px);color:#fff;margin-bottom:12px;font-weight:500}
+.cta-band p{color:rgba(255,255,255,.8);font-size:16.5px;max-width:520px;font-weight:300}
+.proof{list-style:none;margin-top:22px;display:grid;gap:12px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:rgba(255,255,255,.92)}
+.proof svg{flex:none;margin-top:3px;color:var(--orange)}
+.cta-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start;justify-self:end}
+.btn-big{background:var(--maroon);color:#fff !important;border-radius:7px;padding:16px 36px;font-size:16.5px;font-weight:500;display:inline-block;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-big:hover{background:var(--maroon-dark);transform:translateY(-2px);box-shadow:0 12px 28px rgba(147,39,44,.4)}
+.cta-note{font-size:13.5px;color:rgba(255,255,255,.6)}
+
+/* ---------- footer replica ---------- */
+footer.site{background:var(--navy);color:#fff;padding:56px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.foot-logo img{height:44px;display:block;margin-bottom:16px}
+.foot-tag{font-size:14px;color:rgba(255,255,255,.65);max-width:250px;font-weight:300}
+.foot-col h4{font-size:19px;font-weight:700;color:#fff;margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:rgba(255,255,255,.75);padding:4px 0;transition:color .2s}
+.foot-col a:hover{color:var(--orange)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.14);padding:18px 0;font-size:13px;color:rgba(255,255,255,.6);text-align:center}
+.foot-bottom a{color:rgba(255,255,255,.75)}
+.foot-bottom a:hover{color:var(--orange)}
+.foot-bottom .sep{margin:0 7px;opacity:.5}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger>*{opacity:1 !important;transform:none !important;transition:none !important}}
+
+@media (max-width:960px){
+  .hero-grid,.cta-grid{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  nav.main a:not(.login):not(.btn-maroon){display:none}
+  .cta-actions{justify-self:start}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Join us in Dallas for <b>CareForum 2026!</b> September 13–16 <span class="dot-sep">·</span> <a href="#register">Register now</a></div>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><img src="https://wellsky.com/wp-content/uploads/2020/11/newlogo2x.png" alt="WellSky"></a>
+    <nav class="main">
+      <a href="#">855-WELLSKY</a><span class="sep">|</span>
+      <a href="#">About Us</a><span class="sep">|</span>
+      <a href="#">Resources</a><span class="sep">|</span>
+      <a href="#">Careers</a><span class="sep">|</span>
+      <a href="#">Support</a><span class="sep">|</span>
+      <a href="#">Blog</a><span class="sep">|</span>
+      <a href="#" class="login">Login</a>
+      <a href="#register" class="btn-maroon hdr-cta">Request a demo</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="live-dot"></span>Live Webinar</span>
+      <h1>Unlock the power of AI in home-based care</h1>
+      <p class="hero-sub">Explore how <b>WellSky SkySense AI&trade;</b> helps reduce documentation time, streamline workflows, and give clinicians more time with patients.</p>
+      <div class="meta-row">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Tuesday, July 21, 2026</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1:00 PM ET</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>45 minutes</span>
+      </div>
+      <p class="stream-note">Streaming live and on-demand on wellsky.com</p>
+      <div class="hero-ctas">
+        <a class="btn-hero" href="#register">Save my seat
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="btn-ghost" href="#" id="gcalBtn" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Google Calendar</a>
+        <a class="btn-ghost" href="#" id="icsBtn" download="wellsky-ai-home-care-live.ics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>.ics</a>
+      </div>
+    </div>
+    <div class="count-card" id="countCard">
+      <h3>Live session begins in</h3>
+      <div class="count-grid" id="countGrid">
+        <div class="count-tile"><b id="cd">00</b><span>Days</span></div>
+        <div class="count-tile"><b id="ch">00</b><span>Hours</span></div>
+        <div class="count-tile"><b id="cm">00</b><span>Minutes</span></div>
+        <div class="count-tile"><b id="cs">00</b><span>Seconds</span></div>
+      </div>
+      <div class="live-now" id="liveNow">&#9679; We're live — join below</div>
+      <p class="count-foot">Can't make it? <a href="#register">Register anyway</a> — we'll send the recording.</p>
+    </div>
+  </div>
+</section>
+
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Healthier, smarter, &amp; more efficient ways to deliver care</h2>
+      <p>A working session on what AI-powered innovation looks like inside home-based care.</p>
+    </div>
+    <div class="card-grid stagger">
+      <div class="learn-card">
+        <div class="learn-num">1</div>
+        <h3>Reduce documentation time</h3>
+        <p>See how WellSky SkySense AI&trade; takes documentation off your clinicians' plates — so paperwork stops competing with patient care.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">2</div>
+        <h3>Streamline workflows</h3>
+        <p>Smart, comprehensive workflows that power the work of health and community care — from home &amp; post-acute to community-based organizations.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">3</div>
+        <h3>More time with patients</h3>
+        <p>The outcome that matters: AI-powered capabilities opening new possibilities for how care is delivered — all focused on better outcomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 style="color:var(--navy);font-weight:500">Meet your host</h2>
+      <p>Your host from the WellSky team.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <div class="sp-ava">WS</div>
+        <h3>Your WellSky Speaker</h3>
+        <p class="sp-role">SkySense AI&trade; Product Team, WellSky</p>
+        <span class="sp-tag">Host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Can't make it live?</h2>
+      <p>Register anyway and the full recording lands in your inbox as soon as we wrap.</p>
+      <ul class="proof">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Hosted natively on wellsky.com — no downloads, no third-party platform</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Live Q&amp;A with the team building SkySense AI&trade;</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Recording sent to every registrant</li>
+      </ul>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="btn-big" href="#register">Register now</a>
+      <span class="cta-note">Takes less than a minute.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-logo">
+        <img src="https://wellsky.com/wp-content/uploads/2021/03/footer-logo.png" alt="WellSky">
+        <p class="foot-tag">Creating a more effective, inclusive, and sustainable healthcare system.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Who We Serve</h4>
+        <a href="#">Home &amp; post-acute providers</a>
+        <a href="#">Physicians &amp; specialty providers</a>
+        <a href="#">Hospitals &amp; health systems</a>
+        <a href="#">Community-based organizations</a>
+        <a href="#">Patients &amp; families</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="#">All Resources</a>
+        <a href="#">Blog</a>
+        <a href="#">Ebooks &amp; White Papers</a>
+        <a href="#">Success Stories</a>
+        <a href="#">Webinars</a>
+      </div>
+      <div class="foot-col">
+        <h4>About Us</h4>
+        <a href="#">About Us</a>
+        <a href="#">Leadership</a>
+        <a href="#">Our Partners</a>
+        <a href="#">News</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      &copy; 2026 WellSky. All rights reserved.
+      <span class="sep">|</span><a href="#">Terms of use</a>
+      <span class="sep">|</span><a href="#">Patents</a>
+      <span class="sep">|</span><a href="#">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+const EVENT = {
+  title: "Unlock the Power of AI in Home-Based Care — Live",
+  start: new Date("2026-07-21T13:00:00-04:00"),
+  end:   new Date("2026-07-21T13:45:00-04:00"),
+  details: "Explore how WellSky SkySense AI helps reduce documentation time, streamline workflows, and give clinicians more time with patients. Streaming live and on-demand on wellsky.com.",
+  location: "wellsky.com"
+};
+
+Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" });
+
+/* countdown */
+function tick(){
+  const now = new Date(), diff = EVENT.start - now;
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  const d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+  cd.textContent = String(d).padStart(2,"0");
+  ch.textContent = String(h).padStart(2,"0");
+  cm.textContent = String(m).padStart(2,"0");
+  cs.textContent = String(s).padStart(2,"0");
+}
+const cd=document.getElementById("cd"),ch=document.getElementById("ch"),
+      cm=document.getElementById("cm"),cs=document.getElementById("cs");
+tick(); setInterval(tick,1000);
+
+/* calendar */
+function gDate(d){ return d.toISOString().replace(/[-:]|\.\d{3}/g,""); }
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + gDate(EVENT.start) + "/" + gDate(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.details) +
+  "&location=" + encodeURIComponent(EVENT.location);
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WellSky//Webinar//EN","BEGIN:VEVENT",
+  "UID:ai-home-care-live@wellsky.com",
+  "DTSTAMP:" + gDate(new Date()),
+  "DTSTART:" + gDate(EVENT.start),
+  "DTEND:" + gDate(EVENT.end),
+  "SUMMARY:" + EVENT.title,
+  "DESCRIPTION:" + EVENT.details,
+  "LOCATION:" + EVENT.location,
+  "END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* header shrink */
+const hdr = document.getElementById("siteHeader");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
