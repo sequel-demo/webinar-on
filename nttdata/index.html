@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balance AI Innovation and Security — Live Webinar | NTT DATA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#070F26; --navy-2:#0D1730; --navy-3:#131F3D;
+  --cyan:#00DFED; --yellow:#FFC400; --blue:#0072BC;
+  --ink:#111827; --ink-soft:#4b5563;
+  --line:#e5e7eb; --bg-soft:#F4F6F9;
+  --sh-sm:0 2px 10px rgba(7,15,38,.08);
+  --sh-md:0 12px 28px rgba(7,15,38,.14);
+  --sh-lg:0 24px 52px rgba(7,15,38,.28);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans',-apple-system,sans-serif;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:'Noto Serif',serif;font-weight:400;letter-spacing:-.02em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- header replica ---------- */
+header.site{position:sticky;top:0;background:var(--navy);z-index:50;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.nav-inner{display:flex;align-items:center;gap:34px;padding:19px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:12px 0}
+.logo img{height:26px;display:block}
+nav.main{display:flex;gap:30px;flex:1;margin-left:16px}
+nav.main a{color:#fff;font-size:15px;font-weight:500;position:relative;padding:6px 0;white-space:nowrap}
+nav.main a .caret{font-size:9px;opacity:.7;margin-left:5px;vertical-align:2px}
+nav.main a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2.5px;background:var(--cyan);transition:width .3s var(--ease)}
+nav.main a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:18px;color:#fff;font-size:14.5px}
+.nav-right .globe{display:flex;align-items:center;gap:8px}
+.nav-right .globe b{font-weight:600}
+.nav-right .globe span{opacity:.65}
+.nav-right svg{opacity:.9}
+
+/* ---------- dark wrap: hero + embed, one continuous surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.dark-wrap::before{content:"";position:absolute;right:-220px;top:-160px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(0,114,188,.28) 0%,transparent 66%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;left:-240px;bottom:-260px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(0,223,237,.10) 0%,transparent 70%);pointer-events:none}
+.crumbs{position:relative;z-index:2;padding:26px 0 0;font-size:14px;color:rgba(255,255,255,.65)}
+.crumbs a{color:var(--cyan)}
+.crumbs a:hover{text-decoration:underline}
+.crumbs .sep{margin:0 8px;opacity:.5}
+.hero{padding:34px 0 40px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.16fr .84fr;gap:52px;align-items:center;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--cyan);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-family:'Noto Sans',sans-serif}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--cyan);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(0,223,237,.5);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(34px,4.6vw,58px);line-height:1.1;color:#fff;margin:16px 0 14px}
+.hero-sub{color:rgba(255,255,255,.78);font-size:17px;max-width:560px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;margin:22px 0 8px;font-size:15px;font-weight:600;color:#fff}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none;color:var(--cyan)}
+.stream-note{font-size:14.5px;color:var(--cyan);font-weight:700;margin-bottom:24px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-yellow{background:var(--yellow);color:var(--navy) !important;border-radius:40px;padding:14px 32px;font-size:15.5px;font-weight:700;display:inline-flex;align-items:center;gap:9px;transition:filter .25s,transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-yellow:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,196,0,.3)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:40px;padding:12.5px 24px;font-size:14.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+/* countdown card (dark) */
+.count-card{background:var(--navy-2);border:1px solid rgba(255,255,255,.12);border-radius:14px;box-shadow:var(--sh-lg);padding:32px 30px 28px;text-align:center;position:relative;z-index:2}
+.count-card h3{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:700;margin-bottom:20px}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.count-tile{background:var(--navy-3);border-radius:10px;padding:16px 6px 12px;border-top:2.5px solid var(--cyan)}
+.count-tile b{display:block;font-size:32px;line-height:1;color:var(--cyan);font-variant-numeric:tabular-nums;font-weight:700}
+.count-tile span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);font-weight:600}
+.live-now{display:none;font-family:'Noto Serif',serif;font-size:23px;color:var(--cyan);padding:22px 0}
+.count-foot{margin-top:20px;font-size:14px;color:rgba(255,255,255,.6)}
+.count-foot a{color:var(--cyan);font-weight:700}
+.count-foot a:hover{text-decoration:underline}
+
+/* embed — inside dark wrap, zero seam */
+.embed-sec{padding:10px 0 76px;position:relative;z-index:2}
+#register{scroll-margin-top:96px}
+.embed-card{position:relative;min-height:520px;border-radius:14px;overflow:hidden;box-shadow:var(--sh-lg),0 0 0 1px rgba(255,255,255,.1);background:var(--navy-2)}
+#sequel_root{min-height:520px}
+
+/* ---------- learn (white) ---------- */
+.learn{background:#fff;padding:76px 0}
+.sec-head{max-width:760px;margin:0 auto 44px;text-align:center}
+.sec-head h2{font-size:clamp(27px,3.2vw,40px);color:var(--navy);margin-bottom:14px;line-height:1.2}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.learn-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 28px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.learn-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.learn-num{width:46px;height:46px;border-radius:50%;background:var(--yellow);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:19px;margin-bottom:20px}
+.learn-card h3{font-family:'Noto Serif',serif;font-weight:500;font-size:20px;margin-bottom:10px;color:var(--navy);line-height:1.35}
+.learn-card p{color:var(--ink-soft);font-size:15px}
+
+/* ---------- speakers ---------- */
+.speakers{padding:76px 0;background:var(--bg-soft)}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1000px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 26px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ava{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;object-fit:cover;object-position:center top;display:block;border:3px solid #fff;box-shadow:0 0 0 3px var(--cyan)}
+.sp-card h3{font-family:'Noto Serif',serif;font-weight:500;font-size:20px;color:var(--navy);margin-bottom:6px}
+.sp-role{font-size:14px;color:var(--ink-soft);margin-bottom:14px;min-height:42px}
+.sp-tag{display:inline-block;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--navy);color:#fff;padding:66px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;right:-160px;top:-200px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(0,114,188,.25) 0%,transparent 66%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;position:relative;z-index:2}
+.cta-band h2{font-size:clamp(27px,3.2vw,40px);color:#fff;margin-bottom:12px}
+.cta-band p{color:rgba(255,255,255,.75);font-size:16.5px;max-width:520px}
+.proof{list-style:none;margin-top:22px;display:grid;gap:12px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:rgba(255,255,255,.9)}
+.proof svg{flex:none;margin-top:3px;color:var(--cyan)}
+.cta-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start;justify-self:end;position:relative;z-index:2}
+.btn-big{background:var(--yellow);color:var(--navy) !important;border-radius:40px;padding:16px 38px;font-size:16px;font-weight:700;display:inline-block;transition:filter .25s,transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-big:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,196,0,.32)}
+.cta-note{font-size:13.5px;color:rgba(255,255,255,.55)}
+
+/* ---------- footer replica ---------- */
+footer.site{background:var(--navy);color:#fff;padding:58px 0 0;border-top:1px solid rgba(255,255,255,.08)}
+.foot-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.foot-logo img{height:26px;display:block;margin-bottom:18px}
+.foot-tag{font-size:14px;color:rgba(255,255,255,.55);max-width:250px}
+.foot-col h4{font-size:15px;font-weight:700;color:#fff;margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:rgba(255,255,255,.65);padding:4px 0;transition:color .2s}
+.foot-col a:hover{color:var(--cyan)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px 0;font-size:13px;color:rgba(255,255,255,.55);display:flex;flex-wrap:wrap;gap:8px 0;justify-content:space-between;align-items:center}
+.foot-links a{color:rgba(255,255,255,.65)}
+.foot-links a:hover{color:var(--cyan)}
+.foot-links .sep{margin:0 9px;opacity:.4}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.12s}
+.stagger.in>*:nth-child(3){transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger>*{opacity:1 !important;transform:none !important;transition:none !important}}
+
+@media (max-width:960px){
+  .hero-grid,.cta-grid{grid-template-columns:1fr}
+  .card-grid,.sp-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  nav.main{display:none}
+  .cta-actions{justify-self:start}
+  .foot-bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><img src="https://dam.nttdata.com/api/public/content/NTT-DATA-Logo?v=4ba3b0db" alt="NTT DATA"></a>
+    <nav class="main">
+      <a href="#">What we do<span class="caret">&#9662;</span></a>
+      <a href="#">What we think<span class="caret">&#9662;</span></a>
+      <a href="#">Who we are<span class="caret">&#9662;</span></a>
+      <a href="#">Newsroom<span class="caret">&#9662;</span></a>
+      <a href="#">Careers<span class="caret">&#9662;</span></a>
+    </nav>
+    <div class="nav-right">
+      <span class="globe">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <b>United States</b><span>English</span>
+      </span>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+    </div>
+  </div>
+</header>
+
+<div class="dark-wrap">
+
+<div class="wrap crumbs">
+  <a href="#">Home</a><span class="sep">/</span><a href="#">Events</a><span class="sep">/</span>Balance AI innovation and security
+</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="live-dot"></span>Live Webinar</span>
+      <h1>Balance AI innovation and security</h1>
+      <p class="hero-sub">Weighing the benefits against the threats of emerging AI technologies — and how agentic AI is reshaping SecOps.</p>
+      <div class="meta-row">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Tuesday, July 21, 2026</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1:00 PM ET</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>45 minutes</span>
+      </div>
+      <p class="stream-note">Streaming live and on-demand on nttdata.com</p>
+      <div class="hero-ctas">
+        <a class="btn-yellow" href="#register">Save my seat
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="btn-ghost" href="#" id="gcalBtn" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Google Calendar</a>
+        <a class="btn-ghost" href="#" id="icsBtn" download="nttdata-balance-ai-security-live.ics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>.ics</a>
+      </div>
+    </div>
+    <div class="count-card" id="countCard">
+      <h3>Live session begins in</h3>
+      <div class="count-grid" id="countGrid">
+        <div class="count-tile"><b id="cd">00</b><span>Days</span></div>
+        <div class="count-tile"><b id="ch">00</b><span>Hours</span></div>
+        <div class="count-tile"><b id="cm">00</b><span>Minutes</span></div>
+        <div class="count-tile"><b id="cs">00</b><span>Seconds</span></div>
+      </div>
+      <div class="live-now" id="liveNow">&#9679; We're live — join below</div>
+      <p class="count-foot">Can't make it? <a href="#register">Register anyway</a> — we'll send the recording.</p>
+    </div>
+  </div>
+</section>
+
+<section class="embed-sec" id="register">
+  <div class="wrap">
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Striking a balance between responsible, secure AI and innovation</h2>
+      <p>Organizations are under pressure to extract real value from AI. As innovation accelerates, tensions rise between governance and agility &mdash; especially in cybersecurity. What you'll learn:</p>
+    </div>
+    <div class="card-grid stagger">
+      <div class="learn-card">
+        <div class="learn-num">1</div>
+        <h3>Emerging cybersecurity challenges</h3>
+        <p>The risks arriving with the growing adoption of AI &mdash; including emerging threats like prompt injection and data poisoning.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">2</div>
+        <h3>AI-empowered cyber defenses</h3>
+        <p>How AI is empowering cyber defenses in an AI-enabled threat landscape &mdash; and how to leverage AI defensively.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">3</div>
+        <h3>The future of cybersecurity</h3>
+        <p>What the future holds for cybersecurity in an AI-driven world, as agentic AI reshapes SecOps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 style="color:var(--navy)">Our speakers</h2>
+      <p>Hear from the leaders shaping secure AI adoption.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-ava" src="https://dam.nttdata.com/api/public/content/200x200_Sandip_Ghosh_16a0d5?v=409a1cce" alt="Sandip Ghosh">
+        <h3>Sandip Ghosh</h3>
+        <p class="sp-role">Global GTM Head, Cybersecurity, NTT DATA</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+      <div class="sp-card">
+        <img class="sp-ava" src="https://dam.nttdata.com/api/public/content/360x360_Duncan_brown_fa83a6?v=4e8d423c" alt="Duncan Brown">
+        <h3>Duncan Brown</h3>
+        <p class="sp-role">Group Vice President, European Enterprise Research, IDC</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+      <div class="sp-card">
+        <img class="sp-ava" src="https://dam.nttdata.com/api/public/content/1bf043163b9f43c4ae58db0ed6875788?v=0a70d804" alt="Sheetal Mehta">
+        <h3>Sheetal Mehta</h3>
+        <p class="sp-role">Senior Vice President and Global Head of Cybersecurity, NTT DATA</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Can't make it live?</h2>
+      <p>Register anyway and the full recording lands in your inbox as soon as we wrap.</p>
+      <ul class="proof">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Hosted natively on nttdata.com &mdash; no downloads, no third-party platform</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Live Q&amp;A with NTT DATA and IDC cybersecurity leaders</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Recording sent to every registrant</li>
+      </ul>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="btn-big" href="#register">Register now</a>
+      <span class="cta-note">Takes less than a minute.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-logo">
+        <img src="https://dam.nttdata.com/api/public/content/NTT-DATA-Logo?v=4ba3b0db" alt="NTT DATA">
+        <p class="foot-tag">Trusted global innovator of business and technology services.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Who we are</h4>
+        <a href="#">About us</a>
+        <a href="#">Our leaders</a>
+        <a href="#">Our partners</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="foot-col">
+        <h4>Newsroom</h4>
+        <a href="#">Insights</a>
+        <a href="#">News</a>
+        <a href="#">Events</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#">Legal and compliance</a>
+        <a href="#">Company information</a>
+        <a href="#">Report ethical concerns</a>
+        <a href="#">Contact us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="foot-links">
+        <a href="#">Terms of use</a><span class="sep">|</span><a href="#">Accessibility statement</a><span class="sep">|</span><a href="#">Privacy policy</a><span class="sep">|</span><a href="#">Cookie policy</a><span class="sep">|</span><a href="#">Sitemap</a>
+      </span>
+      <span>&copy; 2026 NTT DATA, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+const EVENT = {
+  title: "Balance AI Innovation and Security — Live Webinar",
+  start: new Date("2026-07-21T13:00:00-04:00"),
+  end:   new Date("2026-07-21T13:45:00-04:00"),
+  details: "Weighing the benefits against the threats of emerging AI technologies. How to balance responsible, secure AI use with innovation, manage emerging threats like prompt injection and data poisoning, and leverage AI defensively. Streaming live and on-demand on nttdata.com.",
+  location: "nttdata.com"
+};
+
+Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
+
+/* countdown */
+const cd=document.getElementById("cd"),ch=document.getElementById("ch"),
+      cm=document.getElementById("cm"),cs=document.getElementById("cs");
+function tick(){
+  const now = new Date(), diff = EVENT.start - now;
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  const d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+  cd.textContent = String(d).padStart(2,"0");
+  ch.textContent = String(h).padStart(2,"0");
+  cm.textContent = String(m).padStart(2,"0");
+  cs.textContent = String(s).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+/* calendar */
+function gDate(d){ return d.toISOString().replace(/[-:]|\.\d{3}/g,""); }
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + gDate(EVENT.start) + "/" + gDate(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.details) +
+  "&location=" + encodeURIComponent(EVENT.location);
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//NTT DATA//Webinar//EN","BEGIN:VEVENT",
+  "UID:balance-ai-security-live@nttdata.com",
+  "DTSTAMP:" + gDate(new Date()),
+  "DTSTART:" + gDate(EVENT.start),
+  "DTEND:" + gDate(EVENT.end),
+  "SUMMARY:" + EVENT.title,
+  "DESCRIPTION:" + EVENT.details,
+  "LOCATION:" + EVENT.location,
+  "END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* header shadow */
+const hdr = document.getElementById("siteHeader");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
