@@ -351,6 +351,16 @@ const EVENT = {
 
 Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
 
+/* the widget iframe ships a light 1px border (built for white pages) — strip it via the open shadow root */
+(function stripBorder(){
+  const c = document.getElementById("sequel_root").firstElementChild;
+  if (c && c.shadowRoot){
+    const st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
 /* countdown */
 const cd=document.getElementById("cd"),ch=document.getElementById("ch"),
       cm=document.getElementById("cm"),cs=document.getElementById("cs");
