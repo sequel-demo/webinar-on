@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designing a Snowflake MCP Server, Built for Your Data | Snowflake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sf-blue:#249EDC; --sf-blue-dk:#1B84BC; --sf-blue-lt:#4FB4E6;
+  --ink:#000000; --ink-2:#1A1A1A; --ink-soft:#525C65;
+  --line:#E3E8EC; --bg-soft:#F5F8FA;
+  --mask:url("https://www.snowflake.com/content/dam/snowflake-site/general/static/images/mask-logo.png");
+  --sh-sm:0 2px 10px rgba(0,0,0,.06);
+  --sh-md:0 12px 30px rgba(0,0,0,.10);
+  --sh-lg:0 28px 60px rgba(0,0,0,.16);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Archivo',-apple-system,'Helvetica Neue',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{letter-spacing:-.015em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;background:#fff;z-index:60;border-bottom:1px solid transparent;transition:box-shadow .3s var(--ease),border-color .3s}
+header.site.scrolled{box-shadow:var(--sh-sm);border-color:var(--line)}
+.nav-inner{display:flex;align-items:center;gap:34px;padding:22px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:13px 0}
+.logo{color:var(--sf-blue);display:block}
+.logo svg{height:30px;width:auto;display:block}
+nav.main{display:flex;gap:30px;flex:1;justify-content:flex-end;align-items:center}
+nav.main a{color:var(--ink);font-size:15.5px;font-weight:600;position:relative;padding:5px 0;white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2.5px;background:var(--sf-blue);transition:width .3s var(--ease)}
+nav.main a:hover::after{width:100%}
+.btn-pill{background:var(--sf-blue);color:#fff !important;border-radius:48px;padding:14px 28px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-pill:hover{background:var(--sf-blue-dk);transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,158,220,.35)}
+.btn-pill::after{display:none}
+
+/* ---------- HERO: their masked-snowflake backdrop ---------- */
+.hero{position:relative;overflow:hidden;background:#fff;padding:56px 0 44px}
+/* the exact Snowflake technique: solid blue block masked by their logo PNG */
+.hero-mask{position:absolute;inset:0;pointer-events:none;background-color:var(--sf-blue);
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:45%; mask-size:45%;
+  -webkit-mask-position:100% -100px; mask-position:100% -100px;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  animation:driftIn 1.4s var(--ease) both}
+/* second, softer flake bottom-left for depth */
+.hero-mask2{position:absolute;inset:0;pointer-events:none;background-color:var(--sf-blue);opacity:.14;
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:30%; mask-size:30%;
+  -webkit-mask-position:-6% 128%; mask-position:-6% 128%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+  animation:driftIn 1.8s var(--ease) both}
+@keyframes driftIn{from{opacity:0;transform:translate3d(26px,-18px,0) scale(1.04)}to{opacity:1;transform:none}}
+.hero-mask2{animation-name:driftIn2}
+@keyframes driftIn2{from{opacity:0;transform:translate3d(-20px,20px,0)}to{opacity:.14;transform:none}}
+.hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:16px;font-weight:800;color:var(--ink)}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--sf-blue);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(36,158,220,.55);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(38px,5.1vw,64px);line-height:.96;font-weight:900;text-transform:uppercase;margin:16px 0 18px;max-width:12ch}
+.hero-sub{font-size:19px;font-weight:600;line-height:1.42;max-width:600px;color:var(--ink)}
+.meta-row{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 6px;align-items:center}
+.date-chip{background:#fff;border:1px solid #ccc;border-radius:4px;padding:9px 16px;text-align:center;line-height:1;box-shadow:var(--sh-sm)}
+.date-chip b{display:block;font-size:24px;font-weight:800}
+.date-chip span{display:block;font-size:11px;font-weight:700;letter-spacing:.09em;margin-top:3px;color:var(--ink-soft)}
+.meta-item{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:600}
+.meta-item svg{flex:none;color:var(--sf-blue)}
+.stream-note{font-size:15px;color:var(--sf-blue);font-weight:800;margin:18px 0 24px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-ghost{border:2px solid var(--ink);color:var(--ink);border-radius:48px;padding:12px 24px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease);background:rgba(255,255,255,.75)}
+.btn-ghost:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+
+/* countdown card */
+.count-card{position:relative;z-index:3;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh-lg);padding:34px 32px 30px;text-align:center}
+.count-card h3{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:800;margin-bottom:20px}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.count-tile{background:var(--bg-soft);border-radius:10px;padding:17px 6px 13px;border-top:3px solid var(--sf-blue)}
+.count-tile b{display:block;font-size:34px;line-height:1;color:var(--sf-blue);font-variant-numeric:tabular-nums;font-weight:900}
+.count-tile span{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft);font-weight:700}
+.live-now{display:none;font-size:23px;color:var(--sf-blue);font-weight:900;padding:22px 0;text-transform:uppercase}
+.count-foot{margin-top:20px;font-size:14px;color:var(--ink-soft)}
+.count-foot a{color:var(--sf-blue);font-weight:700}
+.count-foot a:hover{text-decoration:underline}
+
+/* ---------- embed: dark band, flake watermark continues ---------- */
+.embed-wrap{position:relative;overflow:hidden;background:var(--ink);padding:52px 0 76px}
+.embed-wrap::before{content:"";position:absolute;inset:0;pointer-events:none;background-color:var(--sf-blue);opacity:.16;
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:38%; mask-size:38%;
+  -webkit-mask-position:-8% 40%; mask-position:-8% 40%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+.embed-wrap::after{content:"";position:absolute;inset:0;pointer-events:none;background-color:var(--sf-blue);opacity:.10;
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:30%; mask-size:30%;
+  -webkit-mask-position:112% 88%; mask-position:112% 88%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+#register{scroll-margin-top:96px}
+.embed-head{position:relative;z-index:2;display:flex;align-items:center;gap:12px;margin-bottom:20px;color:#fff}
+.embed-head .dot{width:9px;height:9px;border-radius:50%;background:var(--sf-blue);position:relative}
+.embed-head .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(36,158,220,.55);animation:pulse 1.8s var(--ease) infinite}
+.embed-head span{font-size:12.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.embed-card{position:relative;z-index:2;min-height:520px;border-radius:14px;overflow:hidden;box-shadow:var(--sh-lg)}
+#sequel_root{min-height:520px}
+
+/* ---------- session / agenda ---------- */
+.lede{padding:78px 0 0;background:#fff}
+.lede p{font-size:19px;line-height:1.62;max-width:900px;margin:0 auto;color:var(--ink-2)}
+.lede p+p{margin-top:20px}
+.lede .accent{color:var(--sf-blue);font-weight:700}
+.learn{background:#fff;padding:56px 0 80px}
+.sec-head{max-width:900px;margin:0 auto 40px}
+.sec-head h2{font-size:clamp(26px,3.2vw,38px);font-weight:900;text-transform:uppercase;line-height:1.05;margin-bottom:12px}
+.sec-head p{color:var(--ink-soft);font-size:17px}
+.steps{display:grid;gap:18px;max-width:900px;margin:0 auto}
+.step{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 28px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s}
+.step:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:var(--sf-blue)}
+.step-num{width:46px;height:46px;border-radius:50%;background:var(--sf-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+.step h3{font-size:18.5px;font-weight:800;margin-bottom:7px}
+.step p{color:var(--ink-soft);font-size:15.5px}
+.step.opt .step-num{background:#fff;color:var(--sf-blue);border:2px solid var(--sf-blue)}
+
+/* tool chips */
+.tools{max-width:900px;margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tool{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:600;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:8px 16px;color:var(--ink-2);transition:all .25s var(--ease)}
+.tool:hover{border-color:var(--sf-blue);color:var(--sf-blue);transform:translateY(-2px)}
+
+/* ---------- speaker ---------- */
+.speakers{padding:76px 0;background:var(--bg-soft);position:relative;overflow:hidden}
+.speakers::before{content:"";position:absolute;inset:0;pointer-events:none;background-color:var(--sf-blue);opacity:.07;
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:26%; mask-size:26%;
+  -webkit-mask-position:108% -30%; mask-position:108% -30%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+.sp-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:26px;max-width:380px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 30px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ava{width:128px;height:128px;border-radius:50%;margin:0 auto 18px;object-fit:cover;display:block;background:var(--bg-soft);border:3px solid #fff;box-shadow:0 0 0 3px var(--sf-blue)}
+.sp-card h3{font-size:21px;font-weight:800;margin-bottom:5px}
+.sp-role{font-size:15px;color:var(--ink-soft);margin-bottom:14px}
+.sp-tag{display:inline-block;background:var(--bg-soft);border:1px solid var(--line);border-radius:100px;padding:5px 15px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sf-blue)}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--sf-blue);color:#fff;padding:68px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;inset:0;pointer-events:none;background-color:#fff;opacity:.13;
+  -webkit-mask-image:var(--mask); mask-image:var(--mask);
+  -webkit-mask-size:34%; mask-size:34%;
+  -webkit-mask-position:105% 130%; mask-position:105% 130%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat}
+.cta-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.cta-band h2{font-size:clamp(27px,3.3vw,40px);font-weight:900;text-transform:uppercase;margin-bottom:12px;line-height:1.05}
+.cta-band p{color:rgba(255,255,255,.95);font-size:17px;max-width:520px}
+.proof{list-style:none;margin-top:22px;display:grid;gap:12px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:#fff}
+.proof svg{flex:none;margin-top:3px}
+.cta-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-start;justify-self:end}
+.btn-big{background:#fff;color:var(--sf-blue) !important;border-radius:48px;padding:17px 40px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;display:inline-block;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-big:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.cta-note{font-size:13.5px;color:rgba(255,255,255,.85)}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--ink);color:#fff;padding:52px 0 26px}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.16)}
+.foot-logo{color:#fff}
+.foot-logo svg{height:30px;width:auto;display:block}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14px}
+.foot-links a{color:rgba(255,255,255,.78);transition:color .2s}
+.foot-links a:hover{color:var(--sf-blue-lt)}
+.foot-bottom{padding-top:22px;font-size:13px;color:rgba(255,255,255,.6)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.09s}
+.stagger.in>*:nth-child(3){transition-delay:.18s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.stagger>*{opacity:1 !important;transform:none !important;transition:none !important}
+  .hero-mask,.hero-mask2{animation:none !important}
+}
+
+@media (max-width:1000px){
+  .hero-grid,.cta-grid{grid-template-columns:1fr}
+  .hero-mask{-webkit-mask-size:70%;mask-size:70%;-webkit-mask-position:120% -60px;mask-position:120% -60px;opacity:.5}
+  nav.main a:not(.btn-pill){display:none}
+  .cta-actions{justify-self:start}
+  .step{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" id="hdrLogo" href="#" aria-label="Snowflake"></a>
+    <nav class="main">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">Resources</a>
+      <a href="#">Company</a>
+      <a href="#register" class="btn-pill">Register Now</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-mask"></div>
+  <div class="hero-mask2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="live-dot"></span>Virtual Hands-On Lab</span>
+      <h1>Designing a Snowflake MCP server, built for your data</h1>
+      <p class="hero-sub">Design a governed MCP tool surface, from answering questions to taking action on your Snowflake data</p>
+      <div class="meta-row">
+        <div class="date-chip"><b>13</b><span>AUG</span></div>
+        <span class="meta-item"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12:00 PM ET</span>
+        <span class="meta-item"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>60 minutes</span>
+      </div>
+      <p class="stream-note">Streaming live and on-demand on snowflake.com</p>
+      <div class="hero-ctas">
+        <a class="btn-pill" href="#register">Save my seat</a>
+        <a class="btn-ghost" href="#" id="gcalBtn" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Google Calendar</a>
+        <a class="btn-ghost" href="#" id="icsBtn" download="snowflake-mcp-server-vhol.ics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>.ics</a>
+      </div>
+    </div>
+    <div class="count-card" id="countCard">
+      <h3>Lab begins in</h3>
+      <div class="count-grid" id="countGrid">
+        <div class="count-tile"><b id="cd">00</b><span>Days</span></div>
+        <div class="count-tile"><b id="ch">00</b><span>Hours</span></div>
+        <div class="count-tile"><b id="cm">00</b><span>Minutes</span></div>
+        <div class="count-tile"><b id="cs">00</b><span>Seconds</span></div>
+      </div>
+      <div class="live-now" id="liveNow">&#9679; We're live — join below</div>
+      <p class="count-foot">Can't make it? <a href="#register">Register anyway</a> — we'll send the recording.</p>
+    </div>
+  </div>
+</section>
+
+<div class="embed-wrap" id="register">
+  <div class="wrap">
+    <div class="embed-head"><span class="dot"></span><span>Live Lab Session</span></div>
+    <div class="embed-card">
+      <div id="sequel_root"></div>
+    </div>
+  </div>
+</div>
+
+<section class="lede">
+  <div class="wrap reveal">
+    <p>AI agents can reason, but on their own they cannot safely reach your governed enterprise data, and wiring each one up by hand is brittle and hard to govern. Snowflake's managed MCP server solves the connection, but <span class="accent">the more interesting question is what you let an agent actually do once it is connected.</span></p>
+    <p>The managed MCP server turns the Model Context Protocol into a native Snowflake object. We assemble exactly the tools we want with a single <code>CREATE MCP SERVER</code> statement, so the tool surface — and the blast radius — is a deliberate design choice. Every call runs as the connecting user's role, with OAuth, RBAC, masking, and audit applied automatically.</p>
+  </div>
+  <div class="wrap tools stagger">
+    <span class="tool">Cortex Analyst</span>
+    <span class="tool">Cortex Search</span>
+    <span class="tool">SYSTEM_EXECUTE_SQL</span>
+    <span class="tool">GENERIC</span>
+    <span class="tool">CORTEX_AGENT_RUN</span>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>In this hands-on lab, we move from answers to actions</h2>
+      <p>For Snowflake customers and Solutions Engineers who want to move past read-only question answering.</p>
+    </div>
+    <div class="steps stagger">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Build the read tools first</h3>
+          <p>A semantic view for Cortex Analyst and a Cortex Search service, then assemble a scoped MCP server and connect a live AI client.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Let the agent run its own queries</h3>
+          <p>Add SYSTEM_EXECUTE_SQL, and see how <code>read_only</code> and your role cap what it can touch.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Take a real, audited action</h3>
+          <p>Wrap a stored procedure as a GENERIC tool and watch the agent read customer reviews and then file a support ticket — all on a scoped warehouse with least privilege.</p>
+        </div>
+      </div>
+      <div class="step opt">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Optionally, delegate multi-step work</h3>
+          <p>Expose an entire Cortex Agent as a single tool, or serve Cortex Code over MCP.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <h2 style="font-size:clamp(24px,2.8vw,32px)">Speaker</h2>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-ava" src="https://www.snowflake.com/adobe/dynamicmedia/deliver/dm-aid--21be38a0-3416-4907-a291-3e71579b601a/profile---zack-hada.png" alt="Zack Hada">
+        <h3>Zack Hada</h3>
+        <p class="sp-role">Solutions Engineer, Snowflake</p>
+        <span class="sp-tag">Speaker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Can't make it live?</h2>
+      <p>Register anyway and the full recording lands in your inbox as soon as we wrap.</p>
+      <ul class="proof">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Hosted natively on snowflake.com — no downloads, no third-party platform</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Live Q&amp;A with a Snowflake Solutions Engineer</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Recording sent to every registrant</li>
+      </ul>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="btn-big" href="#register">Register Now</a>
+      <span class="cta-note">Takes less than a minute.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="foot-logo" id="footLogo" aria-label="Snowflake"></span>
+      <div class="foot-links">
+        <a href="#">Privacy Notice</a>
+        <a href="#">Site Terms</a>
+        <a href="#">Communication Preferences</a>
+        <a href="#">Cookies Settings</a>
+        <a href="#">Do Not Share My Personal Information</a>
+        <a href="#">Legal</a>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; 2026 Snowflake Inc. All Rights Reserved</div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+const EVENT = {
+  title: "Designing a Snowflake MCP Server, Built for Your Data",
+  start: new Date("2026-08-13T12:00:00-04:00"),
+  end:   new Date("2026-08-13T13:00:00-04:00"),
+  details: "Design a governed MCP tool surface, from answering questions to taking action on your Snowflake data. Streaming live and on-demand on snowflake.com.",
+  location: "snowflake.com"
+};
+
+Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
+
+/* the widget iframe ships a light 1px border — strip it via the open shadow root */
+(function stripBorder(){
+  const c = document.getElementById("sequel_root").firstElementChild;
+  if (c && c.shadowRoot){
+    const st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
+/* logo: inline the real SVG so it inherits currentColor (blue in header, white in footer) */
+fetch("logo.svg").then(r => r.text()).then(t => {
+  document.getElementById("hdrLogo").innerHTML = t;
+  document.getElementById("footLogo").innerHTML = t;
+});
+
+/* countdown */
+const cd=document.getElementById("cd"),ch=document.getElementById("ch"),
+      cm=document.getElementById("cm"),cs=document.getElementById("cs");
+function tick(){
+  const now = new Date(), diff = EVENT.start - now;
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  const d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+  cd.textContent = String(d).padStart(2,"0");
+  ch.textContent = String(h).padStart(2,"0");
+  cm.textContent = String(m).padStart(2,"0");
+  cs.textContent = String(s).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+/* calendar */
+function gDate(d){ return d.toISOString().replace(/[-:]|\.\d{3}/g,""); }
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + gDate(EVENT.start) + "/" + gDate(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.details) +
+  "&location=" + encodeURIComponent(EVENT.location);
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Snowflake//VHOL//EN","BEGIN:VEVENT",
+  "UID:mcp-server-vhol-2026-08-13@snowflake.com",
+  "DTSTAMP:" + gDate(new Date()),
+  "DTSTART:" + gDate(EVENT.start),
+  "DTEND:" + gDate(EVENT.end),
+  "SUMMARY:" + EVENT.title,
+  "DESCRIPTION:" + EVENT.details,
+  "LOCATION:" + EVENT.location,
+  "END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* header shadow */
+const hdr = document.getElementById("siteHeader");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* subtle parallax on the hero flake — respects reduced motion */
+const flake = document.querySelector(".hero-mask");
+if (flake && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+  addEventListener("scroll", () => {
+    const y = Math.min(scrollY, 700);
+    flake.style.transform = "translate3d(0," + (y * 0.14) + "px,0)";
+  }, {passive:true});
+}
+
+/* reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
