@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Upside: State of the Markets | Fidelity Investments Canada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#205885; --navy-dk:#164263; --navy-deep:#0E2E47;
+  --blue:#386EAC; --sky:#8BD3E6; --sky-dk:#6FC3DA; --teal-ink:#003D4C;
+  --ink:#1F2933; --ink-soft:#5A6672;
+  --line:#DFE5EA; --bg-soft:#F4F7F9;
+  --banner:url("https://go.fidelity.ca/rs/902-MHK-205/images/LpageBanner_Upside-blue-speedlines-1920x429_637906.jpg");
+  --sh-sm:0 2px 10px rgba(14,46,71,.07);
+  --sh-md:0 12px 28px rgba(14,46,71,.13);
+  --sh-lg:0 26px 56px rgba(14,46,71,.24);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;background:var(--navy);z-index:60;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:0 6px 22px rgba(14,46,71,.35)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:10px 0}
+.logo img{height:34px;display:block}
+.nav-right{display:flex;align-items:center;gap:26px}
+.nav-right a{color:#fff;font-size:14px;font-weight:700;letter-spacing:.04em;transition:color .2s}
+.nav-right a:hover{color:var(--sky)}
+
+/* ---------- dark wrap: hero + embed on ONE continuous surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--navy-deep);color:#fff}
+/* their real speedlines banner, extended down the whole band */
+.dark-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:620px;
+  background-image:var(--banner);background-size:cover;background-position:center top;
+  opacity:.95;pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;top:0;left:0;right:0;height:620px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,46,71,0) 46%,rgba(14,46,71,.72) 78%,var(--navy-deep) 100%)}
+.hero{position:relative;z-index:3;padding:46px 0 34px}
+.upside-logo{height:58px;display:block;margin-bottom:22px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.3))}
+.tagline{display:inline-block;background:var(--sky);color:var(--teal-ink);font-size:15.5px;font-weight:700;padding:7px 22px;margin-bottom:24px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:start}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--sky);font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--sky);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(139,211,230,.6);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(31px,4.2vw,50px);line-height:1.08;font-weight:700;color:#fff;margin:14px 0 14px;letter-spacing:-.01em}
+.hero-sub{font-size:17.5px;color:rgba(255,255,255,.92);max-width:560px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 24px;margin:22px 0 6px;font-size:15.5px;font-weight:600;color:#fff}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none;color:var(--sky)}
+.stream-note{font-size:14.5px;color:var(--sky);font-weight:700;margin:16px 0 24px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.btn-sky{background:var(--sky);color:var(--teal-ink) !important;padding:15px 30px;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-sky:hover{background:var(--sky-dk);transform:translateY(-2px);box-shadow:0 12px 26px rgba(139,211,230,.32)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff;padding:13px 22px;font-size:14.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{background:#fff;color:var(--navy-deep);border-color:#fff;transform:translateY(-2px)}
+
+/* countdown card */
+.count-card{position:relative;z-index:3;background:#fff;box-shadow:var(--sh-lg);padding:30px 28px 26px;text-align:center;color:var(--ink)}
+.count-card h3{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:18px}
+.count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.count-tile{background:var(--bg-soft);padding:15px 5px 11px;border-top:3px solid var(--navy)}
+.count-tile b{display:block;font-size:31px;line-height:1;color:var(--navy);font-variant-numeric:tabular-nums;font-weight:900}
+.count-tile span{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700}
+.live-now{display:none;font-size:22px;color:var(--navy);font-weight:900;padding:20px 0}
+.count-foot{margin-top:18px;font-size:13.5px;color:var(--ink-soft)}
+.count-foot a{color:var(--blue);font-weight:700}
+.count-foot a:hover{text-decoration:underline}
+.count-note{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+.count-note b{color:var(--ink)}
+
+/* embed inside the dark band — zero seam */
+.embed-sec{position:relative;z-index:3;padding:14px 0 72px}
+#register{scroll-margin-top:92px}
+.embed-card{position:relative;min-height:520px;overflow:hidden;box-shadow:var(--sh-lg);background:transparent}
+#sequel_root{min-height:520px}
+
+/* ---------- what you'll get ---------- */
+.learn{background:#fff;padding:72px 0}
+.sec-head{max-width:780px;margin:0 auto 40px;text-align:center}
+.sec-head .kicker{color:var(--blue);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.sec-head h2{font-size:clamp(25px,3vw,36px);color:var(--navy-deep);font-weight:700;margin-bottom:12px;line-height:1.18}
+.sec-head p{color:var(--ink-soft);font-size:16.5px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.learn-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--sky);padding:30px 26px;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.learn-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.learn-ic{width:46px;height:46px;border-radius:50%;background:var(--bg-soft);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.learn-card h3{font-size:18.5px;font-weight:700;color:var(--navy-deep);margin-bottom:9px}
+.learn-card p{color:var(--ink-soft);font-size:15px}
+
+/* ---------- speaker ---------- */
+.speakers{padding:70px 0;background:var(--bg-soft)}
+.sp-grid{display:grid;grid-template-columns:1fr;gap:24px;max-width:380px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);padding:34px 28px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ava{width:124px;height:124px;border-radius:50%;margin:0 auto 18px;object-fit:cover;display:block;background:var(--bg-soft);border:3px solid #fff;box-shadow:0 0 0 3px var(--sky)}
+.sp-card h3{font-size:20px;font-weight:700;color:var(--navy-deep);margin-bottom:5px}
+.sp-role{font-size:14.5px;color:var(--ink-soft);margin-bottom:14px}
+.sp-tag{display:inline-block;background:var(--bg-soft);border:1px solid var(--line);padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+
+/* ---------- series line-up ---------- */
+.series{background:#fff;padding:8px 0 76px}
+.series-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:940px;margin:0 auto}
+.ser-card{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;border:1px solid var(--line);padding:22px 24px;background:#fff;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.ser-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:var(--sky)}
+.ser-date{background:var(--navy);color:#fff;text-align:center;padding:9px 13px;line-height:1.1;min-width:62px}
+.ser-date b{display:block;font-size:21px;font-weight:900}
+.ser-date span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.ser-card h4{font-size:16.5px;font-weight:700;color:var(--navy-deep);margin-bottom:4px;line-height:1.3}
+.ser-card p{font-size:14px;color:var(--ink-soft)}
+.ser-card .guest{color:var(--blue);font-weight:600}
+.ser-card.wellness .ser-date{background:var(--sky);color:var(--teal-ink)}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--navy-deep);color:#fff;padding:62px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;inset:0;background-image:var(--banner);background-size:cover;background-position:center;opacity:.30;pointer-events:none}
+.cta-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
+.cta-band h2{font-size:clamp(25px,3vw,36px);font-weight:700;color:#fff;margin-bottom:12px}
+.cta-band p{color:rgba(255,255,255,.9);font-size:16.5px;max-width:520px}
+.proof{list-style:none;margin-top:20px;display:grid;gap:11px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:#fff}
+.proof svg{flex:none;margin-top:3px;color:var(--sky)}
+.cta-actions{display:flex;flex-direction:column;gap:13px;align-items:flex-start;justify-self:end}
+.btn-big{background:var(--sky);color:var(--teal-ink) !important;padding:16px 38px;font-size:16.5px;font-weight:700;display:inline-block;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-big:hover{background:var(--sky-dk);transform:translateY(-2px);box-shadow:0 12px 28px rgba(139,211,230,.3)}
+.cta-note{font-size:13px;color:rgba(255,255,255,.72)}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--navy);color:#fff;padding:48px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;padding-bottom:34px}
+.foot-logo img{height:32px;display:block;margin-bottom:14px}
+.foot-tag{font-size:13.5px;color:rgba(255,255,255,.72);max-width:260px}
+.foot-col h4{font-size:14.5px;font-weight:700;color:#fff;margin-bottom:12px}
+.foot-col a,.foot-col p{display:block;font-size:13.5px;color:rgba(255,255,255,.72);padding:3px 0}
+.foot-col a:hover{color:var(--sky)}
+.legal{border-top:1px solid rgba(255,255,255,.18);padding:20px 0 26px;font-size:11.5px;color:rgba(255,255,255,.62);line-height:1.65}
+.legal p+p{margin-top:9px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.09s}
+.stagger.in>*:nth-child(3){transition-delay:.18s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger>*{opacity:1 !important;transform:none !important;transition:none !important}}
+
+@media (max-width:980px){
+  .hero-grid,.cta-grid{grid-template-columns:1fr}
+  .card-grid,.series-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .cta-actions{justify-self:start}
+  .dark-wrap::before,.dark-wrap::after{height:820px}
+}
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><img src="https://go.fidelity.ca/rs/902-MHK-205/images/FidLogo_WhtReverse2.png" alt="Fidelity"></a>
+    <div class="nav-right"><a href="#">FRANÇAIS</a></div>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap">
+      <img class="upside-logo" src="https://go.fidelity.ca/rs/902-MHK-205/images/webcast-lpage-upside-logo-banner-header-637906.png" alt="The Upside">
+      <div class="tagline">Invest Well. Be Well.&trade;</div>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="live-dot"></span>Become a Better Investor</span>
+        <h1>State of the markets</h1>
+        <p class="hero-sub">Start your week with leading analysis in your corner. Here's your chance to do your money and your mind some good.</p>
+        <div class="meta-row">
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Tuesday, August 18, 2026</span>
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12:30 – 1:00 p.m. ET</span>
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Free live webcast</span>
+        </div>
+        <p class="stream-note">Streaming live and on-demand on fidelity.ca</p>
+        <div class="hero-ctas">
+          <a class="btn-sky" href="#register">Save my seat
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="btn-ghost" href="#" id="gcalBtn" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Google Calendar</a>
+          <a class="btn-ghost" href="#" id="icsBtn" download="the-upside-state-of-the-markets.ics">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>.ics</a>
+        </div>
+      </div>
+      <div class="count-card" id="countCard">
+        <h3>Webcast begins in</h3>
+        <div class="count-grid" id="countGrid">
+          <div class="count-tile"><b id="cd">00</b><span>Days</span></div>
+          <div class="count-tile"><b id="ch">00</b><span>Hours</span></div>
+          <div class="count-tile"><b id="cm">00</b><span>Minutes</span></div>
+          <div class="count-tile"><b id="cs">00</b><span>Seconds</span></div>
+        </div>
+        <div class="live-now" id="liveNow">&#9679; We're live — join below</div>
+        <p class="count-foot">Can't make it? <a href="#register">Register anyway</a> — we'll send the recording.</p>
+        <p class="count-note"><b>Re-run:</b> Tuesday, August 18, 2026, 7:00 – 7:30 p.m. ET</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="register">
+    <div class="wrap">
+      <div class="embed-card">
+        <div id="sequel_root"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Become a Better Investor</p>
+      <h2>Hear from some of Canada's best stock pickers and financial experts</h2>
+      <p>Watch live and get your investing questions answered on the fly.</p>
+    </div>
+    <div class="card-grid stagger">
+      <div class="learn-card">
+        <div class="learn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h3>Timely market insights</h3>
+        <p>Leading analysis in your corner as markets move — so you can tell signal from noise.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Questions answered live</h3>
+        <p>Ask on the fly during the webcast, or email your question ahead to upside@fidelity.ca.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Invest well. Be well.</h3>
+        <p>Free live and on-demand webcasts that support your investing and your overall financial wellness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Your host</h2>
+      <p>Joining you from the Fidelity Canada team.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-ava" id="victorPhoto" alt="Victor Choi">
+        <h3>Victor Choi</h3>
+        <p class="sp-role">Director, Corporate Affairs, Fidelity Canada</p>
+        <span class="sp-tag">Host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="series">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Also on The Upside</p>
+      <h2>More upcoming webcasts</h2>
+      <p>Register once and join any session in the series — all free.</p>
+    </div>
+    <div class="series-grid stagger">
+      <div class="ser-card">
+        <div class="ser-date"><b>13</b><span>Aug</span></div>
+        <div>
+          <h4>RESPs made simple: Saving smarter for your child's future</h4>
+          <p><span class="guest">Michelle Munro</span>, Director of Tax and Retirement Research &middot; 12:30 – 12:50 p.m. ET</p>
+        </div>
+      </div>
+      <div class="ser-card">
+        <div class="ser-date"><b>17</b><span>Aug</span></div>
+        <div>
+          <h4>How a contrarian investor navigates market noise</h4>
+          <p><span class="guest">Hugo Lavallée</span>, Portfolio Manager &middot; 12:30 – 12:50 p.m. ET</p>
+        </div>
+      </div>
+      <div class="ser-card wellness">
+        <div class="ser-date"><b>12</b><span>Aug</span></div>
+        <div>
+          <h4>Sunrise flow</h4>
+          <p><span class="guest">Jessie Sarafian</span>, Certified Yoga Instructor &middot; 12:30 – 1:00 p.m. ET</p>
+        </div>
+      </div>
+      <div class="ser-card">
+        <div class="ser-date"><b>18</b><span>Aug</span></div>
+        <div>
+          <h4>State of the markets &mdash; evening re-run</h4>
+          <p><span class="guest">Jurrien Timmer</span>, Director of Global Macro &middot; 7:00 – 7:30 p.m. ET</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Can't make it live?</h2>
+      <p>Register anyway and the full recording lands in your inbox as soon as we wrap.</p>
+      <ul class="proof">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Hosted natively on fidelity.ca — no downloads, no third-party platform</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Live Q&amp;A — ask your question on the fly</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Recording sent to every registrant</li>
+      </ul>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="btn-big" href="#register">Save my seat &rarr;</a>
+      <span class="cta-note">Free. Takes less than a minute.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-logo">
+        <img src="https://go.fidelity.ca/rs/902-MHK-205/images/FidLogo_WhtReverse2.png" alt="Fidelity">
+        <p class="foot-tag">Fidelity Investments Canada ULC — investment solutions for Canadian investors.</p>
+      </div>
+      <div class="foot-col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Media centre</a>
+        <a href="#">Help</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact us</h4>
+        <p>Toll-free 1 800 263-4077</p>
+        <p>Telephone 416 307-5200</p>
+        <p>TTY 1 800 855-0511</p>
+      </div>
+      <div class="foot-col">
+        <h4>Address</h4>
+        <p>483 Bay Street, Suite 300</p>
+        <p>Toronto, Ontario M5G 2N7</p>
+        <p>Mon–Fri, 8 a.m. – 8 p.m. EST</p>
+      </div>
+    </div>
+    <div class="legal">
+      <p>This site is for persons in Canada only. Mutual funds sponsored by Fidelity Investments Canada ULC are only qualified for sale in the provinces and territories of Canada.</p>
+      <p>Views expressed regarding a particular company, security, industry or market sector are the views only of that individual as of the time expressed and do not necessarily represent the views of Fidelity or any other person in the Fidelity organization. Such views are subject to change at any time based upon markets and other conditions, and Fidelity disclaims any responsibility to update such views.</p>
+      <p>&copy; 2026 Fidelity Investments Canada ULC. All rights reserved. Fidelity Investments is a registered trademark of Fidelity Investments Canada ULC.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+const EVENT = {
+  title: "The Upside: State of the Markets",
+  start: new Date("2026-08-18T12:30:00-04:00"),
+  end:   new Date("2026-08-18T13:00:00-04:00"),
+  details: "Start your week with leading analysis in your corner. A free live webcast from The Upside — Invest Well. Be Well. Streaming live and on-demand on fidelity.ca.",
+  location: "fidelity.ca"
+};
+
+Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" });
+
+/* the widget iframe ships a light 1px border — strip it via the open shadow root */
+(function stripBorder(){
+  const c = document.getElementById("sequel_root").firstElementChild;
+  if (c && c.shadowRoot){
+    const st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
+/* host photo */
+fetch("victor.txt").then(r => r.text()).then(t => { document.getElementById("victorPhoto").src = t.trim(); });
+
+/* countdown */
+const cd=document.getElementById("cd"),ch=document.getElementById("ch"),
+      cm=document.getElementById("cm"),cs=document.getElementById("cs");
+function tick(){
+  const now = new Date(), diff = EVENT.start - now;
+  if (diff <= 0){
+    document.getElementById("countGrid").style.display = "none";
+    document.getElementById("liveNow").style.display = "block";
+    return;
+  }
+  const d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5),
+        m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
+  cd.textContent = String(d).padStart(2,"0");
+  ch.textContent = String(h).padStart(2,"0");
+  cm.textContent = String(m).padStart(2,"0");
+  cs.textContent = String(s).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+/* calendar */
+function gDate(d){ return d.toISOString().replace(/[-:]|\.\d{3}/g,""); }
+document.getElementById("gcalBtn").href =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent(EVENT.title) +
+  "&dates=" + gDate(EVENT.start) + "/" + gDate(EVENT.end) +
+  "&details=" + encodeURIComponent(EVENT.details) +
+  "&location=" + encodeURIComponent(EVENT.location);
+const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Fidelity Canada//The Upside//EN","BEGIN:VEVENT",
+  "UID:upside-state-of-markets-2026-08-18@fidelity.ca",
+  "DTSTAMP:" + gDate(new Date()),
+  "DTSTART:" + gDate(EVENT.start),
+  "DTEND:" + gDate(EVENT.end),
+  "SUMMARY:" + EVENT.title,
+  "DESCRIPTION:" + EVENT.details,
+  "LOCATION:" + EVENT.location,
+  "END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+/* header shadow */
+const hdr = document.getElementById("siteHeader");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
