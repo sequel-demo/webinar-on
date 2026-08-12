@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Blindspot: Reclaim Visibility, Control, and Data Security | Fortinet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#288388; --teal-dk:#1F6A6E; --teal-deep:#14494C; --teal-lt:#3FA0A6;
+  --red:#DA291C; --red-dk:#B81F14;
+  --ink:#333333; --ink-soft:#5F6B70;
+  --grey:#EEEEEE; --line:#DDE3E5;
+  --sh-sm:0 2px 10px rgba(20,73,76,.08);
+  --sh-md:0 12px 28px rgba(20,73,76,.14);
+  --sh-lg:0 26px 56px rgba(20,73,76,.28);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:700;letter-spacing:-.015em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;background:var(--teal);z-index:60;transition:box-shadow .3s var(--ease)}
+header.site.scrolled{box-shadow:0 6px 20px rgba(20,73,76,.35)}
+.nav-inner{display:flex;align-items:center;gap:30px;padding:18px 0;transition:padding .3s var(--ease)}
+header.site.scrolled .nav-inner{padding:11px 0}
+.logo img{height:26px;display:block}
+nav.main{display:flex;gap:26px;flex:1;justify-content:flex-end;align-items:center}
+nav.main a{color:#fff;font-size:15px;font-weight:500;position:relative;padding:5px 0;white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2.5px;background:#fff;transition:width .3s var(--ease)}
+nav.main a:hover::after{width:100%}
+.btn-red{background:var(--red);color:#fff !important;border-radius:3px;padding:12px 22px;font-size:14.5px;font-weight:600;transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-red:hover{background:var(--red-dk);transform:translateY(-2px);box-shadow:0 10px 22px rgba(218,41,28,.32)}
+.btn-red::after{display:none}
+
+/* ---------- dark wrap: hero + embed on one continuous teal surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--teal);color:#fff}
+/* their geometric rounded-block motif */
+.dark-wrap::before{content:"";position:absolute;left:-90px;top:38px;width:420px;height:120px;border-radius:0 60px 60px 0;background:var(--teal-deep);opacity:.55;pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;right:-160px;bottom:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(20,73,76,.6) 0%,transparent 66%);pointer-events:none}
+.hero{position:relative;z-index:3;padding:52px 0 36px}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:48px;align-items:start}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#fff;position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,255,255,.6);animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hero h1{font-size:clamp(28px,3.5vw,42px);line-height:1.16;color:#fff;margin:16px 0 16px;font-weight:700}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.9);max-width:540px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 22px;margin:22px 0 6px;font-size:15px;font-weight:600;color:#fff}
+.meta-row span{display:flex;align-items:center;gap:8px}
+.meta-row svg{flex:none;opacity:.85}
+.stream-note{font-size:14.5px;color:#fff;font-weight:700;margin:16px 0 22px;opacity:.95}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.btn-white{background:#fff;color:var(--teal-deep) !important;border-radius:3px;padding:15px 30px;font-size:16px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.24)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff;border-radius:3px;padding:13px 22px;font-size:14.5px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease)}
+.btn-ghost:hover{background:#fff;color:var(--teal-deep);border-color:#fff;transform:translateY(-2px)}
+
+/* learn card — echoes their white rounded form panel */
+.learn-card{position:relative;z-index:3;background:#fff;color:var(--ink);border-radius:0 44px 0 0;padding:34px 34px 30px;box-shadow:var(--sh-lg)}
+.learn-card h3{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:16px}
+.learn-list{list-style:none;display:grid;gap:13px}
+.learn-list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:var(--ink)}
+.learn-list svg{flex:none;margin-top:3px;color:var(--teal)}
+.learn-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-soft)}
+
+/* embed inside the teal band */
+.embed-sec{position:relative;z-index:3;padding:12px 0 72px}
+#watch{scroll-margin-top:90px}
+.embed-card{position:relative;min-height:520px;border-radius:6px;overflow:hidden;box-shadow:var(--sh-lg);background:transparent}
+#sequel_root{min-height:520px}
+
+/* ---------- body copy ---------- */
+.lede{background:#fff;padding:74px 0 0}
+.lede h2{font-size:clamp(25px,3vw,34px);max-width:780px;margin:0 auto 24px;text-align:center;line-height:1.2}
+.lede p{font-size:17px;line-height:1.66;max-width:760px;margin:0 auto;color:var(--ink)}
+.lede p+p{margin-top:16px}
+.lede strong{font-weight:700}
+
+/* ---------- presenters ---------- */
+.speakers{padding:70px 0;background:var(--grey)}
+.pres-label{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);text-align:center;margin-bottom:10px}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 38px}
+.sec-head h2{font-size:clamp(24px,2.9vw,32px)}
+.sp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:720px;margin:0 auto}
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px 26px;text-align:center;box-shadow:var(--sh-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.sp-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ava{width:108px;height:108px;border-radius:50%;margin:0 auto 16px;object-fit:cover;display:block;background:var(--grey);border:3px solid #fff;box-shadow:0 0 0 3px var(--teal)}
+.sp-card h3{font-size:19px;font-weight:700;margin-bottom:4px}
+.sp-role{font-size:14.5px;color:var(--ink-soft)}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--red);color:#fff;padding:62px 0;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;left:-120px;top:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15) 0%,transparent 66%);pointer-events:none}
+.cta-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.cta-band h2{font-size:clamp(25px,3vw,36px);color:#fff;margin-bottom:12px}
+.cta-band p{color:rgba(255,255,255,.95);font-size:16.5px;max-width:520px}
+.proof{list-style:none;margin-top:20px;display:grid;gap:11px}
+.proof li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;color:#fff}
+.proof svg{flex:none;margin-top:3px}
+.cta-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-self:end}
+.btn-big{background:#fff;color:var(--red) !important;border-radius:3px;padding:16px 38px;font-size:16px;font-weight:700;display:inline-block;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn-big:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.24)}
+.cta-note{font-size:13px;color:rgba(255,255,255,.85)}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--teal-deep);color:#fff;padding:44px 0 26px}
+.foot-top{display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.16)}
+.foot-logo img{height:24px;display:block}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px}
+.foot-links a{color:rgba(255,255,255,.78);transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-bottom{padding-top:18px;font-size:12.5px;color:rgba(255,255,255,.6)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.1s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger>*{opacity:1 !important;transform:none !important;transition:none !important}}
+
+@media (max-width:1000px){
+  .hero-grid,.cta-grid,.sp-grid{grid-template-columns:1fr}
+  .learn-card{border-radius:0 32px 0 0}
+  nav.main a:not(.btn-red){display:none}
+  .cta-actions{justify-self:start}
+  .dark-wrap::before{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><img src="https://images.global.fortinet.com/EloquaImages/clients/FortinetInc2/%7Ba4070857-f52e-4f21-8e44-35d79282eebb%7D_WhiteLogo-noRM.png" alt="Fortinet"></a>
+    <nav class="main">
+      <a href="#">Products</a>
+      <a href="#">Solutions</a>
+      <a href="#">Support</a>
+      <a href="#">Resources</a>
+      <a href="#watch" class="btn-red">Watch on demand</a>
+    </nav>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="live-dot"></span>On Demand Webinar</span>
+        <h1>The AI Blindspot: How to Reclaim Visibility, Control, and Data Security in the Age of AI with Unified Endpoint</h1>
+        <p class="hero-sub">Secure AI innovation without added risk &mdash; with FortiEndpoint, Fortinet's unified endpoint platform.</p>
+        <div class="meta-row">
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Available now</span>
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>45 minutes</span>
+          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>FortiEndpoint</span>
+        </div>
+        <p class="stream-note">Streaming on demand on fortinet.com</p>
+        <div class="hero-ctas">
+          <a class="btn-white" href="#watch">Watch it on demand
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="btn-ghost" href="#presenters">Meet the presenters</a>
+        </div>
+      </div>
+      <div class="learn-card">
+        <h3>In this webinar you'll learn how to</h3>
+        <ul class="learn-list">
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Gain visibility into AI applications and AI agents</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Protect sensitive data in AI interactions</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Reduce endpoint risk and strengthen compliance</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Accelerate investigations with AI-assisted operations</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"/></svg>Simplify security with a unified endpoint platform</li>
+        </ul>
+        <p class="learn-foot">No registration wall &mdash; press play and watch right here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="watch">
+    <div class="wrap">
+      <div class="embed-card">
+        <div id="sequel_root"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="lede">
+  <div class="wrap reveal">
+    <h2>Secure AI Innovation Without Added Risk</h2>
+    <p>AI is rapidly changing the way employees work, collaborate, and access information. But as organizations embrace AI, security teams are facing new challenges &mdash; from shadow AI and sensitive data exposure to endpoint risk and operational complexity.</p>
+    <p>Join Fortinet experts to learn how organizations can securely enable AI adoption without sacrificing visibility, control, or productivity. You'll discover the latest innovations in <strong>FortiEndpoint</strong>, Fortinet's unified endpoint platform, and see how a single solution can help you govern AI usage, protect sensitive data, reduce endpoint risk, and simplify day-to-day security operations.</p>
+  </div>
+</section>
+
+<section class="speakers" id="presenters">
+  <div class="wrap">
+    <p class="pres-label">Presenters</p>
+    <div class="sec-head reveal">
+      <h2>Meet your presenters</h2>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <img class="sp-ava" src="https://images.global.fortinet.com/EloquaImages/clients/FortinetInc2/%7B0b3edd65-4e83-4177-9602-2450e6fecff5%7D_hari_krishnan.png" alt="Hari Krishnan">
+        <h3>Hari Krishnan</h3>
+        <p class="sp-role">Product and Solutions Director, Fortinet</p>
+      </div>
+      <div class="sp-card">
+        <img class="sp-ava" src="https://images.global.fortinet.com/EloquaImages/clients/FortinetInc2/%7Be63ed4ed-dac0-47df-862e-440054ddd0f3%7D_Ankit-speaker.png" alt="Ankit Gupta">
+        <h3>Ankit Gupta</h3>
+        <p class="sp-role">Product and Solutions Director, Fortinet</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Watch it on your schedule</h2>
+      <p>The full session is available on demand &mdash; no waiting, no download.</p>
+      <ul class="proof">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Hosted natively on fortinet.com &mdash; no downloads, no third-party platform</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Q&amp;A with Fortinet product and solutions directors</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"/></svg>Watch, pause and resume whenever you like</li>
+      </ul>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="btn-big" href="#watch">Watch on demand</a>
+      <span class="cta-note">Starts instantly.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <span class="foot-logo"><img src="https://images.global.fortinet.com/EloquaImages/clients/FortinetInc2/%7Ba4070857-f52e-4f21-8e44-35d79282eebb%7D_WhiteLogo-noRM.png" alt="Fortinet"></span>
+      <div class="foot-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">Copyright &copy; 2026 Fortinet, Inc. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+Sequel.renderEvent({ eventId: "3cb4efc0-e4fb-4f0e-8387-25149770f30b" });
+
+/* the widget iframe ships a light 1px border — strip it via the open shadow root */
+(function stripBorder(){
+  const c = document.getElementById("sequel_root").firstElementChild;
+  if (c && c.shadowRoot){
+    const st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
+/* header shadow */
+const hdr = document.getElementById("siteHeader");
+addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 8), {passive:true});
+
+/* reveal */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
