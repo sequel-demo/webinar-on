@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Cisco Duo Identity Summit | Cisco Duo</title>
+<meta property="og:title" content="Cisco Duo Identity Summit">
+<meta property="og:description" content="It's time to make sense of the identity conundrum. Meet the new Duo.">
+<meta property="og:image" content="https://duo.com/assets/img/duo-identity-summit-on-demand-landing-page-hero.webp">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/duo/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://duo.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#363F44; --forest:#162610; --forest-2:#1d3116;
+  --green:#76BC4D; --green-lt:#A6CC7F; --deep:#41722F;
+  --blue:#0069F2; --pale:#F9FFFA; --util:#F1F2F2; --line:#DCE3DA;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 4px 14px rgba(22,38,16,.07); --sh-md:0 12px 30px rgba(22,38,16,.10); --sh-lg:0 22px 54px rgba(22,38,16,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- utility bar + header ---------- */
+.util{background:var(--util);font-size:13.5px}
+.util .wrap{display:flex;justify-content:flex-end;gap:26px;padding-top:9px;padding-bottom:9px}
+.util a{color:#4b555b;transition:color .25s var(--ease)}
+.util a:hover{color:var(--ink)}
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:box-shadow .3s var(--ease)}
+header.scrolled{box-shadow:var(--sh-sm)}
+.nav{display:flex;align-items:center;gap:34px;padding:16px 0}
+.logo{display:flex;flex-shrink:0}
+.logo svg{height:42px;width:auto;display:block}
+.links{display:flex;gap:30px;margin-left:14px;font-weight:500;font-size:15.5px}
+.links a{display:flex;align-items:center;gap:5px;color:var(--ink);position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--green);transition:width .35s var(--ease)}
+.links a:hover::after{width:100%}
+.caret{width:9px;height:9px;border-right:1.6px solid #6a747a;border-bottom:1.6px solid #6a747a;transform:rotate(45deg) translateY(-2px)}
+.nav-cta{margin-left:auto;display:flex;gap:12px;align-items:center}
+.pill{border-radius:1000px;font-weight:500;font-size:15.5px;padding:11px 24px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.pill:hover{transform:translateY(-2px);box-shadow:var(--sh-sm)}
+a.pill.outline{border:2px solid var(--deep);color:var(--deep);background:transparent}
+a.pill.solid{background:var(--blue);color:#fff}
+
+/* ---------- dark-wrap: hero + embed, one surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--forest);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-22% -12% auto -12%;height:85%;background:radial-gradient(circle,rgba(118,188,77,.20),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -14% -26% -14%;height:72%;background:radial-gradient(circle,rgba(166,204,127,.10),transparent 65%);pointer-events:none}
+.hero{padding:76px 0 36px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(166,204,127,.45);border-radius:1000px;padding:7px 16px;color:var(--green-lt)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(118,188,77,.55)}70%{box-shadow:0 0 0 9px rgba(118,188,77,0)}100%{box-shadow:0 0 0 0 rgba(118,188,77,0)}}
+h1{font-size:clamp(42px,5.4vw,68px);font-weight:500;line-height:1.06;letter-spacing:-.02em;margin:22px 0 18px}
+.hook{font-size:19px;color:#cfdcc8;max-width:56ch}
+.hook b{color:#fff;font-weight:700}
+.stream{margin-top:18px;color:var(--green-lt);font-weight:500;display:flex;align-items:center;gap:9px}
+.stream svg{flex-shrink:0}
+.chips{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.chip{border:1px solid rgba(255,255,255,.18);border-radius:1000px;padding:8px 18px;font-size:14px;color:#e6eee1;background:rgba(255,255,255,.04)}
+.chip b{color:#fff}
+/* split-motif decoration (Duo logo geometry) */
+.motif{position:relative;height:340px}
+.motif .shape{position:absolute;overflow:hidden}
+.motif .half{position:absolute;left:0;width:100%;height:calc(50% - 2px)}
+.motif .half.t{top:0;background:var(--green)}
+.motif .half.b{bottom:0;background:var(--green-lt)}
+.m-circle{width:220px;height:220px;right:20px;top:20px;border-radius:50%;animation:driftIn 1.4s var(--ease) both}
+.m-d{width:150px;height:150px;right:210px;bottom:0;border-radius:0 75px 75px 0;animation:driftIn 1.4s .15s var(--ease) both}
+.m-bar{width:56px;height:150px;right:130px;bottom:0;border-radius:0 0 28px 28px;animation:driftIn 1.4s .3s var(--ease) both}
+@keyframes driftIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.embed-sec{padding:10px 0 84px;position:relative;z-index:2}
+#sequel_root{min-height:540px}
+
+/* ---------- stat band ---------- */
+.stat-band{background:var(--pale);padding:110px 0 96px}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;max-width:980px}
+.stat-num{font-size:clamp(96px,13vw,168px);font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--deep)}
+.stat-num span{color:var(--green)}
+.stat-copy p:first-child{font-size:clamp(22px,2.6vw,30px);font-weight:500;line-height:1.3;letter-spacing:-.01em}
+.stat-copy .turn{margin-top:16px;color:#5c666c;font-size:17px}
+.stat-copy .turn b{color:var(--ink)}
+.stat-src{margin-top:14px;color:#8a938f}
+
+/* ---------- lede ---------- */
+.lede{padding:96px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:48px}
+.side{position:sticky;top:110px;align-self:start;color:var(--deep)}
+.side::before{content:"";display:block;width:44px;height:3px;background:var(--green);margin-bottom:14px}
+.lede-body{max-width:64ch}
+.lede-body h2{font-size:clamp(30px,3.4vw,42px);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin-bottom:24px}
+.lede-body p{margin-bottom:18px;font-size:17.5px;color:#454f55}
+.lede-body p b{color:var(--ink)}
+
+/* ---------- sessions ---------- */
+.sessions{padding:0 0 100px}
+.sessions h2{font-size:clamp(32px,3.6vw,46px);font-weight:500;letter-spacing:-.02em;margin-bottom:8px}
+.sess-label{color:var(--deep);margin:44px 0 4px}
+.row{display:grid;grid-template-columns:60px 1fr 1.1fr;gap:28px;padding:32px 14px 32px 8px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.rows .row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--deep);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--pale)}
+.row .num{color:var(--green);font-size:13px;padding-top:5px}
+.row h3{font-size:21px;font-weight:500;line-height:1.3;letter-spacing:-.01em}
+.row .who{margin-top:10px;color:var(--deep);font-size:11.5px;line-height:1.9}
+.row p{color:#5c666c;font-size:15.5px}
+
+/* ---------- trust layer band ---------- */
+.trust{background:var(--forest);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.trust::before{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(118,188,77,.16),transparent 70%)}
+.trust .mono{color:var(--green-lt)}
+.trust h2{font-size:clamp(28px,3.2vw,40px);font-weight:500;letter-spacing:-.02em;max-width:22ch;margin:14px 0 8px}
+.trust .sub{color:#b9c8b0;max-width:58ch;margin-bottom:52px}
+.flow{display:grid;grid-template-columns:1fr auto 1fr;gap:34px;align-items:center}
+.col-label{color:#8fa383;margin-bottom:14px}
+.node{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);border-radius:12px;padding:15px 20px;margin-bottom:12px;font-weight:500;font-size:15.5px;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+.node:hover{border-color:var(--green);transform:translateX(4px)}
+.hub{text-align:center}
+.hub .core{display:inline-block;background:var(--green);color:var(--forest);border-radius:14px;padding:20px 30px;font-weight:700;font-size:18px;box-shadow:0 14px 40px rgba(118,188,77,.35)}
+.hub .core small{display:block;font-family:"DM Mono",monospace;font-size:10.5px;letter-spacing:.14em;font-weight:400;margin-top:5px}
+.dashes{height:2px;margin:16px auto 0;width:82%;background-image:linear-gradient(90deg,var(--green) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+
+/* ---------- speakers ---------- */
+.speakers{padding:96px 0}
+.speakers h2{font-size:clamp(30px,3.4vw,44px);font-weight:500;letter-spacing:-.02em;margin:10px 0 40px}
+.spk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.spk{border-top:1px solid var(--line);padding:22px 6px 26px;transition:background .3s var(--ease)}
+.spk:hover{background:var(--pale)}
+.ava{width:100%;aspect-ratio:2/1.35;border-radius:12px;position:relative;overflow:hidden;margin-bottom:16px;background:linear-gradient(180deg,var(--green) 0 50%,var(--green-lt) 50% 100%)}
+.ava img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s var(--ease)}
+.spk:hover .ava img{transform:scale(1.04)}
+.ava::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--green) 0 50%,var(--green-lt) 50% 100%)}
+.spk h4{font-size:16.5px;font-weight:700;line-height:1.3}
+.spk p{color:#5c666c;font-size:13.5px;line-height:1.45;margin-top:4px}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--green);color:var(--forest);padding:88px 0;position:relative;overflow:hidden}
+.cta-band::after{content:"";position:absolute;right:-90px;bottom:-190px;width:380px;height:380px;border-radius:50%;background:var(--green-lt)}
+.cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;z-index:2}
+.cta-band h2{font-size:clamp(30px,3.6vw,46px);font-weight:500;letter-spacing:-.02em;line-height:1.1}
+.cta-band p{margin-top:14px;font-size:17px;max-width:46ch}
+.cta-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+a.pill.dark{background:var(--forest);color:#fff;font-size:16.5px;padding:15px 32px}
+.cta-links{display:flex;gap:22px;font-weight:500}
+.cta-links a{border-bottom:2px solid rgba(22,38,16,.35);padding-bottom:2px;transition:border-color .25s var(--ease)}
+.cta-links a:hover{border-color:var(--forest)}
+
+/* ---------- footer ---------- */
+footer{background:var(--forest);color:#fff;padding:70px 0 36px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;margin-bottom:52px}
+.foot-grid .mono{color:#8fa383;margin-bottom:16px}
+.foot-grid a{display:block;color:#e6eee1;font-size:14.5px;margin-bottom:10px;opacity:.92;transition:opacity .25s}
+.foot-grid a:hover{opacity:1;color:var(--green-lt)}
+.legal{border-top:1px solid rgba(255,255,255,.14);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:#9fae95;font-size:13px}
+.legal .l-links{display:flex;gap:20px;flex-wrap:wrap}
+.legal a:hover{color:#fff}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+.stagger.in>*:nth-child(6){transition-delay:.4s}.stagger.in>*:nth-child(7){transition-delay:.48s}
+.stagger.in>*:nth-child(8){transition-delay:.56s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+@media (max-width: 960px){
+  .hero-grid{grid-template-columns:1fr}.motif{display:none}
+  .lede-grid{grid-template-columns:1fr}.side{position:static}
+  .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}
+  .row p{grid-column:2}
+  .flow{grid-template-columns:1fr}.dashes{width:2px;height:44px;margin:0 auto;background-image:linear-gradient(180deg,var(--green) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y}
+  .spk-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-grid{grid-template-columns:1fr;gap:24px}
+  .cta-grid{grid-template-columns:1fr}
+  .links{display:none}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap">
+    <a href="https://duo.com/search" target="_blank" rel="noopener">Search</a>
+    <a href="https://duo.com/support" target="_blank" rel="noopener">Support</a>
+    <a href="https://admin.duosecurity.com/" target="_blank" rel="noopener">Admin Login</a>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="https://duo.com" target="_blank" rel="noopener" aria-label="Cisco Duo">
+      <svg viewBox="0 0 300 152" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cisco Duo">
+        <text x="2" y="26" font-family="'DM Sans',sans-serif" font-size="26" font-weight="700" letter-spacing="6" fill="#363F44">CISCO</text>
+        <!-- D -->
+        <path d="M0 44 H62 A48 48 0 0 1 110 92 V95 H0 Z" fill="#76BC4D"/>
+        <path d="M0 99 H110 V102 A48 48 0 0 1 62 150 H0 Z" fill="#A6CC7F"/>
+        <!-- U -->
+        <path d="M118 44 H172 V96 A54 54 0 0 1 118 150 Z" fill="#76BC4D"/>
+        <rect x="180" y="44" width="26" height="106" fill="#A6CC7F"/>
+        <!-- O -->
+        <path d="M214 95 A43 51 0 0 1 300 95 Z" fill="#76BC4D" transform="translate(0,2)"/>
+        <path d="M214 99 A43 51 0 0 0 300 99 Z" fill="#A6CC7F" transform="translate(0,0)"/>
+      </svg>
+    </a>
+    <nav class="links">
+      <a href="https://duo.com/product" target="_blank" rel="noopener">Products <span class="caret"></span></a>
+      <a href="https://duo.com/solutions" target="_blank" rel="noopener">Solutions <span class="caret"></span></a>
+      <a href="https://duo.com/resources" target="_blank" rel="noopener">Docs and Resources <span class="caret"></span></a>
+      <a href="https://duo.com/editions-and-pricing" target="_blank" rel="noopener">Pricing <span class="caret"></span></a>
+    </nav>
+    <div class="nav-cta">
+      <a class="pill outline" href="https://duo.com/about/contact" target="_blank" rel="noopener">Contact sales</a>
+      <a class="pill solid" href="https://signup.duo.com/" target="_blank" rel="noopener">Free trial</a>
+    </div>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge mono"><span class="dot"></span>Virtual Summit &middot; On Demand</span>
+        <h1>Cisco Duo<br>Identity Summit</h1>
+        <p class="hook">Everyone has been saying that &ldquo;identity is the new perimeter&rdquo;. But what does that actually mean? It&rsquo;s time to make sense of the identity conundrum. <b>Meet the new Duo.</b></p>
+        <p class="stream">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Streaming live and on-demand on duo.com
+        </p>
+        <div class="chips">
+          <span class="chip"><b>3</b> main sessions</span>
+          <span class="chip"><b>4</b> breakouts</span>
+          <span class="chip"><b>11</b> speakers</span>
+          <span class="chip">Pick your own learning journey</span>
+        </div>
+      </div>
+      <div class="motif" aria-hidden="true">
+        <div class="shape m-circle"><div class="half t"></div><div class="half b"></div></div>
+        <div class="shape m-d"><div class="half t"></div><div class="half b"></div></div>
+        <div class="shape m-bar"><div class="half t"></div><div class="half b"></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat-band">
+  <div class="wrap stat-grid reveal">
+    <div class="stat-num">150<span>K</span></div>
+    <div class="stat-copy">
+      <p>students secured at one school district &mdash; plus 25K staff across 250+ locations &mdash; on a single identity foundation.</p>
+      <p class="turn">Identity isn&rsquo;t a checkpoint anymore. <b>It&rsquo;s a living trust layer across the enterprise</b> &mdash; and this summit is about what that takes.</p>
+      <p class="mono stat-src">Source: &ldquo;Securing Identity at Scale,&rdquo; School District of Philadelphia session</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side mono">On-Demand<br>Summit</div>
+    <div class="lede-body reveal">
+      <h2>All things identity, from the people who own it</h2>
+      <p>Watch as a diverse group of identity experts dive into all things identity &mdash; what it entails, who is responsible for setting strategy, and how to make sure users, applications, devices and, yes, <b>AI agents</b>, are really who they say they are.</p>
+      <p>Pick your own learning journey across a wide array of sessions, representing a mix of strategic, tactical and real-world experiences from industry leaders.</p>
+      <p>Whether you&rsquo;re just starting your identity journey or modernizing an existing strategy, this virtual conference is your chance to <b>meet the new Duo</b> and get a clearer path forward.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sessions">
+  <div class="wrap">
+    <h2 class="reveal">The lineup</h2>
+    <p class="mono sess-label">Main sessions</p>
+    <div class="rows stagger">
+      <div class="row">
+        <span class="num mono">01</span>
+        <div>
+          <h3>Identity Security for the Agentic Era</h3>
+          <p class="who mono">Matt Caulfield &middot; VP, Identity Product Management</p>
+        </div>
+        <p>The identity threat surface is outpacing traditional access controls. This keynote explores where identity security is headed, why trust must be continuously earned, and how to prepare for AI-driven risk.</p>
+      </div>
+      <div class="row">
+        <span class="num mono">02</span>
+        <div>
+          <h3>Identity Intelligence at Work: How Box Balances Security and Productivity</h3>
+          <p class="who mono">Akhila Nama &middot; Head of Enterprise Security, Box<br>Isaiah Archuleta &middot; Duo Care</p>
+        </div>
+        <p>Practical insight for leaders looking to strengthen identity security and reduce user friction while preparing for AI-driven threats across an increasingly complex access landscape.</p>
+      </div>
+      <div class="row">
+        <span class="num mono">03</span>
+        <div>
+          <h3>A Zero Trust Playbook for the Agentic Workforce</h3>
+          <p class="who mono">Chris Anderson &middot; Product Management CTO</p>
+        </div>
+        <p>AI agents are already inside your business. The question is no longer whether to trust them, but how to prove they deserve access at all &mdash; and how zero trust closes the agent trust gap.</p>
+      </div>
+    </div>
+    <p class="mono sess-label">Breakout sessions</p>
+    <div class="rows stagger">
+      <div class="row">
+        <span class="num mono">04</span>
+        <div>
+          <h3>Is Active Directory Still Your Weak Link?</h3>
+          <p class="who mono">Joe Duggan &middot; Engineering Product Manager</p>
+        </div>
+        <p>How Cisco closes the legacy gap with new Duo Active Directory Defense &mdash; find and remediate risky identity blind spots without rip-and-replace projects.</p>
+      </div>
+      <div class="row">
+        <span class="num mono">05</span>
+        <div>
+          <h3>Outsmarting AI-driven Social Engineering Tactics</h3>
+          <p class="who mono">Joe Marshall &middot; Cisco Talos<br>Sasha Dobrolioubov &amp; Brooke Lancaster &middot; Persona</p>
+        </div>
+        <p>Attackers have learned the easiest way around MFA: convince a person to let them in. How Duo Identity Verification adds high-assurance proof of identity at the moments attackers target most.</p>
+      </div>
+      <div class="row">
+        <span class="num mono">06</span>
+        <div>
+          <h3>Securing Identity at Scale</h3>
+          <p class="who mono">Andrew Speese &middot; Deputy CISO, School District of Philadelphia<br>Adam Crowell &middot; Duo Care</p>
+        </div>
+        <p>150K students, 25K staff and contractors, 250+ locations: how the district built a flexible MFA foundation and set a path toward passwordless and zero trust.</p>
+      </div>
+      <div class="row">
+        <span class="num mono">07</span>
+        <div>
+          <h3>Technical Masterclass: Deployable End-to-End Phishing Resistance</h3>
+          <p class="who mono">Danny Paul &middot; Sales Engineer, Cisco</p>
+        </div>
+        <p>A demo-led session on making secure enrollment easier and extending phishing resistance across the full identity lifecycle &mdash; without adding friction for users.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <p class="mono reveal">The thread through every session</p>
+    <h2 class="reveal">Identity is not a checkpoint. It&rsquo;s a living trust layer.</h2>
+    <p class="sub reveal">Automation, identities, devices and applications keep multiplying &mdash; and agentic AI is changing how attackers operate. Trust has to be continuously earned.</p>
+    <div class="flow">
+      <div class="stagger">
+        <p class="col-label mono">Who&rsquo;s asking</p>
+        <div class="node">Users</div>
+        <div class="node">Devices</div>
+        <div class="node">Applications</div>
+        <div class="node">AI agents</div>
+      </div>
+      <div class="hub reveal">
+        <div class="core">Duo<small>Continuous Trust</small></div>
+        <div class="dashes"></div>
+      </div>
+      <div class="stagger">
+        <p class="col-label mono">What they get</p>
+        <div class="node">Phishing-resistant access</div>
+        <div class="node">Device trust</div>
+        <div class="node">Session protection</div>
+        <div class="node">Passwordless</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <p class="mono" style="color:var(--deep)">Speakers</p>
+    <h2 class="reveal">Eleven voices. One identity conversation.</h2>
+    <div class="spk-grid stagger">
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/mattcaulfield-headshotimage.webp" alt="Matt Caulfield" loading="lazy"></div><h4>Matt Caulfield</h4><p>VP of Product, Identity, Cisco</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/chris-anderson.webp" alt="Chris Anderson" loading="lazy"></div><h4>Chris Anderson</h4><p>Product CTO, Duo</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/akhilanama.webp" alt="Akhila Nama" loading="lazy"></div><h4>Akhila Nama</h4><p>Global Head of Enterprise Security, Box</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/andrewspeese.webp" alt="Andrew Speese" loading="lazy"></div><h4>Andrew Speese</h4><p>Deputy CISO, School District of Philadelphia</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/joemarshall.webp" alt="Joe Marshall" loading="lazy"></div><h4>Joe Marshall</h4><p>Principal Threat Researcher, Cisco Talos</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/joeduggan-headshot.webp" alt="Joe Duggan" loading="lazy"></div><h4>Joe Duggan</h4><p>Head of Strategy, Duo Product Management</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/dannypaul.webp" alt="Danny Paul" loading="lazy"></div><h4>Danny Paul</h4><p>Solutions Engineer, Cisco</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/sashadobrolioubov.webp" alt="Sasha Dobrolioubov" loading="lazy"></div><h4>Sasha Dobrolioubov</h4><p>VP of Partnerships, Persona</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/brookelancaster.webp" alt="Brooke Lancaster" loading="lazy"></div><h4>Brooke Lancaster</h4><p>Public Sector Technical Lead, Persona</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/adamcrowell.webp" alt="Adam Crowell" loading="lazy"></div><h4>Adam Crowell</h4><p>Security Customer Success Specialist, Duo</p></div>
+      <div class="spk"><div class="ava"><img src="https://duo.com/assets/img/isaiaharchuleta.webp" alt="Isaiah Archuleta" loading="lazy"></div><h4>Isaiah Archuleta</h4><p>High Touch Customer Success Specialist, Duo</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Ready to secure your organization?</h2>
+      <p>Experience for yourself why Duo is one of the most trusted access management tools. Try it for free, explore editions, and connect with security experts.</p>
+    </div>
+    <div class="cta-actions reveal">
+      <a class="pill dark" href="https://signup.duo.com/" target="_blank" rel="noopener">Start your free trial</a>
+      <div class="cta-links">
+        <a href="https://duo.com/editions-and-pricing" target="_blank" rel="noopener">Compare editions</a>
+        <a href="https://duo.com/about/contact" target="_blank" rel="noopener">Contact sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="mono">Products</p>
+        <a href="https://duo.com/product/duo-directory" target="_blank" rel="noopener">Duo Directory</a>
+        <a href="https://duo.com/product/duo-passport" target="_blank" rel="noopener">Duo Passport</a>
+        <a href="https://duo.com/product/multi-factor-authentication-mfa" target="_blank" rel="noopener">Multi-Factor Authentication (MFA)</a>
+        <a href="https://duo.com/product/single-sign-on-sso" target="_blank" rel="noopener">Single Sign-On (SSO)</a>
+        <a href="https://duo.com/product/passwordless" target="_blank" rel="noopener">Passwordless</a>
+        <a href="https://duo.com/product/device-trust" target="_blank" rel="noopener">Device Trust</a>
+      </div>
+      <div>
+        <p class="mono">Solutions</p>
+        <a href="https://duo.com/solutions/enterprise" target="_blank" rel="noopener">Enterprise</a>
+        <a href="https://duo.com/solutions/phishing-prevention" target="_blank" rel="noopener">Phishing Prevention</a>
+        <a href="https://duo.com/solutions/zero-trust-security" target="_blank" rel="noopener">Zero Trust Security</a>
+        <a href="https://duo.com/solutions/active-directory-defense" target="_blank" rel="noopener">Active Directory Defense</a>
+        <a href="https://duo.com/solutions/agentic-iam" target="_blank" rel="noopener">Agentic IAM</a>
+      </div>
+      <div>
+        <p class="mono">Docs &amp; Resources</p>
+        <a href="https://duo.com/resources" target="_blank" rel="noopener">Top Resources</a>
+        <a href="https://duo.com/docs" target="_blank" rel="noopener">Docs</a>
+        <a href="https://duo.com/resources/events" target="_blank" rel="noopener">Events</a>
+        <a href="https://duo.com/blog" target="_blank" rel="noopener">Blogs</a>
+        <a href="https://duo.com/resources/ciso-perspectives" target="_blank" rel="noopener">CISO Perspectives</a>
+      </div>
+      <div>
+        <p class="mono">Company</p>
+        <a href="https://duo.com/about" target="_blank" rel="noopener">About Duo</a>
+        <a href="https://duo.com/careers" target="_blank" rel="noopener">Careers</a>
+        <a href="https://duo.com/support" target="_blank" rel="noopener">Duo Support</a>
+        <a href="https://duo.com/editions-and-pricing" target="_blank" rel="noopener">Pricing</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 Cisco Systems, Inc.</span>
+      <div class="l-links">
+        <a href="https://duo.com/legal/terms" target="_blank" rel="noopener">Terms of Service</a>
+        <a href="https://www.cisco.com/c/en/us/about/legal/privacy-full.html" target="_blank" rel="noopener">Privacy Statement</a>
+        <a href="https://duo.com/legal/service-level-agreement" target="_blank" rel="noopener">Service Level Agreement</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div style="display:none"><!-- sequel mounts above --></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});});
+(function stripBorder(){
+  const c=document.getElementById("sequel_root").firstElementChild;
+  if(c&&c.shadowRoot){
+    const st=document.createElement("style");
+    st.textContent="iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  }else{setTimeout(stripBorder,200);}
+})();
+// nav shrink
+const hdr=document.getElementById("hdr");
+addEventListener("scroll",()=>{hdr.classList.toggle("scrolled",scrollY>8)},{passive:true});
+// reveal
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
