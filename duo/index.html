@@ -45,7 +45,7 @@ header.scrolled{box-shadow:var(--sh-sm)}
 .links a:hover::after{width:100%}
 .caret{width:9px;height:9px;border-right:1.6px solid #6a747a;border-bottom:1.6px solid #6a747a;transform:rotate(45deg) translateY(-2px)}
 .nav-cta{margin-left:auto;display:flex;gap:12px;align-items:center}
-.pill{border-radius:1000px;font-weight:500;font-size:15.5px;padding:11px 24px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.pill{border-radius:1000px;font-weight:500;font-size:15.5px;padding:11px 24px;white-space:nowrap;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .pill:hover{transform:translateY(-2px);box-shadow:var(--sh-sm)}
 a.pill.outline{border:2px solid var(--deep);color:var(--deep);background:transparent}
 a.pill.solid{background:var(--blue);color:#fff}
@@ -190,6 +190,16 @@ footer{background:var(--forest);color:#fff;padding:70px 0 36px}
   .cta-grid{grid-template-columns:1fr}
   .links{display:none}
   .foot-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 480px){
+  .util{display:none}
+  .nav{gap:12px;padding:12px 0}
+  .logo svg{height:32px}
+  .pill{font-size:13.5px;padding:9px 16px}
+  .nav-cta{gap:8px}
+  .stat-num{font-size:clamp(72px,24vw,110px)}
+  .spk-grid{grid-template-columns:1fr 1fr;gap:10px}
+  h1{font-size:clamp(34px,10.5vw,44px)}
 }
 </style>
 </head>
