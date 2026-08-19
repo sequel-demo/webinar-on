@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Stop Studying Threats. Start Neutralizing Them. | ZeroFox</title>
+<meta property="og:title" content="Stop Studying Threats. Start Neutralizing Them.">
+<meta property="og:description" content="A live walkthrough of the HNTR Platform — how ZeroFox connects 12B+ signals into one continuous loop of discovery, validation, and disruption.">
+<meta property="og:image" content="https://www.zerofox.com/images/zf-logo-white.svg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/zerofox/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.zerofox.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Martian+Mono:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#002539;
+  --black:#02131D;
+  --deep:#032235;
+  --hero:#04263C;
+  --cyan:#24E4EB;
+  --cyan-soft:#7CE0E8;
+  --lime:#CFFF0D;
+  --paper:#FFFFFF;
+  --mist:#F4F7F9;
+  --line:#DCE3E8;
+  --line-dk:rgba(255,255,255,.14);
+  --muted:#5A7183;
+  --disp:"Martian Mono","SFMono-Regular",ui-monospace,monospace;
+  --body:"Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(0,37,57,.06),0 2px 8px rgba(0,37,57,.05);
+  --sh-md:0 4px 12px rgba(0,37,57,.08),0 12px 32px rgba(0,37,57,.08);
+  --sh-lg:0 18px 60px rgba(0,37,57,.16);
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+/* ---------- announce bar ---------- */
+.announce{background:#EDEFF1;color:var(--ink);font-size:13.5px;font-weight:600;text-align:center;padding:9px 16px;letter-spacing:.01em}
+.announce .new{color:#E0273A;font-weight:700;letter-spacing:.08em;font-size:12px;margin-right:6px}
+.announce .sep{color:#B9C2C8;margin:0 8px}
+.announce a{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(0,37,57,.35);padding-bottom:1px}
+.announce a:hover{border-color:var(--ink)}
+.announce .chev{margin-left:6px;opacity:.6}
+
+/* ---------- header ---------- */
+.utility{background:var(--black);border-bottom:1px solid rgba(255,255,255,.07)}
+.utility .wrap{display:flex;justify-content:flex-end;align-items:center;gap:26px;height:40px}
+.utility a{color:#DEE7EC;font-size:12.5px;text-decoration:none;display:flex;align-items:center;gap:7px;opacity:.92}
+.utility a:hover{opacity:1;color:#fff}
+.utility svg{width:14px;height:14px;flex:none}
+
+.nav{background:var(--black);position:sticky;top:0;z-index:100;transition:box-shadow .3s var(--ease),background .3s var(--ease)}
+.nav.scrolled{box-shadow:0 8px 28px rgba(0,0,0,.45);background:rgba(2,19,29,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;height:64px;gap:34px}
+.brand{display:flex;align-items:center;flex:none}
+.brand img{height:26px;width:auto}
+.nav-links{display:flex;align-items:center;gap:30px;flex:1}
+.nav-links a{color:#fff;text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.94;transition:color .2s var(--ease)}
+.nav-links a:hover{color:var(--cyan)}
+.pill{background:var(--cyan);border:2px solid var(--cyan);border-radius:4px;padding:9px 20px;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s var(--ease)}
+.nav-links a.pill,.nav a.pill{color:var(--ink)}
+.nav a.pill:hover{color:var(--ink);background:#3EEDF3;border-color:#3EEDF3;transform:translateY(-2px);box-shadow:0 8px 22px rgba(36,228,235,.28)}
+.burger{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.burger span{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
+
+/* ---------- dark wrap : hero + embed as one surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:linear-gradient(180deg,#04263C 0%,#032B44 45%,#02202F 100%);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:85%;
+  background:radial-gradient(circle at 50% 40%,rgba(36,228,235,.20),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -14% -22% -14%;height:70%;
+  background:radial-gradient(circle at 60% 50%,rgba(11,116,168,.30),transparent 65%);pointer-events:none}
+.dark-wrap .grid-fx{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:78px 78px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 22%,#000 35%,transparent 78%);
+  mask-image:radial-gradient(ellipse at 50% 22%,#000 35%,transparent 78%)}
+
+.hero{padding:74px 0 40px;position:relative;z-index:2}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(36,228,235,.45);background:rgba(36,228,235,.09);color:var(--cyan);
+  border-radius:4px;padding:6px 13px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(36,228,235,.65)}70%{box-shadow:0 0 0 9px rgba(36,228,235,0)}100%{box-shadow:0 0 0 0 rgba(36,228,235,0)}}
+.eyebrow{color:var(--lime);font-size:13px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;margin:26px 0 14px}
+h1{font-family:var(--disp);font-weight:300;font-size:clamp(30px,4.4vw,54px);line-height:1.14;letter-spacing:-.02em;margin:0 0 20px;color:#fff}
+.sub{font-size:19px;color:#C6DAE6;max-width:640px;margin:0 0 26px;line-height:1.55}
+.streaming{font-size:14px;color:#8FB2C6;margin:0 0 28px}
+.streaming b{color:var(--cyan);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:8px 14px;font-size:13.5px;color:#D8E7EF;background:rgba(255,255,255,.04)}
+.chip svg{width:15px;height:15px;opacity:.75;flex:none}
+.tzline{font-size:12.5px;color:#7FA0B4;margin:-18px 0 26px}
+
+.count{display:flex;gap:12px;margin:0 0 30px;flex-wrap:wrap}
+.cbox{min-width:78px;border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:12px 8px 10px;text-align:center;background:rgba(255,255,255,.035)}
+.cnum{font-family:var(--disp);font-weight:400;font-size:27px;font-variant-numeric:tabular-nums;color:#fff;line-height:1}
+.clab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7FA0B4;margin-top:7px}
+.live-now{font-family:var(--disp);font-size:19px;color:var(--cyan);margin:0 0 30px}
+
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:4px;padding:13px 24px;font-size:14px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s var(--ease)}
+.btn-primary{background:var(--cyan);color:var(--ink);border-color:var(--cyan)}
+.btn-primary:hover{background:#3EEDF3;border-color:#3EEDF3;transform:translateY(-2px);box-shadow:0 10px 26px rgba(36,228,235,.3)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.btn svg{width:16px;height:16px}
+
+.embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:6px;overflow:hidden}
+
+/* ---------- stat pull-quote ---------- */
+.statband{background:var(--paper);padding:96px 0 86px;border-bottom:1px solid var(--line)}
+.statgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center}
+.bignum{font-family:var(--disp);font-weight:200;font-size:clamp(74px,12vw,158px);line-height:.88;letter-spacing:-.05em;color:var(--ink);margin:0}
+.bignum em{font-style:normal;color:var(--cyan-soft)}
+.statlab{margin-top:18px;color:var(--muted)}
+.turn{font-family:var(--disp);font-weight:300;font-size:clamp(19px,2.2vw,27px);line-height:1.42;letter-spacing:-.02em;margin:0}
+.turn b{color:var(--ink);font-weight:500;background:linear-gradient(transparent 62%,rgba(36,228,235,.38) 62%)}
+
+/* ---------- lede ---------- */
+.lede{background:var(--mist);padding:92px 0}
+.lede-grid{display:grid;grid-template-columns:180px minmax(0,1fr);gap:56px}
+.sidelabel{position:sticky;top:104px;align-self:start;color:var(--muted);border-top:2px solid var(--ink);padding-top:14px}
+.measure{max-width:66ch}
+.measure h2{font-family:var(--disp);font-weight:300;font-size:clamp(23px,2.9vw,34px);line-height:1.25;letter-spacing:-.025em;margin:0 0 22px}
+.measure p{margin:0 0 20px;color:#254458}
+.measure p:last-child{margin-bottom:0}
+
+/* ---------- mechanism band (their connected-pill device) ---------- */
+.mech{background:var(--black);color:#fff;padding:96px 0 100px;position:relative;overflow:hidden}
+.mech::after{content:"";position:absolute;inset:auto -10% -40% -10%;height:70%;
+  background:radial-gradient(circle at 50% 50%,rgba(36,228,235,.13),transparent 65%);pointer-events:none}
+.mech .wrap{position:relative;z-index:2}
+.mech .eyebrow{color:var(--lime);margin:0 0 16px}
+.mech h2{font-family:var(--disp);font-weight:300;font-size:clamp(24px,3.2vw,40px);line-height:1.2;letter-spacing:-.025em;margin:0 0 12px;color:#fff}
+.mech .lead{color:#9FBBCC;max-width:60ch;margin:0 0 52px}
+.flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:flex-start}
+.node{border:2px solid rgba(36,228,235,.55);border-radius:999px;padding:16px 26px;font-size:13px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#DFF6F8;background:rgba(36,228,235,.05);white-space:nowrap;transition:all .35s var(--ease)}
+.node.on{background:var(--cyan);color:var(--ink);border-color:var(--cyan);box-shadow:0 0 34px rgba(36,228,235,.34)}
+.node:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.dashes{flex:1;min-width:38px;height:2px;margin:0 12px;background-image:linear-gradient(90deg,rgba(36,228,235,.85) 55%,transparent 0);
+  background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+.loopnote{margin-top:34px;color:#6E90A5;font-size:13px;letter-spacing:.02em}
+
+/* ---------- hairline rows ---------- */
+.learn{background:var(--paper);padding:96px 0 104px}
+.learn h2{font-family:var(--disp);font-weight:300;font-size:clamp(24px,3vw,36px);letter-spacing:-.025em;margin:10px 0 44px}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1.15fr);gap:28px;padding:34px 18px 34px 10px;
+  border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--cyan);transition:width .55s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:#F7FBFC}
+.rnum{font-family:var(--disp);font-weight:300;font-size:15px;color:var(--cyan-soft);padding-top:4px}
+.rttl{font-family:var(--disp);font-weight:300;font-size:19px;line-height:1.35;letter-spacing:-.02em}
+.rbody{color:var(--muted);font-size:16px}
+
+/* ---------- speakers ---------- */
+.speakers{background:var(--mist);padding:88px 0 96px;border-top:1px solid var(--line)}
+.speakers h2{font-family:var(--disp);font-weight:300;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.025em;margin:10px 0 38px}
+.spk-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 44px}
+.spk{display:flex;gap:18px;align-items:center;padding:20px 0;border-top:1px solid var(--line)}
+.avatar{width:60px;height:60px;border-radius:50%;flex:none;background:linear-gradient(140deg,#0B4D6B,#04263C);
+  display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:var(--disp);font-size:16px;font-weight:400;border:2px solid rgba(36,228,235,.4)}
+.spk b{display:block;font-family:var(--disp);font-weight:300;font-size:16.5px;letter-spacing:-.01em}
+.spk span{display:block;color:var(--muted);font-size:14.5px;margin-top:3px}
+
+/* ---------- CTA band with their diamond lattice ---------- */
+.cta{position:relative;overflow:hidden;background:var(--cyan-soft);color:var(--ink);padding:92px 0 96px;border-radius:0 0 0 0}
+.cta::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 58px),
+                   repeating-linear-gradient(-45deg,rgba(255,255,255,.55) 0 2px,transparent 2px 58px)}
+.cta .wrap{position:relative;z-index:2;text-align:center}
+.cta h2{font-family:var(--disp);font-weight:300;font-size:clamp(24px,3.4vw,42px);line-height:1.2;letter-spacing:-.03em;margin:0 0 14px}
+.cta p{max-width:56ch;margin:0 auto 30px;color:#01323E;font-size:17px}
+.cta .btn-primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.cta .btn-primary:hover{background:#013450;border-color:#013450;box-shadow:0 10px 26px rgba(0,37,57,.28)}
+
+/* ---------- footer ---------- */
+footer{background:var(--deep);color:#C7DBE6;padding:66px 0 34px;font-size:14px}
+.fgrid{display:grid;grid-template-columns:1.15fr repeat(4,1fr);gap:36px 30px}
+.fbrand img{height:26px;margin-bottom:20px}
+.fbrand p{color:#88A9BD;font-size:13.5px;max-width:26ch;line-height:1.55;margin:0 0 20px}
+.social{display:flex;gap:12px}
+.social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .25s var(--ease)}
+.social a:hover{border-color:var(--cyan);background:rgba(36,228,235,.1)}
+.social svg{width:15px;height:15px;fill:#C7DBE6}
+.social a:hover svg{fill:var(--cyan)}
+.fcol h4{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 15px}
+.fcol a{display:block;color:#A9C4D3;text-decoration:none;font-size:13.5px;padding:5px 0;transition:color .2s var(--ease)}
+.fcol a:hover{color:var(--cyan)}
+.legal{margin-top:46px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;gap:8px 26px;
+  align-items:center;justify-content:space-between;color:#7C9DB1;font-size:12.5px}
+.legal nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.legal a{color:#7C9DB1;text-decoration:none}
+.legal a:hover{color:var(--cyan)}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}
+.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}
+.stagger.in>*:nth-child(5){transition-delay:.32s}
+
+@media (max-width:980px){
+  .statgrid{grid-template-columns:1fr;gap:30px}
+  .lede-grid{grid-template-columns:1fr;gap:26px}
+  .sidelabel{position:static;border-top:0;border-left:2px solid var(--ink);padding:0 0 0 14px}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px 24px}
+  .nav-links{display:none}
+  .burger{display:block;margin-left:auto}
+  .utility{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .hero{padding:46px 0 30px}
+  .row{grid-template-columns:44px 1fr;gap:14px}
+  .row .rbody{grid-column:2}
+  .flow{flex-direction:column;align-items:stretch;gap:0}
+  .node{white-space:normal;text-align:center}
+  .dashes{width:2px;height:26px;min-width:0;margin:8px auto;background-image:linear-gradient(180deg,rgba(36,228,235,.85) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  @keyframes marchv{to{background-position:0 12px}}
+  .fgrid{grid-template-columns:1fr}
+  .announce{font-size:12.5px}
+  #sequel_root{min-height:300px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- announce -->
+<div class="announce">
+  <span class="new">NEW</span><span class="sep">|</span>
+  <a href="#sequel_root">Live September 17: Inside the HNTR Platform. Save your seat.</a>
+  <span class="chev">&raquo;</span>
+</div>
+
+<!-- utility strip -->
+<div class="utility"><div class="wrap">
+  <a href="https://www.zerofox.com/contact-us/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Contact</a>
+  <a href="https://www.zerofox.com/partners/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6z"/></svg>Partner Portal</a>
+  <a href="https://cloud.zerofox.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>Customer Portal</a>
+</div></div>
+
+<!-- nav -->
+<header class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="https://www.zerofox.com/" target="_blank" rel="noopener"><img src="https://www.zerofox.com/images/zf-logo-white.svg" alt="ZeroFox"></a>
+  <nav class="nav-links">
+    <a href="https://www.zerofox.com/platform/" target="_blank" rel="noopener">Platform</a>
+    <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Solutions</a>
+    <a href="https://www.zerofox.com/use-cases/" target="_blank" rel="noopener">Use Cases</a>
+    <a href="https://www.zerofox.com/resources/" target="_blank" rel="noopener">Resources</a>
+    <a href="https://www.zerofox.com/about/" target="_blank" rel="noopener">Company</a>
+    <a href="https://www.zerofox.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+  </nav>
+  <a class="pill" href="https://www.zerofox.com/demo/" target="_blank" rel="noopener">Request Demo</a>
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></header>
+
+<!-- hero + embed, one surface -->
+<div class="dark-wrap">
+  <div class="grid-fx"></div>
+
+  <section class="hero"><div class="wrap"><div class="hero-inner stagger in">
+    <div><span class="badge" id="badge"><span class="dot"></span>Live Webinar</span></div>
+    <div class="eyebrow">HNTR Platform Session</div>
+    <h1>Stop studying threats.<br>Start neutralizing them.</h1>
+    <p class="sub">A live walkthrough of how ZeroFox turns external signal into action, in one continuous loop of discovery, validation, and disruption.</p>
+    <div class="chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span id="chip-date">Thursday, September 17, 2026</span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="chip-time">1:00 PM ET / 10:00 AM PT</span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"/></svg>45 minutes</span>
+    </div>
+    <p class="tzline" id="tzline"></p>
+    <p class="streaming">Streaming live and on-demand on <b>zerofox.com</b></p>
+
+    <div class="count" id="count">
+      <div class="cbox"><div class="cnum" id="d">--</div><div class="clab">Days</div></div>
+      <div class="cbox"><div class="cnum" id="h">--</div><div class="clab">Hours</div></div>
+      <div class="cbox"><div class="cnum" id="m">--</div><div class="clab">Minutes</div></div>
+      <div class="cbox"><div class="cnum" id="s">--</div><div class="clab">Seconds</div></div>
+    </div>
+    <p class="live-now" id="livenow" style="display:none">We're live now — join below.</p>
+
+    <div class="actions" id="actions">
+      <a class="btn btn-primary" href="#sequel_root">Save your seat</a>
+      <a class="btn btn-ghost" id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>Google Calendar</a>
+      <a class="btn btn-ghost" id="ical" download="zerofox-hntr-session.ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Add to calendar</a>
+    </div>
+  </div></div></section>
+
+  <section class="embed-sec"><div class="wrap">
+    <div id="sequel_root"></div>
+  </div></section>
+</div>
+
+<!-- stat pull-quote -->
+<section class="statband"><div class="wrap statgrid reveal">
+  <div>
+    <p class="bignum">12<em>B+</em></p>
+    <p class="statlab mono">Signals in the ZeroFox data graph</p>
+  </div>
+  <p class="turn">Every vendor can show you more signal. <b>Almost none can tell you which of it is worth an analyst's next hour.</b> That gap is the whole session.</p>
+</div></section>
+
+<!-- lede -->
+<section class="lede"><div class="wrap lede-grid reveal">
+  <div class="sidelabel mono">About<br>the session</div>
+  <div class="measure">
+    <h2>The modern attack surface spans platforms, people, and places you don't control.</h2>
+    <p>When risk develops in places teams can't observe, it flanks the organization before defenses engage. Most security programs answer that with more collection, and end up with more noise sitting in more queues.</p>
+    <p>The HNTR Platform takes a different route. It brings intelligence, AI, and cybersecurity experts together in one continuous loop of discovery, validation, and disruption, so intelligence doesn't stop at insight. It drives action, helping teams stop threats early and prevent real-world harm before it escalates.</p>
+    <p>In 45 minutes we'll walk the loop end to end using real detections, show what validation actually removes from the queue, and take the last step most platforms leave to you: the takedown.</p>
+  </div>
+</div></section>
+
+<!-- mechanism band -->
+<section class="mech"><div class="wrap reveal">
+  <div class="eyebrow mono" style="letter-spacing:.16em">One platform. One cycle.</div>
+  <h2>Discover. Validate. Disrupt.</h2>
+  <p class="lead">The loop doesn't end at a report. Each stage feeds the next, and the output of disruption becomes the next cycle's collection.</p>
+  <div class="flow">
+    <span class="node on">Discover</span>
+    <span class="dashes"></span>
+    <span class="node">Validate</span>
+    <span class="dashes"></span>
+    <span class="node">Disrupt</span>
+    <span class="dashes"></span>
+    <span class="node">Collect</span>
+  </div>
+  <p class="loopnote">180+ platforms monitored, including social media, marketplaces, and underground forums. 1M+ takedowns executed annually via Global Disruption Network partnerships.</p>
+</div></section>
+
+<!-- what you'll see -->
+<section class="learn"><div class="wrap reveal">
+  <div class="mono" style="color:var(--muted)">Agenda</div>
+  <h2>What you'll see</h2>
+
+  <div class="row">
+    <div class="rnum">01</div>
+    <div class="rttl">Where external risk actually starts</div>
+    <div class="rbody">A live look across social, domains, marketplaces, and the deep and dark web, and why perimeter tooling never sees any of it.</div>
+  </div>
+  <div class="row">
+    <div class="rnum">02</div>
+    <div class="rttl">Validation, not volume</div>
+    <div class="rbody">How context, targeting, and credibility scoring cut a raw detection queue down to the handful of items that warrant a human.</div>
+  </div>
+  <div class="row">
+    <div class="rnum">03</div>
+    <div class="rttl">The takedown, end to end</div>
+    <div class="rbody">Watch an impersonation go from first detection through enforcement, including what the Global Disruption Network does that a ticket cannot.</div>
+  </div>
+  <div class="row">
+    <div class="rnum">04</div>
+    <div class="rttl">Wiring it into your stack</div>
+    <div class="rbody">Pushing finished intelligence into TIP, SIEM, SOAR, and EDR so the loop closes inside the tools your team already lives in.</div>
+  </div>
+</div></section>
+
+<!-- speakers -->
+<section class="speakers"><div class="wrap reveal">
+  <div class="mono" style="color:var(--muted)">Speakers</div>
+  <h2>Who you'll hear from</h2>
+  <div class="spk-list">
+    <div class="spk"><div class="avatar">TBD</div><div><b>Speaker name to be confirmed</b><span>Threat Intelligence, ZeroFox</span></div></div>
+    <div class="spk"><div class="avatar">TBD</div><div><b>Speaker name to be confirmed</b><span>Product, HNTR Platform</span></div></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta"><div class="wrap reveal">
+  <h2>Defend your world.</h2>
+  <p>Save your seat for the live session, or watch it on demand right here on zerofox.com whenever it suits your calendar.</p>
+  <a class="btn btn-primary" href="#sequel_root">Save your seat</a>
+</div></section>
+
+<!-- footer -->
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div class="fbrand">
+      <img src="https://www.zerofox.com/images/zf-logo-white.svg" alt="ZeroFox">
+      <p>External cybersecurity. Discover, validate, and disrupt threats beyond the perimeter.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/zerofox" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.2 8.4h4.56V24H.2zM8.34 8.4h4.37v2.13h.06c.61-1.15 2.1-2.37 4.32-2.37 4.62 0 5.47 3.04 5.47 6.99V24h-4.56v-7.94c0-1.89-.03-4.33-2.64-4.33-2.64 0-3.05 2.06-3.05 4.19V24H8.34z"/></svg></a>
+        <a href="https://x.com/ZeroFox" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2h3.31l-7.23 8.26L23 22h-6.66l-5.22-6.82L5.14 22H1.83l7.73-8.83L1 2h6.83l4.72 6.24zm-1.16 18h1.83L7.01 3.88H5.04z"/></svg></a>
+        <a href="https://www.youtube.com/@ZeroFox" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.52A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.55 15.57V8.43L15.82 12z"/></svg></a>
+      </div>
+    </div>
+    <div class="fcol"><h4>Platform</h4>
+      <a href="https://www.zerofox.com/platform/discover/" target="_blank" rel="noopener">Discover</a>
+      <a href="https://www.zerofox.com/platform/validate/" target="_blank" rel="noopener">Validate</a>
+      <a href="https://www.zerofox.com/platform/disrupt/" target="_blank" rel="noopener">Disrupt</a>
+      <a href="https://www.zerofox.com/platform/intelligence-collection/" target="_blank" rel="noopener">Intelligence Collection</a>
+      <a href="https://www.zerofox.com/platform/ai-innovation/" target="_blank" rel="noopener">AI Innovation</a>
+      <a href="https://www.zerofox.com/platform/integrations/" target="_blank" rel="noopener">Integrations</a>
+    </div>
+    <div class="fcol"><h4>Solutions</h4>
+      <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Cyber Threat Intelligence</a>
+      <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Attack Surface Intelligence</a>
+      <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Brand + Domain Protection</a>
+      <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Executive + VIP Protection</a>
+      <a href="https://www.zerofox.com/solutions/" target="_blank" rel="noopener">Physical Security Intelligence</a>
+    </div>
+    <div class="fcol"><h4>Resources</h4>
+      <a href="https://www.zerofox.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.zerofox.com/resources/" target="_blank" rel="noopener">Case Studies</a>
+      <a href="https://www.zerofox.com/resources/" target="_blank" rel="noopener">Data Sheets</a>
+      <a href="https://www.zerofox.com/resources/" target="_blank" rel="noopener">Videos and Webinars</a>
+      <a href="https://www.zerofox.com/resources/" target="_blank" rel="noopener">White Papers and Reports</a>
+    </div>
+    <div class="fcol"><h4>Company</h4>
+      <a href="https://www.zerofox.com/about/" target="_blank" rel="noopener">About</a>
+      <a href="https://www.zerofox.com/about/" target="_blank" rel="noopener">Leadership</a>
+      <a href="https://www.zerofox.com/careers/" target="_blank" rel="noopener">Careers</a>
+      <a href="https://www.zerofox.com/press/" target="_blank" rel="noopener">Press Releases &amp; News</a>
+      <a href="https://www.zerofox.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+    </div>
+  </div>
+  <div class="legal">
+    <span>&copy; 2026 by ZeroFox. All Rights Reserved.</span>
+    <nav>
+      <a href="https://www.zerofox.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://www.zerofox.com/security-trust-center/" target="_blank" rel="noopener">Security Trust Center</a>
+      <a href="https://www.zerofox.com/terms/" target="_blank" rel="noopener">Terms and Transparency</a>
+      <a href="https://www.zerofox.com/privacy-policy/" target="_blank" rel="noopener">My Privacy Choices</a>
+    </nav>
+  </div>
+</div></footer>
+
+<script>
+/* ---------- one source of truth for the event ---------- */
+var EVENT = {
+  title: "Stop Studying Threats. Start Neutralizing Them. | ZeroFox HNTR Session",
+  details: "A live walkthrough of the HNTR Platform: one continuous loop of discovery, validation, and disruption. Streaming live and on-demand on zerofox.com.",
+  location: "https://sequel-demo.github.io/webinar-on/zerofox/",
+  start: new Date("2026-09-17T13:00:00-04:00"),
+  end:   new Date("2026-09-17T13:45:00-04:00")
+};
+
+/* viewer-timezone line */
+(function(){
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var f = new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('tzline').textContent = "That's " + f.format(EVENT.start) + " where you are (" + tz + ").";
+  }catch(e){ document.getElementById('tzline').style.display='none'; }
+})();
+
+/* calendar links */
+(function(){
+  function z(n){return (n<10?'0':'')+n;}
+  function utc(d){return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+'T'+z(d.getUTCHours())+z(d.getUTCMinutes())+'00Z';}
+  var range = utc(EVENT.start)+'/'+utc(EVENT.end);
+  document.getElementById('gcal').href =
+    'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(EVENT.title)+
+    '&dates='+range+'&details='+encodeURIComponent(EVENT.details)+'&location='+encodeURIComponent(EVENT.location);
+  var ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//ZeroFox//HNTR Session//EN','BEGIN:VEVENT',
+    'UID:hntr-session-2026-09-17@zerofox.com','DTSTAMP:'+utc(new Date()),
+    'DTSTART:'+utc(EVENT.start),'DTEND:'+utc(EVENT.end),
+    'SUMMARY:'+EVENT.title,'DESCRIPTION:'+EVENT.details,'LOCATION:'+EVENT.location,
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('ical').href = 'data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+})();
+
+/* countdown, degrading to on-demand */
+(function(){
+  var els={d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),s:document.getElementById('s')};
+  function ondemand(){
+    document.getElementById('count').style.display='none';
+    document.getElementById('livenow').style.display='block';
+    document.getElementById('livenow').textContent="Watch the recording below.";
+    document.getElementById('badge').innerHTML='On Demand';
+    document.getElementById('gcal').style.display='none';
+    document.getElementById('ical').style.display='none';
+  }
+  function tick(){
+    var diff = EVENT.start - new Date();
+    if(diff <= 0){
+      if(new Date() > EVENT.end){ ondemand(); }
+      else {
+        document.getElementById('count').style.display='none';
+        document.getElementById('livenow').style.display='block';
+        document.getElementById('gcal').style.display='none';
+        document.getElementById('ical').style.display='none';
+      }
+      return;
+    }
+    var s=Math.floor(diff/1000);
+    els.d.textContent=Math.floor(s/86400);
+    els.h.textContent=('0'+Math.floor(s%86400/3600)).slice(-2);
+    els.m.textContent=('0'+Math.floor(s%3600/60)).slice(-2);
+    els.s.textContent=('0'+(s%60)).slice(-2);
+    setTimeout(tick,1000);
+  }
+  tick();
+})();
+
+/* nav shadow */
+(function(){
+  var n=document.getElementById('nav');
+  var on=function(){ n.classList.toggle('scrolled', window.scrollY>8); };
+  window.addEventListener('scroll',on,{passive:true}); on();
+})();
+
+/* scroll reveal */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){ if(!el.classList.contains('in')) io.observe(el); });
+})();
+
+/* cycle the active node in the flow */
+(function(){
+  var nodes=document.querySelectorAll('.flow .node'); if(!nodes.length) return; var i=0;
+  setInterval(function(){ nodes.forEach(function(n){n.classList.remove('on');}); i=(i+1)%nodes.length; nodes[i].classList.add('on'); },2200);
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){ Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"}); });
+(function stripBorder(){
+  var r=document.getElementById("sequel_root");
+  var c=r && r.firstElementChild;
+  if(c && c.shadowRoot){
+    var st=document.createElement("style");
+    st.textContent="iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder,200); }
+})();
+</script>
+</body>
+</html>
