@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The 80% Problem: Securing the Data Your AI Already Touched | Fortra</title>
+<meta property="og:title" content="The 80% Problem: Securing the Data Your AI Already Touched">
+<meta property="og:description" content="In a world that runs on data, cut AI risk, strengthen cyber posture, and accelerate your business with data-centric security.">
+<meta property="og:image" content="https://static.fortra.com/fortra-global-assets/fortra-logo-full.svg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/fortra/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://static.fortra.com/fortra-global-assets/fortra-logo-small.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyprus:#004442;      /* Fortra Cyprus */
+  --cyprus-d:#00302e;
+  --riptide:#77ECC2;     /* Fortra Riptide */
+  --riptide-d:#4fd3a5;
+  --ink:#0d1f1e;
+  --sub:#5a6a69;
+  --paper:#ffffff;
+  --mist:#f4f8f7;
+  --line:#dfe8e6;
+  --sh-sm:0 2px 8px rgba(0,48,46,.06);
+  --sh-md:0 16px 38px rgba(0,48,46,.10);
+  --sh-lg:0 28px 64px rgba(0,48,46,.16);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.c{max-width:1180px;margin:0 auto;padding:0 30px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase}
+h1,h2,h3{font-family:Archivo,Inter,sans-serif;letter-spacing:-.025em;margin:0;font-weight:700}
+a{color:inherit}
+
+/* ── announce bar ── */
+.announce{background:var(--riptide);color:var(--cyprus-d);font-size:13.5px;font-weight:500;
+  text-align:center;padding:9px 20px}
+.announce a{color:var(--cyprus-d);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+/* ── header ── */
+.util{background:var(--mist);border-bottom:1px solid var(--line);font-size:12.5px}
+.util .c{display:flex;justify-content:flex-end;gap:22px;padding:7px 30px}
+.util a{color:var(--sub);text-decoration:none}
+.util a:hover{color:var(--cyprus)}
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .3s var(--ease)}
+header.scrolled{box-shadow:var(--sh-sm)}
+.nav{display:flex;align-items:center;gap:34px;padding:15px 30px}
+.logo img{height:30px;display:block}
+.nav-links{display:flex;gap:26px;margin-left:6px;flex:1}
+.nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--ink);
+  display:inline-flex;align-items:center;gap:5px}
+.nav-links a:hover{color:var(--cyprus)}
+.caret{width:9px;height:9px;opacity:.5}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:14.5px;
+  padding:10px 20px;border-radius:3px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-sm)}
+.btn-solid{background:var(--cyprus);color:#fff}
+.nav-cta a.btn-solid{color:#fff}
+.btn-ghost{border:1.5px solid var(--cyprus);color:var(--cyprus)}
+.nav-cta a.btn-ghost{color:var(--cyprus)}
+.btn-mint{background:var(--riptide);color:var(--cyprus-d)}
+.nav-cta a.btn-mint{color:var(--cyprus-d)}
+
+/* ── dark wrap: hero + embed as ONE surface ── */
+.dark-wrap{position:relative;overflow:hidden;background:var(--cyprus);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -12% auto -12%;height:85%;pointer-events:none;
+  background:radial-gradient(circle,rgba(119,236,194,.20),transparent 64%)}
+.dark-wrap::after{content:"";position:absolute;inset:auto -12% -25% -12%;height:75%;pointer-events:none;
+  background:radial-gradient(circle,rgba(119,236,194,.10),transparent 66%)}
+.grid-lines{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(90deg,rgba(119,236,194,.07) 1px,transparent 1px);background-size:64px 100%}
+.hero{padding:66px 0 40px;position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(119,236,194,.13);
+  border:1px solid rgba(119,236,194,.35);color:var(--riptide);border-radius:40px;padding:6px 14px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--riptide);animation:pulse 1.9s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.35)}}
+.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.02;margin:22px 0 0;max-width:19ch;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--riptide)}
+.hero-sub{color:rgba(255,255,255,.74);font-size:19px;max-width:56ch;margin:20px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:52px;align-items:start}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 0}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);border-radius:3px;padding:7px 13px;font-size:13.5px;
+  color:rgba(255,255,255,.88)}
+.tzline{margin:12px 0 0;font-size:13px;color:rgba(119,236,194,.85)}
+.stream{margin:22px 0 0;font-size:14px;color:rgba(255,255,255,.55)}
+.cd{display:flex;gap:12px;margin:30px 0 0}
+.cd .u{background:rgba(0,0,0,.22);border:1px solid rgba(119,236,194,.22);border-radius:4px;
+  padding:11px 0;min-width:70px;text-align:center}
+.cd .v{font-family:Archivo;font-size:29px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.cd .k{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(119,236,194,.75);margin-top:5px}
+.live-now{font-family:Archivo;font-size:26px;font-weight:700;color:var(--riptide);margin:30px 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin:30px 0 0;align-items:center}
+.cal{display:inline-flex;gap:16px;font-size:13.5px;color:rgba(119,236,194,.9)}
+.cal a{text-decoration:none;border-bottom:1px solid rgba(119,236,194,.35);padding-bottom:1px}
+.statcard{background:rgba(0,0,0,.2);border:1px solid rgba(119,236,194,.2);border-radius:6px;
+  padding:26px;margin-top:96px}
+.statcard .big{font-family:Archivo;font-size:62px;font-weight:800;color:var(--riptide);line-height:.95;
+  letter-spacing:-.04em}
+.statcard .cap{font-size:14.5px;color:rgba(255,255,255,.72);margin-top:10px;line-height:1.45}
+.statcard .src{font-size:11.5px;color:rgba(255,255,255,.38);margin-top:14px}
+.embed-sec{padding:8px 0 78px;position:relative;z-index:2}
+#sequel_root{min-height:520px}
+
+/* ── stat pull-quote band ── */
+.pull{background:var(--mist);padding:96px 0;border-bottom:1px solid var(--line)}
+.pull .n{font-family:Archivo;font-size:clamp(84px,15vw,168px);font-weight:800;line-height:.84;
+  letter-spacing:-.055em;color:var(--cyprus)}
+.pull .turn{font-size:22px;max-width:44ch;margin:24px 0 0;line-height:1.42;color:var(--ink)}
+.pull .src{margin-top:18px;color:var(--sub)}
+
+/* ── lede: asymmetric with sticky side label ── */
+.lede{padding:96px 0}
+.lede .c{display:grid;grid-template-columns:180px 1fr;gap:56px}
+.side{position:sticky;top:110px;align-self:start;color:var(--sub);border-top:2px solid var(--cyprus);padding-top:14px}
+.lede p{max-width:66ch;font-size:18.5px;margin:0 0 20px}
+.lede p:first-child{font-size:22px;line-height:1.5}
+.lede strong{color:var(--cyprus)}
+
+/* ── mechanism band ── */
+.mech{background:var(--cyprus-d);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.mech::after{content:"";position:absolute;inset:auto -10% -40% 40%;height:80%;
+  background:radial-gradient(circle,rgba(119,236,194,.13),transparent 65%);pointer-events:none}
+.mech h2{font-size:clamp(29px,3.6vw,44px);max-width:24ch;position:relative;z-index:2}
+.mech .lead{color:rgba(255,255,255,.68);max-width:60ch;margin:18px 0 0;position:relative;z-index:2}
+.flow{display:flex;align-items:center;gap:0;margin:52px 0 0;flex-wrap:wrap;position:relative;z-index:2}
+.node{background:rgba(255,255,255,.055);border:1px solid rgba(119,236,194,.26);border-radius:5px;
+  padding:16px 20px;min-width:158px}
+.node .t{font-family:Archivo;font-weight:600;font-size:15.5px}
+.node .d{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:5px}
+.node.hot{border-color:var(--riptide);background:rgba(119,236,194,.1)}
+.dashes{flex:1;min-width:44px;height:2px;margin:0 12px;
+  background-image:linear-gradient(90deg,var(--riptide) 55%,transparent 0);
+  background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+
+/* ── learn rows ── */
+.learn{padding:96px 0}
+.learn h2{font-size:clamp(29px,3.6vw,44px);max-width:22ch;margin-bottom:44px}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:30px;padding:34px 18px 34px 10px;
+  border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--cyprus);
+  transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--mist)}
+.row .num{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--riptide-d);padding-top:4px}
+.row h3{font-size:21px;font-weight:600}
+.row p{margin:0;color:var(--sub);font-size:16.5px}
+
+/* ── speakers ── */
+.spk{background:var(--mist);padding:90px 0;border-top:1px solid var(--line)}
+.spk h2{font-size:clamp(26px,3vw,36px);margin-bottom:36px}
+.spk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:30px}
+.person{display:flex;gap:15px;align-items:center}
+.av{width:60px;height:60px;border-radius:50%;background:linear-gradient(140deg,var(--cyprus),var(--riptide-d));
+  flex:none;display:grid;place-items:center;color:#fff;font-family:Archivo;font-weight:700;font-size:19px}
+.person .nm{font-family:Archivo;font-weight:600;font-size:16.5px}
+.person .ti{font-size:13.5px;color:var(--sub);margin-top:2px}
+.ph{font-size:11px;color:#b07d1a;background:#fdf4e0;border:1px solid #f0dcae;border-radius:3px;
+  padding:2px 7px;display:inline-block;margin-top:6px}
+
+/* ── CTA band ── */
+.cta{background:var(--riptide);color:var(--cyprus-d);padding:84px 0;text-align:center}
+.cta h2{font-size:clamp(29px,4vw,50px);max-width:26ch;margin:0 auto}
+.cta p{max-width:52ch;margin:18px auto 28px;color:rgba(0,48,46,.78);font-size:18px}
+.cta .btn-solid{background:var(--cyprus-d);color:#fff}
+.cta a.btn-solid{color:#fff}
+
+/* ── footer ── */
+footer{background:var(--cyprus-d);color:rgba(255,255,255,.62);padding:64px 0 30px;font-size:14.5px}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+footer h4{font-family:Archivo;color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  margin:0 0 16px;font-weight:600}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:9px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--riptide)}
+.flogo img{height:26px;filter:brightness(0) invert(1);opacity:.92}
+.legal{border-top:1px solid rgba(255,255,255,.12);margin-top:48px;padding-top:22px;
+  display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;font-size:13px}
+.legal .lk{display:flex;gap:18px;flex-wrap:wrap}
+
+/* ── motion ── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.09s}
+.stagger.in>*:nth-child(3){transition-delay:.18s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .statcard{margin-top:0}
+  .lede .c{grid-template-columns:1fr;gap:22px}
+  .side{position:static}
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px}
+  .nav-links,.util{display:none}
+  .row{grid-template-columns:44px 1fr;gap:16px}
+  .row p{grid-column:2}
+}
+@media(max-width:520px){
+  .c{padding:0 20px}
+  .nav{padding:13px 20px;gap:12px}
+  .btn{padding:9px 15px;font-size:13.5px}
+  .cd .u{min-width:0;flex:1;padding:9px 0}
+  .cd{gap:7px}
+  .fgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Live webinar · Thu Sep 24 · <strong>The 80% Problem: Securing the Data Your AI Already Touched</strong> — <a href="#watch">Save your seat</a></div>
+
+<div class="util"><div class="c">
+  <a href="https://www.fortra.com/login" target="_blank">Login</a>
+  <a href="https://www.fortra.com/contact-us" target="_blank">Contact Us</a>
+  <a href="https://www.fortra.com/support" target="_blank">Support</a>
+  <a href="https://www.fortra.com/partners" target="_blank">Partners</a>
+  <a href="https://www.fortra.com/pricing" target="_blank">Pricing</a>
+</div></div>
+
+<header id="hdr"><div class="nav">
+  <a class="logo" href="https://www.fortra.com" target="_blank">
+    <img src="https://static.fortra.com/fortra-global-assets/fortra-logo-full.svg?l=1585830153" alt="Fortra">
+  </a>
+  <nav class="nav-links">
+    <a href="https://www.fortra.com/platform" target="_blank">Platform
+      <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    <a href="https://www.fortra.com/solutions" target="_blank">Solutions
+      <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    <a href="https://www.fortra.com/resources" target="_blank">Resources
+      <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    <a href="https://www.fortra.com/about" target="_blank">About
+      <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+  </nav>
+  <div class="nav-cta">
+    <a class="btn btn-ghost" href="https://www.fortra.com/get-a-quote" target="_blank">Get a Quote</a>
+    <a class="btn btn-solid" href="https://www.fortra.com/request-demo" target="_blank">Request a Demo</a>
+  </div>
+</div></header>
+
+<div class="dark-wrap" id="watch">
+  <div class="grid-lines"></div>
+
+  <section class="hero"><div class="c hero-grid">
+    <div>
+      <div class="badge reveal" id="badge"><span class="dot"></span><span class="mono" id="badgeTxt">Live Webinar</span></div>
+      <h1 class="reveal">Protect your data from AI, <em>with AI</em>.</h1>
+      <p class="hero-sub reveal">80% of the data flowing through AI systems goes unprotected. This session is about the other direction — using the same class of models to find, classify, and defend it before it leaves your perimeter.</p>
+      <div class="meta reveal stagger" id="metaChips">
+        <span class="chip">Thu, Sep 24, 2026</span>
+        <span class="chip">11:00 AM CT</span>
+        <span class="chip">45 min + live Q&amp;A</span>
+        <span class="chip">No cost</span>
+      </div>
+      <div class="tzline reveal" id="tzline"></div>
+      <p class="stream reveal">Streaming live and on-demand on fortra.com</p>
+      <div id="cdWrap" class="reveal">
+        <div class="cd">
+          <div class="u"><div class="v" id="cdD">--</div><div class="k">Days</div></div>
+          <div class="u"><div class="v" id="cdH">--</div><div class="k">Hrs</div></div>
+          <div class="u"><div class="v" id="cdM">--</div><div class="k">Min</div></div>
+          <div class="u"><div class="v" id="cdS">--</div><div class="k">Sec</div></div>
+        </div>
+      </div>
+      <div class="hero-actions reveal">
+        <a class="btn btn-mint" href="#watch">Save your seat</a>
+        <span class="cal" id="calWrap">
+          <a id="gcal" href="#" target="_blank" rel="noopener">Add to Google</a>
+          <a id="ical" href="#">Download .ics</a>
+        </span>
+      </div>
+    </div>
+    <div class="statcard reveal">
+      <div class="big">456%</div>
+      <div class="cap">rise in genAI-enabled scams in a single year.</div>
+      <div class="src">Fortra, fortra.com</div>
+    </div>
+  </div></section>
+
+  <section class="embed-sec"><div class="c">
+    <div id="sequel_root"></div>
+  </div></section>
+</div>
+
+<section class="pull"><div class="c reveal">
+  <div class="n">80%</div>
+  <p class="turn">of the data your AI touches goes unprotected — and almost none of that is a modeling problem. It's a visibility problem wearing a modeling problem's clothes.</p>
+  <p class="src mono">Source: fortra.com</p>
+</div></section>
+
+<section class="lede"><div class="c">
+  <div class="side mono reveal">The argument</div>
+  <div class="reveal">
+    <p>In a world that runs on data, the hard part was never adopting AI. It was answering a much older question at a speed nobody had planned for: <strong>where does our sensitive data actually live, and who just handed it to a model?</strong></p>
+    <p>Most security teams aren't stalling on ambition. They're stalling on trust. A classification scheme built for file shares and email doesn't survive contact with a workflow where an employee pastes a customer list into a chat window, an agent reads a document store it was never scoped to, and a vendor's copilot indexes a folder somebody shared in 2021 and forgot.</p>
+    <p>Meanwhile the attack side is compounding. <strong>456% more genAI-enabled scams in a year</strong> means the volume and quality of pretexting both went up at once — and a <strong>271% surge in data volume expected by 2030</strong> means the surface you're defending grows faster than the team defending it.</p>
+    <p>So the question isn't whether to use AI in your security program. It's which side of the equation you point it at first. This session walks through the data-centric version: classify at the source, enforce at the boundary, and let the models do the part humans were never going to finish — <strong>finding the 80%.</strong></p>
+  </div>
+</div></section>
+
+<section class="mech"><div class="c">
+  <h2 class="reveal">Classify at the source. Enforce at the boundary.</h2>
+  <p class="lead reveal">The mechanism, end to end — and the point in the chain where most programs quietly stop.</p>
+  <div class="flow reveal">
+    <div class="node"><div class="t">Discover</div><div class="d">Scan stores, endpoints, SaaS</div></div>
+    <div class="dashes"></div>
+    <div class="node"><div class="t">Classify</div><div class="d">Label at creation, not audit</div></div>
+    <div class="dashes"></div>
+    <div class="node hot"><div class="t">Enforce</div><div class="d">Block, mask, or allow in-flight</div></div>
+    <div class="dashes"></div>
+    <div class="node"><div class="t">Prove it</div><div class="d">Evidence for the regulator</div></div>
+  </div>
+</div></section>
+
+<section class="learn"><div class="c">
+  <h2 class="reveal">What you'll take away</h2>
+  <div class="row reveal"><div class="num">01</div>
+    <h3>Where the 80% actually hides</h3>
+    <p>The four repositories that show up unclassified in nearly every assessment — and why the usual scan schedule structurally misses them.</p></div>
+  <div class="row reveal"><div class="num">02</div>
+    <h3>Classification that survives an agent</h3>
+    <p>Labeling at the point of creation instead of during audit, so policy travels with the file into workflows nobody mapped in advance.</p></div>
+  <div class="row reveal"><div class="num">03</div>
+    <h3>Enforcement without the helpdesk revolt</h3>
+    <p>Where to block, where to mask, and where to simply log — and how to phase it so the first week doesn't generate 400 tickets.</p></div>
+  <div class="row reveal"><div class="num">04</div>
+    <h3>Evidence you can hand to an auditor</h3>
+    <p>Turning enforcement telemetry into the paper trail that regulators and cyber insurers are starting to ask for by name.</p></div>
+</div></section>
+
+<section class="spk"><div class="c">
+  <h2 class="reveal">Speakers</h2>
+  <div class="spk-grid reveal stagger">
+    <div class="person"><div class="av">F</div><div>
+      <div class="nm">Fortra speaker</div><div class="ti">Data Security</div>
+      <span class="ph">Placeholder — swap in real name</span></div></div>
+    <div class="person"><div class="av">F</div><div>
+      <div class="nm">Fortra speaker</div><div class="ti">Threat Intelligence</div>
+      <span class="ph">Placeholder — swap in real name</span></div></div>
+    <div class="person"><div class="av">M</div><div>
+      <div class="nm">Moderator</div><div class="ti">Fortra</div>
+      <span class="ph">Placeholder — swap in real name</span></div></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="c">
+  <h2>Find the 80% before something else does.</h2>
+  <p>Join us live on Thursday, September 24 — or watch on demand right here afterward.</p>
+  <a class="btn btn-solid" href="#watch">Save your seat</a>
+</div></section>
+
+<footer><div class="c">
+  <div class="fgrid">
+    <div>
+      <div class="flogo"><img src="https://static.fortra.com/fortra-global-assets/fortra-logo-full.svg?l=1585830153" alt="Fortra"></div>
+      <p style="margin:16px 0 0;max-width:34ch">In a world that runs on data, cut AI risk, strengthen cyber posture, and accelerate your business with data-centric security.</p>
+    </div>
+    <div><h4>Areas of Expertise</h4><ul>
+      <li><a href="https://www.fortra.com/platform" target="_blank">Platform</a></li>
+      <li><a href="https://www.fortra.com/solutions" target="_blank">Solutions</a></li>
+      <li><a href="https://www.fortra.com/resources" target="_blank">Resources</a></li>
+    </ul></div>
+    <div><h4>About</h4><ul>
+      <li><a href="https://www.fortra.com/about" target="_blank">About Fortra</a></li>
+      <li><a href="https://www.fortra.com/resources/events" target="_blank">Events</a></li>
+      <li><a href="https://www.fortra.com/partners" target="_blank">Partners</a></li>
+    </ul></div>
+    <div><h4>Get in Touch</h4><ul>
+      <li><a href="https://www.fortra.com/contact-us" target="_blank">Contact Us</a></li>
+      <li><a href="https://www.fortra.com/support" target="_blank">Support</a></li>
+      <li><a href="https://www.fortra.com/pricing" target="_blank">Pricing</a></li>
+    </ul></div>
+  </div>
+  <div class="legal">
+    <span>© 2026 Fortra, LLC and its group of companies. All trademarks and registered trademarks are the property of their respective owners.</span>
+    <span class="lk">
+      <a href="https://www.fortra.com/privacy-policy" target="_blank">Privacy</a>
+      <a href="https://www.fortra.com/cookie-policy" target="_blank">Cookies</a>
+      <a href="https://www.fortra.com/terms-conditions" target="_blank">Terms</a>
+      <a href="https://www.fortra.com/accessibility" target="_blank">Accessibility</a>
+    </span>
+  </div>
+</div></footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+/* ── one source of truth for the event ── */
+var EVENT = {
+  title: "The 80% Problem: Securing the Data Your AI Already Touched",
+  start: new Date("2026-09-24T11:00:00-05:00"),
+  minutes: 45,
+  url:   "https://sequel-demo.github.io/webinar-on/fortra/",
+  desc:  "80% of the data flowing through AI systems goes unprotected. Join Fortra live to see the data-centric approach: classify at the source, enforce at the boundary."
+};
+EVENT.end = new Date(EVENT.start.getTime() + EVENT.minutes*60000);
+
+/* ── Sequel embed (dark surface) ── */
+document.addEventListener("DOMContentLoaded", function(){
+  Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
+});
+/* kill the iframe hairline inside the open shadow DOM */
+(function stripBorder(){
+  var host = document.getElementById("sequel_root");
+  var c = host && host.firstElementChild;
+  if (c && c.shadowRoot){
+    var st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
+/* ── viewer-local time line ── */
+(function(){
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var local = EVENT.start.toLocaleString([], {weekday:"short", month:"short", day:"numeric",
+      hour:"numeric", minute:"2-digit"});
+    document.getElementById("tzline").textContent = "That's " + local + " in your timezone (" + tz + ")";
+  }catch(e){}
+})();
+
+/* ── countdown, with graceful on-demand degradation ── */
+(function(){
+  var d=document.getElementById("cdD"),h=document.getElementById("cdH"),
+      m=document.getElementById("cdM"),s=document.getElementById("cdS"),
+      wrap=document.getElementById("cdWrap");
+  function pad(n){return n<10?"0"+n:""+n}
+  function goOnDemand(){
+    document.getElementById("badgeTxt").textContent = "On Demand";
+    var dot=document.querySelector(".dot"); if(dot) dot.style.animation="none";
+    wrap.innerHTML = '<div class="live-now">Watch the recording below</div>';
+    var cal=document.getElementById("calWrap"); if(cal) cal.style.display="none";
+  }
+  function goLive(){
+    document.getElementById("badgeTxt").textContent = "Live Now";
+    wrap.innerHTML = '<div class="live-now">We’re live now — join below</div>';
+  }
+  function tick(){
+    var now = Date.now();
+    if (now >= EVENT.end.getTime()) { goOnDemand(); return; }
+    if (now >= EVENT.start.getTime()) { goLive(); setTimeout(tick, 30000); return; }
+    var t = EVENT.start.getTime() - now, sec = Math.floor(t/1000);
+    d.textContent = Math.floor(sec/86400);
+    h.textContent = pad(Math.floor(sec/3600)%24);
+    m.textContent = pad(Math.floor(sec/60)%60);
+    s.textContent = pad(sec%60);
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
+/* ── calendar links, both built from EVENT ── */
+(function(){
+  function z(dt){ return dt.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""); }
+  var g = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+        + "&text=" + encodeURIComponent(EVENT.title)
+        + "&dates=" + z(EVENT.start) + "/" + z(EVENT.end)
+        + "&details=" + encodeURIComponent(EVENT.desc + "\n\n" + EVENT.url)
+        + "&location=" + encodeURIComponent(EVENT.url);
+  var gc=document.getElementById("gcal"); if(gc) gc.href = g;
+  var ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Fortra//Webinar//EN","BEGIN:VEVENT",
+    "UID:" + z(EVENT.start) + "-fortra@fortra.com","DTSTAMP:" + z(new Date()),
+    "DTSTART:" + z(EVENT.start),"DTEND:" + z(EVENT.end),
+    "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.desc,"URL:" + EVENT.url,
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  var ic=document.getElementById("ical");
+  if(ic){ ic.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+          ic.setAttribute("download","fortra-webinar.ics"); }
+})();
+
+/* ── scroll reveal + nav shadow ── */
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+  }, {threshold:.15});
+  document.querySelectorAll(".reveal,.stagger").forEach(function(el){ io.observe(el); });
+  // above-the-fold reveals fire immediately
+  document.querySelectorAll(".hero .reveal,.hero .stagger,.statcard").forEach(function(el){
+    el.classList.add("in"); });
+  var hdr = document.getElementById("hdr");
+  addEventListener("scroll", function(){ hdr.classList.toggle("scrolled", scrollY > 8); }, {passive:true});
+})();
+</script>
+</body></html>
