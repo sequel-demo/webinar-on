@@ -234,10 +234,17 @@ footer{background:var(--deep);color:#C7DBE6;padding:66px 0 34px;font-size:14px}
   .hero{padding:46px 0 30px}
   .row{grid-template-columns:44px 1fr;gap:14px}
   .row .rbody{grid-column:2}
-  .flow{flex-direction:column;align-items:stretch;gap:0}
-  .node{white-space:normal;text-align:center}
-  .dashes{width:2px;height:26px;min-width:0;margin:8px auto;background-image:linear-gradient(180deg,rgba(36,228,235,.85) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  .flow{flex-direction:column;align-items:center;gap:0}
+  .node{white-space:normal;text-align:center;width:100%;padding:14px 20px}
+  .dashes{flex:none;width:2px;height:26px;min-width:0;margin:10px auto;align-self:center;
+    background-image:linear-gradient(180deg,rgba(36,228,235,.9) 55%,transparent 0);
+    background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
   @keyframes marchv{to{background-position:0 12px}}
+  .nav .wrap{height:56px;gap:12px}
+  .brand img{height:21px}
+  .nav .pill{padding:8px 12px;font-size:11px;letter-spacing:.04em;margin-left:auto}
+  .burger{padding:6px}
+  .bignum{font-size:clamp(64px,20vw,110px)}
   .fgrid{grid-template-columns:1fr}
   .announce{font-size:12.5px}
   #sequel_root{min-height:300px}
