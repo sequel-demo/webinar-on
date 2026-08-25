@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The 72-Minute Breach | Palo Alto Networks</title>
+<meta property="og:title" content="The 72-Minute Breach: Inside the 2026 Unit 42 Global Incident Response Report">
+<meta property="og:description" content="In the fastest cases we investigated, attackers needed just 72 minutes to move from initial access to data exfiltration — 4X faster than last year.">
+<meta property="og:image" content="https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/pan-logo-light.svg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/palo-alto-networks/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/logo-default-orange.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#FA582D;      /* logo mark */
+  --cta:#F76A43;         /* header CTA */
+  --blue:#265BFF;        /* hero button */
+  --cyan:#A0E8F9;        /* headline accent */
+  --ink:#141414;
+  --black:#000;
+  --paper:#fff;
+  --grey:#5b6066;
+  --line:rgba(0,0,0,.12);
+  --line-d:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 2px 10px rgba(0,0,0,.10);
+  --sh-md:0 10px 34px rgba(0,0,0,.16);
+  --sh-lg:0 26px 70px rgba(0,0,0,.28);
+  --nav-h:70px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Figtree,"TT Hoves",Arial,"Helvetica Neue",Helvetica,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+.wrap{width:min(1240px,92vw);margin:0 auto}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
+/* ---------- blades: PAN signature device ---------- */
+.blades{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blades i{position:absolute;top:-14%;height:128%;width:14px;transform:skewX(-24deg);
+  background:linear-gradient(180deg,rgba(38,91,255,0) 0%,rgba(38,91,255,.55) 42%,rgba(160,232,249,.5) 62%,rgba(38,91,255,0) 100%);
+  border-radius:2px;opacity:.5}
+
+/* ---------- announce ---------- */
+.announce{background:#0d0d0d;color:#fff;border-bottom:1px solid rgba(255,255,255,.09);
+  font-size:13.5px;text-align:center;padding:9px 16px;position:relative;z-index:60}
+.announce a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(160,232,249,.4);padding-bottom:1px}
+.announce .dotmark{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:9px;vertical-align:middle}
+
+/* ---------- header ---------- */
+header.nav{position:sticky;top:0;z-index:50;background:var(--ink);height:var(--nav-h);
+  display:flex;align-items:center;transition:box-shadow .3s var(--ease),background .3s var(--ease),height .3s var(--ease)}
+header.nav.scrolled{height:62px;background:rgba(20,20,20,.86);backdrop-filter:blur(12px);box-shadow:0 6px 26px rgba(0,0,0,.5)}
+.nav-inner{display:flex;align-items:center;gap:30px;width:min(1400px,95vw);margin:0 auto}
+.logo{display:block;width:148px;height:34px;flex:0 0 auto;
+  background:url("https://www.paloaltonetworks.com/etc/clientlibs/clean/imgs/pan-logo-light.svg") left center/contain no-repeat;
+  text-indent:-9999px;overflow:hidden}
+.nav-links{display:flex;align-items:center;gap:26px;margin-left:6px}
+.nav-links a{color:#fff;text-decoration:none;font-size:15px;font-weight:400;opacity:.94;
+  padding:6px 0;border-bottom:2px solid transparent;transition:border-color .25s var(--ease),opacity .25s var(--ease)}
+.nav-links a:hover{border-color:var(--orange);opacity:1}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.icobtn{width:32px;height:32px;display:grid;place-items:center;color:#fff;opacity:.9;background:none;border:0;cursor:pointer}
+.icobtn:hover{opacity:1}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:36px;padding:8px 24px;
+  font-size:14.8px;text-decoration:none;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease)}
+.pill:hover{transform:translateY(-2px)}
+.pill-ghost{border:1px solid #fff;color:#fff;background:transparent}
+.pill-ghost:hover{background:rgba(255,255,255,.1)}
+.nav-right a.pill-cta{background:var(--cta);color:#000;font-weight:500;border:0}
+.nav-right a.pill-cta:hover{box-shadow:0 8px 24px rgba(250,88,45,.42)}
+.caret{width:10px;height:10px;flex:0 0 auto}
+.burger{display:none}
+
+/* ---------- dark wrap: hero + embed as one surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--black);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-22% -12% auto -12%;height:86%;pointer-events:none;
+  background:radial-gradient(circle at 62% 40%,rgba(38,91,255,.30),transparent 62%)}
+.dark-wrap::after{content:"";position:absolute;inset:auto -12% -24% -12%;height:74%;pointer-events:none;
+  background:radial-gradient(circle at 34% 60%,rgba(250,88,45,.16),transparent 64%)}
+.hero{position:relative;z-index:2;padding:68px 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.26);
+  border-radius:40px;padding:6px 15px 6px 12px;background:rgba(255,255,255,.05)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);position:relative}
+.badge .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--orange);
+  animation:pulse 1.9s infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+h1.hl{font-size:clamp(40px,5.4vw,72px);line-height:1.03;letter-spacing:-.028em;font-weight:500;margin:22px 0 0}
+h1.hl .c2{color:var(--cyan);display:block}
+.sub{margin:20px 0 0;font-size:19px;line-height:1.55;color:rgba(255,255,255,.82);max-width:56ch}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.045);border-radius:8px;padding:8px 13px;font-size:14px;color:rgba(255,255,255,.9)}
+.chip b{font-weight:600;color:#fff}
+.streamline{margin:20px 0 0;font-size:14.5px;color:rgba(255,255,255,.58)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:30px 0 0}
+a.btn-blue{background:var(--blue);color:#fff;font-weight:600;border-radius:36px;padding:12px 26px;
+  text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+a.btn-blue:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(38,91,255,.5)}
+a.btn-line{color:#fff;text-decoration:none;font-weight:500;border-bottom:1.5px solid rgba(255,255,255,.5);padding-bottom:3px;font-size:15.5px}
+a.btn-line:hover{border-color:var(--orange)}
+.cal{display:flex;gap:18px;margin:20px 0 0;font-size:13.5px}
+.cal a{color:rgba(255,255,255,.62);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px}
+.cal a:hover{color:#fff;border-color:var(--orange)}
+/* countdown card */
+.count-card{border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 28px;
+  background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.02));backdrop-filter:blur(6px)}
+.count-card .lbl{color:rgba(255,255,255,.55)}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 0}
+.cd div{text-align:center;background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.09);border-radius:11px;padding:14px 4px}
+.cd span{display:block;font-size:31px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.cd em{display:block;font-style:normal;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:7px}
+.live-now{font-size:22px;font-weight:600;margin:16px 0 0}
+.tzline{margin:15px 0 0;font-size:13px;color:rgba(255,255,255,.5)}
+.count-stat{margin:22px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.12)}
+.count-stat b{display:block;font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--cyan)}
+.count-stat span{display:block;font-size:13.5px;color:rgba(255,255,255,.6);margin-top:8px}
+/* embed */
+.embed-sec{position:relative;z-index:2;padding:8px 0 78px}
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+
+/* ---------- stat pull-quote band ---------- */
+.statband{background:var(--paper);padding:96px 0 90px;border-bottom:1px solid var(--line)}
+.statband .big{font-size:clamp(96px,16vw,190px);line-height:.86;font-weight:600;letter-spacing:-.045em;color:var(--ink)}
+.statband .big i{font-style:normal;color:var(--orange)}
+.statband .turn{max-width:34ch;font-size:21px;line-height:1.45;color:var(--ink);font-weight:500}
+.statband .src{margin-top:16px;color:var(--grey);font-size:13.5px}
+.statgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:end}
+
+/* ---------- lede ---------- */
+.lede{background:#f6f7f8;padding:88px 0}
+.lede-grid{display:grid;grid-template-columns:190px 1fr;gap:44px}
+.side{color:var(--grey)}
+.side .stick{position:sticky;top:calc(var(--nav-h) + 24px)}
+.side .rule{width:34px;height:2px;background:var(--orange);margin:12px 0 0}
+.lede p{max-width:66ch;font-size:18.5px;color:#22262a;margin:0 0 22px}
+.lede p:last-child{margin-bottom:0}
+.lede strong{font-weight:600}
+
+/* ---------- mechanism band ---------- */
+.mech{position:relative;overflow:hidden;background:#0b0b0b;color:#fff;padding:96px 0 100px}
+.mech h2{font-size:clamp(30px,3.8vw,46px);font-weight:500;letter-spacing:-.025em;margin:14px 0 0;max-width:20ch}
+.mech .msub{color:rgba(255,255,255,.62);max-width:60ch;margin:16px 0 0}
+.timeline{position:relative;z-index:2;margin:60px 0 0}
+.tl-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.tl-track::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;
+  background-image:linear-gradient(90deg,var(--orange) 55%,transparent 0);background-size:12px 2px;
+  background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.85}
+@keyframes march{to{background-position:12px 0}}
+.tl{position:relative;padding:0 18px 0 0}
+.tl .node{width:24px;height:24px;border-radius:50%;background:#0b0b0b;border:2px solid var(--orange);
+  display:grid;place-items:center;position:relative;z-index:2}
+.tl .node i{width:8px;height:8px;border-radius:50%;background:var(--orange);font-style:normal}
+.tl .t{margin:20px 0 0;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--cyan);
+  font-family:"IBM Plex Mono",monospace}
+.tl .h{margin:8px 0 0;font-size:19px;font-weight:600}
+.tl .p{margin:8px 0 0;font-size:14.5px;color:rgba(255,255,255,.6);max-width:26ch}
+.mech-foot{position:relative;z-index:2;margin:56px 0 0;display:flex;gap:14px;align-items:baseline;
+  border-top:1px solid var(--line-d);padding-top:26px}
+.mech-foot b{font-size:32px;font-weight:600;color:var(--orange);letter-spacing:-.03em}
+.mech-foot span{color:rgba(255,255,255,.66);font-size:16px}
+
+/* ---------- learn rows ---------- */
+.learn{background:var(--paper);padding:92px 0 96px}
+.learn h2{font-size:clamp(28px,3.4vw,42px);font-weight:500;letter-spacing:-.025em;margin:12px 0 44px}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;
+  border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--orange);
+  transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:#fafafa}
+.row .n{color:var(--orange)}
+.row h3{margin:0;font-size:21px;font-weight:600;letter-spacing:-.015em}
+.row p{margin:0;color:var(--grey);font-size:16px;max-width:56ch}
+
+/* ---------- speakers ---------- */
+.spk{background:#f6f7f8;padding:86px 0}
+.spk h2{font-size:clamp(26px,3vw,36px);font-weight:500;letter-spacing:-.02em;margin:12px 0 36px}
+.spk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.person{display:flex;gap:16px;align-items:center}
+.avatar{width:66px;height:66px;border-radius:50%;flex:0 0 auto;background:#e3e6e9;
+  display:grid;place-items:center;color:#9aa1a8;font-weight:600;font-size:19px;border:1px solid rgba(0,0,0,.06)}
+.person .nm{font-weight:600;font-size:17px}
+.person .rl{color:var(--grey);font-size:14.5px;margin-top:3px}
+.ph{display:inline-block;margin-top:6px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:#a4560f;background:#fdf0e6;border:1px solid #f6d5bd;border-radius:5px;padding:2px 7px;
+  font-family:"IBM Plex Mono",monospace}
+
+/* ---------- CTA band ---------- */
+.ctaband{background:var(--orange);color:#000;padding:80px 0;position:relative;overflow:hidden}
+.ctaband h2{font-size:clamp(30px,4vw,52px);font-weight:500;letter-spacing:-.03em;margin:0;max-width:18ch;line-height:1.06}
+.ctaband p{margin:16px 0 0;font-size:18px;color:rgba(0,0,0,.78);max-width:46ch}
+.cta-grid{display:flex;gap:44px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;z-index:2}
+a.btn-black{background:#000;color:#fff;border-radius:36px;padding:14px 30px;text-decoration:none;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+a.btn-black:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.32)}
+
+/* ---------- footer ---------- */
+footer.ft{background:var(--paper);padding:74px 0 0}
+.ft-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:30px}
+.ft-cols h4{font-size:17px;font-weight:600;margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.ft-cols a{display:block;color:#2b3035;text-decoration:none;font-size:14.5px;margin:0 0 11px}
+.ft-cols a:hover{color:var(--orange)}
+.ft-bottom{background:var(--ink);color:#fff;margin-top:64px;padding:30px 0}
+.ft-bottom .inner{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.ft-bottom .logo{width:150px;height:34px}
+.ft-bottom .legal{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.72)}
+.ft-bottom .legal a{text-decoration:none}
+.ft-bottom .legal a:hover{color:var(--orange)}
+.copy{color:rgba(255,255,255,.5);font-size:13px;margin-top:16px}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.09s}
+.stagger.in>*:nth-child(3){transition-delay:.18s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+
+@media (max-width:1020px){
+  .nav-links,.nav-right .icobtn,.nav-right .pill-ghost{display:none}
+  .burger{display:grid;place-items:center;width:34px;height:34px;color:#fff;background:none;border:0}
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .statgrid{grid-template-columns:1fr;gap:26px;align-items:start}
+  .lede-grid{grid-template-columns:1fr;gap:20px}
+  .side .stick{position:static}
+  .tl-track{grid-template-columns:1fr 1fr;gap:34px 0}
+  .tl-track::before{display:none}
+  .spk-grid{grid-template-columns:1fr}
+  .ft-cols{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:44px 1fr;gap:16px}
+  .row p{grid-column:2}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .hero{padding:44px 0 30px}
+  .cd div{padding:11px 2px}
+  .cd span{font-size:25px}
+  .ft-cols{grid-template-columns:1fr}
+  .ft-bottom .legal{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1 !important;transform:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="announce"><span class="dotmark"></span>Unit 42 live briefing &middot; Thursday, September 17 &middot; 10:00 AM PT &nbsp; <a href="#watch">Save your seat</a></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="https://www.paloaltonetworks.com/" target="_blank" rel="noopener" aria-label="Palo Alto Networks">Palo Alto Networks</a>
+    <nav class="nav-links">
+      <a href="https://www.paloaltonetworks.com/products" target="_blank" rel="noopener">Products</a>
+      <a href="https://www.paloaltonetworks.com/solutions" target="_blank" rel="noopener">Solutions</a>
+      <a href="https://www.paloaltonetworks.com/services" target="_blank" rel="noopener">Services</a>
+      <a href="https://www.paloaltonetworks.com/industry" target="_blank" rel="noopener">Industries</a>
+      <a href="https://www.paloaltonetworks.com/partners" target="_blank" rel="noopener">Partners</a>
+      <a href="https://www.paloaltonetworks.com/resources" target="_blank" rel="noopener">Resources</a>
+    </nav>
+    <div class="nav-right">
+      <button class="icobtn" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button>
+      <button class="icobtn" aria-label="Language"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg></button>
+      <a class="pill pill-ghost" href="https://www.paloaltonetworks.com/support" target="_blank" rel="noopener">Accounts &amp; Support
+        <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg></a>
+      <a class="pill pill-cta" href="https://www.paloaltonetworks.com/get-started" target="_blank" rel="noopener">Demos and Trials</a>
+      <button class="burger" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="dark-wrap" id="watch">
+  <div class="blades" id="blades"></div>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span><span class="mono">Live Webinar</span></span>
+        <h1 class="hl">The 72-minute breach.<span class="c2">What 750 incidents taught us.</span></h1>
+        <p class="sub">Unit 42 investigated over 750 major cyber incidents across more than 50 countries. The headline finding: in the fastest cases, attackers moved from initial access to data exfiltration in <strong>72 minutes</strong> &mdash; four times faster than the year before.</p>
+        <div class="chips">
+          <span class="chip">Thu, <b>Sep 17, 2026</b></span>
+          <span class="chip"><b>10:00 AM</b> PT</span>
+          <span class="chip"><b>45 min</b> + live Q&amp;A</span>
+          <span class="chip">Unit 42<b>&reg;</b></span>
+        </div>
+        <p class="streamline">Streaming live and on-demand on paloaltonetworks.com</p>
+        <div class="hero-cta">
+          <a class="btn-blue" href="#learn">Join the briefing
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          <a class="btn-line" href="https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report" target="_blank" rel="noopener">Read the full report</a>
+        </div>
+        <div class="cal">
+          <a id="gcal" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+          <a id="ical" href="#" download="unit42-72-minute-breach.ics">Download .ics</a>
+        </div>
+      </div>
+
+      <aside class="count-card">
+        <div class="mono lbl" id="cd-label">Briefing begins in</div>
+        <div class="cd" id="cd">
+          <div><span id="d">00</span><em>Days</em></div>
+          <div><span id="h">00</span><em>Hrs</em></div>
+          <div><span id="m">00</span><em>Min</em></div>
+          <div><span id="s">00</span><em>Sec</em></div>
+        </div>
+        <div class="tzline" id="tzline"></div>
+        <div class="count-stat">
+          <b>4X</b>
+          <span>faster from initial access to exfiltration than the previous year &mdash; Unit 42, 2026 Global Incident Response Report</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="statband">
+  <div class="wrap statgrid">
+    <div class="reveal">
+      <div class="mono" style="color:var(--grey);margin-bottom:18px">Median dwell time is no longer the metric</div>
+      <div class="big">72<i>min</i></div>
+    </div>
+    <div class="reveal">
+      <p class="turn">That is the whole window. Detect, decide, contain &mdash; in less time than most organizations take to staff a bridge call.</p>
+      <p class="src">Source: Unit 42&reg; 2026 Global Incident Response Report, fastest observed cases across 750+ investigations.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side"><div class="stick"><div class="mono">The briefing</div><div class="rule"></div></div></div>
+    <div class="reveal">
+      <p>Each year, thousands of organizations experience a cyber incident. This year&rsquo;s Unit 42 report analyzed over 750 major incidents across every major industry in more than 50 countries, and the data shows a clear shift in how attacks unfold.</p>
+      <p>Threat actors are moving faster, increasingly leveraging identity and trusted connections, and expanding attacks across multiple attack surfaces. <strong>Identity weaknesses played a material role in nearly 90% of investigations</strong> &mdash; more often than not, attackers aren&rsquo;t breaking in, they&rsquo;re logging in. In 23% of incidents, attackers leveraged third-party SaaS applications, bypassing traditional perimeters entirely.</p>
+      <p>The accelerating speed, scale and complexity of these intrusions mean the window between initial access and business impact is shrinking. Most breaches, however, still succeed due to preventable gaps in visibility and security controls. This session walks through what changed, what it means for the controls you already own, and where defenders are still winning.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="blades" id="blades2"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono" style="color:var(--cyan)">The compressed kill chain</div>
+      <h2>Four stages. Seventy-two minutes.</h2>
+      <p class="msub">AI is being used in reconnaissance, phishing, scripting and operational execution &mdash; which enables machine-like speed at scale. Here is what that collapse looks like in practice.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-track stagger">
+        <div class="tl">
+          <div class="node"><i></i></div>
+          <div class="t">T + 0 min</div>
+          <div class="h">Initial access</div>
+          <div class="p">Valid credentials or tokens, not an exploit. Nothing trips a traditional perimeter control.</div>
+        </div>
+        <div class="tl">
+          <div class="node"><i></i></div>
+          <div class="t">T + ~15 min</div>
+          <div class="h">AI-assisted recon</div>
+          <div class="p">Automated discovery of the identity estate, SaaS integrations and data stores.</div>
+        </div>
+        <div class="tl">
+          <div class="node"><i></i></div>
+          <div class="t">T + ~40 min</div>
+          <div class="h">Lateral movement</div>
+          <div class="p">Privilege escalation across fragmented identity estates; 87% of intrusions span multiple attack surfaces.</div>
+        </div>
+        <div class="tl">
+          <div class="node"><i></i></div>
+          <div class="t">T + 72 min</div>
+          <div class="h">Exfiltration</div>
+          <div class="p">Data leaves the environment before the first alert has been triaged.</div>
+        </div>
+      </div>
+    </div>
+    <div class="mech-foot reveal">
+      <b>87%</b><span>of intrusions involved activity across multiple attack surfaces &mdash; endpoint, network, cloud, SaaS and identity at once.</span>
+    </div>
+  </div>
+</section>
+
+<section class="learn" id="learn">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono" style="color:var(--grey)">Agenda</div>
+      <h2>What you&rsquo;ll take away</h2>
+    </div>
+    <div class="row reveal"><div class="mono n">01</div><h3>Where the 72 minutes actually go</h3><p>A stage-by-stage walkthrough of the fastest intrusions Unit 42 investigated, and the two control gaps that made them possible.</p></div>
+    <div class="row reveal"><div class="mono n">02</div><h3>Identity as the primary attack vehicle</h3><p>Why nearly 90% of investigations involved identity weakness, and which fragments of the identity estate attackers reach for first.</p></div>
+    <div class="row reveal"><div class="mono n">03</div><h3>The third-party SaaS blast radius</h3><p>How trusted integrations and vendor tooling turned 23% of incidents into multi-system operational disruption.</p></div>
+    <div class="row reveal"><div class="mono n">04</div><h3>Closing preventable gaps first</h3><p>The prioritized list &mdash; visibility, control coverage and response rehearsal &mdash; that shortens your side of the timeline.</p></div>
+  </div>
+</section>
+
+<section class="spk">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono" style="color:var(--grey)">Speakers</div>
+      <h2>Who&rsquo;s presenting</h2>
+    </div>
+    <div class="spk-grid stagger">
+      <div class="person"><div class="avatar">U4</div><div><div class="nm">Speaker name</div><div class="rl">Unit 42 Incident Response</div><div class="ph">Placeholder</div></div></div>
+      <div class="person"><div class="avatar">PA</div><div><div class="nm">Speaker name</div><div class="rl">Threat Intelligence, Palo Alto Networks</div><div class="ph">Placeholder</div></div></div>
+      <div class="person"><div class="avatar">MC</div><div><div class="nm">Moderator name</div><div class="rl">Host</div><div class="ph">Placeholder</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband">
+  <div class="wrap cta-grid">
+    <div>
+      <h2>Prevention starts before the attack.</h2>
+      <p>Join the live briefing, or watch it on demand the moment it ends.</p>
+    </div>
+    <a class="btn-black" href="#watch">Save your seat
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap ft-cols">
+    <div><h4>Products and Services</h4>
+      <a href="https://www.paloaltonetworks.com/network-security" target="_blank" rel="noopener">AI-Powered Network Security</a>
+      <a href="https://www.paloaltonetworks.com/network-security/next-generation-firewall" target="_blank" rel="noopener">Next-Generation Firewalls</a>
+      <a href="https://www.paloaltonetworks.com/sase" target="_blank" rel="noopener">Prisma SASE</a>
+      <a href="https://www.paloaltonetworks.com/cortex" target="_blank" rel="noopener">Cortex XSIAM</a>
+      <a href="https://www.paloaltonetworks.com/cortex/cloud" target="_blank" rel="noopener">Cortex Cloud</a>
+    </div>
+    <div><h4>Threat Intel &amp; IR</h4>
+      <a href="https://www.paloaltonetworks.com/unit42" target="_blank" rel="noopener">Unit 42</a>
+      <a href="https://www.paloaltonetworks.com/unit42/respond/incident-response" target="_blank" rel="noopener">Incident Response</a>
+      <a href="https://www.paloaltonetworks.com/unit42/assess" target="_blank" rel="noopener">Proactive Assessments</a>
+      <a href="https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report" target="_blank" rel="noopener">2026 IR Report</a>
+      <a href="https://www.paloaltonetworks.com/cortex/managed-detection-and-response" target="_blank" rel="noopener">Managed Detection &amp; Response</a>
+    </div>
+    <div><h4>Company</h4>
+      <a href="https://www.paloaltonetworks.com/about-us" target="_blank" rel="noopener">About Us</a>
+      <a href="https://jobs.paloaltonetworks.com/" target="_blank" rel="noopener">Careers</a>
+      <a href="https://www.paloaltonetworks.com/company/contact-support" target="_blank" rel="noopener">Contact Us</a>
+      <a href="https://investors.paloaltonetworks.com/" target="_blank" rel="noopener">Investor Relations</a>
+      <a href="https://www.paloaltonetworks.com/company/newsroom" target="_blank" rel="noopener">Newsroom</a>
+    </div>
+    <div><h4>Popular Links</h4>
+      <a href="https://www.paloaltonetworks.com/blog" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.paloaltonetworks.com/resources" target="_blank" rel="noopener">Content Library</a>
+      <a href="https://www.paloaltonetworks.com/cyberpedia" target="_blank" rel="noopener">Cyberpedia</a>
+      <a href="https://events.paloaltonetworks.com/" target="_blank" rel="noopener">Event Center</a>
+      <a href="https://www.paloaltonetworks.com/sitemap" target="_blank" rel="noopener">Sitemap</a>
+    </div>
+    <div><h4>This session</h4>
+      <a href="#watch">Watch live</a>
+      <a href="#learn">Agenda</a>
+      <a href="#" id="gcal2">Add to calendar</a>
+      <a href="https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report" target="_blank" rel="noopener">Download the report</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="wrap">
+      <div class="inner">
+        <span class="logo" aria-label="Palo Alto Networks"></span>
+        <div class="legal">
+          <a href="https://www.paloaltonetworks.com/legal-notices/privacy" target="_blank" rel="noopener">Privacy</a>
+          <a href="https://www.paloaltonetworks.com/legal-notices/trust-center" target="_blank" rel="noopener">Trust Center</a>
+          <a href="https://www.paloaltonetworks.com/legal-notices/terms-of-use" target="_blank" rel="noopener">Terms of Use</a>
+          <a href="https://www.paloaltonetworks.com/legal" target="_blank" rel="noopener">Documents</a>
+        </div>
+      </div>
+      <div class="copy">Copyright &copy; 2026 Palo Alto Networks. All Rights Reserved</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+/* ---------- event ---------- */
+var EVENT = {
+  title: "The 72-Minute Breach: Inside the 2026 Unit 42 Global Incident Response Report",
+  start: new Date("2026-09-17T10:00:00-07:00"),
+  minutes: 45,
+  url: "https://sequel-demo.github.io/webinar-on/palo-alto-networks/",
+  desc: "Unit 42 analyzed 750+ major cyber incidents across 50+ countries. Join the live briefing on what changed in 2026."
+};
+EVENT.end = new Date(EVENT.start.getTime() + EVENT.minutes*60000);
+
+/* ---------- blades (signature device) ---------- */
+(function blades(){
+  var cfg = [[6,0,.55],[10,34,.35],[15,-18,.6],[21,52,.3],[27,10,.5],[33,-26,.4],[40,40,.28],[46,-8,.5],[53,26,.34],[60,-20,.46],[67,48,.3],[73,4,.52],[80,-30,.36],[87,30,.44],[93,-12,.3]];
+  ["blades","blades2"].forEach(function(id, k){
+    var host = document.getElementById(id); if(!host) return;
+    cfg.forEach(function(c, i){
+      var b = document.createElement("i");
+      b.style.left = c[0] + "%";
+      b.style.top = (-14 + c[1]/8) + "%";
+      b.style.opacity = (k ? c[2]*0.42 : c[2]*0.72).toFixed(2);
+      b.style.width = (9 + (i % 4) * 5) + "px";
+      host.appendChild(b);
+    });
+  });
+})();
+
+/* ---------- nav scroll state ---------- */
+(function(){
+  var nav = document.getElementById("nav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+})();
+
+/* ---------- countdown / on-demand degrade ---------- */
+(function(){
+  var pad = function(n){ return String(n).padStart(2,"0"); };
+  var cd = document.getElementById("cd"),
+      label = document.getElementById("cd-label"),
+      tz = document.getElementById("tzline");
+  try{
+    var localStr = EVENT.start.toLocaleString(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+    tz.textContent = "In your timezone: " + localStr;
+  }catch(e){}
+
+  function goOnDemand(){
+    label.textContent = "Now available";
+    cd.outerHTML = '<div class="live-now">Watch the recording &mdash; below.</div>';
+    var g = document.getElementById("gcal"), i = document.getElementById("ical"), c = document.querySelector(".cal");
+    if(c) c.style.display = "none";
+    var badge = document.querySelector(".badge .mono"); if(badge) badge.textContent = "On Demand";
+    var chips = document.querySelector(".chips"); if(chips) chips.style.display = "none";
+    var ann = document.querySelector(".announce");
+    if(ann) ann.innerHTML = '<span class="dotmark"></span>Unit 42 briefing &middot; now available on demand &nbsp; <a href="#watch">Watch the recording</a>';
+  }
+
+  function tick(){
+    var diff = EVENT.start - new Date();
+    if(diff <= 0){
+      if(new Date() < EVENT.end){
+        label.textContent = "Happening now";
+        cd.outerHTML = '<div class="live-now">We&rsquo;re live now &mdash; join below.</div>';
+      } else {
+        goOnDemand();
+      }
+      clearInterval(t); return;
+    }
+    var s = Math.floor(diff/1000);
+    document.getElementById("d").textContent = pad(Math.floor(s/86400));
+    document.getElementById("h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("s").textContent = pad(s%60);
+  }
+  var t = setInterval(tick, 1000); tick();
+})();
+
+/* ---------- calendar links (one source of truth) ---------- */
+(function(){
+  function z(d){ return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""); }
+  var range = z(EVENT.start) + "/" + z(EVENT.end);
+  var g = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+        + "&text=" + encodeURIComponent(EVENT.title)
+        + "&dates=" + range
+        + "&details=" + encodeURIComponent(EVENT.desc + "\n\n" + EVENT.url)
+        + "&location=" + encodeURIComponent(EVENT.url);
+  ["gcal","gcal2"].forEach(function(id){ var el = document.getElementById(id); if(el) el.href = g; });
+
+  var ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Palo Alto Networks//Unit 42 Briefing//EN","BEGIN:VEVENT",
+    "UID:unit42-72min-2026@paloaltonetworks.com","DTSTAMP:" + z(EVENT.start),
+    "DTSTART:" + z(EVENT.start),"DTEND:" + z(EVENT.end),
+    "SUMMARY:" + EVENT.title,"DESCRIPTION:" + EVENT.desc + "\\n" + EVENT.url,
+    "URL:" + EVENT.url,"LOCATION:" + EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  var el = document.getElementById("ical");
+  if(el) el.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+})();
+
+/* ---------- reveal ---------- */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll(".reveal,.stagger").forEach(function(el){
+    if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
+    else io.observe(el);
+  });
+})();
+
+/* ---------- Sequel embed ---------- */
+document.addEventListener("DOMContentLoaded", function(){
+  Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" });
+});
+(function stripBorder(){
+  var root = document.getElementById("sequel_root");
+  var c = root && root.firstElementChild;
+  if(c && c.shadowRoot){
+    var st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+</script>
+</body>
+</html>
