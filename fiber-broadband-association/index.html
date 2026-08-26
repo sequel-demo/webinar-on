@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FFB 2026 Week 35: Scaling Fiber in a Competitive Era | Fiber Broadband Association</title>
+<meta property="og:title" content="FFB 2026 Week 35: Scaling Fiber in a Competitive Era: A Conversation with Fidium's CEO">
+<meta property="og:description" content="Gary Bolton sits down with Gaurav Juneja, CEO of Fidium, to discuss the company's next phase as a fiber-first operator. Wednesday, September 2 at 10:00 AM ET.">
+<meta property="og:image" content="https://fiberbroadband.org/wp-content/uploads/2024/04/FFB_Banner-e1737140608224.jpg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/fiber-broadband-association/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://fiberbroadband.org/wp-content/uploads/2023/03/cropped-FBA-Crown-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --slate:#34647f;      /* FBA primary — buttons, event header band */
+  --deep:#0e2634;       /* darkened slate for the event surface */
+  --deeper:#081a24;
+  --orange:#e07628;     /* FBA logo orange */
+  --gold:#dda727;
+  --purple:#7f64aa;
+  --blue:#0895d3;
+  --ink:#141719;
+  --sub:#5a656c;
+  --line:#e2e6e9;
+  --wash:#f3f6f8;
+  --sh-sm:0 2px 8px rgba(14,38,52,.07);
+  --sh-md:0 16px 38px rgba(14,38,52,.10);
+  --sh-lg:0 28px 64px rgba(14,38,52,.16);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',-apple-system,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3{font-family:'Lato',sans-serif;font-weight:700;line-height:1.14;letter-spacing:-.01em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+::selection{background:var(--orange);color:#fff}
+
+/* ---------- SCROLL REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}
+.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}
+
+/* ---------- FBA SIGNATURE: 5-COLOR STRIPE ---------- */
+.stripe{display:flex;height:7px;width:100%}
+.stripe i{flex:1}
+.stripe i:nth-child(1){background:var(--orange)}
+.stripe i:nth-child(2){background:var(--blue)}
+.stripe i:nth-child(3){background:var(--slate)}
+.stripe i:nth-child(4){background:var(--purple)}
+.stripe i:nth-child(5){background:var(--gold)}
+
+/* ---------- HEADER ---------- */
+.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(10px);transition:box-shadow .25s}
+.top.scrolled{box-shadow:0 6px 22px rgba(14,38,52,.09)}
+.util-row{display:flex;align-items:flex-start;justify-content:space-between;padding-top:16px}
+.logo{display:block;flex-shrink:0}
+.logo img{height:76px;width:auto;display:block;transition:height .25s var(--ease)}
+.top.scrolled .logo img{height:56px}
+.util{display:flex;align-items:center;gap:26px;background:rgba(52,100,127,.1);border-radius:8px;padding:9px 20px;margin-top:8px}
+.util a{font-size:14.5px;color:var(--ink);display:inline-flex;align-items:center;gap:7px;transition:color .15s}
+.util a:hover{color:var(--slate)}
+.util svg{width:16px;height:16px;fill:var(--slate)}
+.nav{display:flex;align-items:center;gap:6px;padding:14px 0 12px}
+.nav a{font-size:15.5px;font-weight:700;padding:11px 15px;border-radius:8px;transition:background .18s,color .18s}
+.nav a:hover{background:rgba(52,100,127,.09)}
+.nav a.active{background:var(--slate);color:#fff}
+.nav .search{margin-left:auto;padding:10px}
+.nav .search svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2.2;display:block}
+.burger{display:none}
+
+/* ---------- DARK WRAP: event header band + embed as ONE surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--deep);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -15%;height:90%;
+  background:radial-gradient(circle,rgba(52,100,127,.55),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -12% -22% -10%;height:70%;
+  background:radial-gradient(circle,rgba(224,118,40,.15),transparent 64%);pointer-events:none}
+.mesh{position:absolute;top:-40px;right:-80px;width:640px;opacity:.5;pointer-events:none;z-index:1}
+@media(max-width:1080px){.mesh{opacity:.22;right:-220px}}
+.hero{padding:44px 0 38px;position:relative;z-index:2}
+.crumb{font-size:14px;color:rgba(255,255,255,.66);margin-bottom:26px}
+.crumb a:hover{color:#fff;text-decoration:underline}
+.crumb span{margin:0 9px;opacity:.45}
+.badge{display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:#fff;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;padding:7px 15px;border-radius:999px;margin-bottom:20px}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+.hero h1{font-size:clamp(31px,4.4vw,52px);font-weight:900;max-width:16ch;letter-spacing:-.022em;margin-bottom:20px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 16px;font-size:14.5px;font-weight:700}
+.chip svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0}
+.tzline{font-size:13.5px;color:rgba(255,255,255,.6);margin-bottom:22px}
+.streaming{font-size:17px;color:rgba(255,255,255,.82);margin-bottom:30px}
+.streaming b{color:#fff;font-weight:700}
+.cd-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-bottom:28px}
+.countdown{display:flex;gap:9px}
+.cd-tile{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;
+  padding:11px 0 9px;width:74px;text-align:center}
+.cd-n{display:block;font-size:29px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.cd-l{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:7px}
+.cd-live{font-size:20px;font-weight:900;color:var(--gold);display:flex;align-items:center;gap:11px}
+.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:16px;
+  padding:14px 30px;border-radius:8px;letter-spacing:.05em;
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),filter .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-slate{background:var(--slate);color:#fff}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:12.5px 22px;font-size:14.5px}
+.btn-ghost:hover{border-color:#fff}
+.btn-ghost svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2}
+.embed-sec{padding:10px 0 78px;position:relative;z-index:2}
+#sequel_root{min-height:520px;width:100%}
+
+/* ---------- STAT PULL-QUOTE BAND ---------- */
+.statband{background:#fff;padding:96px 0 88px;border-bottom:1px solid var(--line)}
+.rule{width:74px;height:4px;background:var(--orange);margin-bottom:26px}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.bignum{font-size:clamp(72px,12vw,152px);font-weight:900;line-height:.86;letter-spacing:-.045em;color:var(--slate)}
+.bignum em{font-style:normal;font-size:.42em;letter-spacing:-.02em}
+.statlbl{font-size:19px;color:var(--sub);margin-top:20px;max-width:26ch}
+.turn{font-size:clamp(21px,2.4vw,29px);font-weight:700;line-height:1.34;letter-spacing:-.015em;max-width:22ch}
+.turn b{color:var(--orange)}
+.src{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:#8b969c;margin-top:22px;text-transform:uppercase}
+
+/* ---------- THE LEDE ---------- */
+.lede{background:var(--wash);padding:88px 0}
+.lede-grid{display:grid;grid-template-columns:190px 1fr;gap:48px}
+.sidelbl{position:sticky;top:190px;align-self:start;color:var(--slate);font-weight:500}
+.lede p{font-size:19.5px;line-height:1.72;max-width:66ch;color:#2b3439}
+.lede p+p{margin-top:22px}
+.lede h2{font-size:clamp(26px,3.2vw,38px);margin-bottom:24px;max-width:20ch}
+
+/* ---------- MECHANISM BAND ---------- */
+.mech{background:var(--deeper);color:#fff;padding:92px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:auto -10% -30% 20%;height:70%;
+  background:radial-gradient(circle,rgba(8,149,211,.16),transparent 65%);pointer-events:none}
+.mech .inner{position:relative;z-index:2}
+.mech .mono{color:var(--gold)}
+.mech h2{font-size:clamp(26px,3.4vw,40px);margin:20px 0 12px;max-width:19ch}
+.mech .say{color:rgba(255,255,255,.66);font-size:17.5px;max-width:60ch;margin-bottom:52px}
+.flow{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.node{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);border-radius:12px;
+  padding:20px 24px;min-width:184px;flex:1}
+.node .n{font-size:27px;font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.node .t{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.58);margin-top:9px}
+.node:nth-child(1) .n{color:var(--gold)}
+.node:nth-child(3) .n{color:var(--blue)}
+.node:nth-child(5) .n{color:var(--orange)}
+.node:nth-child(7) .n{color:#b79ee0}
+.dashes{flex:0 0 46px;height:2px;
+  background-image:linear-gradient(90deg,rgba(255,255,255,.55) 55%,transparent 0);
+  background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+@media(max-width:900px){.flow{flex-direction:column;align-items:stretch;gap:0}
+  .node{width:100%}.dashes{width:2px;height:26px;flex:0 0 26px;margin:0 auto;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.55) 55%,transparent 0);
+  background-size:2px 12px;background-repeat:repeat-y;animation:marchy 900ms linear infinite}}
+@keyframes marchy{to{background-position:0 12px}}
+
+/* ---------- HAIRLINE ROWS ---------- */
+.takeaways{padding:92px 0 100px}
+.takeaways h2{font-size:clamp(26px,3.2vw,38px);margin-bottom:44px}
+.row{display:grid;grid-template-columns:70px 1.05fr 1.25fr;gap:30px;padding:34px 16px 34px 8px;
+  border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
+  background:var(--orange);transition:width .55s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:#fafcfd}
+.row .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--orange);letter-spacing:.1em;padding-top:5px}
+.row h3{font-size:21px;letter-spacing:-.012em}
+.row p{color:var(--sub);font-size:16.5px;max-width:62ch}
+@media(max-width:820px){.row{grid-template-columns:52px 1fr;gap:16px}.row p{grid-column:2}}
+
+/* ---------- SPEAKERS ---------- */
+.speakers{background:var(--wash);padding:88px 0}
+.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:40px}
+.spk{display:flex;gap:22px;align-items:center;background:#fff;border-radius:14px;padding:26px 28px;box-shadow:var(--sh-sm)}
+.av{width:76px;height:76px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+  font-size:25px;font-weight:900;color:#fff;letter-spacing:-.02em}
+.spk:nth-child(1) .av{background:var(--slate)}
+.spk:nth-child(2) .av{background:var(--orange)}
+.spk .nm{font-size:20px;font-weight:900;letter-spacing:-.015em}
+.spk .rl{color:var(--sub);font-size:15.5px;margin-top:3px}
+.spk .tag{display:inline-block;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--slate);background:rgba(52,100,127,.1);
+  padding:4px 10px;border-radius:5px}
+@media(max-width:820px){.spk-grid{grid-template-columns:1fr}}
+
+/* ---------- CTA BAND ---------- */
+.cta{background:var(--orange);color:#0e2634;padding:82px 0;text-align:center}
+.cta .rule{margin:0 auto 24px;background:#0e2634}
+.cta h2{font-size:clamp(28px,3.6vw,44px);max-width:20ch;margin:0 auto 16px;color:#0e2634}
+.cta p{font-size:18px;max-width:56ch;margin:0 auto 32px;color:#0e2634}
+.cta .btn-slate{background:#0e2634;color:#fff}
+
+/* ---------- FOOTER ---------- */
+footer{background:#fff;padding:60px 0 34px}
+.f-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.f-links{display:flex;gap:28px;flex-wrap:wrap;font-size:15px;font-weight:700}
+.f-links a:hover{color:var(--slate)}
+.f-addr{color:var(--sub);font-size:15px;margin-top:26px;line-height:1.7}
+.f-soc{display:flex;gap:14px;margin-top:22px}
+.f-soc a{width:36px;height:36px;border-radius:50%;background:rgba(52,100,127,.1);display:grid;place-items:center;transition:background .18s}
+.f-soc a:hover{background:var(--slate)}
+.f-soc a:hover svg{fill:#fff}
+.f-soc svg{width:17px;height:17px;fill:var(--slate);transition:fill .18s}
+.f-legal{border-top:1px solid var(--line);margin-top:38px;padding-top:22px;color:var(--sub);font-size:14px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .logo img{height:82px}
+
+@media(max-width:980px){
+  .nav{overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
+  .nav a{white-space:nowrap;font-size:14.5px;padding:10px 12px}
+  .util{display:none}
+  .logo img{height:58px}
+  .statgrid{grid-template-columns:1fr;gap:38px}
+  .lede-grid{grid-template-columns:1fr;gap:22px}
+  .sidelbl{position:static}
+  .hero h1{max-width:none}
+}
+@media(max-width:520px){
+  .cd-tile{width:64px}.cd-n{font-size:24px}
+  .actions .btn{width:100%;justify-content:center}
+  .stripe{height:6px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.stagger>*{opacity:1 !important;transform:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="stripe"><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <div class="util-row">
+      <a class="logo" href="https://fiberbroadband.org/" target="_blank" rel="noopener">
+        <img src="https://fiberbroadband.org/wp-content/themes/fiber/assets/imgs/logo.svg" alt="Fiber Broadband Association">
+      </a>
+      <div class="util">
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5c0-3-4-5.5-9-5.5Z"/></svg>Login</a>
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">My Profile</a>
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">Community</a>
+        <a href="https://fiberbroadband.org/contact-us/" target="_blank" rel="noopener">Contact Us</a>
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">Fiber Job Zone</a>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="https://fiberbroadband.org/who-we-are/" target="_blank" rel="noopener">About Us</a>
+      <a href="https://fiberbroadband.org/advocacy-public-policy/" target="_blank" rel="noopener">Advocacy &amp; Public Policy</a>
+      <a href="https://fiberbroadband.org/membership/" target="_blank" rel="noopener">Membership</a>
+      <a href="https://fiberbroadband.org/workforce-development/" target="_blank" rel="noopener">Workforce Development</a>
+      <a class="active" href="https://fiberbroadband.org/events/" target="_blank" rel="noopener">Events &amp; Webinars</a>
+      <a href="https://fiberbroadband.org/resources/" target="_blank" rel="noopener">Resources</a>
+      <a href="https://fiberbroadband.org/latam/" target="_blank" rel="noopener">LATAM</a>
+      <a class="search" href="https://fiberbroadband.org/" target="_blank" rel="noopener" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <svg class="mesh" viewBox="0 0 620 400" aria-hidden="true">
+    <g stroke="rgba(255,255,255,.30)" stroke-width="1.1" fill="none">
+      <path d="M60 300 L150 210 L250 265 L330 160 L430 205 L520 130"/>
+      <path d="M150 210 L120 110 L235 70 L330 160"/>
+      <path d="M250 265 L300 350 L410 320 L430 205"/>
+      <path d="M430 205 L545 250 L520 130 L590 205"/>
+      <path d="M235 70 L360 40 L470 90 L520 130"/>
+      <path d="M120 110 L60 300"/><path d="M330 160 L300 350"/>
+      <path d="M410 320 L545 250"/><path d="M360 40 L430 205"/>
+    </g>
+    <g>
+      <circle cx="60"  cy="300" r="14" fill="#dda727"/>
+      <circle cx="150" cy="210" r="21" fill="#34647f"/>
+      <circle cx="250" cy="265" r="11" fill="#7f64aa"/>
+      <circle cx="330" cy="160" r="24" fill="#e07628"/>
+      <circle cx="430" cy="205" r="15" fill="#0895d3"/>
+      <circle cx="520" cy="130" r="19" fill="#34647f"/>
+      <circle cx="120" cy="110" r="12" fill="#0895d3"/>
+      <circle cx="235" cy="70"  r="17" fill="#dda727"/>
+      <circle cx="300" cy="350" r="16" fill="#e07628"/>
+      <circle cx="410" cy="320" r="10" fill="#7f64aa"/>
+      <circle cx="545" cy="250" r="13" fill="#dda727"/>
+      <circle cx="360" cy="40"  r="9"  fill="#0895d3"/>
+      <circle cx="470" cy="90"  r="12" fill="#7f64aa"/>
+      <circle cx="590" cy="205" r="8"  fill="#e07628"/>
+    </g>
+  </svg>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="crumb"><a href="https://fiberbroadband.org/" target="_blank" rel="noopener">Home</a><span>|</span><a href="https://fiberbroadband.org/events/" target="_blank" rel="noopener">Events</a><span>|</span>FFB 2026 Week 35</div>
+      <span class="badge" id="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></span>
+      <h1>FFB 2026 Week 35: Scaling Fiber in a Competitive Era: A Conversation with Fidium&rsquo;s CEO</h1>
+      <div class="meta">
+        <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg><span id="dateTxt">Wednesday, September 2, 2026</span></span>
+        <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10:00 &ndash; 10:30 AM ET</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><path d="M4 6h11v12H4z"/><path d="m15 10 5-3v10l-5-3z"/></svg>30 minutes</span>
+      </div>
+      <div class="tzline" id="tzline"></div>
+      <p class="streaming">Streaming live and on&#8209;demand on <b>fiberbroadband.org</b></p>
+
+      <div class="cd-row">
+        <div class="countdown" id="cd">
+          <div class="cd-tile"><span class="cd-n" id="cdD">00</span><span class="cd-l">Days</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdH">00</span><span class="cd-l">Hrs</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdM">00</span><span class="cd-l">Min</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdS">00</span><span class="cd-l">Sec</span></div>
+        </div>
+        <div class="cd-live" id="cdLive" style="display:none">We&rsquo;re live now &mdash; join below</div>
+      </div>
+
+      <div class="actions" id="acts">
+        <a class="btn btn-orange" href="#sequel_root">REGISTER NOW</a>
+        <a class="btn btn-ghost" id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>Google Calendar</a>
+        <a class="btn btn-ghost" id="ical" download="ffb-week-35.ics"><svg viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m8 12 4 4 4-4"/><path d="M4 20h16"/></svg>Add to calendar (.ics)</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="statband">
+  <div class="wrap">
+    <div class="rule reveal"></div>
+    <div class="statgrid">
+      <div class="reveal">
+        <div class="bignum">11.8<em>M</em></div>
+        <p class="statlbl">new U.S. homes gained access to fiber in 2025 &mdash; the largest single&#8209;year expansion FBA has recorded.</p>
+        <p class="src">FBA / Cartesian Fiber Deployment Cost Annual Report, Jan 2026</p>
+      </div>
+      <div class="reveal">
+        <p class="turn">The build is no longer the hard part. <b>Holding the ground you built</b> is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="sidelbl mono reveal">This Episode</div>
+    <div class="reveal">
+      <h2>Scaling Fiber in a Competitive Era</h2>
+      <p>In this episode of Fiber for Breakfast, Gary Bolton, President &amp; CEO of the Fiber Broadband Association, sits down with Gaurav Juneja, CEO of Fidium, to discuss the company&rsquo;s next phase as a fiber&#8209;first operator. With a network spanning more than 76,000 fiber route miles, Juneja shares how Fidium is accelerating expansion, enhancing customer experience, and leveraging new capital strategies to scale.</p>
+      <p>The conversation also explores Fidium&rsquo;s push into wholesale and data center connectivity, its rural market advantage, and what these moves signal for the telecom landscape as competition intensifies and fiber investment surges.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap inner">
+    <div class="mono reveal">Fidium&rsquo;s next phase</div>
+    <h2 class="reveal">Four moves, one network</h2>
+    <p class="say reveal">Where a fiber&#8209;first operator goes once the passings are in the ground.</p>
+    <div class="flow reveal">
+      <div class="node"><div class="n">76,000</div><div class="t">Fiber route miles</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="n">Wholesale</div><div class="t">New revenue layer</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="n">Data center</div><div class="t">Connectivity push</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="n">Rural</div><div class="t">Market advantage</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="takeaways">
+  <div class="wrap">
+    <div class="rule reveal"></div>
+    <h2 class="reveal">What you&rsquo;ll take away</h2>
+    <div class="reveal">
+      <div class="row">
+        <div class="num">01</div>
+        <h3>How Fidium is accelerating expansion</h3>
+        <p>What it takes to keep adding route miles when labor, materials and permitting costs are all moving the wrong way.</p>
+      </div>
+      <div class="row">
+        <div class="num">02</div>
+        <h3>New capital strategies to scale</h3>
+        <p>The financing structures fiber&#8209;first operators are using to fund the next phase of build without stalling.</p>
+      </div>
+      <div class="row">
+        <div class="num">03</div>
+        <h3>The push into wholesale and data centers</h3>
+        <p>Where a residential fiber network finds a second and third revenue layer, and how Fidium is sequencing it.</p>
+      </div>
+      <div class="row">
+        <div class="num">04</div>
+        <h3>What the rural advantage signals</h3>
+        <p>Why rural footprint is turning into a competitive moat, and what that means for the wider telecom landscape.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="rule reveal"></div>
+    <h2 class="reveal">Your host and guest</h2>
+    <div class="spk-grid stagger reveal">
+      <div class="spk">
+        <div class="av">GB</div>
+        <div>
+          <div class="nm">Gary Bolton</div>
+          <div class="rl">President &amp; CEO, Fiber Broadband Association</div>
+          <span class="tag">Host</span>
+        </div>
+      </div>
+      <div class="spk">
+        <div class="av">GJ</div>
+        <div>
+          <div class="nm">Gaurav Juneja</div>
+          <div class="rl">Chief Executive Officer, Fidium</div>
+          <span class="tag">Special Guest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h2>Thirty minutes, every Wednesday morning</h2>
+    <p>Fiber for Breakfast is a weekly 30&#8209;minute live video discussion hosted by FBA President &amp; CEO Gary Bolton, featuring industry thought leaders on current topics.</p>
+    <a class="btn btn-slate" href="#sequel_root">JOIN THE EPISODE</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <a class="logo" href="https://fiberbroadband.org/" target="_blank" rel="noopener">
+          <img src="https://fiberbroadband.org/wp-content/themes/fiber/assets/imgs/logo.svg" alt="Fiber Broadband Association">
+        </a>
+        <p class="f-addr">670 Maine Avenue SW, Suite 600<br>Washington, DC 20024 USA</p>
+        <div class="f-soc">
+          <a href="https://www.linkedin.com/company/fiber-broadband-association/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9V9Z"/></svg></a>
+          <a href="https://www.youtube.com/@fiberbroadbandassociation" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12ZM9.8 15.2V8.8l6 3.2-6 3.2Z"/></svg></a>
+          <a href="https://www.facebook.com/fiberbroadband/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9V7.2c0-.9.2-1.3 1.5-1.3H17V3h-2.6C11.2 3 10 4.4 10 7v2H8v3h2v9h4v-9h2.7l.3-3h-3Z"/></svg></a>
+          <a href="https://www.instagram.com/fiberbroadband/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.7s0 3.4-.1 4.7c-.2 3.3-1.7 4.9-5 5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-3.3-.1-4.8-1.7-5-5C2 15.4 2 15 2 12s0-3.4.1-4.7c.2-3.3 1.7-4.9 5-5C8.4 2.2 8.8 2.2 12 2.2Zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8Zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.1-8.3a1.15 1.15 0 1 1 0-2.3 1.15 1.15 0 0 1 0 2.3Z"/></svg></a>
+          <a href="https://x.com/fiberbroadband" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.7 3h3.2l-7 8 8.2 10h-6.4l-5-6.1L4.9 21H1.7l7.5-8.6L1.3 3h6.6l4.5 5.6L17.7 3Zm-1.1 16.1h1.8L7.5 4.8H5.6l11 14.3Z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-links">
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">My Profile</a>
+        <a href="https://fiberbroadband.org/contact-us/" target="_blank" rel="noopener">Contact Us</a>
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">Code of Conduct</a>
+        <a href="https://fiberbroadband.org/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://fiberbroadband.org/" target="_blank" rel="noopener">Right to Use Policy</a>
+      </div>
+    </div>
+    <div class="f-legal">
+      <span>Copyright &copy; 2026 Fiber Broadband Association. All rights reserved.</span>
+      <span>When Fiber Leads, the Future Follows.</span>
+    </div>
+  </div>
+</footer>
+<div class="stripe"><i></i><i></i><i></i><i></i><i></i></div>
+
+<script>
+/* ---------- EVENT (single source of truth for countdown + calendar) ---------- */
+var EVENT = {
+  title: "FFB 2026 Week 35: Scaling Fiber in a Competitive Era: A Conversation with Fidium's CEO",
+  start: new Date("2026-09-02T10:00:00-04:00"),
+  end:   new Date("2026-09-02T10:30:00-04:00"),
+  desc:  "In this episode of Fiber for Breakfast, Gary Bolton, President & CEO of the Fiber Broadband Association, sits down with Gaurav Juneja, CEO of Fidium, to discuss the company's next phase as a fiber-first operator.",
+  url:   "https://sequel-demo.github.io/webinar-on/fiber-broadband-association/"
+};
+
+/* viewer's own timezone line */
+(function(){
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var local = EVENT.start.toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('tzline').textContent = "That's " + local + " where you are (" + tz + ").";
+  }catch(e){}
+})();
+
+/* countdown, degrading to on-demand */
+(function(){
+  var d=document.getElementById('cdD'),h=document.getElementById('cdH'),
+      m=document.getElementById('cdM'),s=document.getElementById('cdS'),
+      cd=document.getElementById('cd'),live=document.getElementById('cdLive'),
+      badge=document.getElementById('badgeTxt'),acts=document.getElementById('acts');
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){
+    var diff = EVENT.start.getTime() - Date.now();
+    if(diff<=0){
+      cd.style.display='none'; live.style.display='flex';
+      if(Date.now() > EVENT.end.getTime()+3600000){
+        badge.textContent='On Demand';
+        live.textContent='Watch the recording below';
+        document.getElementById('gcal').style.display='none';
+        document.getElementById('ical').style.display='none';
+      }
+      return;
+    }
+    var t=Math.floor(diff/1000);
+    d.textContent=pad(Math.floor(t/86400));
+    h.textContent=pad(Math.floor(t%86400/3600));
+    m.textContent=pad(Math.floor(t%3600/60));
+    s.textContent=pad(t%60);
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* calendar links, both built from EVENT */
+(function(){
+  function z(dt){return dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}
+  var g="https://calendar.google.com/calendar/render?action=TEMPLATE"
+    +"&text="+encodeURIComponent(EVENT.title)
+    +"&dates="+z(EVENT.start)+"/"+z(EVENT.end)
+    +"&details="+encodeURIComponent(EVENT.desc+"\n\n"+EVENT.url)
+    +"&location="+encodeURIComponent(EVENT.url);
+  document.getElementById('gcal').href=g;
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FBA//Fiber for Breakfast//EN","BEGIN:VEVENT",
+    "UID:ffb-2026-w35@fiberbroadband.org","DTSTAMP:"+z(EVENT.start),
+    "DTSTART:"+z(EVENT.start),"DTEND:"+z(EVENT.end),
+    "SUMMARY:"+EVENT.title.replace(/,/g,'\\,'),
+    "DESCRIPTION:"+EVENT.desc.replace(/,/g,'\\,'),
+    "URL:"+EVENT.url,"LOCATION:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+})();
+
+/* sticky nav shadow */
+(function(){
+  var t=document.getElementById('top');
+  var f=function(){ t.classList.toggle('scrolled', window.scrollY>8) };
+  f(); window.addEventListener('scroll',f,{passive:true});
+})();
+
+/* scroll reveal */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } })
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){
+    if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+    else io.observe(el);
+  });
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});
+});
+/* Sequel renders in an OPEN shadow DOM; its iframe ships a 1px border. Strip it. */
+(function stripBorder(){
+  var root=document.getElementById("sequel_root");
+  var c=root && root.firstElementChild;
+  if(c && c.shadowRoot){
+    var st=document.createElement("style");
+    st.textContent="iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder,200); }
+})();
+</script>
+</body>
+</html>
