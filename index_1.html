@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Future-proofing FWA prevention with a partnership-driven approach | Cotiviti</title>
+<meta property="og:title" content="Future-proofing FWA prevention with a partnership-driven approach">
+<meta property="og:description" content="Join Cotiviti and health plan leaders as we explore how collaborative preparation and cross-functional coordination can help lay the groundwork for a more effective waste and abuse program.">
+<meta property="og:image" content="https://info.cotiviti.com/hubfs/Hero_Future-proofing-FWA_400x450_Transparent%20b.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/cotiviti/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.cotiviti.com/hubfs/favicon-32x32-9.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#23004E;
+  --purple:#31006F;
+  --deep:#190038;
+  --near:#180536;
+  --magenta:#EC008C;
+  --magenta-dk:#C60077;
+  --lav:#9579D3;
+  --lav-lt:#B9A4E4;
+  --muted:#524A68;
+  --muted-2:#6E6685;
+  --line:#ECE9F2;
+  --surface:#F8F6FD;
+  --surface-2:#E9E4F5;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 2px 8px rgba(35,0,78,.06);
+  --sh-md:0 10px 30px rgba(35,0,78,.10);
+  --sh-lg:0 26px 60px rgba(35,0,78,.18);
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Montserrat,helvetica,arial,sans-serif;font-size:18px;line-height:1.62;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.032em;line-height:1.06}
+p{margin:0 0 1.05em}
+
+/* ---------- eyebrow (their real device: tracked caps, magenta) ---------- */
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin:0 0 18px}
+.eyebrow.on-dark{color:#FF62B8}
+.eyebrow.lav{color:var(--lav)}
+
+/* ---------- announce bar ---------- */
+.announce{background:linear-gradient(90deg,#190038 0%,#3A0C74 38%,#6B1E9E 62%,#2B0057 100%);color:#fff;font-size:14px;padding:11px 0}
+.announce .wrap{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;text-align:center}
+.announce .tag{background:rgba(255,255,255,.16);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;letter-spacing:.12em}
+.announce a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);transition:box-shadow .3s var(--ease),padding .3s var(--ease);border-bottom:1px solid rgba(35,0,78,.06)}
+header.scrolled{box-shadow:var(--sh-sm)}
+.hdr{display:flex;align-items:center;gap:26px;padding:16px 0;transition:padding .3s var(--ease)}
+header.scrolled .hdr{padding:11px 0}
+.hdr .logo img{height:22px;width:auto}
+.nav{display:flex;align-items:center;gap:22px;margin-left:12px}
+.nav a{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s var(--ease)}
+.nav a:hover{color:var(--magenta)}
+.nav .caret{width:9px;height:9px;opacity:.65}
+.hdr .spacer{flex:1}
+.hdr .search{width:20px;height:20px;opacity:.8}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-outline{border:1.5px solid var(--lav);border-radius:8px;padding:11px 20px;color:#1C1430;background:transparent}
+.btn-outline:hover{background:var(--surface)}
+.btn-magenta{background:var(--magenta);color:#fff;border:0;border-radius:8px;padding:13px 22px;box-shadow:0 6px 18px rgba(236,0,140,.28)}
+.nav-cta.btn-magenta{color:#fff}
+.btn-magenta:hover{background:var(--magenta-dk);box-shadow:0 12px 28px rgba(236,0,140,.38)}
+.btn-pill{border-radius:999px;padding:15px 30px}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.7);border-radius:999px;padding:14px 28px;color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+/* ---------- dark wrap: hero + embed, one continuous surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--purple);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto -6%;height:90%;
+  background:radial-gradient(900px 460px at 88% -16%,rgba(149,121,211,.42),rgba(0,0,0,0) 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -22% -10%;height:80%;
+  background:radial-gradient(720px 460px at -8% 120%,rgba(236,0,140,.22),rgba(0,0,0,0) 62%);pointer-events:none}
+.dots{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1px);background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 62%);mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent 62%)}
+.hero{padding:70px 0 40px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 0 rgba(236,0,140,.7);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(236,0,140,0)}100%{box-shadow:0 0 0 0 rgba(236,0,140,0)}}
+.hero h1{font-size:clamp(34px,4.5vw,58px);color:#fff;margin-bottom:20px}
+.hero .sub{font-size:17px;color:rgba(255,255,255,.78);max-width:52ch;margin-bottom:24px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:600;color:rgba(255,255,255,.94)}
+.chip svg{width:15px;height:15px;opacity:.8}
+.tzline{font-size:13.5px;color:rgba(255,255,255,.6);margin:-14px 0 22px}
+.streamline{font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--lav-lt);margin-bottom:28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.cal{display:flex;gap:18px;margin-top:20px;flex-wrap:wrap}
+.cal a{font-size:14px;font-weight:700;color:rgba(255,255,255,.85);text-decoration:none;display:inline-flex;align-items:center;gap:7px;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px;transition:color .25s var(--ease),border-color .25s var(--ease)}
+.cal a:hover{color:#fff;border-color:#fff}
+
+/* countdown card */
+.cd-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:30px 30px 26px;backdrop-filter:blur(6px);box-shadow:var(--sh-lg)}
+.cd-card .lab{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lav-lt);margin-bottom:18px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.cd .u{text-align:center;background:rgba(255,255,255,.07);border-radius:12px;padding:14px 6px}
+.cd .n{font-size:34px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;color:#fff}
+.cd .l{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:8px}
+.cd-live{font-size:22px;font-weight:800;letter-spacing:-.02em;color:#fff;padding:22px 0 4px}
+.hero-art{margin-top:6px;border-radius:14px;overflow:hidden}
+.hero-art img{width:100%;height:auto}
+.credit{display:flex;gap:11px;align-items:flex-start;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;line-height:1.5;color:rgba(255,255,255,.68)}
+.credit b{color:#fff;font-weight:700}
+
+/* embed */
+.embed-sec{padding:8px 0 78px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:16px;overflow:hidden}
+
+/* ---------- stat pull-quote ---------- */
+.stat-band{background:#fff;padding:96px 0 88px}
+.stat-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center}
+.stat-n{font-size:clamp(76px,12vw,148px);font-weight:800;letter-spacing:-.05em;line-height:.86;color:var(--ink)}
+.stat-n em{font-style:normal;color:var(--magenta)}
+.stat-cap{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-top:20px;max-width:26ch;line-height:1.5}
+.stat-turn{font-size:clamp(21px,2.3vw,30px);font-weight:700;letter-spacing:-.025em;line-height:1.28;color:var(--ink)}
+.stat-turn span{color:var(--magenta)}
+.stat-turn + p{margin-top:20px;font-size:17px;color:var(--muted);max-width:46ch}
+
+/* ---------- lede ---------- */
+.lede{background:var(--surface);padding:92px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lede-grid{display:grid;grid-template-columns:212px 1fr;gap:52px;align-items:start}
+.side{position:sticky;top:120px}
+.side .t{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);line-height:1.7}
+.side .r{width:34px;height:2px;background:var(--lav);margin-top:14px}
+.lede-body{max-width:66ch}
+.lede-body h2{font-size:clamp(28px,3.3vw,40px);margin-bottom:26px;color:var(--ink)}
+.lede-body p{font-size:18px;color:var(--muted);line-height:1.7}
+
+/* ---------- mechanism band: their circle-rail device ---------- */
+.mech{position:relative;overflow:hidden;background:var(--near);color:#fff;padding:98px 0 104px}
+.mech::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;
+  background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px}
+.mech::after{content:"";position:absolute;inset:auto -8% -30% 40%;height:70%;pointer-events:none;
+  background:radial-gradient(620px 380px at 50% 60%,rgba(236,0,140,.20),rgba(0,0,0,0) 65%)}
+.mech .wrap{position:relative;z-index:2}
+.mech h2{font-size:clamp(28px,3.4vw,42px);color:#fff;max-width:19ch;margin-bottom:14px}
+.mech .lead{color:rgba(255,255,255,.72);max-width:56ch;font-size:17px;margin-bottom:52px}
+.rail{position:relative;padding-left:34px}
+.rail::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:2px;
+  background:linear-gradient(180deg,var(--magenta),var(--lav) 55%,rgba(149,121,211,.15))}
+.step{position:relative;padding:0 0 40px 30px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-34px;top:4px;width:17px;height:17px;border-radius:50%;
+  background:var(--near);border:2.5px solid var(--lav)}
+.step:nth-child(1)::before{border-color:var(--magenta)}
+.step:nth-child(4)::before{border-color:var(--lav-lt)}
+.step .k{font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lav-lt);margin-bottom:9px}
+.step .h{font-size:21px;font-weight:700;letter-spacing:-.022em;color:#fff;margin-bottom:7px}
+.step .d{font-size:16px;color:rgba(255,255,255,.68);max-width:56ch;line-height:1.65;margin:0}
+.mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.loop{border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px;background:rgba(255,255,255,.04)}
+.loop .lt{font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lav-lt);margin-bottom:20px}
+.node{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:11px;background:rgba(255,255,255,.06);font-size:15px;font-weight:600}
+.node .b{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.dashes{height:2px;margin:9px 0 9px 21px;width:calc(100% - 42px);
+  background-image:linear-gradient(90deg,var(--lav) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+.loop-note{font-size:13.5px;color:rgba(255,255,255,.6);margin:20px 0 0;line-height:1.55}
+
+/* ---------- learn rows ---------- */
+.learn{background:#fff;padding:96px 0 100px}
+.learn h2{font-size:clamp(28px,3.4vw,42px);margin-bottom:46px;max-width:20ch}
+.row{display:grid;grid-template-columns:70px 1fr 1.1fr;gap:30px;padding:34px 16px 34px 8px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--magenta);transition:width .55s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--surface)}
+.row .num{font-size:15px;font-weight:800;letter-spacing:.04em;color:var(--lav);font-variant-numeric:tabular-nums;padding-top:5px}
+.row .t{font-size:21px;font-weight:700;letter-spacing:-.024em;color:var(--ink);line-height:1.28}
+.row .d{font-size:16.5px;color:var(--muted);line-height:1.65;margin:0}
+
+/* ---------- speakers ---------- */
+.spk{background:var(--surface);padding:92px 0 96px;border-top:1px solid var(--line)}
+.spk h2{font-size:clamp(26px,3vw,36px);margin-bottom:44px}
+.spk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.person{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.person:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.av{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;letter-spacing:.01em;color:#fff;margin-bottom:18px;background:linear-gradient(135deg,var(--purple),var(--magenta))}
+.person:nth-child(2) .av{background:linear-gradient(135deg,var(--purple),var(--lav))}
+.person:nth-child(3) .av{background:linear-gradient(135deg,#4A0E8F,var(--magenta))}
+.person .n{font-size:19px;font-weight:700;letter-spacing:-.022em;color:var(--ink);margin-bottom:5px}
+.person .r{font-size:14.5px;font-weight:600;color:var(--magenta);line-height:1.45;margin-bottom:3px}
+.person .o{font-size:14.5px;color:var(--muted-2)}
+
+/* ---------- CTA band ---------- */
+.cta{background:var(--magenta);color:#fff;padding:86px 0;position:relative;overflow:hidden;text-align:center}
+.cta::before{content:"";position:absolute;inset:0;opacity:.3;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.35) 1px,transparent 1px);background-size:24px 24px}
+.cta .wrap{position:relative;z-index:2}
+.cta h2{font-size:clamp(28px,3.6vw,44px);color:#fff;margin-bottom:16px;max-width:22ch;margin-inline:auto}
+.cta p{font-size:18px;color:rgba(255,255,255,.92);max-width:56ch;margin:0 auto 32px}
+.cta .btn-white{background:#fff;color:var(--magenta);border-radius:999px;padding:15px 32px;box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.cta .btn-white:hover{background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+
+/* ---------- footer ---------- */
+footer{background:var(--deep);color:#fff;padding:66px 0 30px}
+.f-top{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.f-top img{height:26px;width:auto}
+.f-tag{font-size:14.5px;color:rgba(255,255,255,.6);margin-top:18px;max-width:30ch;line-height:1.6}
+.f-col h4{font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lav-lt);margin:0 0 16px}
+.f-col a{display:block;font-size:15px;color:rgba(255,255,255,.78);text-decoration:none;margin-bottom:11px;transition:color .2s var(--ease)}
+.f-col a:hover{color:#fff}
+.f-bot{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;padding-top:26px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6}
+.f-bot .lk{display:flex;gap:20px;flex-wrap:wrap}
+.f-bot a{color:rgba(255,255,255,.6);text-decoration:none}
+.f-bot a:hover{color:#fff}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.09s}
+.stagger.in>*:nth-child(3){transition-delay:.18s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+
+/* ---------- responsive ---------- */
+@media(max-width:1080px){
+  .nav{display:none}
+  .hero-grid,.stat-grid,.mech-grid{grid-template-columns:1fr;gap:40px}
+  .lede-grid{grid-template-columns:1fr;gap:26px}
+  .side{position:static}
+  .spk-grid{grid-template-columns:1fr 1fr}
+  .f-top{grid-template-columns:1fr 1fr;gap:34px}
+}
+@media(max-width:720px){
+  body{font-size:17px}
+  .wrap{padding:0 20px}
+  .announce{font-size:12.5px;padding:9px 0}
+  .announce .wrap{gap:9px}
+  .hero{padding:44px 0 30px}
+  .hdr{gap:12px}
+  .hdr .btn-outline{display:none}
+  .btn-magenta{padding:11px 16px;font-size:14.5px}
+  .row{grid-template-columns:44px 1fr;gap:16px;padding:26px 4px}
+  .row .d{grid-column:2}
+  .spk-grid{grid-template-columns:1fr}
+  .f-top{grid-template-columns:1fr}
+  .cd .n{font-size:27px}
+  .stat-band,.lede,.mech,.learn,.spk,.cta{padding-top:64px;padding-bottom:66px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <div class="wrap">
+    <span class="tag">WEBINAR</span>
+    <span>Future-proofing FWA prevention with a partnership-driven approach &mdash; September 8, 1 pm ET</span>
+    <a href="#watch">Save your seat &rarr;</a>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap hdr">
+    <a class="logo" href="https://www.cotiviti.com/" target="_blank" rel="noopener">
+      <img src="https://www.cotiviti.com/hs-fs/hubfs/Cotiviti_Theme/img/cotiviti-logo.png" alt="Cotiviti">
+    </a>
+    <nav class="nav">
+      <a href="https://www.cotiviti.com/about" target="_blank" rel="noopener">About <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://www.cotiviti.com/markets" target="_blank" rel="noopener">Markets <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://www.cotiviti.com/solutions" target="_blank" rel="noopener">Solutions <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://resources.cotiviti.com" target="_blank" rel="noopener">Knowledge Bank <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://www.cotiviti.com/careers" target="_blank" rel="noopener">Careers <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      <a href="https://www.cotiviti.com/contact-us-cotiviti" target="_blank" rel="noopener">Contact <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    </nav>
+    <div class="spacer"></div>
+    <svg class="search" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#23004E" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="#23004E" stroke-width="2" stroke-linecap="round"/></svg>
+    <a class="btn btn-outline" href="https://www.cotiviti.com/client-portal-cotiviti" target="_blank" rel="noopener">Client Center</a>
+    <a class="btn btn-magenta nav-cta" href="#watch">Explore Solutions <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <div class="dots"></div>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge"><span class="dot"></span><span id="badgeText">Live Webinar</span></div>
+        <p class="eyebrow on-dark">Fraud, Waste, and Abuse</p>
+        <h1>Future-proofing FWA prevention with a partnership-driven approach</h1>
+        <p class="sub">Join Cotiviti and health plan leaders as we explore how collaborative preparation and cross-functional coordination can help lay the groundwork for a more effective waste and abuse program.</p>
+        <div class="meta">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Tuesday, September 8, 2026</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> 1:00 pm ET</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h11a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" stroke-width="2"/><path d="M17 10l5-3v10l-5-3" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> 60 minutes</span>
+        </div>
+        <p class="tzline" id="tzline"></p>
+        <p class="streamline">Streaming live and on-demand on cotiviti.com</p>
+        <div class="cta-row">
+          <a class="btn btn-magenta btn-pill" href="#watch">Save your seat <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost" href="#agenda">See the agenda</a>
+        </div>
+        <div class="cal" id="calRow">
+          <a id="gcal" href="#" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add to Google Calendar</a>
+          <a id="ical" href="#" download="cotiviti-fwa-webinar.ics">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 5 5-5M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download .ics</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="cd-card">
+          <div class="lab" id="cdLabel">Broadcast begins in</div>
+          <div class="cd" id="cd">
+            <div class="u"><div class="n" id="d">00</div><div class="l">Days</div></div>
+            <div class="u"><div class="n" id="h">00</div><div class="l">Hrs</div></div>
+            <div class="u"><div class="n" id="m">00</div><div class="l">Min</div></div>
+            <div class="u"><div class="n" id="s">00</div><div class="l">Sec</div></div>
+          </div>
+          <div class="hero-art">
+            <img src="https://info.cotiviti.com/hubfs/Hero_Future-proofing-FWA_400x450_Transparent%20b.png" alt="Future-proofing FWA prevention" loading="lazy">
+          </div>
+          <div class="credit">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex:0 0 auto;margin-top:2px"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8L12 2z" stroke="#EC008C" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            <span>The <b>NHCAA</b> is extending one (1) Continuing Professional Education credit toward the AHFI&reg; designation to attendees of the live webinar who complete the NHCAA attestation online.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="watch">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat-band">
+  <div class="wrap stat-grid">
+    <div class="reveal">
+      <div class="stat-n">$10<em>B+</em></div>
+      <div class="stat-cap">In inappropriate payments identified and recovered annually</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-turn">But most plans aren&rsquo;t losing ground on <span>ambition</span> &mdash; they&rsquo;re losing it in the <span>handoff</span>.</div>
+      <p>Payment integrity and SIU teams routinely work the same providers, the same patterns, and the same dollars &mdash; from two different sides of the house. The gap between them is where waste and abuse survives.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede" id="agenda">
+  <div class="wrap lede-grid">
+    <div class="side">
+      <div class="t">About<br>this session</div>
+      <div class="r"></div>
+    </div>
+    <div class="lede-body reveal">
+      <h2>Prevention isn&rsquo;t a tool. It&rsquo;s a plan two teams agree on.</h2>
+      <p>Effective waste and abuse prevention requires intentional planning, aligned goals, and a trusted partnership that connects payment integrity and SIU teams around a shared strategy.</p>
+      <p>Health plans need practical approaches for strengthening FWA prevention within a broader payment integrity strategy, including how payer teams can identify risk areas, apply structured governance, and use post-to-prepay feedback loops to support earlier interventions.</p>
+      <p>Join Cotiviti and health plan leaders as we explore how collaborative preparation and cross-functional coordination can help lay the groundwork for a more effective waste and abuse program.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow lav">The mechanism</p>
+      <h2>From post-pay discovery to pre-pay prevention</h2>
+      <p class="lead">The feedback loop is the whole argument. What SIU finds after the fact should be shaping what the plan stops before it pays &mdash; and that only happens when governance connects the two.</p>
+    </div>
+    <div class="mech-grid">
+      <div class="rail reveal">
+        <div class="step">
+          <div class="k">Step 01</div>
+          <div class="h">Identify risk areas</div>
+          <p class="d">Map where exposure actually sits across lines of business, providers, and claim types &mdash; before setting a single objective.</p>
+        </div>
+        <div class="step">
+          <div class="k">Step 02</div>
+          <div class="h">Apply structured governance</div>
+          <p class="d">Give the plan a cadence, an owner, and clear objectives, so prevention work survives contact with day-to-day operations.</p>
+        </div>
+        <div class="step">
+          <div class="k">Step 03</div>
+          <div class="h">Align goals across teams</div>
+          <p class="d">Payment integrity and SIU measured against one unified strategy instead of two scorecards that quietly compete.</p>
+        </div>
+        <div class="step">
+          <div class="k">Step 04</div>
+          <div class="h">Close the post-to-prepay loop</div>
+          <p class="d">Route confirmed post-pay findings back into pre-pay edits and reviews to support earlier, cheaper intervention.</p>
+        </div>
+      </div>
+      <div class="loop reveal">
+        <div class="lt">The feedback loop</div>
+        <div class="node"><span class="b" style="background:var(--lav-lt)"></span>Claim submitted</div>
+        <div class="dashes"></div>
+        <div class="node"><span class="b" style="background:var(--lav)"></span>Pre-pay edits &amp; review</div>
+        <div class="dashes"></div>
+        <div class="node"><span class="b" style="background:var(--magenta)"></span>Post-pay / SIU investigation</div>
+        <div class="dashes"></div>
+        <div class="node"><span class="b" style="background:#FF62B8"></span>Findings become new pre-pay rules</div>
+        <p class="loop-note">Each pass tightens the one before it. The earlier a pattern is caught, the less of it has to be chased down and recovered later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">What you&rsquo;ll learn</p>
+      <h2>Three things attendees will take back to their program</h2>
+    </div>
+    <div class="stagger">
+      <div class="row">
+        <div class="num">01</div>
+        <div class="t">Build an intentional prevention plan</div>
+        <p class="d">Identify risk areas, set clear objectives, and apply structured governance &mdash; so the plan is something the organization can actually run, not a slide.</p>
+      </div>
+      <div class="row">
+        <div class="num">02</div>
+        <div class="t">Align goals across teams</div>
+        <p class="d">Drive a unified payment integrity strategy where SIU and PI are pulling toward the same outcome instead of overlapping on the same providers.</p>
+      </div>
+      <div class="row">
+        <div class="num">03</div>
+        <div class="t">Create and leverage trusted partnerships</div>
+        <p class="d">Collaborative preparation, shared insights, and joint decision-making &mdash; internally between teams, and externally with the partners who see the claims.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spk">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Presenters</p>
+      <h2>Three practitioners, three vantage points</h2>
+    </div>
+    <div class="spk-grid stagger">
+      <div class="person">
+        <div class="av">RB</div>
+        <div class="n">Rob Bledsoe</div>
+        <div class="r">SIU Manager</div>
+        <div class="o">BlueCross BlueShield of South Carolina</div>
+      </div>
+      <div class="person">
+        <div class="av">HW</div>
+        <div class="n">Heather Walters</div>
+        <div class="r">Director of COB Programs &amp; Payment Integrity</div>
+        <div class="o">Health Alliance Plan</div>
+      </div>
+      <div class="person">
+        <div class="av">AM</div>
+        <div class="n">Angela Mitchell</div>
+        <div class="r">Director of Client Services</div>
+        <div class="o">Cotiviti</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Join us live on September 8</h2>
+    <p>Watch it here on cotiviti.com &mdash; no new tab, no separate platform, and the recording lives at this same link the moment we go off air.</p>
+    <a class="btn btn-white" href="#watch">Save your seat <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <img src="https://www.cotiviti.com/hubfs/Logos_Cotiviti_RGB_Logo_Cotiviti_Screen_PrimaryWhite.svg" alt="Cotiviti">
+        <p class="f-tag">Connected Healthcare Intelligence</p>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <a href="https://www.cotiviti.com/about" target="_blank" rel="noopener">About Us</a>
+        <a href="https://www.cotiviti.com/markets" target="_blank" rel="noopener">Markets</a>
+        <a href="https://www.cotiviti.com/about/csr" target="_blank" rel="noopener">Cotiviti Cares</a>
+      </div>
+      <div class="f-col">
+        <h4>Knowledge Bank</h4>
+        <a href="https://resources.cotiviti.com" target="_blank" rel="noopener">Resources</a>
+        <a href="https://blog.cotiviti.com" target="_blank" rel="noopener">Blog</a>
+        <a href="https://www.cotiviti.com/events" target="_blank" rel="noopener">Events</a>
+        <a href="https://www.cotiviti.com/knowledge-bank/press-releases" target="_blank" rel="noopener">Press Releases</a>
+        <a href="https://www.cotiviti.com/media-mentions" target="_blank" rel="noopener">Media Coverage</a>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <a href="https://www.cotiviti.com/contact-us-cotiviti" target="_blank" rel="noopener">Contact Us</a>
+        <a href="https://www.cotiviti.com/client-portal-cotiviti" target="_blank" rel="noopener">Client Center</a>
+        <a href="https://www.cotiviti.com/careers" target="_blank" rel="noopener">Careers</a>
+      </div>
+    </div>
+    <div class="f-bot">
+      <div>&copy; 2026 Cotiviti, Inc. All rights reserved. All proprietary information shall remain the sole and exclusive property of Cotiviti, Inc.</div>
+      <div class="lk">
+        <a href="https://www.cotiviti.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://www.cotiviti.com/terms-of-use" target="_blank" rel="noopener">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- one source of truth for the event ---------- */
+  var EVENT = {
+    title: "Future-proofing FWA prevention with a partnership-driven approach",
+    start: new Date("2026-09-08T13:00:00-04:00"),
+    minutes: 60,
+    url: "https://sequel-demo.github.io/webinar-on/cotiviti/",
+    desc: "Join Cotiviti and health plan leaders as we explore how collaborative preparation and cross-functional coordination can help lay the groundwork for a more effective waste and abuse program."
+  };
+  EVENT.end = new Date(EVENT.start.getTime() + EVENT.minutes*60000);
+
+  function z(n){return String(n).padStart(2,"0");}
+  function utc(d){
+    return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+"T"+
+           z(d.getUTCHours())+z(d.getUTCMinutes())+z(d.getUTCSeconds())+"Z";
+  }
+
+  /* ---------- viewer timezone line ---------- */
+  try{
+    var tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    var local = new Intl.DateTimeFormat(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(EVENT.start);
+    var el = document.getElementById("tzline");
+    if(el) el.textContent = "That's " + local + " where you are" + (tzName ? " (" + tzName + ")" : "") + ".";
+  }catch(e){}
+
+  /* ---------- calendar links ---------- */
+  var g = document.getElementById("gcal");
+  if(g){
+    g.href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent(EVENT.title)
+      + "&dates=" + utc(EVENT.start) + "/" + utc(EVENT.end)
+      + "&details=" + encodeURIComponent(EVENT.desc + "\n\nWatch: " + EVENT.url)
+      + "&location=" + encodeURIComponent(EVENT.url);
+  }
+  var i = document.getElementById("ical");
+  if(i){
+    var ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Cotiviti//Webinar//EN","BEGIN:VEVENT",
+      "UID:cotiviti-fwa-20260908@cotiviti.com","DTSTAMP:"+utc(new Date()),
+      "DTSTART:"+utc(EVENT.start),"DTEND:"+utc(EVENT.end),
+      "SUMMARY:"+EVENT.title,
+      "DESCRIPTION:"+EVENT.desc.replace(/,/g,"\\,"),
+      "URL:"+EVENT.url,"LOCATION:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+    i.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+  }
+
+  /* ---------- countdown, degrading to on-demand ---------- */
+  var cd = document.getElementById("cd"),
+      lab = document.getElementById("cdLabel"),
+      badge = document.getElementById("badgeText"),
+      calRow = document.getElementById("calRow");
+
+  function toOnDemand(){
+    if(badge) badge.textContent = "On Demand";
+    if(lab) lab.textContent = "Available now";
+    if(cd){ cd.outerHTML = '<div class="cd-live" id="cd">Watch the recording &mdash; it&rsquo;s playing below.</div>'; }
+    if(calRow) calRow.style.display = "none";
+  }
+  function toLive(){
+    if(badge) badge.textContent = "Live Now";
+    if(lab) lab.textContent = "Happening now";
+    var c = document.getElementById("cd");
+    if(c && c.className === "cd"){ c.outerHTML = '<div class="cd-live" id="cd">We&rsquo;re live now &mdash; join below.</div>'; }
+    if(calRow) calRow.style.display = "none";
+  }
+
+  function tick(){
+    var now = Date.now(), diff = EVENT.start.getTime() - now;
+    if(now > EVENT.end.getTime()){ toOnDemand(); return true; }
+    if(diff <= 0){ toLive(); return true; }
+    var s = Math.floor(diff/1000);
+    var dEl=document.getElementById("d"),hEl=document.getElementById("h"),mEl=document.getElementById("m"),sEl=document.getElementById("s");
+    if(!dEl) return true;
+    dEl.textContent = z(Math.floor(s/86400));
+    hEl.textContent = z(Math.floor(s%86400/3600));
+    mEl.textContent = z(Math.floor(s%3600/60));
+    sEl.textContent = z(s%60);
+    return false;
+  }
+  if(!tick()){ var t = setInterval(function(){ if(tick()) clearInterval(t); }, 1000); }
+
+  /* ---------- sticky header state ---------- */
+  var hdr = document.getElementById("hdr");
+  function onScroll(){ hdr.classList.toggle("scrolled", window.scrollY > 8); }
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+
+  /* ---------- scroll reveal ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll(".reveal, .stagger").forEach(function(n){ io.observe(n); });
+
+  /* ---------- Sequel embed ---------- */
+  document.addEventListener("DOMContentLoaded", function(){
+    if(window.Sequel) Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});
+  });
+
+  /* ---------- kill the iframe hairline inside the shadow DOM ---------- */
+  (function stripBorder(){
+    var root = document.getElementById("sequel_root");
+    var c = root && root.firstElementChild;
+    if(c && c.shadowRoot){
+      var st = document.createElement("style");
+      st.textContent = "iframe.sequel-iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+    } else { setTimeout(stripBorder, 200); }
+  })();
+})();
+</script>
+</body>
+</html>
