@@ -638,7 +638,7 @@ h1,h2,h3,h4{font-family:var(--disp);color:var(--ink);margin:0;font-weight:600;le
     var c = host && host.firstElementChild;
     if(c && c.shadowRoot){
       var st = document.createElement("style");
-      st.textContent = "iframe.sequel-iframe{border:none !important}iframe{border:none !important}";
+      st.textContent = ".sequel-iframe,iframe.sequel-iframe,iframe{border:none !important;box-shadow:none !important}";
       c.shadowRoot.appendChild(st);
     } else { setTimeout(stripBorder, 200); }
   })();
