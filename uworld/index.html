@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Inside UWorld's 3-Day NCLEX Review: A First Look for Program Leaders | UWorld Nursing</title>
+<meta name="description" content="A 30-minute session built to give nursing leaders everything they need to evaluate the 3-Day NCLEX Review with confidence.">
+<meta property="og:title" content="Inside UWorld's 3-Day NCLEX Review: A First Look for Program Leaders">
+<meta property="og:description" content="A walkthrough of the 3-day agenda, all three delivery formats, and real feedback from programs like yours — so you can make the right call for your December cohort.">
+<meta property="og:image" content="https://nursing.uworld.com/wp-content/uploads/2025/08/NUR-B2B-WEB-PLR-2025_07-Educators_Learning_Platform-01-Header.webp">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/uworld/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://nursing.uworld.com/wp-content/uploads/2021/09/favicon-1.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens read from computed styles on nursing.uworld.com/educators (Sept 2026).
+   Site font is proxima-nova (Adobe Fonts); Figtree is the closest open substitute. */
+:root{
+  --blue:#0066CC;          /* primary CTA / links */
+  --blue-border:#1E88E5;   /* 1px border on primary pill */
+  --blue-deep:#004DAC;
+  --grad-a:#003366;        /* their dark band gradient: 135deg #003366 -> #0056AD */
+  --grad-b:#0056AD;
+  --yellow:#FFD600;        /* header pills */
+  --lb-1:#EAF4FF;          /* hero radial inner */
+  --lb-2:#D5E6FF;          /* header bar + stats band */
+  --lb-3:#D3E9FF;
+  --paper:#F9FBFF;
+  --ink:#0D1A26;           /* h1/h2/stat numbers */
+  --body:#264D73;          /* paragraph text */
+  --muted:#808285;
+  --nav:#45464F;           /* nav item text */
+  --icon:#4169E1;          /* header utility icons */
+  --line:#EBEBEA;          /* card border */
+  --foot:#0D1A26;
+  --foot-2:#060D13;
+  --foot-text:#F1F5F8;
+  --foot-link:#5599F4;
+  --card-sh:1px 6px 10px rgba(0,0,0,.10);
+  --sh-md:0 14px 34px rgba(13,26,38,.10);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Figtree','proxima-nova','Proxima Nova',system-ui,sans-serif;color:var(--body);background:#fff;line-height:1.6875;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-size:16px}
+h1,h2,h3,h4{color:var(--ink);font-weight:700;letter-spacing:normal;line-height:1.18}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+::selection{background:var(--blue);color:#fff}
+
+/* their small badge: 13px/600 blue, 1px blue border, 8px radius */
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.2px;color:var(--blue);border:1px solid var(--blue);border-radius:8px;padding:5px 16px;background:#fff;line-height:1.5}
+.badge.on-dark{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);animation:pulse 1.8s infinite}
+.badge.on-dark .dot{background:var(--yellow)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,102,204,.45)}70%{box-shadow:0 0 0 8px rgba(0,102,204,0)}100%{box-shadow:0 0 0 0 rgba(0,102,204,0)}}
+
+/* pills — their exact radius */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:50px;font-weight:400;font-size:16px;padding:15px 26px;line-height:1.5;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .15s,border-color .15s}
+.pill-blue{background:var(--blue);color:#fff;border:1px solid var(--blue-border)}
+.pill-blue:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.pill-yellow{background:var(--yellow);color:#000;font-size:14px;font-weight:500;padding:11px 20px;border:1px solid var(--yellow)}
+.pill-yellow:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(13,26,38,.14);filter:saturate(1.05)}
+.pill-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-size:15px;padding:13px 20px}
+.pill-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+.pill svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.9;flex-shrink:0}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}
+.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}
+
+/* ============ LIGHT WRAP: header + hero + embed = one surface (their radial) ============ */
+.light-wrap{position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 50% 18%,var(--lb-1) 0%,var(--lb-2) 43%,var(--lb-2) 100%)}
+.light-wrap::after{content:"";position:absolute;inset:auto -10% -30% -10%;height:60%;background:radial-gradient(circle,rgba(255,255,255,.55),transparent 65%);pointer-events:none}
+
+/* header — sits on the light-blue bar exactly as on their site */
+.nav{position:sticky;top:0;z-index:60;background:rgba(213,230,255,.86);backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);transition:box-shadow .25s,background .25s}
+.nav.scrolled{box-shadow:0 6px 24px rgba(13,26,38,.10);background:rgba(213,230,255,.96)}
+.nav-inner{display:flex;align-items:center;gap:28px;height:78px;transition:height .25s var(--ease)}
+.nav.scrolled .nav-inner{height:64px}
+.logo{display:flex;align-items:center;flex-shrink:0;color:var(--blue)}
+.logo img{height:32px;width:auto;transition:height .25s var(--ease)}
+.nav.scrolled .logo img{height:28px}
+.wordmark{display:none;align-items:center;gap:8px;font-weight:700;font-size:24px;color:var(--blue);white-space:nowrap;letter-spacing:-.02em}
+.wordmark i{display:inline-block;width:1px;height:20px;background:currentColor;opacity:.45}
+.wordmark em{font-style:normal;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.nav-links{display:flex;gap:30px;align-items:center;margin:0 auto}
+.nav-links a{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;text-transform:uppercase;color:var(--nav);letter-spacing:.2px;white-space:nowrap}
+.nav-links a .caret{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2.6;opacity:.6;transition:transform .2s var(--ease)}
+.nav-links a:hover{color:var(--blue)}
+.nav-links a:hover .caret{transform:translateY(2px)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-right a.pill-yellow{color:#000}
+.util{display:flex;align-items:center;gap:14px;margin-left:8px}
+.util a{display:flex;color:var(--icon)}
+.util svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.5}
+.util a:hover{color:var(--blue)}
+.burger{display:none;width:40px;height:40px;border:1px solid rgba(13,26,38,.14);border-radius:8px;align-items:center;justify-content:center;background:#fff}
+.burger svg{width:19px;height:19px;stroke:var(--blue-border);stroke-width:2;fill:none}
+
+.hero{padding:64px 0 34px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.hero .badge{margin-bottom:22px}
+.hero h1{font-size:clamp(32px,3.3vw,44px);line-height:1.18;margin-bottom:14px;max-width:18ch}
+.hero .sub{font-size:17px;color:var(--body);margin-bottom:24px;line-height:1.6}
+.hero .sub b{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-size:14.5px;font-weight:500;color:var(--ink);box-shadow:0 1px 2px rgba(13,26,38,.04)}
+.chip svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:1.9;flex-shrink:0}
+.tzline{font-size:13.5px;color:var(--muted);margin:0 0 22px}
+.countdown{display:flex;gap:10px;margin-bottom:26px}
+.cd-tile{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--card-sh);padding:12px 0 10px;width:76px;text-align:center}
+.cd-n{display:block;font-size:26px;font-weight:600;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.cd-l{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px;font-weight:500}
+.cd-live{font-weight:600;font-size:19px;display:flex;align-items:center;gap:11px;color:var(--blue);margin-bottom:26px}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+.factcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--card-sh);padding:28px 30px 10px}
+.factcard .eyebrow{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.2px;margin-bottom:12px;display:block}
+.fact{padding:16px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:18px}
+.fact:last-of-type{border:none}
+.fact .n{font-size:28px;font-weight:600;color:var(--ink);min-width:74px;line-height:1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:15px;color:var(--body);line-height:1.45;font-weight:500}
+.factnote{border-top:1px solid var(--line);padding:14px 0 16px;font-size:13px;color:var(--muted);line-height:1.5}
+
+.embed-sec{padding:4px 0 72px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:16px;overflow:hidden}
+
+/* ============ STAT PULL-QUOTE (white) ============ */
+.statband{background:#fff;padding:84px 0 70px}
+.statband .inner{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+.bignum{font-size:clamp(88px,13vw,168px);font-weight:700;line-height:.86;letter-spacing:-.03em;color:var(--blue);white-space:nowrap}
+.statband .turn{font-size:clamp(20px,2.2vw,28px);font-weight:600;line-height:1.3;color:var(--ink);max-width:24ch}
+.statband .cite{font-size:13px;color:var(--muted);margin-top:14px;max-width:52ch;line-height:1.5}
+.trusted{display:flex;align-items:center;gap:36px;flex-wrap:wrap;margin-top:56px;padding-top:36px;border-top:1px solid var(--line)}
+.trusted .lbl{font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap}
+.trusted .logos{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.trusted img{height:44px;width:auto;opacity:.92;filter:grayscale(.1)}
+
+/* ============ LEDE (paper) ============ */
+.lede{padding:84px 0;background:var(--paper)}
+.lede-grid{display:grid;grid-template-columns:200px 1fr;gap:56px}
+.side{position:sticky;top:110px;align-self:start}
+.side .rule{width:34px;height:3px;background:var(--blue);margin-top:14px;border-radius:2px}
+.lede-body{max-width:66ch}
+.lede-body h2{font-size:32px;line-height:1.3;margin-bottom:20px}
+.lede-body p{font-size:17px;line-height:1.7;margin-bottom:18px}
+.pull{border-left:3px solid var(--blue);padding:4px 0 4px 22px;margin:28px 0;font-size:20px;font-weight:600;line-height:1.45;color:var(--ink)}
+
+/* ============ MECHANISM BAND — their gradient ============ */
+.mech{background:linear-gradient(135deg,var(--grad-a),var(--grad-b));color:#fff;padding:90px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:auto -10% -40% 35%;height:80%;background:radial-gradient(circle,rgba(255,255,255,.10),transparent 65%);pointer-events:none}
+.mech .badge{margin-bottom:18px}
+.mech h2{color:#fff;font-size:32px;line-height:1.3;max-width:22ch;margin-bottom:12px}
+.mech .lead{color:#CFE0F5;max-width:62ch;font-size:16.5px;margin-bottom:50px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);position:relative;z-index:2}
+.day{padding:0 26px 0 0;position:relative}
+.day .k{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px}
+.node{display:flex;align-items:center;margin-bottom:20px}
+.node .ball{width:14px;height:14px;border-radius:50%;background:var(--yellow);flex-shrink:0;box-shadow:0 0 0 5px rgba(255,214,0,.18)}
+.dashes{flex:1;height:2px;background-image:linear-gradient(90deg,var(--yellow) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.6}
+@keyframes march{to{background-position:12px 0}}
+.day:last-child .dashes{background-image:linear-gradient(90deg,rgba(255,214,0,.28) 55%,transparent 0);animation:none}
+.day h3{color:#fff;font-size:21px;margin-bottom:9px}
+.day p{font-size:15px;color:#CFE0F5;max-width:30ch}
+.cjmm{margin-top:54px;padding-top:30px;border-top:1px solid rgba(255,255,255,.16);display:flex;flex-wrap:wrap;align-items:center;gap:10px;row-gap:14px;position:relative;z-index:2}
+.cjmm .lbl{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#CFE0F5;flex-basis:100%;margin-bottom:-2px}
+.tagchip{border:1px solid rgba(255,255,255,.28);border-radius:50px;padding:8px 16px;font-size:13.5px;color:#fff;white-space:nowrap;transition:border-color .2s,background .2s}
+.tagchip:hover{border-color:var(--yellow);background:rgba(255,214,0,.10)}
+
+/* ============ LEARN ROWS (white) ============ */
+.learn{padding:90px 0;background:#fff}
+.learn .badge{margin-bottom:18px}
+.learn h2{font-size:32px;line-height:1.3;margin-bottom:44px;max-width:22ch}
+.row{display:grid;grid-template-columns:56px 1.05fr 1.2fr;gap:30px;padding:30px 16px 30px 8px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--blue);transition:width .55s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--paper)}
+.row .num{font-size:14px;font-weight:600;color:var(--blue);padding-top:5px;font-variant-numeric:tabular-nums}
+.row h3{font-size:20px;line-height:1.3}
+.row p{font-size:15.5px;color:var(--body);max-width:52ch}
+
+/* ============ SPEAKER (light blue) ============ */
+.speaker{background:var(--lb-1);padding:84px 0}
+.speaker .badge{margin-bottom:26px}
+.spk{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--card-sh);padding:34px 38px;display:flex;align-items:center;gap:34px;flex-wrap:wrap;max-width:860px}
+.spk .ph{width:124px;height:124px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--blue);display:flex;align-items:center;justify-content:center}
+.spk .ph img{width:100%;height:100%;object-fit:cover}
+.spk .initials{font-weight:700;font-size:40px;color:#fff}
+.spk h3{font-size:24px;margin-bottom:6px;line-height:1.25}
+.spk .role{color:var(--blue);font-weight:600;font-size:15.5px;margin-bottom:10px}
+.spk p{color:var(--body);font-size:15.5px;max-width:50ch}
+
+/* ============ CTA BAND — their gradient + yellow pill ============ */
+.ctaband{background:linear-gradient(135deg,var(--grad-a),var(--grad-b));color:#fff;padding:76px 0;text-align:center;position:relative;overflow:hidden}
+.ctaband h2{color:#fff;font-size:clamp(26px,3vw,36px);line-height:1.25;margin-bottom:12px}
+.ctaband p{color:#CFE0F5;font-size:17px;margin-bottom:30px}
+.ctaband .pill-yellow{font-size:16px;font-weight:600;padding:15px 30px;letter-spacing:.2px}
+
+/* ============ FOOTER — their universal footer ============ */
+.foot{background:var(--foot);color:var(--foot-text);padding:60px 0 0;font-size:14px}
+.foot .explore{font-size:26px;font-weight:300;color:#FCFDFD;margin-bottom:34px}
+.foot-grid{display:grid;grid-template-columns:1.25fr repeat(4,1fr);gap:36px;padding-bottom:44px}
+.foot-logo img{height:30px;filter:brightness(0) invert(1);opacity:.96}
+.foot-logo .wordmark,.foot-logo .wordmark em{color:#fff}
+.foot-grid p{margin-top:18px;max-width:30ch;line-height:1.6;color:#B9C6D3}
+.foot h5{color:#FCFDFD;font-size:17px;font-weight:500;margin:6px 0 16px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot ul a{color:var(--foot-text);font-size:14px}
+.foot ul a:hover{color:#fff;text-decoration:underline}
+.social{display:flex;gap:12px;margin-top:22px}
+.social a{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);transition:background .2s}
+.social a:hover{background:rgba(255,255,255,.16)}
+.social svg{width:15px;height:15px;fill:var(--foot-text)}
+.fine{background:var(--foot-2);padding:26px 0 34px;font-size:12px;line-height:1.35;color:var(--foot-text)}
+.fine .inner{border-top:1px solid #818181;padding-top:22px}
+.fine p{margin-bottom:6px}
+.fine a{color:var(--foot-link);text-decoration:underline}
+.fine .legal{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.fine .legal a{color:var(--foot-text);text-decoration:none}
+.fine .legal a:hover{text-decoration:underline}
+
+@media(max-width:1060px){
+  .nav-links{gap:22px}
+  .nav-links a{font-size:14px}
+}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero h1{max-width:none}
+  .lede-grid{grid-template-columns:1fr;gap:22px}
+  .side{position:static}
+  .statband .inner{grid-template-columns:1fr;gap:22px}
+  .days{grid-template-columns:1fr;gap:0}
+  .day{padding:0 0 30px 30px;position:relative}
+  .day:last-child{padding-bottom:0}
+  .day::after{content:"";position:absolute;left:6px;top:34px;bottom:-6px;width:2px;background-image:linear-gradient(180deg,var(--yellow) 55%,transparent 0);background-size:2px 11px;opacity:.45}
+  .day:last-child::after{display:none}
+  .day .k{margin-bottom:10px}
+  .day .node{position:absolute;left:0;top:32px;margin:0}
+  .day .dashes{display:none}
+  .day .ball{width:13px;height:13px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:880px){
+  .nav-links,.util,.nav-right .pill-yellow.buy{display:none}
+  .burger{display:flex}
+  .nav-inner{justify-content:space-between;height:66px;gap:12px}
+  .logo{margin-right:auto}
+}
+@media(max-width:640px){
+  .wrap{padding:0 18px}
+  .ann-long{display:none}
+  .logo img{height:26px}
+  .wordmark{font-size:20px}
+  .nav-right .pill-yellow{padding:9px 14px;font-size:13px}
+  .burger{width:36px;height:36px}
+  .hero{padding:40px 0 28px}
+  .hero h1{font-size:clamp(28px,7.2vw,34px)}
+  .countdown{gap:8px}
+  .cd-tile{width:calc(25% - 6px);padding:10px 0 8px}
+  .cd-n{font-size:22px}
+  .hero-actions{width:100%}
+  .hero-actions .pill{width:100%}
+  .statband,.lede,.mech,.learn,.speaker{padding:56px 0}
+  .bignum{font-size:clamp(72px,22vw,96px)}
+  .trusted{gap:18px;margin-top:40px;padding-top:28px}
+  .trusted img{height:34px}
+  .row{grid-template-columns:36px 1fr;gap:14px;padding:22px 4px}
+  .row p{grid-column:2}
+  .spk{padding:26px 22px;gap:20px}
+  .spk .ph{width:92px;height:92px}
+  .foot-grid{grid-template-columns:1fr;gap:26px}
+  #sequel_root{min-height:280px;border-radius:12px}
+  .embed-sec{padding:4px 0 48px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== LIGHT WRAP: header + hero + embed on one continuous surface ======== -->
+<div class="light-wrap" id="watch">
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://nursing.uworld.com/" target="_blank" rel="noopener" aria-label="UWorld Nursing">
+      <img src="https://nursing.uworld.com/wp-content/uploads/2026/07/UWorld-Nursing-Logo-Primary@2x-300x46-2.webp" alt="UWorld Nursing Logo" onerror="this.style.display='none';this.parentNode.querySelector('.wordmark').style.display='flex'">
+      <span class="wordmark">UWorld<i></i><em>Nursing</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="https://nursing.uworld.com/nclex-rn/" target="_blank" rel="noopener">Products <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://nursing.uworld.com/" target="_blank" rel="noopener">Our Difference <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://nursing.uworld.com/blog/" target="_blank" rel="noopener">Resources <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://nursing.uworld.com/educators/" target="_blank" rel="noopener">Educators <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+    </nav>
+    <div class="nav-right">
+      <a class="pill pill-yellow" href="https://nursing.uworld.com/educators/" target="_blank" rel="noopener">Schedule Demo</a>
+      <a class="pill pill-yellow buy" href="https://nursing.uworld.com/nclex-rn/" target="_blank" rel="noopener">Buy Now</a>
+      <div class="util">
+        <a href="https://www.uworld.com/contact_us.aspx" target="_blank" rel="noopener" aria-label="Help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M9.5 9.6a2.6 2.6 0 1 1 3.5 2.4c-.7.3-1 .9-1 1.5v.5"/><circle cx="12" cy="17.2" r=".7" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.uworld.com/app/index.html#/login/" target="_blank" rel="noopener" aria-label="Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="3.6"/><path d="M4.6 20.2c1.3-3.7 4.1-5.6 7.4-5.6s6.1 1.9 7.4 5.6"/></svg></a>
+        <a href="https://www.uworld.com/checkout/app/payment/cart" target="_blank" rel="noopener" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M5.5 8.5h13l-.9 11.2a1.5 1.5 0 0 1-1.5 1.3H7.9a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/></svg></a>
+      </div>
+      <button class="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span><span id="badgeText">Live Webinar for Program Leaders</span></span>
+        <h1>Inside UWorld's 3-Day NCLEX Review: A First Look for Program Leaders</h1>
+        <p class="sub">Streaming live and on-demand on <b>nursing.uworld.com</b></p>
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="dateChip">Thursday, October 8, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><span id="timeChip">12:00 PM CT</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M4 6h11v12H4z"/><path d="M15 10l5-3v10l-5-3"/></svg>30 minutes</span>
+        </div>
+        <p class="tzline" id="tzline"></p>
+        <div class="countdown" id="cd">
+          <div class="cd-tile"><span class="cd-n" id="cdD">--</span><span class="cd-l">Days</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdH">--</span><span class="cd-l">Hours</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdM">--</span><span class="cd-l">Mins</span></div>
+          <div class="cd-tile"><span class="cd-n" id="cdS">--</span><span class="cd-l">Secs</span></div>
+        </div>
+        <div class="cd-live" id="cdLive" style="display:none"><span style="width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block"></span><span id="cdLiveText">We're live now — join below</span></div>
+        <div class="hero-actions">
+          <a class="pill pill-blue" href="#watch" id="heroCta">Join the session</a>
+          <a class="pill pill-ghost" id="gcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
+          <a class="pill pill-ghost" id="ical" href="#" download="uworld-3-day-nclex-review.ics"><svg viewBox="0 0 24 24"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg>Add to calendar</a>
+        </div>
+      </div>
+
+      <aside class="factcard reveal">
+        <span class="eyebrow">The 3-Day Review, in numbers</span>
+        <div class="fact"><span class="n">24</span><span class="l">45-minute modules, mapped to any curriculum</span></div>
+        <div class="fact"><span class="n">18</span><span class="l">Total hours of expert-led review across three days</span></div>
+        <div class="fact"><span class="n">3</span><span class="l">Delivery formats: Live In-Person, Live Online, On-Demand</span></div>
+        <div class="fact"><span class="n">500+</span><span class="l">Institutions using UWorld Nursing</span></div>
+        <p class="factnote">Every module is built around the Clinical Judgment Measurement Model, with NGN practice throughout.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== STAT PULL-QUOTE ======== -->
+<section class="statband">
+  <div class="wrap">
+    <div class="inner">
+      <div class="bignum reveal">83%</div>
+      <div class="reveal">
+        <p class="turn">Programs aren't short on review content. They're short on the faculty hours to deliver it.</p>
+        <p class="cite">83% of surveyed students at Eastern Shore Community College agreed that UWorld's Live Online Review helped them connect clinical judgment to NCLEX topics. Source: nursing.uworld.com/educators/nclex-live-review</p>
+      </div>
+    </div>
+    <div class="trusted reveal">
+      <span class="lbl">Trusted by 500+ Institutions</span>
+      <div class="logos">
+        <img src="https://nursing.uworld.com/wp-content/uploads/2026/05/daytona-state-college-logo-card-flat-360x180-1.webp" alt="Daytona State College" loading="lazy" onerror="this.remove();var l=document.querySelector('.trusted .logos');if(l&&!l.children.length)document.querySelector('.trusted').style.display='none'">
+        <img src="https://nursing.uworld.com/wp-content/uploads/2026/05/university-of-saint-francis-logo-card-flat-360x180-1.webp" alt="University of Saint Francis" loading="lazy" onerror="this.remove();var l=document.querySelector('.trusted .logos');if(l&&!l.children.length)document.querySelector('.trusted').style.display='none'">
+        <img src="https://nursing.uworld.com/wp-content/uploads/2026/05/south-plains-college-logo-card-flat-360x180-1.webp" alt="South Plains College" loading="lazy" onerror="this.remove();var l=document.querySelector('.trusted .logos');if(l&&!l.children.length)document.querySelector('.trusted').style.display='none'">
+        <img src="https://nursing.uworld.com/wp-content/uploads/2026/05/kaleida-health-logo-card-flat-360x180-1.webp" alt="Kaleida Health" loading="lazy" onerror="this.remove();var l=document.querySelector('.trusted .logos');if(l&&!l.children.length)document.querySelector('.trusted').style.display='none'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== LEDE ======== -->
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side"><span class="badge">The session</span><div class="rule"></div></div>
+    <div class="lede-body reveal">
+      <h2>Everything you need to evaluate the 3-Day NCLEX Review — in 30 minutes.</h2>
+      <p>A 30-minute session built to give nursing leaders everything they need to evaluate the 3-Day NCLEX Review with confidence: a walkthrough of the 3-day agenda, all three delivery formats, and real feedback from programs like yours, so you can make the right call for your December cohort before your fall planning window closes.</p>
+      <p class="pull">Deliver an engaging, interactive NCLEX final review without increasing faculty workload.</p>
+      <p>Twenty-four 45-minute modules delivered across three days — 18 total hours covering all four NCLEX Client Needs categories. Every module is built around the CJMM framework with NGN practice throughout, and includes a printed student booklet. Available as an NCLEX live review in person or online, or in an on-demand format.</p>
+      <p>Same content. Same instructors. Three ways to fit your program.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== MECHANISM BAND ======== -->
+<section class="mech">
+  <div class="wrap">
+    <span class="badge on-dark">How the three days run</span>
+    <h2>Student success. Faculty relief. Institutional strength.</h2>
+    <p class="lead">Eight 45-minute modules a day, sequenced so students build clinical judgment before they're asked to apply it — with zero faculty prep required.</p>
+    <div class="days stagger">
+      <div class="day">
+        <div class="k">Day 01</div>
+        <div class="node"><span class="ball"></span><span class="dashes"></span></div>
+        <h3>Foundations &amp; safe care</h3>
+        <p>Eight modules establishing the CJMM frame and the Safe and Effective Care Environment category.</p>
+      </div>
+      <div class="day">
+        <div class="k">Day 02</div>
+        <div class="node"><span class="ball"></span><span class="dashes"></span></div>
+        <h3>Physiological integrity</h3>
+        <p>The largest content block, worked through NGN-style items with live instructor reasoning.</p>
+      </div>
+      <div class="day">
+        <div class="k">Day 03</div>
+        <div class="node"><span class="ball"></span><span class="dashes"></span></div>
+        <h3>Integration &amp; test day</h3>
+        <p>Health promotion, psychosocial integrity, and a final push on applying judgment under exam conditions.</p>
+      </div>
+    </div>
+    <div class="cjmm">
+      <span class="lbl">All four client needs categories</span>
+      <span class="tagchip">Safe &amp; Effective Care Environment</span>
+      <span class="tagchip">Health Promotion &amp; Maintenance</span>
+      <span class="tagchip">Psychosocial Integrity</span>
+      <span class="tagchip">Physiological Integrity</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======== LEARN ROWS ======== -->
+<section class="learn">
+  <div class="wrap">
+    <span class="badge">What you'll see</span>
+    <h2>Enough to make the call before your fall planning window closes.</h2>
+    <div class="row reveal"><span class="num">01</span><h3>The full 3-day agenda</h3><p>A walkthrough of all 24 modules and how they map across the three days — so you can see exactly where it lands against your own final-review block.</p></div>
+    <div class="row reveal"><span class="num">02</span><h3>All three delivery formats, side by side</h3><p>Live In-Person on campus, Live Online with real-time Q&amp;A, or On-Demand through the Learning Platform. Same content, same instructors — and what actually changes between them.</p></div>
+    <div class="row reveal"><span class="num">03</span><h3>Real feedback from programs like yours</h3><p>What deans and faculty reported after running the review with their own cohorts, including the survey results behind the 83% figure.</p></div>
+    <div class="row reveal"><span class="num">04</span><h3>How to plan it for a December cohort</h3><p>Scheduling, faculty load, and the decision points that need to be settled this fall to get the review in place before boards.</p></div>
+  </div>
+</section>
+
+<!-- ======== SPEAKER ======== -->
+<section class="speaker">
+  <div class="wrap">
+    <span class="badge">Your presenter</span>
+    <div class="spk reveal">
+      <div class="ph">
+        <img src="https://go.pardot.com/l/875311/2026-08-27/3vr5jm/875311/1787864210uOZUN73a/NUR_B2B_WBNR_2026_08_3_Day_NCLEX_Review__06__headshot.png" alt="Dr. Ashley Kinder" onerror="this.style.display='none';this.parentNode.querySelector('.initials').style.display='block'">
+        <span class="initials" style="display:none">AK</span>
+      </div>
+      <div>
+        <h3>Dr. Ashley Kinder, EdD, MSN, RNC-OB</h3>
+        <p class="role">3-Day NCLEX Review Presenter, UWorld Nursing</p>
+        <p>More than a decade in nursing education. She delivers the 3-Day Review on campuses and online, and will walk through the agenda, the formats, and the questions program leaders actually ask.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== CTA ======== -->
+<section class="ctaband">
+  <div class="wrap">
+    <h2>Make the right call for your December cohort.</h2>
+    <p>Thirty minutes. The full agenda, all three formats, and real program feedback.</p>
+    <a class="pill pill-yellow" href="#watch" id="ctaBtn">Join the session</a>
+  </div>
+</section>
+
+<!-- ======== FOOTER (mirrors UWorld's universal footer) ======== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo foot-logo" href="https://nursing.uworld.com/" target="_blank" rel="noopener" aria-label="UWorld Nursing">
+          <img src="https://nursing.uworld.com/wp-content/uploads/2026/07/UWorld-Nursing-Logo-Primary@2x-300x46-2.webp" alt="UWorld Nursing Logo" onerror="this.style.display='none';this.parentNode.querySelector('.wordmark').style.display='flex'">
+          <span class="wordmark">UWorld<i></i><em>Nursing</em></span>
+        </a>
+        <p>A connected platform for nursing programs to support consistent teaching, NCLEX preparation, assessment, reporting, and accreditation.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/UWorld" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3 0-1.3-.1-2.45-.1-2.4 0-4.05 1.5-4.05 4.2v2.2H7.5V13h2.7v8z"/></svg></a>
+          <a href="https://www.instagram.com/uworld/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8z"/><path d="M12 7.6a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 2a2.4 2.4 0 1 1 0 4.8 2.4 2.4 0 0 1 0-4.8z"/><circle cx="17.1" cy="6.9" r="1.15"/></svg></a>
+          <a href="https://www.linkedin.com/company/uworld-llc" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.9V21h3.04zM5.42 3a1.77 1.77 0 1 0 0 3.53 1.77 1.77 0 0 0 0-3.53zM21 21h-3.03v-6.1c0-1.45-.03-3.32-2.02-3.32-2.03 0-2.34 1.58-2.34 3.21V21H10.6V8.5h2.9v1.71h.04c.4-.77 1.4-1.58 2.87-1.58 3.07 0 3.64 2.02 3.64 4.65z"/></svg></a>
+          <a href="https://twitter.com/UWorld" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCQbHTnFCDtpYgJYboFOks1Q" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.83.43A2.5 2.5 0 0 0 2.4 7.2C2 8.78 2 12 2 12s0 3.22.4 4.8a2.5 2.5 0 0 0 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.83-.43a2.5 2.5 0 0 0 1.77-1.77C22 15.22 22 12 22 12s0-3.22-.4-4.8zM10 15.1V8.9l5.2 3.1z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Nursing</h5>
+        <ul>
+          <li><a href="https://nursing.uworld.com/nclex-rn/" target="_blank" rel="noopener">NCLEX RN&reg;</a></li>
+          <li><a href="https://nursing.uworld.com/nclex-pn/" target="_blank" rel="noopener">NCLEX PN&reg;</a></li>
+          <li><a href="https://nursing.uworld.com/clinical-med-math/" target="_blank" rel="noopener">Clinical Med Math</a></li>
+          <li><a href="https://nursing.uworld.com/fnp/" target="_blank" rel="noopener">FNP</a></li>
+          <li><a href="https://nursing.uworld.com/blog/" target="_blank" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Educators</h5>
+        <ul>
+          <li><a href="https://nursing.uworld.com/educators/learning-platform/" target="_blank" rel="noopener">Learning Platform</a></li>
+          <li><a href="https://nursing.uworld.com/educators/nclex-live-review/" target="_blank" rel="noopener">3-Day NCLEX Review</a></li>
+          <li><a href="https://nursing.uworld.com/educators/nclex-excellence/" target="_blank" rel="noopener">NCLEX Excellence</a></li>
+          <li><a href="https://nursing.uworld.com/educators/accreditation/" target="_blank" rel="noopener">Accreditation</a></li>
+          <li><a href="https://nursing.uworld.com/educators/webinars/" target="_blank" rel="noopener">Webinars</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="https://www.uworld.com/aboutus.aspx" target="_blank" rel="noopener">About Us</a></li>
+          <li><a href="https://www.uworld.com/teams.aspx" target="_blank" rel="noopener">Leadership Team</a></li>
+          <li><a href="https://www.uworld.com/testimonials.aspx" target="_blank" rel="noopener">Testimonials</a></li>
+          <li><a href="https://careers.uworld.com/" target="_blank" rel="noopener">Work with Us</a></li>
+          <li><a href="https://newsroom.uworld.com/" target="_blank" rel="noopener">Newsroom</a></li>
+          <li><a href="https://www.uworld.com/uworldcares" target="_blank" rel="noopener">UWorld Cares</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="https://www.uworld.com/system_requirements.aspx" target="_blank" rel="noopener">System Requirements</a></li>
+          <li><a href="https://www.uworld.com/privacy_policy.aspx" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://www.uworld.com/terms_conditions.aspx" target="_blank" rel="noopener">Terms of Use</a></li>
+          <li><a href="https://www.uworld.com/terms_conditions.aspx#accessibility" target="_blank" rel="noopener">Accessibility Assistance</a></li>
+          <li><a href="https://www.uworld.com/contact_us.aspx" target="_blank" rel="noopener">Contact Us</a></li>
+          <li><a href="https://www.uworld.com/forum/default.aspx" target="_blank" rel="noopener">Forums</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fine">
+    <div class="wrap inner">
+      <p>NCLEX-RN&reg; and NCLEX-PN&reg; are registered trademarks of the National Council of State Boards of Nursing, Inc (NCSBN&reg;). None of the trademark holders is affiliated with, and does not endorse, UWorld product/site.</p>
+      <p>&copy; UWorld, LLC</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- EVENT (single source of truth) ---------- */
+var EVENT = {
+  title: "Inside UWorld's 3-Day NCLEX Review: A First Look for Program Leaders",
+  start: new Date("2026-10-08T12:00:00-05:00"),   /* 12:00 PM CT */
+  minutes: 30,
+  url: location.href,
+  desc: "A 30-minute session for nursing program leaders: a walkthrough of the 3-day agenda, all three delivery formats, and real feedback from programs like yours."
+};
+EVENT.end = new Date(EVENT.start.getTime() + EVENT.minutes*60000);
+
+(function(){
+  var d = EVENT.start;
+  document.getElementById('dateChip').textContent =
+    d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+  var local = d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+  var tzAbbr = (new Intl.DateTimeFormat(undefined,{timeZoneName:'short'}).formatToParts(d)
+                 .find(function(p){return p.type==='timeZoneName'}) || {}).value || tz;
+  document.getElementById('tzline').textContent = 'That’s ' + local + ' ' + tzAbbr + ' where you are.';
+})();
+
+(function(){
+  function z(n){return (n<10?'0':'')+n}
+  function utc(d){return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+'T'+z(d.getUTCHours())+z(d.getUTCMinutes())+'00Z'}
+  var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + encodeURIComponent(EVENT.title)
+    + '&dates=' + utc(EVENT.start) + '/' + utc(EVENT.end)
+    + '&details=' + encodeURIComponent(EVENT.desc + '\n\n' + EVENT.url)
+    + '&location=' + encodeURIComponent(EVENT.url);
+  document.getElementById('gcal').href = g;
+  var ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//UWorld Nursing//Webinar//EN','BEGIN:VEVENT',
+    'UID:' + utc(EVENT.start) + '-uworld-nclex@nursing.uworld.com',
+    'DTSTAMP:' + utc(new Date()), 'DTSTART:' + utc(EVENT.start), 'DTEND:' + utc(EVENT.end),
+    'SUMMARY:' + EVENT.title, 'DESCRIPTION:' + EVENT.desc.replace(/\n/g,'\\n') + '\\n\\n' + EVENT.url,
+    'URL:' + EVENT.url, 'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('ical').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+})();
+
+(function(){
+  var cd=document.getElementById('cd'), live=document.getElementById('cdLive'),
+      liveText=document.getElementById('cdLiveText'), badge=document.getElementById('badgeText'),
+      gcal=document.getElementById('gcal'), ical=document.getElementById('ical');
+  function tick(){
+    var diff = EVENT.start - new Date();
+    if(diff <= 0){
+      cd.style.display='none'; live.style.display='flex';
+      if(new Date() - EVENT.end > 0){
+        badge.textContent='On Demand';
+        liveText.textContent='Watch the recording';
+        gcal.style.display='none'; ical.style.display='none';
+        var b=document.getElementById('heroCta'); if(b) b.textContent='Watch the recording';
+        var c=document.getElementById('ctaBtn'); if(c) c.textContent='Watch the recording';
+      } else {
+        liveText.textContent='We’re live now — join below';
+      }
+      return;
+    }
+    var s=Math.floor(diff/1000);
+    document.getElementById('cdD').textContent=Math.floor(s/86400);
+    document.getElementById('cdH').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(s%60).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+(function(){
+  var nav=document.getElementById('nav');
+  var on=function(){nav.classList.toggle('scrolled', window.scrollY>8)};
+  on(); window.addEventListener('scroll',on,{passive:true});
+})();
+
+(function(){
+  var els=document.querySelectorAll('.reveal,.stagger');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+  document.querySelectorAll('.light-wrap .reveal').forEach(function(e){e.classList.add('in')});
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"});
+  (function stripBorder(){
+    var root=document.getElementById("sequel_root");
+    var c=root && root.firstElementChild;
+    if(c && c.shadowRoot){
+      var st=document.createElement("style");
+      st.textContent="iframe.sequel-iframe{border:none !important}iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+    } else { setTimeout(stripBorder,200); }
+  })();
+});
+</script>
+</body>
+</html>
