@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AI Agents in Action: Resolving Complex Support at Scale | Hiver</title>
+<meta property="og:title" content="AI Agents in Action: Resolving Complex Support at Scale">
+<meta property="og:description" content="Tackle complex support across channels with AI Agents, cross-team collaboration, ticketing, and workflows. Live on hiverhq.com.">
+<meta property="og:image" content="https://hiverhq.com/wp-content/uploads/2025/02/hiver-logo-2026@2x.webp">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/hiver/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://hiverhq.com/wp-content/uploads/2026/07/favicon-150x150.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#030407;            /* Hiver near-black */
+    --ink2:#0b0d12;
+    --paper:#f6f7f9;          /* Hiver light section bg */
+    --navy:#182230;           /* Hiver dark ink text-on-light */
+    --sub:#8b93a0;            /* muted text on dark */
+    --sub-light:#5b6472;      /* muted text on light */
+    --line-dark:rgba(255,255,255,.14);
+    --line-light:rgba(24,34,48,.12);
+    --gold:#fdb022;
+    --teal:#31e3de;
+    --sh-sm:0 2px 10px rgba(0,0,0,.24);
+    --sh-md:0 18px 40px rgba(0,0,0,.32);
+    --sh-lg:0 30px 70px rgba(0,0,0,.4);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"system-ui","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--navy);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3,.serif{font-family:'Newsreader',serif;line-height:1.14;letter-spacing:-0.01em;font-weight:400}
+  em,i{font-style:italic;color:var(--teal)}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-size:11.5px}
+  ::selection{background:var(--teal);color:var(--ink)}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.08s}
+  .stagger.in>*:nth-child(3){transition-delay:.16s}
+  .stagger.in>*:nth-child(4){transition-delay:.24s}
+  .stagger.in>*:nth-child(5){transition-delay:.32s}
+
+  /* ---------- NAV ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(3,4,7,.72);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line-dark);transition:box-shadow .25s,padding .25s var(--ease)}
+  .nav.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .nav-inner{display:flex;align-items:center;gap:30px;height:78px;transition:height .25s var(--ease)}
+  .nav.scrolled .nav-inner{height:62px}
+  .logo img{height:34px;width:auto;display:block;transition:height .25s var(--ease)}
+  .nav.scrolled .logo img{height:28px}
+  .nav-links{display:flex;gap:26px;align-items:center;margin:0 auto;color:#fff}
+  .nav-links a{font-size:14.5px;font-weight:500;color:#fff;opacity:.88}
+  .nav-links a:hover{opacity:1}
+  .nav-cta{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .btn-solid{background:#eaecf0;color:var(--navy);font-weight:600;font-size:14.5px;padding:10px 20px;border-radius:2px;transition:transform .18s var(--ease),filter .15s}
+  .btn-solid:hover{transform:translateY(-2px);filter:brightness(.96)}
+  .btn-outline{background:transparent;color:#fff;border:2px solid #fff;font-weight:600;font-size:14.5px;padding:8px 18px;border-radius:2px;transition:transform .18s var(--ease),background .15s,color .15s}
+  .btn-outline:hover{background:#fff;color:var(--navy);transform:translateY(-2px)}
+
+  /* ---------- DARK-WRAP: hero + embed as one surface ---------- */
+  .dark-wrap{position:relative;overflow:hidden;background:var(--ink);color:#fff}
+  .dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:80%;background:radial-gradient(circle,rgba(253,176,34,.16),transparent 65%);pointer-events:none}
+  .dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;background:radial-gradient(circle,rgba(49,227,222,.14),transparent 65%);pointer-events:none}
+  .hero{padding:72px 0 40px;position:relative;z-index:2;text-align:center}
+  .tag{display:inline-flex;align-items:center;gap:9px;background:rgba(253,176,34,.12);border:1px solid rgba(253,176,34,.4);color:var(--gold);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:26px}
+  .tag .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+  .hero h1{font-size:clamp(32px,4.6vw,54px);max-width:880px;margin:0 auto 20px}
+  .hero p.sub{font-size:17.5px;color:var(--sub);max-width:520px;margin:0 auto 30px}
+  .meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-size:14.5px;font-weight:500;margin-bottom:14px;color:#e7e9ee}
+  .meta span{display:inline-flex;align-items:center;gap:9px}
+  .meta svg{width:17px;height:17px;stroke:var(--teal);flex-shrink:0}
+  .local-tz{font-size:12.5px;color:var(--sub);margin-bottom:30px}
+
+  .countdown{display:flex;justify-content:center;gap:10px;margin-bottom:32px}
+  .cd-tile{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:8px;padding:12px 0 9px;width:70px;text-align:center}
+  .cd-n{display:block;font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+  .cd-l{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin-top:6px}
+  .cd-live{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--teal);font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px}
+
+  .hero-actions{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:var(--ink);font-weight:700;font-size:15px;padding:13px 28px;border-radius:2px;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+  .pill:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+  .cal{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--sub)}
+  .cal-link{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-dark);background:transparent;border-radius:999px;padding:8px 15px;font-weight:600;font-size:12.5px;color:#fff;transition:border-color .15s,transform .18s var(--ease)}
+  .cal-link:hover{border-color:var(--teal);transform:translateY(-2px)}
+  .cal-link svg{width:13px;height:13px;stroke:var(--teal)}
+
+  .embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+  #sequel_root{min-height:520px;position:relative;z-index:2}
+
+  /* ---------- STAT / PULL-QUOTE BAND ---------- */
+  .stat-band{background:var(--paper);padding:88px 0;text-align:center}
+  .stat-band .n{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(64px,11vw,132px);line-height:1;color:var(--navy);letter-spacing:-0.02em}
+  .stat-band .turn{max-width:600px;margin:22px auto 0;font-size:18px;color:var(--sub-light)}
+  .stat-band .src{margin-top:14px;font-size:12px;color:#98a1ad}
+
+  /* ---------- LEDE ---------- */
+  .lede{background:var(--paper);padding:20px 0 96px}
+  .lede-grid{display:grid;grid-template-columns:200px 1fr;gap:48px}
+  .lede-label{position:sticky;top:100px;align-self:start;color:var(--sub-light)}
+  .lede-body{max-width:66ch;font-size:18px;color:#2b3646}
+  .lede-body p{margin-bottom:20px}
+  .lede-body strong{color:var(--navy)}
+
+  /* ---------- MECHANISM BAND (signature device) ---------- */
+  .mech{background:var(--ink2);color:#fff;padding:100px 0;position:relative;overflow:hidden}
+  .mech::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(253,176,34,.10), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 80%, rgba(49,227,222,.09), transparent 60%);
+    pointer-events:none}
+  .mech-head{max-width:600px;margin:0 auto 64px;text-align:center;position:relative;z-index:2}
+  .mech-head h2{font-size:clamp(26px,3vw,38px);margin-bottom:14px}
+  .mech-head p{color:var(--sub);font-size:16px}
+  .chip-flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;position:relative;z-index:2;max-width:960px;margin:0 auto}
+  .chip{background:rgba(255,255,255,.06);border:1px solid var(--line-dark);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;box-shadow:var(--sh-sm);backdrop-filter:blur(6px)}
+  .chip b{font-weight:700}
+  .chip .badge{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:rgba(253,176,34,.16);color:var(--gold);padding:3px 8px;border-radius:4px}
+  .chip.origin{background:rgba(253,176,34,.10);border-color:rgba(253,176,34,.3)}
+  .dashes{height:2px;width:56px;background-image:linear-gradient(90deg,var(--teal) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;flex-shrink:0;margin:0 4px}
+  @keyframes march{to{background-position:12px 0}}
+  .chip-col{display:flex;flex-direction:column;gap:14px}
+
+  /* ---------- LEARN (hairline rows) ---------- */
+  .learn{background:var(--paper);padding:96px 0}
+  .learn-head{margin-bottom:20px}
+  .learn-head h2{font-size:clamp(26px,3vw,38px)}
+  .row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 4px 34px 4px;border-top:1px solid var(--line-light);position:relative;transition:background .35s var(--ease)}
+  .row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--navy);transition:width .5s var(--ease)}
+  .row:hover::before{width:100%}
+  .row .num{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#a8b0bc;padding-top:4px}
+  .row h3{font-family:'Newsreader',serif;font-weight:500;font-size:21px;color:var(--navy)}
+  .row p{font-size:15.5px;color:var(--sub-light);align-self:center}
+
+  /* ---------- SPEAKERS ---------- */
+  .speakers{background:var(--paper);padding:20px 0 100px}
+  .speakers h2{font-size:clamp(26px,3vw,38px);margin-bottom:44px}
+  .speaker-row{display:flex;gap:44px;flex-wrap:wrap}
+  .speaker{display:flex;align-items:center;gap:18px;width:320px}
+  .avatar{width:64px;height:64px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px;flex-shrink:0}
+  .speaker h3{font-family:-apple-system,sans-serif;font-weight:700;font-size:16px;color:var(--navy)}
+  .speaker p{font-size:13.5px;color:var(--sub-light)}
+  .flag{display:inline-block;margin-top:4px;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#b08900;background:rgba(253,176,34,.14);padding:2px 7px;border-radius:4px}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--gold);color:var(--ink);padding:88px 0;text-align:center}
+  .cta-band h2{font-size:clamp(28px,3.4vw,42px);margin-bottom:14px;color:var(--ink)}
+  .cta-band p{color:#3a2c05;max-width:520px;margin:0 auto 32px;font-size:16px}
+  .cta-band .pill{background:var(--ink);color:#fff}
+  .cta-band .pill:hover{box-shadow:0 18px 40px rgba(0,0,0,.25)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#8b93a0;padding:64px 0 34px;font-size:13.5px}
+  .foot-logo{margin-bottom:14px}
+  .foot-logo img{height:26px}
+  .foot-tag{color:#c7ccd4;font-size:15px;margin-bottom:44px;max-width:420px}
+  .foot-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:30px;margin-bottom:52px}
+  .foot-grid h4{color:#fff;font-size:13px;font-weight:600;margin-bottom:14px;letter-spacing:.02em}
+  .foot-grid a{display:block;margin-bottom:10px;color:#8b93a0}
+  .foot-grid a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid var(--line-dark);padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .foot-legal{display:flex;gap:18px;flex-wrap:wrap}
+  .foot-legal a:hover{color:#fff}
+
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .lede-grid{grid-template-columns:1fr}
+    .lede-label{position:static}
+    .row{grid-template-columns:40px 1fr;}
+    .row p{grid-column:2}
+    .foot-grid{grid-template-columns:repeat(2,1fr)}
+    .chip-flow{flex-direction:column}
+    .dashes{width:2px;height:30px;background-image:linear-gradient(180deg,var(--teal) 55%,transparent 0);background-size:2px 12px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+    .tag .dot,.dashes{animation:none}
+    .pill:hover,.cal-link:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV : mirrors hiverhq.com dark chrome -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://hiverhq.com/" target="_blank" rel="noopener" aria-label="Hiver home">
+      <img src="https://hiverhq.com/wp-content/uploads/2025/02/hiver-logo-2026@2x.webp" alt="Hiver">
+    </a>
+    <div class="nav-links">
+      <a href="https://hiverhq.com/features/ai" target="_blank" rel="noopener">Product</a>
+      <a href="https://hiverhq.com/customers" target="_blank" rel="noopener">Customers</a>
+      <a href="https://hiverhq.com/resources" target="_blank" rel="noopener">Resources</a>
+      <a href="https://hiverhq.com/pricing" target="_blank" rel="noopener">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn-solid" href="https://hiverhq.com/demo" target="_blank" rel="noopener">Book a demo</a>
+      <a class="btn-outline" href="https://hiverhq.com/free-trial" target="_blank" rel="noopener">Start free trial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO + EMBED : one continuous dark surface -->
+<div class="dark-wrap">
+  <header class="hero wrap">
+    <div class="reveal">
+      <div class="tag"><span class="dot"></span> Live Webinar</div>
+      <h1>AI Agents in Action: resolving <em>complex support</em> at scale</h1>
+      <p class="sub">Streaming live and on-demand on hiverhq.com</p>
+      <div class="meta">
+        <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span id="dateLabel">Thursday, September 24, 2026 · 11:00 AM ET</span></span>
+        <span><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>40 minutes, with live Q&amp;A</span>
+      </div>
+      <div class="local-tz" id="localTz"></div>
+      <div class="countdown" id="countdown" aria-label="Time remaining until the webinar">
+        <div class="cd-tile"><span class="cd-n" data-cd="d">00</span><span class="cd-l">Days</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="h">00</span><span class="cd-l">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="m">00</span><span class="cd-l">Min</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="s">00</span><span class="cd-l">Sec</span></div>
+      </div>
+      <div class="hero-actions">
+        <a class="pill" href="#watch">Save my seat</a>
+        <div class="cal">
+          <span>Add to calendar:</span>
+          <a class="cal-link" id="gcal" target="_blank" rel="noopener"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Google</a>
+          <a class="cal-link" id="ical" download="hiver-ai-agents-webinar.ics"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>iCal</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="embed-sec wrap" id="watch">
+    <div id="sequel_root"></div>
+  </section>
+</div>
+
+<!-- STAT / PULL-QUOTE BAND (replaces trust strip) -->
+<section class="stat-band reveal">
+  <div class="wrap">
+    <div class="n">484,070,281</div>
+    <p class="turn">complex requests resolved on Hiver to date — but the number that matters isn't volume, it's what happens on the requests that touch three systems and two teams before they're done.</p>
+    <p class="src">Figure as published on hiverhq.com</p>
+  </div>
+</section>
+
+<!-- LEDE -->
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="lede-label mono reveal">Why this<br>session</div>
+    <div class="lede-body reveal">
+      <p>Hiver brings email, chat, Slack, voice, SMS and every channel into one workspace — then layers in <strong>AI Agents</strong> that resolve multi-step, cross-system requests end to end. A refund isn't one action, it's a chain: confirm the details, pull the invoice, check the policy, post the credit, close the loop.</p>
+      <p>In this session we'll show exactly what that chain looks like from the inside — the same view your team would get on a real ticket, not a slide about one. We'll also cover how <strong>AI Copilot</strong> drafts the reply while the agent is still investigating, and how resolved tickets turn themselves into help-center articles afterward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MECHANISM BAND (signature device: the workflow chip flow) -->
+<section class="mech">
+  <div class="mech-head reveal">
+    <h2>What an AI Agent actually does</h2>
+    <p>The same multi-system resolution shown on hiverhq.com — walked through live.</p>
+  </div>
+  <div class="chip-flow stagger">
+    <div class="chip origin"><b>Refund request?</b></div>
+    <div class="dashes"></div>
+    <div class="chip-col">
+      <div class="chip"><span class="badge">Assign</span> Finance</div>
+      <div class="chip"><span class="badge">Stripe</span> Issue refund</div>
+    </div>
+    <div class="dashes"></div>
+    <div class="chip"><span class="badge">Tag</span> Refund Request</div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN : hairline rows, real content hooks from hiverhq.com -->
+<section class="learn">
+  <div class="wrap">
+    <div class="learn-head reveal"><h2>What you'll take away</h2></div>
+    <div class="stagger">
+      <div class="row">
+        <div class="num">01</div>
+        <h3>Collaborate across teams</h3>
+        <p>See how complex issues get worked without leaving the thread — teammates looped in, requests linked to Jira or Asana, and side conversations happening in Slack.</p>
+      </div>
+      <div class="row">
+        <div class="num">02</div>
+        <h3>AI Agents resolve multi-step requests</h3>
+        <p>Watch an agent execute a real multi-step action end to end — following up for missing details, checking policy, and posting the result in the system of record.</p>
+      </div>
+      <div class="row">
+        <div class="num">03</div>
+        <h3>AI Copilot investigates and drafts</h3>
+        <p>Copilot surfaces account context, pulls similar tickets, and drafts the reply — so the investigation is already done by the time a human looks at it.</p>
+      </div>
+      <div class="row">
+        <div class="num">04</div>
+        <h3>Turn tickets into help docs</h3>
+        <p>See how resolved conversations become help-center articles automatically, keeping the knowledge base current without extra writing work.</p>
+      </div>
+      <div class="row">
+        <div class="num">05</div>
+        <h3>Chat with your support data</h3>
+        <p>Ask plain-language questions about what's driving ticket volume and where response quality is slipping — and get an answer, not a dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="wrap">
+    <h2 class="reveal">Meet your speakers</h2>
+    <div class="speaker-row stagger">
+      <div class="speaker">
+        <div class="avatar">TBD</div>
+        <div>
+          <h3>Speaker name pending</h3>
+          <p>Product Marketing, Hiver</p>
+          <span class="flag">Placeholder</span>
+        </div>
+      </div>
+      <div class="speaker">
+        <div class="avatar">TBD</div>
+        <div>
+          <h3>Speaker name pending</h3>
+          <p>Solutions Consultant, Hiver</p>
+          <span class="flag">Placeholder</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Can't make it live?</h2>
+    <p>Save your seat anyway — we'll send the on-demand recording straight to your inbox as soon as the session wraps.</p>
+    <a class="pill" href="#watch">Save my seat</a>
+  </div>
+</section>
+
+<!-- FOOTER : mirrors hiverhq.com -->
+<footer>
+  <div class="wrap">
+    <div class="foot-logo"><img src="https://hiverhq.com/wp-content/uploads/2025/02/hiver-logo-2026@2x.webp" alt="Hiver"></div>
+    <p class="foot-tag">The agentic omnichannel customer service platform</p>
+    <div class="foot-grid">
+      <div>
+        <h4>Product</h4>
+        <a href="https://hiverhq.com/features/omnichannel-inbox" target="_blank" rel="noopener">Omnichannel</a>
+        <a href="https://hiverhq.com/features/ticketing" target="_blank" rel="noopener">Ticketing</a>
+        <a href="https://hiverhq.com/features/automation" target="_blank" rel="noopener">Automation</a>
+        <a href="https://hiverhq.com/features/reporting-analytics" target="_blank" rel="noopener">Analytics</a>
+      </div>
+      <div>
+        <h4>AI Platform</h4>
+        <a href="https://hiverhq.com/features/ai" target="_blank" rel="noopener">AI Platform</a>
+        <a href="https://hiverhq.com/features/ai-agents" target="_blank" rel="noopener">AI Agents</a>
+        <a href="https://hiverhq.com/features/ai-copilot" target="_blank" rel="noopener">AI Copilot</a>
+        <a href="https://hiverhq.com/features/ai-qa" target="_blank" rel="noopener">AI QA</a>
+      </div>
+      <div>
+        <h4>Customers</h4>
+        <a href="https://hiverhq.com/customers/flexport" target="_blank" rel="noopener">Flexport</a>
+        <a href="https://hiverhq.com/customers" target="_blank" rel="noopener">All customers</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="https://hiverhq.com/blog" target="_blank" rel="noopener">Blog</a>
+        <a href="https://hiverhq.com/resources" target="_blank" rel="noopener">Resource center</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="https://hiverhq.com/about-us" target="_blank" rel="noopener">About us</a>
+        <a href="https://hiverhq.com/careers" target="_blank" rel="noopener">Careers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Hiver</span>
+      <div class="foot-legal">
+        <a href="https://hiverhq.com/terms-of-service" target="_blank" rel="noopener">Terms</a>
+        <a href="https://hiverhq.com/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://hiverhq.com/trust" target="_blank" rel="noopener">Trust Center</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- POLISH: countdown, add-to-calendar, local time, scroll-reveal, nav-shrink, stale-date degrade -->
+<script>
+(function(){
+  var EVENT={
+    title:"AI Agents in Action: Resolving Complex Support at Scale",
+    start:"2026-09-24T11:00:00-04:00",
+    end:"2026-09-24T11:40:00-04:00",
+    startUTC:"20260924T150000Z",
+    endUTC:"20260924T154000Z",
+    details:"Live walkthrough of Hiver's AI Agents resolving multi-step, cross-system support requests. Streaming on hiverhq.com.",
+    location:window.location.href
+  };
+
+  var target=new Date(EVENT.start).getTime();
+  var cd=document.getElementById('countdown');
+  var tag=document.querySelector('.tag');
+  var calWrap=document.querySelector('.cal');
+  function pad(n){return String(n).padStart(2,'0');}
+  function goOnDemand(){
+    if(tag) tag.innerHTML='<span class="dot"></span> On Demand';
+    cd.innerHTML='<div class="cd-live"><span style="width:9px;height:9px;border-radius:50%;background:var(--teal);display:inline-block;animation:pulse 1.6s infinite"></span> Watch the recording below</div>';
+    if(calWrap) calWrap.style.display='none';
+  }
+  function tick(){
+    var diff=target-Date.now();
+    if(diff<=0){goOnDemand();return;}
+    var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);
+    var set={d:d,h:h,m:m,s:s};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(set[el.getAttribute('data-cd')]);});
+  }
+  tick();setInterval(tick,1000);
+
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var local=new Date(EVENT.start).toLocaleString('en-US',{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('localTz').textContent='In your local time ('+tz+'): '+local;
+  }catch(e){}
+
+  var g=document.getElementById('gcal');
+  g.href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sequel//Webinar//EN","BEGIN:VEVENT","UID:"+Date.now()+"@hiver-demo","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+<!-- SEQUEL EMBED (dark mode) -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    Sequel.renderEvent({
+      eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a"
+    });
+  });
+  (function stripBorder(){
+    var c=document.getElementById("sequel_root").firstElementChild;
+    if (c && c.shadowRoot){
+      var st=document.createElement("style");
+      st.textContent="iframe.sequel-iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+    } else { setTimeout(stripBorder, 200); }
+  })();
+</script>
+
+</body>
+</html>
