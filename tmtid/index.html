@@ -60,6 +60,16 @@
   .dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;
     background:radial-gradient(circle,rgba(136,250,147,.14),transparent 65%);pointer-events:none}
   .hero{padding:76px 0 40px;position:relative;z-index:2}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .9fr;gap:54px;align-items:center}
+  .herocopy{min-width:0}
+  .shot-wrap{position:relative;max-width:420px;margin:0 auto}
+  .shot-wrap::before{content:"";position:absolute;inset:-14% -14%;z-index:0;pointer-events:none;
+    background:radial-gradient(circle,rgba(136,250,147,.28),transparent 62%)}
+  .shotcard{position:relative;z-index:1;border-radius:20px;overflow:hidden;box-shadow:var(--sh-lg);
+    transform:rotate(-2deg);transition:transform .5s var(--ease)}
+  .shotcard:hover{transform:rotate(0deg) translateY(-4px)}
+  .shotcard img{display:block;width:100%;height:auto}
+  @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.shot-wrap{display:none}}
   .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
     padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;margin-bottom:26px}
   .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 1.8s infinite}
@@ -113,16 +123,11 @@
   .mech .stack{display:flex;flex-direction:column;gap:14px}
   .mech .stack .row2{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,.75)}
   .mech .stack .row2 .diamond-sm{width:8px;height:8px;background:var(--mint);transform:rotate(45deg);flex:none}
-  .stagebox{position:relative;height:440px}
-  .diamframe{position:absolute;top:50%;left:50%;width:230px;height:230px;transform:translate(-50%,-50%) rotate(45deg);
-    overflow:hidden;border-radius:22px;box-shadow:var(--sh-lg);background:var(--sage)}
-  .diamframe img{position:absolute;top:50%;left:50%;width:325px;height:325px;transform:translate(-50%,-50%) rotate(-45deg);object-fit:cover}
-  .confetti{position:absolute;width:16px;height:16px;background:var(--mint);transform:rotate(45deg);border-radius:3px;opacity:.9}
-  .float-chip{position:absolute;background:#fff;color:#08150f;border-radius:10px;padding:10px 14px;font-size:12px;
-    box-shadow:var(--sh-md);max-width:170px;line-height:1.4;display:flex;align-items:center;gap:8px}
-  .float-chip .ck{width:16px;height:16px;border-radius:50%;background:var(--mint);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;color:#08150f;font-weight:700}
-  .dash{position:absolute;border-top:2px dashed rgba(255,255,255,.35);width:60px}
-  @media(max-width:860px){.mech .wrap{grid-template-columns:1fr}.stagebox{height:340px}}
+  .mech .shot-wrap{max-width:440px}
+  .mech .shot-wrap::before{background:radial-gradient(circle,rgba(91,144,128,.4),transparent 62%)}
+  .mech .shotcard{transform:rotate(2deg)}
+  .mech .shotcard:hover{transform:rotate(0deg) translateY(-4px)}
+  @media(max-width:860px){.mech .wrap{grid-template-columns:1fr}.mech .shot-wrap{margin:0 auto}}
 
   /* ---------- what you'll learn (hairline rows) ---------- */
   .learn{background:var(--paper);padding:100px 0}
@@ -196,34 +201,42 @@
 <div class="dark-wrap">
   <section class="hero">
     <div class="wrap">
-      <div class="badge"><span class="dot"></span> LIVE WEBINAR</div>
-      <h1 class="reveal in">Mobile Number Intelligence in action: verifying <em>identity</em> without friction</h1>
-      <p class="sub reveal in">Streaming live and on-demand on tmtid.com</p>
+      <div class="herocopy">
+        <div class="badge"><span class="dot"></span> LIVE WEBINAR</div>
+        <h1 class="reveal in">Mobile Number Intelligence in action: verifying <em>identity</em> without friction</h1>
+        <p class="sub reveal in">Streaming live and on-demand on tmtid.com</p>
 
-      <div class="metarow reveal in">
-        <div class="chip">📅 <b>Oct 8, 2026</b></div>
-        <div class="chip">🕚 <b>11:00 AM ET</b></div>
-        <div class="chip">⏱ <b>45 min</b></div>
-        <div class="chip">🌍 <b id="localTz">Local time shown below</b></div>
+        <div class="metarow reveal in">
+          <div class="chip">📅 <b>Oct 8, 2026</b></div>
+          <div class="chip">🕚 <b>11:00 AM ET</b></div>
+          <div class="chip">⏱ <b>45 min</b></div>
+          <div class="chip">🌍 <b id="localTz">Local time shown below</b></div>
+        </div>
+
+        <div class="cta-row reveal in">
+          <a href="#embed" class="btn btn-primary">Save my seat →</a>
+          <a id="gcalLink" href="#" target="_blank" class="btn btn-ghost">＋ Add to Google Calendar</a>
+          <a id="icsLink" href="#" download="tmtid-webinar.ics" class="btn btn-ghost">Download .ics</a>
+        </div>
+
+        <div class="countdown reveal in" id="countdown">
+          <div class="cd"><b id="cd-d">–</b><span>DAYS</span></div>
+          <div class="cd"><b id="cd-h">–</b><span>HRS</span></div>
+          <div class="cd"><b id="cd-m">–</b><span>MIN</span></div>
+          <div class="cd"><b id="cd-s">–</b><span>SEC</span></div>
+        </div>
+        <div class="tz" id="tzline"></div>
+
+        <div class="stat-card reveal in">
+          <b>5B+</b>
+          <p>people worldwide are connected to a mobile network — nearly 70% of the world's population, each one a live identity signal. <span class="cite">Figure as published on tmtid.com</span></p>
+        </div>
       </div>
 
-      <div class="cta-row reveal in">
-        <a href="#embed" class="btn btn-primary">Save my seat →</a>
-        <a id="gcalLink" href="#" target="_blank" class="btn btn-ghost">＋ Add to Google Calendar</a>
-        <a id="icsLink" href="#" download="tmtid-webinar.ics" class="btn btn-ghost">Download .ics</a>
-      </div>
-
-      <div class="countdown reveal in" id="countdown">
-        <div class="cd"><b id="cd-d">–</b><span>DAYS</span></div>
-        <div class="cd"><b id="cd-h">–</b><span>HRS</span></div>
-        <div class="cd"><b id="cd-m">–</b><span>MIN</span></div>
-        <div class="cd"><b id="cd-s">–</b><span>SEC</span></div>
-      </div>
-      <div class="tz" id="tzline"></div>
-
-      <div class="stat-card reveal in">
-        <b>5B+</b>
-        <p>people worldwide are connected to a mobile network — nearly 70% of the world's population, each one a live identity signal. <span class="cite">Figure as published on tmtid.com</span></p>
+      <div class="shot-wrap reveal in">
+        <div class="shotcard">
+          <img src="https://tmtid.com/wp-content/uploads/2024/10/Group-1197.webp" alt="TMT ID Verify — match a mobile number to name, address and age">
+        </div>
       </div>
     </div>
   </section>
@@ -266,19 +279,9 @@
         <div class="row2"><span class="diamond-sm"></span> Velocity — millisecond response, planet-wide coverage</div>
       </div>
     </div>
-    <div class="stagebox reveal">
-      <div class="diamframe"><img src="https://tmtid.com/wp-content/uploads/2024/10/image-58-3.webp" alt=""></div>
-      <div class="confetti" style="top:10%;left:8%"></div>
-      <div class="confetti" style="top:22%;right:6%;width:11px;height:11px"></div>
-      <div class="confetti" style="bottom:14%;left:4%;width:12px;height:12px"></div>
-      <div class="confetti" style="bottom:6%;right:12%"></div>
-      <div class="dash" style="top:28%;left:0;transform:rotate(18deg)"></div>
-      <div class="dash" style="bottom:32%;right:0;transform:rotate(-14deg)"></div>
-      <div class="float-chip" style="top:6%;left:0">
-        <span class="ck">✓</span> Mobile number verified
-      </div>
-      <div class="float-chip" style="bottom:10%;right:0">
-        <span class="ck">✓</span> Log in authorised
+    <div class="shot-wrap reveal">
+      <div class="shotcard">
+        <img src="https://tmtid.com/wp-content/uploads/2024/10/newauth_home-e1727865440273.webp" alt="TMT ID Authenticate — validate a customer and their device in seconds">
       </div>
     </div>
   </div>
