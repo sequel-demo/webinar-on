@@ -46,7 +46,10 @@
   .navrow{display:flex;align-items:center;justify-content:space-between;padding:18px 0;transition:padding .3s var(--ease)}
   nav.scrolled .navrow{padding:12px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
-  .brand .diamond{width:14px;height:14px;background:var(--mint);border:2px solid var(--darkband);transform:rotate(45deg);flex:none}
+  .logomark{width:18.72px;height:22px;flex:none;background-image:url(https://tmtid.com/wp-content/uploads/2024/03/big_logo.png);
+    background-repeat:no-repeat;background-size:71.32px 30.43px;background-position:-1.25px -4.21px}
+  .logomark-sm{width:17.02px;height:20px;flex:none;background-image:url(https://tmtid.com/wp-content/uploads/2024/03/big_logo.png);
+    background-repeat:no-repeat;background-size:64.82px 27.66px;background-position:-1.14px -3.83px}
   .navlinks{display:flex;align-items:center;gap:34px}
   .navlinks a{font-size:14px;color:var(--ink);opacity:.75;transition:opacity .25s}
   .navlinks a:hover{opacity:1}
@@ -166,7 +169,6 @@
   .fgrid a{display:block;font-size:13.5px;color:rgba(255,255,255,.55);margin-bottom:11px;transition:color .2s}
   .fgrid a:hover{color:#fff}
   .fbrand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:#fff;margin-bottom:14px}
-  .fbrand .diamond{width:13px;height:13px;background:var(--mint);transform:rotate(45deg);flex:none}
   .fbottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;
     flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(255,255,255,.4)}
   @media(max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
@@ -187,7 +189,7 @@
 
 <nav id="nav">
   <div class="wrap navrow">
-    <a href="#" class="brand"><span class="diamond"></span>tmt id</a>
+    <a href="#" class="brand"><span class="logomark"></span>tmt id</a>
     <div class="navlinks">
       <a href="https://tmtid.com/solutions/" target="_blank">Solutions</a>
       <a href="https://tmtid.com/products/" target="_blank">Products</a>
@@ -351,7 +353,7 @@
   <div class="wrap">
     <div class="fgrid">
       <div>
-        <div class="fbrand"><span class="diamond"></span>tmt id</div>
+        <div class="fbrand"><span class="logomark-sm"></span>tmt id</div>
         <p style="font-size:13px;color:rgba(255,255,255,.45);max-width:220px;line-height:1.6">Mobile identity and intelligence experts.</p>
       </div>
       <div>
