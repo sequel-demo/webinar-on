@@ -64,12 +64,13 @@
   .crumb b{color:var(--ink);font-weight:600}
 
   /* ---------- page wash (the soft lavender-to-white diagonal HCLTech uses site-wide) ---------- */
-  .wash{background:linear-gradient(175deg,var(--wash-a) -8%,var(--wash-b) 62%);padding:26px 0 64px}
+  .wash{background:linear-gradient(175deg,var(--wash-a) -8%,var(--wash-b) 62%);padding-bottom:64px}
+  .crumbwrap{padding:14px 0 20px}
 
-  /* ---------- hero split card ---------- */
-  .herocard{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-card);display:grid;grid-template-columns:1.2fr 1fr;
+  /* ---------- hero: full-bleed split section, flush with the page (not a floating card) ---------- */
+  .herocard{display:grid;grid-template-columns:1.2fr 1fr;
     background:linear-gradient(96deg,#fff -10%,#e4e5f2 60%,#fff 130%);min-height:520px}
-  .herocard-left{padding:56px 52px;display:flex;flex-direction:column;justify-content:center}
+  .herocard-left{padding:56px 52px 56px max(52px,calc((100vw - 1180px)/2 + 28px));display:flex;flex-direction:column;justify-content:center}
   .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(38,120,245,.08);border:1px solid rgba(38,120,245,.22);
     color:var(--blue);padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:24px;width:fit-content}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 1.8s infinite}
@@ -99,7 +100,7 @@
   @media(max-width:860px){
     .herocard{grid-template-columns:1fr}
     .herocard-right{min-height:220px;order:-1}
-    .herocard-left{padding:40px 30px}
+    .herocard-left{padding:40px 30px!important}
   }
 
   /* ---------- embed card (soft white card, sits on the wash — real card-module pattern) ---------- */
@@ -214,13 +215,12 @@
 </nav>
 
 <div class="wash">
-  <div class="wrap">
+  <div class="wrap crumbwrap">
     <div class="crumb"><span>Home</span><span>›</span><span>Webinars</span><span>›</span><b>AI Is Easy. Impact Is Hard.</b></div>
   </div>
 
-  <div class="wrap" style="margin-top:20px">
-    <div class="herocard reveal in">
-      <div class="herocard-left">
+  <div class="herocard reveal in">
+    <div class="herocard-left">
         <div class="badge"><span class="dot"></span> LIVE WEBINAR</div>
         <h1>AI is easy. <em>Impact</em> is hard.</h1>
         <p class="sub">Streaming live and on-demand on hcltech.com</p>
@@ -250,9 +250,8 @@
         </svg>
       </div>
     </div>
-  </div>
 
-  <div class="wrap embedwrap">
+  <div class="wrap embedwrap" style="margin-top:24px">
     <div class="embedcard" id="embed">
       <div id="sequel_root"></div>
       <script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
