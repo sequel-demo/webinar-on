@@ -13,7 +13,7 @@
 <link rel="icon" href="https://www.sap.com/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1d1d1d;
@@ -33,7 +33,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Roboto",Arial,Helvetica,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
   img{max-width:100%;display:block}
   a{text-decoration:none;color:inherit}
   .mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
@@ -56,32 +56,32 @@
     background:radial-gradient(circle,rgba(0,112,242,.28),transparent 65%);pointer-events:none}
   .dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;
     background:radial-gradient(circle,rgba(0,112,242,.14),transparent 65%);pointer-events:none}
-  .hero{padding:68px 0 40px;position:relative;z-index:2}
+  .hero{padding:72px 0 40px;position:relative;z-index:2;text-align:center}
   .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
     padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;margin-bottom:26px}
   .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.8s infinite}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
-  h1{font-size:clamp(32px,4.8vw,56px);line-height:1.08;letter-spacing:-.01em;font-weight:500;margin:0 0 22px;max-width:760px}
+  h1{font-size:clamp(32px,4.8vw,56px);line-height:1.08;letter-spacing:-.01em;font-weight:500;margin:0 auto 22px;max-width:780px}
   h1 em{font-style:normal;color:#7fb8ff}
-  .sub{font-size:17px;color:rgba(255,255,255,.75);margin:0 0 30px;max-width:560px;font-weight:300}
-  .metarow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .sub{font-size:17px;color:rgba(255,255,255,.75);margin:0 auto 30px;max-width:560px;font-weight:300}
+  .metarow{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:30px}
   .chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
     padding:9px 15px;border-radius:8px;font-size:13px}
   .chip b{font-weight:700}
-  .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:8px}
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;margin-bottom:8px}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:500;font-size:15px;
     transition:transform .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer;border:1px solid transparent}
   .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
   .btn-ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
   .btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
-  .countdown{display:flex;gap:10px;margin:26px 0 10px}
+  .countdown{display:flex;justify-content:center;gap:10px;margin:26px 0 10px}
   .cd{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);border-radius:8px;padding:12px 14px;min-width:64px;text-align:center}
   .cd b{display:block;font-size:24px;font-variant-numeric:tabular-nums;font-weight:700}
   .cd span{font-size:10px;color:rgba(255,255,255,.6)}
   .tz{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
-  .stat-card{margin-top:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.20);border-radius:14px;
-    padding:20px 22px;max-width:380px}
+  .stat-card{margin:8px auto 0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.20);border-radius:14px;
+    padding:20px 22px;max-width:380px;text-align:center}
   .stat-card b{display:block;font-size:34px;font-weight:800;color:#fff}
   .stat-card p{margin:6px 0 0;font-size:12.5px;color:rgba(255,255,255,.7);line-height:1.5}
   .embed-sec{padding:8px 0 84px;position:relative;z-index:2}
@@ -105,13 +105,14 @@
 
   /* ---------- mechanism / signature band (real SAP mosaic-tile technique) ---------- */
   .mech{background:var(--navy);color:#fff;padding:110px 0;position:relative;overflow:hidden}
-  .mech .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .mech h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.01em;margin:0 0 16px;max-width:420px}
-  .mech p.lead{color:rgba(255,255,255,.62);font-size:15.5px;line-height:1.65;max-width:420px;margin:0 0 30px}
-  .mech .stack{display:flex;flex-direction:column;gap:14px}
-  .mech .stack .row2{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,.75)}
+  .mech .wrap{position:relative;z-index:2;text-align:center}
+  .mech-head{max-width:600px;margin:0 auto 48px}
+  .mech h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+  .mech p.lead{color:rgba(255,255,255,.62);font-size:15.5px;line-height:1.65;margin:0}
+  .mech .stack{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin:0 0 48px}
+  .mech .stack .row2{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.75)}
   .mech .stack .row2 .dot-sm{width:6px;height:6px;border-radius:50%;background:#7fb8ff;flex:none}
-  .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,110px);gap:10px}
+  .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,110px);gap:10px;max-width:640px;margin:0 auto}
   .mtile{border-radius:12px;position:relative;overflow:hidden;box-shadow:var(--sh-md)}
   .mtile.t1{background:linear-gradient(135deg,#5eb3ec,#0070f2)}
   .mtile.t2{background:linear-gradient(135deg,#0070f2,#0a3d78);grid-row:span 2}
@@ -119,7 +120,7 @@
   .mtile.t4{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
   .mtile.t4 .spark{font-size:22px;color:#fff}
   .mtile.t5{background:linear-gradient(135deg,#0a3d78,#00144a)}
-  @media(max-width:860px){.mech .wrap{grid-template-columns:1fr}.mosaic{grid-template-rows:repeat(2,84px)}}
+  @media(max-width:860px){.mosaic{grid-template-rows:repeat(2,84px);max-width:420px}}
 
   /* ---------- what you'll learn (hairline rows) ---------- */
   .learn{background:var(--paper);padding:100px 0}
@@ -245,14 +246,14 @@
 
 <section class="mech">
   <div class="wrap">
-    <div class="reveal">
+    <div class="mech-head reveal">
       <h2>Built the way SAP actually builds — connected, not boxed</h2>
       <p class="lead">The same modular, tile-based approach SAP uses to compose its own product surfaces — finance, spend, supply chain, CX — each a distinct block, all reading as one system.</p>
-      <div class="stack">
-        <div class="row2"><span class="dot-sm"></span> 110,000+ employees across 157+ countries</div>
-        <div class="row2"><span class="dot-sm"></span> 100+ development locations worldwide</div>
-        <div class="row2"><span class="dot-sm"></span> 300m+ subscribers in the cloud user base</div>
-      </div>
+    </div>
+    <div class="stack reveal">
+      <div class="row2"><span class="dot-sm"></span> 110,000+ employees across 157+ countries</div>
+      <div class="row2"><span class="dot-sm"></span> 100+ development locations worldwide</div>
+      <div class="row2"><span class="dot-sm"></span> 300m+ subscribers in the cloud user base</div>
     </div>
     <div class="mosaic reveal">
       <div class="mtile t1"></div>
