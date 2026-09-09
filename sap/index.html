@@ -18,14 +18,14 @@
   :root{
     --ink:#1d1d1d;
     --paper:#fbfbfd;
+    --card:#f5f6f7;
     --sub:#5a5a63;
     --line:rgba(29,29,29,.12);
-    --blue:#0040b0;
-    --blue-bright:#3d7cf4;
-    --navy:#01144b;
-    --purple:#5b2fae;
+    --blue:#0070f2;
+    --blue-bright:#0070f2;
+    --navy:#00144a;
     --black:#222222;
-    --grad:linear-gradient(155deg,#3d7cf4 0%,#013fae 42%,#01144b 100%);
+    --grad:linear-gradient(155deg,#3d92f2 0%,#0070f2 42%,#00144a 100%);
     --sh-sm:0 2px 10px rgba(1,20,75,.10);
     --sh-md:0 10px 30px rgba(1,20,75,.16);
     --sh-lg:0 24px 60px rgba(1,20,75,.26);
@@ -39,46 +39,40 @@
   .mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
   .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
 
-  /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:40;background:rgba(251,251,253,.92);backdrop-filter:blur(10px);
+  /* ---------- nav (real SAP event-microsite header: flat, logo-only, no invented links) ---------- */
+  nav{position:sticky;top:0;z-index:40;background:#f5f6f7;
       border-bottom:1px solid transparent;transition:all .4s var(--ease)}
   nav.scrolled{border-bottom:1px solid var(--line);box-shadow:var(--sh-sm)}
-  .navrow{display:flex;align-items:center;justify-content:space-between;padding:14px 0;transition:padding .3s var(--ease)}
-  nav.scrolled .navrow{padding:10px 0}
+  .navrow{display:flex;align-items:center;height:60px;transition:height .3s var(--ease)}
+  nav.scrolled .navrow{height:52px}
   .brand{display:flex;align-items:center;gap:0}
-  .saplogo{position:relative;width:52px;height:30px;background:linear-gradient(160deg,#5aa7ff 0%,#0040b0 60%,#01144b 100%);
-    clip-path:polygon(0 0,100% 0,100% 62%,80% 100%,0 100%);display:flex;align-items:center;justify-content:center}
-  .saplogo span{color:#fff;font-weight:800;font-size:14px;letter-spacing:.01em}
-  .navlinks{display:flex;align-items:center;gap:26px}
-  .navlinks a{font-size:14px;color:var(--ink);opacity:.72;transition:opacity .25s}
-  .navlinks a:hover{opacity:1}
-  .navlinks a.webinar{opacity:1;font-weight:600;color:var(--blue)}
-  .navicons{display:flex;align-items:center;gap:12px;margin-left:6px;color:var(--sub)}
-  .navicons span{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px}
+  .saplogo{position:relative;width:52px;height:30px;background:linear-gradient(180deg,#5eb3ec 0%,#1e73c8 42%,#0a3d78 100%);
+    clip-path:polygon(0 0,100% 0,65% 100%,0 100%);display:flex;align-items:center;justify-content:flex-start;padding-left:6px}
+  .saplogo span{color:#fff;font-weight:800;font-size:13px;letter-spacing:.01em}
 
-  /* ---------- dark-wrap: hero + embed as one surface (real SAP navy-to-blue) ---------- */
-  .dark-wrap{position:relative;overflow:hidden;background:var(--grad);color:#fff}
+  /* ---------- dark-wrap: hero + embed as one surface (real SAP hero is flat solid navy #00144a) ---------- */
+  .dark-wrap{position:relative;overflow:hidden;background:var(--navy);color:#fff}
   .dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:80%;
-    background:radial-gradient(circle,rgba(255,255,255,.10),transparent 65%);pointer-events:none}
+    background:radial-gradient(circle,rgba(0,112,242,.28),transparent 65%);pointer-events:none}
   .dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;
-    background:radial-gradient(circle,rgba(1,20,75,.35),transparent 65%);pointer-events:none}
+    background:radial-gradient(circle,rgba(0,112,242,.14),transparent 65%);pointer-events:none}
   .hero{padding:68px 0 40px;position:relative;z-index:2}
   .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
     padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;margin-bottom:26px}
   .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.8s infinite}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
-  h1{font-size:clamp(32px,4.8vw,56px);line-height:1.08;letter-spacing:-.01em;font-weight:600;margin:0 0 22px;max-width:760px}
-  h1 em{font-style:normal;color:#9fc4ff}
+  h1{font-size:clamp(32px,4.8vw,56px);line-height:1.08;letter-spacing:-.01em;font-weight:500;margin:0 0 22px;max-width:760px}
+  h1 em{font-style:normal;color:#7fb8ff}
   .sub{font-size:17px;color:rgba(255,255,255,.75);margin:0 0 30px;max-width:560px;font-weight:300}
   .metarow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
   .chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
     padding:9px 15px;border-radius:8px;font-size:13px}
   .chip b{font-weight:700}
   .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:8px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:8px;font-weight:500;font-size:15px;
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:500;font-size:15px;
     transition:transform .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer;border:1px solid transparent}
-  .btn-primary{background:#fff;color:var(--blue)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+  .btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
   .btn-ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
   .btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
   .countdown{display:flex;gap:10px;margin:26px 0 10px}
@@ -103,7 +97,7 @@
   /* ---------- lede ---------- */
   .lede{padding:100px 0;background:var(--paper)}
   .ledegrid{display:grid;grid-template-columns:180px 1fr;gap:40px}
-  .sidelabel{position:sticky;top:110px;align-self:start;font-size:12px;color:var(--purple)}
+  .sidelabel{position:sticky;top:110px;align-self:start;font-size:12px;color:var(--blue)}
   .ledegrid .body{max-width:66ch;font-size:19px;line-height:1.65;color:#292933}
   .ledegrid .body p+p{margin-top:20px}
   .ledegrid .body strong{color:var(--ink)}
@@ -116,49 +110,49 @@
   .mech p.lead{color:rgba(255,255,255,.62);font-size:15.5px;line-height:1.65;max-width:420px;margin:0 0 30px}
   .mech .stack{display:flex;flex-direction:column;gap:14px}
   .mech .stack .row2{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,.75)}
-  .mech .stack .row2 .dot-sm{width:6px;height:6px;border-radius:50%;background:#9fc4ff;flex:none}
+  .mech .stack .row2 .dot-sm{width:6px;height:6px;border-radius:50%;background:#7fb8ff;flex:none}
   .mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,110px);gap:10px}
   .mtile{border-radius:12px;position:relative;overflow:hidden;box-shadow:var(--sh-md)}
-  .mtile.t1{background:linear-gradient(135deg,#6ea8ff,#3d7cf4)}
-  .mtile.t2{background:linear-gradient(135deg,#3d7cf4,#0040b0);grid-row:span 2}
-  .mtile.t3{background:linear-gradient(135deg,#8a5cf6,#5b2fae)}
+  .mtile.t1{background:linear-gradient(135deg,#5eb3ec,#0070f2)}
+  .mtile.t2{background:linear-gradient(135deg,#0070f2,#0a3d78);grid-row:span 2}
+  .mtile.t3{background:linear-gradient(135deg,#5eb3ec,#0a3d78)}
   .mtile.t4{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
   .mtile.t4 .spark{font-size:22px;color:#fff}
-  .mtile.t5{background:linear-gradient(135deg,#0040b0,#01144b)}
+  .mtile.t5{background:linear-gradient(135deg,#0a3d78,#00144a)}
   @media(max-width:860px){.mech .wrap{grid-template-columns:1fr}.mosaic{grid-template-rows:repeat(2,84px)}}
 
   /* ---------- what you'll learn (hairline rows) ---------- */
   .learn{background:var(--paper);padding:100px 0}
-  .learn h3.kicker{font-size:12px;color:var(--purple);margin:0 0 42px}
+  .learn h3.kicker{font-size:12px;color:var(--blue);margin:0 0 42px}
   .row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;
     border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
   .row:last-child{border-bottom:1px solid var(--line)}
   .row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--blue);transition:width .5s var(--ease)}
   .row:hover::before{width:100%}
-  .row .num{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--purple);padding-top:4px}
+  .row .num{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--blue);padding-top:4px}
   .row h4{margin:0;font-size:21px;font-weight:700;letter-spacing:-.01em}
   .row p{margin:0;color:var(--sub);font-size:15px;line-height:1.6}
   @media(max-width:700px){.row{grid-template-columns:36px 1fr;grid-template-areas:"n t" ". d"}.row .num{grid-area:n}.row h4{grid-area:t}.row p{grid-area:d;margin-top:10px}}
 
-  /* ---------- speakers ---------- */
+  /* ---------- speakers (hairline rows, not a boxed grid) ---------- */
   .speakers{background:var(--paper);padding:20px 0 100px}
-  .spgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .spcard{border:1px solid var(--line);border-radius:14px;padding:26px;text-align:left;background:#fff}
-  .spphoto{width:56px;height:56px;border-radius:50%;background:var(--grad);margin-bottom:16px}
-  .spcard b{display:block;font-size:15px}
-  .spcard span{font-size:13px;color:var(--sub)}
-  .flagged{font-size:11px;color:var(--purple);margin-top:10px;display:block}
-  @media(max-width:760px){.spgrid{grid-template-columns:1fr}}
+  .splist{display:flex;flex-direction:column}
+  .speaker-row{display:flex;align-items:center;gap:18px;padding:24px 4px;border-top:1px solid var(--line)}
+  .speaker-row:last-child{border-bottom:1px solid var(--line)}
+  .avatar{width:52px;height:52px;border-radius:50%;background:var(--grad);flex:none}
+  .speaker-row b{display:block;font-size:15.5px}
+  .speaker-row span{font-size:13.5px;color:var(--sub)}
+  .flagged{font-size:11px;color:var(--blue);margin-top:4px;display:block}
 
   /* ---------- cta band ---------- */
   .ctaband{background:var(--grad);color:#fff;padding:90px 0;text-align:center}
   .ctaband h2{font-size:clamp(28px,4vw,44px);font-weight:600;letter-spacing:-.02em;margin:0 0 14px}
-  .ctaband h2 em{font-style:normal;color:#9fc4ff}
+  .ctaband h2 em{font-style:normal;color:#7fb8ff}
   .ctaband p{font-size:16px;opacity:.8;margin:0 0 30px;font-weight:300}
 
   /* ---------- footer (real dark SAP footer) ---------- */
   footer{background:var(--black);color:#a0a0a0;padding:70px 0 30px}
-  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:50px}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:26px;margin-bottom:50px}
   .fgrid h5{color:#fff;font-size:12px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
   .fgrid a{display:block;font-size:13.5px;color:#a0a0a0;margin-bottom:11px;transition:color .2s}
   .fgrid a:hover{color:#fff}
@@ -184,17 +178,6 @@
 <nav id="nav">
   <div class="wrap navrow">
     <a href="#" class="brand"><span class="saplogo"><span>SAP</span></span></a>
-    <div class="navlinks">
-      <a href="https://www.sap.com/products.html" target="_blank">Products</a>
-      <a href="https://www.sap.com/industries.html" target="_blank">Industries</a>
-      <a href="https://www.sap.com/services-support.html" target="_blank">Transform and Support</a>
-      <a href="https://www.sap.com/about.html" target="_blank">About</a>
-      <a href="#learn" class="webinar">Webinar</a>
-      <div class="navicons">
-        <span>🔍</span>
-        <span>👤</span>
-      </div>
-    </div>
   </div>
 </nav>
 
@@ -311,23 +294,29 @@
 
 <section class="speakers">
   <div class="wrap">
-    <div class="spgrid stagger in">
-      <div class="spcard">
-        <div class="spphoto"></div>
-        <b>Speaker to be confirmed</b>
-        <span>Solutions, SAP</span>
-        <span class="flagged">◆ placeholder — swap for the real presenter</span>
+    <div class="splist stagger in">
+      <div class="speaker-row">
+        <div class="avatar"></div>
+        <div>
+          <b>Speaker to be confirmed</b>
+          <span>Solutions, SAP</span>
+          <span class="flagged">◆ placeholder — swap for the real presenter</span>
+        </div>
       </div>
-      <div class="spcard">
-        <div class="spphoto"></div>
-        <b>Speaker to be confirmed</b>
-        <span>Solutions, Sequel</span>
-        <span class="flagged">◆ placeholder — swap for the real presenter</span>
+      <div class="speaker-row">
+        <div class="avatar"></div>
+        <div>
+          <b>Speaker to be confirmed</b>
+          <span>Solutions, Sequel</span>
+          <span class="flagged">◆ placeholder — swap for the real presenter</span>
+        </div>
       </div>
-      <div class="spcard">
-        <div class="spphoto"></div>
-        <b>Live Q&amp;A</b>
-        <span>Open floor, last 10 minutes</span>
+      <div class="speaker-row">
+        <div class="avatar"></div>
+        <div>
+          <b>Live Q&amp;A</b>
+          <span>Open floor, last 10 minutes</span>
+        </div>
       </div>
     </div>
   </div>
@@ -350,25 +339,33 @@
         <p style="font-size:13px;color:#a0a0a0;margin-top:14px">+1-800-872-1727</p>
       </div>
       <div>
-        <h5>Products</h5>
-        <a href="https://www.sap.com/products/technology-platform.html" target="_blank">Technology platform</a>
-        <a href="https://www.sap.com/products/ai-platform.html" target="_blank">AI platform</a>
-        <a href="https://www.sap.com/industries.html" target="_blank">Industries</a>
+        <h5>Quick links</h5>
+        <a href="https://sap.integrityline.com/" target="_blank">Speak Out at SAP</a>
+        <a href="https://www.sap.com/about/trust-center.html" target="_blank">SAP Trust Center</a>
         <a href="https://www.sap.com/store.html" target="_blank">SAP Store</a>
       </div>
       <div>
-        <h5>Support</h5>
-        <a href="https://www.sap.com/services-support.html" target="_blank">Find services</a>
-        <a href="https://www.sap.com/products/try-sap.html" target="_blank">Trials and demos</a>
+        <h5>Trending</h5>
+        <a href="https://www.sap.com/products/technology-platform.html" target="_blank">Technology platform</a>
+        <a href="https://www.sap.com/industries.html" target="_blank">Industries</a>
         <a href="https://www.sap.com/partners/find.html" target="_blank">Find a partner</a>
-        <a href="https://www.sap.com/about/trust-center.html" target="_blank">SAP Trust Center</a>
-      </div>
-      <div>
-        <h5>Company</h5>
+        <a href="https://www.sap.com/products/try-sap.html" target="_blank">Trials and demos</a>
         <a href="https://www.sap.com/events/connect.html" target="_blank">SAP Connect</a>
         <a href="https://www.sap.com/events/teched.html" target="_blank">SAP TechEd</a>
+      </div>
+      <div>
+        <h5>About SAP</h5>
+        <a href="https://www.sap.com/products/artificial-intelligence.html" target="_blank">Artificial Intelligence</a>
+        <a href="https://www.sap.com/products/erp/rise.html" target="_blank">RISE with SAP</a>
+        <a href="https://www.sap.com/sme.html" target="_blank">Midsize business solutions</a>
+        <a href="https://www.sap.com/about/sustainability.html" target="_blank">Sustainability</a>
+      </div>
+      <div>
+        <h5>Site information</h5>
         <a href="https://www.sap.com/registration/contact.html" target="_blank">Contact us</a>
-        <a href="https://sap.integrityline.com/" target="_blank">Speak Out at SAP</a>
+        <a href="https://www.sap.com/about/legal/privacy.html" target="_blank">Privacy</a>
+        <a href="https://www.sap.com/about/legal.html" target="_blank">Legal disclosure</a>
+        <a href="https://www.sap.com/about/legal/terms-of-use.html" target="_blank">Terms of use</a>
       </div>
     </div>
     <div class="fbottom">
