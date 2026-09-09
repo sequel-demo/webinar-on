@@ -25,11 +25,11 @@
     --purple:#6628c5;
     --purple-deep:#5b0bb1;
     --black:#0a0a12;
-    --wash-a:#d9dbe9;
+    --wash-a:#c7c8e6;
     --wash-b:#ffffff;
-    --paper:#fcfcfd;
+    --paper:#f8f7fc;
     --card:#ffffff;
-    --grad:linear-gradient(304deg,#499dfd 3.03%,#2678f5 27.62%,#6628c5 76.39%,#5b0bb1 112.44%);
+    --grad:linear-gradient(120deg,#5b0bb1 -10%,#6628c5 25%,#2678f5 65%,#499dfd 115%);
     --sh-card:0 24px 60px rgba(20,18,60,.10),0 3px 10px rgba(20,18,60,.05);
     --sh-sm:0 10px 26px rgba(20,18,60,.08);
     --r-lg:26px;
@@ -67,40 +67,38 @@
   .wash{background:linear-gradient(175deg,var(--wash-a) -8%,var(--wash-b) 62%);padding-bottom:64px}
   .crumbwrap{padding:14px 0 20px}
 
-  /* ---------- hero: full-bleed split section, flush with the page (not a floating card) ---------- */
-  .herocard{display:grid;grid-template-columns:1.2fr 1fr;
-    background:linear-gradient(96deg,#fff -10%,#e4e5f2 60%,#fff 130%);min-height:520px}
-  .herocard-left{padding:56px 52px 56px max(52px,calc((100vw - 1180px)/2 + 28px));display:flex;flex-direction:column;justify-content:center}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(38,120,245,.08);border:1px solid rgba(38,120,245,.22);
-    color:var(--blue);padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:24px;width:fit-content}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 1.8s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(38,120,245,.45)}70%{box-shadow:0 0 0 7px rgba(38,120,245,0)}}
-  h1{font-size:clamp(32px,3.6vw,50px);line-height:1.12;letter-spacing:-.015em;font-weight:400;margin:0 0 20px;color:var(--ink);max-width:560px}
-  h1 em{font-style:normal;font-weight:700;color:var(--blue)}
-  .sub{font-size:16.5px;color:var(--sub);margin:0 0 26px;max-width:480px;line-height:1.6}
-  .metaline{font-size:14.5px;color:var(--sub);margin:0 0 30px;display:flex;flex-wrap:wrap;gap:0}
+  /* ---------- hero: full-bleed, centered, on the real HCLTech brand gradient ---------- */
+  .herobleed{background:var(--grad);color:#fff;position:relative;overflow:hidden;padding:88px 0 80px}
+  .herobleed::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:75%;
+    background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%);pointer-events:none}
+  .herobleed::after{content:"";position:absolute;inset:auto -10% -30% -10%;height:70%;
+    background:radial-gradient(circle,rgba(10,10,18,.18),transparent 65%);pointer-events:none}
+  .heroinner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+    color:#fff;padding:7px 14px 7px 10px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:26px;width:fit-content}
+  .dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}}
+  h1{font-size:clamp(34px,4.6vw,58px);line-height:1.12;letter-spacing:-.02em;font-weight:300;margin:0 0 20px;color:#fff;max-width:760px}
+  h1 em{font-style:normal;font-weight:800;color:#fff}
+  .sub{font-size:17px;color:rgba(255,255,255,.78);margin:0 0 28px;max-width:480px;line-height:1.6;font-weight:300}
+  .metaline{font-size:14.5px;color:rgba(255,255,255,.78);margin:0 0 32px;display:flex;flex-wrap:wrap;gap:0;justify-content:center}
   .metaline span{white-space:nowrap}
-  .metaline .sep{margin:0 12px;opacity:.4}
-  .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:30px}
+  .metaline .sep{margin:0 12px;opacity:.5}
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;font-weight:600;font-size:14.5px;
     transition:transform .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer;border:1px solid transparent}
-  .btn-primary{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:var(--sh-sm)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(20,18,60,.16)}
-  .btn-ghost{background:transparent;border-color:var(--line);color:var(--sub)}
-  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
-  .countdown{display:flex;gap:8px}
-  .cd{background:rgba(38,120,245,.06);border:1px solid rgba(38,120,245,.16);border-radius:10px;padding:10px 13px;min-width:56px;text-align:center}
-  .cd b{display:block;font-size:20px;font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)}
-  .cd span{font-size:9.5px;color:var(--sub2);letter-spacing:.06em}
-  .tz{font-size:12px;color:var(--sub2);margin-top:10px}
-
-  .herocard-right{position:relative;overflow:hidden;background:var(--grad)}
-  .herocard-right svg{position:absolute;inset:0;width:100%;height:100%}
+  .btn-primary{background:#fff;color:var(--ink);border-color:transparent;box-shadow:0 10px 26px rgba(10,8,30,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(10,8,30,.32)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.32);color:rgba(255,255,255,.85)}
+  .btn-ghost:hover{border-color:#fff;color:#fff;transform:translateY(-2px)}
+  .countdown{display:flex;gap:8px;justify-content:center}
+  .cd{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:10px;padding:10px 13px;min-width:56px;text-align:center}
+  .cd b{display:block;font-size:20px;font-variant-numeric:tabular-nums;font-weight:700;color:#fff}
+  .cd span{font-size:9.5px;color:rgba(255,255,255,.6);letter-spacing:.06em}
+  .tz{font-size:12px;color:rgba(255,255,255,.6);margin-top:10px}
 
   @media(max-width:860px){
-    .herocard{grid-template-columns:1fr}
-    .herocard-right{min-height:220px;order:-1}
-    .herocard-left{padding:40px 30px!important}
+    .herobleed{padding:64px 0 60px}
   }
 
   /* ---------- embed card (soft white card, sits on the wash — real card-module pattern) ---------- */
@@ -219,37 +217,28 @@
     <div class="crumb"><span>Home</span><span>›</span><span>Webinars</span><span>›</span><b>AI Is Easy. Impact Is Hard.</b></div>
   </div>
 
-  <div class="herocard reveal in">
-    <div class="herocard-left">
-        <div class="badge"><span class="dot"></span> LIVE WEBINAR</div>
-        <h1>AI is easy. <em>Impact</em> is hard.</h1>
-        <p class="sub">Streaming live and on-demand on hcltech.com</p>
-        <div class="metaline">
-          <span>Oct 15, 2026</span><span class="sep">|</span><span>11:00 AM ET</span><span class="sep">|</span><span>45 min</span>
-        </div>
-        <div class="cta-row">
-          <a href="#embed" class="btn btn-primary">Save my seat →</a>
-          <a id="gcalLink" href="#" target="_blank" class="btn btn-ghost">＋ Add to Calendar</a>
-          <a id="icsLink" href="#" download="hcltech-webinar.ics" class="btn btn-ghost">Download .ics</a>
-        </div>
-        <div class="countdown" id="countdown">
-          <div class="cd"><b id="cd-d">–</b><span>DAYS</span></div>
-          <div class="cd"><b id="cd-h">–</b><span>HRS</span></div>
-          <div class="cd"><b id="cd-m">–</b><span>MIN</span></div>
-          <div class="cd"><b id="cd-s">–</b><span>SEC</span></div>
-        </div>
-        <div class="tz" id="tzline"></div>
+  <section class="herobleed">
+    <div class="wrap heroinner reveal in">
+      <div class="badge"><span class="dot"></span> LIVE WEBINAR</div>
+      <h1>AI is easy. <em>Impact</em> is hard.</h1>
+      <p class="sub">Streaming live and on-demand on hcltech.com</p>
+      <div class="metaline">
+        <span>Oct 15, 2026</span><span class="sep">|</span><span>11:00 AM ET</span><span class="sep">|</span><span>45 min</span>
       </div>
-      <div class="herocard-right">
-        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
-          <polyline points="70,300 200,150 330,300" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3"/>
-          <polyline points="30,400 200,220 370,400" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="3"/>
-          <polyline points="-10,500 200,290 410,500" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="3"/>
-          <polyline points="110,230 200,140 290,230" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="3"/>
-          <rect x="0" y="0" width="400" height="180" fill="rgba(255,255,255,.06)"/>
-        </svg>
+      <div class="cta-row">
+        <a href="#embed" class="btn btn-primary">Save my seat →</a>
+        <a id="gcalLink" href="#" target="_blank" class="btn btn-ghost">＋ Add to Calendar</a>
+        <a id="icsLink" href="#" download="hcltech-webinar.ics" class="btn btn-ghost">Download .ics</a>
       </div>
+      <div class="countdown" id="countdown">
+        <div class="cd"><b id="cd-d">–</b><span>DAYS</span></div>
+        <div class="cd"><b id="cd-h">–</b><span>HRS</span></div>
+        <div class="cd"><b id="cd-m">–</b><span>MIN</span></div>
+        <div class="cd"><b id="cd-s">–</b><span>SEC</span></div>
+      </div>
+      <div class="tz" id="tzline"></div>
     </div>
+  </section>
 
   <div class="wrap embedwrap" style="margin-top:24px">
     <div class="embedcard" id="embed">
