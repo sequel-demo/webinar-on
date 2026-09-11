@@ -120,11 +120,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0
 .stat-source{margin-top:14px;font-size:12px;color:#a09c96}
 
 /* lede */
-.lede{padding:96px 0;display:grid;grid-template-columns:200px 1fr;gap:48px}
+.lede{padding:96px 0}
+.lede-grid{display:grid;grid-template-columns:200px 1fr;gap:48px}
 .lede-label{position:sticky;top:110px;align-self:start}
 .lede p{max-width:64ch;font-size:19px;color:#302e2c;line-height:1.75}
 .lede p+p{margin-top:22px}
-@media(max-width:800px){.lede{grid-template-columns:1fr;gap:20px}.lede-label{position:static}}
+@media(max-width:800px){.lede-grid{grid-template-columns:1fr;gap:20px}.lede-label{position:static}}
 
 /* mechanism band */
 .mech{background:var(--black);color:#fff;padding:96px 0;position:relative;overflow:hidden}
@@ -278,7 +279,7 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:64px 0 30px;f
 </section>
 
 <section class="lede">
-  <div class="wrap" style="display:grid;grid-template-columns:200px 1fr;gap:48px">
+  <div class="wrap lede-grid">
     <div class="lede-label mono" style="font-size:12px;color:var(--red)">The session</div>
     <div class="reveal">
       <p>Advanced AI models — like Anthropic's Claude Mythos — can now identify vulnerabilities in near real-time, compressing what once took days into minutes. That's a wake-up call for every security team still operating at human speed.</p>
