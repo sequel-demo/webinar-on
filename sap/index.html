@@ -192,19 +192,9 @@
         <div class="chip"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18 14 14 0 010-18z"/></svg><b id="localTz">Local time shown below</b></div>
       </div>
 
-      <div class="cta-row reveal in">
-        <a href="#embed" class="btn btn-primary">Register now →</a>
-        <a id="gcalLink" href="#" target="_blank" class="btn btn-ghost">＋ Add to Google Calendar</a>
-        <a id="icsLink" href="#" download="sap-webinar.ics" class="btn btn-ghost">Download .ics</a>
+            <div class="cta-row reveal in">
+        <a href="#embed" class="btn btn-primary">Register below ↓</a>
       </div>
-
-      <div class="countdown reveal in" id="countdown">
-        <div class="cd"><b id="cd-d">–</b><span>DAYS</span></div>
-        <div class="cd"><b id="cd-h">–</b><span>HRS</span></div>
-        <div class="cd"><b id="cd-m">–</b><span>MIN</span></div>
-        <div class="cd"><b id="cd-s">–</b><span>SEC</span></div>
-      </div>
-      <div class="tz" id="tzline"></div>
     </div>
   </section>
 
@@ -368,59 +358,19 @@
 </footer>
 
 <script>
-/* ---- event config (single source for countdown + calendar) ---- */
-const EVENT = {
-  title: "Connect Everything. Achieve Anything. — Live Webinar",
-  start: "2026-10-20T11:00:00-04:00",
-  end:   "2026-10-20T11:45:00-04:00",
-  desc:  "A live look at how SAP connects finance, supply chain, HR and customer experience into one system, hosted on sap.com.",
-  loc:   "https://www.sap.com/"
-};
-const startDate = new Date(EVENT.start);
-const endDate = new Date(EVENT.end);
+  /* ---- event config (drives the on-demand degrade only; the live embed below owns
+     the actual countdown/register/calendar actions now) ---- */
+  const EVENT = { start: "2026-10-20T11:00:00-04:00" };
+  const startDate = new Date(EVENT.start);
 
-function fmtUTC(d){return d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';}
-const gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE"
-  + "&text=" + encodeURIComponent(EVENT.title)
-  + "&dates=" + fmtUTC(startDate) + "/" + fmtUTC(endDate)
-  + "&details=" + encodeURIComponent(EVENT.desc)
-  + "&location=" + encodeURIComponent(EVENT.loc);
-document.getElementById('gcalLink').href = gcal;
-
-const ics = ["BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
-  "DTSTART:"+fmtUTC(startDate),"DTEND:"+fmtUTC(endDate),
-  "SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.desc,"LOCATION:"+EVENT.loc,
-  "END:VEVENT","END:VCALENDAR"].join("\r\n");
-document.getElementById('icsLink').href = "data:text/calendar;charset=utf8," + encodeURIComponent(ics);
-
-try{
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const local = new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(startDate);
-  document.getElementById('tzline').textContent = "That's " + local + " your time (" + tz + ")";
-}catch(e){}
-
-/* ---- countdown, degrading to on-demand once the date passes ---- */
-function tick(){
-  const now = new Date();
-  const diff = startDate - now;
-  if (diff <= 0){
-    document.querySelector('.badge').innerHTML = 'ON DEMAND';
-    document.getElementById('countdown').style.display='none';
-    document.querySelectorAll('#gcalLink,#icsLink').forEach(el=>el.style.display='none');
-    const p = document.querySelector('.cta-row .btn-primary');
-    if(p) p.textContent = 'Watch the recording →';
-    return;
+  function tick(){
+    if (startDate - new Date() <= 0){
+      document.querySelector('.badge').innerHTML = 'ON DEMAND';
+      const p = document.querySelector('.cta-row .btn-primary');
+      if(p) p.textContent = 'Watch the recording ↓';
+    }
   }
-  const d = Math.floor(diff/86400000);
-  const h = Math.floor(diff/3600000)%24;
-  const m = Math.floor(diff/60000)%60;
-  const s = Math.floor(diff/1000)%60;
-  document.getElementById('cd-d').textContent = d;
-  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
-}
-tick(); setInterval(tick,1000);
+  tick(); setInterval(tick, 60000);
 
 /* ---- nav shrink on scroll ---- */
 window.addEventListener('scroll',()=>{
