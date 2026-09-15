@@ -145,9 +145,9 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
 .xall:hover{border-color:var(--muted);color:var(--ink)}
 .qk{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}
 .hasq .qk,#q:focus~.qk{display:none}
-.ftog,.js .ftog{display:none}
+.ftog,html.js .ftog{display:none}
 @media (max-width:980px){
- .js .ftog{display:inline-block;font:inherit;font-size:11px;color:var(--s1);background:var(--s1w);border:0;border-radius:3px;padding:2px 8px;margin-left:8px;cursor:pointer;vertical-align:middle}
+ html.js .ftog{display:inline-block;font:inherit;font-size:11px;color:var(--s1);background:var(--s1w);border:0;border-radius:3px;padding:2px 8px;margin-left:8px;cursor:pointer;vertical-align:middle}
  .js aside:not(.open) .fg{display:none}
  .js aside:not(.open) .ahd{border-bottom:0}
 }
