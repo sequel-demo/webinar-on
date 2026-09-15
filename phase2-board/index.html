@@ -31,7 +31,7 @@ body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",-appl
 .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 h1{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:clamp(26px,4vw,36px);line-height:1.1;margin:0;letter-spacing:-.015em}
 .dek{margin:0;max-width:68ch;color:var(--ink-2)}
-.figs{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.figs{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 .fig{background:var(--surface);padding:13px 15px;display:flex;flex-direction:column;gap:2px}
 .fig b{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:24px;font-weight:500;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .fig .lab{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -63,7 +63,8 @@ aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:v
 #sortsel:hover{border-color:var(--muted)}
 #sortsel:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
 .shown{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;margin-left:auto}
-.listwrap{border:1px solid var(--line);border-radius:4px;background:var(--surface);box-shadow:var(--shadow);overflow-x:auto}
+.listwrap{border:1px solid var(--line);border-radius:4px;background:var(--surface);box-shadow:var(--shadow)}
+@media (max-width:1300px){.listwrap{overflow-x:auto}}
 .inner{min-width:1000px}
 .hd,.row{display:grid;grid-template-columns:minmax(150px,1.05fr) minmax(170px,1.25fr) minmax(112px,.7fr) minmax(160px,1fr) 60px 44px 64px 66px 20px;gap:10px}
 .hd{padding:10px 16px;border-bottom:1px solid var(--line);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface);z-index:2}
@@ -132,6 +133,25 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
 .method ol{margin:0;padding-left:20px;color:var(--ink-2);font-size:13px;display:flex;flex-direction:column;gap:5px;max-width:78ch}
 @media (max-width:980px){.layout{grid-template-columns:1fr}aside{position:static;max-height:none}.figs{grid-template-columns:repeat(2,1fr)}.shown{margin-left:0}}
 
+.fig b{transition:color .15s}.fig.dim b{color:var(--muted)}
+.figs .note{min-height:17px}
+.hd>div[data-sorts]{cursor:pointer;user-select:none}
+.hd>div[data-sorts]:hover{color:var(--ink);background:var(--surface-2)}
+.hd>div[data-dir="a"]::after{content:" \2191";font-size:11px}
+.hd>div[data-dir="d"]::after{content:" \2193";font-size:11px}
+.r{content-visibility:auto;contain-intrinsic-size:auto 66px}
+.ld.hi{cursor:help}
+.xall{font:inherit;font-size:11.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer}
+.xall:hover{border-color:var(--muted);color:var(--ink)}
+.qk{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}
+.hasq .qk,#q:focus~.qk{display:none}
+.ftog,.js .ftog{display:none}
+@media (max-width:980px){
+ .js .ftog{display:inline-block;font:inherit;font-size:11px;color:var(--s1);background:var(--s1w);border:0;border-radius:3px;padding:2px 8px;margin-left:8px;cursor:pointer;vertical-align:middle}
+ .js aside:not(.open) .fg{display:none}
+ .js aside:not(.open) .ahd{border-bottom:0}
+}
+@media print{aside,.toolbar,#chips,.chev{display:none!important}.layout{grid-template-columns:1fr}.listwrap{box-shadow:none}.r{break-inside:avoid}}
 .lc{min-width:0}
 .l1{display:block;font-size:12.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
 .l2{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em}
@@ -210,15 +230,16 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
 <p class="dek">Every Phase 2 trial with a US site that is recruiting now or about to start, run by a sponsor that is not big pharma. Click any row to open its site cities, full contact details and the study official. Search, sort and filter to narrow; the CSV has the same columns.</p>
 </header>
 <section class="figs">
-<div class="fig"><span class="lab">Trials</span><b>1,046</b><span class="note">from 1,592 screened</span></div>
-<div class="fig"><span class="lab">Sponsors</span><b>768</b><span class="note">big pharma removed</span></div>
-<div class="fig warn"><span class="lab">Pre-launch</span><b>81</b><span class="note">not yet recruiting</span></div>
-<div class="fig hi"><span class="lab">Rare disease</span><b>252</b><span class="note">keyword-flagged</span></div>
-<div class="fig ok"><span class="lab">With contact</span><b>979</b><span class="note">94% list a central contact</span></div>
+<div class="fig"><span class="lab">Trials</span><b id="f-n">1,046</b><span class="note" id="fn-n">from 1,592 screened</span></div>
+<div class="fig"><span class="lab">Sponsors</span><b id="f-sp">768</b><span class="note" id="fn-sp">big pharma removed</span></div>
+<div class="fig"><span class="lab">Patients needed</span><b id="f-enr">164,222</b><span class="note" id="fn-enr">combined enrollment target</span></div>
+<div class="fig warn"><span class="lab">Pre-launch</span><b id="f-nyr">81</b><span class="note" id="fn-nyr">not yet recruiting</span></div>
+<div class="fig hi"><span class="lab">Rare disease</span><b id="f-rare">252</b><span class="note" id="fn-rare">keyword-flagged</span></div>
+<div class="fig ok"><span class="lab">With contact</span><b id="f-cc">979</b><span class="note" id="fn-cc">94% list a central contact</span></div>
 </section>
 <div class="layout">
 <aside>
- <div class="ahd"><h2>Filters</h2><a href="?" id="reset">Reset all</a></div>
+ <div class="ahd"><h2>Filters <button type="button" id="ftog" class="ftog needjs" aria-expanded="false">Show</button></h2><a href="?" id="reset">Reset all</a></div>
  <div class="fg needjs"><h3>Site location</h3><input class="txt" id="loc" type="search" placeholder="City, state or hospital" autocomplete="off" spellcheck="false"><p class="hint">Any US site matches: <em>Boston</em>, <em>TX</em>, <em>Texas</em>, <em>Mayo</em>.</p></div>
  <div class="fg needjs" id="stfg"><h3>Site state</h3><div id="stlist"></div><button type="button" class="more" id="stmore">Show all states</button></div>
  <div class="fg"><h3>Trial phase</h3><label class="cb"><input type="checkbox" id="p2"><span class="t">Phase 2</span><span class="ct">506</span></label><label class="cb"><input type="checkbox" id="p12"><span class="t">Phase 1/2</span><span class="ct">454</span></label><label class="cb"><input type="checkbox" id="p23"><span class="t">Phase 2/3</span><span class="ct">86</span></label></div>
@@ -230,18 +251,19 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
 </aside>
 <main>
 <div class="toolbar">
- <div class="search needjs"><input id="q" type="search" placeholder="Search company, disease, drug, NCT, contact, city&hellip;" autocomplete="off" spellcheck="false" aria-label="Search trials"><button id="qx" type="button" aria-label="Clear search">&times;</button></div>
+ <div class="search needjs"><input id="q" type="search" placeholder="Search company, disease, drug, NCT, contact, city&hellip;" autocomplete="off" spellcheck="false" aria-label="Search trials"><button id="qx" type="button" aria-label="Clear search">&times;</button><span class="kbd qk" aria-hidden="true">/</span></div>
  <label for="sortsel">Sort</label>
  <select id="sortsel"><option value="none" selected>No sorting (registry order)</option><option value="load-d">Patients per site — high to low</option><option value="load-a">Patients per site — low to high</option><option value="enr-d">Enrollment — largest first</option><option value="enr-a">Enrollment — smallest first</option><option value="us-a">US sites — fewest first</option><option value="us-d">US sites — most first</option><option value="sd-d">Start date — newest first</option><option value="sd-a">Start date — oldest first</option><option value="ph-a">Phase — 1/2, then 2, then 2/3</option><option value="sp-a">Sponsor — A to Z</option><option value="sp-d">Sponsor — Z to A</option></select>
  <a class="csvl needjs" href="phase2-recruitment-board.csv" download>CSV &#8595;</a>
- <span class="shown" id="shown">1,046 of 1,046 trials</span>
+ <button type="button" class="xall needjs" id="xall" hidden>Expand all</button>
+ <span class="shown" id="shown" aria-live="polite">1,046 of 1,046 trials</span>
 </div>
 <div id="chips"></div>
 <div class="listwrap"><div class="inner">
 <div class="hd">
-<div class="h-sp">Sponsor / asset</div><div class="h-ph">Indication &middot; phase</div><div title="US sites: first city listed, then states">Where (US)</div><div>Central contact</div>
-<div class="n h-enr">Enroll</div><div class="n h-us">Sites</div>
-<div class="n h-load" title="Enrollment target divided by US site count">Per site</div><div class="n h-sd">Start</div><div></div>
+<div class="h-sp" data-sorts="sp-a,sp-d" title="Click to sort">Sponsor / asset</div><div class="h-ph" data-sorts="ph-a" title="Click to sort">Indication &middot; phase</div><div title="US sites: first city listed, then states">Where (US)</div><div>Central contact</div>
+<div class="n h-enr" data-sorts="enr-d,enr-a" title="Click to sort">Enroll</div><div class="n h-us" data-sorts="us-a,us-d" title="Click to sort">Sites</div>
+<div class="n h-load" data-sorts="load-d,load-a" title="Enrollment target divided by US site count. Click to sort">Per site</div><div class="n h-sd" data-sorts="sd-d,sd-a" title="Click to sort">Start</div><div></div>
 </div>
 <div id="list">
 <details class="r" data-ph="2" data-st="R" data-rare="1" data-hard="0" data-few="1" data-big="0" style="--load-d:766;--load-a:279;--enr-d:753;--enr-a:290;--us-d:457;--us-a:548;--sd-d:320;--sd-a:682;--sp-d:209;--sp-a:836;--ph-d:260;--ph-a:784" data-states="CA|CO|IL|MA|MO|OH|WA" data-s="satellos bioscience, inc. sat-3247 nct07287189 duchenne muscular dystrophy; duchenne phase 2 study of sat-3247 in pediatric ambulatory patients a phase 2a, randomized, double-blind, placebo-controlled dose comparison and exploratory efficacy study of orally administered sat-3247 in ambulatory dmd patients satellos medical information medicalinfo@satellos.com satellos chief medical officer satellos bioscience, inc. rare disease recruiting" data-l="los angeles, ca aurora, co chicago, il worcester, ma st louis, mo columbus, oh seattle, wa california (ca) colorado (co) illinois (il) massachusetts (ma) missouri (mo) ohio (oh) washington (wa) university of california los angeles colorado children&#x27;s lurie children&#x27;s umass memorial medical center washington university nationwide children&#x27;s hospital seattle children&#x27;s"><summary class="row"><div class="c1"><span class="spn">Satellos Bioscience, Inc.</span><span class="meta">SAT-3247 &middot; <a class="nl" href="https://clinicaltrials.gov/study/NCT07287189" target="_blank" rel="noopener">NCT07287189 &#8599;</a></span></div><div class="c2">Duchenne Muscular Dystrophy; Duchenne<span class="tags"><i class="p rc">recruiting</i><i class="p ph">Ph 2</i><i class="p ra">rare</i></span></div><div class="lc"><span class="l1" title="Los Angeles, CA · Aurora, CO · Chicago, IL · Worcester, MA · St Louis, MO · Columbus, OH · Seattle, WA">7 cities</span><span class="l2">CA CO IL MA MO +2</span></div><div class="cc"><span class="cn" title="Satellos Medical Information">Satellos Medical Information</span><a class="ce" href="mailto:medicalinfo@satellos.com" title="medicalinfo@satellos.com">medicalinfo@satellos.com</a><a class="cp" href="tel:+16476601780">+1 647-660-1780</a></div><div class="n">51</div><div class="n">7</div><div class="n"><span class="ld">7</span></div><div class="n">2025-12</div><span class="chev" aria-hidden="true"></span></summary><div class="dt"><div class="ttl">A Phase 2a, Randomized, Double-Blind, Placebo-Controlled Dose Comparison and Exploratory Efficacy Study of Orally Administered SAT-3247 in Ambulatory DMD Patients</div><div class="facts"><span><i>Status</i>Recruiting</span><span><i>Phase</i>2</span><span><i>Enrollment</i>51 target</span><span><i>Per US site</i>7</span><span><i>Start</i>2025-12</span><span><i>Registry</i><a href="https://clinicaltrials.gov/study/NCT07287189" target="_blank" rel="noopener">NCT07287189 &#8599;</a></span></div><div class="col"><h4>Central contact</h4><p><b>Satellos Medical Information</b><br><a href="mailto:medicalinfo@satellos.com">medicalinfo@satellos.com</a><br><a href="tel:+16476601780">+1 647-660-1780</a></p></div><div class="col"><h4>Study official / PI</h4><p><b>Satellos Chief Medical Officer</b><br><span class="mu">Study Director</span><br>Satellos Bioscience, Inc.</p></div><div class="col wide"><h4>7 US sites, 7 recruiting &middot; 7 states</h4><p class="cities">Los Angeles, CA &middot; Aurora, CO &middot; Chicago, IL &middot; Worcester, MA &middot; St Louis, MO &middot; Columbus, OH &middot; Seattle, WA</p></div></div></details>
@@ -1301,7 +1323,8 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
 <li><strong>Rows expand.</strong> Click anywhere on a row for the official title, every central contact, the study official or PI with affiliation, and the list of US site cities. Click again to close.</li>
 <li><strong>Central contact</strong> is the sponsor's registered contact on ClinicalTrials.gov, shown as listed there (name, email, phone). Emails and phones are click-to-send / click-to-dial. Where none is registered the row says so and links to the study record, which carries site-level contacts.</li>
 <li><strong>Search</strong> covers sponsor, drug, NCT number, indication, study title, contact names and emails, officials, US cities, states and site hospitals. Several words narrow (AND). The sidebar <em>Site location</em> box does the same restricted to places, so you can search a disease up top and a metro on the side.</li>
-<li><strong>Sorting</strong> is the dropdown: no sort keeps registry order (newest updates first); the other eleven orderings run both directions on every numeric column, and the sorted column is highlighted in the header.</li>
+<li><strong>Sorting</strong> is the dropdown, or click a column header (click again to flip direction, a third time to clear). No sort keeps registry order, newest updates first. The sorted column is highlighted in the header with an arrow.</li>
+<li><strong>The six figures at the top are live.</strong> They recount for whatever is on screen, so with Rare disease and Texas ticked, Patients needed is the combined enrollment target of just those trials, with the board-wide figure underneath for scale. When a narrowed view is 40 trials or fewer, an <em>Expand all</em> button opens every row at once.</li>
 <li><strong>Filters</strong> are OR inside a group and AND across groups. Counts beside each option update to reflect the other filters and any search text you have on. Active filters show as chips above the table; click a chip to remove it. Filters, search and sort are written into the URL, so a link to the current view can be shared.</li>
 <li><strong>Source.</strong> ClinicalTrials.gov API v2, pulled 15 Sep 2026: interventional, Phase 2 (including 1/2 and 2/3), industry lead sponsor, at least one US site, status recruiting or not yet recruiting. Enrollment and site counts are the sponsor's registered figures. <strong>Per site</strong> is enrollment divided by US site count; 405 of 1,046 trials sit above 20 patients per site, roughly where timelines start slipping.</li>
 </ol>
@@ -1319,7 +1342,8 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
   var rows=[].slice.call(list.children).map(function(el){return{el:el,
     ph:el.getAttribute('data-ph'),st:el.getAttribute('data-st'),rare:el.getAttribute('data-rare'),
     hard:el.getAttribute('data-hard'),few:el.getAttribute('data-few'),big:el.getAttribute('data-big'),
-    s:(el.getAttribute('data-s')||'')+' '+(el.getAttribute('data-l')||''), l:el.getAttribute('data-l')||'', states:(el.getAttribute('data-states')||'').split('|').filter(Boolean)};});
+    s:(el.getAttribute('data-s')||'')+' '+(el.getAttribute('data-l')||''), l:el.getAttribute('data-l')||'', states:(el.getAttribute('data-states')||'').split('|').filter(Boolean),
+    enr:parseInt((el.querySelector('.row .n')||{}).textContent.replace(/[^\d]/g,'')||'0',10), sp:(el.querySelector('.spn')||{}).textContent||'', cc:!!el.querySelector('.cc .cn')};});
   var F=[{k:'ph',n:'Phase',o:[['p2','2','Phase 2'],['p12','1/2','Phase 1/2'],['p23','2/3','Phase 2/3']]},
          {k:'st',n:'Status',o:[['sN','N','Pre-launch'],['sR','R','Recruiting']]},
          {k:'rare',n:'Disease',o:[['r1','1','Rare disease'],['r0','0','Other disease']]},
@@ -1368,9 +1392,40 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
       });
     });
     if(out)out.textContent=shown.toLocaleString()+' of '+total.toLocaleString()+' trials';
+    figs(shown);
     if(wrap)wrap.classList.toggle('empty',shown===0);
     drawChips(); writeURL();
   }
+  var BASE={n:total,sp:0,enr:0,nyr:0,rare:0,cc:0}, sps={};
+  rows.forEach(function(r){BASE.enr+=r.enr;if(r.st==='N')BASE.nyr++;if(r.rare==='1')BASE.rare++;if(r.cc)BASE.cc++;sps[r.sp]=1;}); BASE.sp=Object.keys(sps).length;
+  var NOTE={n:'from 1,592 screened',sp:'big pharma removed',enr:'combined enrollment target',nyr:'not yet recruiting',rare:'keyword-flagged',cc:Math.round(BASE.cc/total*100)+'% list a central contact'};
+  var xall=document.getElementById('xall'), xopen=false;
+  function figs(shown){
+    var vis=rows.filter(function(r){return r.q&&passF(r,null);});
+    var v={n:vis.length,sp:0,enr:0,nyr:0,rare:0,cc:0}, sp2={};
+    vis.forEach(function(r){v.enr+=r.enr;if(r.st==='N')v.nyr++;if(r.rare==='1')v.rare++;if(r.cc)v.cc++;sp2[r.sp]=1;}); v.sp=Object.keys(sp2).length;
+    var filtered=vis.length!==total;
+    Object.keys(v).forEach(function(k){
+      var b=document.getElementById('f-'+k), n=document.getElementById('fn-'+k); if(!b)return;
+      b.textContent=v[k].toLocaleString();
+      var fig=b.parentNode; fig.classList.toggle('dim',filtered&&v[k]===0);
+      if(n){ if(!filtered) n.textContent=NOTE[k];
+        else if(k==='cc') n.textContent=(vis.length?Math.round(v.cc/vis.length*100):0)+'% of shown · '+BASE.cc.toLocaleString()+' overall';
+        else if(k==='n') n.textContent='of '+total.toLocaleString()+' on the board';
+        else n.textContent='of '+BASE[k].toLocaleString()+' overall'; }
+    });
+    if(xall){ xall.hidden=!(vis.length>0&&vis.length<=40); if(xall.hidden){xopen=false;xall.textContent='Expand all';} else xall.textContent=(xopen?'Collapse all':'Expand all')+' ('+vis.length+')'; }
+  }
+  if(xall)xall.addEventListener('click',function(){xopen=!xopen;rows.forEach(function(r){if(r.q&&passF(r,null))r.el.open=xopen;});xall.textContent=(xopen?'Collapse all':'Expand all')+' ('+rows.filter(function(r){return r.q&&passF(r,null);}).length+')';});
+  // header click sorting
+  [].slice.call(document.querySelectorAll('.hd>div[data-sorts]')).forEach(function(h){
+    var opts=h.getAttribute('data-sorts').split(',');
+    h.addEventListener('click',function(){ if(!sel)return; var i=opts.indexOf(sel.value); var nxt=i<0?opts[0]:(i+1<opts.length?opts[i+1]:'none'); sel.value=nxt; applySort(); });
+  });
+  function markHeaders(){ [].slice.call(document.querySelectorAll('.hd>div[data-sorts]')).forEach(function(h){var v=sel?sel.value:'none'; if(h.getAttribute('data-sorts').split(',').indexOf(v)>=0) h.setAttribute('data-dir',/-a$/.test(v)?'a':'d'); else h.removeAttribute('data-dir');}); }
+  // mobile filter toggle
+  var ftog=document.getElementById('ftog'), aside=document.querySelector('aside');
+  if(ftog&&aside){ftog.addEventListener('click',function(){var o=aside.classList.toggle('open');ftog.textContent=o?'Hide':'Show';ftog.setAttribute('aria-expanded',o);});}
   function drawChips(){
     if(!chips)return; chips.innerHTML='';
     function chip(txt,fn,cls){var b=document.createElement('button');b.type='button';b.className='chip'+(cls?' '+cls:'');b.innerHTML=txt+'<b>&times;</b>';b.addEventListener('click',fn);chips.appendChild(b);}
@@ -1380,7 +1435,7 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
     if(chips.children.length>1)chip('clear all',resetAll,'x');
   }
   function escapeH(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function applySort(){ if(sel) body.setAttribute('data-sort',sel.value); writeURL(); }
+  function applySort(){ if(sel) body.setAttribute('data-sort',sel.value); markHeaders(); writeURL(); }
   var urlReady=false;
   function writeURL(){
     if(!urlReady||!history.replaceState)return;
@@ -1418,6 +1473,7 @@ body:not(:has(#b0:checked)):has(#b1:checked) #list .r:not([data-big="1"]){displa
   });
   // link clicks inside a row summary should not toggle the row
   list.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('summary a');if(a)e.stopPropagation();},true);
+  [].slice.call(list.querySelectorAll('.ld.hi')).forEach(function(e){e.title='Over 20 patients per US site';});
   readURL(); applySort(); urlReady=true; refresh();
 })();
 </script>
