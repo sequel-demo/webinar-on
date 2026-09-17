@@ -146,6 +146,15 @@ svg.floor{width:100%;height:min(62vh,640px);display:block;background:var(--card)
 .routeline{fill:none;stroke:var(--A);stroke-width:.35;stroke-dasharray:1.1 1.1;opacity:.35}
 .dot{cursor:pointer}
 .dot.hidden{display:none}
+svg.floor .dot.dim{opacity:.16}
+svg.floor .dot.hitd circle.dt{stroke:#16181d;stroke-width:.7}
+svg.floor .dot.hidden.hitd{display:inline;opacity:.6}
+svg.floor .dot.hidden.hitd circle.dt{fill:var(--done);stroke:var(--done)}
+svg.floor.searching .lm:not(.hitl){opacity:.5}
+svg.floor.searching .zn{opacity:.45}
+svg.floor .lm.hitl{fill:#fde68a;stroke:var(--A);stroke-width:.6}
+svg.floor.searching .routeline,svg.floor.searching .lead{opacity:.12}
+#mfilters{padding-top:8px}
 .dot circle.hit{fill:transparent}
 .dot circle.ring{fill:none;stroke:none}
 .dot circle.dt{stroke-width:.3}
@@ -271,6 +280,9 @@ Progress auto-saves as you tap. To be safe, tap <b>Copy</b> now and then and kee
 <div class="foot" id="foot"></div>
 </div>
 <div class="view map-view">
+<div class="searchwrap"><span class="mag">⌕</span><input id="msearch" class="search" type="search" inputmode="search" autocomplete="off" autocapitalize="off" placeholder="Find a booth, company, person or landmark…"><button id="mclearx" class="clearx" aria-label="clear">×</button></div>
+<div class="filters" id="mfilters"><button class="chip on" data-mf="all">All</button><button class="chip" data-mf="todo">To-do</button><button class="chip hotc" data-mf="hot" data-need="hot">🔥Hot</button><button class="chip gold" data-mf="asset" data-need="asset">★Card</button><button class="chip dgc" data-mf="dg" data-need="dg">DG</button></div>
+<div class="result" id="mresult"></div>
 <div class="mapwrap"><svg class="floor" id="floor" viewBox="0 0 100 122" preserveAspectRatio="xMidYMid meet"></svg>
 <div class="zoom"><button id="zout" aria-label="Zoom out">−</button><button id="zin" aria-label="Zoom in">+</button><button id="zreset" aria-label="Fit whole floor">fit</button></div></div>
 <div class="legend">
@@ -482,7 +494,7 @@ r.className='result show no';
 if(bM.length){
 r.innerHTML='◌ Sponsor, but <b>no booth</b>: '+bM.slice(0,3).map(s=>esc(s.co)+' — '+esc(s.note)).join(' · ');
 }else{
-r.innerHTML='No Black Hat sponsor matches "<b>'+esc(q)+'</b>".';
+r.innerHTML='No '+EVENT.short+' sponsor matches "<b>'+esc(q)+'</b>".';
 }
 }
 }
@@ -553,7 +565,7 @@ floor.appendChild(el('rect',{x:z.x,y:z.y,width:z.w,height:z.h,rx:1.2,class:'zn'}
 const t=el('text',{x:z.x+z.w/2,y:z.y-1,'font-size':1.8,class:'zn-lab'});t.textContent=z.l;floor.appendChild(t);
 });
 LANDMARKS.forEach(m=>{
-floor.appendChild(el('rect',{x:m.x,y:m.y,width:m.w,height:m.h,rx:1.2,class:'lm'}));
+floor.appendChild(el('rect',{x:m.x,y:m.y,width:m.w,height:m.h,rx:1.2,class:'lm','data-l':m.l}));
 const t=el('text',{x:m.x+m.w/2,y:m.y+m.h/2+0.8,'font-size':m.s?1.7:2.2,class:'lm-lab'});t.textContent=m.l;floor.appendChild(t);
 });
 routeLine=el('polyline',{points:'',class:'routeline'});floor.appendChild(routeLine);
@@ -604,6 +616,7 @@ if(here&&next&&here.x!=null&&next.x!=null){ leadLine.setAttribute('opacity','1')
 else leadLine.setAttribute('opacity','0');
 scaleOverlay();
 if(allclear) allclear.classList.toggle('show', remaining.length===0);
+if(typeof applyMapFocus==='function'&&(msearch||mfilter!=='all')) applyMapFocus(false);
 }
 function updateStats(){
 const v=done.size, a=PRIME.filter(x=>done.has(x.b)).length;
@@ -691,7 +704,7 @@ document.querySelectorAll('.vswitch button').forEach(b=>b.addEventListener('clic
 view=b.dataset.view;document.querySelectorAll('.vswitch button').forEach(x=>x.classList.toggle('on',x===b));
 document.querySelector('.list-view').classList.toggle('on',view==='list');
 document.querySelector('.map-view').classList.toggle('on',view==='map');
-if(view==='map'){buildMap();paintMap();}
+if(view==='map'){buildMap();paintMap();applyMapFocus(false);}
 }));
 document.getElementById('reset').addEventListener('click',()=>{if(done.size===0||confirm('Clear all checked stops?')){done.clear();seq=[];notes={};save();refresh();}});
 document.querySelectorAll('.modew button').forEach(b=>b.addEventListener('click',()=>{
@@ -741,6 +754,80 @@ renderList();renderNofloor();updateStats();syncCodeBox();
 }
 boot();
 (async()=>{try{await load();}catch(e){}if(!window.__stored&&!done.size&&typeof SEED!=='undefined'&&SEED.length){hydrate({d:SEED,s:SEED,n:{}});save();}if(done.size)boot();})();
+
+/* ===== map search + map filters (Jack, 9/17) =====
+   Search finds a booth, company, person or landmark on the floor. Filters are
+   the same chips as the list: To-do, Hot, Card, DG. The two combine (AND).
+   Hits light up, everything else fades. A search also zooms to fit its hits;
+   a filter on its own leaves your zoom alone so the whole floor stays readable. */
+let msearch='', mfilter='all';
+const passMF=s=> mfilter==='all' ? true
+  : mfilter==='todo' ? !done.has(s.b)
+  : mfilter==='hot'  ? tierOf(s)===1
+  : mfilter==='asset'? !!s.asset
+  : mfilter==='dg'   ? !!(s.dg||s.gr) : true;
+const MFL={todo:'still to go',hot:'hot booths',asset:'card booths',dg:'DG or growth on site'};
+function zoomToPoints(pts){
+  let x0=Math.min(...pts.map(p=>p[0])), x1=Math.max(...pts.map(p=>p[0]));
+  let y0=Math.min(...pts.map(p=>p[1])), y1=Math.max(...pts.map(p=>p[1]));
+  const pad=7; x0-=pad; x1+=pad; y0-=pad; y1+=pad;
+  const ar=VB0.w/VB0.h;
+  let w=Math.max(x1-x0, VB0.w/2.5), h=Math.max(y1-y0, (VB0.w/2.5)/ar);
+  if(w/h>ar) h=w/ar; else w=h*ar;
+  vb={x:(x0+x1)/2-w/2, y:(y0+y1)/2-h/2, w:w, h:h};
+  clampVB(); applyVB();
+}
+function applyMapFocus(zoomForQuery){
+  if(!mapBuilt) return;
+  const q=msearch, r=document.getElementById('mresult'), active=!!q||mfilter!=='all';
+  document.getElementById('mclearx').classList.toggle('show',!!q);
+  const hitB=new Set(), hitL=new Set();
+  RAW.forEach(s=>{ if(passMF(s)&&(!q||matches(s,q))) hitB.add(s.b); });
+  if(q) LANDMARKS.forEach(m=>{ if(m.l.toLowerCase().includes(q)) hitL.add(m.l); });
+  floor.classList.toggle('searching',active);
+  floor.querySelectorAll('.dot').forEach(g=>{ const hit=hitB.has(+g.dataset.b);
+    g.classList.toggle('dim', active && !hit); g.classList.toggle('hitd', active && hit); });
+  floor.querySelectorAll('.lm').forEach(x=>x.classList.toggle('hitl', !!q && hitL.has(x.dataset.l)));
+  r.onclick=null; r.style.cursor='';
+  if(zoomForQuery&&!q) resetZoom();
+  if(!active){ r.className='result'; r.innerHTML=''; if(zoomForQuery) resetZoom(); return; }
+  const placed=RAW.filter(s=>hitB.has(s.b)&&s.x!=null);
+  const unplaced=RAW.filter(s=>hitB.has(s.b)&&s.x==null);
+  const lms=LANDMARKS.filter(m=>hitL.has(m.l));
+  if(q&&zoomForQuery){ const pts=placed.map(s=>[s.x,s.y]).concat(lms.map(m=>[m.x+m.w/2,m.y+m.h/2]));
+    if(pts.length) zoomToPoints(pts); else resetZoom();
+    requestAnimationFrame(()=>floor.scrollIntoView({behavior:'smooth',block:'nearest'})); }
+  const unp='';
+  if(!q){ // filter only: a count line, whole floor stays in view
+    r.className='result show '+(placed.length?'yes':'no');
+    const dnc=placed.filter(s=>done.has(s.b)).length;
+    r.innerHTML=placed.length? '<b>'+placed.length+'</b> '+MFL[mfilter]+' on the map'+(dnc?' · '+dnc+' already visited':'')+unp
+                             : 'No '+MFL[mfilter]+' left on the map.'+unp;
+    return; }
+  if(placed.length===1&&!lms.length){
+    const s=placed[0], dn=done.has(s.b);
+    r.className='result show yes';
+    r.innerHTML='<b>'+BL(s)+'</b> '+esc(s.co)+(dn?' · already visited':'')+(s.zone?'<br><span style="font-size:12px;color:var(--muted)">'+esc(s.zone)+'</span>':'')+'<br><span style="font-size:12px">tap here or the dot for the brief</span>';
+    r.style.cursor='pointer'; r.onclick=()=>showSheet(s);
+  }else if(placed.length||lms.length){
+    r.className='result show yes';
+    const bits=placed.slice(0,4).map(s=>esc(s.co)+' <b>'+BL(s)+'</b>').concat(lms.map(m=>esc(m.l)+' <b>landmark</b>'));
+    r.innerHTML=(placed.length?placed.length+' booth'+(placed.length>1?'s':'')+' lit up':lms.length+' landmark'+(lms.length>1?'s':''))+(mfilter!=='all'?' ('+MFL[mfilter]+')':'')+(placed.length>4?' · first 4: ':': ')+bits.join(', ')+unp;
+  }else if(unplaced.length){
+    r.className='result show no';
+    r.innerHTML=unplaced.map(s=>esc(s.co)).join(', ')+(unplaced.length>1?' are':' is')+' on the list, <b>not on the map</b>.';
+  }else{
+    r.className='result show no';
+    r.innerHTML='Nothing on the map matches "<b>'+esc(q)+'</b>"'+(mfilter!=='all'?' under '+MFL[mfilter]:'')+'.';
+  }
+}
+const msEl=document.getElementById('msearch');
+msEl.addEventListener('input',()=>{msearch=msEl.value.trim().toLowerCase();applyMapFocus(true);});
+msEl.addEventListener('keydown',e=>{if(e.key==='Enter')msEl.blur();});
+document.getElementById('mclearx').addEventListener('click',()=>{msEl.value='';msearch='';applyMapFocus(true);msEl.focus();});
+document.querySelectorAll('#mfilters .chip').forEach(c=>c.addEventListener('click',()=>{
+  mfilter=c.dataset.mf; document.querySelectorAll('#mfilters .chip').forEach(x=>x.classList.toggle('on',x===c)); applyMapFocus(false); }));
+
 const searchEl=document.getElementById('search');
 searchEl.addEventListener('input',()=>{search=searchEl.value.trim().toLowerCase();renderList();});
 const codeOut=document.getElementById('codeout'), codeIn=document.getElementById('codein');
