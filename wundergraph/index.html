@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Governing Federation at Scale | WunderGraph</title>
+<meta name="description" content="Your input shapes an unbiased, vendor-agnostic view of Federation in practice across organizations at every maturity stage.">
+<meta property="og:title" content="Governing Federation at Scale">
+<meta property="og:description" content="Your input shapes an unbiased, vendor-agnostic view of Federation in practice across organizations at every maturity stage.">
+<meta property="og:image" content="https://wundergraph.com/favicon.ico">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/wundergraph/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://wundergraph.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0510;
+  --bg2:#0C0510;
+  --deep:#020611;
+  --ink:#ffffff;
+  --body:#A0A0AC;
+  --muted:#757598;
+  --light:#CDCBD8;
+  --pink:#EC4899;
+  --pink2:#F472B6;
+  --violet:#8B5CF6;
+  --violet2:#A855F7;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(117,117,152,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(0,0,0,.4);
+  --sh-md:0 10px 30px rgba(236,72,153,.10);
+  --sh-lg:0 30px 80px rgba(139,92,246,.16);
+  --grad:linear-gradient(to right,var(--pink),var(--pink2),var(--violet));
+  --bar:linear-gradient(to right,var(--pink),var(--violet2));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--body);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* announce bar */
+.announce{background:var(--bar);color:#fff;font-size:13.5px;font-weight:500;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  min-height:40px;padding:8px 20px;text-align:center;flex-wrap:wrap;line-height:1.35}
+.announce b{font-weight:700}
+.announce .sep{opacity:.55}
+.announce a{text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:all .3s var(--ease)}
+.hdr.scrolled{background:rgba(11,5,16,.82);backdrop-filter:blur(12px);
+  border-bottom-color:var(--line);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.hdr-in{display:flex;align-items:center;gap:26px;height:64px}
+.brand{display:flex;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:16.5px;letter-spacing:-.01em;flex-shrink:0}
+.brand .mark{width:30px;height:30px;color:#fff;flex-shrink:0}
+.brand .mark svg{width:100%;height:100%}
+.nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500;color:var(--light);margin-left:6px}
+.nav a{display:inline-flex;align-items:center;gap:5px;transition:color .2s var(--ease)}
+.nav a:hover{color:#fff}
+.caret{width:9px;height:9px;opacity:.5}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.ghost{font-size:14.5px;font-weight:500;color:var(--light);transition:color .2s var(--ease)}
+.ghost:hover{color:#fff}
+.pill{display:inline-flex;align-items:center;justify-content:center;
+  background:var(--pink);border:1px solid var(--pink);border-radius:6px;
+  padding:9px 16px;font-size:14.5px;font-weight:600;transition:all .25s var(--ease);white-space:nowrap}
+.hdr-right a.pill{color:#fff}
+.hdr-right a.pill:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(236,72,153,.4)}
+
+/* dark wrap: hero + embed as ONE surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--bg);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -20% auto -30%;height:105%;
+  background:
+    linear-gradient(68deg,rgba(236,72,153,.26) 0%,rgba(236,72,153,0) 34%),
+    linear-gradient(74deg,rgba(139,92,246,.30) 6%,rgba(139,92,246,0) 42%),
+    linear-gradient(62deg,rgba(244,114,182,.14) 14%,rgba(244,114,182,0) 46%);
+  pointer-events:none;z-index:0}
+.dark-wrap::after{content:"";position:absolute;inset:auto -25% -30% 30%;height:80%;
+  background:radial-gradient(ellipse at bottom right,rgba(168,85,247,.20),transparent 62%);
+  pointer-events:none;z-index:0}
+.hero{padding:74px 0 40px;position:relative;z-index:2}
+.embed-sec{padding:8px 0 84px;position:relative;z-index:2}
+
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);border-radius:999px;padding:6px 14px 6px 11px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--light)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--pink);
+  box-shadow:0 0 0 0 rgba(236,72,153,.7);animation:pulse 1.9s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(236,72,153,0)}100%{box-shadow:0 0 0 0 rgba(236,72,153,0)}}
+
+h1{margin:22px 0 0;font-size:clamp(38px,6.2vw,72px);line-height:1.04;font-weight:700;
+  letter-spacing:-.025em;color:#fff;max-width:17ch}
+.sub{margin:20px 0 0;font-size:clamp(17px,2vw,21px);color:var(--light);max-width:52ch;line-height:1.5;font-weight:500}
+.streaming{margin:14px 0 0;font-size:15px;color:var(--muted)}
+.streaming b{color:var(--pink2);font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+  background:rgba(255,255,255,.03);border-radius:8px;padding:8px 13px;font-size:13.5px;color:var(--light);font-weight:500}
+.chip svg{width:14px;height:14px;opacity:.6;flex-shrink:0}
+
+.hero-grid{display:grid;grid-template-columns:1.32fr .68fr;gap:56px;align-items:start}
+.cd-card{border:1px solid var(--line);border-radius:14px;padding:24px;
+  background:linear-gradient(170deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  backdrop-filter:blur(6px);box-shadow:var(--sh-lg);margin-top:8px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 0}
+.cd .u{text-align:center;border:1px solid var(--line);border-radius:9px;padding:11px 4px;background:rgba(0,0,0,.28)}
+.cd .n{font-size:25px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;line-height:1.1;letter-spacing:-.02em}
+.cd .l{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:3px;font-weight:500}
+.live-now{font-size:19px;font-weight:700;color:var(--pink2);margin:12px 0 2px}
+.tz{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.5}
+.cal{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.cal a{flex:1 1 0;min-width:104px;text-align:center;border:1px solid var(--line);border-radius:8px;
+  padding:9px 10px;font-size:13px;font-weight:600;color:var(--light);transition:all .25s var(--ease);background:rgba(255,255,255,.02)}
+.cal a:hover{border-color:var(--pink);color:#fff;transform:translateY(-2px)}
+.cta-row{display:flex;gap:12px;margin:30px 0 0;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--pink);color:#fff;
+  border-radius:6px;padding:13px 24px;font-size:15.5px;font-weight:600;transition:all .28s var(--ease)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(236,72,153,.42)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);color:var(--light);
+  border-radius:6px;padding:13px 22px;font-size:15.5px;font-weight:600;transition:all .28s var(--ease);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);color:#fff;transform:translateY(-2px)}
+
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+#sequel_root iframe{border:none!important}
+
+/* pull-quote band */
+.quote-band{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:92px 0}
+.quote-band .q{font-size:clamp(40px,8.4vw,116px);line-height:.98;font-weight:800;letter-spacing:-.035em;
+  color:#fff;max-width:19ch}
+.quote-band .turn{margin:28px 0 0;font-size:18px;color:var(--body);max-width:60ch;line-height:1.62}
+.quote-band .src{margin-top:18px}
+
+/* lede */
+.lede{padding:96px 0;background:var(--bg)}
+.lede-grid{display:grid;grid-template-columns:190px 1fr;gap:56px;align-items:start}
+.side{position:sticky;top:92px}
+.side .rule{width:34px;height:2px;background:var(--pink);margin-bottom:14px}
+.lede-body{max-width:66ch}
+.lede-body p{margin:0 0 22px;font-size:18px;line-height:1.72;color:var(--body)}
+.lede-body p:first-child{font-size:21px;color:var(--light);line-height:1.62}
+.lede-body strong{color:#fff;font-weight:600}
+
+/* mechanism band */
+.mech{background:var(--deep);padding:96px 0;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.mech::after{content:"";position:absolute;inset:auto -10% -40% 20%;height:70%;
+  background:radial-gradient(ellipse,rgba(139,92,246,.16),transparent 64%);pointer-events:none}
+.mech h2{font-size:clamp(27px,3.8vw,42px);line-height:1.12;font-weight:700;letter-spacing:-.025em;color:#fff;margin:16px 0 0;max-width:24ch}
+.mech .lead{margin:18px 0 0;font-size:17.5px;color:var(--body);max-width:62ch;line-height:1.65}
+.flow{display:flex;align-items:center;gap:0;margin:56px 0 0;flex-wrap:wrap;position:relative;z-index:2}
+.node{border:1px solid var(--line);border-radius:11px;padding:17px 20px;background:rgba(255,255,255,.04);
+  min-width:150px;backdrop-filter:blur(4px)}
+.node .nl{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.node .nv{font-size:16px;font-weight:600;color:#fff;margin-top:5px;letter-spacing:-.01em}
+.node.accent{border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.1);box-shadow:var(--sh-md)}
+.dashes{flex:1 1 44px;min-width:44px;height:2px;
+  background-image:linear-gradient(90deg,var(--pink) 55%,transparent 0);
+  background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.8}
+@keyframes march{to{background-position:12px 0}}
+
+/* learn rows */
+.learn{padding:96px 0;background:var(--bg)}
+.learn h2{font-size:clamp(27px,3.8vw,42px);line-height:1.12;font-weight:700;letter-spacing:-.025em;color:#fff;margin:16px 0 44px;max-width:22ch}
+.rows{border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;
+  border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--pink);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:rgba(255,255,255,.022)}
+.row .num{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;color:var(--pink);letter-spacing:.05em;padding-top:5px;font-weight:500}
+.row .rt{font-size:20px;font-weight:600;color:#fff;line-height:1.32;letter-spacing:-.015em}
+.row .rb{font-size:16px;color:var(--body);line-height:1.62}
+
+/* speakers */
+.spk{padding:0 0 96px;background:var(--bg)}
+.spk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:38px}
+.spk-c{border-top:1px solid var(--line);padding-top:22px}
+.av{width:56px;height:56px;border-radius:50%;background:linear-gradient(140deg,rgba(236,72,153,.35),rgba(139,92,246,.3));
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#fff;font-size:17px;margin-bottom:16px}
+.spk-c .sn{font-size:17px;font-weight:600;color:#fff;letter-spacing:-.01em}
+.spk-c .st{font-size:14.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.ph{display:inline-block;margin-top:11px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--pink2);border:1px dashed rgba(236,72,153,.45);border-radius:5px;padding:3px 8px;font-weight:600}
+
+/* CTA band */
+.cta-band{background:var(--bar);padding:82px 0;text-align:center;position:relative;overflow:hidden}
+.cta-band h2{font-size:clamp(28px,4.4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.03em;color:#fff;margin:0 auto;max-width:22ch}
+.cta-band p{color:rgba(255,255,255,.92);font-size:17.5px;margin:18px auto 30px;max-width:54ch;line-height:1.6}
+.cta-band .btn-white{display:inline-flex;align-items:center;gap:9px;background:#fff;color:#0B0510;
+  border-radius:6px;padding:14px 30px;font-size:16px;font-weight:700;transition:all .28s var(--ease)}
+.cta-band .btn-white:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(0,0,0,.34)}
+
+/* footer */
+.ft{background:var(--deep);border-top:1px solid var(--line);padding:68px 0 30px;color:var(--muted)}
+.ft-grid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:40px}
+.ft-brand .mark{width:30px;height:30px;color:#fff}
+.ft-brand p{font-size:14.5px;margin:16px 0 0;max-width:30ch;line-height:1.6}
+.ft h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--light);margin:0 0 16px;font-weight:600}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft li{margin-bottom:10px}
+.ft li a{font-size:14px;transition:color .2s var(--ease)}
+.ft li a:hover{color:#fff}
+.ft-legal{margin-top:52px;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px}
+.ft-legal .lx{display:flex;gap:20px;flex-wrap:wrap}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .68s var(--ease),transform .68s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .nav,.ghost{display:none}
+  .hero-grid,.lede-grid{grid-template-columns:1fr;gap:34px}
+  .side{position:static}
+  .spk-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .row{grid-template-columns:44px 1fr;gap:16px}
+  .row .rb{grid-column:2}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .hero{padding:44px 0 32px}
+  .quote-band,.lede,.mech,.learn{padding:64px 0}
+  .ft-grid{grid-template-columns:1fr}
+  .announce{font-size:12.5px}
+  .cd .n{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span><b>Live Webinar</b> <span class="sep">·</span> Governing Federation at Scale</span>
+  <span class="sep">·</span>
+  <a href="#sequel_root">Save your seat →</a>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="https://wundergraph.com" target="_blank" rel="noopener">
+      <span class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M447.099 231.913C405.967 244.337 367.742 264.878 334.682 292.323C320.832 268.71 298.796 251.002 272.754 242.557C313.865 205.575 362.202 177.525 414.709 160.178C467.216 142.832 522.751 136.567 577.803 141.781C632.855 146.994 686.227 163.571 734.544 190.465C746.769 197.27 758.603 204.698 770.004 212.711C770.394 212.542 770.785 212.376 771.179 212.213C785.976 206.085 802.259 204.482 817.967 207.607C833.676 210.733 848.105 218.446 859.429 229.771C870.754 241.096 878.465 255.525 881.589 271.233C884.712 286.941 883.107 303.223 876.976 318.018C870.845 332.814 860.464 345.459 847.146 354.355C833.828 363.252 818.171 367.999 802.154 367.997C791.52 367.997 780.991 365.902 771.167 361.833C761.343 357.763 752.417 351.799 744.898 344.28C737.379 336.76 731.415 327.834 727.347 318.01C723.279 308.186 721.186 297.657 721.187 287.024C721.187 282.871 721.506 278.742 722.135 274.672C713.657 268.849 704.889 263.426 695.859 258.426C658.269 237.612 616.889 224.541 574.163 219.988C531.437 215.434 488.232 219.489 447.099 231.913ZM319.489 348.564C319.489 363.809 315.185 378.728 307.094 391.613L323.693 420.326C307.59 439.476 285.501 452.638 260.995 457.683L244.582 429.298C237.31 429.844 229.959 429.408 222.73 427.971C207.024 424.848 192.597 417.138 181.273 405.816C169.949 394.495 162.237 380.069 159.112 364.365C155.986 348.661 157.588 332.382 163.715 317.588C169.841 302.794 180.217 290.149 193.531 281.251C206.845 272.354 222.498 267.604 238.511 267.601C249.145 267.6 259.674 269.693 269.499 273.761C279.324 277.829 288.251 283.793 295.77 291.311C303.29 298.829 309.255 307.755 313.325 317.578C317.394 327.402 319.489 337.931 319.489 348.564ZM260.998 457.685L400.599 699.132L442.692 772.036L484.794 699.132L537.279 608.237L589.621 698.805L631.691 771.687L673.783 698.794L744.391 576.462H859.708C861.079 564.36 861.767 552.19 861.769 540.01C861.771 527.83 861.08 515.66 859.697 503.558H702.288L694.971 516.229L631.67 625.857L579.327 535.278L537.235 462.374L495.208 535.289L442.692 626.184L323.7 420.328C307.596 439.478 285.506 452.64 260.998 457.685ZM861.77 540.003C861.768 552.183 861.08 564.353 859.709 576.455H937.128V503.551H859.709C861.088 515.653 861.776 527.823 861.77 540.003ZM937.154 503.558H938.332C939.411 515.563 940 527.721 940 540.01C940 760.902 760.967 940 540.027 940C319.088 940 140 760.924 140 540.031C139.942 500.879 145.66 461.933 156.968 424.449C175.493 444.394 200.696 456.845 227.794 459.44C221.851 485.163 218.231 515.061 218.231 540.01C218.231 717.668 362.259 861.764 540.038 861.764C705.462 861.764 841.629 736.99 859.731 576.462H937.154V503.558Z" fill="currentColor"></path></svg></span>
+      WunderGraph
+    </a>
+    <nav class="nav">
+      <a href="https://wundergraph.com/cosmo" target="_blank" rel="noopener">Cosmo</a>
+      <a href="https://wundergraph.com/hub" target="_blank" rel="noopener">Hub</a>
+      <a href="https://wundergraph.com/solutions/govern-at-scale" target="_blank" rel="noopener">Solutions
+        <svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://wundergraph.com/events" target="_blank" rel="noopener">Resources
+        <svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://wundergraph.com/pricing" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://wundergraph.com/blog" target="_blank" rel="noopener">Blog</a>
+    </nav>
+    <div class="hdr-right">
+      <a class="ghost" href="https://cosmo.wundergraph.com/login" target="_blank" rel="noopener">Login</a>
+      <a class="pill" href="https://wundergraph.com/contact/sales" target="_blank" rel="noopener">Talk to an Expert</a>
+    </div>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span><span id="badgeText">Live Webinar</span></span>
+        <h1>Governing Federation <span class="grad">at Scale</span></h1>
+        <p class="sub">Build and run your supergraph with governance and no lock-in.</p>
+        <p class="streaming">Streaming live and on-demand on <b>wundergraph.com</b></p>
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="3.2" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.6h12M5.4 1.8v2.6M10.6 1.8v2.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="chipDate">Thursday, October 8, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.6V8l2.4 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="chipTime">9:00 AM PT</span></span>
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9.6 4.6 13 8l-3.4 3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>45 minutes</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn-primary" href="#sequel_root">Save your seat
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9.6 4.6 13 8l-3.4 3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn-ghost" href="https://wundergraph.com/state-of-graphql-federation/2026" target="_blank" rel="noopener">Take the survey</a>
+        </div>
+      </div>
+      <aside class="cd-card">
+        <div class="mono" id="cdLabel">Starts in</div>
+        <div class="cd" id="cd">
+          <div class="u"><div class="n" id="dd">00</div><div class="l">Days</div></div>
+          <div class="u"><div class="n" id="hh">00</div><div class="l">Hrs</div></div>
+          <div class="u"><div class="n" id="mm">00</div><div class="l">Min</div></div>
+          <div class="u"><div class="n" id="ss">00</div><div class="l">Sec</div></div>
+        </div>
+        <div class="live-now" id="liveNow" style="display:none">We're live now, join below</div>
+        <div class="tz" id="tzLine"></div>
+        <div class="cal" id="calBtns">
+          <a id="gcal" href="#" target="_blank" rel="noopener">Google Calendar</a>
+          <a id="ical" href="#" download="wundergraph-webinar.ics">Apple / Outlook</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="quote-band">
+  <div class="wrap reveal">
+    <div class="mono">WunderGraph Events</div>
+    <p class="q">Federation, governance, and change <span class="grad">at scale.</span></p>
+    <p class="turn">That is who turns up to these sessions. The hard part was never getting engineers interested in Federation. It is keeping the conversation, and the recording, somewhere your team actually controls.</p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side reveal">
+      <div class="rule"></div>
+      <div class="mono">The session</div>
+    </div>
+    <div class="lede-body reveal">
+      <p>The State of Federation 2026 survey captures how organizations adopt, operate, and scale Federated GraphQL architectures.</p>
+      <p>Your input shapes an <strong>unbiased, vendor-agnostic view of Federation in practice</strong> across organizations at every maturity stage. This session walks through what the survey is asking and why, then opens the floor to the engineers and platform teams living with those answers day to day.</p>
+      <p>Bring your own architecture. The most useful 45 minutes on this topic tends to be the one where somebody describes the thing that broke in production, and four other people recognise it immediately.</p>
+      <p>For every valid survey completed, WunderGraph donates <strong>$30 to UNICEF</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap reveal">
+    <div class="mono">The mechanism</div>
+    <h2>From scattered subgraphs to one governed supergraph</h2>
+    <p class="lead">Schema changes get proposed, checked against composition, and promoted through the registry before anything reaches the router. Governance is a gate in the path, not a meeting after the fact.</p>
+    <div class="flow stagger">
+      <div class="node"><div class="nl">Teams</div><div class="nv">Subgraphs</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="nl">Checks</div><div class="nv">Composition</div></div>
+      <div class="dashes"></div>
+      <div class="node accent"><div class="nl">Cosmo</div><div class="nv">Schema Registry</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="nl">Runtime</div><div class="nv">Cosmo Router</div></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="nl">Visibility</div><div class="nv">Studio</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono">What we're exploring</div>
+      <h2>Four questions on the table</h2>
+    </div>
+    <div class="rows reveal">
+      <div class="row">
+        <div class="num">01</div>
+        <div class="rt">Governing schema changes</div>
+        <div class="rb">How are teams governing schema changes and enforcing policies at scale?</div>
+      </div>
+      <div class="row">
+        <div class="num">02</div>
+        <div class="rt">Production reality</div>
+        <div class="rb">What's working and what's breaking in production Federation environments?</div>
+      </div>
+      <div class="row">
+        <div class="num">03</div>
+        <div class="rt">AI and LLM traffic</div>
+        <div class="rb">How is AI and LLM traffic reshaping architectural requirements and exposing weaknesses?</div>
+      </div>
+      <div class="row">
+        <div class="num">04</div>
+        <div class="rt">Justifying the spend</div>
+        <div class="rb">How are organizations justifying Federation spend and measuring success?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spk">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono">Speakers</div>
+    </div>
+    <div class="spk-grid stagger">
+      <div class="spk-c">
+        <div class="av">WG</div>
+        <div class="sn">Speaker name</div>
+        <div class="st">Title, WunderGraph</div>
+        <span class="ph">Placeholder</span>
+      </div>
+      <div class="spk-c">
+        <div class="av">WG</div>
+        <div class="sn">Speaker name</div>
+        <div class="st">Title, WunderGraph</div>
+        <span class="ph">Placeholder</span>
+      </div>
+      <div class="spk-c">
+        <div class="av">G</div>
+        <div class="sn">Guest speaker</div>
+        <div class="st">Platform engineering leader</div>
+        <span class="ph">Placeholder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Keep the audience on wundergraph.com</h2>
+    <p>Live and on-demand in one place, on your own domain, with the engagement data attached to the people who showed up.</p>
+    <a class="btn-white" href="#sequel_root">Save your seat
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9.6 4.6 13 8l-3.4 3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M447.099 231.913C405.967 244.337 367.742 264.878 334.682 292.323C320.832 268.71 298.796 251.002 272.754 242.557C313.865 205.575 362.202 177.525 414.709 160.178C467.216 142.832 522.751 136.567 577.803 141.781C632.855 146.994 686.227 163.571 734.544 190.465C746.769 197.27 758.603 204.698 770.004 212.711C770.394 212.542 770.785 212.376 771.179 212.213C785.976 206.085 802.259 204.482 817.967 207.607C833.676 210.733 848.105 218.446 859.429 229.771C870.754 241.096 878.465 255.525 881.589 271.233C884.712 286.941 883.107 303.223 876.976 318.018C870.845 332.814 860.464 345.459 847.146 354.355C833.828 363.252 818.171 367.999 802.154 367.997C791.52 367.997 780.991 365.902 771.167 361.833C761.343 357.763 752.417 351.799 744.898 344.28C737.379 336.76 731.415 327.834 727.347 318.01C723.279 308.186 721.186 297.657 721.187 287.024C721.187 282.871 721.506 278.742 722.135 274.672C713.657 268.849 704.889 263.426 695.859 258.426C658.269 237.612 616.889 224.541 574.163 219.988C531.437 215.434 488.232 219.489 447.099 231.913ZM319.489 348.564C319.489 363.809 315.185 378.728 307.094 391.613L323.693 420.326C307.59 439.476 285.501 452.638 260.995 457.683L244.582 429.298C237.31 429.844 229.959 429.408 222.73 427.971C207.024 424.848 192.597 417.138 181.273 405.816C169.949 394.495 162.237 380.069 159.112 364.365C155.986 348.661 157.588 332.382 163.715 317.588C169.841 302.794 180.217 290.149 193.531 281.251C206.845 272.354 222.498 267.604 238.511 267.601C249.145 267.6 259.674 269.693 269.499 273.761C279.324 277.829 288.251 283.793 295.77 291.311C303.29 298.829 309.255 307.755 313.325 317.578C317.394 327.402 319.489 337.931 319.489 348.564ZM260.998 457.685L400.599 699.132L442.692 772.036L484.794 699.132L537.279 608.237L589.621 698.805L631.691 771.687L673.783 698.794L744.391 576.462H859.708C861.079 564.36 861.767 552.19 861.769 540.01C861.771 527.83 861.08 515.66 859.697 503.558H702.288L694.971 516.229L631.67 625.857L579.327 535.278L537.235 462.374L495.208 535.289L442.692 626.184L323.7 420.328C307.596 439.478 285.506 452.64 260.998 457.685ZM861.77 540.003C861.768 552.183 861.08 564.353 859.709 576.455H937.128V503.551H859.709C861.088 515.653 861.776 527.823 861.77 540.003ZM937.154 503.558H938.332C939.411 515.563 940 527.721 940 540.01C940 760.902 760.967 940 540.027 940C319.088 940 140 760.924 140 540.031C139.942 500.879 145.66 461.933 156.968 424.449C175.493 444.394 200.696 456.845 227.794 459.44C221.851 485.163 218.231 515.061 218.231 540.01C218.231 717.668 362.259 861.764 540.038 861.764C705.462 861.764 841.629 736.99 859.731 576.462H937.154V503.558Z" fill="currentColor"></path></svg></span>
+        <p>GraphQL Federation, built to govern. Build and run your supergraph with governance and no lock-in.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="https://wundergraph.com/router-gateway" target="_blank" rel="noopener">Cosmo Router</a></li>
+          <li><a href="https://wundergraph.com/studio" target="_blank" rel="noopener">Cosmo Studio</a></li>
+          <li><a href="https://wundergraph.com/connect" target="_blank" rel="noopener">Cosmo Connect</a></li>
+          <li><a href="https://wundergraph.com/mcp-gateway" target="_blank" rel="noopener">MCP Gateway</a></li>
+          <li><a href="https://wundergraph.com/pricing" target="_blank" rel="noopener">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://wundergraph.com/graphql-federation" target="_blank" rel="noopener">GraphQL Federation Guide</a></li>
+          <li><a href="https://wundergraph.com/state-of-graphql-federation/2026" target="_blank" rel="noopener">State of GraphQL Federation 2026</a></li>
+          <li><a href="https://wundergraph.com/the-good-thing" target="_blank" rel="noopener">The Good Thing Podcast</a></li>
+          <li><a href="https://github.com/wundergraph/cosmo" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://wundergraph.com/answers" target="_blank" rel="noopener">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://wundergraph.com/blog/series-a-announcement" target="_blank" rel="noopener">Why WunderGraph</a></li>
+          <li><a href="https://wundergraph.com/services" target="_blank" rel="noopener">Professional Services</a></li>
+          <li><a href="https://wundergraph.com/blog" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://wundergraph.com/customers" target="_blank" rel="noopener">Customers</a></li>
+          <li><a href="https://wundergraph.com/jobs" target="_blank" rel="noopener">Jobs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://wundergraph.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://trust.wundergraph.com" target="_blank" rel="noopener">Trust Center</a></li>
+          <li><a href="https://wundergraph.com/terms" target="_blank" rel="noopener">Website Terms of Use</a></li>
+          <li><a href="https://wundergraph.com/cookies" target="_blank" rel="noopener">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-legal">
+      <div>© 2026 WunderGraph. All rights reserved.</div>
+      <div class="lx">
+        <a href="https://wundergraph.com/events" target="_blank" rel="noopener">Webinars &amp; Events</a>
+        <a href="https://status.wundergraph.com/" target="_blank" rel="noopener">Platform Status</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="sequel_root_anchor" hidden></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+/* ---- single source of truth for the event ---- */
+var EVENT = {
+  title: "Governing Federation at Scale",
+  desc: "The State of Federation 2026 survey captures how organizations adopt, operate, and scale Federated GraphQL architectures.",
+  url: "https://sequel-demo.github.io/webinar-on/wundergraph/",
+  start: new Date("2026-10-08T09:00:00-07:00"),
+  end: new Date("2026-10-08T09:45:00-07:00"),
+  statedTime: "9:00 AM PT",
+  statedDate: "Thursday, October 8, 2026"
+};
+
+/* ---- Sequel embed (dark surface) ---- */
+document.addEventListener("DOMContentLoaded", function(){
+  try { Sequel.renderEvent({ eventId: "a49d8688-11b4-4e4f-af4a-7be67c8dce7a" }); } catch(e){}
+});
+
+/* ---- kill the iframe hairline inside the open shadow DOM ---- */
+(function stripBorder(){
+  var host = document.getElementById("sequel_root");
+  var c = host && host.firstElementChild;
+  if (c && c.shadowRoot){
+    var st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+
+/* ---- sticky header ---- */
+var hdr = document.getElementById("hdr");
+function onScroll(){ hdr.classList.toggle("scrolled", window.scrollY > 8); }
+window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+/* ---- viewer timezone line ---- */
+(function(){
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var local = new Intl.DateTimeFormat(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(EVENT.start);
+    document.getElementById("tzLine").textContent = "Your time: " + local + (tz ? " (" + tz + ")" : "");
+  }catch(e){}
+})();
+
+/* ---- calendar links, both built from EVENT ---- */
+(function(){
+  function z(n){ return String(n).padStart(2,"0"); }
+  function utc(d){ return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+"T"+z(d.getUTCHours())+z(d.getUTCMinutes())+"00Z"; }
+  var range = utc(EVENT.start)+"/"+utc(EVENT.end);
+  document.getElementById("gcal").href =
+    "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+
+    "&dates="+range+"&details="+encodeURIComponent(EVENT.desc+"\n\n"+EVENT.url)+
+    "&location="+encodeURIComponent(EVENT.url);
+  var ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WunderGraph//Webinar//EN","BEGIN:VEVENT",
+    "UID:"+Date.now()+"@wundergraph.com","DTSTAMP:"+utc(new Date()),
+    "DTSTART:"+utc(EVENT.start),"DTEND:"+utc(EVENT.end),
+    "SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.desc,"URL:"+EVENT.url,"LOCATION:"+EVENT.url,
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById("ical").href = "data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+})();
+
+/* ---- countdown, degrading to on-demand once the date passes ---- */
+(function(){
+  var cd=document.getElementById("cd"), label=document.getElementById("cdLabel"),
+      live=document.getElementById("liveNow"), cal=document.getElementById("calBtns"),
+      badge=document.getElementById("badgeText");
+  function stale(){
+    cd.style.display="none"; cal.style.display="none";
+    label.textContent="On Demand";
+    live.style.display="block"; live.textContent="Watch the recording below";
+    badge.textContent="On Demand";
+    document.querySelectorAll('.announce b').forEach(function(b){ b.textContent="On Demand"; });
+  }
+  function tick(){
+    var diff = EVENT.start - new Date();
+    if (diff <= 0){
+      if (new Date() > EVENT.end){ stale(); return; }
+      cd.style.display="none"; cal.style.display="none";
+      label.textContent="Happening now"; live.style.display="block";
+      badge.textContent="Live now";
+      setTimeout(tick, 30000); return;
+    }
+    var s=Math.floor(diff/1000);
+    document.getElementById("dd").textContent=String(Math.floor(s/86400)).padStart(2,"0");
+    document.getElementById("hh").textContent=String(Math.floor(s%86400/3600)).padStart(2,"0");
+    document.getElementById("mm").textContent=String(Math.floor(s%3600/60)).padStart(2,"0");
+    document.getElementById("ss").textContent=String(s%60).padStart(2,"0");
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+
+/* ---- scroll reveal ---- */
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll(".reveal,.stagger").forEach(function(el,i){
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add("in"); }
+    else io.observe(el);
+  });
+  document.querySelectorAll(".stagger").forEach(function(g){
+    Array.prototype.forEach.call(g.children, function(c,i){ c.style.transitionDelay=(i*70)+"ms"; });
+  });
+})();
+</script>
+</body>
+</html>
