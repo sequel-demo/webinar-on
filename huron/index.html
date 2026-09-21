@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Winning with AI and Business Model Transformation | Huron</title>
+<meta property="og:title" content="Winning with AI and Business Model Transformation">
+<meta property="og:description" content="AI will create, destroy, and redefine business models. A live Huron/Innosight webcast on moving beyond individual use cases to real transformation.">
+<meta property="og:image" content="https://edge.sitecorecloud.io/huronconsule9d4-hurone7d4-prod317d-47fe/media/project/hcg/shared/huron-light.svg?iar=0">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/huron/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.huronconsultinggroup.com/aubergine.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#5D013A;
+  --maroon-deep:#370022;
+  --coral:#DB354D;
+  --cream:#F7F6F4;
+  --cream-text:#EBE9E4;
+  --ink:#241019;
+  --muted:#6b5a63;
+  --line:#e7e0e3;
+  --sh-sm:0 2px 8px rgba(55,0,34,.08);
+  --sh-md:0 12px 32px rgba(55,0,34,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+h1,h2,h3{font-family:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;margin:0;letter-spacing:-.02em}
+p{margin:0}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.mono{font-family:'Roboto Mono',monospace;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 20px}}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(1){transition-delay:.03s}
+.stagger.in>*:nth-child(2){transition-delay:.11s}
+.stagger.in>*:nth-child(3){transition-delay:.19s}
+.stagger.in>*:nth-child(4){transition-delay:.27s}
+.stagger.in>*:nth-child(5){transition-delay:.35s}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.reveal,.stagger>*{opacity:1;transform:none}}
+
+.announce{background:var(--coral);color:#fff;font-size:13.5px;font-weight:600;text-align:center;padding:9px 16px}
+.announce a{text-decoration:underline;text-underline-offset:2px}
+
+.util{background:var(--cream);border-bottom:1px solid var(--line)}
+.util-row{display:flex;justify-content:flex-end;gap:22px;padding:7px 0;font-size:12.5px;color:var(--muted)}
+.util-row a:hover{color:var(--ink)}
+@media(max-width:900px){.util{display:none}}
+
+header{position:sticky;top:0;z-index:50;background:rgba(93,1,58,.96);backdrop-filter:blur(10px);transition:box-shadow .3s var(--ease)}
+header.scrolled{box-shadow:var(--sh-md)}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo-link img{height:22px;width:auto}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14.5px;font-weight:500;color:#fff}
+.nav-right{display:flex;align-items:center;gap:18px}
+.search-btn{width:40px;height:40px;border-radius:8px;background:var(--coral);display:flex;align-items:center;justify-content:center}
+.search-btn svg{width:16px;height:16px;stroke:#fff}
+.pill{background:var(--coral);color:#fff !important;font-weight:600;font-size:14px;padding:11px 20px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(219,53,77,.35)}
+@media(max-width:900px){.nav-links{display:none}}
+
+.dark-wrap{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--maroon) 0%,var(--maroon-deep) 100%);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:80%;
+  background:radial-gradient(circle,rgba(219,53,77,.30),transparent 65%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;
+  background:radial-gradient(circle,rgba(93,1,58,.5),transparent 65%);pointer-events:none}
+.hero{padding:64px 0 40px;position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(219,53,77,.16);border:1px solid rgba(219,53,77,.5);color:#ff90a1;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px 7px 11px;border-radius:99px;margin-bottom:22px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--coral);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+.hero h1{font-size:clamp(32px,4.8vw,54px);font-weight:700;line-height:1.08;max-width:16ch;margin-bottom:22px;color:var(--cream-text)}
+.hero h1 em{font-style:normal;color:#ff90a1}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;color:rgba(255,255,255,.72);font-size:14.5px;margin-bottom:26px}
+.meta-row span{display:flex;align-items:center;gap:7px}
+.meta-row svg{width:15px;height:15px;opacity:.7}
+.hero-sub{color:rgba(255,255,255,.6);font-size:14.5px;margin-bottom:30px;max-width:46ch}
+
+.countdown{display:flex;gap:10px;margin-bottom:30px}
+.cd-tile{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:12px 0 10px;width:72px;text-align:center}
+.cd-n{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.cd-l{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px}
+.cd-live{font-weight:700;color:#ff90a1;font-size:16px;display:flex;align-items:center;gap:10px}
+
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:14px}
+.btn-primary{background:var(--coral);color:#fff;font-weight:700;font-size:15px;padding:15px 28px;border-radius:8px;display:inline-flex;align-items:center;gap:10px;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(219,53,77,.4);background:#ef4361}
+.btn-primary svg{width:15px;height:15px}
+.cal{display:flex;align-items:center;gap:8px}
+.cal-link{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.22);background:transparent;border-radius:999px;padding:9px 16px;font-weight:600;font-size:13px;color:#fff;transition:border-color .15s,transform .18s var(--ease)}
+.cal-link:hover{border-color:#ff90a1;transform:translateY(-2px)}
+.cal-link svg{width:13px;height:13px;stroke:#ff90a1}
+
+.embed-sec{padding:6px 0 78px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+
+.stat-band{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:74px 0}
+.stat-grid{display:flex;gap:60px;align-items:flex-end;flex-wrap:wrap}
+.stat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(60px,10vw,128px);line-height:.86;letter-spacing:-.03em;color:var(--ink)}
+.stat-num span{color:var(--coral)}
+.stat-copy{max-width:40ch;font-size:17px;color:var(--muted);padding-bottom:10px}
+.stat-source{margin-top:14px;font-size:12px;color:#a99aa1}
+
+.lede{padding:96px 0}
+.lede-grid{display:grid;grid-template-columns:200px 1fr;gap:48px}
+.lede-label{position:sticky;top:110px;align-self:start}
+.lede p{max-width:64ch;font-size:19px;color:#302730;line-height:1.75}
+.lede p+p{margin-top:22px}
+@media(max-width:800px){.lede-grid{grid-template-columns:1fr;gap:20px}.lede-label{position:static}}
+
+.mech{background:var(--maroon-deep);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(219,53,77,.28),transparent 55%);pointer-events:none}
+.mech-head{position:relative;z-index:2;max-width:52ch;margin-bottom:56px}
+.mech-head .mono{color:#ff90a1;font-size:12px;margin-bottom:14px;display:block}
+.mech-head h2{font-size:clamp(26px,3.6vw,38px);font-weight:700;line-height:1.15;color:var(--cream-text)}
+.flow{position:relative;z-index:2;display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:6px}
+.flow-node{flex:1 0 176px;padding:22px 20px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);position:relative}
+.flow-node .n{font-family:'Roboto Mono',monospace;font-size:12px;color:#ff90a1;font-weight:600;margin-bottom:10px;display:block}
+.flow-node .t{font-size:14.5px;font-weight:600;line-height:1.4;color:#fff}
+.dashes{height:2px;width:26px;flex:0 0 26px;align-self:center;background-image:linear-gradient(90deg,#ff90a1 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+@media(max-width:900px){.flow{flex-direction:column}.dashes{width:2px;height:26px;flex:0 0 26px;background-image:linear-gradient(180deg,#ff90a1 55%,transparent 0);background-size:2px 12px;animation:marchv 900ms linear infinite}@keyframes marchv{to{background-position:0 12px}}}
+
+.rows-sec{padding:96px 0}
+.rows-head{margin-bottom:12px;max-width:58ch}
+.rows-head .mono{color:var(--coral);font-size:12px;display:block;margin-bottom:14px}
+.rows-head h2{font-size:clamp(24px,3.2vw,34px);font-weight:700}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:32px 18px 32px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--coral);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:rgba(219,53,77,.03)}
+.row .idx{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:#d8cdd3}
+.row h3{font-size:18.5px;font-weight:700;margin-bottom:2px}
+.row p{color:var(--muted);font-size:15px}
+@media(max-width:760px){.row{grid-template-columns:36px 1fr;grid-template-areas:"idx title" ". body"}.row .idx{grid-area:idx}.row h3{grid-area:title}.row p{grid-area:body}}
+
+.speakers{padding:0 0 96px}
+.sp-head{margin-bottom:40px;max-width:52ch}
+.sp-head .mono{color:var(--coral);font-size:12px;display:block;margin-bottom:14px}
+.sp-head h2{font-size:clamp(24px,3.2vw,34px);font-weight:700}
+.sp-grid{display:flex;gap:44px;flex-wrap:wrap}
+.sp-card{display:flex;align-items:center;gap:18px;max-width:340px}
+.sp-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--maroon),var(--maroon-deep));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;flex:none}
+.sp-name{font-weight:700;font-size:16.5px}
+.sp-title{color:var(--muted);font-size:14px;margin-top:2px}
+
+.cta-band{background:var(--coral);color:#fff;padding:88px 0;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:100%;background:radial-gradient(circle,rgba(55,0,34,.22),transparent 65%)}
+.cta-band h2{position:relative;z-index:2;font-size:clamp(28px,4vw,42px);font-weight:700;max-width:22ch;margin:0 auto 30px}
+.cta-band .btn-primary{position:relative;z-index:2;background:var(--maroon-deep)}
+.cta-band .btn-primary:hover{background:#240016;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+
+footer{background:var(--maroon-deep);color:rgba(255,255,255,.55);padding:64px 0 30px;font-size:13.5px}
+.foot-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand img{height:20px;margin-bottom:14px}
+.foot-brand p{max-width:30ch;line-height:1.6}
+.foot-col h4{color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.05em;margin-bottom:16px}
+.foot-col a{display:block;color:rgba(255,255,255,.55);margin-bottom:11px}
+.foot-col a:hover{color:#fff}
+.foot-social{display:flex;gap:10px;margin-top:16px}
+.foot-social a{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
+.foot-social svg{width:15px;height:15px;stroke:#fff}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px}
+@media(max-width:900px){.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="announce">AI will redraw business models, not just workflows — see the five questions every leader should be asking. <a href="#register">Register free ↓</a></div>
+
+<div class="util">
+  <div class="wrap util-row">
+    <a href="#">Investor Relations</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Global</a>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a class="logo-link" href="#">
+      <img src="https://edge.sitecorecloud.io/huronconsule9d4-hurone7d4-prod317d-47fe/media/project/hcg/shared/huron-light.svg?iar=0" alt="Huron">
+    </a>
+    <div class="nav-links">
+      <a href="#">What We Do</a>
+      <a href="#">How We Think</a>
+      <a href="#">Who We Are</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-btn"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4-4" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="pill" href="#register">Register now</a>
+    </div>
+  </nav>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge reveal in"><span class="dot"></span>Live Webcast</div>
+      <h1 class="reveal in">Winning with AI and <em>Business Model Transformation</em></h1>
+      <div class="meta-row reveal in">
+        <span><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6"/></svg>Thursday, October 8, 2026 · 11:00 AM CT</span>
+        <span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6"/></svg>45 minutes, with live Q&A</span>
+      </div>
+      <p class="hero-sub reveal in">Streaming live and on-demand on huronconsultinggroup.com</p>
+
+      <div class="countdown reveal in" id="countdown">
+        <div class="cd-tile"><span class="cd-n" data-cd="d">00</span><span class="cd-l">Days</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="h">00</span><span class="cd-l">Hrs</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="m">00</span><span class="cd-l">Min</span></div>
+        <div class="cd-tile"><span class="cd-n" data-cd="s">00</span><span class="cd-l">Sec</span></div>
+      </div>
+
+      <div class="hero-actions reveal in">
+        <a class="btn-primary" id="register" href="#sequel_root"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"/></svg>Register now</a>
+        <div class="cal">
+          <a class="cal-link" id="gcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke-width="1.6"/><path d="M3 9h18M8 3v4M16 3v4" stroke-width="1.6"/></svg>Google Cal</a>
+          <a class="cal-link" id="ical" href="#" download="huron-ai-webcast.ics"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-width="1.6"/></svg>.ics</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+<script>
+(function stripBorder(){
+  const root = document.getElementById("sequel_root");
+  const c = root && root.firstElementChild;
+  if (c && c.shadowRoot){
+    const st = document.createElement("style");
+    st.textContent = "iframe.sequel-iframe{border:none !important}";
+    c.shadowRoot.appendChild(st);
+  } else { setTimeout(stripBorder, 200); }
+})();
+</script>
+
+<section class="stat-band">
+  <div class="wrap stat-grid reveal">
+    <div class="stat-num">$4.1<span>T</span></div>
+    <div>
+      <p class="stat-copy">AI is projected to affect 44% of the workforce and deliver a $4.1 trillion economic impact over the next three years — Morgan Stanley's estimate, cited in Huron and Innosight's own research on leading through AI transformation.</p>
+      <p class="stat-source">Source: Morgan Stanley, cited in Huron/Innosight's "A Leader's Guide to Capturing the Potential of AI"</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="lede-label mono" style="font-size:12px;color:var(--coral)">The session</div>
+    <div class="reveal">
+      <p>As AI transformation takes a top priority in the C-suite agenda, many forward-thinking companies are deploying a handful of individual use cases that promise to unlock meaningful value. Yet many are starting to feel that a use-case-by-use-case approach may be insufficient.</p>
+      <p>AI will drive paradigm shifts that create, destroy, and become fundamental to companies' business models, leaving winners and losers in its wake. In this webcast, Innosight's Ned Calder and Freddy Solis — authors of "Leading into the Age of AI" — offer practical guidance on moving beyond individual use cases to build sustainable competitive advantage with AI.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="mech-head reveal">
+      <span class="mono">The framework</span>
+      <h2>Five questions every leader is asking.</h2>
+    </div>
+    <div class="flow stagger">
+      <div class="flow-node"><span class="n">01</span><span class="t">Core vs. new AI value</span></div>
+      <div class="dashes"></div>
+      <div class="flow-node"><span class="n">02</span><span class="t">The right balance</span></div>
+      <div class="dashes"></div>
+      <div class="flow-node"><span class="n">03</span><span class="t">Beyond individual use cases</span></div>
+      <div class="dashes"></div>
+      <div class="flow-node"><span class="n">04</span><span class="t">Aligning senior leaders</span></div>
+      <div class="dashes"></div>
+      <div class="flow-node"><span class="n">05</span><span class="t">A successful AI program</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="rows-sec">
+  <div class="wrap">
+    <div class="rows-head reveal">
+      <span class="mono">What you'll learn</span>
+      <h2>The discussion questions driving this session.</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="idx">01</div>
+        <h3>What AI really means for your business</h3>
+        <p>How to understand AI's impact on the core business in the near term, and on new growth business models over the longer term.</p>
+      </div>
+      <div class="row">
+        <div class="idx">02</div>
+        <h3>The right balance of core and new</h3>
+        <p>What is the right balance of core and new uses of AI — and how much of each should a leadership team be funding right now.</p>
+      </div>
+      <div class="row">
+        <div class="idx">03</div>
+        <h3>Beyond individual use cases</h3>
+        <p>How to look past a use-case-by-use-case approach and build sustainable competitive advantage with AI instead.</p>
+      </div>
+      <div class="row">
+        <div class="idx">04</div>
+        <h3>A common language for senior leaders</h3>
+        <p>What it takes to align senior leaders around a common language and understanding of what AI transformation actually requires.</p>
+      </div>
+      <div class="row">
+        <div class="idx">05</div>
+        <h3>The elements of a successful AI program</h3>
+        <p>What separates a durable, well-governed AI program from a collection of disconnected pilots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sp-head reveal">
+      <span class="mono">Speakers</span>
+      <h2>Live from Huron and Innosight.</h2>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp-card">
+        <div class="sp-avatar">NC</div>
+        <div>
+          <div class="sp-name">Ned Calder</div>
+          <div class="sp-title">Managing Director, Huron / Innosight</div>
+        </div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-avatar">FS</div>
+        <div>
+          <div class="sp-name">Freddy Solis</div>
+          <div class="sp-title">Senior Director, Huron / Innosight</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Individual use cases won't carry you through the next paradigm shift.</h2>
+    <a class="btn-primary" href="#sequel_root">Register now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="https://edge.sitecorecloud.io/huronconsule9d4-hurone7d4-prod317d-47fe/media/project/hcg/shared/huron-light.svg?iar=0" alt="Huron">
+        <p>Huron is a global professional services firm that collaborates with organizations to help solve their most complex challenges and achieve their most ambitious goals.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M15 8h2V5h-2a4 4 0 00-4 4v2H9v3h2v7h3v-7h2.5l.5-3H14V9a1 1 0 011-1z" stroke-width="1.4"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 13v4" stroke-width="1.4"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="1.4"/><circle cx="12" cy="12" r="4" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>COMPANY</h4>
+        <a href="#">About us</a>
+        <a href="#">Our experts</a>
+        <a href="#">Innosight</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="foot-col">
+        <h4>EXPLORE</h4>
+        <a href="#">Industry</a>
+        <a href="#">Expertise</a>
+        <a href="#">Insights</a>
+        <a href="#">Investor relations</a>
+      </div>
+      <div class="foot-col">
+        <h4>LEGAL</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms and conditions</a>
+        <a href="#">Cookies policy</a>
+        <a href="#">Your privacy rights</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© Copyright 2026, All rights reserved by Huron.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const EVENT = {
+  title: "Winning with AI and Business Model Transformation",
+  start: "2026-10-08T11:00:00-05:00",
+  end: "2026-10-08T11:45:00-05:00",
+  startUTC: "20261008T160000Z",
+  endUTC: "20261008T164500Z",
+  details: "AI will create, destroy, and become fundamental to business models. Join Huron/Innosight's Ned Calder and Freddy Solis for a live webcast on moving beyond individual use cases to real business model transformation.",
+  location: "https://sequel-demo.github.io/webinar-on/huron/"
+};
+
+function pad(n){return String(n).padStart(2,"0")}
+function tick(){
+  const target = new Date(EVENT.start).getTime();
+  const now = Date.now();
+  const diff = target - now;
+  const el = document.getElementById("countdown");
+  if(diff <= 0){
+    el.innerHTML = '<div class="cd-live"><span class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--coral);display:inline-block;animation:pulse 1.6s infinite"></span>We\'re live now — join below</div>';
+    return;
+  }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor(diff%86400000/3600000);
+  const m = Math.floor(diff%3600000/60000);
+  const s = Math.floor(diff%60000/1000);
+  const map = {d,h,m,s};
+  el.querySelectorAll("[data-cd]").forEach(node=>{
+    node.textContent = pad(map[node.dataset.cd]);
+  });
+}
+tick();
+setInterval(tick,1000);
+
+function gcalUrl(ev){
+  const p = new URLSearchParams({
+    action:"TEMPLATE", text:ev.title,
+    dates:`${ev.startUTC}/${ev.endUTC}`,
+    details:ev.details, location:ev.location
+  });
+  return `https://calendar.google.com/calendar/render?${p.toString()}`;
+}
+function icsData(ev){
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT",
+    `DTSTART:${ev.startUTC}`,`DTEND:${ev.endUTC}`,
+    `SUMMARY:${ev.title}`,`DESCRIPTION:${ev.details}`,`LOCATION:${ev.location}`,
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+  return "data:text/calendar;charset=utf8," + encodeURIComponent(ics);
+}
+document.getElementById("gcal").href = gcalUrl(EVENT);
+document.getElementById("ical").href = icsData(EVENT);
+
+const header = document.getElementById("siteHeader");
+window.addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled", window.scrollY > 8);
+});
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+},{threshold:.15});
+document.querySelectorAll(".reveal, .stagger").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
