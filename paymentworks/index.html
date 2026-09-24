@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>What's Changed Since the Nacha Deadline | PaymentWorks</title>
+<meta name="description" content="Nacha raised the bar. Fraudsters continue to change the game.">
+<meta property="og:title" content="What's Changed Since the Nacha Deadline and What's Coming Next">
+<meta property="og:description" content="Nacha raised the bar. Fraudsters continue to change the game.">
+<meta property="og:image" content="https://www.paymentworks.com/wp-content/uploads/2026/08/Webinar-Nacha-updates_social_A.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/paymentworks/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.paymentworks.com/wp-content/uploads/2026/07/favicon-300x300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ===== Brand tokens: swap these five if the live-site hex differs ===== */
+:root{
+  --navy:#0B1F3F; --navy-2:#0F2A55; --ink:#0E1A2B; --accent:#2F6BFF; --mint:#19C29B;
+  --paper:#FFFFFF; --mist:#F3F6FB; --line:#DCE3EE; --muted:#5A6B82; --night:#070F1F;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 2px 8px rgba(11,31,63,.08); --sh-md:0 10px 30px rgba(11,31,63,.12); --sh-lg:0 24px 60px rgba(11,31,63,.22);
+  --display:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--display);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce */
+.announce{background:var(--accent);color:#fff;font-size:14px;text-align:center;padding:9px 16px}
+.announce a{font-weight:700;margin-left:10px;border-bottom:1.5px solid rgba(255,255,255,.7)}
+
+/* utility strip */
+.util{background:var(--navy);color:#C9D4E6;font-size:13px}
+.util .wrap{display:flex;justify-content:flex-end;align-items:center;gap:18px;height:36px}
+.util svg{width:15px;height:15px;fill:currentColor;display:block}
+.util a:hover{color:#fff}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:box-shadow .3s var(--ease)}
+header.nav.scrolled{box-shadow:var(--sh-md)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;transition:height .3s var(--ease)}
+header.nav.scrolled .wrap{height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--navy)}
+.logo img{width:30px;height:30px;border-radius:7px}
+.logo sup{font-size:9px;font-weight:600;margin-left:1px}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:15px;font-weight:600}
+.nav-links a{color:var(--ink);display:flex;align-items:center;gap:5px}
+.nav-links a:hover{color:var(--accent)}
+.caret{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);opacity:.6}
+.nav-links a.pill{background:var(--accent);color:#fff;padding:11px 22px;border-radius:999px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.nav-links a.pill:hover{color:#fff;transform:translateY(-2px);box-shadow:var(--sh-md)}
+.burger{display:none;background:none;border:0;width:34px;height:34px;cursor:pointer}
+.burger span{display:block;height:2px;background:var(--navy);margin:6px 4px;border-radius:2px}
+
+/* dark wrap: hero + embed as one surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:80%;background:radial-gradient(circle at 70% 40%,rgba(47,107,255,.38),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;background:radial-gradient(circle at 25% 60%,rgba(25,194,155,.16),transparent 62%);pointer-events:none}
+.hero{padding:70px 0 40px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:end}
+.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:999px;margin-bottom:24px}
+.dot{width:8px;height:8px;border-radius:50%;background:#FF4D5E;box-shadow:0 0 0 0 rgba(255,77,94,.6);animation:pulse 1.8s infinite}
+.badge.ondemand .dot{background:var(--mint);box-shadow:0 0 0 0 rgba(25,194,155,.6)}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,77,94,0)}100%{box-shadow:0 0 0 0 rgba(255,77,94,0)}}
+.kicker{color:#9FB3D1;margin-bottom:14px}
+h1{font-size:clamp(36px,5.2vw,64px);line-height:1.04;letter-spacing:-.03em;font-weight:800;max-width:15ch}
+.sub{margin-top:20px;font-size:18px;color:#C9D4E6;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600}
+.chip small{display:block;font-weight:500;color:#9FB3D1;font-size:12px}
+.streaming{margin-top:18px;font-size:14px;color:#9FB3D1}
+.streaming b{color:#fff}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer;border:0;font-family:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.btn .arr{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:13px}
+
+/* countdown / fraud card */
+.card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:26px;backdrop-filter:blur(6px)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.count div{text-align:center}
+.count b{display:block;font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.count span{color:#9FB3D1}
+.live-now{font-size:20px;font-weight:700;margin-top:10px}
+.card hr{border:0;border-top:1px solid rgba(255,255,255,.14);margin:22px 0}
+.ticker{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:#fff}
+.ticker-l{color:#9FB3D1;margin-top:4px}
+.localtime{font-size:13px;color:#9FB3D1;margin-top:12px}
+
+.embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+
+/* stat band */
+.stat{background:var(--paper);padding:110px 0 90px}
+.stat .num{font-size:clamp(64px,13vw,168px);font-weight:800;letter-spacing:-.045em;line-height:.92;color:var(--navy);font-variant-numeric:tabular-nums}
+.stat .num em{font-style:normal;color:var(--accent)}
+.stat .turn{margin-top:26px;font-size:clamp(20px,2.4vw,28px);font-weight:600;letter-spacing:-.01em;max-width:34ch;color:var(--ink)}
+.stat .src{margin-top:18px;color:var(--muted)}
+
+/* lede */
+.lede{background:var(--mist);padding:100px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:56px}
+.side{position:sticky;top:100px;align-self:start;color:var(--muted)}
+.side b{display:block;color:var(--navy);margin-top:8px;font-family:var(--display);font-size:15px;letter-spacing:0;text-transform:none}
+.body{max-width:65ch}
+.body p{font-size:19px;line-height:1.7;margin-bottom:22px;color:#233247}
+.body p:first-child{font-size:24px;line-height:1.5;font-weight:600;color:var(--navy);letter-spacing:-.01em}
+
+/* mechanism */
+.mech{background:var(--night);color:#fff;padding:110px 0;position:relative;overflow:hidden}
+.mech h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.03em;line-height:1.1;font-weight:800;max-width:22ch}
+.mech .intro{color:#9FB3D1;margin-top:16px;max-width:60ch;font-size:17px}
+.flow{display:flex;align-items:stretch;margin-top:60px}
+.node{flex:1;min-width:0}
+.node .n{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--navy-2);border:1px solid rgba(255,255,255,.14);font-family:var(--mono);font-size:13px}
+.node.hot .n{background:var(--accent);border-color:var(--accent)}
+.node h3{margin-top:20px;font-size:19px;font-weight:700;letter-spacing:-.01em}
+.node p{color:#9FB3D1;font-size:15px;margin-top:6px;max-width:26ch}
+.node .big{margin-top:14px;font-size:30px;font-weight:800;color:var(--mint);letter-spacing:-.02em}
+.link{flex:0 0 60px;display:flex;align-items:flex-start;padding-top:26px}
+.dashes{height:2px;width:100%;background-image:linear-gradient(90deg,var(--accent) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+
+/* learn rows */
+.learn{background:var(--paper);padding:110px 0}
+.learn h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;font-weight:800;color:var(--navy);margin-bottom:44px}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--accent);transition:width .5s var(--ease)}
+.row:hover{background:var(--mist)}
+.row:hover::before{width:100%}
+.row .i{color:var(--accent);padding-top:5px}
+.row h3{font-size:22px;letter-spacing:-.015em;line-height:1.25;color:var(--navy)}
+.row p{color:var(--muted);font-size:16.5px}
+
+/* speakers */
+.speakers{background:var(--mist);padding:100px 0}
+.speakers h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;font-weight:800;color:var(--navy);margin-bottom:40px}
+.sp-list{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.sp{display:flex;gap:22px;align-items:center;padding:26px 0;border-top:1px solid var(--line)}
+.av{flex:0 0 76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--accent));color:#fff;display:grid;place-items:center;font-weight:800;font-size:24px}
+.sp h3{font-size:20px;color:var(--navy);letter-spacing:-.01em}
+.sp p{color:var(--muted);font-size:15px;line-height:1.45}
+
+/* cta */
+.cta{background:var(--accent);color:#fff;padding:100px 0;text-align:left}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.cta h2{font-size:clamp(32px,4.4vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;max-width:16ch}
+.cta p{margin-top:12px;font-size:18px;opacity:.9}
+.btn-white{background:#fff;color:var(--navy)}
+.btn-white .arr{background:var(--accent);color:#fff}
+
+/* footer */
+footer{background:var(--navy);color:#C9D4E6;padding:70px 0 30px;font-size:15px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.f-brand .logo{color:#fff}
+.f-brand p{margin-top:16px;line-height:1.5}
+.f-brand .tag{color:#fff;font-weight:700;font-size:18px;line-height:1.3;margin-top:20px}
+footer ul{list-style:none}
+footer li{margin-bottom:12px}
+footer a:hover{color:#fff}
+.social{display:flex;gap:14px;margin-top:20px}
+.social svg{width:18px;height:18px;fill:currentColor}
+.legal{border-top:1px solid rgba(255,255,255,.12);margin-top:50px;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:#8FA2C0}
+.legal ul{display:flex;flex-wrap:wrap;gap:20px}
+.legal li{margin:0}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+.stagger.in>*:nth-child(6){transition-delay:.40s}.stagger.in>*:nth-child(7){transition-delay:.48s}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;background:#fff;padding:20px 28px 28px;gap:18px;box-shadow:var(--sh-md)}
+  .burger{display:block}
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .lede-grid{grid-template-columns:1fr;gap:18px}
+  .side{position:static}
+  .flow{flex-direction:column;gap:34px}
+  .link{display:none}
+  .row{grid-template-columns:44px 1fr;gap:10px 16px}
+  .row p{grid-column:2}
+  .sp-list{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .f-brand{grid-column:1/-1}
+}
+@media (max-width:520px){
+  .wrap{padding:0 20px}
+  .util .wrap{gap:14px}
+  .count b{font-size:26px}
+  .ticker{font-size:24px}
+  .hero{padding-top:48px}
+  #sequel_root{min-height:420px;border-radius:12px}
+  .announce{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce" id="announce">Watch on demand: What's Changed Since the Nacha Deadline and What's Coming Next<a href="#watch">Watch now</a></div>
+
+<div class="util"><div class="wrap">
+  <a href="https://www.linkedin.com/company/paymentworks/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+  <a href="https://www.youtube.com/@paymentworks2803" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.1V8.9L15.6 12z"/></svg></a>
+  <a href="mailto:info@paymentworks.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm16 2.9-8 5-8-5V17h16z"/></svg></a>
+  <a href="https://www.paymentworks.com/df/accounts/login/" target="_blank">Login</a>
+</div></div>
+
+<header class="nav" id="nav"><div class="wrap" style="position:relative">
+  <a class="logo" href="https://www.paymentworks.com/" target="_blank"><img src="https://www.paymentworks.com/wp-content/uploads/2026/07/favicon-300x300.png" alt="">PaymentWorks</a>
+  <nav class="nav-links" id="links">
+    <a href="https://www.paymentworks.com/product/" target="_blank">Product <i class="caret"></i></a>
+    <a href="https://www.paymentworks.com/who-we-serve/" target="_blank">Who We Serve</a>
+    <a href="https://www.paymentworks.com/what-we-do/" target="_blank">What We Do <i class="caret"></i></a>
+    <a href="https://www.paymentworks.com/resources/" target="_blank">Resources <i class="caret"></i></a>
+    <a href="https://www.paymentworks.com/why-trust-us/" target="_blank">Why Trust Us <i class="caret"></i></a>
+    <a href="https://www.paymentworks.com/about-us/" target="_blank">About Us <i class="caret"></i></a>
+    <a class="pill" href="https://www.paymentworks.com/contact/" target="_blank">Contact</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></header>
+
+<div class="dark-wrap" id="watch">
+  <section class="hero"><div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="badge mono" id="badge"><span class="dot"></span><span id="badgeText">Live Webinar</span></div>
+      <div class="kicker mono">PW Hosted</div>
+      <h1>What's Changed Since the Nacha Deadline and What's Coming Next</h1>
+      <p class="sub">Nacha raised the bar. Fraudsters continue to change the game.</p>
+      <div class="chips">
+        <div class="chip"><small>Date</small><span id="chipDate">September 3, 2026</span></div>
+        <div class="chip"><small>Time</small>2:00 pm ET</div>
+        <div class="chip"><small>Duration</small>60 minutes</div>
+      </div>
+      <p class="streaming">Streaming live and on-demand on <b>paymentworks.com</b></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#sequel_root" id="primaryCta">Save my seat <span class="arr">→</span></a>
+        <a class="btn btn-ghost" id="gcal" target="_blank">Google Calendar</a>
+        <a class="btn btn-ghost" id="ics" download="paymentworks-nacha-webinar.ics">iCal</a>
+      </div>
+    </div>
+    <aside class="card reveal">
+      <div id="countWrap">
+        <div class="mono" style="color:#9FB3D1" id="countLabel">Starts in</div>
+        <div class="count" id="count">
+          <div><b id="cd">00</b><span class="mono">Days</span></div>
+          <div><b id="ch">00</b><span class="mono">Hrs</span></div>
+          <div><b id="cm">00</b><span class="mono">Min</span></div>
+          <div><b id="cs">00</b><span class="mono">Sec</span></div>
+        </div>
+        <div class="localtime" id="localtime"></div>
+      </div>
+      <hr>
+      <div class="ticker" id="ticker">$325,466,496</div>
+      <div class="ticker-l mono">Fraud stopped to date</div>
+    </aside>
+  </div></section>
+  <section class="embed-sec"><div class="wrap">
+    <div id="sequel_root"></div>
+  </div></section>
+</div>
+
+<section class="stat"><div class="wrap reveal">
+  <div class="num">$325<em>M</em></div>
+  <p class="turn">in fraud stopped to date, and the fraudsters still aren't waiting for compliance to catch up.</p>
+  <p class="src mono">PaymentWorks, fraud stopped to date</p>
+</div></section>
+
+<section class="lede"><div class="wrap lede-grid">
+  <div class="side mono reveal">About the session<b>PW Hosted Webinar</b></div>
+  <div class="body reveal">
+    <p>Fraudsters aren't waiting for compliance to catch up. Even with new ACH fraud controls in place, they're using AI, social engineering, and vendor impersonation to find the next gap.</p>
+    <p>Join Nacha's Mark Dixon and Christopher Arehart of Chubb for a candid look at what's changed since the Rule took effect, where crime and cyber policies do, and don't, cover today's ACH fraud losses, and what it all means for finance and treasury teams.</p>
+  </div>
+</div></section>
+
+<section class="mech"><div class="wrap">
+  <div class="reveal">
+    <div class="mono" style="color:var(--mint);margin-bottom:16px">The trust infrastructure</div>
+    <h2>Vendor identity so secure we take the risk for fraudulent vendor payments</h2>
+    <p class="intro">Serving as the secure front door to your ERP, PaymentWorks combines vendor onboarding and maintenance, ACH risk transfer, and check-to-digital payment conversion.</p>
+  </div>
+  <div class="flow stagger">
+    <div class="node"><div class="n">01</div><h3>Automate onboarding and maintenance</h3><p>Suppliers change their details constantly. Records stay current without the chase.</p><div class="big">30%</div><p>of suppliers change info every year</p></div>
+    <div class="link"><div class="dashes"></div></div>
+    <div class="node hot"><div class="n">02</div><h3>Protect against fraud</h3><p>ACH payments indemnified. No claims. No hassle.</p><div class="big">Billions</div><p>of dollars indemnified</p></div>
+    <div class="link"><div class="dashes"></div></div>
+    <div class="node"><div class="n">03</div><h3>Optimize your payments</h3><p>Onboarding and payables strategy, married. Goodbye checks.</p><div class="big">85%</div><p>opt for electronic payment types</p></div>
+  </div>
+</div></section>
+
+<section class="learn"><div class="wrap">
+  <h2 class="reveal">What you'll learn</h2>
+  <div class="stagger">
+    <div class="row"><span class="i mono">01</span><h3>What's changed since the Rule took effect</h3><p>How the new ACH fraud controls are playing out in practice, straight from Nacha.</p></div>
+    <div class="row"><span class="i mono">02</span><h3>Where fraudsters are finding the next gap</h3><p>AI, social engineering, and vendor impersonation, and why controls alone don't close the door.</p></div>
+    <div class="row"><span class="i mono">03</span><h3>Where crime and cyber policies do, and don't, cover</h3><p>A carrier's view of today's ACH fraud losses and the coverage gaps finance teams overlook.</p></div>
+    <div class="row"><span class="i mono">04</span><h3>What it means for finance and treasury</h3><p>What's coming next, and how to keep trusted vendor records in your ERP as the rules keep moving.</p></div>
+  </div>
+</div></section>
+
+<section class="speakers"><div class="wrap">
+  <h2 class="reveal">Speakers</h2>
+  <div class="sp-list stagger">
+    <div class="sp"><div class="av">MD</div><div><h3>Mark Dixon</h3><p>Nacha</p></div></div>
+    <div class="sp"><div class="av">CA</div><div><h3>Christopher Arehart</h3><p>SVP, First Party Product Manager, North America Financial Lines, Chubb</p></div></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap reveal">
+  <div><h2>Ready to know your vendors?</h2><p>See what a vendor identity network looks like in practice.</p></div>
+  <a class="btn btn-white" href="https://www.paymentworks.com/self-guided-demo/?ref=home_know_your_vendors" target="_blank">Take the Tour <span class="arr">→</span></a>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="f-grid">
+    <div class="f-brand">
+      <a class="logo" href="https://www.paymentworks.com/" target="_blank"><img src="https://www.paymentworks.com/wp-content/uploads/2026/07/favicon-300x300.png" alt="">PaymentWorks</a>
+      <p class="tag">Vendor Identity<br>You Can Bank On<sup>TM</sup></p>
+      <p>280 Moody Street, Unit #5<br>Waltham, MA 02453</p>
+      <p><a href="https://help.paymentworks.com/contactsupport" target="_blank" style="text-decoration:underline">Get Support</a></p>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/paymentworks/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        <a href="https://www.youtube.com/@paymentworks2803" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.1V8.9L15.6 12z"/></svg></a>
+        <a href="mailto:info@paymentworks.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm16 2.9-8 5-8-5V17h16z"/></svg></a>
+      </div>
+    </div>
+    <ul><li><a href="https://www.paymentworks.com/who-we-serve/" target="_blank">Who We Serve</a></li><li><a href="https://www.paymentworks.com/what-we-do/" target="_blank">What We Do</a></li><li><a href="https://www.paymentworks.com/why-trust-us/" target="_blank">Why Trust Us</a></li><li><a href="https://www.paymentworks.com/about-us/" target="_blank">About Us</a></li></ul>
+    <ul><li><a href="https://www.paymentworks.com/blog/" target="_blank">Blog</a></li><li><a href="https://www.paymentworks.com/resources/" target="_blank">Resources</a></li><li><a href="https://www.paymentworks.com/contact/" target="_blank">Request a Demo</a></li><li><a href="https://www.paymentworks.com/get-paid/" target="_blank">Get Paid</a></li></ul>
+    <ul><li><a href="https://www.paymentworks.com/jobs/" target="_blank">Jobs</a></li><li><a href="https://www.paymentworks.com/partner/" target="_blank">Partnerships</a></li><li><a href="https://www.paymentworks.com/partner-referral/" target="_blank">Partner Referral</a></li><li><a href="https://www.paymentworks.com/events/" target="_blank">Events</a></li></ul>
+  </div>
+  <div class="legal">
+    <span>© 2026 PaymentWorks, Inc. All rights reserved.</span>
+    <ul><li><a href="https://www.paymentworks.com/privacy-policy/" target="_blank">Privacy Policy</a></li><li><a href="https://www.paymentworks.com/terms-of-service/" target="_blank">Terms of Service</a></li><li><a href="https://www.paymentworks.com/paymentworks-earlypay-terms-of-service/" target="_blank">PaymentWorks EarlyPay Terms of Service</a></li><li><a href="https://transparency-in-coverage.bluecrossma.com/" target="_blank">Transparency in Coverage</a></li></ul>
+  </div>
+</div></footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});
+(function stripBorder(){
+  const r=document.getElementById("sequel_root"),c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){const st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else setTimeout(stripBorder,200);
+})();
+
+const EVENT={title:"What's Changed Since the Nacha Deadline and What's Coming Next | PaymentWorks",
+  start:new Date("2026-09-03T14:00:00-04:00"),end:new Date("2026-09-03T15:00:00-04:00"),
+  details:"Nacha raised the bar. Fraudsters continue to change the game. Streaming on paymentworks.com.",
+  url:"https://sequel-demo.github.io/webinar-on/paymentworks/"};
+const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+document.getElementById("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+utc(EVENT.start)+"/"+utc(EVENT.end)+"&details="+encodeURIComponent(EVENT.details+" "+EVENT.url);
+const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//PaymentWorks//Webinar//EN","BEGIN:VEVENT","UID:pw-nacha@paymentworks","DTSTAMP:"+utc(new Date()),"DTSTART:"+utc(EVENT.start),"DTEND:"+utc(EVENT.end),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"URL:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ics").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+try{document.getElementById("localtime").textContent="Your time: "+EVENT.start.toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});}catch(e){}
+
+const pad=n=>String(n).padStart(2,"0");
+function tick(){
+  const now=new Date(),diff=EVENT.start-now;
+  if(now>EVENT.end){ // stale date: degrade to on-demand
+    document.getElementById("badge").classList.add("ondemand");
+    document.getElementById("badgeText").textContent="On Demand";
+    document.getElementById("countLabel").textContent="Recorded September 3, 2026";
+    document.getElementById("count").innerHTML='<div style="grid-column:1/-1;text-align:left" class="live-now">Watch the recording below</div>';
+    document.getElementById("localtime").textContent="";
+    document.getElementById("gcal").style.display="none";document.getElementById("ics").style.display="none";
+    document.getElementById("primaryCta").innerHTML='Watch on demand <span class="arr">→</span>';
+    return false;
+  }
+  if(diff<=0){document.getElementById("count").innerHTML='<div style="grid-column:1/-1;text-align:left" class="live-now">We\'re live now, join below</div>';
+    document.getElementById("badgeText").textContent="Live Now";return true;}
+  const s=Math.floor(diff/1000);
+  cd.textContent=pad(Math.floor(s/86400));ch.textContent=pad(Math.floor(s%86400/3600));cm.textContent=pad(Math.floor(s%3600/60));cs.textContent=pad(s%60);return true;
+}
+if(tick()){const t=setInterval(()=>{if(!tick())clearInterval(t)},1000);}
+
+// fraud-stopped ticker: counts up to their published figure on load
+(function(){const el=document.getElementById("ticker"),target=325466496;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const t0=performance.now(),dur=1800;
+  function f(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent="$"+Math.round(target*e).toLocaleString("en-US");if(p<1)requestAnimationFrame(f);}
+  requestAnimationFrame(f);})();
+
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>8),{passive:true});
+document.getElementById("burger").onclick=()=>document.getElementById("links").classList.toggle("open");
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
