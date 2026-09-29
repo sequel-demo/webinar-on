@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Email Coffee Break: Behind Great Email Programs | ZeroBounce</title>
+<meta name="description" content="What separates an average email program from a great one? Grab a cup of coffee and join ZeroBounce for a 30-minute conversation about what high-performing email teams consistently do differently.">
+<meta property="og:title" content="Email Coffee Break: Behind Great Email Programs">
+<meta property="og:description" content="What separates an average email program from a great one? Grab a cup of coffee and join ZeroBounce for a 30-minute conversation about what high-performing email teams consistently do differently.">
+<meta property="og:image" content="https://www.zerobounce.net/zerobounce-generic-thumbnail.jpg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/zerobounce/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.zerobounce.net/favicon.ico">
+<link rel="apple-touch-icon" href="https://www.zerobounce.net/apple-touch-icon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101112;--ink-2:#171E25;--body:#3A4048;--muted:#6B7280;
+  --purple:#5F2781;--purple-deep:#330D49;--purple-mid:#9255B7;--purple-soft:#EFE7FC;--indigo:#4B0082;
+  --yellow:#FBDD46;--yellow-hover:#F7D22A;
+  --lavender:#FBFBFE;--paper:#FFFFFF;--line:#E6E3EE;--line-dark:rgba(255,255,255,.14);
+  --green:#2E7D5B;--red:#E5484D;--amber:#F5A524;
+  --display:'Montserrat',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --text:'Nunito Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(51,13,73,.06),0 2px 8px rgba(51,13,73,.06);
+  --sh-md:0 6px 20px rgba(51,13,73,.12);
+  --sh-lg:0 24px 60px rgba(51,13,73,.28);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--text);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--text);font-weight:700;font-size:16px;line-height:1;padding:16px 26px;border-radius:var(--r);border:0;cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-yellow{background:var(--yellow);color:var(--ink-2)}
+.btn-yellow:hover{background:var(--yellow-hover)}
+.btn-purple{background:var(--purple-mid);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.btn svg{width:18px;height:18px}
+
+/* announce */
+.announce{background:linear-gradient(90deg,#5F2780,#7A3BA1,#5F2780);color:#fff;font-size:14px;text-align:center;padding:10px 16px;font-weight:600}
+.announce b{color:var(--yellow);font-weight:700}
+.announce a{text-decoration:underline;text-underline-offset:3px;margin-left:8px}
+.announce .full{display:inline}
+@media (max-width:640px){.announce .full{display:none}.announce{font-size:13px}}
+
+/* header (faithful to zerobounce.net) */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow .35s var(--ease),border-color .35s,padding .35s var(--ease)}
+.nav.scrolled{box-shadow:0 1px 0 var(--line),var(--sh-sm);background:rgba(255,255,255,.92)}
+.nav-in{display:flex;align-items:center;gap:22px;height:90px;transition:height .35s var(--ease)}
+.nav.scrolled .nav-in{height:72px}
+.logo img{width:140px;height:auto}
+.nav-links{display:flex;align-items:center;gap:26px;margin-left:12px}
+.nav-links a{font-weight:700;font-size:16px;color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--purple)}
+.nav-links svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;opacity:.7}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.nav-right .login{font-weight:700;font-size:16px;color:var(--ink);padding:0 10px;white-space:nowrap}
+.nav-right a.pill{font-weight:700;font-size:16px;padding:12px 20px;border-radius:8px;line-height:1;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.nav-right a.pill:hover{transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.nav-right a.pill.yellow{background:var(--yellow);color:var(--ink-2)}
+.nav-right a.pill.soft{background:var(--purple-soft);color:var(--indigo)}
+.burger{display:none;margin-left:auto;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:#fff;align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:2px;background:var(--ink);box-shadow:0 -6px 0 var(--ink),0 6px 0 var(--ink)}
+
+/* dark wrap: hero + embed as one surface */
+.dark-wrap{position:relative;overflow:hidden;color:#fff;background:linear-gradient(90deg,#330D49,#5F2780 50%,#330D49)}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:80%;background:radial-gradient(circle at 30% 40%,rgba(146,85,183,.55),transparent 60%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -25% -10%;height:70%;background:radial-gradient(circle at 70% 60%,rgba(251,221,70,.16),transparent 62%);pointer-events:none}
+.hero{padding:76px 0 36px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 16px 8px 12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.badge .dot{width:9px;height:9px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 0 rgba(251,221,70,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(251,221,70,.6)}70%{box-shadow:0 0 0 10px rgba(251,221,70,0)}100%{box-shadow:0 0 0 0 rgba(251,221,70,0)}}
+.hero h1{font-size:clamp(36px,4.4vw,56px);margin:26px 0 18px;letter-spacing:-.025em;color:#fff;max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--yellow)}
+.hero .lede{font-size:19px;color:rgba(255,255,255,.86);max-width:56ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 12px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:9px 14px;font-size:14px;font-weight:600}
+.chip svg{width:16px;height:16px;stroke:var(--yellow);fill:none;stroke-width:2}
+.stream{font-size:14px;color:rgba(255,255,255,.7);font-weight:600}
+.stream b{color:#fff;font-weight:700}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:28px}
+.cal{display:flex;align-items:center;gap:6px;font-size:14px;color:rgba(255,255,255,.75)}
+.cal a{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);font-weight:700;color:#fff;transition:background .25s}
+.cal a:hover{background:rgba(255,255,255,.12)}
+.cal svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* countdown */
+.countdown{display:flex;gap:10px;margin-top:26px}
+.cd{min-width:72px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 10px;text-align:center}
+.cd b{display:block;font-family:var(--display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.cd span{display:block;margin-top:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.cd-live{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--yellow)}
+
+/* signature device: reputation gauge card (their homepage widget) */
+.gauge-card{background:#fff;color:var(--ink);border-radius:22px;padding:26px 26px 22px;box-shadow:var(--sh-lg);position:relative;transform:rotate(-1.2deg);transition:transform .6s var(--ease)}
+.gauge-card:hover{transform:rotate(0) translateY(-4px)}
+.gauge-card .ready{position:absolute;top:-14px;right:22px;background:#E6F6EE;color:var(--green);border:1px solid #BFE8D2;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.gauge-card .ready::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+.gauge{width:100%;max-width:260px;margin:6px auto 0;display:block}
+.gauge-label{text-align:center;margin-top:-58px}
+.gauge-label small{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.gauge-label b{display:block;font-family:var(--display);font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--ink)}
+.gauge-label i{display:block;font-style:normal;font-size:12px;color:var(--green);font-weight:700}
+.scores{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+.scores .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px}
+.scores .hd svg{width:16px;height:16px;stroke:var(--purple);fill:none;stroke-width:2}
+.score{display:grid;grid-template-columns:70px 1fr 44px;align-items:center;gap:12px;font-size:13px;font-weight:600;color:var(--body);margin:8px 0}
+.bar{height:6px;background:#EEF0F4;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;width:0;transition:width 1.4s var(--ease)}
+.in .bar i{width:var(--w)}
+.score b{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.pin{position:absolute;left:-24px;top:34px;width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:var(--sh-md);display:flex;align-items:center;justify-content:center;animation:float 5s ease-in-out infinite}
+.pin.two{left:auto;right:-22px;top:118px;animation-delay:-2.2s}
+.pin svg{width:26px;height:26px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* embed */
+.embed-sec{padding:12px 0 84px;position:relative;z-index:2}
+#sequel_root{min-height:520px;width:100%;border-radius:16px;overflow:hidden}
+
+/* stat band */
+.stat-band{background:var(--lavender);padding:96px 0 88px;border-bottom:1px solid var(--line)}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:end}
+.stat-num{font-family:var(--display);font-weight:800;font-size:clamp(96px,14vw,168px);letter-spacing:-.05em;line-height:.9;color:var(--purple);font-variant-numeric:tabular-nums}
+.stat-num sup{font-size:.35em;vertical-align:top;top:.2em;position:relative;letter-spacing:-.02em;color:var(--purple-mid)}
+.stat-copy{max-width:58ch;padding-bottom:14px}
+.stat-copy .mono{color:var(--purple-mid);display:block;margin-bottom:14px}
+.stat-copy p{font-size:clamp(20px,2.2vw,26px);line-height:1.35;font-family:var(--display);font-weight:600;letter-spacing:-.015em;color:var(--ink)}
+.stat-copy small{display:block;margin-top:14px;font-size:13px;color:var(--muted)}
+
+/* lede editorial */
+.lede-sec{padding:96px 0}
+.ed{display:grid;grid-template-columns:220px 1fr;gap:56px}
+.side{position:sticky;top:110px;align-self:start}
+.side .mono{color:var(--purple);display:block}
+.side .pill-lbl{display:inline-block;margin-top:14px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-sm);border-radius:999px;padding:8px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:500}
+.prose{max-width:66ch}
+.prose h2{font-size:clamp(28px,3.4vw,42px);margin-bottom:22px;color:var(--ink)}
+.prose p{font-size:18px;color:var(--body);margin-bottom:18px}
+.prose p.big{font-size:22px;color:var(--ink);font-weight:600;font-family:var(--display);letter-spacing:-.015em;line-height:1.35}
+.prose .hl{background:linear-gradient(transparent 55%,rgba(251,221,70,.7) 55%);padding:0 2px}
+
+/* mechanism band (their 3 steps) */
+.mech{background:#14081D;color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:90%;background:radial-gradient(circle at 50% 30%,rgba(95,39,129,.6),transparent 60%);pointer-events:none}
+.mech .wrap{position:relative;z-index:2}
+.mech-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.mech-head .mono{color:var(--yellow);display:block;margin-bottom:14px}
+.mech-head h2{font-size:clamp(30px,3.6vw,46px);color:#fff}
+.mech-head p{font-size:17px;color:rgba(255,255,255,.72);max-width:48ch}
+.flow{display:grid;grid-template-columns:1fr 60px 1fr 60px 1fr;align-items:center;gap:0}
+.node{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:26px 24px;position:relative;transition:transform .5s var(--ease),border-color .3s}
+.node:hover{transform:translateY(-6px);border-color:rgba(251,221,70,.5)}
+.node .step{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:16px}
+.node.one .step{background:#1E6B5A;color:#fff}
+.node.two .step{background:var(--purple-mid);color:#fff}
+.node.three .step{background:var(--yellow);color:var(--ink-2)}
+.node .step svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4}
+.node h3{font-size:22px;color:#fff;margin-bottom:8px;letter-spacing:-.015em}
+.node p{font-size:15px;color:rgba(255,255,255,.7)}
+.dashes{height:2px;margin:0 8px;background-image:linear-gradient(90deg,var(--yellow) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;position:relative}
+.dashes::after{content:"";position:absolute;right:-2px;top:-4px;border:5px solid transparent;border-left:7px solid var(--yellow)}
+@keyframes march{to{background-position:12px 0}}
+.mech-foot{margin-top:56px;display:flex;flex-wrap:wrap;gap:14px 40px;font-size:14px;color:rgba(255,255,255,.62)}
+.mech-foot span{display:inline-flex;align-items:center;gap:8px}
+.mech-foot svg{width:16px;height:16px;stroke:var(--yellow);fill:none;stroke-width:2.2}
+
+/* learn rows */
+.learn{padding:96px 0}
+.learn-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px}
+.learn-head h2{font-size:clamp(30px,3.6vw,44px)}
+.learn-head .mono{color:var(--purple);display:block;margin-bottom:12px}
+.rows{border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--purple);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--lavender)}
+.row .n{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--purple-mid);padding-top:6px}
+.row h3{font-size:22px;letter-spacing:-.015em;color:var(--ink)}
+.row p{font-size:16.5px;color:var(--body)}
+
+/* speakers */
+.speakers{background:var(--lavender);padding:96px 0;border-top:1px solid var(--line)}
+.speakers .mono{color:var(--purple);display:block;margin-bottom:12px}
+.speakers h2{font-size:clamp(30px,3.6vw,44px);margin-bottom:12px}
+.speakers .sub{font-size:17px;color:var(--body);max-width:60ch;margin-bottom:44px}
+.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:900px}
+.sp{display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--sh-sm);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.sp:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp .ph{width:120px;height:120px;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 0 0 2px var(--purple-soft),var(--sh-sm);background:linear-gradient(135deg,var(--purple),var(--purple-mid));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:34px;color:#fff;letter-spacing:-.02em}
+.sp .ph img{width:100%;height:100%;object-fit:cover}
+.sp h3{font-size:21px;letter-spacing:-.015em}
+.sp .role{font-size:14.5px;color:var(--body);font-weight:600;margin-top:4px}
+.sp .co{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:500}
+.sp .co::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--yellow)}
+
+/* cta band */
+.cta{background:var(--purple);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;right:-10%;top:-40%;width:60%;height:180%;background:radial-gradient(circle,rgba(251,221,70,.18),transparent 60%);pointer-events:none}
+.cta .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.cta h2{font-size:clamp(32px,4vw,52px);color:#fff}
+.cta p{margin-top:16px;font-size:18px;color:rgba(255,255,255,.82);max-width:52ch}
+.cta .act{display:flex;flex-direction:column;align-items:flex-start;gap:14px;justify-self:end}
+.cta .act small{font-size:13px;color:rgba(255,255,255,.65)}
+
+/* footer (mirrors zerobounce.net) */
+footer{background:#fff;color:var(--ink);padding:72px 0 36px;border-top:1px solid var(--line)}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px}
+.ft .brand img{width:140px}
+.ft .brand p{margin-top:18px;font-size:14px;color:var(--body);max-width:32ch}
+.ft h4{font-family:var(--text);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--ink);margin-bottom:16px}
+.ft ul{list-style:none}
+.ft li{margin:9px 0}
+.ft li a{font-size:14.5px;color:var(--body);font-weight:600;transition:color .2s}
+.ft li a:hover{color:var(--purple)}
+.ft .contact li{color:var(--body);font-size:14.5px;font-weight:600}
+.ft .contact b{color:var(--ink)}
+.social{display:flex;gap:10px;margin-top:22px}
+.social a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--purple);transition:background .25s,color .25s}
+.social a:hover{background:var(--purple);color:#fff}
+.social svg{width:16px;height:16px;fill:currentColor}
+.legal{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted)}
+.legal .links a{margin-left:18px;font-weight:600}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1;transform:none}}
+
+/* responsive */
+@media (max-width:1024px){
+  .nav-links{display:none}.nav-right .login,.nav-right a.pill.soft{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .gauge-card{max-width:420px;margin:0 auto;transform:none}
+  .stat-grid{grid-template-columns:1fr;gap:20px}
+  .ed{grid-template-columns:1fr;gap:24px}.side{position:static}
+  .mech-head{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr;gap:14px}.dashes{display:none}
+  .cta .wrap{grid-template-columns:1fr}.cta .act{justify-self:start}
+  .ft{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .wrap{width:calc(100% - 32px)}
+  .nav-in{height:68px}.nav.scrolled .nav-in{height:64px}.logo img{width:118px}
+  .nav-right a.pill{padding:10px 14px;font-size:14px}
+  .hero{padding:48px 0 24px}
+  .hero h1{font-size:clamp(32px,9.5vw,40px)}
+  .hero .lede{font-size:17px}
+  .countdown{gap:8px}.cd{min-width:0;flex:1;padding:10px 6px}.cd b{font-size:24px}
+  .cta-row .btn{width:100%;justify-content:center}
+  .stat-num{font-size:clamp(84px,24vw,110px)}
+  .row{grid-template-columns:44px 1fr;gap:12px 16px}.row p{grid-column:2}
+  .sp-grid{grid-template-columns:1fr}
+  .sp{grid-template-columns:88px 1fr;gap:16px;padding:18px}.sp .ph{width:88px;height:88px}
+  .ft{grid-template-columns:1fr;gap:32px}
+  .legal{flex-direction:column}.legal .links a{margin:0 18px 0 0}
+  #sequel_root{min-height:440px;border-radius:12px}
+  .lede-sec,.learn,.speakers,.mech,.cta,.stat-band{padding:64px 0}
+  .pin{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce"><b>Live webinar</b> &nbsp;Email Coffee Break<span class="full">: Behind Great Email Programs</span> · <span id="annDate">Oct 22</span><a href="#sequel_root">Save your seat</a></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="https://www.zerobounce.net/" target="_blank" rel="noopener" aria-label="ZeroBounce"><img src="https://www.zerobounce.net/top-pages/assets_next/logo/logo.png" alt="ZeroBounce Logo" width="140" height="40"></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="https://www.zerobounce.net/services" target="_blank" rel="noopener">Solutions <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.zerobounce.net/" target="_blank" rel="noopener">Use Cases <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.zerobounce.net/pricing" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://www.zerobounce.net/docs" target="_blank" rel="noopener">Resources <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://www.zerobounce.net/zerobounce-one" target="_blank" rel="noopener">ZeroBounce ONE™</a>
+    </nav>
+    <div class="nav-right">
+      <a class="login" href="https://www.zerobounce.net/members/signin" target="_blank" rel="noopener">Log In</a>
+      <a class="pill yellow" href="https://www.zerobounce.net/members/signin/register" target="_blank" rel="noopener">Sign Up Free</a>
+      <a class="pill soft" href="https://www.zerobounce.net/contact-us" target="_blank" rel="noopener">Contact Sales</a>
+    </div>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge" id="badge"><span class="dot"></span> Live webinar · Email Coffee Break</span>
+        <h1>Behind great email programs: <em>what the best teams do differently</em></h1>
+        <p class="lede">What separates an average email program from a great one? It is not always a bigger budget or more advanced tools. Often, it comes down to the way successful teams approach their strategy, data, deliverability, and day-to-day decisions.</p>
+        <div class="meta">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span id="dateChip">Thu, Oct 22, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="timeChip">10:00 AM PT</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>30 minutes</span>
+        </div>
+        <p class="stream">Streaming live and on-demand on <b>zerobounce.net</b> <span id="localTime"></span></p>
+        <div class="countdown" id="countdown">
+          <div class="cd"><b data-cd="d">00</b><span>Days</span></div>
+          <div class="cd"><b data-cd="h">00</b><span>Hours</span></div>
+          <div class="cd"><b data-cd="m">00</b><span>Min</span></div>
+          <div class="cd"><b data-cd="s">00</b><span>Sec</span></div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-yellow" href="#sequel_root">Save my seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <div class="cal" id="calRow">
+            <a id="gcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Google</a>
+            <a id="ical" href="#" download="zerobounce-email-coffee-break.ics"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>iCal</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gauge-card reveal in" id="gauge">
+        <span class="ready">Ready to send</span>
+        <svg class="gauge" viewBox="0 0 200 120" aria-hidden="true">
+          <defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#E5484D"/><stop offset=".5" stop-color="#F5C542"/><stop offset="1" stop-color="#2E9E6B"/></linearGradient></defs>
+          <path d="M20 105 A80 80 0 0 1 180 105" fill="none" stroke="#EEF0F4" stroke-width="16" stroke-linecap="round"/>
+          <path id="arc" d="M20 105 A80 80 0 0 1 180 105" fill="none" stroke="url(#gg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3" style="transition:stroke-dashoffset 1.8s var(--ease)"/>
+        </svg>
+        <div class="gauge-label"><small>Sender Reputation</small><b>97%</b><i>Good</i></div>
+        <div class="scores">
+          <div class="hd"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Inbox Score</div>
+          <div class="score"><span>Google</span><div class="bar"><i style="--w:89%;background:#4285F4"></i></div><b>89%</b></div>
+          <div class="score"><span>Outlook</span><div class="bar"><i style="--w:72%;background:#F5A524"></i></div><b>72%</b></div>
+          <div class="score"><span>Yahoo</span><div class="bar"><i style="--w:81%;background:var(--purple-mid)"></i></div><b>81%</b></div>
+        </div>
+        <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#EA4335" d="M22 6.5v11a2 2 0 01-2 2h-2.5V10.6L12 14.7 6.5 10.6v8.9H4a2 2 0 01-2-2v-11l1.6-1.2L12 11l8.4-5.7z"/><path fill="#34A853" d="M17.5 19.5H20a2 2 0 002-2v-11l-4.5 3.1z"/><path fill="#4285F4" d="M4 19.5h2.5v-8.9L2 6.5v11a2 2 0 002 2z"/><path fill="#FBBC05" d="M2 6.5l4.5 4.1L12 6.4 20.4 5.3 22 6.5 12 11z"/></svg></span>
+        <span class="pin two" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#0078D4" d="M13 3l8 1.5v15L13 21z"/><path fill="#28A8EA" d="M3 6h10v12H3z"/><circle cx="8" cy="12" r="3" fill="#fff"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat-band">
+  <div class="wrap stat-grid reveal">
+    <div class="stat-num">99.6<sup>%</sup></div>
+    <div class="stat-copy">
+      <span class="mono">Accuracy with real-time email validation</span>
+      <p>Clean data means almost every send can reach a real inbox. What separates average email programs from great ones is what happens after the send.</p>
+      <small>Accuracy figure as published on zerobounce.net.</small>
+    </div>
+  </div>
+</section>
+
+<section class="lede-sec">
+  <div class="wrap ed">
+    <aside class="side reveal">
+      <span class="mono">About this session</span>
+      <span class="pill-lbl">Email Coffee Break</span>
+    </aside>
+    <div class="prose reveal">
+      <h2>Grab a cup of coffee and pull up a chair.</h2>
+      <p class="big">Join experts from ZeroBounce for a 30-minute conversation about what high-performing email teams consistently do differently.</p>
+      <p>We will compare common approaches with the habits that help great programs achieve <span class="hl">stronger, more sustainable results</span>. Not theory: real experiences, different perspectives, and practical ideas for building a better email program.</p>
+      <p>Pour yourself a cup and tag along for an honest conversation. Each session is recorded as it streams live right here on zerobounce.net, and the replay lands in the same place, so bookmark this page.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="mech-head reveal">
+      <div>
+        <span class="mono">3 steps to</span>
+        <h2>Improve your email deliverability</h2>
+      </div>
+      <p>The framework great programs run on, and the lens we will use throughout the conversation. Validate before you send, earn trust with inbox providers, then keep watching.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="node one">
+        <span class="step"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Step 1</span>
+        <h3>Clean Your List</h3>
+        <p>Validate your emails, remove invalid and risky contacts before you send. Clean and score your database to prevent bounces, catch spam traps, and protect your sender reputation.</p>
+      </div>
+      <div class="dashes"></div>
+      <div class="node two">
+        <span class="step"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>Step 2</span>
+        <h3>Build Sending Reputation</h3>
+        <p>Show inbox providers you're a trusted sender. Warm up your domain, test inbox placement, and verify your server setup to improve deliverability before you send.</p>
+      </div>
+      <div class="dashes"></div>
+      <div class="node three">
+        <span class="step"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Step 3</span>
+        <h3>Monitor Inbox Health</h3>
+        <p>Track performance and catch issues early. Monitor blacklist status, authentication, and deliverability metrics to keep your emails landing in the inbox.</p>
+      </div>
+    </div>
+    <div class="mech-foot reveal">
+      <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accurate catch-all validation included</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Flexible pricing: pay-as-you-go or subscription</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>24/7 support guaranteed</span>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="learn-head reveal">
+      <div>
+        <span class="mono">In this session</span>
+        <h2>What we will discuss</h2>
+      </div>
+    </div>
+    <div class="rows stagger">
+      <div class="row"><span class="n">01</span><h3>The metrics great email programs prioritize</h3><p>Which numbers high-performing teams actually watch week to week, and which ones look impressive but rarely change a decision.</p></div>
+      <div class="row"><span class="n">02</span><h3>How successful teams approach data quality and deliverability</h3><p>The habits around list hygiene, validation, and sender reputation that keep great programs out of trouble before it starts.</p></div>
+      <div class="row"><span class="n">03</span><h3>Ways to balance automation with a human touch</h3><p>Where automation earns its place and where the best teams keep a person in the loop, so campaigns connect as well as perform.</p></div>
+      <div class="row"><span class="n">04</span><h3>Common habits holding programs back, and how intentional testing fixes them</h3><p>The quiet patterns that stall good programs, plus how a steady testing cadence supports continuous improvement.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="mono">Your Email Coffee Break experts</span>
+      <h2>Meet the speakers</h2>
+      <p class="sub">Email Coffee Break is for marketers, email professionals, sales teams, and anyone interested in fresh perspectives on email marketing, deliverability, and the broader marketing landscape.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp">
+        <div class="ph"><img src="data:image/jpeg;base64,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" alt="Lily Bradshaw" width="240" height="240"></div>
+        <div><h3>Lily Bradshaw</h3><div class="role">Marketing Specialist</div><span class="co">ZeroBounce</span></div>
+      </div>
+      <div class="sp">
+        <div class="ph" aria-label="Anne-Marie Prince">AP</div>
+        <div><h3>Anne-Marie Prince</h3><div class="role">Email Marketing Manager</div><span class="co">ZeroBounce</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Ready to reach the inbox?</h2>
+      <p>Save your seat and join the conversation live, right here on zerobounce.net. Can't make it? Register anyway and the recording will be waiting for you on this page.</p>
+    </div>
+    <div class="act reveal">
+      <a class="btn btn-yellow" href="#sequel_root">Save my seat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <small>Free to attend · Recording sent to every registrant</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="brand">
+        <img src="https://www.zerobounce.net/top-pages/assets_next/logo/logo.png" alt="ZeroBounce" width="140" height="40">
+        <p>Email validation, deliverability tools, and data enrichment so your emails land where they belong.</p>
+        <div class="social">
+          <a href="https://www.linkedin.com/company/zerobounce-net" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+          <a href="https://x.com/zerobounce1" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.9l-5.4-7.1L4.5 22H1.4l8-9.2L1 2h7l4.9 6.5L18.9 2zm-1.2 18h1.9L7.2 3.9H5.2L17.7 20z"/></svg></a>
+          <a href="https://www.facebook.com/zerobounce/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.4v3.2h2.8V22h3.3z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCgtYUvzaIabFdEXAKxDVjYg/featured" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2s-.2-1.6-.9-2.3c-.9-.9-1.8-.9-2.3-1C16.6 3.7 12 3.7 12 3.7s-4.6 0-7.8.2c-.5.1-1.4.1-2.3 1C1.2 5.6 1 7.2 1 7.2S.8 9.1.8 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.2c.5-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.7 15V8.4l6.1 3.3L9.7 15z"/></svg></a>
+          <a href="https://www.instagram.com/zerobounce/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 100 9.4 4.7 4.7 0 000-9.4zm0 7.7a3 3 0 110-6 3 3 0 010 6zm6-7.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0zM21.9 8.2c-.1-1.5-.4-2.8-1.5-3.9S18 2.8 16.6 2.7C15 2.6 9 2.6 7.4 2.7 5.9 2.8 4.6 3.1 3.5 4.2S2.1 6.7 2 8.2c-.1 1.5-.1 6.1 0 7.6.1 1.5.4 2.8 1.5 3.9s2.4 1.4 3.9 1.5c1.5.1 6.1.1 7.6 0 1.5-.1 2.8-.4 3.9-1.5s1.4-2.4 1.5-3.9c.1-1.5.1-6.1 0-7.6zM20 17.4c-.3.8-.9 1.4-1.7 1.7-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4c-.8-.3-1.4-.9-1.7-1.7-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3c.3-.8.9-1.4 1.7-1.7 1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4c.8.3 1.4.9 1.7 1.7.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://www.zerobounce.net/about-us" target="_blank" rel="noopener">About Us</a></li>
+          <li><a href="https://www.zerobounce.net/our-team" target="_blank" rel="noopener">Our Team</a></li>
+          <li><a href="https://www.zerobounce.net/why-us" target="_blank" rel="noopener">Why Us</a></li>
+          <li><a href="https://www.zerobounce.net/trust" target="_blank" rel="noopener">Trust</a></li>
+          <li><a href="https://www.zerobounce.net/pricing" target="_blank" rel="noopener">Pricing</a></li>
+          <li><a href="https://www.zerobounce.net/events" target="_blank" rel="noopener">Events &amp; Webinars</a></li>
+          <li><a href="https://www.zerobounce.net/blog" target="_blank" rel="noopener">ZeroBounce Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://www.zerobounce.net/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></li>
+          <li><a href="https://www.zerobounce.net/terms-of-use" target="_blank" rel="noopener">Terms</a></li>
+          <li><a href="https://www.zerobounce.net/sitemap" target="_blank" rel="noopener">Sitemap</a></li>
+          <li><a href="https://www.zerobounce.net/ca-privacy" target="_blank" rel="noopener">CA Privacy</a></li>
+          <li><a href="https://www.zerobounce.net/gdpr" target="_blank" rel="noopener">GDPR</a></li>
+          <li><a href="https://www.zerobounce.net/security" target="_blank" rel="noopener">Security</a></li>
+        </ul>
+      </div>
+      <div class="contact">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><b>US:</b> 1 888 500 9521</li>
+          <li><b>UK:</b> +44 330 808 4814</li>
+          <li>24/7 Support Guaranteed</li>
+          <li><a href="mailto:support@zerobounce.net">support@zerobounce.net</a></li>
+          <li><a href="https://www.zerobounce.net/contact-us" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 ZeroBounce. All rights reserved.</span>
+      <span class="links"><a href="https://www.zerobounce.net/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.zerobounce.net/terms-of-use" target="_blank" rel="noopener">Terms</a><a href="#">Manage Cookie Preferences</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"Email Coffee Break: Behind Great Email Programs",
+    start:"2026-10-22T10:00:00-07:00",
+    end:"2026-10-22T10:30:00-07:00",
+    startUTC:"20261022T170000Z",
+    endUTC:"20261022T173000Z",
+    details:"What separates an average email program from a great one? Join ZeroBounce for a 30-minute conversation about what high-performing email teams consistently do differently. Streaming live on zerobounce.net.",
+    location:window.location.href
+  };
+  var target=new Date(EVENT.start).getTime(), endT=new Date(EVENT.end).getTime();
+  var cd=document.getElementById('countdown'), badge=document.getElementById('badge');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var now=Date.now(), diff=target-now;
+    if(now>endT+3600e3){ /* stale: degrade to on-demand */
+      badge.innerHTML='<span class="dot" style="animation:none;background:#fff"></span> On demand · Email Coffee Break';
+      cd.innerHTML='<div class="cd-live">Watch the recording below</div>';
+      document.getElementById('calRow').style.display='none';
+      document.querySelectorAll('.btn-yellow').forEach(function(b){b.firstChild.textContent='Watch now ';});
+      document.querySelector('.announce b').textContent='On demand';
+      return true;
+    }
+    if(diff<=0){cd.innerHTML='<div class="cd-live"><span class="dot" style="width:10px;height:10px;border-radius:50%;background:#FBDD46;display:inline-block;animation:pulse 1.6s infinite"></span> We’re live now, join below</div>';return true;}
+    var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3);
+    var set={d:d,h:h,m:m,s:s};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(set[el.getAttribute('data-cd')]);});
+    return false;
+  }
+  if(!tick()){var iv=setInterval(function(){if(tick())clearInterval(iv);},1000);}
+
+  /* viewer's local time */
+  try{
+    var st=new Date(EVENT.start);
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    var local=st.toLocaleTimeString([], {hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    if(tz && tz!=='America/Los_Angeles'){document.getElementById('localTime').textContent=' · '+local+' your time';}
+    document.getElementById('annDate').textContent=st.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'America/Los_Angeles'});
+  }catch(e){}
+
+  /* calendar */
+  var g=document.getElementById('gcal');
+  g.href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sequel//Webinar//EN","BEGIN:VEVENT","UID:"+Date.now()+"@zerobounce-demo","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  /* nav */
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+
+  /* gauge animate: 97% of the semicircle */
+  setTimeout(function(){var a=document.getElementById('arc');if(a)a.style.strokeDashoffset=String(251.3*(1-.97));},350);
+
+  /* strip Sequel iframe border inside the open shadow DOM */
+  (function stripBorder(){
+    var r=document.getElementById("sequel_root"); var c=r&&r.firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important;border-radius:16px}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});});</script>
+</body>
+</html>
