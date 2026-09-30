@@ -97,6 +97,554 @@ img{display:block;max-width:100%}
 .hero h1{color:#fff;font-size:clamp(34px,4.6vw,56px);font-weight:400;letter-spacing:-0.025em;margin-bottom:20px}
 .hero h1 em{font-style:normal;color:var(--butter)}
 .hero .lead{font-size:17px;color:#d3e4e2;max-width:540px;margin-bottom:26px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);padding:6px 12px;font-size:13.5px;border-radius:1000px;white-space:nowrap}
+.chip svg{width:15px;height:15px;stroke:var(--mint);fill:none;stroke-width:2}
+.local{font-size:13px;color:#a9c6c2;margin-bottom:6px;min-height:20px}
+.onsite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.onsite svg{width:15px;height:15px;stroke:var(--mint);fill:none;stroke-width:2}
+.countdown{display:flex;gap:10px;margin-bottom:28px}
+.cd{width:76px;text-align:center;padding:12px 0 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.cd b{display:block;font-family:var(--display);font-weight:400;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.cd span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#a9c6c2;margin-top:7px;text-transform:uppercase}
+.cd-live{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:20px;color:var(--butter);margin-bottom:28px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--body);font-size:15.2px;padding:12px 40px;border-radius:0;transition:transform .18s var(--ease),box-shadow .18s var(--ease),filter .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-butter{background:var(--butter);color:var(--teal)}
+.btn-teal{background:var(--teal);color:#fff}
+.cal{display:flex;align-items:center;gap:8px;font-size:13px;color:#a9c6c2}
+.cal a{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:1000px;font-size:13px;transition:border-color .15s,transform .18s var(--ease)}
+.cal a:hover{border-color:var(--mint);transform:translateY(-2px)}
+.cal svg{width:13px;height:13px;stroke:var(--mint);fill:none;stroke-width:2}
+.capsule{position:relative;border-radius:1000px;overflow:hidden;aspect-ratio:2.05/1;box-shadow:var(--sh-lg);background:#3a5f60}
+.capsule img{width:100%;height:100%;object-fit:cover}
+.capsule-tag{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);background:#fff;color:var(--teal);padding:10px 22px;font-size:13px;white-space:nowrap;box-shadow:var(--sh-md)}
+.capsule-tag b{font-family:var(--display);font-weight:500}
+.hero-art{position:relative}
+.embed-sec{position:relative;z-index:2;padding:10px 0 84px}
+#sequel_root{min-height:520px}
+
+/* ---------- STAT PULL-QUOTE ---------- */
+.stat-band{position:relative;overflow:hidden;padding:120px 0 100px;background:#fff}
+.stat-band .rings{left:-300px;top:-300px;width:760px;height:760px}
+.stat-grid{position:relative;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:end}
+.big{font-family:var(--display);font-weight:300;color:var(--teal);font-size:clamp(96px,15vw,190px);line-height:.86;letter-spacing:-0.05em}
+.big sup{font-size:.36em;vertical-align:top;position:relative;top:.18em;letter-spacing:0;color:var(--pine)}
+.turn .mono{color:var(--pine);margin-bottom:14px;display:block}
+.turn p{font-family:var(--display);font-size:clamp(20px,2.2vw,27px);line-height:1.38;color:var(--teal);max-width:560px}
+.turn p span{color:var(--sub)}
+.mini{display:flex;gap:0;margin-top:70px;position:relative;z-index:2;border-top:1px solid var(--line)}
+.mini div{flex:1;padding:22px 24px 0 0}
+.mini b{font-family:var(--display);font-weight:500;font-size:28px;color:var(--teal);display:block}
+.mini span{font-size:14px;color:var(--sub)}
+
+/* ---------- LEDE ---------- */
+.lede{background:var(--mist);padding:104px 0}
+.lede-grid{display:grid;grid-template-columns:260px 1fr;gap:56px}
+.side{position:sticky;top:120px;align-self:start;color:var(--pine)}
+.side .rule{display:block;width:44px;height:2px;background:var(--pine);margin-top:14px}
+.lede-body{max-width:66ch}
+.lede-body h2{font-size:clamp(28px,3.2vw,40px);margin-bottom:28px}
+.lede-body p{font-size:17px;color:#2e3c3d;margin-bottom:20px}
+.lede-body p.small{font-size:14px;color:var(--sub)}
+.lede-body .src{display:inline-flex;align-items:center;gap:8px;margin-top:10px;color:var(--teal);font-weight:600;font-size:15px;border-bottom:1px solid var(--teal);padding-bottom:2px}
+
+/* ---------- MECHANISM ---------- */
+.mech{background:var(--deep);color:#fff;padding:108px 0 116px;position:relative;overflow:hidden}
+.mech .rings{right:-280px;top:-200px;width:720px;height:720px}
+.mech-head{position:relative;z-index:2;max-width:700px;margin-bottom:64px}
+.mech-head .mono{color:var(--mint);display:block;margin-bottom:16px}
+.mech-head h2{color:#fff;font-size:clamp(28px,3.4vw,44px);margin-bottom:16px}
+.mech-head p{color:#b9cfcc;font-size:16.5px;max-width:60ch}
+.flow{position:relative;z-index:2;display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr 70px 1fr;align-items:center}
+.node{border:1px solid rgba(143,202,195,.35);background:rgba(143,202,195,.06);padding:22px 20px;min-height:150px;display:flex;flex-direction:column;gap:10px}
+.node .mono{font-size:11px;color:var(--mint)}
+.node h3{color:#fff;font-size:19px}
+.node p{font-size:13.5px;color:#aac3c0;line-height:1.5}
+.node.hot{background:var(--butter);border-color:var(--butter)}
+.node.hot .mono,.node.hot h3{color:var(--teal)}
+.node.hot p{color:#3c5657}
+.link{height:2px;background-image:linear-gradient(90deg,var(--mint) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+.shift{position:relative;z-index:2;display:flex;justify-content:space-between;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7fa4a0}
+.shift b{color:var(--butter);font-weight:500}
+
+/* ---------- LEARN ROWS ---------- */
+.learn{padding:108px 0;background:#fff}
+.learn-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:46px}
+.learn-head h2{font-size:clamp(28px,3.2vw,42px);max-width:640px}
+.learn-head .mono{color:var(--pine)}
+.row{display:grid;grid-template-columns:72px 1fr 1.15fr;gap:32px;padding:36px 18px 36px 8px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--teal);transition:width .55s var(--ease)}
+.row:hover{background:var(--mist)}
+.row:hover::before{width:100%}
+.row .num{font-family:var(--mono);font-size:13px;color:var(--pine);padding-top:6px}
+.row h3{font-size:23px}
+.row p{font-size:16px;color:var(--sub);max-width:58ch}
+
+/* ---------- SPEAKERS ---------- */
+.speakers{background:var(--mist);padding:100px 0}
+.speakers .mono{color:var(--pine);display:block;margin-bottom:14px}
+.speakers h2{font-size:clamp(28px,3.2vw,40px);margin-bottom:48px}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.sp{display:flex;gap:18px;align-items:center}
+.sp .av{width:112px;height:76px;border-radius:1000px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:22px;color:#fff}
+.av1{background:var(--teal)}.av2{background:var(--pine)}.av3{background:var(--mint);color:var(--teal)!important}
+.sp h3{font-size:18px;margin-bottom:2px}
+.sp p{font-size:14px;color:var(--sub)}
+.sp .flag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:#9a7b1f;text-transform:uppercase}
+
+/* ---------- CTA BAND ---------- */
+.cta{background:var(--butter);color:var(--teal);padding:96px 0;position:relative;overflow:hidden}
+.cta .rings{right:-200px;top:-180px;width:560px;height:560px}
+.cta-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.cta h2{font-size:clamp(30px,3.8vw,48px);max-width:680px}
+.cta p{font-size:17px;margin-top:14px;max-width:560px;color:#2f4f51}
+
+/* ---------- FOOTER (mirrors katchiq.com) ---------- */
+footer{background:var(--teal);color:#fff;padding:72px 0 34px;font-size:14px}
+.f-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.18)}
+.f-grid .logo{color:#fff}
+.f-grid .logo svg{height:32px}
+.f-col p{color:#cfe0de;margin-bottom:8px;font-size:14px}
+.f-col a.m{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;display:inline-block;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px}
+.f-col a.m:hover{border-color:#fff}
+.f-bot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:28px;color:#cfe0de}
+.f-bot .social{display:flex;gap:14px}
+.f-bot .social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.f-bot .social a:hover{background:rgba(255,255,255,.12)}
+.f-bot .social svg{width:15px;height:15px;fill:#fff}
+.f-bot .legal a{text-decoration:underline;text-underline-offset:3px}
+.f-bot .login{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+.addr{color:#cfe0de}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1000px){
+  .nav-links{display:none}.burger{display:flex}
+  .util-inner{justify-content:center;gap:22px}
+  .util a{font-size:11px;letter-spacing:.06em}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .hero-art{order:-1}
+  .flow{grid-template-columns:1fr;gap:0}
+  .link{width:2px;height:34px;margin:0 auto;background-image:linear-gradient(180deg,var(--mint) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  @keyframes marchv{to{background-position:0 12px}}
+  .node{min-height:0}
+  .shift{display:none}
+  .lede-grid{grid-template-columns:1fr;gap:24px}
+  .side{position:static}
+  .row{grid-template-columns:48px 1fr;gap:12px 18px}
+  .row p{grid-column:2}
+  .sp-grid{grid-template-columns:1fr;gap:26px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .stat-grid{grid-template-columns:1fr;gap:26px}
+  .learn-head{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .nav-inner{height:70px}
+  .logo svg{height:28px}
+  .hero{padding:44px 0 32px}
+  .countdown{gap:8px}
+  .cd{width:auto;flex:1}
+  .cd b{font-size:24px}
+  .btn{width:100%}
+  .capsule-tag{font-size:12px;padding:8px 14px}
+  .mini{flex-wrap:wrap}
+  .mini div{flex:1 1 50%;padding-bottom:18px}
+  .f-grid{grid-template-columns:1fr}
+  .stat-band{padding:84px 0 70px}
+  .lede,.mech,.learn,.speakers{padding:76px 0}
+  .embed-sec{padding:6px 0 60px}
+  .util-inner{gap:14px}
+  .util a{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+  .badge .dot,.link{animation:none!important}
+  .btn:hover,.cal a:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="katch-logo" viewBox="0 0 100 30">
+      <path d="M39.7394 8.59638V11.0199C39.0309 10.1321 38.1423 9.39422 37.0797 8.81834C35.7048 8.06249 34.1318 7.69057 32.3606 7.69057C30.3553 7.69057 28.5482 8.17647 26.9511 9.15427C25.3481 10.1321 24.0873 11.4578 23.1627 13.1374C22.2321 14.8171 21.7698 16.7247 21.7698 18.8663C21.7698 21.0078 22.2321 22.8375 23.1627 24.5291C24.0873 26.2208 25.3481 27.5585 26.9511 28.5363C28.5482 29.5141 30.3553 30 32.3606 30C34.1077 30 35.6868 29.6161 37.1037 28.8482C38.2444 28.2304 39.169 27.4085 39.8595 26.3767V29.0942C39.8595 29.3341 40.0516 29.5261 40.2917 29.5261H43.0355C43.2757 29.5261 43.4678 29.3341 43.4678 29.0942V8.59638C43.4678 8.35643 43.2757 8.16447 43.0355 8.16447H40.1717C39.9315 8.16447 39.7394 8.35643 39.7394 8.59638ZM38.8088 22.7295C38.1844 23.8752 37.3438 24.7811 36.2871 25.4409C35.2305 26.1008 34.0297 26.4307 32.6788 26.4307C31.3279 26.4307 30.1272 26.1008 29.0705 25.4409C28.0138 24.7811 27.1793 23.8752 26.5729 22.7295C25.9605 21.5777 25.6603 20.288 25.6603 18.8663C25.6603 17.4446 25.9605 16.0828 26.5729 14.9611C27.1793 13.8393 28.0198 12.9395 29.0885 12.2676C30.1632 11.5898 31.358 11.2538 32.6788 11.2538C33.9997 11.2538 35.2305 11.5838 36.2871 12.2436C37.3438 12.9035 38.1844 13.8093 38.8088 14.9611C39.4272 16.1068 39.7394 17.4086 39.7394 18.8663C39.7394 20.324 39.4272 21.5777 38.8088 22.7295Z"/>
+      <path d="M59.9121 28.6623C59.2817 27.9784 58.7173 27.2166 58.231 26.3888C58.1229 26.2088 57.9128 26.1368 57.7147 26.2028C56.1957 26.6767 54.2745 26.2388 53.614 24.6851C53.3919 24.1572 53.2778 23.5393 53.2778 22.8255V11.6918H57.6426C57.8828 11.6918 58.0749 11.4938 58.0749 11.2599V8.5964C58.0749 8.35645 57.8828 8.16449 57.6426 8.16449H53.2778V3.67741C53.2778 3.43746 53.0857 3.2455 52.8455 3.2455H50.0177C49.7776 3.2455 49.5854 3.43746 49.5854 3.67741V4.99114C49.5854 5.94494 49.3093 6.71279 48.7569 7.28867C48.1985 7.87055 47.4481 8.16449 46.4934 8.16449H46.1332C45.893 8.16449 45.7009 8.35645 45.7009 8.5964V11.2599C45.7009 11.4938 45.893 11.6918 46.1332 11.6918H49.5854V22.9455C49.5854 25.111 50.1498 26.7907 51.2725 27.9784C52.9416 29.7421 55.4152 30.012 57.6847 29.7841C58.3091 29.7181 59.0896 29.5921 59.756 29.3641C60.0982 29.2502 60.1583 28.9262 59.9121 28.6623Z"/>
+      <path d="M70.0468 29.9999C67.9574 29.9999 66.1022 29.514 64.4752 28.5362C62.8481 27.5584 61.5753 26.2267 60.6447 24.535C59.7201 22.8434 59.2578 20.9418 59.2578 18.8302C59.2578 16.7186 59.7201 14.787 60.6447 13.1254C61.5693 11.4637 62.8481 10.138 64.4752 9.16017C66.1022 8.18237 67.9574 7.69647 70.0468 7.69647C71.4457 7.69647 72.7545 7.94842 73.9733 8.44632C75.1921 8.95022 76.2608 9.62208 77.1854 10.4679C78.0079 11.2178 78.6323 12.0816 79.0586 13.0594C79.1486 13.2693 79.0526 13.5153 78.8425 13.6173L76.3028 14.841C76.0927 14.943 75.8405 14.853 75.7324 14.643C75.2341 13.7072 74.5317 12.9274 73.6191 12.3095C72.5864 11.6077 71.3976 11.2597 70.0468 11.2597C68.6959 11.2597 67.5792 11.5897 66.5345 12.2495C65.4898 12.9094 64.6613 13.8092 64.0549 14.943C63.4485 16.0768 63.1423 17.3845 63.1423 18.8662C63.1423 20.3479 63.4485 21.5836 64.0549 22.7294C64.6613 23.8812 65.4898 24.781 66.5345 25.4408C67.5792 26.1007 68.7499 26.4306 70.0468 26.4306C71.3436 26.4306 72.5864 26.0827 73.6191 25.3808C74.5257 24.763 75.2341 23.9651 75.7324 22.9873C75.8405 22.7714 76.0987 22.6754 76.3148 22.7834L78.8485 24.0671C79.0526 24.1691 79.1486 24.415 79.0526 24.625C78.6263 25.5848 78.0019 26.4426 77.1854 27.2045C76.2608 28.0623 75.1861 28.7462 73.9733 29.2441C72.7545 29.7479 71.4457 29.9999 70.0468 29.9999Z"/>
+      <path d="M99.9999 15.6928V29.094C99.9999 29.334 99.8078 29.5259 99.5677 29.5259H96.7038C96.4637 29.5259 96.2715 29.334 96.2715 29.094V16.8805C96.2715 15.6928 96.0554 14.691 95.6171 13.8691C95.1788 13.0533 94.5785 12.4114 93.81 11.9495C93.0415 11.4876 92.1589 11.2537 91.1562 11.2537C90.1536 11.2537 89.289 11.4876 88.4965 11.9495C87.704 12.4114 87.0796 13.0593 86.6353 13.8871C86.185 14.721 85.9569 15.7228 85.9569 16.8805V29.094C85.9569 29.334 85.7648 29.5259 85.5246 29.5259H82.7028C82.4626 29.5259 82.2705 29.334 82.2705 29.094V0.4319C82.2705 0.191949 82.4626 -1.14441e-05 82.7028 -1.14441e-05H85.5246C85.7648 -1.14441e-05 85.9569 0.191949 85.9569 0.4319V10.6718C86.4432 9.92795 87.0736 9.31008 87.8421 8.81818C89.0189 8.06234 90.3998 7.69041 91.9848 7.69041C93.5698 7.69041 94.8907 8.03234 96.0914 8.7162C97.2922 9.40606 98.2468 10.3539 98.9493 11.5716C99.6457 12.7894 99.9999 14.1631 99.9999 15.6928Z"/>
+      <path d="M21.728 29.5199H18.1197C17.9756 29.5199 17.8375 29.4479 17.7595 29.3279L8.5255 15.4948L8.16527 15.9027L8.14125 15.9387L7.34274 16.8445C6.34609 17.8283 5.14532 18.4761 3.88451 18.8001V29.088C3.88451 29.3279 3.69238 29.5199 3.45223 29.5199H0.432279C0.192124 29.5199 0 29.3279 0 29.088V14.7869C0.570368 15.1108 1.23079 15.2968 1.93925 15.2968C3.01995 15.2968 3.99858 14.8649 4.71304 14.163C4.84513 14.0311 4.9652 13.8991 5.07327 13.7491L8.04519 10.3358L9.26398 8.93809L16.9249 0.149897C17.009 0.0539165 17.123 -7.24792e-05 17.2491 -7.24792e-05H20.9895C21.3618 -7.24792e-05 21.5599 0.437838 21.3138 0.713781L11.2272 12.3454L22.0883 28.854C22.2744 29.142 22.0702 29.5259 21.728 29.5259V29.5199Z"/>
+      <path d="M3.45223 -7.24792e-05C3.69238 -7.24792e-05 3.88451 0.191888 3.88451 0.431839V11.3496C3.88451 12.4534 2.95991 13.3412 1.83719 13.2872C0.792511 13.2332 0 12.2914 0 11.2416V0.431839C0 0.191888 0.192124 -7.24792e-05 0.432279 -7.24792e-05H3.45223Z"/>
+    </symbol>
+    <symbol id="ring-lines" viewBox="0 0 800 800"><g fill="none" stroke="currentColor" stroke-width="1"><circle cx="400" cy="400" r="120"/><circle cx="400" cy="400" r="190"/><circle cx="400" cy="400" r="260"/><circle cx="400" cy="400" r="330"/><circle cx="400" cy="400" r="398"/></g></symbol>
+    <symbol id="ring-fill" viewBox="0 0 600 600"><circle cx="300" cy="300" r="300" fill="currentColor" opacity=".16"/><circle cx="300" cy="300" r="235" fill="currentColor" opacity=".18"/><circle cx="300" cy="300" r="170" fill="currentColor" opacity=".22"/><circle cx="300" cy="300" r="105" fill="currentColor" opacity=".28"/></symbol>
+  </defs>
+</svg>
+
+<div class="announce">Live IQ session: <b>Prevention Before Payment</b>, streaming on katchiq.com. <a href="#register">Save your seat</a></div>
+
+<div class="util">
+  <div class="wrap util-inner">
+    <a href="https://selfservice.katchiq.com/" target="_blank" rel="noopener">Member Resources</a>
+    <a href="https://subroreferrals.com/" target="_blank" rel="noopener">Referral Portal</a>
+    <a href="https://client.subropoint.com/index.html#/authlogin" target="_blank" rel="noopener">Client Login</a>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://katchiq.com/" target="_blank" rel="noopener" aria-label="Katch home"><svg viewBox="0 0 100 30" fill="currentColor" role="img" aria-label="Katch"><use href="#katch-logo"/></svg></a>
+    <div class="nav-links">
+      <a href="https://katchiq.com/service-subrogation/" target="_blank" rel="noopener">Our Services <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://katchiq.com/insights/" target="_blank" rel="noopener">IQ Insights <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://katchiq.com/who-we-serve/" target="_blank" rel="noopener">Who We Serve</a>
+      <a href="https://katchiq.com/about-us/" target="_blank" rel="noopener">Who We Are <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://katchiq.com/get-in-touch/" target="_blank" rel="noopener">Get in Touch</a>
+    </div>
+    <a class="burger" href="https://katchiq.com/" target="_blank" rel="noopener" aria-label="Menu"><span></span><span></span><span></span></a>
+  </div>
+</nav>
+
+<div class="dark-wrap">
+  <svg class="rings rings-tl" style="color:rgba(255,255,255,.09)" aria-hidden="true"><use href="#ring-lines"/></svg>
+  <svg class="rings rings-br" style="color:var(--mint)" aria-hidden="true"><use href="#ring-fill"/></svg>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="badge" id="badge"><span class="dot"></span><span id="badgeText">Live Webinar</span></div>
+        <div class="eyebrow mono">IQ Insights · Live Session</div>
+        <h1>Prevention before payment: <em>how PICC creates value</em> for health plans</h1>
+        <p class="lead">Payment responsibility often isn’t verified until after claims are paid, leaving money on the table. Join the Katch team live for a walkthrough of Proactive Injury Coverage Coordination and what it means for your plan.</p>
+        <div class="chips" id="chips">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span id="dateStr">Thursday, November 12, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>11:00 AM CT</span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg>45 min + live Q&amp;A</span>
+        </div>
+        <div class="local" id="localTime"></div>
+        <div class="onsite"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>Streaming live and on-demand on katchiq.com</div>
+        <div class="countdown" id="countdown" aria-label="Time until the webinar starts">
+          <div class="cd"><b data-cd="d">00</b><span>Days</span></div>
+          <div class="cd"><b data-cd="h">00</b><span>Hrs</span></div>
+          <div class="cd"><b data-cd="m">00</b><span>Min</span></div>
+          <div class="cd"><b data-cd="s">00</b><span>Sec</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-butter" href="#register" id="mainCta">Save My Seat</a>
+          <div class="cal" id="calWrap">
+            <span>Add to calendar</span>
+            <a id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Google</a>
+            <a id="ical" download="katch-picc-live.ics"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>iCal</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="capsule"><img src="https://e9cdqgtsc3z.exactdn.com/wp-content/uploads/2026/08/hp-main-img-1.webp?sharp=1" alt="" loading="eager"></div>
+        <div class="capsule-tag"><b>Proactive by Design</b> · Driven by people. Powered by data.</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="embed-sec" id="register">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat-band">
+  <svg class="rings" style="color:var(--fog)" aria-hidden="true"><use href="#ring-lines"/></svg>
+  <div class="wrap">
+    <div class="stat-grid reveal">
+      <div class="big">$1B<sup>+</sup></div>
+      <div class="turn">
+        <span class="mono">Recovered annually, from PICC to subrogation</span>
+        <p>Most of that value has always been found after the claim is paid. <span>The next era of payment coordination moves the work earlier, to the moment before payment happens.</span></p>
+      </div>
+    </div>
+    <div class="mini stagger">
+      <div><b>35+ years</b><span>of experience, in all 50 states</span></div>
+      <div><b>600+</b><span>dedicated legal and health care professionals</span></div>
+      <div><b>$5–$10</b><span>incremental value per member per year with PICC*</span></div>
+      <div><b>2026</b><span>Everest Group PEAK Matrix® Major Contender</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side mono">About the session<span class="rule"></span></div>
+    <div class="lede-body reveal">
+      <h2>Health plans are under pressure to reduce medical costs without disrupting the member or provider experience.</h2>
+      <p>But often, payment responsibility isn’t verified until after claims are paid, leaving money on the table.</p>
+      <p>This live session builds on Katch’s latest white paper on Proactive Injury Coverage Coordination (PICC): an earlier, more effective approach that helps plans identify the right payer before payment occurs. By aligning responsibility sooner, PICC helps prevent incorrect payments, reduce unnecessary denials, and unlock real, measurable value.</p>
+      <p>We’ll cover why PICC matters now, how it works alongside traditional subrogation, and what the results look like for plans that adopt it.</p>
+      <p class="small">*Results are state and line of business dependent.</p>
+      <a class="src" href="https://katchiq.com/reports/how-proactive-injury-coverage-coordination-creates-value-for-health-plans/" target="_blank" rel="noopener">Read the white paper <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <svg class="rings" style="color:rgba(143,202,195,.14)" aria-hidden="true"><use href="#ring-lines"/></svg>
+  <div class="wrap">
+    <div class="mech-head reveal">
+      <span class="mono">The shift left in payment coordination</span>
+      <h2>Katch identifies, coordinates, and resolves payment responsibility, before and after claims are paid.</h2>
+      <p>True end-to-end payment coordination, in four moves. The session walks through each one.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="node"><span class="mono">01 · Identify</span><h3>Injury claim arrives</h3><p>An accident-related claim enters the plan, and responsibility is still unverified.</p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node hot"><span class="mono">02 · PICC</span><h3>Right payer, first</h3><p>Coverage is coordinated and the claim is redirected to the responsible payer before payment is made.</p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node"><span class="mono">03 · Subrogation</span><h3>Recover the rest</h3><p>Subrogation experts and a nationwide legal network recover what was already paid.</p></div>
+      <div class="link" aria-hidden="true"></div>
+      <div class="node"><span class="mono">04 · Resolve</span><h3>Value returned</h3><p>Money goes back where it belongs, with fewer member touchpoints along the way.</p></div>
+    </div>
+    <div class="shift"><span>Before payment</span><b>Proactive by Design</b><span>After payment</span></div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="learn-head reveal">
+      <h2>What you’ll take away</h2>
+      <span class="mono">45 minutes · Live Q&amp;A</span>
+    </div>
+    <div class="stagger">
+      <div class="row"><span class="num">01</span><h3>Why PICC matters now</h3><p>Rising costs, tighter margins, and growing complexity make every claim matter more. See where post-payment models leave value behind.</p></div>
+      <div class="row"><span class="num">02</span><h3>How prevention before payment works</h3><p>A walkthrough of how injury claims are redirected to the appropriate payer before payment, and what that means for real-time savings.</p></div>
+      <div class="row"><span class="num">03</span><h3>PICC alongside subrogation</h3><p>How proactive coordination and traditional recovery work together across the full claims lifecycle, including with an in-house team through KatchFlex.</p></div>
+      <div class="row"><span class="num">04</span><h3>What results look like</h3><p>How plans measure incremental value per member per year, and how state and line of business shape the outcome.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <span class="mono reveal">Your speakers</span>
+    <h2 class="reveal">Driven by people.</h2>
+    <div class="sp-grid stagger">
+      <div class="sp"><div class="av av1">SP</div><div><h3>Speaker Name</h3><p>Payment Coordination Leader, Katch</p></div></div>
+      <div class="sp"><div class="av av2">SP</div><div><h3>Speaker Name</h3><p>PICC Program Lead, Katch</p></div></div>
+      <div class="sp"><div class="av av3">SP</div><div><h3>Speaker Name</h3><p>Health Plan Guest</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <svg class="rings" style="color:#fff;opacity:.55" aria-hidden="true"><use href="#ring-fill"/></svg>
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>Ready to see what you’ve been missing?</h2>
+      <p id="ctaSub">Can’t make it live? Register anyway and the on-demand recording will be waiting right here on katchiq.com.</p>
+    </div>
+    <a class="btn btn-teal" href="#register">Save My Seat</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-col">
+        <a class="logo" href="https://katchiq.com/" target="_blank" rel="noopener" aria-label="Katch home"><svg viewBox="0 0 100 30" fill="currentColor"><use href="#katch-logo"/></svg></a>
+        <p class="addr" style="margin-top:22px">21 Platform Way S, Suite 1530,<br>Nashville, TN 37203</p>
+      </div>
+      <div class="f-col"><p>Received a letter or need to access member resources?</p><a class="m" href="https://selfservice.katchiq.com/" target="_blank" rel="noopener">Member Resources</a></div>
+      <div class="f-col"><p>Submit subrogation case referrals or inquiries</p><a class="m" href="https://subroreferrals.com/" target="_blank" rel="noopener">Referral Portal</a></div>
+      <div class="f-col"><p>Access Injury Coverage Coordination Questionnaire</p><a class="m" href="https://picc.katchiq.com/" target="_blank" rel="noopener">PICC Form</a>
+        <p style="margin-top:22px"><a class="m" href="https://katchiq.com/get-in-touch/" target="_blank" rel="noopener">Contact Us</a></p>
+        <p><a class="m" href="https://katchiq.com/careers/" target="_blank" rel="noopener">Careers</a></p>
+      </div>
+    </div>
+    <div class="f-bot">
+      <div class="social">
+        <a href="https://www.linkedin.com/company/katchiq" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg></a>
+        <a href="https://www.facebook.com/people/Katch/61581076166772/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg></a>
+        <a href="https://www.instagram.com/katch_iq/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zM17.3 5.5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zM12 2c-2.7 0-3 0-4.1.1C4.2 2.2 2.2 4.2 2.1 7.9 2 9 2 9.3 2 12s0 3 .1 4.1c.1 3.7 2.1 5.7 5.8 5.8 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c3.7-.1 5.7-2.1 5.8-5.8.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c-.1-3.7-2.1-5.7-5.8-5.8C15 2 14.7 2 12 2zm0 1.8c2.7 0 3 0 4 .1 2.7.1 3.9 1.4 4 4 .1 1 .1 1.4.1 4s0 3-.1 4c-.1 2.7-1.3 3.9-4 4-1 .1-1.4.1-4 .1s-3 0-4-.1c-2.7-.1-3.9-1.3-4-4-.1-1-.1-1.4-.1-4s0-3 .1-4c.1-2.6 1.3-3.9 4-4 1-.1 1.3-.1 4-.1z"/></svg></a>
+      </div>
+      <a class="login" href="https://client.subropoint.com/index.html#/authlogin" target="_blank" rel="noopener">Client Login</a>
+      <div class="legal">© 2026 Katch. All rights reserved. <a href="https://katchiq.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> | <a href="https://katchiq.com/terms-of-use/" target="_blank" rel="noopener">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"Prevention Before Payment: How PICC Creates Value for Health Plans",
+    start:"2026-11-12T11:00:00-06:00",   // 11:00 AM CT (Nashville, CST)
+    end:"2026-11-12T11:45:00-06:00",
+    details:"A live Katch IQ session on Proactive Injury Coverage Coordination. Streaming on katchiq.com.",
+    location:"https://katchiq.com"
+  };
+  function utc(d){return new Date(d).toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");}
+  var startMs=new Date(EVENT.start).getTime(), endMs=new Date(EVENT.end).getTime();
+
+  /* viewer-local time */
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var local=new Date(startMs).toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+    if(tz!=="America/Chicago"){document.getElementById("localTime").textContent="That’s "+local+" where you are";}
+  }catch(e){}
+
+  /* countdown, degrading to on-demand */
+  var cd=document.getElementById("countdown");
+  function pad(n){return String(n).padStart(2,"0");}
+  function onDemand(){
+    document.getElementById("badgeText").textContent="On Demand";
+    document.querySelector("#badge .dot").style.animation="none";
+    document.getElementById("chips").style.display="none";
+    document.getElementById("localTime").style.display="none";
+    document.getElementById("calWrap").style.display="none";
+    document.getElementById("mainCta").textContent="Watch the Recording";
+    document.getElementById("ctaSub").textContent="The full session is available on demand, right here on katchiq.com.";
+    document.querySelectorAll('.cta .btn').forEach(function(b){b.textContent="Watch the Recording";});
+    cd.outerHTML='<div class="cd-live">Watch the recording below</div>';
+  }
+  function tick(){
+    var now=Date.now(), diff=startMs-now;
+    if(now>endMs+36e5){clearInterval(t);onDemand();return;}
+    if(diff<=0){cd.innerHTML='<div class="cd-live"><span class="dot" style="width:10px;height:10px;border-radius:50%;background:#F2EDA8;display:inline-block;animation:pulse 1.6s infinite"></span>We’re live now. Join below</div>';return;}
+    var v={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    cd.querySelectorAll("[data-cd]").forEach(function(el){el.textContent=pad(v[el.getAttribute("data-cd")]);});
+  }
+  var t=setInterval(tick,1000); tick();
+
+  /* calendar links from one EVENT object */
+  var s=utc(EVENT.start), e=utc(EVENT.end);
+  document.getElementById("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+s+"/"+e+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Katch//IQ Live//EN","BEGIN:VEVENT","UID:picc-live-20261112@katchiq.com","DTSTAMP:"+utc(new Date().toISOString()),"DTSTART:"+s,"DTEND:"+e,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById("ical").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  /* nav */
+  var nav=document.getElementById("nav");
+  function onScroll(){nav.classList.toggle("scrolled",window.scrollY>8);}
+  onScroll(); window.addEventListener("scroll",onScroll,{passive:true});
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target);}});},{threshold:.15});
+  document.querySelectorAll(".reveal,.stagger").forEach(function(el){io.observe(el);});
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});
+  (function stripBorder(){
+    var r=document.getElementById("sequel_root"), c=r&&r.firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+});
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Prevention Before Payment: How PICC Creates Value for Health Plans | Katch</title>
+<meta name="description" content="A live Katch IQ session on Proactive Injury Coverage Coordination: identifying the right payer before payment occurs.">
+<meta property="og:title" content="Prevention Before Payment: How PICC Creates Value for Health Plans">
+<meta property="og:description" content="Health plans are under pressure to reduce medical costs without disrupting the member or provider experience. A live Katch IQ session.">
+<meta property="og:image" content="https://e9cdqgtsc3z.exactdn.com/wp-content/uploads/2025/10/HP-OG.webp">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/katch/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Katch">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://e9cdqgtsc3z.exactdn.com/wp-content/uploads/2025/07/cropped-Favicon-01-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://e9cdqgtsc3z.exactdn.com/wp-content/uploads/2025/07/cropped-Favicon-01-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#254749;      /* Katch deep teal: headings, footer, utility bar */
+  --pine:#32645F;      /* logo green */
+  --deep:#15292a;      /* near-black teal for the mechanism band */
+  --mint:#8FCAC3;      /* Katch mint rings */
+  --mint-2:#A8D3CE;    /* stat tiles */
+  --mist:#E5F4EF;      /* pale mint surface */
+  --butter:#F2EDA8;    /* Katch butter-yellow CTA */
+  --fog:#ECECEC;
+  --ink:#1d2b2c;
+  --sub:#4f5d5e;
+  --line:#d8e3e1;
+  --sh-sm:0 2px 10px rgba(37,71,73,.07);
+  --sh-md:0 16px 38px rgba(37,71,73,.12);
+  --sh-lg:0 30px 70px rgba(10,30,31,.30);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:'Poppins',Arial,Helvetica,sans-serif;
+  --body:'Open Sans',Arial,Helvetica,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.16;letter-spacing:-0.015em;color:var(--teal)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+::selection{background:var(--butter);color:var(--teal)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}
+
+/* announce */
+.announce{background:var(--butter);color:var(--teal);text-align:center;font-size:13.5px;padding:9px 16px}
+.announce a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* utility strip (mirrors katchiq.com) */
+.util{background:var(--teal);color:#fff}
+.util-inner{display:flex;justify-content:flex-end;gap:40px;height:44px;align-items:center}
+.util a{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.92;transition:opacity .15s}
+.util a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:saturate(170%) blur(10px);-webkit-backdrop-filter:saturate(170%) blur(10px);transition:box-shadow .25s}
+.nav.scrolled{box-shadow:0 6px 22px rgba(37,71,73,.10)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:86px;transition:height .25s var(--ease)}
+.nav.scrolled .nav-inner{height:70px}
+.logo{color:var(--pine);display:block}
+.logo svg{height:34px;width:auto;display:block}
+.nav-links{display:flex;gap:40px;align-items:center}
+.nav-links a{font-size:15px;color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.nav-links a:hover{color:var(--pine)}
+.caret{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:1.8}
+.burger{display:none;width:34px;height:22px;flex-direction:column;justify-content:space-between}
+.burger span{height:2px;background:var(--ink);display:block}
+
+/* ---------- DARK WRAP: hero + embed, one surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--teal);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto 35%;height:85%;background:radial-gradient(circle,rgba(143,202,195,.20),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto 30% -18% -15%;height:60%;background:radial-gradient(circle,rgba(242,237,168,.07),transparent 62%);pointer-events:none}
+.rings{position:absolute;pointer-events:none;z-index:1}
+.rings-tl{left:-260px;top:-240px;width:780px;height:780px}
+.rings-br{right:-220px;bottom:-240px;width:620px;height:620px}
+.hero{position:relative;z-index:2;padding:78px 0 44px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--butter);color:var(--teal);font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 22px 8px 18px;border-radius:1000px 0 0 1000px;margin-bottom:26px}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero .eyebrow{color:var(--mint);margin-bottom:14px}
+.hero h1{color:#fff;font-size:clamp(34px,4.6vw,56px);font-weight:400;letter-spacing:-0.025em;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--butter)}
+.hero .lead{font-size:17px;color:#d3e4e2;max-width:540px;margin-bottom:26px}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);padding:7px 14px;font-size:14px;border-radius:1000px}
 .chip svg{width:15px;height:15px;stroke:var(--mint);fill:none;stroke-width:2}
