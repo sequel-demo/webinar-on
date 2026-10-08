@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Building an AI-ready Enterprise | Connection</title>
+<meta name="description" content="A practical conversation on what it really takes to build an AI-ready enterprise, with CNXN Helix and Cisco.">
+<meta property="og:title" content="Building an AI-ready Enterprise: Strategies for Scaling AI with Confidence">
+<meta property="og:description" content="AI is no longer just a technology discussion. It's a business strategy discussion.">
+<meta property="og:image" content="https://www.connection.com/media/2oelc40m/opengraphimage.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/connection/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.connection.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071633;--navy2:#0b1f44;--ink:#212529;--black:#0c1019;
+  --blue:#0076bd;--blue2:#4886d1;--bar:#3471c9;--green:#7ec252;--purple:#700b5f;--purple-l:#c46fb0;
+  --gray:#869397;--line:#e3e6ea;--soft:#f7f7f7;
+  --sh-sm:0 1px 2px rgba(7,22,51,.08);--sh-md:0 8px 24px rgba(7,22,51,.10);--sh-lg:0 24px 60px rgba(7,22,51,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Encode Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce */
+.announce{background:var(--gray);color:#fff;text-align:center;font-size:15px;padding:13px 48px;position:relative}
+.announce b{font-weight:700}
+.announce a{text-decoration:underline;text-underline-offset:3px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);transition:box-shadow .35s var(--ease)}
+header.scrolled{box-shadow:var(--sh-md);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hd-top{display:flex;align-items:center;gap:28px;height:98px;transition:height .35s var(--ease)}
+header.scrolled .hd-top{height:78px}
+.logo{display:block;width:176px;flex:none}
+.logo img{width:176px;height:auto}
+.wm{display:none;line-height:1}
+.wm .w1{font-size:33px;font-weight:500;color:#58595b;letter-spacing:-.02em;position:relative;display:inline-block}
+.wm .w1:before{content:"";position:absolute;left:8%;right:20%;top:-7px;height:12px;border-top:3px solid #3a7bd5;border-radius:50% 50% 0 0}
+.wm .w2{display:block;text-align:right;color:#3a7bd5;font-size:14px;margin-top:2px}
+.search{flex:1;max-width:418px;display:flex;border:1px solid #ccc;border-radius:4px;overflow:hidden;height:46px}
+.search input{flex:1;border:0;padding:0 14px;font:inherit;font-size:18px;color:#555;outline:0;min-width:0}
+.search button{width:54px;border:0;border-left:1px solid #ccc;background:#fff;display:grid;place-items:center;cursor:pointer}
+.utils{display:flex;gap:30px;margin-left:auto}
+.util{display:flex;flex-direction:column;align-items:center;font-size:13px;font-weight:600;color:#111;gap:2px}
+.util svg{height:32px}
+.hd-nav{background:#f7f7f7;border-top:1px solid #e6e6e6;box-shadow:0 2px 3px rgba(0,0,0,.06)}
+.hd-nav ul{list-style:none;display:flex;gap:30px;height:56px;align-items:center}
+.hd-nav a{font-size:15px;color:#111;letter-spacing:.01em}
+.hd-nav a:hover{color:var(--blue)}
+.hd-nav a.dim{color:#555}
+.crumb{font-size:13px;padding:16px 0;color:#333}
+.crumb a{color:var(--blue);text-decoration:underline}
+
+/* pixel field (signature device) */
+.pix{position:absolute;top:0;bottom:0;width:min(34vw,440px);pointer-events:none;z-index:1}
+.pix.l{left:0}.pix.r{right:0}
+.pix svg{width:100%;height:100%}
+
+/* dark wrap = hero + embed */
+.dark-wrap{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:80%;background:radial-gradient(closest-side,rgba(72,134,209,.30),transparent 70%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -15% -20% 20%;height:70%;background:radial-gradient(closest-side,rgba(112,11,95,.38),transparent 70%);pointer-events:none}
+.hero{padding:70px 0 40px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:56px;align-items:end}
+.eyebrow{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;letter-spacing:.06em;color:#e7b3db}
+.eyebrow svg{width:30px;height:30px}
+.bluebar{width:76px;height:7px;background:var(--bar);margin:22px 0 26px}
+.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 14px 6px 12px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(126,194,82,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(126,194,82,.7)}70%{box-shadow:0 0 0 10px rgba(126,194,82,0)}100%{box-shadow:0 0 0 0 rgba(126,194,82,0)}}
+h1{font-weight:300;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:-.02em}
+h1 strong{font-weight:600;display:block}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 14px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);border-radius:3px;padding:7px 12px;font-size:14px;font-weight:500;background:rgba(255,255,255,.04)}
+.chip svg{width:15px;height:15px;opacity:.8}
+.sub{color:#b9c4d8;font-size:15.5px}
+.sub b{color:#fff;font-weight:600}
+.localtime{color:#8fa0bf;font-size:13px;margin-top:4px;min-height:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;padding:13px 24px;border-radius:3px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-green{background:var(--green);color:#0c1019}
+.btn-ghost{border:2px solid rgba(255,255,255,.55);color:#fff;padding:11px 18px;font-size:14.5px}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.cd-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:24px 24px 22px;backdrop-filter:blur(6px)}
+.cd-card .mono{color:#9fb0cf}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 18px}
+.cd div{text-align:center;background:rgba(7,22,51,.55);border-radius:4px;padding:12px 4px 8px}
+.cd b{display:block;font-size:34px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.cd span{font-size:11px;letter-spacing:.1em;color:#9fb0cf;text-transform:uppercase}
+.cd-live{font-size:18px;font-weight:600;display:flex;align-items:center;gap:10px;margin:14px 0 18px}
+.hosts{display:flex;gap:14px;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.av.a{background:var(--purple);color:#fff}.av.b{background:var(--blue);color:#fff;margin-left:-22px;border:2px solid var(--navy)}
+.hosts p{font-size:13px;color:#c9d2e3;line-height:1.45}
+.embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+
+/* stat band */
+.stat{position:relative;overflow:hidden;background:#fff;padding:110px 0 100px}
+.stat .wrap{position:relative;z-index:2;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+.big{font-size:clamp(110px,15vw,190px);font-weight:600;line-height:.85;letter-spacing:-.05em;color:var(--purple)}
+.big sup{font-size:.42em;vertical-align:.95em;margin-left:4px;font-weight:500}
+.stat h2{font-weight:300;font-size:clamp(24px,2.6vw,34px);line-height:1.25;max-width:22ch;color:#000}
+.stat .turn{margin-top:18px;font-size:18px;color:#3d4450;max-width:52ch}
+.stat .src{margin-top:22px;color:#8a919c}
+
+/* lede */
+.lede{background:var(--soft);padding:100px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:56px}
+.side{position:sticky;top:180px;align-self:start;color:var(--purple)}
+.side i{display:block;width:40px;height:4px;background:var(--bar);margin-top:14px}
+.lede-body{max-width:66ch}
+.lede-body p{font-size:18.5px;color:#2b313a;margin-bottom:20px}
+.lede-body p.lead{font-size:clamp(23px,2.3vw,29px);font-weight:300;line-height:1.35;color:#000;margin-bottom:26px}
+
+/* mechanism */
+.mech{background:var(--black);color:#fff;padding:100px 0 110px;position:relative;overflow:hidden}
+.mech .mono{color:#e7b3db}
+.mech h2{font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.15;margin:14px 0 14px;max-width:24ch}
+.mech h2 strong{font-weight:600}
+.mech .intro{color:#aeb6c4;max-width:60ch;font-size:17px}
+.flow{display:flex;align-items:stretch;margin-top:56px}
+.node{flex:1;min-width:0;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:20px 18px;background:rgba(255,255,255,.03);transition:border-color .35s var(--ease),transform .35s var(--ease)}
+.node:hover{border-color:var(--blue2);transform:translateY(-4px)}
+.node .n{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.1em}
+.node h3{font-size:19px;font-weight:600;margin:8px 0 6px}
+.node p{font-size:13.5px;color:#aeb6c4;line-height:1.5}
+.node.hl{border-color:rgba(126,194,82,.6);background:rgba(126,194,82,.06)}
+.conn{flex:0 0 34px;align-self:center;height:2px;background-image:linear-gradient(90deg,var(--blue2) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march .9s linear infinite}
+@keyframes march{to{background-position:12px 0}}
+.mech .foot{margin-top:28px;color:#7f8898;font-size:14px}
+
+/* learn rows */
+.learn{padding:100px 0;background:#fff}
+.learn .head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px}
+.learn h2{font-weight:300;font-size:clamp(28px,3.2vw,42px);line-height:1.15;color:#000}
+.learn h2 strong{font-weight:600}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--purple);transition:width .5s var(--ease)}
+.row:hover{background:#fbf8fb}.row:hover::before{width:100%}
+.row .n{font-family:var(--mono);font-size:13px;color:var(--purple);padding-top:5px}
+.row h3{font-size:22px;font-weight:600;line-height:1.3;color:#000}
+.row p{color:#47505c;font-size:16.5px}
+
+/* speakers */
+.speakers{background:var(--soft);padding:96px 0;position:relative;overflow:hidden}
+.speakers h2{font-weight:300;font-size:clamp(28px,3vw,40px);color:#000;margin:12px 0 40px}
+.speakers h2 strong{font-weight:600}
+.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #d9dde3}
+.sp{display:flex;gap:22px;padding:32px 24px 32px 0;align-items:flex-start}
+.sp+.sp{border-left:1px solid #d9dde3;padding-left:32px}
+.sp .av{width:76px;height:76px;font-size:24px}
+.sp .av.b{margin-left:0;border:0}
+.sp h3{font-size:21px;font-weight:600;color:#000}
+.sp .role{color:#47505c;font-size:15.5px;line-height:1.5;margin-top:4px}
+.sp .org{margin-top:10px;color:var(--purple)}
+
+/* cta band */
+.cta{background:var(--blue);color:#fff;padding:84px 0;position:relative;overflow:hidden}
+.cta .wrap{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.cta h2{font-weight:300;font-size:clamp(28px,3.4vw,44px);line-height:1.15;max-width:22ch}
+.cta h2 strong{font-weight:600}
+.cta p{color:#e2eef8;margin-top:12px;max-width:56ch}
+.btn-white{background:#fff;color:var(--blue)}
+
+/* footer */
+footer{background:var(--navy);color:#fff;padding:64px 0 0;font-size:12px}
+.f-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.f-cols h4{font-size:13px;font-weight:700;letter-spacing:.06em;margin:0 0 12px}
+.f-cols ul{list-style:none}
+.f-cols li{margin:7px 0}
+.f-cols a:hover{text-decoration:underline}
+.f-contact{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;border-top:1px solid rgba(255,255,255,.14);margin-top:44px;padding:28px 0}
+.f-contact b{display:block;font-size:13px;letter-spacing:.06em;margin-bottom:8px}
+.f-contact p{color:#c8d0de;line-height:1.7}
+.soc{display:flex;gap:10px;margin-top:6px}
+.soc a{width:34px;height:34px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:grid;place-items:center}
+.soc svg{width:15px;height:15px;fill:#fff}
+.legal{background:#050f24;padding:18px 0;color:#aab4c6}
+.legal .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.legal a{color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.40s}.stagger.in>*:nth-child(7){transition-delay:.48s}.stagger.in>*:nth-child(8){transition-delay:.56s}.stagger.in>*:nth-child(9){transition-delay:.64s}
+
+/* stale-date on-demand state */
+body.ondemand .cal,body.ondemand .localtime{display:none}
+
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .stat .wrap{grid-template-columns:1fr;gap:20px}
+  .lede-grid{grid-template-columns:1fr;gap:20px}.side{position:static}
+  .flow{flex-direction:column}.conn{flex:0 0 26px;width:2px;height:26px;align-self:flex-start;margin-left:28px;background-image:linear-gradient(180deg,var(--blue2) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv .9s linear infinite}
+  .f-cols{grid-template-columns:repeat(3,1fr)}
+  .utils{gap:18px}
+  .hd-nav ul{overflow-x:auto;gap:24px;scrollbar-width:none}.hd-nav ul::-webkit-scrollbar{display:none}.hd-nav li{flex:none}
+}
+@keyframes marchv{to{background-position:0 12px}}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .announce{font-size:13px;padding:10px 16px}
+  .hd-top{height:72px;gap:12px}header.scrolled .hd-top{height:64px}
+  .logo,.logo img{width:124px}
+  .search{display:none}
+  .util{font-size:10.5px}.util svg{height:26px}.utils{gap:14px}
+  .hd-nav ul{height:46px}.hd-nav a{font-size:13px}
+  .hero{padding:44px 0 28px}
+  .cd b{font-size:26px}
+  #sequel_root{min-height:420px}
+  .row{grid-template-columns:1fr;gap:8px;padding:26px 6px}
+  .sp-grid{grid-template-columns:1fr}.sp+.sp{border-left:0;border-top:1px solid #d9dde3;padding-left:0}
+  .f-cols{grid-template-columns:1fr 1fr}
+  .pix{width:46vw;opacity:.55}
+  .stat,.lede,.mech,.learn,.speakers{padding:70px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce"><b>Upcoming Webinar:</b> Building an AI-ready Enterprise, Tuesday, November 10 &middot; <a href="#watch">Save your seat</a></div>
+
+<header id="nav">
+  <div class="wrap hd-top">
+    <a class="logo" href="https://www.connection.com/" target="_blank" rel="noopener" aria-label="Connection, we solve IT">
+      <img src="https://www.connection.com/media/0cxfdsop/connection-we-solve-it-logo.png" alt="Connection, we solve IT" width="285" height="92" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="wm"><span class="w1">Connection</span><span class="w2">we solve IT<sup style="font-size:8px">&reg;</sup></span></span>
+    </a>
+    <form class="search" action="https://www.connection.com/search" target="_blank" onsubmit="return true">
+      <input type="text" placeholder="Search" aria-label="Search">
+      <button type="submit" aria-label="Search"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.4"><circle cx="10" cy="10" r="7"/><path d="M15.5 15.5 22 22"/></svg></button>
+    </form>
+    <div class="utils">
+      <a class="util" href="https://www.connection.com/account/sign-in" target="_blank" rel="noopener"><svg viewBox="0 0 34 32"><circle cx="13" cy="8" r="7" fill="#111"/><path d="M0 30c0-8 5.5-13 13-13s13 5 13 13z" fill="#111"/><path d="M27 15v12M21 21h12" stroke="#2f8de0" stroke-width="3.4"/></svg>SIGN IN</a>
+      <a class="util" href="https://www.connection.com/order-tracking" target="_blank" rel="noopener"><svg viewBox="0 0 32 32"><rect x="4" y="3" width="24" height="26" rx="3" fill="none" stroke="#111" stroke-width="2.4"/><path d="M4 9h24" stroke="#111" stroke-width="2.4"/><circle cx="13" cy="19" r="5" fill="none" stroke="#2f8de0" stroke-width="2.6"/><path d="M9.5 22.5 5 27" stroke="#2f8de0" stroke-width="2.8"/><path d="M20 17h5M20 21h5" stroke="#111" stroke-width="2"/></svg>TRACK</a>
+      <a class="util" href="https://www.connection.com/cart" target="_blank" rel="noopener"><svg viewBox="0 0 40 32"><path d="M1 3h7l4 17h22l4-13H10" fill="none" stroke="#111" stroke-width="3"/><path d="M10 7h28l-4 13H12z" fill="#111"/><circle cx="14" cy="27" r="3" fill="#111"/><circle cx="31" cy="27" r="3" fill="#111"/></svg>CART</a>
+    </div>
+  </div>
+  <nav class="hd-nav" aria-label="Main">
+    <div class="wrap"><ul>
+      <li><a href="https://www.connection.com/products" target="_blank" rel="noopener">PRODUCTS</a></li>
+      <li><a class="dim" href="https://www.connection.com/solutions-services" target="_blank" rel="noopener">SOLUTIONS &amp; SERVICES</a></li>
+      <li><a href="https://www.connection.com/industries" target="_blank" rel="noopener">INDUSTRIES</a></li>
+      <li><a href="https://www.connection.com/content/events" target="_blank" rel="noopener">RESOURCES</a></li>
+      <li><a href="https://www.connection.com/account-benefits" target="_blank" rel="noopener">ACCOUNT BENEFITS</a></li>
+      <li><a class="dim" href="https://www.connection.com/deals" target="_blank" rel="noopener">DEALS</a></li>
+      <li><a class="dim" href="https://community.connection.com/" target="_blank" rel="noopener">BLOG</a></li>
+    </ul></div>
+  </nav>
+</header>
+
+<div class="wrap crumb"><a href="https://www.connection.com/" target="_blank" rel="noopener">Home</a> &gt; <a href="https://www.connection.com/solutions-services" target="_blank" rel="noopener">Solutions and Services</a> &gt; <a href="https://www.connection.com/solutions-services/artificial-intelligence" target="_blank" rel="noopener">Artificial Intelligence</a> &gt; Webinar</div>
+
+<div class="dark-wrap" id="watch">
+  <div class="pix l" data-pix="l"></div><div class="pix r" data-pix="r"></div>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow"><svg viewBox="0 0 32 32" fill="none" stroke="#e7b3db" stroke-width="1.8"><path d="M16 4c-3-2.5-8-1.5-9 2.5-3.5.5-5 4.5-3 7.5-2 3 0 7 3 7.5 1 4 6 5 9 2.5 3 2.5 8 1.5 9-2.5 3-.5 5-4.5 3-7.5 2-3 .5-7-3-7.5-1-4-6-5-9-2.5z"/><rect x="12" y="12" width="8" height="8" fill="#e7b3db"/><path d="M16 4v8M16 20v8M4 16h8M20 16h8"/></svg>ARTIFICIAL INTELLIGENCE</div>
+        <div class="bluebar"></div>
+        <div class="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></div>
+        <h1>Building an AI-ready Enterprise: <strong>Strategies for Scaling AI with Confidence</strong></h1>
+        <div class="meta">
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="12" rx="1.5"/><path d="M1.5 6.5h13M5 1v3M11 1v3"/></svg>Tuesday, November 10, 2026</span>
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l3 2"/></svg>2:00 p.m. ET</span>
+          <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5"><path d="M2 4h12v8H2zM6 14h4"/></svg>Live + on-demand</span>
+        </div>
+        <p class="sub">Streaming live and on-demand on <b>connection.com</b></p>
+        <p class="localtime" id="localtime"></p>
+        <div class="cta-row">
+          <a class="btn btn-green" href="#sequel_root" id="primaryCta">Register Now</a>
+          <a class="btn btn-ghost cal" id="gcal" target="_blank" rel="noopener">+ Google Calendar</a>
+          <a class="btn btn-ghost cal" id="ical" download="building-an-ai-ready-enterprise.ics">+ Outlook / iCal</a>
+        </div>
+      </div>
+      <aside class="cd-card reveal">
+        <div class="mono" id="cdLabel">Starts in</div>
+        <div id="countdown"><div class="cd"><div><b data-cd="d">00</b><span>Days</span></div><div><b data-cd="h">00</b><span>Hrs</span></div><div><b data-cd="m">00</b><span>Min</span></div><div><b data-cd="s">00</b><span>Sec</span></div></div></div>
+        <div class="hosts">
+          <span class="av a">JK</span><span class="av b">GK</span>
+          <p><b style="color:#fff">Jamal Khan</b>, CNXN Helix&reg;<br><b style="color:#fff">Dr. Gaurav Khanna</b>, Cisco</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="embed-sec">
+    <div class="wrap reveal"><div id="sequel_root"></div></div>
+  </section>
+</div>
+
+<section class="stat">
+  <div class="pix r" data-pix="r" data-light="1"></div>
+  <div class="wrap reveal">
+    <div class="big">27<sup>%</sup></div>
+    <div>
+      <h2>of executives say they have a comprehensive AI strategy in place today.</h2>
+      <p class="turn">The other 73% aren't short on ambition. They're stuck between the pilot and the payoff, and that gap is exactly what this session is built to close.</p>
+      <p class="src mono">Source: as cited on connection.com/artificial-intelligence</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side mono">About the session<i></i></div>
+    <div class="lede-body reveal">
+      <p class="lead">AI is no longer just a technology discussion. It's a business strategy discussion. Yet many organizations are finding that moving from AI pilots to meaningful business outcomes is more challenging than expected.</p>
+      <p>Join Jamal Khan, Chief Growth and Innovation Officer and Head of the CNXN Helix&reg; Center for Applied AI and Robotics, and Dr. Gaurav Khanna, AI Leader, Cisco, for a practical conversation on what it really takes to build an AI-ready enterprise. Together, they'll share insights on aligning AI initiatives with business priorities, establishing the right foundation for success, and overcoming the challenges that often prevent organizations from scaling AI effectively.</p>
+      <p>Whether you're just beginning your AI journey or looking to expand existing initiatives, this session will provide practical guidance on building a strategy that delivers measurable business value.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="mono">Our approach &middot; CNXN Helix&reg;</div>
+      <h2>A practical path from <strong>AI interest to AI outcomes</strong></h2>
+      <p class="intro">AI success does not happen all at once. The session follows the same structured process Connection uses to connect strategy to execution.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="node"><div class="n">01</div><h3>Discover</h3><p>Goals, challenges, stakeholders, and current AI priorities.</p></div>
+      <span class="conn"></span>
+      <div class="node"><div class="n">02</div><h3>Assess</h3><p>Data, infrastructure, security, workflows, governance, readiness.</p></div>
+      <span class="conn"></span>
+      <div class="node"><div class="n">03</div><h3>Design</h3><p>Roadmap, architecture, partner approach, success measures.</p></div>
+      <span class="conn"></span>
+      <div class="node"><div class="n">04</div><h3>Deploy</h3><p>Pilots, workshops, platforms, automation, applied AI.</p></div>
+      <span class="conn"></span>
+      <div class="node hl"><div class="n">05</div><h3>Scale</h3><p>Early wins into repeatable, governed, enterprise-ready adoption.</p></div>
+    </div>
+    <p class="foot">Most organizations stall between 04 and 05. That's where this conversation spends its time.</p>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="head reveal"><h2>What you'll <strong>walk away with</strong></h2><span class="mono" style="color:var(--purple)">4 takeaways</span></div>
+    <div class="stagger">
+      <div class="row"><span class="n">01</span><h3>Aligning AI with business priorities</h3><p>How to choose initiatives that map to outcomes leadership already measures, instead of chasing the most exciting demo.</p></div>
+      <div class="row"><span class="n">02</span><h3>The right foundation for success</h3><p>What data, infrastructure, security, and governance need to be in place before AI workloads can perform and scale.</p></div>
+      <div class="row"><span class="n">03</span><h3>Getting past the pilot stall</h3><p>The challenges that most often prevent organizations from scaling AI effectively, and how teams are working through them.</p></div>
+      <div class="row"><span class="n">04</span><h3>A strategy that shows measurable value</h3><p>Practical guidance whether you're just beginning your AI journey or expanding initiatives already in flight.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="pix l" data-pix="l" data-light="1"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="mono" style="color:var(--purple)">Featured speakers</div>
+    <h2>Hear from the <strong>people building it</strong></h2>
+    <div class="sp-grid stagger">
+      <div class="sp"><span class="av a">JK</span><div><h3>Jamal Khan</h3><p class="role">Chief Growth and Innovation Officer; Head of the CNXN Helix&reg; Center for Applied AI and Robotics</p><p class="org mono">Connection</p></div></div>
+      <div class="sp"><span class="av b">GK</span><div><h3>Dr. Gaurav Khanna</h3><p class="role">AI Leader</p><p class="org mono">Cisco</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap reveal">
+    <div>
+      <h2>Ready to build AI that <strong>delivers real business outcomes?</strong></h2>
+      <p>Whether you are evaluating your first AI use case or scaling enterprise initiatives, Connection and CNXN Helix can help you move from ideas to implementation.</p>
+    </div>
+    <a class="btn btn-white" href="#watch">Save Your Seat</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-cols">
+      <div><h4>CONNECTION</h4><ul><li><a href="https://www.connection.com/about-us" target="_blank" rel="noopener">About Us</a></li><li><a href="https://www.connection.com/about-us/awards" target="_blank" rel="noopener">Awards</a></li><li><a href="https://www.connection.com/careers" target="_blank" rel="noopener">Careers</a></li><li><a href="https://www.connection.com/connection-cares" target="_blank" rel="noopener">Connection Cares</a></li><li><a href="https://www.connection.com/contact-us" target="_blank" rel="noopener">Contact Us</a></li><li><a href="https://ir.connection.com/" target="_blank" rel="noopener">Investor Relations</a></li></ul></div>
+      <div><h4>SITE HELP</h4><ul><li><a href="https://www.connection.com/customer-care" target="_blank" rel="noopener">Customer Care</a></li><li><a href="https://www.connection.com/order-tracking" target="_blank" rel="noopener">Order Tracking</a></li><li><a href="https://www.connection.com/site-help" target="_blank" rel="noopener">Site Help</a></li><li><a href="https://www.connection.com/site-map" target="_blank" rel="noopener">Site Map</a></li></ul><h4 style="margin-top:22px">SITES</h4><ul><li><a href="https://www.cnxnhelix.com/" target="_blank" rel="noopener">CNXN Helix</a></li><li><a href="https://www.connection.com/markitplace" target="_blank" rel="noopener">MarkITplace</a></li></ul></div>
+      <div><h4>SOLUTIONS AND SERVICES</h4><ul><li><a href="https://www.connection.com/solutions-services/artificial-intelligence" target="_blank" rel="noopener">Artificial Intelligence</a></li><li><a href="https://www.connection.com/solutions-services/cybersecurity" target="_blank" rel="noopener">Cybersecurity</a></li><li><a href="https://www.connection.com/solutions-services/digital-workspace" target="_blank" rel="noopener">Digital Workspace</a></li><li><a href="https://www.connection.com/solutions-services/modern-infrastructure" target="_blank" rel="noopener">Modern Infrastructure</a></li><li><a href="https://www.connection.com/solutions-services/multicloud" target="_blank" rel="noopener">Multicloud</a></li><li><a href="https://www.connection.com/solutions-services/supply-chain-and-lifecycle" target="_blank" rel="noopener">Supply Chain and Lifecycle</a></li></ul></div>
+      <div><h4>INDUSTRY VERTICALS</h4><ul><li>Federal Government</li><li>Healthcare</li><li>Higher Education</li><li>K-12 Education</li><li>Manufacturing</li><li>Retail</li><li>State &amp; Local</li></ul></div>
+      <div><h4>KNOWLEDGE CENTER</h4><ul><li><a href="https://community.connection.com/" target="_blank" rel="noopener">Connected Blog</a></li><li><a href="https://www.connection.com/content/events" target="_blank" rel="noopener">Events</a></li><li>TechSperience Podcasts</li></ul><h4 style="margin-top:22px">ACCOUNTS</h4><ul><li><a href="https://www.connection.com/account-benefits" target="_blank" rel="noopener">Account Benefits</a></li><li><a href="https://www.connection.com/account/sign-in" target="_blank" rel="noopener">Sign In</a></li></ul></div>
+    </div>
+    <div class="f-contact">
+      <div><b>CONNECT WITH US</b><div class="soc"><a href="https://www.linkedin.com/company/connection-it" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a></div></div>
+      <div><b>CONTACT US</b><p>Connection Customer Care<br>1.800.800.0014<br>M-F: 8:30am - 5:30pm ET<br>CustomerService@connection.com</p></div>
+      <div><p style="margin-top:22px">Public Sector Solutions<br>Enterprise Solutions<br>Global Solutions</p></div>
+    </div>
+  </div>
+  <div class="legal"><div class="wrap"><span>&copy; 2026 PC Connection, Inc.</span><a href="https://www.connection.com/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a><a href="https://www.connection.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a><a href="https://www.connection.com/accessibility" target="_blank" rel="noopener">Accessibility</a><a href="https://www.connection.com/legal-notices" target="_blank" rel="noopener">Legal Notices</a></div></div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"Building an AI-ready Enterprise: Strategies for Scaling AI with Confidence",
+    start:"2026-11-10T14:00:00-05:00",
+    end:"2026-11-10T15:00:00-05:00",
+    startUTC:"20261110T190000Z",
+    endUTC:"20261110T200000Z",
+    details:"Jamal Khan (CNXN Helix) and Dr. Gaurav Khanna (Cisco) on what it really takes to build an AI-ready enterprise. Streaming live on connection.com.",
+    location:"https://sequel-demo.github.io/webinar-on/connection/"
+  };
+  var target=new Date(EVENT.start).getTime(), endT=new Date(EVENT.end).getTime();
+
+  /* viewer's own timezone */
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if(!/New_York|Toronto|Detroit|Indiana|Kentucky/.test(tz)){
+      var f=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+      document.getElementById('localtime').textContent='That’s '+f.format(new Date(target))+' where you are.';
+    }
+  }catch(e){}
+
+  /* countdown + stale-date degradation */
+  var cd=document.getElementById('countdown');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var now=Date.now(),diff=target-now;
+    if(now>endT){
+      document.body.classList.add('ondemand');
+      document.getElementById('badgeTxt').textContent='On Demand';
+      document.getElementById('cdLabel').textContent='Recorded November 10, 2026';
+      cd.innerHTML='<div class="cd-live">Watch the recording below</div>';
+      document.getElementById('primaryCta').textContent='Watch Now';
+      return true;
+    }
+    if(diff<=0){cd.innerHTML='<div class="cd-live"><span class="dot"></span> We’re live now. Join below</div>';return false;}
+    var s={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(s[el.getAttribute('data-cd')]);});
+    return false;
+  }
+  if(!tick()){var iv=setInterval(function(){if(tick())clearInterval(iv);},1000);}
+
+  /* add to calendar */
+  document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Connection//Webinar//EN","BEGIN:VEVENT","UID:ai-ready-enterprise-20261110@connection-demo","DTSTAMP:20261008T000000Z","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  /* signature pixel field */
+  document.querySelectorAll('[data-pix]').forEach(function(box){
+    var side=box.getAttribute('data-pix'),light=box.hasAttribute('data-light');
+    var cols=16,rows=40,step=26,w=cols*step,h=rows*step,out='';
+    var pal=light?['#700b5f','#b98cb0','#d5d9de','#c9ced4']:['#9b3d88','#700b5f','#4886d1','#5a6a8a'];
+    var seed=side==='l'?7:13;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+    for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){
+      var edge=side==='l'?(1-x/cols):(x/cols);
+      var p=Math.pow(edge,1.6)*(light?.85:.75);
+      if(rnd()<p){
+        var big=rnd()<edge*.55,sz=big?11:(rnd()<.5?6:4);
+        var c=pal[big?(rnd()<.6?0:1):(2+Math.floor(rnd()*2))];
+        var o=(0.25+edge*.75)*(light?.9:.8);
+        out+='<rect x="'+(x*step+(step-sz)/2)+'" y="'+(y*step+(step-sz)/2)+'" width="'+sz+'" height="'+sz+'" fill="'+c+'" opacity="'+o.toFixed(2)+'"/>';
+      }
+    }
+    box.innerHTML='<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="'+(side==='l'?'xMinYMin':'xMaxYMin')+' slice" aria-hidden="true">'+out+'</svg>';
+  });
+
+  /* nav state */
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* reveal */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('.reveal,.stagger').forEach(function(el){el.classList.add('in');});}
+  window.addEventListener('load',function(){document.querySelectorAll('.hero .reveal').forEach(function(el){el.classList.add('in');});});
+
+  /* strip Sequel iframe border inside its shadow root */
+  (function stripBorder(){
+    var c=document.getElementById("sequel_root").firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+})();
+</script>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+</body>
+</html>
