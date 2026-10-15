@@ -106,10 +106,14 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;letter-spac
 .cal a{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:100px;padding:9px 15px;margin-right:6px;transition:border-color .2s,transform .18s var(--ease)}
 .cal a:hover{border-color:var(--yellow);transform:translateY(-2px)}
 .cal svg{width:14px;height:14px;stroke:var(--yellow);fill:none;stroke-width:2}
+.ann-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#E5243B;margin-right:10px;vertical-align:middle;animation:pip 1.6s ease-in-out infinite}
+.live-pip{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FF3B4E;box-shadow:0 0 0 0 rgba(255,59,78,.6);animation:pip 1.6s ease-in-out infinite;margin-right:8px;vertical-align:middle}
+.chip-live{border-color:rgba(255,59,78,.55)!important;background:rgba(255,59,78,.14)!important;color:#fff;font-weight:600}
+@keyframes pip{0%{box-shadow:0 0 0 0 rgba(255,59,78,.6)}70%{box-shadow:0 0 0 9px rgba(255,59,78,0)}100%{box-shadow:0 0 0 0 rgba(255,59,78,0)}}
 /* countdown card */
 .count{background:rgba(18,0,43,.55);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:28px 26px;backdrop-filter:blur(6px)}
 .count .mono{color:#cbbbe8;display:block;margin-bottom:16px}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .tile{background:rgba(255,255,255,.07);border-radius:14px;padding:14px 0 10px;text-align:center}
 .tile b{display:block;font-family:var(--display);font-size:34px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
 .tile small{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#cbbbe8;margin-top:7px}
@@ -244,7 +248,7 @@ footer .col a:hover{opacity:1;text-decoration:underline}
 </head>
 <body>
 
-<div class="announce">Live Talkdesk Academy session: Enablement for the hybrid workforce. <a href="#register">Save your seat →</a></div>
+<div class="announce"><span class="ann-dot"></span>Live now on talkdesk.com: Enablement for the hybrid workforce. <a href="#watch">Join the session →</a></div>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -272,29 +276,24 @@ footer .col a:hover{opacity:1;text-decoration:underline}
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="reveal">
-        <span class="badge"><span class="dot"></span><span class="mono" id="badgeTxt" style="color:#fff">Live Webinar · Talkdesk Academy</span></span>
+        <span class="badge"><span class="dot"></span><span class="mono" id="badgeTxt" style="color:#fff">Live Now · Talkdesk Academy</span></span>
         <h1>Enablement for the <em>hybrid workforce.</em></h1>
         <p class="sub">Humans focus on judgment and empathy. AI agents execute the work. A live session on getting every customer team ready for both, and knowing which accounts actually are.</p>
         <div class="chips" id="chips">
-          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Thursday, November 12, 2026</span>
-          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10:00 AM PT</span>
+          <span class="chip chip-live"><span class="live-pip"></span>On air now</span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="startedAt">Started today</span></span>
           <span class="chip"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>45 min + live Q&amp;A</span>
         </div>
         <p class="streaming">Streaming live and on-demand on <b>talkdesk.com</b></p>
-        <p class="local" id="localTime"></p>
         <div class="actions">
-          <a class="btn-yellow" href="#watch" id="mainCta">Register now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <span class="cal" id="calBtns">
-            <a id="gcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Google</a>
-            <a id="ical" href="#" download="talkdesk-academy-live.ics"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>iCal / Outlook</a>
-          </span>
+          <a class="btn-yellow" href="#watch" id="mainCta">Join live now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          
         </div>
       </div>
       <aside class="count reveal" aria-live="polite">
-        <span class="mono" id="cdLabel">Starts in</span>
+        <span class="mono" id="cdLabel"><span class="live-pip"></span>Live for</span>
         <div id="countdown">
           <div class="tiles">
-            <div class="tile"><b data-cd="d">00</b><small>Days</small></div>
             <div class="tile"><b data-cd="h">00</b><small>Hrs</small></div>
             <div class="tile"><b data-cd="m">00</b><small>Min</small></div>
             <div class="tile"><b data-cd="s">00</b><small>Sec</small></div>
@@ -380,8 +379,8 @@ footer .col a:hover{opacity:1;text-decoration:underline}
 <section class="cta-band">
   <div class="ghost" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap cta-inner reveal">
-    <h2>Save your seat for the live session.</h2>
-    <a class="btn-purple" href="#watch" id="ctaBand">Register now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <h2>We’re live right now. Pull up a seat.</h2>
+    <a class="btn-purple" href="#watch" id="ctaBand">Join live now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 </main>
@@ -446,46 +445,19 @@ footer .col a:hover{opacity:1;text-decoration:underline}
 
 <script>
 (function(){
-  var EVENT={
-    title:"Enablement for the Hybrid Workforce: A Live Talkdesk Academy Session",
-    start:"2026-11-12T10:00:00-08:00", end:"2026-11-12T10:45:00-08:00",
-    startUTC:"20261112T180000Z", endUTC:"20261112T184500Z",
-    details:"A live Talkdesk Academy session on getting every customer team ready for the hybrid workforce. Streaming live and on-demand on talkdesk.com.",
-    location:"https://www.talkdesk.com/"
-  };
-  var start=new Date(EVENT.start).getTime(), end=new Date(EVENT.end).getTime();
+  // Always-live demo: the session "started" 12 minutes before the visitor arrived.
+  var start=Date.now()-12*60e3;
   var cd=document.getElementById('countdown');
   function pad(n){return String(n).padStart(2,'0');}
-  function onDemand(){
-    document.getElementById('badgeTxt').textContent='On Demand · Talkdesk Academy';
-    document.getElementById('cdLabel').textContent='Available now';
-    cd.innerHTML='<div class="live-now">Watch the recording below</div>';
-    var c=document.getElementById('calBtns'); if(c) c.style.display='none';
-    document.getElementById('mainCta').firstChild.textContent='Watch now ';
-    document.getElementById('ctaBand').firstChild.textContent='Watch now ';
-    var l=document.getElementById('localTime'); if(l) l.style.display='none';
-  }
   function tick(){
-    var now=Date.now(), diff=start-now;
-    if(now>end+3600e3){onDemand();return false;}
-    if(diff<=0){cd.innerHTML='<div class="live-now"><span class="dot" style="width:11px;height:11px;border-radius:50%;background:#FFCC00;display:inline-block"></span>We’re live now, join below</div>';return true;}
-    var v={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    var e=Date.now()-start;
+    var v={h:Math.floor(e/36e5),m:Math.floor(e%36e5/6e4),s:Math.floor(e%6e4/1e3)};
     cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(v[el.getAttribute('data-cd')]);});
-    return true;
   }
-  if(tick()!==false){var iv=setInterval(function(){if(tick()===false)clearInterval(iv);},1000);}
-
+  tick(); setInterval(tick,1000);
   try{
-    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if(tz && tz!=="America/Los_Angeles"){
-      var s=new Date(EVENT.start).toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
-      document.getElementById('localTime').textContent='That’s '+s+' where you are.';
-    }
+    document.getElementById('startedAt').textContent='Started '+new Date(start).toLocaleTimeString([],{hour:'numeric',minute:'2-digit',timeZoneName:'short'});
   }catch(e){}
-
-  document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
-  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Talkdesk//Academy Live//EN","BEGIN:VEVENT","UID:talkdesk-academy-live@talkdesk.com","DTSTAMP:"+EVENT.startUTC,"DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
-  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
 
   var nav=document.getElementById('nav');
   function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
