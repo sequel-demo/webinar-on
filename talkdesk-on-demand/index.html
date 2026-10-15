@@ -321,7 +321,7 @@ footer .col a:hover{opacity:1;text-decoration:underline}
         </div>
       </div>
       <aside class="count reveal">
-        <span class="mono">In this recording</span>
+        <span class="mono">In the full July ’26 recording</span>
         <ol class="topics">
           <li><b>01</b><span>Agentic AI outbound for retail and financial services</span></li>
           <li><b>02</b><span>Building and tuning AI agents through guided conversation</span></li>
@@ -335,24 +335,23 @@ footer .col a:hover{opacity:1;text-decoration:underline}
     <div class="wrap">
       <div class="player" id="player">
         <div class="stage">
-          <div class="stage-top"><span class="st-title">Talkdesk July ’26 Release Webinar</span><span class="st-pill">On demand</span></div>
+          <div class="stage-top"><span class="st-title">Transforming Talkdesk Copilot: Enhanced with agentic AI</span><span class="st-pill">Now playing</span></div>
           <div class="screen" id="screen">
-            <img src="https://infra-cloudfront-talkdeskcom.svc.talkdeskapp.com/talkdesk_com/webinar-26-july-release.webp" alt="" class="poster">
+            <img src="https://i.ytimg.com/vi/ba-wDTd1RSA/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ba-wDTd1RSA/hqdefault.jpg'" alt="" class="poster">
             <button class="bigplay" id="bigplay" aria-label="Play recording"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></button>
           </div>
           <div class="bar"><div class="prog"><i style="width:0%"></i></div>
-            <div class="ctl"><span>▶</span><span>0:00</span><span class="grow"></span><span>CC</span><span>⛶</span></div>
+            <div class="ctl"><span>▶</span><span>0:00 / 1:36</span><span class="grow"></span><span>CC</span><span>⛶</span></div>
           </div>
           <div class="reacts"><span>👍</span><span>❤️</span><span>👏</span><span>💡</span><span class="react-q">Ask a question</span></div>
         </div>
         <aside class="rail">
-          <div class="tabs"><span class="on">Chapters</span><span>Q&amp;A</span><span>Resources</span></div>
+          <div class="tabs"><span class="on">Up next</span><span>Q&amp;A</span><span>Resources</span></div>
           <ul class="chapters">
-            <li class="on"><b>Intro</b><span>Welcome and what’s new in Talkdesk CXA</span></li>
-            <li><b>Ch. 1</b><span>Agentic AI outbound: retail and financial services</span></li>
-            <li><b>Ch. 2</b><span>Simplified AI agent creation</span></li>
-            <li><b>Ch. 3</b><span>Unified communications across front, mid and back office</span></li>
-            <li><b>Ch. 4</b><span>Q&amp;A and what’s next</span></li>
+            <li class="on"><b>Now</b><span>Transforming Talkdesk Copilot: Enhanced with agentic AI</span></li>
+            <li><b>33 min</b><span>July ’26 Release Webinar: Scaling proactive customer engagement</span></li>
+            <li><b>Replay</b><span>Navigating Talkdesk Service Health</span></li>
+            <li><b>Live</b><span>The Agentic AI Playbook: Upgrading your chat channel without friction</span></li>
           </ul>
           <div class="rail-foot">powered by <b>sequel.io</b></div>
         </aside>
@@ -485,10 +484,11 @@ footer .col a:hover{opacity:1;text-decoration:underline}
 <script>
 (function(){
   // Recording source: set the Wistia media id (or an mp4 URL) of Talkdesk's July '26 recording.
-  var VIDEO={wistia:"", mp4:""};
+  var VIDEO={youtube:"ba-wDTd1RSA", wistia:"", mp4:""};
   var screen=document.getElementById('screen');
   document.getElementById('bigplay').addEventListener('click',function(){
-    if(VIDEO.wistia){screen.innerHTML='<iframe src="https://fast.wistia.net/embed/iframe/'+VIDEO.wistia+'?autoPlay=true" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
+    if(VIDEO.youtube){screen.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+VIDEO.youtube+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Talkdesk video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
+    else if(VIDEO.wistia){screen.innerHTML='<iframe src="https://fast.wistia.net/embed/iframe/'+VIDEO.wistia+'?autoPlay=true" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>';}
     else if(VIDEO.mp4){screen.innerHTML='<video src="'+VIDEO.mp4+'" controls autoplay playsinline style="position:absolute;inset:0;width:100%;height:100%"></video>';}
   });
 
