@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>2026R2 is Here! See What's New for HR Professionals | Workday</title>
+<meta property="og:title" content="2026R2 is Here! See What's New for HR Professionals">
+<meta property="og:description" content="Workday 2026R2 went live September 19, 2026, bringing fresh and new innovations for HR teams. See what's new, what's changing, and the AI features that will define a new Agentic HR experience.">
+<meta property="og:image" content="https://www.workday.com/content/dam/web/en-us/images/social/workday-og-theme.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/workday/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.workday.com/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#022043;
+    --body:#0f2e66;
+    --sub:#4b6286;
+    --paper:#ffffff;
+    --cream:#f6f5f2;
+    --line:#dcd9d1;
+    --navy:#071a38;
+    --navy2:#04101f;
+    --blue:#0057ae;
+    --orange:#fc5b05;
+    --orange-dim:#d94a00;
+    --sh-sm:0 2px 10px rgba(2,32,67,.07);
+    --sh-md:0 18px 40px rgba(2,32,67,.12);
+    --sh-lg:0 30px 70px rgba(2,32,67,.20);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',helvetica,arial,sans-serif;color:var(--body);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Archivo',helvetica,arial,sans-serif;line-height:1.08;letter-spacing:-0.025em;color:var(--ink)}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  img{display:block;max-width:100%}
+  ::selection{background:var(--orange);color:#fff}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,'SF Mono',Consolas,monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.08s}
+  .stagger.in>*:nth-child(3){transition-delay:.16s}
+  .stagger.in>*:nth-child(4){transition-delay:.24s}
+
+  /* ---------- ANNOUNCE BAR ---------- */
+  .announce{background:#0a1f44;color:#fff;font-size:13.5px;font-weight:500;text-align:center;padding:9px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .announce b{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:-.01em;margin-right:12px}
+  .announce a{text-decoration:underline;text-underline-offset:3px;font-weight:600;margin-left:6px}
+  .announce a:hover{color:var(--orange)}
+  @media(max-width:640px){.announce b{display:none}}
+
+  /* ---------- FLOATING NAV (their glass pill) ---------- */
+  .nav{position:sticky;top:0;z-index:60;padding:14px 24px 0;height:14px}
+  .nav-pill{position:relative;max-width:1210px;margin:0 auto;height:54px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 28px;
+    background:rgba(7,26,56,.74);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+    color:#fff;transition:background .3s,box-shadow .3s,height .3s var(--ease)}
+  .nav.scrolled .nav-pill{background:rgba(7,26,56,.9);box-shadow:0 12px 34px rgba(2,16,40,.35);height:50px}
+  .nav-links{display:flex;gap:30px;font-weight:700;font-size:14.5px}
+  .nav-links a{opacity:.96;transition:opacity .15s,color .15s}
+  .nav-links a:hover{color:#ffb48a}
+  .nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;color:#fff}
+  .nav-logo svg{height:35px;width:auto;display:block}
+  .nav-right{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .nav-ico{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .nav-ico:hover{background:rgba(255,255,255,.14)}
+  .nav-ico svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .nav a.pill{background:#fff;color:var(--ink);font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;margin-left:8px;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+  .nav a.pill:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  @media(max-width:900px){.nav-links,.nav-ico{display:none}.nav-logo{left:28px;transform:translate(0,-50%)}.nav-pill{padding-left:24px}}
+
+  /* ---------- DARK WRAP: hero + embed as one surface ---------- */
+  .dark-wrap{position:relative;overflow:hidden;background:linear-gradient(180deg,#5a93bf 0%,#7ec0cf 20%,#a8d8d0 46%,#d4e6c9 74%,#f4ebb2 100%);color:var(--ink);margin-top:-14px}
+  .dark-wrap::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:70%;
+    background:radial-gradient(circle,rgba(255,255,255,.35),transparent 65%);pointer-events:none}
+  .dark-wrap::after{content:"";position:absolute;inset:auto -10% -30% -10%;height:60%;
+    background:radial-gradient(circle,rgba(252,91,5,.10),transparent 65%);pointer-events:none}
+  /* signature: the Workday arc, scaled up like a sunrise behind the headline */
+  .arc{position:absolute;left:50%;top:-30%;width:min(1500px,160vw);transform:translateX(-50%);pointer-events:none;z-index:1;opacity:.9}
+  .arc svg{width:100%;height:auto;display:block}
+  .arc path{fill:none;stroke:var(--orange);stroke-width:6;opacity:.75}
+  .arc path.soft{stroke:#fff;stroke-width:3;opacity:.55}
+
+  .hero{padding:132px 0 44px;position:relative;z-index:2;text-align:center}
+  .series{display:inline-block;color:rgba(2,32,67,.72);margin-bottom:20px}
+  .series b{color:var(--orange);font-weight:500}
+  .badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.55);border:1px solid rgba(2,32,67,.14);color:var(--navy-ink);
+    padding:7px 16px 7px 12px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.7s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(252,91,5,.6)}70%{box-shadow:0 0 0 8px rgba(252,91,5,0)}}
+  h1{font-size:clamp(34px,5vw,60px);font-weight:800;letter-spacing:-0.03em;margin:0 auto 22px;max-width:880px;color:var(--navy-ink)}
+  h1 em{font-style:normal;color:var(--blue)}
+  .sub{font-size:17px;color:rgba(2,32,67,.8);margin:0 auto 30px;max-width:560px}
+  .metarow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 22px;margin-bottom:8px}
+  .chip{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;color:var(--navy-ink)}
+  .chip svg{width:17px;height:17px;stroke:var(--blue);flex-shrink:0}
+  .chip b{font-weight:700}
+
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;margin:28px 0 8px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:15.5px;
+    transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .15s,color .15s;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,87,174,.35);background:#00448a;color:#fff}
+
+  .embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+  #sequel_root{min-height:520px;border-radius:12px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.14),0 18px 44px rgba(20,60,100,.20)}
+
+  /* poster shown only until the live Sequel widget paints, then removed by script */
+  .poster{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;color:#fff;border-radius:12px;
+    background:linear-gradient(180deg,rgba(32,66,88,.82) 0%,rgba(52,84,92,.72) 55%,rgba(104,116,92,.78) 100%)}
+  .poster .play{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+  .poster .play svg{width:34px;height:34px;fill:#fff;margin-left:4px}
+  .poster .ptitle{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;line-height:1.15;max-width:640px;margin-bottom:12px}
+  .poster .pmeta{font-size:14.5px;font-weight:500;color:rgba(255,255,255,.85)}
+
+  /* ---------- STAT / PULL-QUOTE BAND ---------- */
+  .statband{background:#fff;padding:96px 0;text-align:center}
+  .statband .big{font-family:'Archivo',sans-serif;font-size:clamp(64px,13vw,150px);font-weight:900;letter-spacing:-0.04em;line-height:.95;color:var(--ink)}
+  .statband .big em{color:var(--orange);font-style:normal}
+  .statband p{max-width:620px;margin:22px auto 0;font-size:18px;color:var(--body);line-height:1.6}
+  .statband .cite{display:block;margin-top:16px;color:#7a8aa6}
+
+  /* ---------- LEDE ---------- */
+  .lede{padding:104px 0;background:var(--cream)}
+  .ledgrid{display:grid;grid-template-columns:200px 1fr;gap:40px}
+  .sidelabel{position:sticky;top:120px;align-self:start;color:var(--sub)}
+  .sidelabel::before{content:"";display:block;width:34px;height:3px;background:var(--orange);margin-bottom:14px;border-radius:2px}
+  .body-col{max-width:66ch;font-size:19px;color:var(--body)}
+  .body-col p{margin-bottom:22px}
+  .body-col strong{color:var(--ink)}
+  @media(max-width:760px){.ledgrid{grid-template-columns:1fr}.sidelabel{position:static;margin-bottom:18px}}
+
+  /* ---------- MECHANISM BAND ---------- */
+  .mech{background:var(--navy2);color:#fff;padding:112px 0;position:relative;overflow:hidden}
+  .mech::before{content:"";position:absolute;left:50%;bottom:-70%;width:1200px;height:1200px;transform:translateX(-50%);border-radius:50%;
+    border:2px solid rgba(252,91,5,.28);box-shadow:0 0 120px rgba(252,91,5,.14) inset;pointer-events:none}
+  .mech .wrap{position:relative;z-index:2}
+  .mech h2{font-size:clamp(28px,3.4vw,44px);font-weight:800;text-align:center;margin-bottom:14px;color:#fff}
+  .mech .lead{text-align:center;color:rgba(255,255,255,.66);max-width:580px;margin:0 auto 64px;font-size:16.5px}
+  .flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;row-gap:22px}
+  .node{padding:15px 26px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);font-family:'Archivo',sans-serif;font-weight:700;font-size:16.5px;letter-spacing:-.01em;white-space:nowrap}
+  .node.end{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 0 50px rgba(252,91,5,.4)}
+  .dashes{width:46px;height:2px;background-image:linear-gradient(90deg,var(--orange) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+  @keyframes march{to{background-position:12px 0}}
+  @media(max-width:860px){.flow{flex-direction:column}.dashes{width:2px;height:34px;background-image:linear-gradient(180deg,var(--orange) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}@keyframes marchv{to{background-position:0 12px}}}
+
+  /* ---------- LEARN (hairline rows) ---------- */
+  .learn{padding:108px 0;background:#fff}
+  .learn h2{font-size:clamp(28px,3.4vw,44px);font-weight:800;margin-bottom:52px}
+  .row{display:grid;grid-template-columns:64px 1fr 1.2fr;gap:28px;padding:34px 4px;border-top:1px solid var(--line);position:relative}
+  .row:last-child{border-bottom:1px solid var(--line)}
+  .row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--orange);transition:width .5s var(--ease)}
+  .row:hover::before{width:100%}
+  .row .num{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:14px;color:var(--orange);letter-spacing:.08em}
+  .row h3{font-size:21px;font-weight:700}
+  .row p{font-size:16px;color:var(--sub)}
+  @media(max-width:700px){.row{grid-template-columns:40px 1fr;row-gap:8px}.row p{grid-column:2}}
+
+  /* ---------- SPEAKER ---------- */
+  .speakers{background:var(--cream);padding:100px 0}
+  .speakers h2{font-size:clamp(28px,3.4vw,44px);font-weight:800;text-align:center;margin-bottom:14px}
+  .speakers .lead{text-align:center;color:var(--sub);margin-bottom:54px;font-size:15px}
+  .srow{display:flex;justify-content:center}
+  .speaker{display:grid;grid-template-columns:160px 1fr;width:100%;max-width:640px;background:#0b1f44;border-radius:8px;overflow:hidden;color:#fff;min-height:160px;box-shadow:var(--sh-md)}
+  .avatar{position:relative;background:linear-gradient(160deg,#7ec0cf,#d4e6c9 60%,#f4ebb2)}
+  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .avatar span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:36px;color:#0b1f44}
+  .spk-tx{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;gap:2px;font-size:14px;font-weight:500}
+  .spk-tx h3{font-size:19px;font-weight:700;color:#fff;margin-bottom:4px}
+  @media(max-width:520px){.speaker{grid-template-columns:110px 1fr}}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--orange);color:var(--ink);padding:92px 0;text-align:center}
+  .cta-band h2{font-size:clamp(30px,3.8vw,48px);font-weight:800;margin-bottom:14px;color:var(--ink)}
+  .cta-band p{color:#2a1305;max-width:540px;margin:0 auto 30px;font-size:17px}
+  .cta-band .btn-primary{background:var(--ink);color:#fff}
+  .cta-band .btn-primary:hover{background:#0a2f66;color:#fff;box-shadow:0 14px 30px rgba(2,32,67,.4)}
+
+  /* ---------- FOOTER (their rounded cream card) ---------- */
+  .foot-shell{background:var(--navy);padding:26px}
+  footer{background:var(--cream);border-radius:34px;padding:54px 0 28px;font-size:14px;color:var(--body);max-width:1480px;margin:0 auto}
+  .foot-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;flex-wrap:wrap;gap:20px}
+  .foot-top svg{height:44px;width:auto;color:var(--ink)}
+  .social{display:flex;gap:20px}
+  .social svg{width:18px;height:18px;fill:var(--ink);height:18px;width:18px}
+  .foot-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:28px;margin-bottom:48px}
+  .foot-grid h4{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+  .foot-grid a{display:block;margin-bottom:11px;line-height:1.35}
+  .foot-grid a:hover{color:var(--orange-dim)}
+  .foot-bottom{border-top:1px dotted #b9b6ad;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12.5px;align-items:center}
+  .foot-legal{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-legal a:hover{color:var(--orange-dim)}
+  @media(max-width:1000px){.foot-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.foot-grid{grid-template-columns:repeat(2,1fr)}.foot-shell{padding:14px}footer{border-radius:26px}}
+
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+    .badge .dot,.dashes{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="wd-logo" viewBox="0 0 4230 2000">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M2964.28 984.688H2882.48C2865.98 984.688 2856.98 993.788 2856.98 1010.49V1295.79C2825.18 1249.39 2774.08 1223.69 2711.38 1223.69C2566.98 1223.69 2480.88 1327.89 2480.88 1507.89C2480.88 1687.79 2566.48 1791.89 2710.88 1791.89C2774.88 1791.89 2827.18 1764.89 2859.18 1718.69L2868.18 1759.69C2870.88 1775.09 2880.98 1782.79 2896.38 1782.79H2964.18C2980.68 1782.79 2989.68 1773.89 2989.68 1757.19V1010.49C2989.78 993.688 2980.98 984.688 2964.28 984.688ZM2737.88 1692.69C2666.48 1692.69 2619.08 1632.39 2619.08 1523.19V1492.39C2619.08 1383.39 2666.18 1322.89 2737.88 1322.89C2818.28 1322.89 2859.28 1380.69 2859.28 1507.99C2859.28 1635.29 2818.38 1692.69 2737.88 1692.69Z" fill="currentColor"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3127.67 1377.89C3148.17 1282.89 3234.97 1223.79 3348.77 1223.79C3494.47 1223.79 3567.27 1299.69 3567.37 1431.89V1757.09C3567.37 1773.59 3558.57 1782.69 3541.87 1782.69H3474.07C3458.67 1782.69 3448.37 1774.99 3445.87 1759.59L3438.17 1718.59C3406.37 1764.79 3353.87 1791.79 3288.77 1791.79C3180.17 1791.79 3108.77 1727.29 3108.77 1627.09C3108.77 1510.19 3190.57 1449.89 3363.17 1449.89H3434.57V1429.29C3434.57 1358.59 3405.07 1322.59 3348.97 1322.59C3304.17 1322.59 3278.67 1341.89 3265.87 1383.09C3260.67 1399.89 3251.67 1406.19 3237.67 1406.19H3150.67C3132.87 1406.19 3123.87 1394.69 3127.67 1377.89ZM3325.97 1692.79C3391.07 1692.79 3434.57 1653.19 3434.57 1557.99V1539.99H3368.07C3287.47 1539.99 3246.77 1566.99 3246.67 1622.19C3246.77 1665.89 3278.67 1692.79 3325.97 1692.79Z" fill="currentColor"/>
+    <path d="M164.691 1782.89C149.391 1782.89 140.391 1776.49 135.391 1761.09C75.1907 1594.09 34.3907 1428.19 -0.00935107 1261.19C-3.90935 1244.49 3.79066 1232.89 21.5907 1232.89H104.691C120.091 1232.89 130.191 1240.59 132.891 1254.69C154.491 1372.99 180.191 1494.99 214.691 1614.59L314.291 1254.69C318.091 1240.59 328.291 1232.89 343.591 1232.89H456.091C471.391 1232.89 481.591 1240.59 485.391 1254.69L584.991 1614.59C619.491 1495.09 645.191 1372.99 666.792 1254.69C669.292 1240.59 679.692 1232.89 694.992 1232.89H778.092C795.892 1232.89 803.492 1244.39 799.692 1261.19C765.292 1428.19 724.492 1594.09 664.292 1761.09C659.091 1776.49 650.292 1782.89 634.992 1782.89H541.391C527.391 1782.89 515.891 1776.49 512.091 1761.09L399.691 1365.19L287.291 1761.09C283.491 1776.49 271.991 1782.89 257.991 1782.89H164.691Z" fill="currentColor"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1131.79 1223.99C975.885 1223.99 867.285 1337.09 867.285 1507.99C867.285 1678.89 975.885 1791.99 1131.79 1791.99C1287.69 1791.99 1396.29 1677.59 1396.29 1507.99C1396.29 1338.39 1287.69 1223.99 1131.79 1223.99ZM1258.19 1523.29C1258.19 1636.39 1208.39 1700.69 1131.79 1700.69C1055.19 1700.69 1005.39 1636.39 1005.39 1523.29V1492.49C1005.39 1379.39 1055.19 1315.09 1131.79 1315.09C1208.39 1315.09 1258.19 1379.39 1258.19 1492.49V1523.29Z" fill="currentColor"/>
+    <path d="M3854.15 1771.11C3772.35 1631.11 3701.65 1451.31 3657.05 1261.21C3653.25 1243.11 3662.25 1232.91 3680.15 1233.01H3763.25C3778.55 1233.01 3788.85 1240.71 3791.35 1256.11C3818.15 1389.81 3860.35 1519.61 3913.95 1627.51C3961.25 1509.21 4004.75 1385.91 4027.75 1256.11C4030.35 1240.71 4040.55 1233.01 4055.85 1233.01H4141.45C4159.25 1233.01 4168.25 1244.61 4163.05 1262.51C4104.25 1497.71 4019.95 1701.91 3947.15 1858.71C3899.85 1960.21 3844.85 2000.11 3745.25 2000.11C3726.15 2000.11 3705.85 1996.21 3689.15 1992.41C3673.85 1988.61 3667.55 1978.21 3667.55 1964.11V1902.41C3667.55 1884.41 3677.95 1877.91 3695.75 1883.11C3711.05 1886.91 3726.35 1889.41 3740.35 1889.41C3799.15 1889.41 3819.65 1850.91 3854.15 1771.11Z" fill="currentColor"/>
+    <path d="M1641.77 1302.31C1669.87 1257.21 1719.67 1226.41 1777.17 1226.41C1798.87 1226.41 1817.97 1231.61 1833.37 1243.21C1838.57 1247.11 1842.37 1252.31 1842.37 1260.01V1335.91C1842.37 1353.81 1834.77 1359.01 1815.57 1351.31C1799.97 1344.71 1784.67 1342.21 1766.87 1342.21C1689.07 1342.21 1644.27 1397.51 1644.27 1477.31L1644.37 1757.51C1644.37 1774.01 1635.57 1782.91 1618.87 1782.91H1536.87C1520.37 1782.91 1511.37 1774.11 1511.37 1757.31L1511.27 1258.61C1511.27 1242.11 1520.07 1233.01 1536.77 1233.01H1604.57C1621.27 1233.01 1630.27 1242.01 1632.77 1256.11L1641.77 1302.31Z" fill="currentColor"/>
+    <path d="M2408.46 1752.21C2352.36 1636.61 2298.66 1556.91 2223.26 1483.61L2399.66 1265.11C2412.46 1247.01 2406.16 1232.91 2385.66 1232.91H2293.76C2280.96 1232.91 2269.46 1237.91 2261.76 1247.01L2082.86 1475.71V1010.61C2082.86 993.806 2073.86 984.806 2057.16 984.806H1975.36C1958.86 984.806 1949.86 993.906 1949.86 1010.61V1757.31C1949.86 1773.91 1958.66 1782.91 1975.36 1782.91H2057.16C2073.66 1782.91 2082.66 1774.01 2082.66 1757.31L2082.86 1505.51C2162.06 1582.51 2216.96 1664.71 2262.86 1767.51C2268.06 1776.61 2280.66 1782.91 2293.46 1782.91H2394.36C2414.76 1783.01 2418.66 1772.81 2408.46 1752.21Z" fill="currentColor"/>
+    <path d="M1172.82 521.973C1423.42 270.973 1756.82 132.773 2111.62 132.773C2465.72 132.773 2798.72 270.673 3049.12 521.073C3192.32 664.273 3298.62 834.372 3363.52 1020.07C3366.32 1028.07 3373.72 1033.37 3382.22 1033.37H3480.62C3494.02 1033.37 3503.72 1020.37 3499.52 1007.57C3429.42 791.072 3308.52 592.773 3143.02 427.173C2867.62 151.673 2501.32 0.0400391 2111.82 0.0400391C1721.62 0.0400391 1354.62 152.073 1078.92 428.173C913.72 593.573 793.219 791.572 723.319 1007.57C719.219 1020.37 728.819 1033.37 742.319 1033.37H840.72C849.22 1033.37 856.62 1027.97 859.42 1020.07C924.02 834.872 1030.02 664.973 1172.82 521.973Z" fill="#FC5B05"/>
+  </symbol>
+</svg>
+
+<div class="announce">
+  <b>Workday Rising</b>All the best Workday Rising moments, now streaming on demand. <a href="https://rising.workday.com/us.html" target="_blank" rel="noopener">Stream Now</a>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="nav-pill">
+    <div class="nav-links">
+      <a href="https://www.workday.com/en-us/products.html" target="_blank" rel="noopener">Agents</a>
+      <a href="https://www.workday.com/en-us/ai-platform.html" target="_blank" rel="noopener">Platform</a>
+      <a href="https://www.workday.com/en-us/products.html" target="_blank" rel="noopener">Products</a>
+      <a href="https://www.workday.com/en-us/customer-stories.html" target="_blank" rel="noopener">Customers</a>
+    </div>
+    <a class="nav-logo" href="https://www.workday.com/en-us/homepage.html" target="_blank" rel="noopener" aria-label="Workday homepage"><svg viewBox="0 0 4230 2000"><use href="#wd-logo"/></svg></a>
+    <div class="nav-right">
+      <a class="nav-ico" href="https://www.workday.com/en-us/ai-agents/sana.html" target="_blank" rel="noopener" aria-label="Ask Workday"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-3.2-6.4"/><path d="M19 3v4M17 5h4"/></svg></a>
+      <a class="nav-ico" href="https://www.workday.com/en-us/products.html" target="_blank" rel="noopener" aria-label="Products"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></a>
+      <a class="nav-ico" href="https://www.workday.com/en-us/signin.html" target="_blank" rel="noopener" aria-label="Sign in"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+      <a class="pill" href="https://www.workday.com/en-us/resources/workday-demos.html" target="_blank" rel="noopener">Request a Demo</a>
+    </div>
+  </div>
+</nav>
+
+<div class="dark-wrap">
+  <div class="arc" aria-hidden="true">
+    <svg viewBox="0 0 4230 1200" preserveAspectRatio="xMidYMin meet"><path d="M1172.82 521.973C1423.42 270.973 1756.82 132.773 2111.62 132.773C2465.72 132.773 2798.72 270.673 3049.12 521.073C3192.32 664.273 3298.62 834.372 3363.52 1020.07"/><path class="soft" d="M723.319 1007.57C793.219 791.572 913.72 593.573 1078.92 428.173C1354.62 152.073 1721.62 0.0400391 2111.82 0.0400391C2501.32 0.0400391 2867.62 151.673 3143.02 427.173C3308.52 592.773 3429.42 791.072 3499.52 1007.57"/></svg>
+  </div>
+  <section class="hero">
+    <div class="wrap">
+      <div class="series mono reveal in">Looking Forward <b>/</b> with Workday Adopt &amp; Advance</div><br>
+      <div class="badge reveal in"><span class="dot"></span> LIVE WEBINAR</div>
+      <h1 class="reveal in"><em>2026R2</em> is Here! See What's New for HR Professionals</h1>
+      <p class="sub reveal in">Streaming live and on-demand on workday.com</p>
+      <div class="metarow reveal in">
+        <div class="chip"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><b>Nov 5, 2026</b></div>
+        <div class="chip"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><b>10:00 AM PT</b></div>
+        <div class="chip"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><b>1 hour</b></div>
+        <div class="chip"><svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/><circle cx="12" cy="12" r="9"/></svg><span id="localTz">Local time shown below</span></div>
+      </div>
+      <div class="cta-row reveal in">
+        <a href="#embed" class="btn btn-primary">Register below ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="embed">
+    <div class="wrap">
+      <div id="sequel_root"><div class="poster" id="poster" aria-hidden="true">
+        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></div>
+        <div class="ptitle">2026R2 is Here! See What's New for HR Professionals</div>
+        <div class="pmeta">Nov 5, 2026 &nbsp;·&nbsp; 10:00 AM PT &nbsp;·&nbsp; Live on workday.com</div>
+      </div></div>
+      <script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+      <script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+    </div>
+  </section>
+</div>
+
+<section class="statband reveal">
+  <div class="wrap">
+    <div class="big">2026<em>R2</em></div>
+    <p>Went live September 19, 2026 — with updates across Payroll, Core HCM, AI, Compensation, and everything in between.</p>
+    <span class="cite mono">As described on Workday's 2026R2 session page</span>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap ledgrid">
+    <div class="sidelabel mono reveal">The Session</div>
+    <div class="body-col reveal">
+      <p><strong>Workday 2026R2 went live September 19, 2026, bringing fresh and new innovations for HR teams.</strong> We've brought updates that transform the way work gets done from Payroll, to Core HCM, to AI, to Compensation, and everything in between.</p>
+      <p>In this session we'll walk you through what's new and what's changing in your everyday workflows, and the AI features coming your way that will define a new Agentic HR experience.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <h2 class="reveal">From Payroll to Agentic HR.</h2>
+    <p class="lead reveal">One release, four areas of the HR workflow — and the AI that carries them toward a new Agentic HR experience.</p>
+    <div class="flow reveal">
+      <div class="node">Payroll</div><span class="dashes"></span>
+      <div class="node">Core HCM</div><span class="dashes"></span>
+      <div class="node">AI</div><span class="dashes"></span>
+      <div class="node">Compensation</div><span class="dashes"></span>
+      <div class="node end">Agentic HR</div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <h2 class="reveal">What you'll see</h2>
+    <div class="rows">
+      <div class="row reveal"><div class="num">01</div><h3>What's new in 2026R2</h3><p>The updates across Payroll, Core HCM, AI, and Compensation, walked through in one session.</p></div>
+      <div class="row reveal"><div class="num">02</div><h3>What's changing in your everyday workflows</h3><p>How the release changes the way work gets done for your HR team, day to day.</p></div>
+      <div class="row reveal"><div class="num">03</div><h3>The AI features coming your way</h3><p>A look at the AI capabilities arriving with the release and where you'll meet them.</p></div>
+      <div class="row reveal"><div class="num">04</div><h3>A new Agentic HR experience</h3><p>How these features come together to define the next chapter of HR at Workday.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <h2 class="reveal">Meet your speaker</h2>
+    <p class="lead reveal">Presented by Workday</p>
+    <div class="srow stagger">
+      <div class="speaker">
+        <div class="avatar"><span>CM</span><img src="https://staticassets.public-pr50.goldcast.io/user-resized-medium/undefined/a33abc20-b8f1-4238-8a3a-6189078b1439.jpeg" alt="Charlotte Mclachlan" referrerpolicy="no-referrer" onerror="this.remove()"></div>
+        <div class="spk-tx"><h3>Charlotte Mclachlan</h3><span>Workday</span><span>Principal, Product Marketing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Can't make it live?</h2>
+    <p>Register anyway — we'll send the on-demand recording straight to your inbox as soon as the session wraps.</p>
+    <a class="btn btn-primary" href="#embed">Save my seat</a>
+  </div>
+</section>
+
+<div class="foot-shell">
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a href="https://www.workday.com/en-us/homepage.html" target="_blank" rel="noopener" aria-label="Workday homepage"><svg viewBox="0 0 4230 2000"><use href="#wd-logo"/></svg></a>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/workday" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        <a href="https://x.com/workday" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.9l-5.4-6.7L4.5 22H1.4l8.1-9.3L1 2h7.1l4.9 6.2L18.9 2zm-1.2 18h1.9L7.4 4H5.4l12.3 16z"/></svg></a>
+        <a href="https://www.instagram.com/workday" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.76 4.9 4.9 0 01-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.76-1.15 4.9 4.9 0 01-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76a4.9 4.9 0 011.76-1.15c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zm5.2-8.4a1.17 1.17 0 100-2.34 1.17 1.17 0 000 2.34z"/></svg></a>
+        <a href="https://www.youtube.com/@workday/featured" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22 12s0-3.2-.4-4.7a2.7 2.7 0 00-1.9-1.9C18.2 5 12 5 12 5s-6.2 0-7.7.4a2.7 2.7 0 00-1.9 1.9C2 8.8 2 12 2 12s0 3.2.4 4.7a2.7 2.7 0 001.9 1.9C5.8 19 12 19 12 19s6.2 0 7.7-.4a2.7 2.7 0 001.9-1.9C22 15.2 22 12 22 12zM10 15V9l5.2 3-5.2 3z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <h4>Agents &amp; Products</h4>
+        <a href="https://www.workday.com/en-us/products/financial-management.html" target="_blank" rel="noopener">Financial Management</a>
+        <a href="https://www.workday.com/en-us/products/adaptive-planning/overview.html" target="_blank" rel="noopener">Financial Planning &amp; Analysis (FP&amp;A)</a>
+        <a href="https://www.workday.com/en-us/products/human-capital-management.html" target="_blank" rel="noopener">Human Capital Management (HCM)</a>
+        <a href="https://www.workday.com/en-us/products/payroll.html" target="_blank" rel="noopener">Payroll</a>
+        <a href="https://www.workday.com/en-us/ai-agents/sana.html" target="_blank" rel="noopener">Sana</a>
+        <a href="https://www.workday.com/en-us/midsize-business.html" target="_blank" rel="noopener">Workday GO</a>
+        <a href="https://www.workday.com/en-us/enterprise-resource-planning.html" target="_blank" rel="noopener">Enterprise Resource Planning (ERP)</a>
+        <a href="https://www.workday.com/en-us/products/student/overview.html" target="_blank" rel="noopener">Student</a>
+        <a href="https://www.workday.com/en-us/products.html" target="_blank" rel="noopener">All AI Agents &amp; Products</a>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <a href="https://www.workday.com/en-us/solutions/industries/financial-services.html" target="_blank" rel="noopener">Financial Services</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/healthcare.html" target="_blank" rel="noopener">Healthcare</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/education.html" target="_blank" rel="noopener">Higher Education</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/manufacturing.html" target="_blank" rel="noopener">Manufacturing</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/professional-and-business-services.html" target="_blank" rel="noopener">Professional Services</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/retail.html" target="_blank" rel="noopener">Retail</a>
+        <a href="https://www.workday.com/en-us/solutions/industries/technology.html" target="_blank" rel="noopener">Technology</a>
+        <a href="https://www.workday.com/en-us/solutions/industries.html" target="_blank" rel="noopener">All Industries</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="https://www.workday.com/en-us/customer-stories.html" target="_blank" rel="noopener">Customer Stories</a>
+        <a href="https://www.workday.com/en-us/resources/workday-demos.html" target="_blank" rel="noopener">Product &amp; Agent Demos</a>
+        <a href="https://www.workday.com/en-us/company/latest/events-webinars/events.html" target="_blank" rel="noopener">Events</a>
+        <a href="https://www.workday.com/en-us/company/latest/events-webinars/webinars.html" target="_blank" rel="noopener">Webinars</a>
+        <a href="https://www.workday.com/en-us/resources.html" target="_blank" rel="noopener">Resource Library</a>
+        <a href="https://www.workday.com/en-us/services/overview.html" target="_blank" rel="noopener">Professional Services</a>
+        <a href="https://www.workday.com/en-us/topics.html" target="_blank" rel="noopener">Topics Hub</a>
+        <a href="https://www.workday.com/en-us/services/training-certifications.html" target="_blank" rel="noopener">Training &amp; Certifications</a>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <a href="https://www.workday.com/en-us/topics/erp/what-is-erp-software.html" target="_blank" rel="noopener">What is ERP?</a>
+        <a href="https://www.workday.com/en-us/topics/hr/human-capital-management-software.html" target="_blank" rel="noopener">What is HCM?</a>
+        <a href="https://www.workday.com/en-us/topics/fpa/what-is-financial-planning-and-analysis.html" target="_blank" rel="noopener">What is FP&amp;A?</a>
+        <a href="https://www.workday.com/en-us/topics/hr/workforce-planning.html" target="_blank" rel="noopener">What is Workforce Planning?</a>
+        <a href="https://www.workday.com/en-us/topics/erp/erp-ai.html" target="_blank" rel="noopener">Understanding ERP AI</a>
+        <a href="https://www.workday.com/en-us/topics/ai/ai-in-hr.html" target="_blank" rel="noopener">What is AI in HR?</a>
+        <a href="https://www.workday.com/en-us/topics/ai/ai-in-finance.html" target="_blank" rel="noopener">What is AI in Finance?</a>
+        <a href="https://www.workday.com/en-us/topics/ai/agentic-ai.html" target="_blank" rel="noopener">What is Agentic AI?</a>
+      </div>
+      <div>
+        <h4>Popular Links</h4>
+        <a href="https://community.workday.com/" target="_blank" rel="noopener">Community</a>
+        <a href="https://developer.workday.com/about" target="_blank" rel="noopener">Developers</a>
+        <a href="https://www.workday.com/en-us/perspectives.html" target="_blank" rel="noopener">Leadership Perspectives</a>
+        <a href="https://www.workday.com/en-us/company/partners/overview.html" target="_blank" rel="noopener">Partners</a>
+        <a href="https://marketplace.workday.com/en-US/pages/find-a-partner" target="_blank" rel="noopener">Find a Partner</a>
+        <a href="https://marketplace.workday.com/en-US/home" target="_blank" rel="noopener">Marketplace</a>
+        <a href="https://www.workday.com/en-us/ai-platform.html" target="_blank" rel="noopener">Workday AI</a>
+        <a href="https://www.workday.com/en-us/ai-agents/ai-flex-credits.html" target="_blank" rel="noopener">Flex Credits</a>
+        <a href="https://rising.workday.com/us.html" target="_blank" rel="noopener">Workday Rising</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="https://www.workday.com/en-us/company/about-workday/our-story.html" target="_blank" rel="noopener">About Workday</a>
+        <a href="https://blog.workday.com" target="_blank" rel="noopener">Blog</a>
+        <a href="https://www.workday.com/en-us/company/careers/overview.html" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.workday.com/en-us/company/corporate-responsibility/overview.html" target="_blank" rel="noopener">Corporate Responsibility</a>
+        <a href="https://investor.workday.com/home/default.aspx" target="_blank" rel="noopener">Investor Relations</a>
+        <a href="https://www.workday.com/en-us/signin.html" target="_blank" rel="noopener">Login Help</a>
+        <a href="https://newsroom.workday.com/" target="_blank" rel="noopener">Newsroom</a>
+        <a href="https://ventures.workday.com/" target="_blank" rel="noopener">Ventures</a>
+        <a href="https://www.workday.com/en-us/why-workday.html" target="_blank" rel="noopener">Why Workday</a>
+        <a href="https://www.workday.com/en-us/company/about-workday/contact-us.html" target="_blank" rel="noopener">Worldwide Directory</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <a href="https://www.workday.com/en-us/choose-country-region.html" target="_blank" rel="noopener">United States (English)</a>
+      <div class="foot-legal">
+        <a href="https://www.workday.com/en-us/legal.html" target="_blank" rel="noopener">Legal</a>
+        <a href="https://www.workday.com/en-us/privacy.html" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://www.workday.com/en-us/company/accessibility.html" target="_blank" rel="noopener">Accessibility</a>
+        <a href="https://info.workday.com/subscription.html" target="_blank" rel="noopener">Subscriptions</a>
+        <span>© 2026 Workday, Inc.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+  /* ---- event config (drives the on-demand degrade only; the live embed above owns
+     the actual countdown/register/calendar actions) ---- */
+  const EVENT = { start: "2026-11-05T10:00:00-08:00" };
+  const startDate = new Date(EVENT.start);
+
+  function tick(){
+    if (startDate - new Date() <= 0){
+      document.querySelector('.badge').innerHTML = 'ON DEMAND';
+      const p = document.querySelector('.cta-row .btn-primary');
+      if(p) p.textContent = 'Watch the recording ↓';
+    }
+  }
+  tick(); setInterval(tick, 60000);
+
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const local = new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(startDate);
+    const el = document.getElementById('localTz');
+    if (el) el.textContent = "That's " + local + " your time (" + tz + ")";
+  } catch(e){}
+
+  /* ---- nav state on scroll ---- */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>8);
+  });
+
+  /* ---- scroll reveal ---- */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+
+  /* ---- kill Sequel's default iframe border inside its shadow DOM ---- */
+  (function stripBorder(){
+    const root = document.getElementById("sequel_root");
+    const c = root && [...root.children].find(e => e.shadowRoot);
+    if (c){
+      const st = document.createElement("style");
+      st.textContent = "iframe.sequel-iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+      const p = document.getElementById("poster"); if (p) p.remove();
+    } else { setTimeout(stripBorder, 200); }
+  })();
+</script>
+
+</body>
+</html>
