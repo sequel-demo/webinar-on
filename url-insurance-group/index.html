@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Manhattan Life Products | URL Insurance Group</title>
+<meta name="description" content="Join URL and Manhattan Life to review their products, quoting portal, and sales techniques.">
+<meta property="og:title" content="Manhattan Life Products | Live Webinar">
+<meta property="og:description" content="A great refresher coming off the AEP and re-visiting your clients for additional sales opportunities.">
+<meta property="og:image" content="https://urlinsgroup.com/images/ManhattanLifeProducts_1140x260.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/url-insurance-group/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://urlinsgroup.com/images/url-heart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B274A; --deep:#062E4A; --blue:#1E5785; --slate:#3D5477; --slate2:#53647F;
+  --gold:#F1AD25; --btn:#FCB525; --sky:#56A1D5; --ink:#1b2433; --body:#333; --muted:#5f6b7d;
+  --paper:#ffffff; --mist:#F3F6FA; --line:#dbe2ec;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 3px rgba(11,39,74,.12); --sh-md:0 8px 24px rgba(11,39,74,.16); --sh-lg:0 22px 60px rgba(6,20,40,.35);
+  --mono:"Roboto Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Roboto Flex",system-ui,sans-serif;color:var(--body);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce */
+.announce{background:var(--gold);color:var(--navy);font-size:14px;text-align:center;padding:8px 16px;font-weight:500}
+.announce a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* header chrome (replica) */
+.util{background:var(--navy);color:#fff}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:34px}
+.social{display:flex;gap:12px}
+.social a{width:18px;height:18px;color:#8fb9dd;transition:color .2s}
+.social a:hover{color:#fff}
+.social svg{width:18px;height:18px;fill:currentColor}
+.util-r{display:flex;gap:22px;align-items:center;font-size:15px}
+.util-r a{color:var(--sky);display:flex;gap:6px;align-items:center}
+.util-r a.tel{text-decoration:underline;text-underline-offset:2px}
+.util-r svg{width:15px;height:15px;fill:currentColor}
+header.main{position:sticky;top:0;z-index:50;background:var(--blue);border-bottom:4px solid var(--gold);transition:box-shadow .3s var(--ease)}
+header.main.scrolled{box-shadow:0 6px 20px rgba(0,0,0,.25);background:rgba(30,87,133,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+header.main .wrap{display:flex;justify-content:space-between;align-items:center;height:72px;transition:height .3s var(--ease)}
+header.main.scrolled .wrap{height:62px}
+.logo img{height:46px;width:auto}
+.search{display:flex;align-items:center;background:#fff;border-radius:4px;height:30px;width:130px;padding:0 8px;font-size:13px;color:#888;justify-content:space-between;text-decoration:none}
+.search svg{width:14px;height:14px;fill:var(--sky)}
+
+/* dark-wrap: hero + embed, one surface */
+.dark-wrap{position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.5)),url("https://urlinsgroup.com/images/url-aries-bg.png") center top/cover no-repeat,var(--navy)}
+.dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:80%;background:radial-gradient(circle at 30% 40%,rgba(86,161,213,.22),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;background:radial-gradient(circle at 70% 60%,rgba(241,173,37,.12),transparent 62%);pointer-events:none}
+.hero{padding:68px 0 40px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(241,173,37,.55);color:var(--gold);padding:6px 13px;border-radius:999px;margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(241,173,37,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(241,173,37,0)}100%{box-shadow:0 0 0 0 rgba(241,173,37,0)}}
+.badge.ondemand .dot{animation:none;background:var(--sky)}
+h1{font-size:clamp(38px,5.6vw,66px);line-height:1.04;font-weight:500;letter-spacing:-.025em;color:var(--gold)}
+.lead{font-size:clamp(17px,1.6vw,19px);color:rgba(255,255,255,.88);max-width:56ch;margin-top:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{background:rgba(83,100,127,.55);border:1px solid rgba(255,255,255,.12);padding:7px 13px;border-radius:4px;font-size:14px;display:flex;gap:7px;align-items:center}
+.chip svg{width:14px;height:14px;fill:var(--gold)}
+.local{font-size:13px;color:rgba(255,255,255,.62);margin-top:10px}
+.streaming{margin-top:20px;font-size:15px;color:rgba(255,255,255,.75);display:flex;gap:8px;align-items:center}
+.streaming b{color:#fff;font-weight:600}
+.count{display:flex;gap:12px;margin-top:28px}
+.cbox{min-width:74px;text-align:center;padding:12px 8px;background:rgba(6,46,74,.6);border:1px solid rgba(255,255,255,.12);border-radius:6px}
+.cnum{font-size:32px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1}
+.clab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.6);margin-top:6px}
+.livenow{display:none;font-size:20px;font-weight:600;color:var(--gold);margin-top:28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--btn);color:#000;padding:11px 28px;border-radius:4px;font-size:16px;text-decoration:none;font-weight:500;border:0;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(252,181,37,.3)}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);padding:10px 18px;font-size:14px}
+.btn.ghost:hover{box-shadow:none;border-color:#fff}
+.hcard{background:rgba(61,84,119,.62);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:28px;box-shadow:var(--sh-lg);backdrop-filter:blur(6px)}
+.hcard .mono{color:var(--gold)}
+.hcard ul{list-style:none;margin-top:16px}
+.hcard li{display:flex;gap:14px;align-items:center;padding:13px 0;border-top:1px solid rgba(255,255,255,.12)}
+.hcard li:first-child{border-top:0}
+.av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:600;font-size:15px;color:var(--navy);background:linear-gradient(135deg,#b9d6ee,var(--sky))}
+.av.gold{background:linear-gradient(135deg,#ffe2a0,var(--gold))}
+.hcard .n{font-weight:600;color:#fff;font-size:15.5px;line-height:1.3}
+.hcard .t{font-size:13px;color:rgba(255,255,255,.7);line-height:1.35}
+.hcard .bar{height:4px;width:100%;background:var(--gold);margin-top:18px;border-radius:2px}
+.embed-sec{padding:8px 0 76px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:6px;overflow:hidden;box-shadow:var(--sh-lg)}
+
+/* stat band */
+.stat{background:var(--paper);padding:110px 0 90px}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:end}
+.big{font-size:clamp(96px,15vw,180px);font-weight:300;letter-spacing:-.04em;line-height:.85;color:var(--blue)}
+.big span{color:var(--gold)}
+.turn{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:var(--ink);max-width:30ch;font-weight:400;letter-spacing:-.01em}
+.turn em{font-style:normal;color:var(--blue);font-weight:600}
+.stat .mono{color:var(--muted);margin-bottom:22px;display:block}
+
+/* lede */
+.lede{background:var(--mist);padding:96px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:56px}
+.side{position:sticky;top:110px;align-self:start;color:var(--blue)}
+.side .ln{display:block;width:44px;height:4px;background:var(--gold);margin-top:14px}
+.lede h2{font-size:clamp(28px,3.4vw,40px);font-weight:500;letter-spacing:-.02em;color:var(--navy);line-height:1.15;max-width:22ch}
+.lede p{max-width:64ch;font-size:18px;margin-top:20px;color:#3a4352}
+.lede a{color:var(--blue)}
+
+/* signature band: orbit */
+.sig{background:#071a33;color:#fff;padding:100px 0;position:relative;overflow:hidden}
+.sig::before{content:"";position:absolute;inset:0;background:radial-gradient(1px 1px at 12% 20%,#fff8,transparent),radial-gradient(1px 1px at 32% 70%,#fff6,transparent),radial-gradient(1.5px 1.5px at 58% 18%,#fff9,transparent),radial-gradient(1px 1px at 82% 62%,#fff7,transparent),radial-gradient(1px 1px at 92% 12%,#fff5,transparent),radial-gradient(1px 1px at 45% 88%,#fff6,transparent);pointer-events:none}
+.sig-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;position:relative}
+.orbit{position:relative;width:min(380px,82vw);aspect-ratio:1;margin:0 auto}
+.orbit svg.ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit .heart{position:absolute;left:50%;top:50%;width:34%;transform:translate(-50%,-52%)}
+.orbit .lbl{position:absolute;font-size:16px;color:#fff;white-space:nowrap}
+.orbit .l1{left:-4%;top:22%}
+.orbit .l2{right:-10%;top:22%}
+.orbit .l3{left:50%;bottom:-2%;transform:translateX(-50%)}
+.sig h2{font-size:clamp(28px,3.4vw,42px);font-weight:500;letter-spacing:-.02em;color:var(--gold);line-height:1.15}
+.sig p{color:rgba(255,255,255,.8);margin-top:16px;max-width:52ch;font-size:17px}
+.flow{margin-top:34px;display:flex;flex-direction:column;gap:0}
+.node{display:flex;align-items:center;gap:14px;background:rgba(61,84,119,.5);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:14px 18px}
+.node .mono{color:var(--gold);min-width:84px}
+.node b{font-weight:600}
+.node.home{border-color:var(--gold);background:rgba(241,173,37,.1)}
+.link{height:26px;width:2px;margin-left:44px;background-image:linear-gradient(180deg,var(--gold) 55%,transparent 0);background-size:2px 10px;animation:marchv 900ms linear infinite}
+@keyframes marchv{to{background-position:0 10px}}
+
+/* learn rows */
+.learn{background:var(--paper);padding:100px 0}
+.learn-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.learn h2{font-size:clamp(30px,3.6vw,44px);font-weight:500;letter-spacing:-.02em;color:var(--navy)}
+.learn .mono{color:var(--muted)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--gold);transition:width .5s var(--ease)}
+.row:hover{background:var(--mist)}
+.row:hover::before{width:100%}
+.row .num{font-family:var(--mono);color:var(--gold);font-size:14px;padding-top:6px}
+.row h3{font-size:23px;font-weight:500;color:var(--navy);letter-spacing:-.01em;line-height:1.25}
+.row p{color:#4a5466;font-size:16.5px;max-width:52ch}
+
+/* speakers */
+.spk{background:var(--mist);padding:96px 0}
+.spk h2{font-size:clamp(28px,3.2vw,40px);font-weight:500;color:var(--navy);letter-spacing:-.02em;margin-bottom:36px}
+.spk-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.person{padding:30px 26px 30px 0;display:flex;gap:18px;align-items:flex-start;border-bottom:1px solid var(--line)}
+.person + .person{padding-left:26px;border-left:1px solid var(--line)}
+.person .av{width:64px;height:64px;font-size:20px}
+.person .n{font-weight:600;color:var(--navy);font-size:18px;line-height:1.3}
+.person .t{color:var(--muted);font-size:14.5px;margin-top:4px;line-height:1.45}
+.person .co{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-top:10px}
+
+/* cta band */
+.cta{background:var(--btn);color:var(--navy);padding:84px 0}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(30px,4vw,50px);font-weight:500;letter-spacing:-.025em;line-height:1.08;max-width:18ch}
+.cta p{margin-top:12px;font-size:17px;color:#2a3442;max-width:48ch}
+.btn.dark{background:var(--navy);color:#fff;padding:14px 32px}
+.btn.dark:hover{box-shadow:0 10px 24px rgba(11,39,74,.35)}
+
+/* footer replica */
+footer{background:var(--navy);color:#fff;padding:54px 0 30px}
+.f-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:32px;align-items:start}
+footer .logo img{height:44px}
+footer a{color:#cfe0ef;text-decoration:none;font-size:15px}
+footer a:hover{color:#fff;text-decoration:underline}
+.f-col{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.legal{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:20px;font-size:13.5px;color:rgba(255,255,255,.6);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.bbb{background:#fff;border-radius:4px;padding:6px 10px;display:inline-block}
+.bbb img{height:30px;width:auto}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+
+@media (max-width:900px){
+  .hero-grid,.sig-grid,.stat-grid,.lede-grid{grid-template-columns:1fr;gap:36px}
+  .side{position:static}
+  .row{grid-template-columns:44px 1fr;gap:12px 18px}
+  .row p{grid-column:2}
+  .spk-list{grid-template-columns:1fr}
+  .person + .person{padding-left:0;border-left:0}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .orbit .l2{right:-2%}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .util-r{gap:14px;font-size:14px}
+  .search{width:96px}
+  .logo img{height:38px}
+  .cbox{min-width:0;flex:1;padding:10px 4px}
+  .cnum{font-size:26px}
+  .hero{padding:44px 0 32px}
+  .orbit .lbl{font-size:14px}
+  .orbit .l1{left:0}
+  .orbit .l2{right:0}
+  .f-grid{grid-template-columns:1fr}
+  .announce{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Live webinar: <strong>Manhattan Life Products</strong> on <span id="annDate">December 15</span>. <a href="#register">Save your seat</a></div>
+
+<div class="util">
+  <div class="wrap">
+    <div class="social">
+      <a href="https://facebook.com/urlinsgroup" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+      <a href="https://www.instagram.com/urlinsgroup" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4.9-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM21.9 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.3 1 9.7 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.7 2 13.3 2.1 15c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.7.1 6.3.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.7.1-6.3.2-8zM19.7 17a3.3 3.3 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.9.4s-4.6.1-5.9-.4A3.3 3.3 0 0 1 4.3 17c-.5-1.3-.4-4.3-.4-5.9s-.1-4.6.4-5.9A3.3 3.3 0 0 1 6.1 3.4c1.3-.5 4.3-.4 5.9-.4s4.6-.1 5.9.4a3.3 3.3 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.9s.1 4.6-.4 5.9z"/></svg></a>
+      <a href="https://youtube.com/user/urlinsgroup" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg></a>
+      <a href="https://linkedin.com/company/url-insurance-group" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M2 2h20v20H2zm5.3 6.5H4.9V19h2.4zM6.1 4.6a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zM19.1 13c0-2.8-1.6-4.7-4-4.7-1.2 0-2.1.6-2.6 1.4V8.5h-2.3V19h2.4v-5.6c0-1.3.6-2.4 1.9-2.4s1.8 1 1.8 2.4V19h2.4z"/></svg></a>
+    </div>
+    <div class="util-r">
+      <a class="tel" href="tel:717-540-5690"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.5.6 3.6a1 1 0 0 1-.3 1z"/></svg>717-540-5690</a>
+      <a href="https://urlinsgroup.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2a8 8 0 0 1 6.3 12.9C17 15 14.7 14 12 14s-5 1-6.3 2.9A8 8 0 0 1 12 4zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>Login</a>
+    </div>
+  </div>
+</div>
+
+<header class="main" id="nav">
+  <div class="wrap">
+    <a class="logo" href="https://urlinsgroup.com/" target="_blank" rel="noopener"><img src="https://urlinsgroup.com/images/URLLogoReversed.png" alt="URL Insurance Group" width="230" height="52"></a>
+    <a class="search" href="https://urlinsgroup.com/?Itemid=1155" target="_blank" rel="noopener"><span>Search ...</span><svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg></a>
+  </div>
+</header>
+
+<div class="dark-wrap">
+  <section class="hero" id="register">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="badge mono" id="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></div>
+        <h1>Manhattan Life Products</h1>
+        <p class="lead">Join URL and Manhattan Life to review their products, quoting portal, and sales techniques. A great refresher coming off the AEP and re-visiting your clients for additional sales opportunities.</p>
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2zm-2 8h14v10H5z"/></svg><span id="chipDate">Tuesday, December 15, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v5.4l4 2.4-1 1.7-5-3V7z"/></svg><span id="chipTime">11:00 AM ET</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H4zm-2 14h20v2H2z"/></svg>60 min · Medicare Offerings</span>
+        </div>
+        <p class="local" id="localTime"></p>
+        <p class="streaming"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F1AD25"><circle cx="12" cy="12" r="5"/></svg>Streaming live and on-demand on <b>urlinsgroup.com</b></p>
+        <div class="count" id="count">
+          <div class="cbox"><div class="cnum" id="cd">00</div><div class="clab">DAYS</div></div>
+          <div class="cbox"><div class="cnum" id="ch">00</div><div class="clab">HRS</div></div>
+          <div class="cbox"><div class="cnum" id="cm">00</div><div class="clab">MIN</div></div>
+          <div class="cbox"><div class="cnum" id="cs">00</div><div class="clab">SEC</div></div>
+        </div>
+        <div class="livenow" id="livenow">We're live now. Join below.</div>
+        <div class="actions">
+          <a class="btn" href="#watch" id="mainCta">Register</a>
+          <a class="btn ghost" id="gcal" target="_blank" rel="noopener">+ Google Calendar</a>
+          <a class="btn ghost" id="ical" download="url-manhattan-life-products.ics">+ iCal / Outlook</a>
+        </div>
+      </div>
+      <aside class="hcard reveal">
+        <div class="mono">Featured presenters</div>
+        <ul>
+          <li><div class="av gold">KC</div><div><div class="n">Kemp Cole</div><div class="t">Regional Vice President, Manhattan Life</div></div></li>
+          <li><div class="av">CW</div><div><div class="n">Christy Wilbert, PLCS, AINS, CMIP</div><div class="t">Senior Vice President, Medicare Offerings</div></div></li>
+          <li><div class="av">BL</div><div><div class="n">Ben Luciotti</div><div class="t">Medicare Specialist, Medicare Offerings</div></div></li>
+        </ul>
+        <div class="bar"></div>
+      </aside>
+    </div>
+  </section>
+  <section class="embed-sec" id="watch">
+    <div class="wrap reveal">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat">
+  <div class="wrap">
+    <span class="mono reveal">URL Insurance Group · Since 1986</span>
+    <div class="stat-grid reveal">
+      <div class="big">40<span>yrs</span></div>
+      <p class="turn">Forty years in the people business. Your agents already come to <em>urlinsgroup.com</em> for cases, commissions and contracts. Now their training lives there too.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side mono reveal">About this webinar<span class="ln"></span></div>
+    <div class="reveal">
+      <h2>A post-AEP refresher, built for the conversations you're about to have.</h2>
+      <p>Join URL and Kemp Cole, Regional Vice President at Manhattan Life, to review their products, quoting portal, and sales techniques. It's a great refresher coming off the AEP and re-visiting your clients for additional sales opportunities.</p>
+      <p>Christy Wilbert and Ben Luciotti from URL's Medicare Offerings team will host, so bring your questions about contracting, quoting and where Manhattan Life fits in the book you've already built.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sig">
+  <div class="wrap sig-grid">
+    <div class="orbit reveal" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="78" fill="none" stroke="#F1AD25" stroke-width="1.2"/>
+        <g fill="#F1AD25">
+          <path d="M35 58l1.6 3.4 3.7.4-2.8 2.5.8 3.6-3.3-1.9-3.3 1.9.8-3.6-2.8-2.5 3.7-.4z"/>
+          <path d="M165 58l1.6 3.4 3.7.4-2.8 2.5.8 3.6-3.3-1.9-3.3 1.9.8-3.6-2.8-2.5 3.7-.4z"/>
+          <path d="M100 172l1.6 3.4 3.7.4-2.8 2.5.8 3.6-3.3-1.9-3.3 1.9.8-3.6-2.8-2.5 3.7-.4z"/>
+        </g>
+      </svg>
+      <img class="heart" src="https://urlinsgroup.com/images/url-heart.png" alt="">
+      <span class="lbl l1">You</span>
+      <span class="lbl l2">Your Clients</span>
+      <span class="lbl l3">Our People</span>
+    </div>
+    <div>
+      <div class="mono reveal" style="color:#8fb9dd">How the session reaches your clients</div>
+      <h2 class="reveal" style="margin-top:12px">Helping people starts with helping the professionals who serve them.</h2>
+      <p class="reveal">The carrier brings the product. URL brings the support. You bring it to the people who rely on you, and every step happens on the site you already call home.</p>
+      <div class="flow stagger">
+        <div class="node"><span class="mono">Carrier</span><span><b>Manhattan Life</b> · products and quoting portal</span></div>
+        <div class="link"></div>
+        <div class="node home"><span class="mono">Live on</span><span><b>urlinsgroup.com</b> · URL Medicare Offerings</span></div>
+        <div class="link"></div>
+        <div class="node"><span class="mono">Agent</span><span><b>You</b> · your post-AEP client reviews</span></div>
+        <div class="link"></div>
+        <div class="node"><span class="mono">Client</span><span><b>Your clients</b> · additional coverage they need</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="learn-head reveal">
+      <h2>What you'll cover</h2>
+      <span class="mono">4 parts · 60 minutes</span>
+    </div>
+    <div class="stagger">
+      <div class="row"><span class="num">01</span><h3>The Manhattan Life product lineup</h3><p>A walk through Manhattan Life's products with Kemp Cole, and where each one fits for the clients you're already serving.</p></div>
+      <div class="row"><span class="num">02</span><h3>The quoting portal, live</h3><p>See how to run quotes in Manhattan Life's portal so you can move from conversation to recommendation in one sitting.</p></div>
+      <div class="row"><span class="num">03</span><h3>Sales techniques that work</h3><p>Practical approaches for positioning the products naturally, without turning a review into a hard sell.</p></div>
+      <div class="row"><span class="num">04</span><h3>Turning post-AEP reviews into new sales</h3><p>How to re-visit your clients after the AEP and spot the additional sales opportunities that are already sitting in your book.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="spk">
+  <div class="wrap">
+    <h2 class="reveal">Your presenters</h2>
+    <div class="spk-list stagger">
+      <div class="person"><div class="av gold">KC</div><div><div class="n">Kemp Cole</div><div class="t">Regional Vice President</div><div class="co">Manhattan Life</div></div></div>
+      <div class="person"><div class="av">CW</div><div><div class="n">Christy Wilbert, PLCS, AINS, CMIP</div><div class="t">Senior Vice President, Medicare Offerings</div><div class="co">URL Insurance Group</div></div></div>
+      <div class="person"><div class="av">BL</div><div><div class="n">Ben Luciotti</div><div class="t">Medicare Specialist, Medicare Offerings</div><div class="co">URL Insurance Group</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap reveal">
+    <div>
+      <h2>We're in the people business.</h2>
+      <p>Save your seat for Manhattan Life Products. Can't make it live? The recording stays right here on urlinsgroup.com.</p>
+    </div>
+    <a class="btn dark" href="#register">Register now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <a class="logo" href="https://urlinsgroup.com/" target="_blank" rel="noopener"><img src="https://urlinsgroup.com/images/URLLogoReversed.png" alt="URL Insurance Group"></a>
+      <div class="f-col">
+        <a href="tel:7175405690">717-540-5690</a>
+        <a href="https://www.google.com/maps/place/500+Nationwide+Dr,+Harrisburg,+PA+17110" target="_blank" rel="noopener">500 Nationwide Drive<br>Harrisburg, PA 17110</a>
+      </div>
+      <div class="f-col">
+        <a href="https://urlinsgroup.com/contact-us.html" target="_blank" rel="noopener">Contact Us</a>
+        <a href="https://urlinsgroup.com/hippa-ba" target="_blank" rel="noopener">HIPAA Policy</a>
+        <a href="https://urlinsgroup.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+      <a class="bbb" href="http://www.bbb.org/washington-dc-eastern-pa/business-reviews/insurance-services/url-insurance-group-in-harrisburg-pa-70004688" target="_blank" rel="noopener"><img src="https://urlinsgroup.com/images/bbb_logo_200.png" alt="We are a BBB Accredited Business"></a>
+    </div>
+    <div class="legal">
+      <span>© 1986-2026 URL, Inc. All Rights Reserved.</span>
+      <div class="social">
+        <a href="https://facebook.com/urlinsgroup" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+        <a href="https://youtube.com/user/urlinsgroup" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg></a>
+        <a href="https://linkedin.com/company/url-insurance-group" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M2 2h20v20H2zm5.3 6.5H4.9V19h2.4zM6.1 4.6a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zM19.1 13c0-2.8-1.6-4.7-4-4.7-1.2 0-2.1.6-2.6 1.4V8.5h-2.3V19h2.4v-5.6c0-1.3.6-2.4 1.9-2.4s1.8 1 1.8 2.4V19h2.4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});
+(function stripBorder(){
+  const r=document.getElementById("sequel_root"); const c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){const st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else{setTimeout(stripBorder,200);}
+})();
+
+const EVENT={title:"Manhattan Life Products | URL Insurance Group",
+  details:"Join URL and Kemp Cole, Regional Vice President at Manhattan Life, to review their products, quoting portal, and sales techniques. Watch at https://sequel-demo.github.io/webinar-on/url-insurance-group/",
+  location:"urlinsgroup.com",start:new Date("2026-12-15T11:00:00-05:00"),mins:60};
+const end=new Date(EVENT.start.getTime()+EVENT.mins*60000);
+const z=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+document.getElementById("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+z(EVENT.start)+"/"+z(end)+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//URL Insurance Group//Webinar//EN","BEGIN:VEVENT","UID:url-manhattan-life-20261215@urlinsgroup.com","DTSTAMP:"+z(new Date()),"DTSTART:"+z(EVENT.start),"DTEND:"+z(end),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ical").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+try{
+  const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if(tz!=="America/New_York"){
+    const t=EVENT.start.toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+    document.getElementById("localTime").textContent="That's "+t+" where you are.";
+  }
+}catch(e){}
+
+const $=id=>document.getElementById(id), pad=n=>String(n).padStart(2,"0");
+function tick(){
+  const now=Date.now(), s=EVENT.start.getTime(), e=end.getTime();
+  if(now>=e){
+    $("badgeTxt").textContent="On Demand"; $("badge").classList.add("ondemand");
+    $("count").style.display="none"; $("gcal").style.display="none"; $("ical").style.display="none";
+    $("livenow").style.display="block"; $("livenow").textContent="Watch the recording below.";
+    $("mainCta").textContent="Watch now"; $("annDate").textContent="demand";
+    document.querySelector(".announce").innerHTML='Now on demand: <strong>Manhattan Life Products</strong>. <a href="#watch">Watch the recording</a>';
+    return;
+  }
+  if(now>=s){
+    $("count").style.display="none"; $("livenow").style.display="block"; $("mainCta").textContent="Join live";
+    return setTimeout(tick,30000);
+  }
+  let d=Math.floor((s-now)/1000);
+  $("cd").textContent=pad(Math.floor(d/86400)); d%=86400;
+  $("ch").textContent=pad(Math.floor(d/3600)); d%=3600;
+  $("cm").textContent=pad(Math.floor(d/60)); $("cs").textContent=pad(d%60);
+  setTimeout(tick,1000);
+}
+tick();
+
+const nav=$("nav"); addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
