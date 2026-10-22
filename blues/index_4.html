@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The New BOM: What It Really Costs to Build a Connected Product | Blues</title>
+<meta name="description" content="A live Blues webinar on the six costs a Bill of Materials leaves out, and how to decide whether to build or buy connectivity.">
+<meta property="og:title" content="The New BOM: What It Really Costs to Build a Connected Product">
+<meta property="og:description" content="Your cheat code to creating smart connected products. A live Blues webinar on the six costs a Bill of Materials leaves out.">
+<meta property="og:image" content="https://blues.com/wp-content/uploads/2026/10/artem-balashevsky-ZhNYKwjRMh4-unsplash-1024x707.jpg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/blues/">
+<meta property="og:site_name" content="Blues">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://blues.com/wp-content/uploads/2023/05/Asset-30-1-150x150.png" sizes="32x32">
+<link rel="icon" href="https://blues.com/wp-content/uploads/2023/05/Asset-30-1-300x300.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://blues.com/wp-content/uploads/2023/05/Asset-30-1-300x300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#030303;          /* blues.com header / text, oklch(0.1 0 0) */
+    --ink-warm:#060300;     /* button label ink, oklch(0.1 .024 85.6) */
+    --gold:#f7c23e;         /* CTA yellow, oklch(0.84 .153 85.7) */
+    --gold-soft:#ffdc8d;    /* headline highlight ("Cheat Code") */
+    --volt:#4400ff;         /* "Take Your Next Step" band, oklch(0.48 .30 274.9) */
+    --mist:#f7f7f7;         /* section surface, oklch(0.979 0 276) */
+    --line:#e3e3e3;
+    --sub:#4d4d4d;
+    --sh-sm:0 2px 8px rgba(3,3,3,.06);
+    --sh-md:0 16px 38px rgba(3,3,3,.10);
+    --sh-lg:0 28px 64px rgba(3,3,3,.18);
+    --ease:cubic-bezier(.16,1,.3,1);
+    --display:'Inter Tight','Helvetica Neue',Arial,sans-serif;  /* stands in for Forma DJR Deck */
+    --body:'Archivo',Helvetica,Arial,sans-serif;                 /* blues.com body face */
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:16.5px}
+  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-0.02em}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 30px}
+  ::selection{background:var(--gold);color:var(--ink)}
+  .mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+  .hl{color:var(--gold-soft)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}
+  .stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.4s}
+
+  /* ---------- buttons (exact blues.com: 4px radius, gold fill / gold outline, Archivo 600) ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--body);font-weight:600;border-radius:4px;padding:13px 29px;border:1px solid var(--gold);transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .15s,color .15s;white-space:nowrap}
+  .btn-gold{background:var(--gold);color:var(--ink-warm)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(247,194,62,.28)}
+  .btn-line{background:transparent;color:var(--gold)}
+  .btn-line:hover{background:var(--gold);color:var(--ink-warm);transform:translateY(-2px)}
+  .btn-sm{font-size:13.5px;padding:13px 29px}
+  .btn-lg{font-size:17.5px}
+
+  /* ---------- HEADER (mirrors blues.com: black bar, logomark, caret nav, Contact sales + Login) ---------- */
+  .nav{position:sticky;top:0;z-index:60;background:var(--ink);color:#fff;transition:box-shadow .25s,background .25s}
+  .nav.scrolled{background:rgba(3,3,3,.86);backdrop-filter:saturate(160%) blur(10px);-webkit-backdrop-filter:saturate(160%) blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .nav-inner{display:flex;align-items:center;gap:40px;height:88px;transition:height .25s var(--ease)}
+  .nav.scrolled .nav-inner{height:72px}
+  .logo{color:#fff;display:block;flex-shrink:0;line-height:0}
+  .logo svg{height:36px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{display:inline-flex;align-items:center;gap:7px;font-size:17.5px;color:#fff;transition:color .15s}
+  .nav-links a:hover{color:var(--gold)}
+  .caret{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.4;transition:transform .2s var(--ease)}
+  .nav-links a:hover .caret{transform:translateY(2px)}
+  .nav-cta{margin-left:auto;display:flex;gap:12px}
+
+  /* ---------- HERO + EMBED: one surface ---------- */
+  .dark-wrap{position:relative;overflow:hidden;background:var(--ink);color:#fff;isolation:isolate}
+  .dark-wrap::before{content:"";position:absolute;inset:0 0 auto 0;height:900px;z-index:-1;
+    background:linear-gradient(90deg,var(--ink) 30%,rgba(3,3,3,.72) 62%,rgba(3,3,3,.55)),
+               url("https://blues.com/wp-content/uploads/2026/10/artem-balashevsky-ZhNYKwjRMh4-unsplash-1024x707.jpg") 78% 40%/cover no-repeat;
+    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+    filter:saturate(.75)}
+  .dark-wrap::after{content:"";position:absolute;inset:auto -15% -12% -15%;height:62%;z-index:-1;pointer-events:none;
+    background:radial-gradient(50% 60% at 30% 70%,rgba(68,0,255,.30),transparent 70%),radial-gradient(40% 50% at 80% 60%,rgba(247,194,62,.10),transparent 70%)}
+  .hero{padding:96px 0 44px}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:64px;align-items:end}
+  .badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(247,194,62,.55);color:var(--gold);padding:7px 14px;border-radius:4px;margin-bottom:26px}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+  .hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1.02;margin-bottom:24px;max-width:15ch}
+  .hero .kicker{font-family:var(--display);font-weight:500;font-size:clamp(19px,1.7vw,23px);line-height:1.3;margin-bottom:26px;max-width:36ch;color:#fff}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  .chip{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:4px;padding:9px 14px;font-size:15px}
+  .chip svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2}
+  .local{font-size:14px;color:rgba(255,255,255,.62);margin-bottom:6px;min-height:1.4em}
+  .streaming{display:flex;align-items:center;gap:9px;font-size:15px;color:rgba(255,255,255,.82);margin-bottom:30px}
+  .streaming svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:2}
+  .countdown{display:flex;gap:10px;margin-bottom:30px}
+  .cd{width:78px;padding:13px 0 10px;text-align:center;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+  .cd b{display:block;font-family:var(--display);font-weight:500;font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+  .cd span{display:block;margin-top:7px;color:rgba(255,255,255,.55)}
+  .cd-live{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:20px;color:var(--gold)}
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+  .cal{display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,.6)}
+  .cal a{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.22);border-radius:4px;padding:8px 12px;font-size:13.5px;font-weight:600;color:#fff;transition:border-color .15s,transform .18s var(--ease)}
+  .cal a:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .cal svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2}
+  /* stat card: their own whitepaper numbers */
+  .ledger{background:rgba(3,3,3,.72);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:30px 30px 22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .ledger .mono{color:var(--gold);margin-bottom:14px;display:block}
+  .ledger-row{padding:16px 0;border-top:1px solid rgba(255,255,255,.12)}
+  .ledger-row .n{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:-0.02em;line-height:1.1}
+  .ledger-row .l{font-size:14px;color:rgba(255,255,255,.66);margin-top:4px}
+  .ledger-row .src{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:rgba(255,255,255,.38);margin-top:6px;text-transform:uppercase}
+  .embed-sec{padding:10px 0 92px}
+  #sequel_root{min-height:520px}
+
+  /* ---------- STAT PULL-QUOTE ---------- */
+  .stat-band{background:#fff;padding:120px 0 96px}
+  .stat-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:end}
+  .stat-big{font-family:var(--display);font-weight:500;font-size:clamp(110px,17vw,230px);line-height:.82;letter-spacing:-0.055em}
+  .stat-big small{font-size:.26em;letter-spacing:-0.02em;margin-left:.12em;vertical-align:.18em}
+  .stat-cap{margin-top:22px;font-size:17px;color:var(--sub);max-width:42ch}
+  .stat-cap b{color:var(--ink);font-weight:600}
+  .stat-turn{font-family:var(--display);font-weight:500;font-size:clamp(24px,2.5vw,34px);line-height:1.18;letter-spacing:-0.02em}
+  .stat-turn .u{background:linear-gradient(transparent 62%,rgba(247,194,62,.55) 0)}
+  .stat-src{margin-top:18px;color:#8a8a8a}
+
+  /* ---------- LEDE ---------- */
+  .lede{background:var(--mist);padding:104px 0}
+  .lede-grid{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+  .side{position:sticky;top:120px;align-self:start;color:var(--sub);display:flex;flex-direction:column;gap:10px}
+  .side .bar{width:36px;height:3px;background:var(--volt)}
+  .lede-body{max-width:66ch}
+  .lede-body h2{font-size:clamp(30px,3.4vw,44px);margin-bottom:26px}
+  .lede-body p{margin-bottom:18px;font-size:18px;line-height:1.65}
+  .lede-body p.aside{font-size:16px;color:var(--sub);border-left:3px solid var(--gold);padding-left:18px;margin-top:28px}
+
+  /* ---------- MECHANISM: the blues.com "Take Your Next Step" volt band, put to work ---------- */
+  .mech-outer{background:#fff;padding:0 0 0}
+  .mech{background:var(--volt);color:#fff;border-radius:10px;padding:76px 56px 64px;position:relative;overflow:hidden}
+  .mech::after{content:"";position:absolute;right:-110px;top:-110px;width:420px;height:420px;border-radius:50%;border:64px solid rgba(255,255,255,.07);pointer-events:none}
+  .mech .mono{color:rgba(255,255,255,.7)}
+  .mech h2{font-size:clamp(30px,3.6vw,46px);margin:14px 0 14px;max-width:20ch}
+  .mech p.lead{max-width:60ch;color:rgba(255,255,255,.82);font-size:17px;margin-bottom:48px}
+  .flow{display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr 70px 1fr;align-items:center;position:relative;z-index:1}
+  .node{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);border-radius:8px;padding:18px 16px;min-height:118px;display:flex;flex-direction:column;gap:8px}
+  .node.key{background:#fff;color:var(--ink);border-color:#fff}
+  .node .mono{font-size:10.5px}
+  .node.key .mono{color:var(--volt)}
+  .node b{font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:-0.01em;line-height:1.1}
+  .node span.t{font-size:13.5px;opacity:.78;line-height:1.4}
+  .dashes{height:2px;margin:0 8px;background-image:linear-gradient(90deg,var(--gold) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+  @keyframes march{to{background-position:12px 0}}
+  .mech-foot{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px}
+  .mech-foot .pill{border:1px solid rgba(255,255,255,.35);border-radius:4px;padding:7px 12px;font-size:13.5px;color:rgba(255,255,255,.9)}
+
+  /* ---------- LEARN: the six lines of the New BOM ---------- */
+  .learn{background:#fff;padding:110px 0 90px}
+  .learn-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:44px;flex-wrap:wrap}
+  .learn-head h2{font-size:clamp(30px,3.6vw,46px);max-width:17ch}
+  .learn-head p{max-width:46ch;color:var(--sub)}
+  .row{display:grid;grid-template-columns:72px minmax(0,1fr) minmax(0,1.2fr);gap:28px;padding:30px 14px 30px 4px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+  .row:last-child{border-bottom:1px solid var(--line)}
+  .row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--gold);transition:width .55s var(--ease)}
+  .row:hover{background:var(--mist)}
+  .row:hover::before{width:100%}
+  .row .num{font-family:var(--mono);font-size:13px;color:var(--volt);padding-top:6px}
+  .row h3{font-size:25px;letter-spacing:-0.015em}
+  .row p{color:var(--sub);font-size:16px}
+
+  /* ---------- SPEAKERS ---------- */
+  .speakers{background:var(--mist);padding:104px 0}
+  .speakers h2{font-size:clamp(30px,3.4vw,44px);margin:12px 0 44px}
+  .sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:900px}
+  .sp{background:#fff;border-radius:8px;padding:26px;display:flex;gap:22px;align-items:center;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .sp:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+  .sp .ph{width:104px;height:104px;border-radius:50%;flex-shrink:0;overflow:hidden;background:var(--ink);display:flex;align-items:center;justify-content:center}
+  .sp .ph img{width:100%;height:100%;object-fit:cover}
+  .sp .ph svg{width:46px;height:46px;color:var(--gold)}
+  .sp h3{font-size:22px;letter-spacing:-0.01em}
+  .sp .role{font-size:15px;color:var(--sub);margin-top:4px;line-height:1.4}
+  .sp .tag{margin-top:10px;color:var(--volt)}
+  .sp.tba .tag{color:#8a8a8a}
+
+  /* ---------- CTA: full-bleed gold ---------- */
+  .cta{background:var(--gold);color:var(--ink-warm);padding:96px 0}
+  .cta-inner{display:grid;grid-template-columns:minmax(0,1.2fr) auto;gap:40px;align-items:center}
+  .cta h2{font-size:clamp(32px,4vw,54px);max-width:16ch}
+  .cta p{margin-top:16px;font-size:18px;max-width:52ch}
+  .cta .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .btn-ink{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn-ink:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+  .btn-ink-line{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ink-line:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+
+  /* ---------- FOOTER (mirrors blues.com) ---------- */
+  footer{background:#fff;color:var(--ink);padding:80px 0 34px;border-top:1px solid var(--line)}
+  .f-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+  .f-brand .logo{color:var(--ink)}
+  .f-brand .logo svg{height:40px}
+  .f-brand p{margin-top:16px;font-family:var(--display);font-weight:500;font-size:22px;max-width:22ch;line-height:1.2}
+  .social{display:flex;gap:14px;margin-top:22px}
+  .social a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:border-color .15s,transform .18s var(--ease)}
+  .social a:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .social svg{width:16px;height:16px;fill:var(--ink)}
+  .news{display:inline-flex;align-items:center;gap:8px;font-weight:600;border-bottom:1px solid var(--ink);padding-bottom:3px}
+  .f-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px}
+  .f-cols h4{font-family:var(--body);font-weight:600;font-size:15px;margin-bottom:16px}
+  .f-cols a{display:block;font-size:14.5px;color:var(--sub);margin-bottom:10px;transition:color .15s}
+  .f-cols a:hover{color:var(--ink)}
+  .f-legal{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--sub)}
+  .f-legal a:hover{color:var(--ink)}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1080px){
+    .nav-links{display:none}
+    .hero-grid,.stat-grid,.cta-inner{grid-template-columns:1fr}
+    .ledger{max-width:520px}
+    .flow{grid-template-columns:1fr;gap:0}
+    .flow .dashes{width:2px;height:34px;margin:6px auto;background-image:linear-gradient(180deg,var(--gold) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+    @keyframes marchv{to{background-position:0 12px}}
+    .f-cols{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media(max-width:760px){
+    .wrap{padding:0 18px}
+    .nav-inner{height:68px;gap:14px}
+    .nav.scrolled .nav-inner{height:62px}
+    .logo svg{height:28px}
+    .nav-cta .btn-line{display:none}
+    .btn-sm{padding:10px 16px;font-size:13px}
+    .hero{padding:56px 0 30px}
+    .cd{width:68px}
+    .cd b{font-size:27px}
+    .lede-grid{grid-template-columns:1fr;gap:20px}
+    .side{position:static;flex-direction:row;align-items:center}
+    .mech{padding:52px 22px 44px;border-radius:0;margin:0 -18px}
+    .row{grid-template-columns:44px minmax(0,1fr);gap:8px 16px}
+    .row p{grid-column:2}
+    .sp-grid{grid-template-columns:1fr}
+    .sp{padding:20px}
+    .sp .ph{width:80px;height:80px}
+    .f-cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .stat-band,.lede,.learn,.speakers{padding:72px 0}
+    .cta{padding:72px 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+    .badge .dot,.dashes{animation:none!important}
+    .btn:hover,.sp:hover,.cal a:hover,.social a:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="blues-logo" viewBox="0 0 1756 492.17">
+    <path d="m240.09,469.17c-123.02,0-223.09-100.07-223.09-223.09S117.07,23,240.09,23s223.09,100.07,223.09,223.08-100.07,223.09-223.09,223.09h0Zm0-381.86c-87.55,0-158.78,71.22-158.78,158.77s71.23,158.78,158.78,158.78,158.78-71.23,158.78-158.78-71.23-158.77-158.78-158.77h0Z"/>
+    <path d="m299.4,337.61h-118.61c-17.79,0-32.22-14.43-32.22-32.22v-118.61c0-17.790,14.43-32.22,32.22-32.22h118.61c17.79,0,32.22,14.43,32.22,32.22v118.61c0,17.79-14.43,32.22-32.22,32.22Zm-86.38-64.45h54.14v-54.14h-54.14v54.14Z"/>
+    <path d="m560.69,74.19h76.26v105.21c6.73-7.35,13.85-12.93,21.36-16.77,7.5-3.82,14.7-6.66,21.59-8.5s13.09-2.91,18.61-3.22c5.51-.3,9.65-.46,12.4-.46,13.17,0,27.18,2.53,42.04,7.58,14.85,5.05,28.4,12.94,40.66,23.66,12.25,10.72,22.43,24.58,30.55,41.58,8.11,17,12.17,37.6,12.17,61.79s-3.68,43.11-11.03,60.41c-7.35,17.31-17,31.7-28.94,43.180-11.94,11.49-25.66,20.06-41.12,25.73-15.47,5.66-31.32,8.5-47.55,8.5-18.07,0-33.54-3.67-46.4-11.03-12.86-7.35-21.75-15.62-26.65-24.81h-.92v27.1h-73.05V74.19h.02Zm73.51,211.79c0,8.89,1.45,17.31,4.36,25.27,2.91,7.97,7.04,14.93,12.4,20.9,5.35,5.97,11.87,10.72,19.52,14.24s16.23,5.28,25.73,5.28,18.61-1.84,26.42-5.51c7.81-3.68,14.47-8.5,19.98-14.47s9.8-12.93,12.86-20.9c3.06-7.960,4.59-16.08,4.59-24.35s-1.46-16.31-4.36-24.12c-2.91-7.81-7.12-14.7-12.63-20.67s-12.1-10.8-19.75-14.47c-7.66-3.67-16.24-5.51-25.73-5.51-10.11,0-19.07,1.84-26.870,5.51-7.81,3.68-14.47,8.58-19.99,14.7-5.51,6.13-9.65,13.02-12.4,20.67-2.76,7.66-4.13,15.47-4.13,23.43h0Z"/>
+    <path d="m866.91,74.19h76.26v339.96h-76.26V74.19Z"/>
+    <path d="m1222.3,414.15h-72.13v-27.1h-.92c-3.98,8.27-8.73,14.7-14.24,19.3-5.51,4.59-11.33,8.11-17.46,10.57-6.13,2.45-12.17,3.98-18.15,4.59-5.97.61-11.41.92-16.31.92-3.98,0-9.04-.31-15.16-.92-6.13-.62-12.71-2.07-19.75-4.36-7.05-2.3-14.09-5.59-21.13-9.88-7.05-4.29-13.32-9.95-18.84-17-5.21-6.43-9.27-12.48-12.17-18.15-2.91-5.66-5.21-11.49-6.89-17.46-1.69-5.97-2.76-12.41-3.22-19.3-.46-6.89-.69-14.77-.69-23.66v-152.53h76.26v141.04c0,4.29.23,9.42.69,15.39s1.91,11.56,4.36,16.77c2.45,5.21,6.5,9.65,12.17,13.32,5.66,3.68,13.55,5.51,23.66,5.51,5.51,0,10.87-.84,16.08-2.53,5.2-1.68,9.88-4.44,14.01-8.27,4.14-3.830,7.42-9.11,9.88-15.85,2.45-6.73,3.68-15.16,3.68-25.27v-140.12h76.26v254.99Z"/>
+    <path d="m1511.06,334.22c-6.13,14.4-13.63,27.03-22.51,37.9-8.89,10.88-18.68,19.99-29.4,27.33-21.44,15.31-45.64,22.97-72.59,22.97-18.38,0-35.68-3.45-51.91-10.34-16.24-6.89-30.55-16.46-42.96-28.71-12.4-12.24-22.21-26.57-29.4-42.95-7.2-16.38-10.8-34.07-10.8-53.06,0-17.76,3.29-34.91,9.88-51.450,6.58-16.54,15.85-31.08,27.79-43.64,11.94-12.56,26.11-22.66,42.49-30.32,16.38-7.65,34.23-11.49,53.52-11.49s37.21,3.6,53.75,10.8c16.54,7.2,30.78,17.08,42.72,29.63,11.950,12.56,21.28,27.33,28.03,44.33,6.73,17,10.11,35.14,10.11,54.44,0,5.21-.16,9.12-.46,11.72-.31,2.61-.77,5.44-1.38,8.5h-191.11c2.45,15.32,9.26,27.18,20.44,35.6,11.18,8.43,24.27,12.63,39.28,12.63,11.64,0,20.98-2.3,28.02-6.89,7.04-4.6,13.17-10.26,18.38-17h78.11Zm-67.53-75.8c-.92-3.67-2.53-8.04-4.82-13.09-2.3-5.05-5.74-9.88-10.34-14.47-4.59-4.59-10.42-8.42-17.46-11.49-7.05-3.06-15.47-4.59-25.27-4.59s-18.22,1.54-25.27,4.59c-7.05,3.07-12.86,6.89-17.46,11.49-4.6,4.59-8.04,9.42-10.34,14.47-2.3,5.05-3.91,9.42-4.82,13.09h115.78Z"/>
+    <path d="m1656.31,230.85c0-1.22-.23-2.99-.69-5.28-.46-2.3-1.46-4.44-2.99-6.43-1.54-1.99-3.91-3.75-7.12-5.28-3.22-1.53-7.58-2.3-13.09-2.3-7.97,0-13.55,1.99-16.77,5.97-3.22,3.98-4.82,7.66-4.82,11.03,0,7.05,3.98,12.63,11.94,16.77s17,7.74,27.1,10.8c10.72,3.07,21.43,6.36,32.16,9.88,10.72,3.53,20.29,8.2,28.71,14.01,8.42,5.82,15.23,13.17,20.44,22.05,5.2,8.89,7.81,20.21,7.81,34s-2.76,25.58-8.27,36.29c-5.51,10.72-13.02,19.83-22.51,27.34-9.5,7.51-20.52,13.25-33.08,17.23-12.56,3.98-25.89,5.97-39.97,5.97-9.81,0-20.37-1.23-31.7-3.67-11.33-2.45-22.05-6.89-32.16-13.32-10.11-6.43-18.83-15.08-26.19-25.96-7.35-10.87-11.76-28.86-13.6-45.71h74c.92,5.82,4.37,14.47,7.13,17.69,2.76,3.22,5.74,5.51,8.96,6.89,3.22,1.38,6.2,2.22,8.96,2.53s4.6.46,5.51.46c6.43,0,12.48-1.76,18.15-5.28,5.66-3.52,8.5-8.34,8.5-14.47,0-4.9-1.23-8.88-3.67-11.94-2.45-3.06-6.36-5.97-11.72-8.73-5.36-2.76-12.33-5.66-20.9-8.73-8.58-3.06-18.99-6.89-31.24-11.49-8.27-2.76-16.08-6.12-23.43-10.11-7.35-3.98-13.78-8.73-19.3-14.24-5.51-5.51-9.88-11.79-13.09-18.83-3.22-7.04-4.82-14.85-4.82-23.43,0-12.56,2.68-24.04,8.04-34.46,5.35-10.41,12.55-19.3,21.59-26.65,9.03-7.35,19.52-13.01,31.47-17,11.94-3.98,24.5-5.97,37.67-5.97,8.27,0,17.76,1.08,28.48,3.22,10.72,2.15,20.9,6.13,30.55,11.94,9.65,5.82,18.15,13.94,25.5,24.35,7.35,10.41,11.79,24.05,13.32,40.89h-74.88l.02-.03Z"/>
+  </symbol>
+  <symbol id="blues-mark" viewBox="17 23 446.2 446.2">
+    <path d="m240.09,469.17c-123.02,0-223.09-100.07-223.09-223.09S117.07,23,240.09,23s223.09,100.07,223.09,223.08-100.07,223.09-223.09,223.09h0Zm0-381.86c-87.55,0-158.78,71.22-158.78,158.77s71.23,158.78,158.78,158.78,158.78-71.23,158.78-158.78-71.23-158.77-158.78-158.77h0Z"/>
+    <path d="m299.4,337.61h-118.61c-17.79,0-32.22-14.43-32.22-32.22v-118.61c0-17.790,14.43-32.22,32.22-32.22h118.61c17.79,0,32.22,14.43,32.22,32.22v118.61c0,17.79-14.43,32.22-32.22,32.22Zm-86.38-64.45h54.14v-54.14h-54.14v54.14Z"/>
+  </symbol>
+</svg>
+
+<!-- HEADER : mirrors blues.com -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="https://blues.com/" target="_blank" rel="noopener" aria-label="Blues home"><svg viewBox="0 0 1756 492.17" fill="currentColor" role="img" aria-label="Blues"><use href="#blues-logo"/></svg></a>
+    <div class="nav-links">
+      <a href="https://blues.com/products/" target="_blank" rel="noopener">Products <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://blues.com/commercial-equipment/" target="_blank" rel="noopener">Solutions <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://dev.blues.io/" target="_blank" rel="noopener">Developers <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://blues.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://blues.com/about/" target="_blank" rel="noopener">About <svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+      <a href="https://shop.blues.com/" target="_blank" rel="noopener">Shop</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-gold btn-sm" href="https://blues.com/contact-sales/" target="_blank" rel="noopener">Contact sales</a>
+      <a class="btn btn-line btn-sm" href="https://notehub.io/" target="_blank" rel="noopener">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO + EMBED : one continuous surface -->
+<div class="dark-wrap">
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="badge mono" id="badge"><span class="dot"></span><span id="badgeText">Live Webinar</span></div>
+        <h1>The <span class="hl">New BOM</span>: What It Really Costs to Build a Connected Product</h1>
+        <p class="kicker">A $50 BOM tells you what the device costs to assemble. Here's what it costs to keep 20,000 of them connected.</p>
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span id="dateText">Thursday, November 19 · 11am EST / 4pm GMT</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Under an hour, live Q&amp;A</span>
+        </div>
+        <p class="local" id="localTime"></p>
+        <p class="streaming"><svg viewBox="0 0 24 24"><path d="M15 10l4.55-2.27A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.89L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>Streaming live and on-demand on blues.com</p>
+        <div class="countdown" id="countdown" aria-label="Time until the webinar starts">
+          <div class="cd"><b data-cd="d">00</b><span class="mono">Days</span></div>
+          <div class="cd"><b data-cd="h">00</b><span class="mono">Hrs</span></div>
+          <div class="cd"><b data-cd="m">00</b><span class="mono">Min</span></div>
+          <div class="cd"><b data-cd="s">00</b><span class="mono">Sec</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-gold btn-lg" href="#register" id="mainCta">Save my seat</a>
+          <div class="cal" id="calWrap">
+            <span>Add to calendar</span>
+            <a id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Google</a>
+            <a id="ical" download="blues-new-bom-webinar.ics"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>iCal</a>
+          </div>
+        </div>
+      </div>
+      <aside class="ledger reveal" aria-label="Costs a Bill of Materials leaves out">
+        <span class="mono">Not on the BOM</span>
+        <div class="ledger-row"><div class="n">$8k&ndash;$30k</div><div class="l">FCC certification for a custom radio design, vs. $3k&ndash;$10k on a pre-certified module</div><div class="src">MarkReady, 2026</div></div>
+        <div class="ledger-row"><div class="n">~50%</div><div class="l">of devices fail EMC testing on the first attempt</div><div class="src">MarkReady, 2026</div></div>
+        <div class="ledger-row"><div class="n">$1,000&ndash;$3,750</div><div class="l">field provisioning, per technician day</div><div class="src">Blues</div></div>
+      </aside>
+    </div>
+  </header>
+
+  <section class="embed-sec" id="register">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<!-- STAT PULL-QUOTE -->
+<section class="stat-band">
+  <div class="wrap stat-grid">
+    <div class="reveal">
+      <div class="stat-big">41<small>months</small></div>
+      <p class="stat-cap">Average time from project kickoff to <b>first paying customer</b> for a connected product, up 80% from 23 months in 2020.</p>
+    </div>
+    <div class="reveal">
+      <p class="stat-turn">Connectivity isn't the only reason programs stall. But it's a reason that can be removed with <span class="u">a purchasing decision rather than a hiring plan.</span></p>
+      <p class="stat-src mono">Source: IoT Analytics survey of 100 OEM executives, 2024</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEDE -->
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side mono"><span class="bar"></span>About the webinar</div>
+    <div class="lede-body reveal">
+      <h2>The cost of a connected device doesn't stop at assembly.</h2>
+      <p>A Bill of Materials captures component and manufacturing cost. It does not capture the cost of making a device connect, stay secure, stay updated, and stay supported for the ten or more years it sits in the field.</p>
+      <p>Building cellular connectivity in-house adds certification, carrier management, provisioning, cloud infrastructure, and long-term maintenance to a hardware program. Buying a pre-certified connectivity module transfers most of that work to a vendor.</p>
+      <p>In this live session we'll walk through the six cost categories a Bill of Materials leaves out, put real numbers on each one, and share the criteria for deciding which path fits your product, from trailers and reefers to batteries, brakes and cargo doors.</p>
+      <p class="aside">This session will run less than an hour, and we'll send you the recording afterward, but attending live is always better!</p>
+    </div>
+  </div>
+</section>
+
+<!-- MECHANISM : the blues.com volt band -->
+<section class="mech-outer">
+  <div class="wrap">
+    <div class="mech reveal">
+      <span class="mono">Device to cloud, the Blues way</span>
+      <h2>Your product's data, from the field to your app.</h2>
+      <p class="lead">Blues handles the heavy lifting with a device-to-cloud system that includes plug-and-play hardware, connectivity, cloud infrastructure and fleet management.</p>
+      <div class="flow stagger">
+        <div class="node"><span class="mono">Your product</span><b>Sensors &amp; host MCU</b><span class="t">Trailers, reefers, tires, brakes, cargo doors</span></div>
+        <div class="dashes" aria-hidden="true"></div>
+        <div class="node key"><span class="mono">Pre-certified</span><b>Notecard</b><span class="t">Cellular, WiFi and satellite, with modular FCC, ISED, CE and PTCRB certification</span></div>
+        <div class="dashes" aria-hidden="true"></div>
+        <div class="node"><span class="mono">Cloud</span><b>Notehub</b><span class="t">Secure routing and fleet management, with no subscriptions</span></div>
+        <div class="dashes" aria-hidden="true"></div>
+        <div class="node"><span class="mono">Your stack</span><b>AWS, Azure, Snowflake</b><span class="t">Data lands in the application you already run</span></div>
+      </div>
+      <div class="mech-foot">
+        <span class="pill">No carrier contracts</span><span class="pill">No certificates or TLS to manage</span><span class="pill">One API across radios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn">
+  <div class="wrap">
+    <div class="learn-head reveal">
+      <h2>The six lines missing from your BOM</h2>
+      <p>Blues calls the complete view the New BOM. We'll take each line in turn, with the numbers behind it.</p>
+    </div>
+    <div class="stagger">
+      <div class="row"><span class="num">01</span><h3>Provisioning</h3><p>Configuring SIMs, network settings and cloud credentials in the field, and why it hits hardest when you retrofit vehicles already in service.</p></div>
+      <div class="row"><span class="num">02</span><h3>Security</h3><p>Why security is a recurring cost rather than a project, and how cellular moves much of the network burden onto the carrier.</p></div>
+      <div class="row"><span class="num">03</span><h3>Cloud platform</h3><p>The infrastructure every device needs behind it to route, store and act on its data for a decade in the field.</p></div>
+      <div class="row"><span class="num">04</span><h3>Testing &amp; certification</h3><p>FCC, ISED, CE/RED and PTCRB, charged per market and per radio, and how a pre-certified module changes the math.</p></div>
+      <div class="row"><span class="num">05</span><h3>Fulfillment &amp; deployment</h3><p>Duties, VAT and excise on cross-border shipments, which commonly add $30 to $40 to a $100 device entering a new market.</p></div>
+      <div class="row"><span class="num">06</span><h3>Employee time</h3><p>The engineering hours spent on carrier management and maintenance instead of the product you're actually trying to differentiate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="speakers">
+  <div class="wrap">
+    <span class="mono reveal" style="color:var(--sub)">Our speakers</span>
+    <h2 class="reveal">Meet your hosts</h2>
+    <div class="sp-grid stagger">
+      <div class="sp">
+        <div class="ph"><img src="data:image/jpeg;base64,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" alt="Kristin Ides DeMar" width="104" height="104"></div>
+        <div><h3>Kristin Ides DeMar</h3><p class="role">Sr. Manager, AI and Growth Marketing, Blues</p><p class="tag mono">Host</p></div>
+      </div>
+      <div class="sp tba">
+        <div class="ph"><svg viewBox="17 23 446.2 446.2" fill="currentColor" aria-hidden="true"><use href="#blues-mark"/></svg></div>
+        <div><h3>Blues product expert</h3><p class="role">Developer Relations, Blues</p><p class="tag mono">Speaker to be announced</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta">
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>Take your next step.</h2>
+      <p>Can't make it live? Register anyway and we'll send the recording, plus the full Build vs. Buy paper on what it really costs to build a connected device.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-ink btn-lg" href="#register">Save my seat</a>
+      <a class="btn btn-ink-line btn-lg" href="https://blues.com/content/what-it-costs-to-build-or-buy-connected-devices/" target="_blank" rel="noopener">Read the paper</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER : mirrors blues.com -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <a class="logo" href="https://blues.com/" target="_blank" rel="noopener" aria-label="Blues home"><svg viewBox="0 0 1756 492.17" fill="currentColor" role="img" aria-label="Blues"><use href="#blues-logo"/></svg></a>
+        <p>Your Cheat Code to Creating Smart Connected Products</p>
+        <div class="social">
+          <a href="https://www.linkedin.com/company/blues-wireless" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg></a>
+          <a href="https://twitter.com/buildwithblues" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77zm-1.08 16.2h1.7L7.4 4.73H5.58z"/></svg></a>
+          <a href="https://www.youtube.com/@BuildWithBlues" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.5 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1 31 31 0 00.5-4.8 31 31 0 00-.5-4.8zM9.75 15.02V8.98L15.5 12z"/></svg></a>
+          <a href="https://www.instagram.com/buildwithblues" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58 0-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.12 15.58 2.1 15.2 2.1 12s0-3.58.07-4.85C2.33 3.92 3.84 2.38 7.1 2.23 8.37 2.17 8.75 2.2 12 2.2zm0 4.86a4.94 4.94 0 100 9.88 4.94 4.94 0 000-9.88zm0 8.15a3.21 3.21 0 110-6.42 3.21 3.21 0 010 6.42zm5.14-9.5a1.15 1.15 0 100 2.3 1.15 1.15 0 000-2.3z"/></svg></a>
+          <a href="https://github.com/blues" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 00-3.8 23.4c.6.1.8-.26.8-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .5z"/></svg></a>
+        </div>
+      </div>
+      <a class="news" href="https://blues.com/" target="_blank" rel="noopener">Subscribe to our newsletter <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="f-cols">
+      <div>
+        <h4>Products</h4>
+        <a href="https://blues.com/products/" target="_blank" rel="noopener">Overview</a>
+        <a href="https://blues.com/notehub/" target="_blank" rel="noopener">Notehub</a>
+        <a href="https://blues.com/products/notecard/" target="_blank" rel="noopener">Notecard</a>
+        <a href="https://blues.com/products/starnotes/" target="_blank" rel="noopener">Starnote</a>
+        <a href="https://blues.com/products/notecarrier/" target="_blank" rel="noopener">Notecarriers</a>
+        <a href="https://shop.blues.com/" target="_blank" rel="noopener">Shop</a>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <a href="https://blues.com/transportation-and-logistics/" target="_blank" rel="noopener">Transportation and Logistics</a>
+        <a href="https://blues.com/commercial-buildings-and-facilities/" target="_blank" rel="noopener">Commercial Buildings and Facilities</a>
+        <a href="https://blues.com/commercial-equipment/" target="_blank" rel="noopener">Commercial Equipment</a>
+        <a href="https://blues.com/solutions-energy-monitoring/" target="_blank" rel="noopener">Energy and Utilities</a>
+        <a href="https://blues.com/solutions-medical-devices/" target="_blank" rel="noopener">Medical and Healthcare</a>
+      </div>
+      <div>
+        <h4>Use Cases</h4>
+        <a href="https://blues.com/downtime-prevention/" target="_blank" rel="noopener">Downtime Prevention</a>
+        <a href="https://blues.com/energy-savings/" target="_blank" rel="noopener">Energy Savings</a>
+        <a href="https://blues.com/truck-roll-reduction/" target="_blank" rel="noopener">Truck Roll Reduction</a>
+        <a href="https://blues.com/solutions-location-tracking/" target="_blank" rel="noopener">Asset Location Tracking</a>
+        <a href="https://blues.com/solutions-supply-chain-tracking/" target="_blank" rel="noopener">Supply Chain Tracking</a>
+      </div>
+      <div>
+        <h4>Developers</h4>
+        <a href="https://dev.blues.io/" target="_blank" rel="noopener">Blues Developer Center</a>
+        <a href="https://dev.blues.io/quickstart/" target="_blank" rel="noopener">Quickstart Guides</a>
+        <a href="https://status.notehub.io/" target="_blank" rel="noopener">Notehub Status</a>
+        <a href="https://discuss.blues.com/" target="_blank" rel="noopener">Community Forum</a>
+        <a href="https://dev.blues.io/api-reference/" target="_blank" rel="noopener">API References</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="https://blues.com/about/" target="_blank" rel="noopener">About Blues</a>
+        <a href="https://blues.com/newsroom/" target="_blank" rel="noopener">Newsroom</a>
+        <a href="https://blues.com/customer-stories/" target="_blank" rel="noopener">Customer Stories</a>
+        <a href="https://blues.com/content/" target="_blank" rel="noopener">Content Library</a>
+        <a href="https://blues.com/bluescareers/" target="_blank" rel="noopener">Careers</a>
+      </div>
+    </div>
+    <div class="f-legal">
+      <span>&copy; 2026 Blues Inc.</span>
+      <a href="https://blues.com/credits/" target="_blank" rel="noopener">Credits</a>
+      <a href="https://blues.com/terms/" target="_blank" rel="noopener">Terms</a>
+      <a href="https://blues.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"The New BOM: What It Really Costs to Build a Connected Product",
+    start:"2026-11-19T11:00:00-05:00",
+    end:"2026-11-19T11:50:00-05:00",
+    details:"A live Blues webinar on the six costs a Bill of Materials leaves out. Streaming live and on-demand on blues.com.",
+    location:"https://sequel-demo.github.io/webinar-on/blues/"
+  };
+  var startMs=new Date(EVENT.start).getTime(), endMs=new Date(EVENT.end).getTime();
+  function utc(ms){return new Date(ms).toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");}
+
+  /* viewer's own timezone */
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if(tz!=="America/New_York"&&tz!=="Europe/London"){
+      var f=new Intl.DateTimeFormat(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+      document.getElementById("localTime").textContent="That's "+f.format(new Date(startMs))+" where you are.";
+    }
+  }catch(e){}
+
+  /* calendar links from one EVENT object */
+  document.getElementById("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+utc(startMs)+"/"+utc(endMs)+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Blues//Webinar//EN","BEGIN:VEVENT","UID:blues-new-bom-20261119@blues.com","DTSTAMP:"+utc(Date.now()),"DTSTART:"+utc(startMs),"DTEND:"+utc(endMs),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById("ical").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  /* countdown, live state, and graceful on-demand once the date passes */
+  var cd=document.getElementById("countdown");
+  function pad(n){return String(n).padStart(2,"0");}
+  function onDemand(){
+    document.getElementById("badgeText").textContent="On Demand";
+    cd.innerHTML='<a class="btn btn-gold" href="#register">Watch the recording</a>';
+    document.getElementById("calWrap").style.display="none";
+    document.getElementById("mainCta").style.display="none";
+    document.getElementById("localTime").textContent="";
+    document.getElementById("dateText").textContent="Recorded Thursday, November 19, 2026";
+  }
+  function tick(){
+    var now=Date.now();
+    if(now>=endMs+3*36e5){onDemand();return false;}
+    if(now>=startMs){cd.innerHTML='<div class="cd-live"><span class="dot" style="width:10px;height:10px;border-radius:50%;background:#f7c23e;display:inline-block;animation:pulse 1.6s infinite"></span>We’re live now. Join below</div>';return false;}
+    var d=startMs-now,set={d:Math.floor(d/864e5),h:Math.floor(d%864e5/36e5),m:Math.floor(d%36e5/6e4),s:Math.floor(d%6e4/1e3)};
+    cd.querySelectorAll("[data-cd]").forEach(function(el){el.textContent=pad(set[el.getAttribute("data-cd")]);});
+    return true;
+  }
+  if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv);},1000);}
+
+  /* nav */
+  var nav=document.getElementById("nav");
+  function onScroll(){nav.classList.toggle("scrolled",window.scrollY>8);}
+  onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+
+  /* reveal */
+  var els=document.querySelectorAll(".reveal,.stagger");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15});
+    els.forEach(function(el){io.observe(el);});
+  }else{els.forEach(function(el){el.classList.add("in");});}
+  setTimeout(function(){document.querySelectorAll(".hero .reveal").forEach(function(el){el.classList.add("in");});},60);
+})();
+</script>
+
+<!-- SEQUEL EMBED (dark) -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});
+    (function stripBorder(){
+      var root=document.getElementById("sequel_root");
+      var c=root&&root.firstElementChild;
+      if(c&&c.shadowRoot){
+        var st=document.createElement("style");
+        st.textContent="iframe.sequel-iframe{border:none !important}";
+        c.shadowRoot.appendChild(st);
+      }else{setTimeout(stripBorder,200);}
+    })();
+  });
+</script>
+</body>
+</html>
