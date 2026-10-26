@@ -13,6 +13,7 @@
 <link rel="icon" href="https://www.servicetitan.com/static/favicon-fbcf245208174d811075922be3499c14.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -109,55 +110,13 @@
   .btn-dark{background:var(--char);color:#fff}
   .btn-dark:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
   .embed-sec{padding:8px 0 76px;position:relative;z-index:2}
-
-
-  /* ---------- LIVE ROOM MOCKUP ---------- */
-  .room{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:stretch}
-  .stage{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#2e3239 0%,#1b1e23 70%);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 70px rgba(0,0,0,.4)}
-  .stage::before{content:"";position:absolute;inset:auto -10% -40% 30%;height:90%;background:radial-gradient(circle,rgba(226,79,79,.28),transparent 62%)}
-  .stage-top{position:absolute;left:20px;right:20px;top:18px;display:flex;justify-content:space-between;align-items:center;z-index:3}
-  .live-pill{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;padding:6px 12px;border-radius:6px}
-  .live-pill i{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse2 1.5s infinite}
-  @keyframes pulse2{0%,100%{opacity:1}50%{opacity:.35}}
-  .stage-meta{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.06em;text-transform:uppercase}
-  .slide{position:absolute;left:5%;top:17%;width:58%;z-index:2;color:#fff}
-  .slogo{width:150px;height:26px;color:#fff;margin-bottom:22px;display:block}
-  .slabel{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red-soft);margin-bottom:12px}
-  .stitle{font-weight:700;font-size:clamp(18px,2.45vw,34px);letter-spacing:-.045em;line-height:1.05;margin-bottom:12px}
-  .stitle em{font-style:normal;color:var(--red-soft)}
-  .ssub{font-size:clamp(13px,1.35vw,18px);color:rgba(255,255,255,.78);font-weight:500;max-width:34ch}
-  .pip{position:absolute;right:3.5%;bottom:17%;width:27%;z-index:3;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.9)}
-  .pip img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
-  .pip span{display:block;padding:8px 12px 9px;font-size:12px;color:var(--sub);line-height:1.25;background:#fff}
-  .pip b{display:block;color:var(--ink);font-size:14px;font-weight:700}
-  .ctrl{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:14px;padding:14px 20px;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent);z-index:4;color:#fff}
-  .ci{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-  .clock{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;min-width:62px}
-  .bar{position:relative;flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.28)}
-  .bar .fill{position:absolute;inset:0;border-radius:3px;background:var(--red)}
-  .bar .knob{position:absolute;right:-2px;top:50%;width:13px;height:13px;border-radius:50%;background:#fff;transform:translateY(-50%)}
-  .livetag{font-size:11px;font-weight:700;letter-spacing:.12em;color:#fff;background:rgba(255,255,255,.18);padding:3px 8px;border-radius:4px}
-  .cc{font-size:11px;font-weight:700;border:1.5px solid #fff;border-radius:4px;padding:1px 5px}
-  .panel{display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:20px;overflow:hidden;min-height:340px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
-  .tabs{display:flex;border-bottom:1px solid var(--line)}
-  .tab{flex:1;background:none;border:0;padding:16px 10px;font:inherit;font-weight:600;font-size:15px;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
-  .tab.on{color:var(--ink);border-bottom-color:var(--red)}
-  .pane{display:none;flex:1;overflow:auto;padding:18px 20px}
-  .pane.on{display:block}
-  .ag{list-style:none;display:grid;gap:14px}
-  .ag li{display:grid;grid-template-columns:64px 1fr;gap:10px;font-size:15px;line-height:1.35;padding:12px 14px;border-radius:12px;background:var(--mist)}
-  .ag li b{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);padding-top:2px}
-  .ag li.now{background:#fdeeee;box-shadow:inset 3px 0 0 var(--red)}
-  .ag li.now b{color:var(--red)}
-  .ag li span{font-weight:500}
-  .qa-note{font-size:14.5px;color:var(--sub);background:var(--mist);border-radius:12px;padding:14px 16px}
-  .ask{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
-  .ask input{flex:1;min-width:0;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;color:var(--ink)}
-  .ask input:focus{outline:2px solid var(--blue);outline-offset:0}
-  .ask button{width:44px;border:0;border-radius:10px;background:var(--red);cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .ask button svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linejoin:round}
-  @media(max-width:1000px){.room{grid-template-columns:1fr}.panel{min-height:300px}}
-  @media(max-width:620px){.stage{aspect-ratio:5/4}.slide{left:6%;top:27%;width:88%}.pip{display:none}.slogo{width:120px;height:21px;margin-bottom:14px}.slabel,.ssub{display:none}.stitle{font-size:24px}.ctrl{gap:10px;padding:12px 14px}.cc{display:none}}
+  #sequel_root{min-height:520px;border-radius:24px;overflow:hidden}
+  .poster{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;border-radius:24px;background:linear-gradient(160deg,#2c3037 0%,#1e2126 60%,#17191c 100%);color:#fff;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+  .poster .plogo{width:210px;height:37px;margin-bottom:34px;color:#fff;opacity:.95}
+  .poster .play{width:80px;height:80px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+  .poster .play svg{width:30px;height:30px;fill:#fff;margin-left:4px}
+  .poster .ptitle{font-weight:700;font-size:clamp(24px,3vw,38px);letter-spacing:-.04em;line-height:1.08;max-width:760px;margin-bottom:12px}
+  .poster .pmeta{font-size:15px;font-weight:500;color:rgba(255,255,255,.85)}
 
   /* ---------- PULL-QUOTE BAND ---------- */
   .quote{background:#fff;padding:128px 0 96px;text-align:center}
@@ -306,7 +265,7 @@
 <div class="dark-wrap">
   <section class="hero">
     <div class="wrap">
-      <div class="badge reveal in"><span class="dot"></span> LIVE NOW</div>
+      <div class="badge reveal in"><span class="dot"></span> LIVE WEBINAR</div>
       <h1 class="reveal in">The Agentic Era: ServiceTitan&rsquo;s Biggest Announcements from <em>Pantheon&nbsp;2026</em></h1>
       <p class="sub reveal in">Streaming live and on-demand on servicetitan.com</p>
       <div class="metarow reveal in">
@@ -316,57 +275,21 @@
       </div>
       <div class="hero-foot reveal in">
         <div class="gs"><img src="https://images.ctfassets.net/3q1a0w8cwuwf/1KZgvMaNCkrh6ALnDZES5g/eec1f22770f0ebe401f8380ef3968571/Vahe_NEW_Headshot.png" alt="Vahe Kuzoyan"><div><span class="gl">Guest speaker</span><b>Vahe Kuzoyan</b><span>President &amp; Co-Founder</span></div></div>
-        <a href="#embed" class="btn btn-red" id="heroCta">Watch live &darr;</a>
+        <a href="#embed" class="btn btn-red" id="heroCta">Register below &darr;</a>
       </div>
     </div>
   </section>
 
   <section class="embed-sec" id="embed">
     <div class="wrap">
-      <div class="room">
-        <div class="stage-col">
-          <div class="stage" id="stage">
-            <div class="stage-top">
-              <span class="live-pill"><i></i> LIVE</span>
-              <span class="stage-meta">Pantheon 2026</span>
-            </div>
-            <div class="slide">
-              <svg class="slogo" viewBox="0 0 210 37"><use href="#st-logo"/></svg>
-              <div class="slabel">Live webinar</div>
-              <div class="stitle">The Agentic Era: ServiceTitan&rsquo;s Biggest Announcements from <em>Pantheon&nbsp;2026</em></div>
-              <div class="ssub">Demand, field, and office, connected and optimized.</div>
-            </div>
-            <div class="pip"><img src="https://images.ctfassets.net/3q1a0w8cwuwf/1KZgvMaNCkrh6ALnDZES5g/eec1f22770f0ebe401f8380ef3968571/Vahe_NEW_Headshot.png" alt="Vahe Kuzoyan"><span><b>Vahe Kuzoyan</b> President &amp; Co-Founder</span></div>
-            <div class="ctrl">
-              <svg viewBox="0 0 24 24" class="ci"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="#fff" stroke="none"/></svg>
-              <span class="clock" id="clock">00:12:08</span>
-              <div class="bar"><div class="fill"></div><div class="knob"></div></div>
-              <span class="livetag">LIVE</span>
-              <svg viewBox="0 0 24 24" class="ci"><path d="M4 9v6h4l5 4V5L8 9H4zM16 8.5a5 5 0 010 7"/></svg>
-              <span class="cc">CC</span>
-              <svg viewBox="0 0 24 24" class="ci"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
-            </div>
-          </div>
-        </div>
-        <aside class="panel">
-          <div class="tabs" role="tablist">
-            <button class="tab on" data-t="agenda" role="tab">Agenda</button>
-            <button class="tab" data-t="qa" role="tab">Q&amp;A</button>
-          </div>
-          <div class="pane on" id="pane-agenda">
-            <ol class="ag">
-              <li class="now"><b>Now</b><span>New AI agents to drive more demand</span></li>
-              <li><b>Next</b><span>What&rsquo;s new for the field: Atlas and AI estimates</span></li>
-              <li><b>Then</b><span>Office efficiency, residential and commercial</span></li>
-              <li><b>Finally</b><span>The enhanced Max package, one agentic operating system</span></li>
-            </ol>
-          </div>
-          <div class="pane" id="pane-qa">
-            <div class="qa-note">Questions you send here go straight to the host.</div>
-          </div>
-          <form class="ask" onsubmit="return false"><input type="text" placeholder="Ask Vahe a question&hellip;" aria-label="Ask a question"><button type="button" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7-7-1z"/></svg></button></form>
-        </aside>
-      </div>
+      <div id="sequel_root"><div class="poster" id="poster" aria-hidden="true">
+        <svg class="plogo" viewBox="0 0 210 37"><use href="#st-logo"/></svg>
+        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></div>
+        <div class="ptitle">The Agentic Era: ServiceTitan&rsquo;s Biggest Announcements from Pantheon 2026</div>
+        <div class="pmeta">October 29, 2026 &nbsp;&middot;&nbsp; 11:00 AM PT &nbsp;&middot;&nbsp; Live on servicetitan.com</div>
+      </div></div>
+      <script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+      <script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
     </div>
   </section>
 </div>
@@ -437,8 +360,8 @@
 <section class="cta">
   <div class="wrap reveal">
     <h2>Join Vahe Kuzoyan for an exclusive look at the Agentic Era.</h2>
-    <p>The session is streaming now.</p>
-    <a class="btn btn-dark" href="#embed">Watch live</a>
+    <p>Register below to save your spot for October 29.</p>
+    <a class="btn btn-dark" href="#embed">Register now</a>
   </div>
 </section>
 
@@ -474,8 +397,18 @@
 </footer>
 
 <script>
+  /* event config: drives the on-demand degrade only; the live embed owns countdown/register/calendar */
   const EVENT = { start: "2026-10-29T11:00:00-07:00" };
   const startDate = new Date(EVENT.start);
+
+  function tick(){
+    if (startDate - new Date() <= 0){
+      document.querySelector('.badge').innerHTML = 'ON DEMAND';
+      const p = document.getElementById('heroCta');
+      if(p) p.textContent = 'Watch the recording ↓';
+    }
+  }
+  tick(); setInterval(tick, 60000);
 
   try {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -493,18 +426,17 @@
   },{threshold:.15});
   document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
 
-  /* live clock */
-  (function(){
-    let s = 12*60+8;
-    const el = document.getElementById('clock');
-    const p = n => String(n).padStart(2,'0');
-    setInterval(()=>{ s++; el.textContent = p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); },1000);
+  /* kill Sequel's default iframe border inside its shadow DOM; drop the poster once the widget paints */
+  (function stripBorder(){
+    const root = document.getElementById("sequel_root");
+    const c = root && [...root.children].find(e => e.shadowRoot);
+    if (c){
+      const st = document.createElement("style");
+      st.textContent = "iframe.sequel-iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+      const p = document.getElementById("poster"); if (p) p.remove();
+    } else { setTimeout(stripBorder, 200); }
   })();
-  /* panel tabs */
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
-    document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+t.dataset.t));
-  }));
 </script>
 
 </body>
