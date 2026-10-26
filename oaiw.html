@@ -1,0 +1,951 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- route-app-template v7.2 -->
+<title>AI World Card Play</title>  <!-- set to "<Event> Card Play"; the Artifact gallery reads this tag -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#16181d; --paper:#f4f1ea; --paper2:#ece7dc; --card:#fff; --line:#ddd6c8;
+--A:#e0601f; --A-soft:#fcefe6; --gold:#bd8a12; --gold-soft:#fbf3df;
+--mk:#5b5a9e; --mk-soft:#ecebf7;
+--dg:#0e7a5f; --dg-soft:#e0f2ec;
+--hot:#c0392b; --hot-soft:#fbe9e6;
+--muted:#7a776e; --done:#a59f93; --bzone:#e6efee;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.4;overscroll-behavior:none}
+.app{max-width:560px;margin:0 auto;min-height:100%;background:var(--paper)}
+.top{position:sticky;top:0;z-index:30;background:var(--A);color:#fff;padding:13px 16px 11px;box-shadow:0 2px 14px rgba(0,0,0,.14)}
+.row1{display:flex;align-items:center;gap:13px}
+.titles .t{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;line-height:1}
+.titles .s{font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.92;margin-top:3px}
+.titles .s b{color:var(--gold-soft)}
+.reset{margin-left:auto;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:5px 11px;cursor:pointer}
+.next{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);border-radius:11px;padding:8px 12px;margin-top:10px;cursor:pointer}
+.next .lab{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.ninfo{flex:1;min-width:0;cursor:pointer}
+.nmain{display:flex;gap:9px;align-items:baseline;margin-top:1px}
+.next .bo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px}
+.next .co{font-weight:700;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nsub{font-family:'IBM Plex Mono',monospace;font-size:11px;opacity:.9;margin-top:3px}
+.ndone{flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+min-width:74px;min-height:52px;background:#fff;color:var(--A);border:none;border-radius:12px;cursor:pointer;
+font-family:'IBM Plex Sans',sans-serif;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.ndone:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.ndone .chk{font-size:20px;line-height:1}
+.ndone .t{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.05em}
+.vswitch{position:sticky;top:0;z-index:20;display:flex;background:var(--paper);border-bottom:1px solid var(--line)}
+.vswitch button{flex:1;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.06em;border:none;background:none;color:var(--muted);padding:13px 6px;cursor:pointer;border-bottom:3px solid transparent}
+.vswitch button.on{color:var(--ink);border-bottom-color:var(--A)}
+.filters{display:flex;gap:6px;padding:11px 14px 4px}
+.chip{flex:1;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:30px;padding:8px 4px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:#fff}
+.chip.on.gold{background:var(--gold);border-color:var(--gold)}
+.chip.on.mkc{background:var(--mk);border-color:var(--mk)}
+.chip.on.dgc{background:var(--dg);border-color:var(--dg)}
+.chip.on.hotc{background:var(--hot);border-color:var(--hot)}
+.modew{display:flex;margin:11px 14px 0;border:2px solid var(--ink);border-radius:30px;overflow:hidden;background:#fff}
+.modew button{flex:1;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;border:none;background:none;color:var(--muted);padding:9px 6px;cursor:pointer}
+.modew button.on{background:var(--ink);color:#fff}
+.modew button.on.pri{background:var(--hot)}
+.searchwrap{position:relative;padding:11px 14px 0}
+.search{width:100%;font-family:'IBM Plex Sans',sans-serif;font-size:15px;padding:11px 40px 11px 38px;border:2px solid var(--ink);border-radius:30px;background:#fff;color:var(--ink);-webkit-appearance:none}
+.search:focus{outline:none;border-color:var(--A)}
+.search::-webkit-search-cancel-button{display:none}
+.searchwrap .mag{position:absolute;left:26px;top:50%;transform:translateY(-30%);color:var(--muted);font-size:15px;pointer-events:none}
+.clearx{position:absolute;right:24px;top:50%;transform:translateY(-30%);border:none;background:none;color:var(--muted);font-size:20px;cursor:pointer;display:none;line-height:1}
+.clearx.show{display:block}
+.result{margin:10px 14px 0;border-radius:12px;padding:11px 14px;font-size:14px;line-height:1.45;display:none}
+.result.show{display:block}
+.result.yes{background:var(--A-soft);border:2px solid var(--A)}
+.result.no{background:#fff;border:2px dashed var(--muted);color:var(--muted)}
+.result b{font-family:'IBM Plex Mono',monospace}
+.view{display:none}.view.on{display:block}
+.sync{margin:10px 14px 0;border:2px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.sync summary{cursor:pointer;list-style:none;padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.sync summary::-webkit-details-marker{display:none}
+.sync summary .pill{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:10px;background:var(--A);color:#fff;border-radius:20px;padding:2px 8px;margin-left:auto;margin-right:8px}
+.sync summary::after{content:"＋";color:var(--muted)} .sync[open] summary::after{content:"−"}
+.sync .body{padding:0 14px 14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.sync .body b{color:var(--ink)}
+.sync .rowb{display:flex;gap:8px;margin-top:9px}
+.sync input{flex:1;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink);min-width:0}
+.sync button{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;border:2px solid var(--ink);background:var(--ink);color:#fff;border-radius:9px;padding:8px 13px;cursor:pointer;white-space:nowrap}
+.sync button.alt{background:#fff;color:var(--ink)}
+.list{padding:6px 0 10px}
+.grp{padding:13px 16px 4px;display:flex;align-items:baseline;gap:8px}
+.grp .ai{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.grp .ar{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink);opacity:.45}
+.grp .gp{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted)}
+.grp .rule{height:1px;background:var(--line);flex:1;margin-left:4px;align-self:center}
+.stop{display:flex;align-items:center;gap:11px;padding:11px 14px;margin:0 10px 6px;border-radius:12px;background:var(--card);border:1.5px solid var(--line);cursor:pointer;min-height:52px;transition:transform .06s,background .15s,border-color .15s}
+.stop:active{transform:scale(.985)}
+.stop.asset{border-color:var(--gold);background:var(--gold-soft)}
+.box{width:26px;height:26px;border:2.4px solid var(--ink);border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;background:#fff}
+.stop.done .box{background:var(--A);border-color:var(--A)}
+.stop.asset.done .box{background:var(--gold);border-color:var(--gold)}
+.bo{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;min-width:40px;flex-shrink:0}
+.meta{flex:1;min-width:0}
+.co{font-size:15.5px;font-weight:500;line-height:1.2}
+.stop.asset .co{font-weight:600}
+.hh{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px}
+.stop.done .co,.stop.done .bo{text-decoration:line-through;color:var(--done)}
+.stop.done{background:transparent;border-color:transparent;min-height:0;padding:4px 14px;opacity:.5;margin-bottom:2px}
+.stop.done .box{width:16px;height:16px;font-size:10px;border-width:2px}
+.stop.done .bo{font-size:11.5px}
+.stop.done .co{font-size:12px}
+.stop.done .astar,.stop.done .mkbtn{display:none}
+.stop.done .hh{display:none}
+.stop.asset.done{background:transparent;border-color:transparent}
+.astar{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:#fff;background:var(--gold);padding:3px 7px;border-radius:20px;flex-shrink:0}
+.mkbtn{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;color:var(--mk);background:var(--mk-soft);border:1.5px solid var(--mk);padding:4px 8px;border-radius:20px;flex-shrink:0;cursor:pointer;min-height:26px}
+.dgb{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:#fff;background:var(--dg);padding:3px 7px;border-radius:20px;flex-shrink:0}
+.hotb{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:#fff;background:var(--hot);padding:3px 7px;border-radius:20px;flex-shrink:0}
+.stop.hot{border-color:var(--hot);background:var(--hot-soft)}
+.stop.hot.done{background:transparent;border-color:transparent}
+.stop.done .dgb,.stop.done .hotb{display:none}
+.szline{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);padding-bottom:5px;margin-bottom:4px;border-bottom:1px dashed var(--line)}
+.mkpanel{display:none;margin:-2px 10px 8px;padding:9px 13px 10px 50px;background:var(--mk-soft);border:1.5px solid var(--mk);border-top:none;border-radius:0 0 12px 12px}
+.mkpanel.show{display:block}
+.mkpanel .m{font-size:12.5px;padding:2.5px 0;line-height:1.35}
+.mkpanel .m b{font-weight:600}
+.mkpanel .m span{color:var(--muted);font-size:11.5px}
+.m.dgm{background:var(--dg-soft);border-left:3px solid var(--dg);padding:4px 8px;border-radius:7px;margin:3px 0}
+.m.dgm b{color:var(--dg)}
+.tg{font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:8.5px;font-weight:600;padding:1.5px 6px;border-radius:10px;margin-left:6px;background:var(--paper2);color:var(--muted);white-space:nowrap;vertical-align:1px}
+.tg.t0{background:var(--dg);color:#fff}
+.tg.tgr{background:#cdeade;color:var(--dg)}
+.tg.t1{background:#d9d6f0;color:#443f8a}
+.tg.t2{background:#e8e2d0;color:#6b5d2e}
+.tg.t3{background:#e6e0e8;color:#6d5577}
+.flash{animation:fl 1.1s ease}@keyframes fl{0%,100%{box-shadow:0 0 0 0 rgba(224,96,31,0)}30%{box-shadow:0 0 0 4px rgba(224,96,31,.45)}}
+.empty-msg{text-align:center;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:40px 20px}
+.nof{margin:14px 14px 8px;border:2px dashed var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.nof summary{cursor:pointer;list-style:none;padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--muted)}
+.nof summary::-webkit-details-marker{display:none}
+.nof .nrow{padding:8px 14px;border-top:1px solid var(--line);font-size:13.5px}
+.nof .nrow .nn{font-weight:600}
+.nof .nrow .nnote{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:1px}
+.nof .nrow .astar{margin-left:6px}
+.nof .nrow .mkbtn{margin-left:6px;font-size:9.5px;padding:2px 7px;min-height:0}
+.nof .mkpanel{margin:6px 0 0;border-radius:8px;border-top:1.5px solid var(--mk);padding:8px 12px}
+.szc{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:9px;font:700 11.5px 'IBM Plex Mono',monospace;vertical-align:2px;white-space:nowrap}.szi{background:#d9efdf;color:#1b6a37}.szb{background:#dfe7f6;color:#2a4a8a}.szs{background:#ececec;color:#666}.szu{background:#f6e6d6;color:#9a5a1e}
+.shist{margin:8px 0 4px;padding:10px 12px;border-radius:10px;background:var(--chip,#efe9dc);font-size:13px;line-height:1.45}
+.maphint{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);text-align:center;padding:4px 16px 30px;line-height:1.65;border-top:1px dashed var(--line);margin:8px 16px 0}
+.mapwrap{padding:4px 6px}
+svg.floor{width:100%;height:min(62vh,640px);display:block;background:var(--card);border:1.5px solid var(--line);border-radius:12px;touch-action:manipulation}
+.lm{fill:#dfe7e8;stroke:#c9cfcf;stroke-width:.3}
+.lm-lab{font-family:'IBM Plex Sans',sans-serif;fill:#6f7a7a;font-weight:600;text-anchor:middle}
+.zn{fill:#fbeaf6;stroke:#e8a8d8;stroke-width:.35;stroke-dasharray:1.2 1.2}
+.zn-lab{font-family:'IBM Plex Mono',monospace;fill:#c77bb0;text-anchor:middle;font-weight:600}
+.routeline{fill:none;stroke:var(--A);stroke-width:.35;stroke-dasharray:1.1 1.1;opacity:.35}
+.dot{cursor:pointer}
+.dot.hidden{display:none}
+svg.floor .dot.dim{opacity:.16}
+svg.floor .dot.hitd circle.dt{stroke:#16181d;stroke-width:.7}
+svg.floor .dot.hidden.hitd{display:inline;opacity:.6}
+svg.floor .dot.hidden.hitd circle.dt{fill:var(--done);stroke:var(--done)}
+svg.floor.searching .lm:not(.hitl){opacity:.5}
+svg.floor.searching .zn{opacity:.45}
+svg.floor .lm.hitl{fill:#fde68a;stroke:var(--A);stroke-width:.6}
+svg.floor.searching .routeline,svg.floor.searching .lead{opacity:.12}
+#mfilters{padding-top:8px}
+.dot circle.hit{fill:transparent}
+.dot circle.ring{fill:none;stroke:none}
+.dot circle.dt{stroke-width:.3}
+.dot.next circle.ring{fill:none;stroke:var(--A);stroke-width:.9;opacity:.95;animation:pulse 1.3s ease-out infinite}
+@keyframes pulse{0%{r:3;opacity:.95}100%{r:8;opacity:0}}
+#allclear{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;fill:var(--A);text-anchor:middle;opacity:0}
+#allclear.show{opacity:1}
+.legend{display:flex;flex-wrap:wrap;gap:11px 16px;justify-content:center;padding:12px 16px 6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.lg{width:13px;height:13px;border-radius:50%;display:inline-block}
+.lg.todo{background:var(--A)}
+.lg.asg{background:var(--gold)}
+.legnote{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding:0 16px 8px;line-height:1.7}
+.sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,105%);width:100%;max-width:560px;background:#fff;border:2px solid var(--ink);border-bottom:none;border-radius:18px 18px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,.22);z-index:60;transition:transform .18s ease;max-height:62vh;display:flex;flex-direction:column}
+.sheet.show{transform:translate(-50%,0)}
+.sheet .shead{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--line);flex-shrink:0}
+.sheet .shead .bo{font-size:16px;min-width:0}
+.sheet .shead .sco{font-weight:700;font-size:17px;flex:1;min-width:0;line-height:1.2}
+.sheet .shead .astar{font-size:10px}
+.sclose{border:none;background:var(--paper2);color:var(--ink);font-size:18px;width:34px;height:34px;border-radius:50%;cursor:pointer;flex-shrink:0;line-height:1}
+.sheet .snote{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);padding:8px 16px 0}
+.sheet .smk{overflow-y:auto;padding:8px 16px 12px}
+.sheet .smk .m{font-size:13.5px;padding:4px 0;line-height:1.35;border-bottom:1px dashed var(--line)}
+.sheet .smk .m:last-child{border-bottom:none}
+.sheet .smk .m b{font-weight:600}
+.sheet .smk .m span{color:var(--muted);font-size:12px}
+.sheet .smk .nomk{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);padding:10px 0}
+.sheet .sactions{display:flex;gap:9px;padding:10px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);flex-shrink:0}
+.sheet .sactions button{flex:1;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;border:2px solid var(--ink);border-radius:11px;padding:12px 8px;cursor:pointer;background:#fff;color:var(--ink)}
+.sheet .sactions button.prime{background:var(--A);border-color:var(--A);color:#fff}
+.scrim{position:fixed;inset:0;background:rgba(22,24,29,.25);z-index:55;opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.show{opacity:1;pointer-events:auto}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;padding:9px 16px;border-radius:24px;opacity:0;transition:.2s;pointer-events:none;z-index:70;max-width:90%}
+.toast.show{opacity:1}
+.foot{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding:8px 20px 24px;line-height:1.7}
+
+/* ===== v7 additions: you-are-here marker, map zoom, booth notes ===== */
+.dot.next circle.ring{animation:none;opacity:1;stroke-width:.7}
+.dot.here circle.ring{fill:none;stroke:var(--dg);stroke-width:.85;opacity:.95;animation:pulse 1.7s ease-out infinite}
+.dot.here circle.dt{stroke:var(--dg);stroke-width:.5}
+@media (prefers-reduced-motion:reduce){.dot.here circle.ring{animation:none;opacity:.8}}
+.herelab{font-family:'IBM Plex Mono',monospace;font-weight:600;text-anchor:middle;fill:var(--dg);
+  paint-order:stroke;stroke:#fff;stroke-width:1.3px}
+.lead{fill:none;stroke:var(--A);opacity:.8}
+svg.floor{touch-action:pan-y;user-select:none;-webkit-user-select:none}svg.floor.zoomed{touch-action:none}
+.zoom{display:flex;gap:7px;justify-content:flex-end;padding:9px 6px 0}
+.zoom button{width:46px;height:36px;border-radius:9px;border:2px solid var(--ink);background:var(--card);
+  color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;cursor:pointer}
+.zoom button:active{background:var(--paper2)}
+.sheet .snotes{padding:2px 16px 10px;flex-shrink:0}
+.sheet .snotes label{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.sheet .snotes textarea{width:100%;min-height:62px;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;
+  padding:9px 10px;border:1.5px solid var(--line);border-radius:9px;background:var(--paper);
+  color:var(--ink);resize:vertical;line-height:1.4}
+.sheet .snotes textarea:focus{outline:none;border-color:var(--dg)}
+.yournote{font-size:12.5px;color:var(--dg);line-height:1.45;padding:0 12px 9px 50px;margin-top:-4px;white-space:pre-wrap}
+.stop .nbtn{flex-shrink:0;border:none;background:none;color:var(--muted);font-size:13px;
+  padding:0 2px 0 6px;cursor:pointer;align-self:stretch}
+.stop .nbtn.has{color:var(--dg)}
+.stop.done .nbtn{display:none}
+</style>
+
+<div class="app">
+<div class="top">
+<div class="row1">
+<svg width="52" height="52" viewBox="0 0 54 54">
+<circle cx="27" cy="27" r="22" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="6"/>
+<circle id="ringfill" cx="27" cy="27" r="22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="138.2" transform="rotate(-90 27 27)"/>
+<text id="ringpct" x="27" y="31" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#fff">0%</text>
+</svg>
+<div class="titles">
+<div class="t" id="apptitle">Event</div>
+<div class="s"><span id="vcount">0 / —</span> visited<b data-need="hot"> · <span id="acount">0 / —</span> <span id="primelab">★ card</span></b></div>
+</div>
+<button class="reset" id="reset">reset</button>
+</div>
+<div class="next" id="next">
+<div class="ninfo" id="ninfo">
+<div class="lab">Up next</div>
+<div class="nmain"><span class="bo" id="nbo"></span><span class="co" id="nco"></span></div>
+<div class="nsub" id="nsub"></div>
+</div>
+<button class="ndone" id="ndone"><span class="chk">✓</span><span class="t">Done</span></button>
+</div>
+</div>
+<div class="vswitch">
+<button data-view="list" class="on">≡ List</button>
+<button data-view="map">⊚ Map</button>
+</div>
+<div class="view list-view on">
+<div class="searchwrap">
+<span class="mag">⌕</span>
+<input id="search" class="search" type="search" inputmode="search" autocomplete="off" autocapitalize="off" placeholder="Search company or person…">
+<button id="clearx" class="clearx" aria-label="clear">×</button>
+</div>
+<div class="result" id="result"></div>
+<div class="modew" data-need="prio">
+<button data-m="sweep" class="on">⇄ Full sweep</button>
+<button data-m="prio" class="pri">🔥 Priority first</button>
+</div>
+<details class="sync" id="sync">
+<summary>⤓ Save / restore progress <span class="pill">backup</span></summary>
+<div class="body">
+Progress auto-saves as you tap. To be safe, tap <b>Copy</b> now and then and keep the code in Notes. The short code carries your ticks only; <b>Copy FULL backup</b> carries your ticks AND your typed notes. <b>Restore</b> accepts either one.
+<div class="rowb"><input id="codeout" readonly aria-label="your progress code"><button id="copycode">Copy</button></div><div class="rowb"><button id="copyall" style="flex:1">⤓ Copy FULL backup (ticks + notes)</button></div>
+<div class="rowb"><input id="codein" placeholder="paste a saved code…" autocapitalize="off" autocomplete="off"><button id="restorecode" class="alt">Restore</button></div>
+<div class="rowb"><button id="exportbtn" style="flex:1">⤒ Copy debrief</button><button id="savebtn" style="flex:1;display:none">⤓ Save debrief .md</button></div>
+</div>
+</details>
+<div class="filters">
+<button class="chip on" data-f="all">All</button>
+<button class="chip" data-f="todo">To-do</button>
+<button class="chip hotc" data-f="hot" data-need="hot">🔥Hot</button>
+<button class="chip gold" data-f="asset" data-need="asset">★Card</button>
+<button class="chip dgc" data-f="dg" data-need="dg">DG</button>
+</div>
+<div class="list" id="list"></div>
+<details class="nof" id="nof" data-need="nof">
+<summary>◌ Sponsors with no booth / offsite (<span id="nofn">0</span>)</summary>
+<div id="noflist"></div>
+</details>
+<div class="foot" id="foot"></div>
+</div>
+<div class="view map-view">
+<div class="searchwrap"><span class="mag">⌕</span><input id="msearch" class="search" type="search" inputmode="search" autocomplete="off" autocapitalize="off" placeholder="Find a booth, company, person or landmark…"><button id="mclearx" class="clearx" aria-label="clear">×</button></div>
+<div class="filters" id="mfilters"><button class="chip on" data-mf="all">All</button><button class="chip" data-mf="todo">To-do</button><button class="chip hotc" data-mf="hot" data-need="hot">🔥Hot</button><button class="chip gold" data-mf="asset" data-need="asset">★Card</button><button class="chip dgc" data-mf="dg" data-need="dg">DG</button></div>
+<div class="result" id="mresult"></div>
+<div class="mapwrap"><svg class="floor" id="floor" viewBox="0 0 100 122" preserveAspectRatio="xMidYMid meet"></svg>
+<div class="zoom"><button id="zout" aria-label="Zoom out">−</button><button id="zin" aria-label="Zoom in">+</button><button id="zreset" aria-label="Fit whole floor">fit</button></div></div>
+<div class="legend">
+<span><span class="lg" style="background:var(--dg)"></span> you are here</span>
+<span><span class="lg todo"></span> still to go</span>
+<span data-need="hot"><span class="lg" style="background:var(--hot)"></span> 🔥 hot</span>
+<span data-need="asset"><span class="lg asg"></span> ★ card booth</span>
+<span data-need="dg"><span class="lg" style="background:var(--A);border:2.5px solid var(--dg)"></span> DG/growth on site</span>
+<span><span class="lg" style="background:none;border:2px dashed var(--A)"></span> up next</span>
+</div>
+<div class="legnote">green = the last booth you checked off, so roughly where you're standing · solid line = your heading<br>dashed line = the path still ahead, in walking order</div>
+<div class="maphint">Tap a dot for the brief. Tapping never checks a booth off. Pinch to zoom, FIT to go back to the whole floor.<br>Swipe up or down anywhere to scroll the page. Once you pinch in, the map takes the drag until you hit FIT.<br>Schematic, not to scale: each band is one aisle (1000s at the bottom by the Main Stage, 13000s at the back by the Hub sign), booth numbers run right to left, odd and even sit back to back. Read from your event-app screenshots, so the event app map is the authority.</div>
+</div>
+</div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet">
+<div class="shead"><span class="bo" id="sbo"></span><span class="sco" id="sco"></span><span class="dgb" id="sdg" style="display:none">DG</span><span class="astar" id="sstar" style="display:none">★ CARD</span><button class="sclose" id="sclose" aria-label="close">×</button></div>
+<div class="snote" id="snote" style="display:none"></div>
+<div class="smk" id="smk"></div>
+<div class="snotes"><label for="snotebox">Your notes</label><textarea id="snotebox" placeholder="Who did you speak to? What did they say?"></textarea></div>
+<div class="sactions"><button id="slist">≡ show in list</button><button class="prime" id="svisit">✓ Mark visited</button></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const ICON='data:image/png;base64,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';
+
+/* =========================================================================
+   REPLACE THIS DATA BLOCK PER CONFERENCE   (see SKILL.md)
+   -------------------------------------------------------------------------
+   EVENT  header title + the localStorage key. `short` (optional) is the
+          home-screen name; default is the text after the last "·".
+   SEED   (optional) [b, b, ...] ticked on a device that has NO saved state,
+          e.g. decoded from Jack's last progress code. `const SEED=[];` to skip.
+   bl     (optional, per row) display label when `b` is not the real booth
+          number (b stays the stable id for state and save codes).
+   x,y    a row WITHOUT them gets no dot, no route vertex, no label: it
+          stays in the list only. Never invent a position. BUMP THE KEY every event so
+          last conference's progress never bleeds into this one.
+   RAW    one object per boothed stop:
+            co    company name                                   (required)
+            b     booth number                                   (required)
+            x,y   coords traced off the floor plan, in VB0 units
+                  OMIT ENTIRELY when there is no map -> Map tab hides itself
+            sz    "12,400 emp · $1-5B"  shown in the booth sheet
+          -- the three signals below are ALL OPTIONAL and often absent --
+            asset 1  = the ★ thing you hand out. Only when there IS one.
+            dg/gr 1  = demand-gen / growth marketer on site. Needs an
+                       attendee or marketer list; you often won't have one.
+            mk    [[name, title, tierIdx], ...]  tierIdx indexes TG below;
+                  -1 = the special 🎯 tag. Sort them best-first.
+            rank  1..N priority you computed yourself. USE THIS when there
+                  are no assets and no attendee list — score the booths on
+                  whatever the event's real driver is (company size ×
+                  webinar presence, deal stage) and set TIERL to match.
+                  rank always overrides the derived tiers.
+          Whatever is absent removes itself: its filter chip, badge, legend
+          entry and footer note all disappear, and with only one tier the
+          Priority-first mode goes too.
+            note  "MB Penthouse Lounge" / "+2 more mktrs on file"
+   NOFLOOR sponsors with NO booth: {co, note:"where to find them", mk, asset}
+   AKEY   booth-number -> walk order. Calibrate against the venue map:
+          hundreds digit = column, last two = row. Rewrite per venue.
+   LANDMARKS / ZONES  orientation rectangles on the map. [] = none.
+   VB0    the map viewBox; match its ratio to your cropped floor plan.
+   TIERL  what each derived tier is called at this event.
+   ========================================================================= */
+const EVENT={title:"Oracle AI World 26", short:"AI World", key:"cardplay_oaiw26_v1"};
+const VB0={"x": 0, "y": 0, "w": 100, "h": 130};
+const RAW=[{"co": "Mastercard", "b": 1001, "rank": 3, "sz": "51,918 emp", "emp": 51918, "note": "Junior touched Oct 1", "z": 1, "w": 1000, "x": 96.0, "y": 118.5}, {"co": "NTT DATA", "b": 1002, "rank": 3, "sz": "31,917 emp", "emp": 31917, "note": "Ask for Oliver Lash-Williams, the webinar owner (per Erin Brain + Xavier Emery). Site rebuild underway · Victoria touched Oct 19", "hist": "Xavier Emery (Global Portfolio & Partner Marketing Director - Salesforce, Agentforce, MuleSoft), DreamForce 2026 2026-09: Send an email with information he's gonna ping Ollie to maybe revive it they're currently restructuring their website so it would not be right away that's probably why Ollie dropped off honestly… · Erin Brain (Marketing Director), Snowflake Summit 2026 2026-06: Oliver lash-williams is the right person. She said she would put me in contact. I should follow up with him and her to make it happen.", "z": 1, "w": 1001, "x": 94.2, "y": 115.5}, {"co": "Asure Software", "b": 1003, "rank": 1, "sz": "684 emp", "emp": 684, "asset": 1, "z": 1, "w": 1002, "x": 92.4, "y": 118.5}, {"co": "Palo Alto Networks", "b": 1004, "rank": 3, "sz": "23,189 emp", "emp": 23189, "note": "Lost Jun: wanted someone to run the marketing for them · SQL in HubSpot, off card list (you have a card)", "hist": "Deal closed lost Jun 26: wanted someone to do the marketing for them.", "z": 1, "w": 1003, "x": 90.6, "y": 115.5}, {"co": "Innovacx", "b": 1005, "rank": 1, "sz": "246 emp", "emp": 246, "asset": 1, "z": 1, "w": 1004, "x": 88.8, "y": 118.5}, {"co": "Celonis", "b": 1006, "rank": 1, "sz": "4,473 emp", "emp": 4473, "asset": 1, "z": 1, "w": 1005, "x": 87.0, "y": 115.5}, {"co": "GHX", "b": 1007, "rank": 1, "sz": "2,295 emp", "emp": 2295, "asset": 1, "z": 1, "w": 1006, "x": 85.2, "y": 118.5}, {"co": "Intellinum", "b": 1008, "rank": 1, "sz": "237 emp", "emp": 237, "asset": 1, "z": 1, "w": 1007, "x": 83.4, "y": 115.5}, {"co": "Avalara", "b": 1009, "rank": 3, "sz": "4,500 emp", "emp": 4500, "note": "Met Bob Erdman (Dir Technical Program Mgmt); no webinar owner yet · Not in your tab: card status unknown", "hist": "Bob Erdman (Director, Technical Program Management), Stripe Sessions '26 2026-04.", "z": 1, "w": 1008, "x": 81.6, "y": 118.5}, {"co": "Wipro Limited", "b": 1010, "rank": 3, "sz": "10,000 emp", "emp": 10000, "note": "Mostly Teams; demoed Goldcast + ON24 and passed. Nicole Long booked a demo before · SQO in HubSpot, off card list", "hist": "Kavya Jayakar (Global Alliance Manager), a past event 2026-06: Send more information to be in touch with marketing oerson · Nicole Long (Customer Engagement Senior Manager), Microsoft Ignite '25 2025-11: Nicole was very cool. Booked demo. She said they mostly use teams., have done demos with Gold cast and on 24 in the past, but weren’t interested · Deal closed lost Aug 3, 'not a priority'.", "z": 1, "w": 1009, "x": 79.8, "y": 115.5}, {"co": "Informatica", "b": 1020, "rank": 3, "sz": "5,200 emp", "emp": 5200, "note": "Ask for Sarah Bseiso (Sr Global Event Mgr). Salesforce acquisition froze new tech in Nov · SQL in HubSpot, off card list", "hist": "Suzanne Heeran (Partner Marketing Manager), a past event 2026-06: Ask for inteo · Sarah Bseiso (Sr. Global Event Manager), Microsoft Ignite '25 2025-11: Just got acquired by salesforce. Won’t look at any new tech for at least 2 months. · Steve Steinfest (Manager, Business Development), Microsoft Ignite '25 2025-11. · Jan 2026 deal (Nathan) still open in HubSpot (stale).", "z": 1, "w": 1010, "x": 64.0, "y": 115.5}, {"co": "Cupix", "b": 1022, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 1, "w": 1011, "x": 60.0, "y": 115.5}, {"co": "Grant Thornton", "b": 1024, "rank": 3, "sz": "10,000 emp", "emp": 10000, "note": "Not in your tab: card status unknown", "z": 1, "w": 1012, "x": 56.0, "y": 115.5}, {"co": "Datadog", "b": 1026, "rank": 4, "sz": "8,100 emp", "emp": 8100, "note": "CUSTOMER since Feb. Say hi, no pitch", "hist": "Margaret Chandler (Event Marketing Manager), Developer Week 2026-02.", "z": 1, "w": 1013, "x": 52.0, "y": 115.5}, {"co": "NetApp", "b": 1028, "rank": 3, "sz": "12,000 emp", "emp": 12000, "note": "On Teams. Vanessa Axelsen (Mktg Ops Mgr) liked first-party data; joke: 'green jacket at Ignite' · Not in your tab: card status unknown", "hist": "Vanessa Axelsen (Marketing Operations Manager), Microsoft Ignite '25 2025-11: They use teams right now. Vanessa was great. We had fun banter together. She liked the first party day aspect and the fact that we could drive traffic to the net app website. She also loved the…", "z": 1, "w": 1014, "x": 48.0, "y": 115.5}, {"co": "UiPath", "b": 1030, "rank": 3, "sz": "3,900 emp", "emp": 3900, "note": "Cristiana Malcica (Partner Mktg) works with the webinar team, offered an intro · SQL in HubSpot, off card list", "hist": "Cristiana Malcica (Senior Partner Marketing Project Manager), Microsoft Ignite '25 2025-11: Christina said this sounds amazing. She does not oversee webinars, but does work with that team sometimes particularly for partner webinars. Everything totally clicked for her about driving Webb… · 2023 deal lost on timing.", "z": 1, "w": 1015, "x": 44.0, "y": 115.5}, {"co": "ImageGrafix Software FZCO", "b": 1032, "rank": 3, "sz": "54 emp", "emp": 54, "z": 1, "w": 1016, "x": 40.0, "y": 115.5}, {"co": "TCP Software", "b": 1033, "rank": 1, "sz": "1,360 emp", "emp": 1360, "asset": 1, "z": 1, "w": 1017, "x": 38.0, "y": 118.5}, {"co": "Meta Integration Technology", "b": 1034, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 1, "w": 1018, "x": 36.0, "y": 115.5}, {"co": "SC&H", "b": 1035, "rank": 1, "sz": "492 emp", "emp": 492, "asset": 1, "z": 1, "w": 1019, "x": 34.0, "y": 118.5}, {"co": "GFT Technologies", "b": 1036, "rank": 3, "sz": "~10,000+ emp (rough estimate)", "emp": 12000, "est": 1, "er": "10,000+", "note": "Not in your tab: card status unknown", "z": 1, "w": 1020, "x": 32.0, "y": 115.5}, {"co": "Elfonze Technologies", "b": 1037, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 1, "w": 1021, "x": 30.0, "y": 118.5}, {"co": "AWC Software", "b": 1038, "rank": 3, "sz": "~501–1,000 emp (rough estimate)", "emp": 750, "est": 1, "er": "501–1,000", "note": "Not in your tab: card status unknown", "z": 1, "w": 1022, "x": 28.0, "y": 115.5}, {"co": "DAYOS", "b": 1039, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 1, "w": 1023, "x": 26.0, "y": 118.5}, {"co": "Payaptic", "b": 1041, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 1, "w": 1024, "x": 22.0, "y": 118.5}, {"co": "Deloitte", "b": 2001, "rank": 3, "sz": "532,520 emp", "emp": 532520, "z": 2, "w": 2025, "x": 96.0, "y": 110.3}, {"co": "Accenture", "b": 2003, "rank": 3, "sz": "697,398 emp", "emp": 697398, "note": "Few virtual events, a couple on TouchCast. Beth Kondrat (Event Mgr) said follow up on LinkedIn · SQL in HubSpot, off card list (you have a card)", "hist": "Beth Kondrat (Event Manager), Databricks Jun 16: few virtual events, a couple on TouchCast, plus meeting-style tools where attendees see each other. Asked you to follow up on LinkedIn.", "z": 2, "w": 2024, "x": 92.4, "y": 110.3}, {"co": "KPMG", "b": 2005, "rank": 2, "sz": "245,083 emp", "emp": 245083, "asset": 1, "note": "Nathan emailed Oct 26 · Card already made", "z": 2, "w": 2023, "x": 88.8, "y": 110.3}, {"co": "RF-SMART", "b": 2006, "rank": 1, "sz": "809 emp", "emp": 809, "asset": 1, "z": 2, "w": 2022, "x": 87.0, "y": 107.3}, {"co": "PwC", "b": 2007, "rank": 3, "sz": "299,903 emp", "emp": 299903, "note": "Matt Araujo (Payments Consultant) offered an email intro to the right team · Nathan touched Oct 19", "hist": "Matt Araujo (Payments Consultant), Stripe Sessions '26 2026-04: E-mail him for intro", "z": 2, "w": 2021, "x": 85.2, "y": 110.3}, {"co": "RFgen Software", "b": 2008, "rank": 2, "sz": "101 emp", "emp": 101, "asset": 1, "z": 2, "w": 2020, "x": 83.4, "y": 107.3}, {"co": "Capgemini", "b": 2020, "rank": 2, "sz": "347,215 emp", "emp": 347215, "asset": 1, "note": "No consistent platform. Clare Powell (Partner Activation) is frustrated with webinar tools · Card already made", "hist": "Clare Powell (Partner Activation & Marketing Lead), a past event 2026-06: Seems like they use a bunch of different things she's frustrated with webinars solutions telling her people will come into the seats I don't think she really understood that we're a platform to… · Michelle Randolph (Assistant Director), Adobe Summit 2026-04: Met Michelle, she has nothing to do with webinars. She just does trade shows and stuff, but said that they don’t actually have a consistent platform that they use and that she could put me in…", "z": 2, "w": 2019, "x": 64.0, "y": 107.3}, {"co": "ReForms21", "b": 2022, "rank": 3, "sz": "~under 50, my guess emp (rough estimate)", "emp": 15, "est": 1, "er": "under 50, my guess", "z": 2, "w": 2018, "x": 60.0, "y": 107.3}, {"co": "TasteQ", "b": 2024, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 2, "w": 2017, "x": 56.0, "y": 107.3}, {"co": "Trinamix", "b": 2025, "rank": 1, "sz": "1,170 emp", "emp": 1170, "asset": 1, "z": 2, "w": 2016, "x": 54.0, "y": 110.3}, {"co": "Cloud Inventory", "b": 2026, "rank": 1, "sz": "250 emp", "emp": 250, "asset": 1, "z": 2, "w": 2015, "x": 52.0, "y": 107.3}, {"co": "Wissen Digital Inc", "b": 2030, "rank": 3, "sz": "2,424 emp", "emp": 2424, "z": 2, "w": 2014, "x": 44.0, "y": 107.3}, {"co": "HCLTech", "b": 2031, "rank": 3, "sz": "40 emp", "emp": 40, "note": "Native webinars on Zoom + Teams; MarTech team decides. Samrat Ghatak (Sr Mgr AI Mktg) was keen · SQL in HubSpot, off card list", "hist": "Shavik Baral (Marketing Lead, Enterprise Transformation): booked Apr 30 demo, no-show. Native webinars on Zoom + Teams, Vimeo after; MarTech team decides; loved the 55% reg-to-attend rate. Samrat Ghatak (Sr Mgr, AI Marketing), Aug 6: interested, did not book, wants to see pipeline impact vs top-of-funnel.", "z": 2, "w": 2013, "x": 42.0, "y": 110.3}, {"co": "CUBIG", "b": 2032, "rank": 3, "sz": "37 emp", "emp": 37, "z": 2, "w": 2012, "x": 40.0, "y": 107.3}, {"co": "ShipERP", "b": 2036, "rank": 1, "sz": "287 emp", "emp": 287, "asset": 1, "z": 2, "w": 2011, "x": 32.0, "y": 107.3}, {"co": "Genpact", "b": 2037, "rank": 3, "sz": "100,000 emp", "emp": 100000, "note": "Deal ghosted Dec '25; webinar owner unknown · SQL in HubSpot, off card list", "hist": "Deal closed lost Dec 2025, ghosted.", "z": 2, "w": 2010, "x": 30.0, "y": 110.3}, {"co": "Novamodus", "b": 2038, "rank": 3, "sz": "83 emp", "emp": 83, "z": 2, "w": 2009, "x": 28.0, "y": 107.3}, {"co": "ADP", "b": 2039, "rank": 4, "sz": "100,000 emp", "emp": 100000, "note": "IN PIPELINE: Ioana's S1 deal ($70k). Say hi, no pitch", "z": 2, "w": 2008, "x": 26.0, "y": 110.3}, {"co": "FluidCloud", "b": 2042, "rank": 3, "sz": "25 emp", "emp": 25, "note": "Not in your tab: card status unknown", "z": 2, "w": 2007, "x": 20.0, "y": 107.3}, {"co": "Hexaware", "b": 2043, "rank": 3, "sz": "490 emp", "emp": 490, "note": "Abhinav Kumar (Sr Manager) asked for info; webinar owner unknown · SQL in HubSpot, off card list", "hist": "Abhinav Kumar (Senior Manager), DreamForce 2026 2026-09: Send information · Jun 2026 deal (Ioana) still open in HubSpot (stale).", "z": 2, "w": 2006, "x": 18.0, "y": 110.3}, {"co": "Process Point Technologies Corporation", "b": 2044, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 2, "w": 2005, "x": 16.0, "y": 107.3}, {"co": "Alithya", "b": 2045, "rank": 1, "sz": "2,384 emp", "emp": 2384, "asset": 1, "z": 2, "w": 2004, "x": 14.0, "y": 110.3}, {"co": "ITOrizon", "b": 2048, "rank": 1, "sz": "206 emp", "emp": 206, "asset": 1, "z": 2, "w": 2003, "x": 8.0, "y": 107.3}, {"co": "Intellicept Corporation", "b": 2050, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 2, "w": 2002, "x": 4.0, "y": 107.3}, {"co": "RIA Advisory", "b": 2142, "rank": 1, "sz": "843 emp", "emp": 843, "asset": 1, "z": 2, "w": 2001, "x": 20.0, "y": 102.3}, {"co": "Rapid4Cloud", "b": 2144, "rank": 3, "sz": "22 emp", "emp": 22, "z": 2, "w": 2000, "x": 16.0, "y": 102.3}, {"co": "Infosys", "b": 3009, "rank": 3, "sz": "373,696 emp", "emp": 373696, "note": "SQL in HubSpot, off card list", "z": 3, "w": 3000, "x": 81.6, "y": 102.1}, {"co": "IBM", "b": 3011, "rank": 4, "sz": "270,000 emp", "emp": 270000, "note": "CUSTOMER in HubSpot (Confluent). Say hi, no pitch · On ON24 (just signed, hates it). Kaitlin O'Sullivan (Demand Strategist) owns webinars, not budget", "hist": "Kaitlin O'Sullivan (Demand Strategist): demo w/ Ioana Oct 9, they JUST signed ON24 and hate it, called Sequel her \"dream solution\"; deal closed lost Oct 9 to the ON24 contract. Hannah Hervert (Field Mktg, Apptio) owns Apptio's webinars, open deal w/ Ioana (see IBM Cloudability booth 10036). Jenna Michaels (Sr Event Strategist) met Jun 18.", "z": 3, "w": 3001, "x": 78.0, "y": 102.1}, {"co": "Cloud Voyage Group (CVG)", "b": 3033, "rank": 3, "sz": "13 emp", "emp": 13, "z": 3, "w": 3002, "x": 38.0, "y": 102.1}, {"co": "Neev Systems", "b": 3036, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 3, "w": 3003, "x": 32.0, "y": 99.1}, {"co": "ImpactQA Services", "b": 3038, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 3, "w": 3004, "x": 28.0, "y": 99.1}, {"co": "Justransform", "b": 3039, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 3, "w": 3005, "x": 26.0, "y": 102.1}, {"co": "Peloton Consulting Group", "b": 4001, "rank": 1, "sz": "846 emp", "emp": 846, "asset": 1, "z": 4, "w": 4010, "x": 96.0, "y": 93.9}, {"co": "Intel", "b": 4003, "rank": 2, "sz": "111,539 emp", "emp": 111539, "asset": 1, "z": 4, "w": 4009, "x": 92.4, "y": 93.9}, {"co": "AMD", "b": 4005, "rank": 2, "sz": "50,169 emp", "emp": 50169, "asset": 1, "note": "Ask for Maria Abila, the right person (per Eduardo Ontengco) · Nathan touched Oct 19 · Card already made", "hist": "Eduardo Ontengco (Market Development Manager for AMD), Web Summit 2026 2026-05: Maria Abila is the right person to talk to. Eduardo was cool. He mostly does sales training stuff, but Maria is gonna be here later as well as tomorrow.", "z": 4, "w": 4008, "x": 88.8, "y": 93.9}, {"co": "Elire", "b": 4006, "rank": 3, "sz": "122 emp", "emp": 122, "z": 4, "w": 4007, "x": 87.0, "y": 90.9}, {"co": "Cognizant", "b": 4007, "rank": 3, "sz": "371,019 emp", "emp": 371019, "note": "Alexis Nevels (Events) didn't know the webinar owner; was asking her boss", "hist": "Alexis Nevels, Adobe Summit 2026-04: Alexis does events but not virtual or webinars doesn’t actually know who the right person is but said she would ask her boss. I gave her the card.", "z": 4, "w": 4006, "x": 85.2, "y": 93.9}, {"co": "BTM Global Consulting", "b": 4008, "rank": 3, "sz": "185 emp", "emp": 185, "z": 4, "w": 4005, "x": 83.4, "y": 90.9}, {"co": "NVIDIA", "b": 4009, "rank": 3, "sz": "36,000 emp", "emp": 36000, "note": "Dedicated webinar team, committed to ON24 (per Lana O'Brien, Mktg Mgr) · Nathan emailed Oct 26 · Not in your tab: card status unknown", "hist": "Lana O'brien (Marketing Manager), Microsoft Ignite '25 2025-11: Says there is a whole webinar team that does just that. She knows that they use on 24 right now and is at least a little bit involved. She also said they seem to be very committed to ON24. She…", "z": 4, "w": 4004, "x": 81.6, "y": 93.9}, {"co": "ACCELQ", "b": 4033, "rank": 1, "sz": "221 emp", "emp": 221, "asset": 1, "note": "Met Nazia Abbas (Customer Relations / Partnerships) at Dreamforce; no webinar owner yet", "hist": "Nazia Abbas (Customer Relations & Strategic Partnerships Manager), DreamForce 2026 2026-09.", "z": 4, "w": 4003, "x": 38.0, "y": 93.9}, {"co": "Orbit Analytics", "b": 4035, "rank": 3, "sz": "4 emp", "emp": 4, "z": 4, "w": 4002, "x": 34.0, "y": 93.9}, {"co": "Clonetab", "b": 4038, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 4, "w": 4001, "x": 28.0, "y": 90.9}, {"co": "Lucasys", "b": 4049, "rank": 3, "sz": "26 emp", "emp": 26, "z": 4, "w": 4000, "x": 6.0, "y": 93.9}, {"co": "MangoBoost", "b": 5005, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 5, "w": 5000, "x": 88.8, "y": 85.7}, {"co": "SPS Commerce", "b": 5006, "rank": 1, "sz": "3,277 emp", "emp": 3277, "asset": 1, "z": 5, "w": 5001, "x": 87.0, "y": 82.7}, {"co": "Enginatics", "b": 5007, "rank": 3, "sz": "13 emp", "emp": 13, "z": 5, "w": 5002, "x": 85.2, "y": 85.7}, {"co": "Gotestpro (Royal Cyber)", "b": 5008, "rank": 1, "sz": "3,000 emp", "emp": 3000, "asset": 1, "note": "Your tab lists this as Royal Cyber (Gotestpro is their product)", "z": 5, "w": 5003, "x": 83.4, "y": 82.7}, {"co": "LTM", "b": 5020, "rank": 2, "sz": "23,575 emp", "emp": 23575, "asset": 1, "note": "Building their own internal platform (Linda Demirdjian, Sr Mktg Mgr)", "hist": "Linda Demirdjian (Senior Marketing Manager), Databricks 2026 2026-06: Send info making their own internal platform", "z": 5, "w": 5004, "x": 64.0, "y": 82.7}, {"co": "Arcivate", "b": 5022, "rank": 3, "sz": "8 emp", "emp": 8, "z": 5, "w": 5005, "x": 60.0, "y": 82.7}, {"co": "Innovate Tax", "b": 5024, "rank": 3, "sz": "48 emp", "emp": 48, "z": 5, "w": 5006, "x": 56.0, "y": 82.7}, {"co": "KNEX", "b": 5026, "rank": 3, "sz": "11 emp", "emp": 11, "z": 5, "w": 5007, "x": 52.0, "y": 82.7}, {"co": "Birlasoft", "b": 5028, "rank": 3, "sz": "15,440 emp", "emp": 15440, "z": 5, "w": 5008, "x": 48.0, "y": 82.7}, {"co": "SUSE", "b": 5030, "rank": 3, "sz": "2,727 emp", "emp": 2727, "note": "Lost Mar '25: wanted in-person + virtual in one tool. Webinar owner unknown · SQL in HubSpot, off card list (you have a card)", "hist": "Carolina White (Inside Sales Representative), Developer Week 2026-02: Two people who have nothing to do with webinars or events but thought the idea was cool and said they could pass it along · Deal closed lost Mar 2025: wanted in-person + virtual.", "z": 5, "w": 5009, "x": 44.0, "y": 82.7}, {"co": "Protiviti", "b": 5032, "rank": 3, "sz": "9,500 emp", "emp": 9500, "note": "On ON24. Separate webinar team; Jackie Jones (Sr Dir Partner Mktg) offered to forward · Touched Sep 21 · Not in your tab: card status unknown", "hist": "Jackie Jones (Senior Director, Partner Marketing), DreamForce 2026 2026-09: send information about sequel so she can forward to webinar owner · Chris White (Assistant Vice President - Practice Director), Adobe Summit 2026-04: She’s in partner marketing but like the idea of hosting directly on their own website. These on 24 right now. She said she’ll pass it off to the webinar team so maybe look on LinkedIn for that.", "z": 5, "w": 5010, "x": 40.0, "y": 82.7}, {"co": "Fujitsu", "b": 5034, "rank": 3, "sz": "124,000 emp", "emp": 124000, "note": "Not in your tab: card status unknown", "z": 5, "w": 5011, "x": 36.0, "y": 82.7}, {"co": "Fivetran + dbt Labs", "b": 5036, "rank": 3, "sz": "1,600 emp", "emp": 1600, "note": "Ask for Margie S. (Dir Demand Gen & Digital). dbt merger = they're re-evaluating tools · Not in your tab: card status unknown", "hist": "Margie S. (Director, Demand GEN & Digital Marketing | Plg + Slg GTM | Full-funnel | Pre-ipo Saas | Deliver 30–35% Of Inbound S1 Pipeline), Databricks 2026 2026-06: Met Annie she said to reach out to Margie. Merging with DBT labs and DBT said it was the right time to evaluate for that reason thought I would reach out for the samw · Mary Mcfarland (Event Manager), Adobe Summit 2026-04: Met Mary and their BDR (I should write down her name) they said this is actually awesome and they’re genuinely would like to pass along. Neither deal with webinars directly, but the BDR says that…", "z": 5, "w": 5012, "x": 32.0, "y": 82.7}, {"co": "Tricentis", "b": 5038, "rank": 3, "sz": "1,600 emp", "emp": 1600, "note": "Not in your tab: card status unknown", "z": 5, "w": 5013, "x": 28.0, "y": 82.7}, {"co": "Fortinet", "b": 5040, "rank": 4, "sz": "15,000 emp", "emp": 15000, "note": "IN PIPELINE: Junior's S2 deal ($100k). Say hi, no pitch", "hist": "Sean Privitera (Inside Sales Representative), RSAC 2026-03.", "z": 5, "w": 5014, "x": 24.0, "y": 82.7}, {"co": "API Wizard", "b": 5041, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "z": 5, "w": 5015, "x": 22.0, "y": 85.7}, {"co": "More4apps", "b": 5042, "rank": 3, "sz": "56 emp", "emp": 56, "z": 5, "w": 5016, "x": 20.0, "y": 82.7}, {"co": "Equinix", "b": 5043, "rank": 3, "sz": "14,648 emp", "emp": 14648, "note": "On Zoom. Ask for Carrie Maynard (per Steffy Jenson, Alliances Mktg)", "hist": "Steffy Jenson (Alliances Marketing), Microsoft Ignite '25 2025-11, on Zoom; Other: Said she is not quite the right person, pointed me to Carrie Maynard instead. Said they could definitely use something like this (main value prop) but it wasn’t her wheelhouse", "z": 5, "w": 5017, "x": 18.0, "y": 85.7}, {"co": "oAppsNET", "b": 5044, "rank": 3, "sz": "52 emp", "emp": 52, "z": 5, "w": 5018, "x": 16.0, "y": 82.7}, {"co": "Nivo1", "b": 5045, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 5, "w": 5019, "x": 14.0, "y": 85.7}, {"co": "Talan", "b": 5046, "rank": 3, "sz": "7,100 emp", "emp": 7100, "note": "Not in your tab: card status unknown", "z": 5, "w": 5020, "x": 12.0, "y": 82.7}, {"co": "MirrorRoid", "b": 6005, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "On StreamYard + HubSpot, clunky data and landing pages. Adam Jackson (Head of Mktg) wants an overhaul · Not in your tab: card status unknown", "hist": "Adam Jackson (Head of Marketing & Partner Alliances), Databricks 2026 2026-06, on Other: Adam is very cool. He’s head of marketing. They currently use streaming yard and HubSpot but he says that the data flow and landing paige situation is super messed up really clunky there’s tons of…", "z": 6, "w": 6020, "x": 88.8, "y": 77.5}, {"co": "Superb AI", "b": 6007, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 6, "w": 6019, "x": 85.2, "y": 77.5}, {"co": "Infovity", "b": 6020, "rank": 1, "sz": "398 emp", "emp": 398, "asset": 1, "note": "Card already made (\"Have one\" landed in the domain column)", "z": 6, "w": 6018, "x": 64.0, "y": 74.5}, {"co": "Nsight Inc.", "b": 6022, "rank": 1, "sz": "324 emp", "emp": 324, "asset": 1, "z": 6, "w": 6017, "x": 60.0, "y": 74.5}, {"co": "Phenom", "b": 6023, "rank": 1, "sz": "2,126 emp", "emp": 2126, "asset": 1, "note": "Card already made", "z": 6, "w": 6016, "x": 58.0, "y": 77.5}, {"co": "RChilli Inc", "b": 6024, "rank": 3, "sz": "122 emp", "emp": 122, "z": 6, "w": 6015, "x": 56.0, "y": 74.5}, {"co": "Flash Star Technologies", "b": 6025, "rank": 3, "sz": "~under 50, my guess emp (rough estimate)", "emp": 30, "est": 1, "er": "under 50, my guess", "z": 6, "w": 6014, "x": 54.0, "y": 77.5}, {"co": "iteria.us", "b": 6027, "rank": 3, "sz": "74 emp", "emp": 74, "z": 6, "w": 6013, "x": 50.0, "y": 77.5}, {"co": "ChainSys Corporation", "b": 6029, "rank": 1, "sz": "1,528 emp", "emp": 1528, "asset": 1, "z": 6, "w": 6012, "x": 46.0, "y": 77.5}, {"co": "Redgate Software", "b": 6031, "rank": 1, "sz": "559 emp", "emp": 559, "asset": 1, "z": 6, "w": 6011, "x": 42.0, "y": 77.5}, {"co": "Winfo Solutions", "b": 6033, "rank": 1, "sz": "417 emp", "emp": 417, "asset": 1, "z": 6, "w": 6010, "x": 38.0, "y": 77.5}, {"co": "Accu-Time Systems, Inc.", "b": 6035, "rank": 3, "sz": "80 emp", "emp": 80, "z": 6, "w": 6009, "x": 34.0, "y": 77.5}, {"co": "Terillium", "b": 6037, "rank": 1, "sz": "219 emp", "emp": 219, "asset": 1, "z": 6, "w": 6008, "x": 30.0, "y": 77.5}, {"co": "Phoenix Cloud", "b": 6038, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 6, "w": 6007, "x": 28.0, "y": 74.5}, {"co": "Stellar Cyber", "b": 6041, "rank": 3, "sz": "140 emp", "emp": 140, "note": "Not in your tab: card status unknown", "z": 6, "w": 6006, "x": 22.0, "y": 77.5}, {"co": "Flexagon", "b": 6042, "rank": 3, "sz": "59 emp", "emp": 59, "z": 6, "w": 6005, "x": 20.0, "y": 74.5}, {"co": "Path Infotech", "b": 6043, "rank": 3, "sz": "855 emp", "emp": 855, "z": 6, "w": 6004, "x": 18.0, "y": 77.5}, {"co": "Rite", "b": 6044, "rank": 1, "sz": "274 emp", "emp": 274, "asset": 1, "z": 6, "w": 6003, "x": 16.0, "y": 74.5}, {"co": "Autokrator.ai", "b": 6045, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 6, "w": 6002, "x": 14.0, "y": 77.5}, {"co": "Sovereign AI by Armor", "b": 6046, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 6, "w": 6001, "x": 12.0, "y": 74.5}, {"co": "StorPool Storage", "b": 6047, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 6, "w": 6000, "x": 10.0, "y": 77.5}, {"co": "ACSE Solutions", "b": 7022, "rank": 3, "sz": "83 emp", "emp": 83, "z": 7, "w": 7000, "x": 60.0, "y": 66.3}, {"co": "Integration Plumbers", "b": 7024, "rank": 3, "sz": "10 emp", "emp": 10, "z": 7, "w": 7001, "x": 56.0, "y": 66.3}, {"co": "Vigilant 360", "b": 7026, "rank": 3, "sz": "3 emp", "emp": 3, "z": 7, "w": 7002, "x": 52.0, "y": 66.3}, {"co": "YugabyteDB", "b": 7028, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Ajay Khanna (CMO) interested, asked for info to get his team in front of it · Touched Oct 22 · Not in your tab: card status unknown", "hist": "Ajay Khanna (CMO), Money 2020 2026 2026-10: He is interested send information so we can get team in front of it", "z": 7, "w": 7003, "x": 48.0, "y": 66.3}, {"co": "Fastpath (Delinea)", "b": 7030, "rank": 3, "sz": "1,400 emp", "emp": 1400, "note": "Delinea: 2023 deal lost on budget · SQL in HubSpot, off card list", "hist": "Delinea: 2023 deal lost on budget; open-opportunity status in HubSpot.", "z": 7, "w": 7004, "x": 44.0, "y": 66.3}, {"co": "Kodesage", "b": 7032, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 7, "w": 7005, "x": 40.0, "y": 66.3}, {"co": "CLOUDVICE", "b": 7034, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 7, "w": 7006, "x": 36.0, "y": 66.3}, {"co": "Aspire Systems", "b": 7036, "rank": 1, "sz": "5,184 emp", "emp": 5184, "asset": 1, "z": 7, "w": 7007, "x": 32.0, "y": 66.3}, {"co": "1Trooper", "b": 7038, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 7, "w": 7008, "x": 28.0, "y": 66.3}, {"co": "Waratek", "b": 7040, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 7, "w": 7009, "x": 24.0, "y": 66.3}, {"co": "HealthStream", "b": 7042, "rank": 4, "sz": "1,100 emp", "emp": 1100, "note": "CUSTOMER (renewal 2027, Alex). Say hi, no pitch", "z": 7, "w": 7010, "x": 20.0, "y": 66.3}, {"co": "Giggso", "b": 7044, "rank": 3, "sz": "~51–200 emp (rough estimate)", "emp": 120, "est": 1, "er": "51–200", "note": "Not in your tab: card status unknown", "z": 7, "w": 7011, "x": 16.0, "y": 66.3}, {"co": "Impact Advisors", "b": 7046, "rank": 3, "sz": "~1,001–10,000 emp (rough estimate)", "emp": 1500, "est": 1, "er": "1,001–10,000", "note": "Not in your tab: card status unknown", "z": 7, "w": 7012, "x": 12.0, "y": 66.3}, {"co": "Tech Mahindra", "b": 8020, "rank": 3, "sz": "156,050 emp", "emp": 156050, "note": "Corporate marketing owns webinars; everything runs through Marketo", "hist": "Swati Dixit (Service Process Lead), Databricks 2026 2026-06: Send information it would be the corporate marketing team but she's happy to forward it they use Marto and it seems like they do everything through Marto", "z": 8, "w": 8002, "x": 64.0, "y": 58.1}, {"co": "SilicoPharm", "b": 8022, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 8, "w": 8001, "x": 60.0, "y": 58.1}, {"co": "EverEx", "b": 8024, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 8, "w": 8000, "x": 56.0, "y": 58.1}, {"co": "Thomson Reuters", "b": 9020, "rank": 3, "sz": "36,778 emp", "emp": 36778, "note": "On ON24: renewed too late in our eval, lost Oct 23 ($100k, Ioana) · SQO in HubSpot, off card list", "hist": "Deal w/ Ioana ($100k) closed lost Oct 23: renewed ON24 too late in the eval.", "z": 9, "w": 9000, "x": 64.0, "y": 45.9}, {"co": "Mythics", "b": 9022, "rank": 1, "sz": "580 emp", "emp": 580, "asset": 1, "z": 9, "w": 9001, "x": 60.0, "y": 45.9}, {"co": "Opkey", "b": 9024, "rank": 1, "sz": "449 emp", "emp": 449, "asset": 1, "z": 9, "w": 9002, "x": 56.0, "y": 45.9}, {"co": "Vertex", "b": 10020, "rank": 1, "sz": "1,900 emp", "emp": 1900, "asset": 1, "note": "Card already made · Sheet enrichment matched l10n.com.br (192 emp); sponsor is Vertex Inc (vertexinc.com, ~1,900 emp)", "z": 10, "w": 10015, "x": 64.0, "y": 37.7}, {"co": "Efficieno AI", "b": 10021, "rank": 3, "sz": "49 emp", "emp": 49, "z": 10, "w": 10014, "x": 62.0, "y": 40.7}, {"co": "Tata Consultancy Services", "b": 10022, "rank": 3, "sz": "724,421 emp", "emp": 724421, "z": 10, "w": 10013, "x": 60.0, "y": 37.7}, {"co": "AAIS Global", "b": 10023, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 10, "w": 10012, "x": 58.0, "y": 40.7}, {"co": "AWS", "b": 10024, "rank": 4, "sz": "762,297 emp", "emp": 762297, "note": "CUSTOMER (Amazon). Say hi, no pitch", "hist": "Srinivas Rayaprolu (Sr Customer Solutions Manager), a past event 2026-05.", "z": 10, "w": 10011, "x": 56.0, "y": 37.7}, {"co": "J.P. Morgan", "b": 10025, "rank": 3, "sz": "100,000 emp", "emp": 100000, "note": "Not in your tab: card status unknown", "z": 10, "w": 10010, "x": 54.0, "y": 40.7}, {"co": "Google Cloud", "b": 10026, "rank": 3, "sz": "318,198 emp", "emp": 318198, "note": "Amanda Ahmadi runs DeepMind events, restarting webinars; may have a platform partnership", "hist": "Amanda Ahmadi (Marketing Manager, Google DeepMind), AI Engineer World's Fair Jul 1: runs all DeepMind events, growing the team, wants to restart the webinar motion. Thinks Google may already have a webinar platform partnership but said Sequel sounds cooler.", "z": 10, "w": 10009, "x": 52.0, "y": 37.7}, {"co": "SamaraTech", "b": 10027, "rank": 3, "sz": "16 emp", "emp": 16, "z": 10, "w": 10008, "x": 50.0, "y": 40.7}, {"co": "Microsoft", "b": 10028, "rank": 2, "sz": "233,201 emp", "emp": 233201, "asset": 1, "note": "Card already made (\"Have one\" landed in the domain column)", "z": 10, "w": 10007, "x": 48.0, "y": 37.7}, {"co": "Calfus", "b": 10029, "rank": 3, "sz": "233 emp", "emp": 233, "z": 10, "w": 10006, "x": 46.0, "y": 40.7}, {"co": "DXC Technology", "b": 10030, "rank": 2, "sz": "90,765 emp", "emp": 90765, "asset": 1, "z": 10, "w": 10005, "x": 44.0, "y": 37.7}, {"co": "Everpure", "b": 10031, "rank": 1, "sz": "7,596 emp", "emp": 7596, "asset": 1, "note": "Your account, last touch Oct 22", "z": 10, "w": 10004, "x": 42.0, "y": 40.7}, {"co": "Lineos", "b": 10032, "rank": 3, "sz": "size unverified", "note": "Not in your tab: card status unknown", "z": 10, "w": 10003, "x": 40.0, "y": 37.7}, {"co": "Deel", "b": 10034, "rank": 3, "sz": "5,000 emp", "emp": 5000, "note": "Not in your tab: card status unknown", "z": 10, "w": 10002, "x": 36.0, "y": 37.7}, {"co": "IBM Cloudability", "b": 10036, "rank": 4, "sz": "1,306 emp", "emp": 1306, "note": "IN PIPELINE: Ioana's S1 deal ($18k, Apptio). Hannah Hervert (Field Mktg) owns their webinars, ON24 + Zoom. Say hi, no pitch", "z": 10, "w": 10001, "x": 32.0, "y": 37.7}, {"co": "Red Hat", "b": 10038, "rank": 3, "sz": "19,535 emp", "emp": 19535, "note": "On ON24. Field marketing runs webinars: ask for Lisa or Laura (per Andrea Lynch, Events) · SQL in HubSpot, off card list (you have a card)", "hist": "Juliana Furlow (Marketing Events Manager), HumanX 2026-04: Not events team but said I can email events@redhat.com? · Kate Mulder (Global Events Coordinator), Developer Week 2026-02: Kate does sponsor and partnership events, doesn’t work on webinars at all. She mentioned her colleague does and she’d be willing to do an email intro for me if I followed up. · Andrea Lynch (Global Events Manager), Microsoft Ignite '25 2025-11, on On24: Said field marketing team handles webinars. Speak to Lisa or Laura, she said. They use on24 · Your Apr 2026 deal still open in HubSpot (stale).", "z": 10, "w": 10000, "x": 28.0, "y": 37.7}, {"co": "SplashBI", "b": 11026, "rank": 1, "sz": "402 emp", "emp": 402, "asset": 1, "z": 11, "w": 11000, "x": 52.0, "y": 29.5}, {"co": "Broadpin", "b": 11028, "rank": 1, "sz": "273 emp", "emp": 273, "asset": 1, "z": 11, "w": 11001, "x": 48.0, "y": 29.5}, {"co": "Cloudflare", "b": 11030, "rank": 3, "sz": "4,400 emp", "emp": 4400, "note": "Not in your tab: card status unknown", "z": 11, "w": 11002, "x": 44.0, "y": 29.5}, {"co": "Retail Consult", "b": 11031, "rank": 3, "sz": "377 emp", "emp": 377, "z": 11, "w": 11003, "x": 42.0, "y": 32.5}, {"co": "Argano", "b": 11032, "rank": 4, "sz": "1,950 emp", "emp": 1950, "note": "IN PIPELINE: Nathan's S4 deal ($30k). Say hi, no pitch (card in your tab, held back)", "z": 11, "w": 11004, "x": 40.0, "y": 29.5}, {"co": "SOMMA IT", "b": 11033, "rank": 3, "sz": "58 emp", "emp": 58, "z": 11, "w": 11005, "x": 38.0, "y": 32.5}, {"co": "Salesdrive Technologies", "b": 11034, "rank": 3, "sz": "33 emp", "emp": 33, "z": 11, "w": 11006, "x": 36.0, "y": 29.5}, {"co": "Auditoria.AI", "b": 11037, "rank": 2, "sz": "135 emp", "emp": 135, "asset": 1, "z": 11, "w": 11007, "x": 30.0, "y": 32.5}, {"co": "T.O.", "b": 11038, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 11, "w": 11008, "x": 28.0, "y": 29.5}, {"co": "APRO by PairSoft", "b": 11039, "rank": 4, "sz": "200 emp", "emp": 200, "note": "IN PIPELINE: Junior's S1 deal opened today ($18k). Say hi, no pitch (card in your tab, held back)", "z": 11, "w": 11009, "x": 26.0, "y": 32.5}, {"co": "Dbvisit", "b": 11040, "rank": 3, "sz": "33 emp", "emp": 33, "z": 11, "w": 11010, "x": 24.0, "y": 29.5}, {"co": "Apps Associates", "b": 12026, "rank": 1, "sz": "1,396 emp", "emp": 1396, "asset": 1, "z": 12, "w": 12007, "x": 52.0, "y": 21.3}, {"co": "Marvik", "b": 12028, "rank": 3, "sz": "199 emp", "emp": 199, "z": 12, "w": 12006, "x": 48.0, "y": 21.3}, {"co": "Datavail", "b": 12030, "rank": 1, "sz": "912 emp", "emp": 912, "asset": 1, "z": 12, "w": 12005, "x": 44.0, "y": 21.3}, {"co": "Riverbed Technology", "b": 12032, "rank": 1, "sz": "1,586 emp", "emp": 1586, "asset": 1, "z": 12, "w": 12004, "x": 40.0, "y": 21.3}, {"co": "IT Convergence", "b": 12033, "rank": 3, "sz": "1,800 emp", "emp": 1800, "note": "Not in your tab: card status unknown", "z": 12, "w": 12003, "x": 38.0, "y": 24.3}, {"co": "CloudServ Systems", "b": 12035, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 12, "w": 12002, "x": 34.0, "y": 24.3}, {"co": "Autnhive", "b": 12037, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 12, "w": 12001, "x": 30.0, "y": 24.3}, {"co": "Camptra Technologies", "b": 12039, "rank": 3, "sz": "~1–50 emp (rough estimate)", "emp": 30, "est": 1, "er": "1–50", "note": "Not in your tab: card status unknown", "z": 12, "w": 12000, "x": 26.0, "y": 24.3}, {"co": "Sutherland Global Services", "b": 13025, "rank": 2, "sz": "68,113 emp", "emp": 68113, "asset": 1, "z": 13, "w": 13000, "x": 54.0, "y": 16.1}, {"co": "Donyati, LLC", "b": 13027, "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Not in your tab: card status unknown", "z": 13, "w": 13001, "x": 50.0, "y": 16.1}, {"co": "Softdrive", "b": 13029, "rank": 3, "sz": "10 emp", "emp": 10, "note": "Not in your tab: card status unknown", "z": 13, "w": 13002, "x": 46.0, "y": 16.1}, {"co": "Mastek Inc.", "b": 13031, "rank": 1, "sz": "6,441 emp", "emp": 6441, "asset": 1, "z": 13, "w": 13003, "x": 42.0, "y": 16.1}];
+const NOFLOOR=[{"co": "Centroid", "rank": 3, "sz": "~201–500 emp (rough estimate)", "emp": 350, "est": 1, "er": "201–500", "note": "Listed as a sponsor with no booth number in the catalog · Not in your tab: card status unknown"}, {"co": "Huron", "rank": 3, "sz": "~1,001–10,000 emp (rough estimate)", "emp": 7000, "est": 1, "er": "1,001–10,000", "note": "Listed as a sponsor with no booth number in the catalog · Chip Henslee (Sr Mgr Alliances) offered to intro the webinar team · Touched Oct 5 · Not in your tab: card status unknown", "hist": "Chip Henslee (Senior Manager, Alliances), DreamForce 2026 2026-09: Send info for intro to right team"}, {"co": "Zoom", "rank": 3, "sz": "~1,001–10,000 emp (rough estimate)", "emp": 7400, "est": 1, "er": "1,001–10,000", "note": "Listed as a sponsor with no booth number in the catalog · Not in your tab: card status unknown"}];
+const SEED=[];
+const AKEY=b=>b;
+const GROUPL={"1": "1000s aisle (1001 → 1041)", "2": "2000s aisle (2144 → 2001)", "3": "3000s aisle (3009 → 3039)", "4": "4000s aisle (4049 → 4001)", "5": "5000s aisle (5005 → 5046)", "6": "6000s aisle (6047 → 6005)", "7": "7000s aisle (7022 → 7046)", "8": "8000s aisle (8024 → 8020)", "9": "9000s aisle (9020 → 9024)", "10": "10000s aisle (10038 → 10020)", "11": "11000s aisle (11026 → 11040)", "12": "12000s aisle (12039 → 12026)", "13": "13000s aisle (13025 → 13031)"};
+const LANDMARKS=[{"x": 70, "y": 123, "w": 29, "h": 6, "l": "Main Stage Keynote ↓"}, {"x": 67, "y": 50, "w": 8, "h": 62, "l": "Oracle", "s": 1}, {"x": 15, "y": 0.5, "w": 70, "h": 4.5, "l": "↑ Oracle AI World Hub sign (back wall)", "s": 1}, {"x": 96.5, "y": 58, "w": 3.5, "h": 6, "l": "WC", "s": 1}];
+const ZONES=[{"x": 75.5, "y": 72.5, "w": 22, "h": 48.0, "l": "FRONT (stage side)"}, {"x": 2.5, "y": 56.1, "w": 63, "h": 64.4, "l": "MAIN FLOOR · 1000s–8000s"}, {"x": 2.5, "y": 11.1, "w": 63, "h": 39.8, "l": "BACK · 9000s–13000s"}];
+const TIERL={1:'🔥 Hot — card + 200–10k emp',2:'★ Card, outside the size band',3:'No card',4:'In pipeline / customer — say hi, no pitch'};
+const TG=['DEMAND GEN','GROWTH','MKTG OPS','FIELD','EVENTS','PRODUCT'];
+const TGC=['t0','tgr','t1','t2','t3',''];
+/* ===== END DATA BLOCK ===== */
+const BL=s=>(s&&s.bl)||(s&&s.b);
+const SZC=s=>{const e=s&&s.emp;if(!e)return '<span class="szc szu">size ?</span>';const t=e>=100000?Math.round(e/1000)+'k':e>=1000?(Math.round(e/100)/10)+'k':String(e);const c=e>10000?'szb':e>=200?'szi':'szs';return '<span class="szc '+c+'">'+(s.est&&s.er?s.er:t)+' emp</span>';};
+const KEY=EVENT.key;
+
+const aisleOf=b=>Math.floor(b/100)*100;
+const akey=AKEY;
+const ZOF=x=>x.z!=null?x.z:aisleOf(x.b);
+const aisles=[...new Set(RAW.map(ZOF))].sort((p,q)=>akey(p)-akey(q));
+const SWEEP=[];
+aisles.forEach((ai,i)=>RAW.filter(x=>ZOF(x)===ai).sort((p,q)=>(p.w!=null&&q.w!=null)?p.w-q.w:(i%2===0?p.b-q.b:q.b-p.b)).forEach(x=>SWEEP.push({...x,ai,dir:i%2===0?"↓":"↑"})));
+/* ===== what data did this event actually give us? =====
+   Assets, an attendee/marketer list and a floor map each show up only
+   sometimes. Detect what is present and let everything downstream adapt. */
+const HAS_ASSET = RAW.some(s=>s.asset) || NOFLOOR.some(s=>s.asset);
+const HAS_MK    = RAW.some(s=>s.mk&&s.mk.length) || NOFLOOR.some(s=>s.mk&&s.mk.length);
+const HAS_DG    = RAW.some(s=>s.dg||s.gr);
+const HAS_RANK  = RAW.some(s=>typeof s.rank==='number');
+/* rank wins when the builder scored the booths directly (company size x
+   webinar presence, deal stage, whatever this event's driver was).
+   Otherwise derive from whichever of asset / dg / marketers exist. */
+function tierOf(s){
+  if(typeof s.rank==='number') return s.rank;
+  if(HAS_ASSET&&HAS_DG) return (s.asset&&(s.dg||s.gr))?1:s.asset?2:(s.dg||s.gr)?3:(s.mk?4:5);
+  if(HAS_ASSET)         return s.asset?1:(s.mk?3:5);
+  if(HAS_DG)            return (s.dg||s.gr)?1:(s.mk?3:5);
+  if(HAS_MK)            return s.mk?1:5;
+  return 1;                      /* no signals at all -> one flat tier */
+}
+const TIERS=[...new Set(RAW.map(tierOf))].length;
+const HAS_PRIO=TIERS>1;
+const PRIO=[...SWEEP].sort((a,b)=>tierOf(a)-tierOf(b));
+let STOPS=SWEEP, mode='sweep';
+const TOTAL=SWEEP.length;
+const PRIME=SWEEP.filter(HAS_ASSET?(x=>x.asset):(x=>tierOf(x)===1));
+const ASSETS=PRIME.length;
+const PRIME_LAB=HAS_ASSET?'★ card':(TIERL[1]||'priority').replace(/^[^A-Za-z]+/,'').split('—')[0].trim().toLowerCase();
+/* the top-tier badge only means something when there IS more than one tier */
+const HOTB=HAS_ASSET?'🔥 HOT':((TIERL[1]||'TOP').split('—')[0].trim().toUpperCase());
+const isTop=s=>HAS_PRIO&&tierOf(s)===1;
+const HAS_MAP=RAW.some(s=>typeof s.x==='number');
+let done=new Set(), seq=[], notes={}, filter='all', view='list', mapBuilt=false, search='', openMk=new Set();
+const hereB=()=>seq.length?seq[seq.length-1]:null;
+const matches=(s,q)=>s.co.toLowerCase().includes(q)||String(s.bl||s.b||'').toLowerCase().includes(q)||String(s.booth||'').includes(q)||(s.mk||[]).some(m=>(m[0]+' '+m[1]).toLowerCase().includes(q))||String(s.note||'').toLowerCase().includes(q)||String(s.hist||'').toLowerCase().includes(q);
+const list=document.getElementById('list'), floor=document.getElementById('floor'), toast=document.getElementById('toast');
+/* real localStorage wherever it works (github.io, a published artifact, the
+   home-screen app); window.storage only as the in-app fallback */
+const HOSTED=(()=>{try{localStorage.setItem('__cp','1');localStorage.removeItem('__cp');return true;}catch(e){return false;}})();
+function hydrate(o){ if(!o)return; done=new Set(o.d||o||[]);
+  notes=o.n||{}; seq=(o.s||[]).filter(b=>done.has(b));
+  done.forEach(b=>{if(!seq.includes(b))seq.push(b);}); }
+const payload=()=>JSON.stringify({d:[...done],s:seq,n:notes});
+async function load(){try{
+if(HOSTED){const v=localStorage.getItem(KEY);window.__stored=!!v;if(v)hydrate(JSON.parse(v));return;}
+const to=new Promise(res=>setTimeout(()=>res(null),1200));
+const r=await Promise.race([window.storage.get(KEY),to]);
+if(r&&r.value)hydrate(JSON.parse(r.value));
+}catch(e){}}
+async function save(){const p=payload();
+try{localStorage.setItem(KEY,p);}catch(e){}
+try{if(!HOSTED&&window.storage)await window.storage.set(KEY,p);}catch(e){}}
+function setDone(b,on){
+  if(on){ if(!done.has(b))done.add(b); seq=seq.filter(x=>x!==b); seq.push(b); }
+  else  { done.delete(b); seq=seq.filter(x=>x!==b); }
+  save(); refresh();
+}
+function toggle(b){ setDone(b,!done.has(b)); }
+function showToast(t){toast.textContent=t;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),1600);}
+function encodeState(){let h='';for(let i=0;i<SWEEP.length;i+=4){let n=0;for(let j=0;j<4;j++)if(done.has((SWEEP[i+j]||{}).b))n|=(1<<j);h+=n.toString(16);}return h;}
+function decodeState(str){const hex=(str||'').trim().toLowerCase().replace(/[^0-9a-f]/g,'');const ns=new Set();for(let i=0;i<hex.length;i++){const n=parseInt(hex[i],16);if(isNaN(n))continue;for(let j=0;j<4;j++){const idx=i*4+j;if(idx<SWEEP.length&&(n&(1<<j)))ns.add(SWEEP[idx].b);}}return ns;}
+function syncCodeBox(){const co=document.getElementById('codeout');if(co)co.value=encodeState();}
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function mkRows(mk){
+return mk.map(m=>{
+const t=m[2], lbl=t===-1?'🎯 WEBINARS':(t<6?TG[t]:''), cls=t===-1?'t0':(t<6?TGC[t]:'');
+return '<div class="m'+(t<=1?' dgm':'')+'"><b>'+esc(m[0])+'</b> <span>· '+esc(m[1])+'</span>'+(lbl?'<i class="tg '+cls+'">'+lbl+'</i>':'')+'</div>';
+}).join('');
+}
+function mkPanelHTML(s){
+return '<div class="mkpanel show">'+(s.sz?'<div class="szline">'+esc(s.sz)+'</div>':'')+mkRows(s.mk)+'</div>';
+}
+function renderList(){
+list.innerHTML='';let shown=0,curG=null;
+const inc=x=> search ? matches(x,search) : !((filter==='todo'&&done.has(x.b))||(filter==='asset'&&!x.asset)||(filter==='hot'&&tierOf(x)!==1)||(filter==='dg'&&!(x.dg||x.gr)));
+const glbl=x=> mode==='prio' ? (TIERL[tierOf(x)]||'Tier '+tierOf(x)) : (GROUPL[x.ai]||'Aisle '+x.ai);
+STOPS.forEach(x=>{
+const isDone=done.has(x.b), isHot=isTop(x);
+if(!inc(x))return;
+const gl=glbl(x);
+if(gl!==curG){curG=gl;
+const inA=STOPS.filter(s=>glbl(s)===gl&&inc(s));
+const dn=inA.filter(s=>done.has(s.b)).length;
+const g=document.createElement('div');g.className='grp';
+g.innerHTML='<span class="ai">'+gl+'</span>'+(mode==='sweep'&&!GROUPL[x.ai]?'<span class="ar">'+x.dir+'</span>':'')+'<span class="rule"></span><span class="gp">'+dn+'/'+inA.length+'</span>';
+list.appendChild(g);}
+const d=document.createElement('div');d.className='stop'+(isHot?' hot':x.asset?' asset':'')+(isDone?' done':'');d.dataset.b=x.b;
+const badges=isHot
+? (x.mk?'<button class="mkbtn" data-mkb="'+x.b+'">'+x.mk.length+' mktr'+(x.mk.length>1?'s':'')+'</button>':'')+'<span class="hotb">'+HOTB+'</span>'
+: (x.dg?'<span class="dgb">DG</span>':x.gr?'<span class="dgb">GRW</span>':'')+(x.mk?'<button class="mkbtn" data-mkb="'+x.b+'">'+x.mk.length+' mktr'+(x.mk.length>1?'s':'')+'</button>':'')+(x.asset?'<span class="astar">★ CARD</span>':'');
+const hasNote=!!(notes[x.b]&&notes[x.b].trim());
+d.innerHTML='<div class="box">'+(isDone?'✓':'')+'</div><span class="bo">'+BL(x)+'</span><div class="meta"><div class="co">'+esc(x.co)+SZC(x)+'</div>'+(x.note?'<div class="hh">'+esc(x.note)+'</div>':'')+'</div>'+badges+'<button class="nbtn'+(hasNote?' has':'')+'" data-brief="'+x.b+'" aria-label="Brief and notes for '+esc(x.co)+'">✎</button>';
+d.addEventListener('click',ev=>{
+if(ev.target.closest('.mkbtn')){ev.stopPropagation();
+openMk.has(x.b)?openMk.delete(x.b):openMk.add(x.b);renderList();return;}
+if(ev.target.closest('.nbtn')){ev.stopPropagation();showSheet(x);return;}
+toggle(x.b);
+});
+list.appendChild(d);shown++;
+if(hasNote&&!isDone){const n=document.createElement('p');n.className='yournote';n.textContent='✎ '+notes[x.b];list.appendChild(n);}
+if(x.mk&&openMk.has(x.b)&&!isDone){const w=document.createElement('div');w.innerHTML=mkPanelHTML(x);list.appendChild(w.firstChild);}
+});
+if(!shown&&!search){const m=document.createElement('div');m.className='empty-msg';m.textContent=filter==='todo'?'All stops cleared. Nice work.':'Nothing here.';list.appendChild(m);}
+updateResult();
+}
+function renderNofloor(){
+const wrap=document.getElementById('noflist');
+if(!wrap||!NOFLOOR.length)return;
+document.getElementById('nofn').textContent=NOFLOOR.length;
+wrap.innerHTML=NOFLOOR.map(function(n,i){
+return '<div class="nrow"><span class="nn">'+esc(n.co)+SZC(n)+'</span>'+(n.asset?'<span class="astar">★ CARD</span>':'')+(n.dg?'<span class="dgb">DG</span>':n.gr?'<span class="dgb">GRW</span>':'')+(n.mk?'<button class="mkbtn" data-nfi="'+i+'">'+n.mk.length+' mktr'+(n.mk.length>1?'s':'')+'</button>':'')+'<div class="nnote">'+esc(n.note)+'</div>'+(n.mk&&openMk.has(n.co)?'<div class="mkpanel show">'+mkRows(n.mk)+'</div>':'')+'</div>';
+}).join('');
+wrap.querySelectorAll('[data-nfi]').forEach(b=>b.addEventListener('click',ev=>{
+ev.stopPropagation();const n=NOFLOOR[+b.dataset.nfi];
+openMk.has(n.co)?openMk.delete(n.co):openMk.add(n.co);renderNofloor();
+}));
+}
+function updateResult(){
+const r=document.getElementById('result'), q=search;
+document.getElementById('clearx').classList.toggle('show',!!q);
+if(!q){r.className='result';r.innerHTML='';return;}
+const aM=STOPS.filter(s=>matches(s,q));
+if(aM.length){
+const dn=aM.filter(s=>done.has(s.b)).length;
+const tail=aM.length<=4?': '+aM.map(s=>esc(s.co)+' <b>'+BL(s)+'</b>').join(', '):'';
+r.className='result show yes';
+r.innerHTML='✓ <b>On the floor</b> — '+aM.length+' match'+(aM.length>1?'es':'')+tail+(dn?' · '+dn+' already visited':'');
+}else{
+const bM=NOFLOOR.filter(s=>s.co.toLowerCase().includes(q));
+r.className='result show no';
+if(bM.length){
+r.innerHTML='◌ Sponsor, but <b>no booth</b>: '+bM.slice(0,3).map(s=>esc(s.co)+' — '+esc(s.note)).join(' · ');
+}else{
+r.innerHTML='No '+(EVENT.short||EVENT.title)+' sponsor matches "<b>'+esc(q)+'</b>".';
+}
+}
+}
+const NS='http://www.w3.org/2000/svg';
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+let routeLine, allclear, nextLabel, hereLabel, leadLine;
+
+/* ===== map zoom / pan ===== */
+let vb={...VB0};
+function applyVB(){ floor.setAttribute('viewBox',`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);floor.classList.toggle('zoomed', vb.w < VB0.w - 0.01); scaleOverlay(); }
+function clampVB(){ const minW=VB0.w/6;
+  vb.w=Math.min(VB0.w,Math.max(minW,vb.w)); vb.h=vb.w*VB0.h/VB0.w; const sl=2;
+  vb.x=Math.min(VB0.x+VB0.w-vb.w+sl,Math.max(VB0.x-sl,vb.x));
+  vb.y=Math.min(VB0.y+VB0.h-vb.h+sl,Math.max(VB0.y-sl,vb.y)); }
+function zoomAt(sx,sy,f){ const nw=vb.w/f, k=nw/vb.w;
+  vb.x=sx-(sx-vb.x)*k; vb.y=sy-(sy-vb.y)*k; vb.w=nw; vb.h=nw*VB0.h/VB0.w; clampVB(); applyVB(); }
+function fitRect(){ const r=floor.getBoundingClientRect();
+  const k=Math.min(r.width/vb.w, r.height/vb.h);
+  return {k:k, left:r.left+(r.width-vb.w*k)/2, top:r.top+(r.height-vb.h*k)/2}; }
+function toSvg(cx,cy){ const f=fitRect();
+  return {x:vb.x+(cx-f.left)/f.k, y:vb.y+(cy-f.top)/f.k}; }
+function resetZoom(){ vb={...VB0}; applyVB(); }
+/* pins and route labels counter-scale, so zooming separates dense clusters
+   instead of inflating them into blobs */
+function scaleOverlay(){
+  const k=vb.w/VB0.w;
+  floor.querySelectorAll('.dot').forEach(g=>{ const s=STOPS.find(x=>x.b===+g.dataset.b)||RAW.find(x=>x.b===+g.dataset.b);
+    if(s) g.setAttribute('transform',`translate(${s.x} ${s.y}) scale(${k.toFixed(4)})`); });
+  if(routeLine){routeLine.setAttribute('stroke-width',(0.5*k).toFixed(3));
+    routeLine.setAttribute('stroke-dasharray',`${(1.4*k).toFixed(2)} ${(1.4*k).toFixed(2)}`);}
+  if(leadLine) leadLine.setAttribute('stroke-width',(0.55*k).toFixed(3));
+  if(nextLabel){ nextLabel.setAttribute('font-size',(3*k).toFixed(2));
+    const s=RAW.find(x=>x.b===+(nextLabel.dataset.b||0)); if(s)nextLabel.setAttribute('y',s.y-4.4*k); }
+  if(hereLabel){ hereLabel.setAttribute('font-size',(2.6*k).toFixed(2));
+    const s=RAW.find(x=>x.b===+(hereLabel.dataset.b||0)); if(s)hereLabel.setAttribute('y',s.y+5.4*k); }
+  if(allclear) allclear.setAttribute('font-size',(5*k).toFixed(2));
+}
+function bindZoom(){
+  const pts=new Map(); let pinch=null, panned=false, lastTap=0;
+  floor.addEventListener('pointerdown',e=>{ floor.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId,{cx:e.clientX,cy:e.clientY}); panned=false;
+    if(pts.size===2){const[a,b]=[...pts.values()];pinch={d:Math.hypot(a.cx-b.cx,a.cy-b.cy)};} });
+  floor.addEventListener('pointermove',e=>{ const p=pts.get(e.pointerId); if(!p)return;
+    const dx=e.clientX-p.cx, dy=e.clientY-p.cy; p.cx=e.clientX; p.cy=e.clientY;
+    if(pts.size===2&&pinch){ const[a,b]=[...pts.values()];
+      const d=Math.hypot(a.cx-b.cx,a.cy-b.cy);
+      if(pinch.d>0){const m=toSvg((a.cx+b.cx)/2,(a.cy+b.cy)/2);zoomAt(m.x,m.y,d/pinch.d);}
+      pinch.d=d; panned=true; return; }
+    if(pts.size===1){ const f=fitRect();
+      vb.x-=dx/f.k; vb.y-=dy/f.k;
+      if(Math.abs(dx)>1||Math.abs(dy)>1)panned=true; clampVB(); applyVB(); } });
+  const up=e=>{ pts.delete(e.pointerId); if(pts.size<2)pinch=null;
+    if(pts.size===0&&!panned){ const n=Date.now(); if(n-lastTap<300){resetZoom();lastTap=0;} else { lastTap=n; try{ const g=document.elementsFromPoint(e.clientX,e.clientY).map(x=>x.closest&&x.closest('#floor .dot')).find(Boolean); const s=g&&RAW.find(x=>x.b===+g.dataset.b); if(s&&!g.classList.contains('hidden')){ window.__openAt=Date.now(); showSheet(s);}}catch(_){} } }
+    floor._panned=panned; };
+  floor.addEventListener('pointerup',up); floor.addEventListener('pointercancel',up);
+  floor.addEventListener('wheel',e=>{e.preventDefault();const p=toSvg(e.clientX,e.clientY);
+    zoomAt(p.x,p.y,e.deltaY<0?1.16:1/1.16);},{passive:false});
+  const gid=id=>document.getElementById(id);
+  if(gid('zin'))gid('zin').addEventListener('click',()=>zoomAt(vb.x+vb.w/2,vb.y+vb.h/2,1.45));
+  if(gid('zout'))gid('zout').addEventListener('click',()=>zoomAt(vb.x+vb.w/2,vb.y+vb.h/2,1/1.45));
+  if(gid('zreset'))gid('zreset').addEventListener('click',resetZoom);
+}
+
+function buildMap(){
+if(mapBuilt)return;
+ZONES.forEach(z=>{
+floor.appendChild(el('rect',{x:z.x,y:z.y,width:z.w,height:z.h,rx:1.2,class:'zn'}));
+const t=el('text',{x:z.x+z.w/2,y:z.y-1,'font-size':1.8,class:'zn-lab'});t.textContent=z.l;floor.appendChild(t);
+});
+LANDMARKS.forEach(m=>{
+floor.appendChild(el('rect',{x:m.x,y:m.y,width:m.w,height:m.h,rx:1.2,class:'lm','data-l':m.l}));
+const t=el('text',{x:m.x+m.w/2,y:m.y+m.h/2+0.8,'font-size':m.s?1.7:2.2,class:'lm-lab'});t.textContent=m.l;floor.appendChild(t);
+});
+routeLine=el('polyline',{points:'',class:'routeline'});floor.appendChild(routeLine);
+leadLine=el('line',{class:'lead',x1:0,y1:0,x2:0,y2:0,opacity:0});floor.appendChild(leadLine);
+RAW.filter(s=>s.x!=null&&s.y!=null).forEach(s=>{
+const g=el('g',{class:'dot',transform:'translate('+s.x+' '+s.y+')'});g.dataset.b=s.b;
+g.appendChild(el('circle',{class:'ring',cx:0,cy:0,r:3}));
+g.appendChild(el('circle',{class:'dt',cx:0,cy:0,r:1.5}));
+g.appendChild(el('circle',{class:'hit',cx:0,cy:0,r:3.2}));
+/* tapping a dot opens the brief - it never checks the booth off */
+g.addEventListener('click',ev=>{ev.stopPropagation(); if(floor._panned)return; showSheet(s);});
+floor.appendChild(g);
+});
+allclear=el('text',{id:'allclear',x:50,y:50,'font-size':5});allclear.textContent='All '+TOTAL+' cleared 🎉';floor.appendChild(allclear);
+nextLabel=el('text',{x:0,y:0,'font-size':3,'font-weight':700,'text-anchor':'middle',fill:'#16181d',style:'paint-order:stroke;stroke:#fff;stroke-width:1.1px'});nextLabel.setAttribute('opacity','0');floor.appendChild(nextLabel);
+hereLabel=el('text',{class:'herelab',x:0,y:0,'font-size':2.6,opacity:0});floor.appendChild(hereLabel);
+bindZoom(); applyVB();
+mapBuilt=true;
+}
+function paintMap(){
+if(!mapBuilt)return;
+const remaining=STOPS.filter(x=>!done.has(x.b));
+const next=remaining[0];
+const hb=hereB(), here=hb!=null?RAW.find(x=>x.b===hb):null;
+routeLine.setAttribute('points', remaining.filter(s=>s.x!=null&&s.y!=null).map(s=>s.x+','+s.y).join(' '));
+floor.querySelectorAll('.dot').forEach(g=>{
+const b=+g.dataset.b, s=RAW.find(x=>x.b===b), isDone=done.has(b), c=g.querySelector('.dt');
+const isNext=!!next && next.b===b, isHere=!!here && here.b===b;
+/* checked-off booths drop off, EXCEPT the one you just left - that is
+   the "you are here" anchor for reading the rest of the floor */
+g.classList.toggle('hidden', isDone && !isHere);
+g.classList.toggle('next', isNext && !isHere);
+g.classList.toggle('here', isHere);
+const hot=isTop(s);
+const col = isHere ? '#0e7a5f' : hot ? '#c0392b' : s.asset ? '#bd8a12' : '#e0601f';
+c.setAttribute('fill', col);
+c.setAttribute('stroke', (s.dg||s.gr) ? '#0e7a5f' : col);
+c.setAttribute('stroke-width', (s.dg||s.gr) ? 0.6 : 0.3);
+c.setAttribute('r', (isNext||isHere) ? 1.9 : ((s.asset||hot)?1.55:1.15));
+});
+if(next&&next.x!=null){ nextLabel.setAttribute('opacity','1'); nextLabel.setAttribute('x',next.x); nextLabel.dataset.b=next.b; nextLabel.textContent=next.co.split(' (')[0]; }
+else { nextLabel.setAttribute('opacity','0'); nextLabel.dataset.b=''; }
+if(here&&here.x!=null){ hereLabel.setAttribute('opacity','1'); hereLabel.setAttribute('x',here.x); hereLabel.dataset.b=here.b; hereLabel.textContent='you · '+here.co.split(' (')[0]; }
+else { hereLabel.setAttribute('opacity','0'); hereLabel.dataset.b=''; }
+if(here&&next&&here.x!=null&&next.x!=null){ leadLine.setAttribute('opacity','1');
+  leadLine.setAttribute('x1',here.x);leadLine.setAttribute('y1',here.y);
+  leadLine.setAttribute('x2',next.x);leadLine.setAttribute('y2',next.y); }
+else leadLine.setAttribute('opacity','0');
+scaleOverlay();
+if(allclear) allclear.classList.toggle('show', remaining.length===0);
+if(typeof applyMapFocus==='function'&&(msearch||mfilter!=='all')) applyMapFocus(false);
+}
+function updateStats(){
+const v=done.size, a=PRIME.filter(x=>done.has(x.b)).length;
+document.getElementById('vcount').textContent=v+' / '+TOTAL;
+const ac=document.getElementById('acount'); if(ac)ac.textContent=a+' / '+ASSETS;
+document.getElementById('ringfill').setAttribute('stroke-dashoffset',(2*Math.PI*22)*(1-v/TOTAL));
+document.getElementById('ringpct').textContent=Math.round(v/TOTAL*100)+'%';
+const nx=STOPS.find(x=>!done.has(x.b)),ne=document.getElementById('next'),dn=document.getElementById('ndone');
+if(nx){
+document.getElementById('nbo').textContent=BL(nx);
+document.getElementById('nco').textContent=nx.co;
+document.getElementById('nsub').textContent=(GROUPL[nx.ai]?GROUPL[nx.ai].split(' (')[0].split(':')[0]:'Aisle '+nx.ai+' '+nx.dir)+(nx.sz?' · '+nx.sz:'')+(isTop(nx)?' · '+HOTB:nx.asset?' · ★ CARD':'')+(isTop(nx)?'':nx.dg?' · DG on site':nx.gr?' · Growth on site':'')+(nx.mk?' · '+nx.mk.length+' mktr'+(nx.mk.length>1?'s':''):'')+(nx.note?' · '+nx.note:'');
+ne.dataset.b=nx.b; dn.style.display='';
+}else{
+document.getElementById('nbo').textContent='';
+document.getElementById('nco').textContent='All done — '+TOTAL+'/'+TOTAL+' 🎉';
+document.getElementById('nsub').textContent='';
+ne.dataset.b=''; dn.style.display='none';
+}
+}
+function refresh(){ renderList(); paintMap(); updateStats(); syncCodeBox(); }
+let sheetB=null;
+const sheet=document.getElementById('sheet'), scrim=document.getElementById('scrim');
+function showSheet(s){
+sheetB=s.b;
+document.getElementById('sbo').textContent=BL(s);
+document.getElementById('sco').innerHTML=esc(s.co)+SZC(s);
+const hot=isTop(s);
+document.getElementById('sstar').style.display=(s.asset&&!hot)?'':'none';
+const sn=document.getElementById('snote');
+const info=[s.sz,s.note].filter(Boolean).join(' · ');
+if(info){sn.textContent=info;sn.style.display='';}else{sn.style.display='none';}
+let sh=document.getElementById('shist');if(!sh){sh=document.createElement('div');sh.id='shist';sh.className='shist';sn.parentNode.insertBefore(sh,sn.nextSibling);}
+if(s.hist){sh.innerHTML='<b>🗂 Past conversations (other events, not at this booth)</b><br>'+esc(s.hist);sh.style.display='';}else sh.style.display='none';
+const sdg=document.getElementById('sdg');
+sdg.style.display=(s.dg||s.gr||hot)?'':'none';
+sdg.textContent=hot?HOTB:(s.dg?'DG':'GRW');
+sdg.style.background=hot?'var(--hot)':'var(--dg)';
+document.getElementById('smk').innerHTML = s.mk
+? mkRows(s.mk)
+: '';
+const nb=document.getElementById('snotebox'); if(nb) nb.value=notes[s.b]||'';
+const sv=document.getElementById('svisit');
+sv.textContent=done.has(s.b)?'↺ Not yet':'✓ Mark visited';
+sv.classList.toggle('prime',!done.has(s.b));
+sheet.classList.add('show'); scrim.classList.add('show');
+}
+function stashNote(){ if(sheetB==null)return;
+  const nb=document.getElementById('snotebox'); if(!nb)return;
+  const v=nb.value.trim(); if(v)notes[sheetB]=v; else delete notes[sheetB]; }
+function hideSheet(){stashNote();sheet.classList.remove('show');scrim.classList.remove('show');sheetB=null;save();renderList();}
+document.getElementById('sclose').addEventListener('click',hideSheet);
+scrim.addEventListener('click',()=>{ if(Date.now()-(window.__openAt||0)>400) hideSheet(); });
+document.getElementById('svisit').addEventListener('click',()=>{
+if(sheetB==null)return;
+const b=sheetB, s=RAW.find(x=>x.b===b), on=!done.has(b);
+stashNote(); hideSheet(); setDone(b,on);
+showToast(on?('✓ '+s.b+' '+s.co+' done'):(s.b+' '+s.co+' back on the list'));
+});
+document.getElementById('slist').addEventListener('click',()=>{
+if(sheetB==null)return;
+const b=sheetB;hideSheet();
+view='list';
+document.querySelectorAll('.vswitch button').forEach(x=>x.classList.toggle('on',x.dataset.view==='list'));
+document.querySelector('.list-view').classList.add('on');
+document.querySelector('.map-view').classList.remove('on');
+if(filter!=='all'||search){filter='all';search='';document.getElementById('search').value='';document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));renderList();}
+const e=list.querySelector('.stop[data-b="'+b+'"]');
+if(e){e.scrollIntoView({behavior:'smooth',block:'center'});e.classList.add('flash');setTimeout(()=>e.classList.remove('flash'),1100);}
+});
+document.getElementById('ninfo').addEventListener('click',function(){
+const b=document.getElementById('next').dataset.b;if(!b)return;
+if(view==='map'){const g=floor.querySelector('.dot[data-b="'+b+'"]');if(g){showToast('Next: '+b+' · '+STOPS.find(s=>s.b==b).co);}return;}
+if(filter!=='all'||search){filter='all';search='';document.getElementById('search').value='';document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));renderList();}
+const e=list.querySelector('.stop[data-b="'+b+'"]');if(e){e.scrollIntoView({behavior:'smooth',block:'center'});e.classList.add('flash');setTimeout(()=>e.classList.remove('flash'),1100);}
+});
+document.getElementById('ndone').addEventListener('click',function(ev){
+ev.stopPropagation();
+const b=+document.getElementById('next').dataset.b;if(!b)return;
+const justDone=STOPS.find(s=>s.b===b);
+setDone(b,true);
+const nx=STOPS.find(x=>!done.has(x.b));
+showToast('✓ '+justDone.b+' '+justDone.co+' done'+(nx?'  →  next: '+nx.b+' '+nx.co:'  ·  route complete!'));
+});
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{filter=c.dataset.f;if(search){search='';document.getElementById('search').value='';}document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));renderList();}));
+document.querySelectorAll('.vswitch button').forEach(b=>b.addEventListener('click',()=>{
+view=b.dataset.view;document.querySelectorAll('.vswitch button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelector('.list-view').classList.toggle('on',view==='list');
+document.querySelector('.map-view').classList.toggle('on',view==='map');
+if(view==='map'){buildMap();paintMap();applyMapFocus(false);}
+}));
+document.getElementById('reset').addEventListener('click',()=>{if(done.size===0||confirm('Clear all checked stops?')){done.clear();seq=[];notes={};save();refresh();}});
+document.querySelectorAll('.modew button').forEach(b=>b.addEventListener('click',()=>{
+mode=b.dataset.m; STOPS = mode==='prio' ? PRIO : SWEEP;
+document.querySelectorAll('.modew button').forEach(x=>x.classList.toggle('on',x===b));
+refresh();
+showToast(mode==='prio' ? 'Priority order: '+Object.values(TIERL).map(t=>t.split('—')[0].trim()).join(' → ') : 'Walk order: aisle 1000s → 13000s, snaking up and back');
+}));
+function pruneUI(){
+  const NEED={asset:HAS_ASSET, dg:HAS_DG, mk:HAS_MK,
+              hot:(HAS_ASSET&&HAS_DG)||HAS_RANK, prio:HAS_PRIO, nof:NOFLOOR.length>0};
+  document.querySelectorAll('[data-need]').forEach(el=>{
+    if(!el.dataset.need.split(' ').every(n=>NEED[n]))el.remove();
+  });
+  const pl=document.getElementById('primelab');
+  if(pl)pl.textContent=PRIME_LAB;
+  if(!HAS_ASSET){
+    /* no ★ model at this event - name the top tier after what it really is */
+    const hc=document.querySelector('.chip[data-f="hot"]');
+    if(hc)hc.textContent=(TIERL[1]||'Priority').split('—')[0].trim();
+    const pb=document.querySelector('.modew button[data-m="prio"]');
+    if(pb)pb.textContent='⚡ '+((TIERL[1]||'Priority').split('—')[0].trim())+' first';
+  }
+  const ft=document.getElementById('foot');
+  if(ft){
+    const bits=[];
+    if(HAS_ASSET&&HAS_DG)bits.push('🔥 = card + DG/growth (hit these first)');
+    if(HAS_ASSET)bits.push('★ = card booth');
+    if(HAS_DG)bits.push('green DG/GRW = demand-gen or growth marketer on site');
+    if(HAS_MK)bits.push('purple pill = marketers on file, tap it for names');
+    bits.push('size chip: green = 200–10k emp (ICP band), blue = over 10k, grey = under 200','tap a row to check it off','tap ✎ for the brief and your notes');
+    if(HAS_PRIO)bits.push('Priority-first mode reorders the walk by tier; progress and save codes work in both modes');
+    ft.textContent=bits.join(' · ');
+  }
+}
+function boot(){
+try{ pruneUI(); }catch(e){}
+try{ const t=document.getElementById('apptitle'); if(t)t.textContent=EVENT.title; document.title=EVENT.title+' · Card Play'; }catch(e){}
+try{
+if(!HAS_MAP){
+const sw=document.querySelector('.vswitch'); if(sw) sw.style.display='none';
+const mv=document.querySelector('.map-view'); if(mv) mv.remove();
+view='list'; document.querySelector('.list-view').classList.add('on');
+}
+}catch(e){}
+renderList();renderNofloor();updateStats();syncCodeBox();
+}
+boot();
+(async()=>{try{await load();}catch(e){}if(!window.__stored&&!done.size&&typeof SEED!=='undefined'&&SEED.length){hydrate({d:SEED,s:SEED,n:{}});save();}if(done.size)boot();})();
+
+/* ===== map search + map filters (Jack, 9/17) =====
+   Search finds a booth, company, person or landmark on the floor. Filters are
+   the same chips as the list: To-do, Hot, Card, DG. The two combine (AND).
+   Hits light up, everything else fades. A search also zooms to fit its hits;
+   a filter on its own leaves your zoom alone so the whole floor stays readable. */
+let msearch='', mfilter='all';
+const passMF=s=> mfilter==='all' ? true
+  : mfilter==='todo' ? !done.has(s.b)
+  : mfilter==='hot'  ? tierOf(s)===1
+  : mfilter==='asset'? !!s.asset
+  : mfilter==='dg'   ? !!(s.dg||s.gr) : true;
+const MFL={todo:'still to go',hot:'hot booths',asset:'card booths',dg:'DG or growth on site'};
+function zoomToPoints(pts){
+  let x0=Math.min(...pts.map(p=>p[0])), x1=Math.max(...pts.map(p=>p[0]));
+  let y0=Math.min(...pts.map(p=>p[1])), y1=Math.max(...pts.map(p=>p[1]));
+  const pad=7; x0-=pad; x1+=pad; y0-=pad; y1+=pad;
+  const ar=VB0.w/VB0.h;
+  let w=Math.max(x1-x0, VB0.w/2.5), h=Math.max(y1-y0, (VB0.w/2.5)/ar);
+  if(w/h>ar) h=w/ar; else w=h*ar;
+  vb={x:(x0+x1)/2-w/2, y:(y0+y1)/2-h/2, w:w, h:h};
+  clampVB(); applyVB();
+}
+function applyMapFocus(zoomForQuery){
+  if(!mapBuilt) return;
+  const q=msearch, r=document.getElementById('mresult'), active=!!q||mfilter!=='all';
+  document.getElementById('mclearx').classList.toggle('show',!!q);
+  const hitB=new Set(), hitL=new Set();
+  RAW.forEach(s=>{ if(passMF(s)&&(!q||matches(s,q))) hitB.add(s.b); });
+  if(q) LANDMARKS.forEach(m=>{ if(m.l.toLowerCase().includes(q)) hitL.add(m.l); });
+  floor.classList.toggle('searching',active);
+  floor.querySelectorAll('.dot').forEach(g=>{ const hit=hitB.has(+g.dataset.b);
+    g.classList.toggle('dim', active && !hit); g.classList.toggle('hitd', active && hit); });
+  floor.querySelectorAll('.lm').forEach(x=>x.classList.toggle('hitl', !!q && hitL.has(x.dataset.l)));
+  r.onclick=null; r.style.cursor='';
+  if(zoomForQuery&&!q) resetZoom();
+  if(!active){ r.className='result'; r.innerHTML=''; if(zoomForQuery) resetZoom(); return; }
+  const placed=RAW.filter(s=>hitB.has(s.b)&&s.x!=null);
+  const unplaced=RAW.filter(s=>hitB.has(s.b)&&s.x==null);
+  const lms=LANDMARKS.filter(m=>hitL.has(m.l));
+  if(q&&zoomForQuery){ const pts=placed.map(s=>[s.x,s.y]).concat(lms.map(m=>[m.x+m.w/2,m.y+m.h/2]));
+    if(pts.length) zoomToPoints(pts); else resetZoom();
+    requestAnimationFrame(()=>floor.scrollIntoView({behavior:'smooth',block:'nearest'})); }
+  const unp='';
+  if(!q){ // filter only: a count line, whole floor stays in view
+    r.className='result show '+(placed.length?'yes':'no');
+    const dnc=placed.filter(s=>done.has(s.b)).length;
+    r.innerHTML=placed.length? '<b>'+placed.length+'</b> '+MFL[mfilter]+' on the map'+(dnc?' · '+dnc+' already visited':'')+unp
+                             : 'No '+MFL[mfilter]+' left on the map.'+unp;
+    return; }
+  if(placed.length===1&&!lms.length){
+    const s=placed[0], dn=done.has(s.b);
+    r.className='result show yes';
+    r.innerHTML='<b>'+BL(s)+'</b> '+esc(s.co)+(dn?' · already visited':'')+(s.zone?'<br><span style="font-size:12px;color:var(--muted)">'+esc(s.zone)+'</span>':'')+'<br><span style="font-size:12px">tap here or the dot for the brief</span>';
+    r.style.cursor='pointer'; r.onclick=()=>showSheet(s);
+  }else if(placed.length||lms.length){
+    r.className='result show yes';
+    const bits=placed.slice(0,4).map(s=>esc(s.co)+' <b>'+BL(s)+'</b>').concat(lms.map(m=>esc(m.l)+' <b>landmark</b>'));
+    r.innerHTML=(placed.length?placed.length+' booth'+(placed.length>1?'s':'')+' lit up':lms.length+' landmark'+(lms.length>1?'s':''))+(mfilter!=='all'?' ('+MFL[mfilter]+')':'')+(placed.length>4?' · first 4: ':': ')+bits.join(', ')+unp;
+  }else if(unplaced.length){
+    r.className='result show no';
+    r.innerHTML=unplaced.map(s=>esc(s.co)).join(', ')+(unplaced.length>1?' are':' is')+' on the list, <b>not on the map</b>.';
+  }else{
+    r.className='result show no';
+    r.innerHTML='Nothing on the map matches "<b>'+esc(q)+'</b>"'+(mfilter!=='all'?' under '+MFL[mfilter]:'')+'.';
+  }
+}
+const msEl=document.getElementById('msearch');
+if(msEl){msEl.addEventListener('input',()=>{msearch=msEl.value.trim().toLowerCase();applyMapFocus(true);});
+msEl.addEventListener('keydown',e=>{if(e.key==='Enter')msEl.blur();});
+document.getElementById('mclearx').addEventListener('click',()=>{msEl.value='';msearch='';applyMapFocus(true);msEl.focus();});}
+document.querySelectorAll('#mfilters .chip').forEach(c=>c.addEventListener('click',()=>{
+  mfilter=c.dataset.mf; document.querySelectorAll('#mfilters .chip').forEach(x=>x.classList.toggle('on',x===c)); applyMapFocus(false); }));
+
+const searchEl=document.getElementById('search');
+searchEl.addEventListener('input',()=>{search=searchEl.value.trim().toLowerCase();renderList();});
+const codeOut=document.getElementById('codeout'), codeIn=document.getElementById('codein');
+syncCodeBox();
+document.getElementById('copycode').addEventListener('click',()=>{
+const c=encodeState();codeOut.value=c;
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(c).then(()=>showToast('Code copied — paste it into Notes to save'),()=>{codeOut.select();showToast('Tap & hold the code to copy');});
+} else { codeOut.select();showToast('Tap & hold the code to copy'); }
+});
+document.getElementById('restorecode').addEventListener('click',()=>{
+if(!codeIn.value.trim()){showToast('Paste a saved code first');return;}
+const _v=(codeIn.value||'').trim();if(_v.indexOf('CPF1:')===0){try{const _j=new TextDecoder().decode(Uint8Array.from(atob(_v.slice(5).replace(/\s+/g,'')),c=>c.charCodeAt(0)));const _o=JSON.parse(_j);hydrate(_o);save();refresh();codeIn.value='';showToast('Restored '+done.size+' ticks and '+Object.keys(notes).length+' notes');return;}catch(e){showToast('Backup string looks corrupted');return;}}done=decodeState(codeIn.value);seq=[...done];save();refresh();codeIn.value='';
+showToast('Restored — '+done.size+' stops checked off');
+});
+document.getElementById('clearx').addEventListener('click',()=>{searchEl.value='';search='';searchEl.focus();renderList();});
+
+/* ===== debrief: what you worked, with your notes, for the follow-up pipeline ===== */
+function debrief(){
+  const visited=PRIO.filter(s=>done.has(s.b));
+  const L=['# '+EVENT.title+' — floor debrief','',
+    visited.length+' of '+TOTAL+' booths worked · '+visited.filter(s=>s.asset).length+' of '+ASSETS+' ★',''];
+  [1,2,3,4,5].forEach(t=>{
+    const g=visited.filter(s=>tierOf(s)===t); if(!g.length)return;
+    L.push('## '+TIERL[t],'');
+    g.forEach(s=>{
+      const f=[s.sz,s.dg?'DG on site':s.gr?'growth on site':null,s.asset?'★ card':null].filter(Boolean).join(' · ');
+      L.push('- **'+s.co+'** ('+BL(s)+')'+(f?' — '+f:''));
+      if(s.mk&&s.mk.length)L.push('    - marketers: '+s.mk.slice(0,4).map(m=>m[0]+' ('+m[1]+')').join('; '));
+      if(s.hist)L.push('    - history: '+s.hist);
+      if(notes[s.b]&&notes[s.b].trim())L.push('    - NOTE: '+notes[s.b].trim().replace(/\n+/g,' '));
+    });
+    L.push('');
+  });
+  const missed=PRIO.filter(s=>tierOf(s)===1&&!done.has(s.b));
+  if(missed.length)L.push('## Hot booths not reached','',...missed.map(s=>'- '+s.co+' ('+BL(s)+')'),'');
+  return L.join('\n');
+}
+const xb=document.getElementById('exportbtn');
+if(xb)xb.addEventListener('click',()=>{
+  if(!done.size){showToast('Nothing to export yet');return;}
+  const t=debrief();
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(()=>showToast('Debrief copied'),()=>showToast('Copy failed'));
+  }else showToast('Copy failed');
+});
+
+
+(function(){
+  const btn=document.getElementById('copyall'); if(!btn) return;
+  btn.addEventListener('click',()=>{
+    try{
+      const blob={d:[...done],s:seq,n:notes};
+      const json=JSON.stringify(blob);
+      const b64=btoa(Array.from(new TextEncoder().encode(json),c=>String.fromCharCode(c)).join(''));
+      const str='CPF1:'+b64;
+      const co=document.getElementById('codeout'); if(co) co.value=str;
+      const n=Object.keys(notes).length;
+      const msg='Full backup copied: '+done.size+' ticks, '+n+' note'+(n===1?'':'s');
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(str).then(()=>showToast(msg),()=>showToast('In the box above, copy it by hand'));
+      } else showToast('In the box above, copy it by hand');
+    }catch(e){ showToast('Could not build backup'); }
+  });
+})();
+
+
+/* ===== debrief as a real .md file (downloads capability, null-safe) ===== */
+(async()=>{
+  try{
+    if(!(window.claude&&claude.use))return;
+    const dl=await claude.use('downloads'); if(!dl)return;
+    const sb=document.getElementById('savebtn'); if(!sb)return;
+    sb.style.display='';
+    sb.addEventListener('click',async()=>{
+      if(!done.size){showToast('Nothing to export yet');return;}
+      try{
+        await dl.save({filename:'unbound-2026-debrief.md',data:debrief()});
+        showToast('Debrief saved');
+      }catch(e){
+        const c=(e&&e.code)||'unavailable';
+        if(c==='declined')showToast('Save cancelled');
+        else if(c==='rate_limited')showToast('Try that again in a moment');
+        else {showToast('Save unavailable, use Copy');sb.style.display='none';}
+      }
+    });
+  }catch(e){}
+})();
+
+/* ===== home-screen dressing (the host page owns the document head) ===== */
+(function pwa(){
+  const short=EVENT.short||EVENT.title.split('·').pop().trim();
+  const add=(tag,attrs)=>{const e=document.createElement(tag);
+    for(const k in attrs)e.setAttribute(k,attrs[k]);document.head.appendChild(e);};
+  add('meta',{name:'apple-mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'apple-mobile-web-app-status-bar-style',content:'default'});
+  add('meta',{name:'apple-mobile-web-app-title',content:short});
+  add('meta',{name:'theme-color',content:'#e0601f'});
+  if(typeof ICON==='string'&&ICON.indexOf('data:image')===0){
+    add('link',{rel:'apple-touch-icon',sizes:'180x180',href:ICON});
+    add('link',{rel:'icon',type:'image/png',href:ICON});
+    try{ const man={name:EVENT.title,short_name:short,display:'standalone',
+      background_color:'#f4f1ea',theme_color:'#e0601f',orientation:'portrait',
+      icons:[{src:ICON,sizes:'180x180',type:'image/png',purpose:'any maskable'}]};
+      add('link',{rel:'manifest',href:URL.createObjectURL(new Blob([JSON.stringify(man)],{type:'application/manifest+json'}))});
+    }catch(e){}
+  }
+})();
+
+</script>
+</body></html>
