@@ -298,6 +298,11 @@ svg.floor{touch-action:pan-y;user-select:none;-webkit-user-select:none}svg.floor
 .br .bt i.g{background:#a59f93}
 .seg tr.me td{background:var(--A-soft);font-weight:700}
 .stop.done .skp{display:inline;font:600 9.5px 'IBM Plex Mono',monospace;color:var(--muted);margin-left:6px;text-decoration:none}
+.heat{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:8px;overflow:hidden}
+.heat svg{width:100%;height:auto;display:block;aspect-ratio:126/95;border-radius:8px;background:var(--paper)}
+.heat svg circle{cursor:pointer}
+.hleg{display:flex;flex-wrap:wrap;gap:5px 12px;padding:8px 2px 2px;font:500 10.5px 'IBM Plex Mono',monospace;color:var(--ink)}
+.hleg span{display:inline-flex;align-items:center;gap:5px}.hleg i{width:11px;height:11px;border-radius:50%;display:inline-block;border:1px solid #fff;box-shadow:0 0 0 1px var(--line)}
 </style>
 
 <div class="app">
@@ -384,7 +389,7 @@ Progress auto-saves as you tap. To be safe, tap <b>Copy</b> now and then and kee
 <div class="legnote">green = the last booth you checked off, so roughly where you're standing · solid line = your heading<br>dashed line = the path still ahead, in walking order</div>
 <div class="maphint">Tap a dot for the brief. Tapping never checks a booth off. Pinch to zoom, FIT to go back to the whole floor.<br>Swipe up or down anywhere to scroll the page. Once you pinch in, the map takes the drag until you hit FIT.<br>The background is the Hub map from your event-app screenshots, with every dot placed on its booth from the printed number. A handful sit at block level where a pin hid the number; their brief says so. Meeting rooms and Oracle demo areas carry no dots: only booths from the official sponsor catalog are here.</div>
 </div>
-<div class="view stats-view"><div class="stwrap"><div class="stbtns"><button id="st_sum" class="prime">⤒ Copy leadership summary</button><button id="st_csv">⤓ Download CSV</button><button id="st_csvc">Copy CSV (for Sheets)</button><button id="st_deb">Copy debrief</button></div><div id="statsbody"></div><p class="mt">Everything here comes from what you tap in each brief. A plain Mark visited with no chips counts as Nothing there (unqualified, or nobody who could route you), which is the normal result at most booths. Only tap chips when something happened, and use Skip for booths that should not count at all. The CSV has one row per booth with every field.</p></div></div>
+<div class="view stats-view"><div class="stwrap"><div class="stbtns"><button id="st_sum" class="prime">⤓ Download ALL data (JSON)</button><button id="st_json" class="prime">Copy ALL data (JSON)</button><button id="st_csv">⤓ Download CSV</button><button id="st_csvc">Copy CSV (for Sheets)</button><button id="st_deb" style="grid-column:1/-1">Copy debrief (markdown)</button></div><div id="statsbody"></div><p class="mt">Everything here comes from what you tap in each brief. A plain Mark visited with no chips counts as Nothing there (unqualified, or nobody who could route you), which is the normal result at most booths. Only tap chips when something happened, and use Skip for booths that should not count at all. Copy ALL data is the one to paste to Claude after the show: every booth with its pre-show context, your log, timestamps and the stats, in one JSON blob. The CSV is the same per-booth data for Sheets.</p></div></div>
 </div>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet">
@@ -1190,6 +1195,7 @@ function renderStats(){
   if(ge.length)h+='<h3>Known incumbents at booths you visited <span>pre-show data</span></h3>'+bars(ge,Math.max(...ge.map(x=>x[1])),'m');
   if(S.SK.length)h+='<h3>Skipped <span>'+S.SK.length+' booths, out of every rate</span></h3>'+bars(Object.entries(S.skipBy).sort((a,b)=>b[1]-a[1]),Math.max(...Object.values(S.skipBy)),'g');
   h+=benchHTML(S);
+  h+=heatHTML();
   h+='<h3>Floor coverage by aisle</h3>'+bars(S.aisle.map(a=>[a.lab,a.vis,'/'+a.total]),Math.max(...S.aisle.map(a=>a.total)),'a');
   if(P){
     h+='<h3>Pace</h3><div class="tiles">'+tile(P.bph?P.bph.toFixed(1):'-','booths / active hr','')+tile(P.med!=null?Math.round(P.med)+'<small>min</small>':'-','median per booth','')+tile(P.active.toFixed(1)+'<small>h</small>','active floor time','gaps over 20 min excluded')+'</div>';
@@ -1203,6 +1209,17 @@ function renderStats(){
   if(rf.length)h+='<h3>Names and teams to follow up</h3><ul class="lst">'+rf.map(s=>'<li data-ob="'+s.b+'"><b>'+esc(s.co)+'</b>'+[['o:owner','qualified'],['o:name','ask for'],['o:dept','team']].filter(([c])=>has(s.b,c)).map(([c,l])=>' · '+l+': '+esc(refOf(s.b,c)||'(not typed)')).join('')+'</li>').join('')+'</ul>';
   el_.innerHTML=h;
   el_.querySelectorAll('[data-ob]').forEach(x=>x.addEventListener('click',()=>{const s=RAW.find(r=>r.b===+x.dataset.ob);if(s){window.__openAt=Date.now();showSheet(s);}}));
+}
+function heatHTML(){
+  if(!HAS_MAP||typeof VB0==='undefined')return '';
+  const col=s=>{const b=s.b;
+    if(SKIPPED(b))return ['#b8b2a6','skipped'];
+    if(done.has(b))return ['#0e7a5f','visited'];
+    return tierOf(s)===1?['#c0392b','hot, still to go']:['#e0601f','still to go'];};
+  const dots=RAW.filter(s=>s.x!=null&&SZOK(s)).map(s=>{const [c,l]=col(s);const r=done.has(s.b)?1.7:(tierOf(s)===1?1.5:1.1);return '<circle cx="'+s.x+'" cy="'+s.y+'" r="'+r+'" fill="'+c+'" stroke="#fff" stroke-width="0.35" data-ob="'+s.b+'"><title>'+esc(BL(s)+' '+s.co+': '+l)+'</title></circle>';}).join('');
+  const img=(typeof BGIMG!=='undefined'&&BGIMG)?'<image href="'+BGIMG+'" x="'+VB0.x+'" y="'+VB0.y+'" width="'+VB0.w+'" height="'+VB0.h+'" preserveAspectRatio="none" opacity="0.55"/>':'';
+  const leg=[['#0e7a5f','visited'],['#b8b2a6','skipped'],['#c0392b','hot, still to go'],['#e0601f','still to go']].map(([c,l])=>'<span><i style="background:'+c+'"></i>'+l+'</span>').join('');
+  return '<h3>Where you have been <span>tap a dot for its brief'+(typeof min100!=='undefined'&&min100?' · 100+ emp only':'')+'</span></h3><div class="heat"><svg viewBox="'+VB0.x+' '+VB0.y+' '+VB0.w+' '+VB0.h+'" preserveAspectRatio="xMidYMid meet">'+img+dots+'</svg><div class="hleg">'+leg+'</div></div>';
 }
 function fmtLog(b){
   const t=tg(b); if(!t.length)return done.has(b)?'Nothing there (plain check-off)':'';
@@ -1249,6 +1266,14 @@ function benchHTML(S){
   const rows=[{event:'This event',floor:S.floor,worked:S.V.length,convos:S.conv.length,qualified:S.owner,refs:S.nameR+S.deptR,meetings:S.mtg}].concat(BENCH);
   return '<h3>Vs past events</h3><table class="seg"><tr><th></th><th>Worked</th><th>Convo %</th><th>Qual</th><th>Refs</th><th>Mtgs</th></tr>'+rows.map((e,i)=>'<tr'+(i?'':' class="me"')+'><td>'+esc(e.event)+'</td><td>'+e.worked+'<small>/'+e.floor+'</small></td><td>'+pct(e.convos,e.worked)+'%</td><td>'+e.qualified+'</td><td>'+e.refs+'</td><td>'+e.meetings+'</td></tr>').join('')+'</table>';
 }
+function fullExport(){
+  const S=stats();
+  const booths=SWEEP.map(s=>{const t=tg(s.b);const o={booth:BL(s),id:s.b,company:s.co,tier:tierOf(s),tier_label:(TIERL[tierOf(s)]||'').replace(' — ',': '),card_list:!!s.asset,employees:s.emp||null,size_estimate:!!s.est,size_band:bandOf(s),under_100:!!(s.emp&&s.emp<100),aisle:(GROUPL[s.z]||''),walk_order:s.w,on_map:s.x!=null,webinar_program_confirmed:!!s.web,pre_show_tool:s.pt||null,pre_show_tool_key:s.pk||null,context:s.cx||null,prev_convos:s.pc||null,note:s.note||null,history:s.hist||null,
+    visited:done.has(s.b)&&!SKIPPED(s.b),skipped:SKIPPED(s.b)?skipLab(s.b):null,visited_at:tms[s.b]?new Date(tms[s.b]).toISOString():null,bare_checkoff:BARE(s.b)&&!SKIPPED(s.b),
+    outcomes:t.filter(c=>c.startsWith('o:')).map(c=>TAGLAB[c]),interest:(t.find(c=>c.startsWith('i:'))||'').slice(2)||null,talked_to:t.filter(c=>c.startsWith('w:')).map(c=>TAGLAB[c]),confirmed_tool:(t.find(c=>c.startsWith('p:'))||'').slice(2)||null,tool_match:toolMatch(s),conversation:isConvo(s.b),qualified:has(s.b,'o:owner'),
+    details:refs[s.b]||null,notes:notes[s.b]||null,tags_raw:t};return o;});
+  return JSON.stringify({format:'CARDPLAY-FULL-v1',event:EVENT.title,key:EVENT.key,exported_at:new Date().toISOString(),stats:statsJSON(S),booths:booths,no_booth_sponsors:NOFLOOR.map(n=>({company:n.co,employees:n.emp||null,note:n.note||null})),state:JSON.parse(payload())},null,1);
+}
 function csv(){
   const q=v=>{v=v==null?'':String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
   const H=['booth','company','tier','card_list','employees','size_band','aisle','visited','skipped','visited_at','pre_show_tool','confirmed_tool','tool_match','outcomes','interest','talked_to','owner','referral_name','referral_team','meeting','conversation','notes','status','prior_intel'];
@@ -1269,7 +1294,8 @@ function copyText(t,msg){
 }
 (function(){
   const g=id=>document.getElementById(id);
-  if(g('st_sum'))g('st_sum').addEventListener('click',()=>copyText(leaderSummary(),'Leadership summary copied'));
+  if(g('st_sum'))g('st_sum').addEventListener('click',async()=>{const ok=await saveFile('oracle-ai-world-2026-full.json',fullExport(),'application/json');if(!ok)copyText(fullExport(),'Full JSON copied');});
+  if(g('st_json'))g('st_json').addEventListener('click',()=>copyText(fullExport(),'Full JSON copied, paste it to Claude'));
   if(g('st_csv'))g('st_csv').addEventListener('click',async()=>{const ok=await saveFile('oracle-ai-world-2026-booths.csv',csv(),'text/csv');if(!ok)copyText(csv(),'CSV copied');});
   if(g('st_csvc'))g('st_csvc').addEventListener('click',()=>copyText(csv(),'CSV copied, paste into Sheets'));
   if(g('st_deb'))g('st_deb').addEventListener('click',()=>copyText(debrief(),'Debrief copied'));
