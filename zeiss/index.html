@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Visionary minds. Enhanced by AI | Live Webinar | ZEISS</title>
+<meta name="description" content="How ZEISS improves quality of life and drives progress with AI, from the fab to the lab. Streaming live and on-demand on zeiss.com.">
+<meta property="og:title" content="Visionary minds. Enhanced by AI | Live Webinar">
+<meta property="og:description" content="How ZEISS improves quality of life and drives progress. A live session on AI from the fab to the lab, streaming on zeiss.com.">
+<meta property="og:image" content="https://www.zeiss.com/content/dam/cco/reference-master/about-us/future/research-and-technology/artificial-intelligence/images/ai_at_zeiss_key-visual_alt_16-9.jpg/_jcr_content/renditions/original.image_file.1200.675.file/ai_at_zeiss_key-visual_alt_16-9.jpg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/zeiss/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.zeiss.com/etc.clientlibs/zeiss-aem-app/jupiter/clientlibs/jupiter-components.app/resources/assets/favicons/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.zeiss.com/etc.clientlibs/zeiss-aem-app/jupiter/clientlibs/jupiter-components.app/resources/assets/favicons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link rel="preload" as="image" href="https://www.zeiss.com/content/dam/cco/reference-master/about-us/future/research-and-technology/artificial-intelligence/images/ai_at_zeiss_key-visual_alt_3-1.jpg/_jcr_content/renditions/original.image_file.1920.640.file/ai_at_zeiss_key-visual_alt_3-1.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#32373e;        /* zeiss.com heading ink */
+  --sub:#606a76;        /* zeiss.com secondary text */
+  --night:#0e0f11;      /* AI page dark section */
+  --bar:#202327;        /* utility strip + legal bar */
+  --blue:#0072ef;       /* ZEISS CTA blue */
+  --blue-d:#005fcc;
+  --brand:#0f2db3;      /* ZEISS logo blue */
+  --mist:#f5f8fa;       /* footer surface */
+  --fog:#e6ebf0;        /* related-sites strip, chips */
+  --line:#dde3e9;
+  --sh-sm:0 2px 8px rgba(14,15,17,.06);
+  --sh-md:0 16px 38px rgba(14,15,17,.10);
+  --sh-lg:0 28px 64px rgba(14,15,17,.16);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Fira Sans','Helvetica Neue',Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-weight:800;line-height:1.1;letter-spacing:-.01em}
+.wrap{max-width:1272px;margin:0 auto;padding:0 32px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+::selection{background:var(--blue);color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}
+.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+
+/* announce */
+.announce{background:var(--blue);color:#fff;font-size:14px;text-align:center;padding:9px 16px}
+.announce a{font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* utility strip (mirrors zeiss.com) */
+.util{background:var(--bar);color:#fff}
+.util .wrap{height:38px;display:flex;align-items:center;gap:8px;font-size:15px}
+.util b{font-weight:600}.util span{color:#9aa4ae;font-weight:300}
+
+/* header */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);transition:box-shadow .3s var(--ease)}
+.nav.scrolled{box-shadow:0 6px 24px rgba(14,15,17,.08)}
+.nav .wrap{display:flex;align-items:center;height:92px;transition:height .3s var(--ease)}
+.nav.scrolled .wrap{height:70px}
+.logo{display:block;flex-shrink:0;margin-right:40px}
+.logo svg{width:46px;height:auto;display:block;transition:width .3s var(--ease)}
+.nav.scrolled .logo svg{width:38px}
+.nav-links{display:flex;gap:24px;align-items:center;font-size:16px}
+.nav-links a{color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+.nav-links a:hover{color:var(--blue)}
+.caret{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:1.4}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:30px;font-size:16px}
+.nav-right a:hover{color:var(--blue)}
+.ico{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2.2}
+.burger{display:none}
+.crumbs{border-top:1px solid #eef1f4;background:#fff}
+.crumbs .wrap{height:42px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink)}
+.crumbs svg{width:8px;height:8px;stroke:var(--ink);fill:none;stroke-width:2}
+.crumbs .cur{color:#8a939d}
+
+/* dark-wrap: hero + embed as one surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--night);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:38% -10% auto -10%;height:60%;background:radial-gradient(closest-side,rgba(0,114,239,.20),transparent 70%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -15% -18% 30%;height:60%;background:radial-gradient(closest-side,rgba(15,45,179,.28),transparent 70%);pointer-events:none}
+
+/* signature device: split key visual with headline over the human half */
+.kv{position:relative;z-index:1;aspect-ratio:3/1;min-height:440px;max-height:620px;width:100%;
+  background:#0e0f11 url("https://www.zeiss.com/content/dam/cco/reference-master/about-us/future/research-and-technology/artificial-intelligence/images/ai_at_zeiss_key-visual_alt_3-1.jpg/_jcr_content/renditions/original.image_file.1920.640.file/ai_at_zeiss_key-visual_alt_3-1.jpg") center/cover no-repeat}
+.kv::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,15,17,.72) 0%,rgba(14,15,17,.35) 38%,rgba(14,15,17,0) 52%),linear-gradient(180deg,rgba(14,15,17,0) 62%,var(--night) 100%)}
+.ai-tag{position:absolute;top:16px;left:18px;z-index:2;font-size:12px;display:flex;align-items:center;gap:5px;color:#fff;opacity:.92}
+.ai-tag svg{width:12px;height:12px;fill:#fff}
+.kv .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center}
+.badge{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);padding:7px 13px;border-radius:3px;margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:#ff4d4f;box-shadow:0 0 0 0 rgba(255,77,79,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,77,79,.55)}70%{box-shadow:0 0 0 10px rgba(255,77,79,0)}100%{box-shadow:0 0 0 0 rgba(255,77,79,0)}}
+.kv h1{font-size:clamp(38px,4.6vw,64px);font-weight:800;max-width:680px;letter-spacing:-.015em}
+.kv h1 .lt{display:block;font-weight:300;letter-spacing:-.01em;margin-top:10px;font-size:.62em;line-height:1.2;max-width:22ch}
+
+.hero{position:relative;z-index:2;padding:6px 0 34px}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:end}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:15px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:7px 14px;border-radius:999px}
+.chip svg{width:15px;height:15px;stroke:#9cc6ff;fill:none;stroke-width:1.8}
+.streams{font-size:17px;color:#c9d1da;font-weight:300}
+.streams b{color:#fff;font-weight:500}
+.local{font-size:13.5px;color:#8f9aa6;margin-top:6px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:11px 32px;border-radius:3px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 24px rgba(0,114,239,.32)}
+.btn-blue:hover{background:var(--blue-d);box-shadow:0 14px 32px rgba(0,114,239,.4)}
+.btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px 20px}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.cd-wrap{justify-self:end;text-align:right}
+.cd-label{color:#8f9aa6;margin-bottom:10px}
+.countdown{display:flex;gap:10px;justify-content:flex-end}
+.cd{min-width:78px;padding:14px 10px 10px;border-radius:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:center}
+.cd b{display:block;font-size:36px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.cd i{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#8f9aa6;margin-top:8px}
+.cd-live{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;justify-content:flex-end}
+.embed-sec{position:relative;z-index:2;padding:6px 0 84px}
+#sequel_root{min-height:520px;border-radius:6px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.45)}
+
+/* stat pull-quote */
+.stat{background:#fff;padding:120px 0 96px}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:end}
+.big{font-size:clamp(120px,17vw,236px);font-weight:800;line-height:.82;letter-spacing:-.04em;color:var(--brand)}
+.big sup{font-size:.42em;vertical-align:top;position:relative;top:.12em;margin-left:.04em;font-weight:700}
+.stat-copy h2{font-size:clamp(26px,2.6vw,36px);max-width:540px;font-weight:700}
+.stat-copy p{font-size:19px;color:var(--sub);margin-top:14px;max-width:520px;font-weight:300}
+.stat-side{display:flex;gap:48px;margin-top:64px;padding-top:28px;border-top:1px solid var(--line)}
+.stat-side div{font-size:15px;color:var(--sub);max-width:300px}
+.stat-side b{display:block;font-size:34px;color:var(--ink);font-weight:700;line-height:1.1;margin-bottom:4px}
+.src{font-size:12.5px;color:#8a939d;margin-top:22px}
+
+/* lede */
+.lede{background:var(--mist);padding:104px 0}
+.lede-grid{display:grid;grid-template-columns:240px 1fr;gap:64px}
+.side-label{position:sticky;top:110px;align-self:start;color:var(--blue)}
+.side-label span{display:block;color:var(--sub);margin-top:8px;letter-spacing:.1em}
+.lede-body{max-width:66ch}
+.lede-body h2{font-size:clamp(30px,3.2vw,44px);margin-bottom:28px;max-width:20ch}
+.lede-body p{font-size:19px;font-weight:300;color:#3e444c;margin-bottom:20px}
+.lede-body p.lead{font-size:23px;font-weight:400;color:var(--ink);line-height:1.5}
+
+/* mechanism band */
+.mech{background:var(--night);color:#fff;padding:110px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:auto auto -40% -10%;width:60%;height:90%;background:radial-gradient(closest-side,rgba(0,114,239,.16),transparent 70%)}
+.mech .wrap{position:relative}
+.mech-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px}
+.mech-head h2{font-size:clamp(32px,3.4vw,48px)}
+.mech-head h2 .lt{font-weight:300;display:block}
+.mech-head p{color:#aab4be;font-size:18px;font-weight:300;max-width:46ch}
+.flow{display:grid;grid-template-columns:1fr 56px 1fr 56px 1fr 56px 1fr;align-items:center}
+.node{border-top:2px solid var(--blue);padding:22px 0 0}
+.node .mono{color:#7fb6ff}
+.node h3{font-size:22px;font-weight:600;margin:10px 0 8px}
+.node p{font-size:15px;color:#aab4be;font-weight:300;line-height:1.5}
+.node svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.2;margin-bottom:14px;display:block}
+.dashes{height:2px;margin:0 10px;align-self:start;margin-top:-1px;background-image:linear-gradient(90deg,var(--blue) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march .9s linear infinite}
+@keyframes march{to{background-position:12px 0}}
+.mech-foot{margin-top:56px;font-size:15px;color:#8f9aa6;display:flex;gap:10px;align-items:center}
+.mech-foot b{color:#fff;font-weight:500}
+
+/* learn rows */
+.learn{padding:110px 0;background:#fff}
+.sec-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px;gap:32px}
+.sec-head h2{font-size:clamp(30px,3.2vw,44px)}
+.sec-head .mono{color:var(--blue)}
+.row{display:grid;grid-template-columns:72px 1fr 1.15fr;gap:32px;padding:36px 18px 36px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--blue);transition:width .6s var(--ease)}
+.row:hover{background:var(--mist)}.row:hover::before{width:100%}
+.row .num{font-family:var(--mono);font-size:13px;color:var(--blue);padding-top:6px;letter-spacing:.1em}
+.row h3{font-size:24px;font-weight:700;line-height:1.25}
+.row h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);font-weight:500;margin-bottom:10px}
+.row p{font-size:17px;color:#4a515a;font-weight:300}
+
+/* speakers */
+.speakers{background:var(--mist);padding:104px 0}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:8px}
+.sp{background:#fff;border-radius:4px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease);box-shadow:var(--sh-sm)}
+.sp:hover{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.sp-ph{aspect-ratio:4/3;background:linear-gradient(135deg,#dfe6ee,#c9d3de);position:relative;display:flex;align-items:flex-end;padding:18px}
+.sp-ph svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:84px;height:84px;fill:#aebccb}
+.sp-ph .mono{position:relative;background:rgba(14,15,17,.75);color:#fff;padding:5px 9px;border-radius:2px;font-size:10.5px}
+.sp-body{padding:22px 22px 26px}
+.sp-body h3{font-size:20px;font-weight:700}
+.sp-body p{font-size:15px;color:var(--sub);margin-top:4px}
+
+/* CTA band */
+.cta-band{background:var(--blue);color:#fff;padding:96px 0;position:relative;overflow:hidden}
+.cta-band::after{content:"";position:absolute;right:-6%;top:-40%;width:46%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.16),transparent 70%)}
+.cta-band .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.cta-band h2{font-size:clamp(32px,3.6vw,52px)}
+.cta-band h2 .lt{font-weight:300;display:block}
+.cta-band p{font-size:18px;margin-top:14px;font-weight:300;max-width:52ch}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.btn-white{background:#fff;color:var(--blue);font-weight:500;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.btn-white:hover{box-shadow:0 16px 36px rgba(0,0,0,.24)}
+.btn-line{border:1px solid rgba(255,255,255,.7);color:#fff}
+.btn-line:hover{background:rgba(255,255,255,.1)}
+
+/* footer (mirrors zeiss.com) */
+.backtop{background:#fff}
+.backtop .wrap{display:flex;justify-content:flex-end;padding-top:40px;padding-bottom:40px}
+.backtop a{color:var(--blue);font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.backtop svg{width:14px;height:14px;stroke:var(--blue);fill:none;stroke-width:2}
+.related{background:var(--fog)}
+.related .wrap{display:flex;gap:32px;align-items:center;min-height:86px;font-size:19px;flex-wrap:wrap}
+.related b{font-weight:600}.related a{color:var(--sub)}.related a:hover{color:var(--blue)}
+.foot{background:var(--mist);padding:48px 0 32px}
+.fcols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:0 24px}
+.fcols h4{font-size:15px;font-weight:700;letter-spacing:.02em;margin-bottom:22px;color:var(--ink)}
+.fcols a{display:block;font-size:18px;color:var(--sub);margin-bottom:24px;font-weight:300}
+.fcols a:hover{color:var(--blue)}
+.selects{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.sel{background:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:300}
+.sel small{display:block;font-size:14px;color:var(--sub)}
+.sel svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2.2}
+.legal{background:var(--bar)}
+.legal .wrap{display:flex;gap:34px;align-items:center;min-height:40px;font-size:13.5px;color:#fff;flex-wrap:wrap}
+.legal a:hover{text-decoration:underline}
+
+/* responsive */
+@media (max-width:1000px){
+  .nav-links{display:none}.burger{display:block}
+  .hero-grid,.stat-grid,.mech-head,.cta-band .wrap{grid-template-columns:1fr}
+  .cd-wrap{justify-self:start;text-align:left}.countdown,.cd-live{justify-content:flex-start}
+  .cta-actions{justify-content:flex-start}
+  .flow{grid-template-columns:1fr;gap:34px}.dashes{display:none}
+  .lede-grid{grid-template-columns:1fr;gap:20px}.side-label{position:static}
+  .sp-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .announce{font-size:13px}
+  .nav .wrap{height:70px}.logo svg{width:38px}.nav-right{gap:18px;font-size:15px}
+  .crumbs .wrap{font-size:12px;overflow:hidden;white-space:nowrap}
+  .kv{aspect-ratio:auto;min-height:440px;background-position:22% center}
+  .kv::after{background:linear-gradient(180deg,rgba(14,15,17,.15) 0%,rgba(14,15,17,.55) 55%,var(--night) 100%)}
+  .kv .wrap{justify-content:flex-end;padding-bottom:30px}
+  .cd{min-width:0;flex:1;padding:12px 4px 8px}.cd b{font-size:28px}
+  .btn{padding:11px 22px}
+  .stat{padding:80px 0 64px}.stat-side{flex-direction:column;gap:24px;margin-top:40px}
+  .lede,.mech,.learn,.speakers{padding:72px 0}
+  .row{grid-template-columns:1fr;gap:10px;padding:28px 6px}
+  .sp-grid{grid-template-columns:1fr}
+  .cta-band{padding:72px 0}
+  .related .wrap{gap:14px 24px;padding-top:20px;padding-bottom:20px;font-size:17px}
+  .fcols{grid-template-columns:1fr;padding:0}
+  .selects{grid-template-columns:1fr}
+  .legal .wrap{gap:10px 22px;padding-top:10px;padding-bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="announce" id="announce">Live webinar <span id="annDate">Thursday, December 10</span> &middot; <a href="#watch">Save your seat</a></div>
+
+<div class="util"><div class="wrap"><b>ZEISS Group</b><span>Global</span></div></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="https://www.zeiss.com/corporate/en/home.html" target="_blank" rel="noopener" aria-label="ZEISS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 581 585"><g fill-rule="evenodd"><path d="M571.01 8.866H7.088v567.8l4.006-1.803c88.145-39.665 182.299-59.778 279.458-59.778 97.16 0 191.314 20.113 278.456 59.778l4.007 1.803 1.002-567.8h-3.005" fill="#0F2DB3"/><path d="M77.202 181.488c-27.045 0-29.048 26.694-29.048 26.694h-12.02v-39.545h98.161s0 30.56-29.047 62.994c0 0-27.045 32.072-28.046 46.085h16.026c23.038 0 25.04-26.674 25.04-26.674h13.022v39.625H31.126s-3.005-30.019 31.05-66.499c0 0 22.037-23.899 27.045-42.77l-12.02.09M326.61 290.577v-12.941h-3.005c-5.008 0-10.016-4.407-10.016-9.796v-76.465c0-5.4 5.008-9.806 10.016-9.806h3.005v-12.932h-65.106v12.932h3.004c6.01 0 10.017 4.407 10.017 9.806v76.465c0 5.389-4.007 9.796-10.017 9.796h-3.004v12.941h65.106m-78.128.09v-39.625h-13.021s-3.005 26.674-26.043 26.674h-13.021v-41.588h5.008c5.008 0 10.016 4.397 10.016 9.876v4.948h13.022v-42.68H211.42v4.938c0 5.48-5.008 9.887-10.016 9.887h-5.008v-41.609h13.021c23.038 0 26.043 26.694 26.043 26.694h13.021v-39.645H145.313v13.032h3.005c5.008 0 9.015 4.407 9.015 9.806v76.465c0 5.389-4.007 9.796-9.015 9.796h-3.005v12.941l103.17.09m146.239-109.179c27.044 0 29.047 26.694 29.047 26.694h12.02v-39.545h-93.152s-15.025 19.412 24.039 62.994c0 0 27.044 32.072 28.046 46.085h-16.026c-23.038 0-25.041-26.674-25.041-26.674h-13.022v39.625h94.155s17.027-18.51-25.042-66.499c0 0-23.037-22.917-27.044-42.77l12.02.09m110.18 0c26.043 0 28.046 26.694 28.046 26.694h13.022v-39.545h-94.155s-15.024 19.412 24.04 62.994c0 0 27.044 32.072 28.046 46.085h-16.026c-22.037 0-25.042-26.674-25.042-26.674h-13.02v39.625h94.153s17.028-18.51-25.04-66.499c0 0-22.037-22.917-26.043-42.77l12.02.09" fill="#fff"/></g></svg></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="https://www.zeiss.com/corporate/en/about-zeiss.html" target="_blank" rel="noopener">About us <svg class="caret" viewBox="0 0 12 12"><path d="M2 4.5l4 4 4-4"/></svg></a>
+      <a href="https://www.zeiss.com/corporate/en/products-and-solutions.html" target="_blank" rel="noopener">Products and solutions</a>
+      <a href="https://www.zeiss.com/corporate/en/career.html" target="_blank" rel="noopener">Careers</a>
+    </nav>
+    <div class="nav-right">
+      <a href="https://www.zeiss.com/corporate/en/contact.html" target="_blank" rel="noopener">Contact</a>
+      <a href="https://www.zeiss.com/corporate/en/home.html" target="_blank" rel="noopener" aria-label="Search"><svg class="ico" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="M15 15l6 6"/></svg></a>
+      <a class="burger" href="https://www.zeiss.com/corporate/en/home.html" target="_blank" rel="noopener" aria-label="Menu"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>
+    </div>
+  </div>
+  <div class="crumbs"><div class="wrap">
+    <a href="https://www.zeiss.com/corporate/en/home.html" target="_blank" rel="noopener">Home</a><svg viewBox="0 0 8 8"><path d="M2 1l3 3-3 3"/></svg>
+    <a href="https://www.zeiss.com/corporate/en/about-zeiss.html" target="_blank" rel="noopener">About us</a><svg viewBox="0 0 8 8"><path d="M2 1l3 3-3 3"/></svg>
+    <a href="https://www.zeiss.com/corporate/en/about-zeiss/future/digitalization/artificial-intelligence.html" target="_blank" rel="noopener">Artificial intelligence</a><svg viewBox="0 0 8 8"><path d="M2 1l3 3-3 3"/></svg>
+    <span class="cur">Live webinar</span>
+  </div></div>
+</header>
+
+<main>
+<div class="dark-wrap">
+  <section class="kv" aria-label="Webinar">
+    <div class="ai-tag"><svg viewBox="0 0 12 12"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2zM10 7.5l.5 1.5 1.5.5-1.5.5-.5 1.5-.5-1.5-1.5-.5 1.5-.5z"/></svg>Image generated by AI</div>
+    <div class="wrap">
+      <div class="badge reveal" id="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></div>
+      <h1 class="reveal">Visionary minds. Enhanced by AI<span class="lt">From the fab to the lab: how ZEISS puts AI to work</span></h1>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="chips">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="chipDate">Thu, Dec 10, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="chipTime">4:00 PM CET</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg>45 min</span>
+        </div>
+        <p class="streams">Streaming live and on-demand on <b>zeiss.com</b></p>
+        <p class="local" id="localTime"></p>
+        <div class="cta-row" id="ctaRow">
+          <a class="btn btn-blue" href="#watch">Register for free</a>
+          <a class="btn btn-ghost" id="gcal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M12 13v5M9.5 15.5h5"/></svg>Google Calendar</a>
+          <a class="btn btn-ghost" id="ical" download="zeiss-ai-webinar.ics"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>iCal</a>
+        </div>
+      </div>
+      <div class="cd-wrap reveal">
+        <div class="cd-label mono" id="cdLabel">Starts in</div>
+        <div class="countdown" id="countdown">
+          <div class="cd"><b data-cd="d">00</b><i>DAYS</i></div>
+          <div class="cd"><b data-cd="h">00</b><i>HRS</i></div>
+          <div class="cd"><b data-cd="m">00</b><i>MIN</i></div>
+          <div class="cd"><b data-cd="s">00</b><i>SEC</i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="watch">
+    <div class="wrap reveal"><div id="sequel_root"></div></div>
+  </section>
+</div>
+
+<section class="stat">
+  <div class="wrap">
+    <div class="stat-grid reveal">
+      <div class="big">80<sup>%</sup></div>
+      <div class="stat-copy">
+        <h2>of the world's microchips are manufactured with ZEISS optics.</h2>
+        <p>Modern AI runs on ever smaller, more powerful chips. Those chips start with light passing through ZEISS optics, and AI now runs back through every ZEISS segment.</p>
+      </div>
+    </div>
+    <div class="stat-side stagger">
+      <div><b>100%</b>of the ZEISS segments develop innovations for or with AI.</div>
+      <div><b>&gt;50</b>research institutions cooperate with ZEISS, often on AI-related projects.</div>
+      <div><b>20+ years</b>of ZEISS AI solutions supporting data-driven patient care.</div>
+    </div>
+    <p class="src">Source: ZEISS, "Visionary minds. Enhanced by AI," zeiss.com</p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side-label mono">About this session<span>45 min &middot; Live Q&amp;A</span></div>
+    <div class="lede-body reveal">
+      <h2>Use AI. Shape AI. Enable AI.</h2>
+      <p class="lead">At ZEISS, we both use and shape artificial intelligence while also enabling its continuous advancement.</p>
+      <p>AI is no longer just a vision. It is an integral part of almost all industries and areas of daily life, and generative AI has once again increased the speed of technological innovation. In this live session, ZEISS experts walk through how that potential turns into real breakthroughs for visionaries in science, industry, medicine, and society.</p>
+      <p>We start where AI itself starts: the optics from ZEISS Semiconductor Manufacturing Technology that make microchips smaller, more powerful, and more energy efficient. From there we follow AI into the clinic, the factory floor, and the research lab, with live examples and time for your questions.</p>
+      <p>For us, AI is not an abstract technology. It is a tool that helps generate insights, optimize processes, and improve decisions, used safely, responsibly, and with real benefits for people.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="mech-head reveal">
+      <h2>Where ZEISS uses AI<span class="lt">One thread, four worlds</span></h2>
+      <p>The heart of digitalization beats at ZEISS. The session follows a single line from nanometer-scale chip structures to the cells under a microscope.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="node">
+        <svg viewBox="0 0 34 34"><rect x="8" y="8" width="18" height="18" rx="1.5"/><rect x="12.5" y="12.5" width="9" height="9"/><path d="M12 4v4M17 4v4M22 4v4M12 26v4M17 26v4M22 26v4M4 12h4M4 17h4M4 22h4M26 12h4M26 17h4M26 22h4"/></svg>
+        <span class="mono">01 &middot; The fab</span><h3>Semiconductor manufacturing</h3><p>AI analyzes structures in the nanometer range for more precise chip production.</p>
+      </div>
+      <div class="dashes"></div>
+      <div class="node">
+        <svg viewBox="0 0 34 34"><rect x="5" y="5" width="24" height="24" rx="7"/><path d="M17 11v12M11 17h12"/></svg>
+        <span class="mono">02 &middot; The clinic</span><h3>Medical technology</h3><p>Improving diagnostic accuracy and personalized patient care.</p>
+      </div>
+      <div class="dashes"></div>
+      <div class="node">
+        <svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="5"/><path d="M17 4v4M17 26v4M4 17h4M26 17h4M7.8 7.8l2.8 2.8M23.4 23.4l2.8 2.8M7.8 26.2l2.8-2.8M23.4 10.6l2.8-2.8"/></svg>
+        <span class="mono">03 &middot; The factory</span><h3>Industrial metrology</h3><p>Automated CT, X-ray and microscopy defect analysis for quality assurance.</p>
+      </div>
+      <div class="dashes"></div>
+      <div class="node">
+        <svg viewBox="0 0 34 34"><path d="M13 4h6M16 4v9l-6 8a5 5 0 004 8h6a5 5 0 004-8l-6-8"/><path d="M11 22h12"/></svg>
+        <span class="mono">04 &middot; The lab</span><h3>Industry &amp; science</h3><p>AI along the entire microscopy workflow, from acquisition to analysis.</p>
+      </div>
+    </div>
+    <div class="mech-foot reveal"><span class="dot" style="background:var(--blue);animation:none"></span>Live on <b>zeiss.com</b>, with registrations flowing straight into the ZEISS CRM.</div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>What you'll learn</h2><span class="mono">Four use cases &middot; Live Q&amp;A</span></div>
+    <div class="stagger">
+      <div class="row"><div class="num">01</div><h3><small>Semiconductor Manufacturing Technology</small>How EUV optics lay the foundation for the next generation of AI</h3><p>Why AI's appetite for computing power comes back to ZEISS SMT, and how ZEISS uses AI itself to determine the optimal timing for component replacement in manufacturing equipment.</p></div>
+      <div class="row"><div class="num">02</div><h3><small>Medical Technology</small>Optics meets artificial intelligence in cataract surgery</h3><p>How ZEISS became the first IOL manufacturer to develop and commercialize an AI-powered algorithm for calculating the ideal diopter power of an intraocular lens.</p></div>
+      <div class="row"><div class="num">03</div><h3><small>Research &amp; Quality Solutions</small>AI in smart factories with ZADD</h3><p>How AI automatically detects, segments, and evaluates even small or blurred defects in industrial CT scans, for faster and more reliable quality assurance.</p></div>
+      <div class="row"><div class="num">04</div><h3><small>Life Sciences Solutions</small>AI solutions that simplify microscopy</h3><p>Sample recognition, image acquisition, analysis, and predictive services with ZEISS arivis, ZEISS Axiovert 5, and ZEISS Axioscan 7 spatial biology.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Speakers</h2><span class="mono">ZEISS experts</span></div>
+    <div class="sp-grid stagger">
+      <div class="sp"><div class="sp-ph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg><span class="mono">Semiconductor</span></div><div class="sp-body"><h3>Speaker Name</h3><p>Title, ZEISS Semiconductor Manufacturing Technology</p></div></div>
+      <div class="sp"><div class="sp-ph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg><span class="mono">Medical</span></div><div class="sp-body"><h3>Speaker Name</h3><p>Title, ZEISS Medical Technology</p></div></div>
+      <div class="sp"><div class="sp-ph"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg><span class="mono">Moderator</span></div><div class="sp-body"><h3>Speaker Name</h3><p>Title, ZEISS Group</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <div>
+      <h2>Visionary minds.<span class="lt">Join them live.</span></h2>
+      <p id="ctaSub">45 minutes on AI from the fab to the lab, streaming on zeiss.com. Can't make it live? Register and the recording comes to you.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-white" href="#watch" id="ctaMain">Register for free</a>
+      <a class="btn btn-line" href="https://www.zeiss.com/corporate/en/about-zeiss/future/digitalization/artificial-intelligence.html" target="_blank" rel="noopener">AI at ZEISS</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="backtop"><div class="wrap"><a href="#">Back to top <svg viewBox="0 0 14 14"><path d="M7 12V2M2.5 6.5L7 2l4.5 4.5"/></svg></a></div></div>
+  <div class="related"><div class="wrap">
+    <b>Related ZEISS Websites</b>
+    <a href="https://www.zeiss.com/annualreport" target="_blank" rel="noopener">Annual Report of the ZEISS Group</a>
+    <a href="https://www.zeiss.com/zeissforum" target="_blank" rel="noopener">ZEISS Forum</a>
+  </div></div>
+  <div class="foot"><div class="wrap">
+    <div class="fcols">
+      <div><h4>FREQUENTLY USED</h4>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss/present/sustainability.html" target="_blank" rel="noopener">Sustainability at ZEISS</a>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss/future/innovation.html" target="_blank" rel="noopener">Innovation at ZEISS</a>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss/past/history.html" target="_blank" rel="noopener">History at a glance</a>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss/present/facts-figures/carl-zeiss-foundation.html" target="_blank" rel="noopener">Carl Zeiss Foundation</a></div>
+      <div><h4>ABOUT ZEISS</h4>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss.html" target="_blank" rel="noopener">About</a>
+        <a href="https://www.zeiss.com/career" target="_blank" rel="noopener">Career</a>
+        <a href="https://www.zeiss.com/corporate/en/about-zeiss/present/newsroom.html" target="_blank" rel="noopener">Newsroom</a>
+        <a href="https://www.zeiss.com/compliance" target="_blank" rel="noopener">Compliance</a>
+        <a href="https://www.zeiss.com/corporate/en/legal-information/accessibility-statement.html" target="_blank" rel="noopener">Accessibility statement</a></div>
+      <div><h4>SOCIAL MEDIA</h4>
+        <a href="https://www.facebook.com/zeissgroup" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/zeissgroup/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/company/zeiss/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/user/ZEISSGroup" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://x.com/zeiss_group" target="_blank" rel="noopener">X</a></div>
+    </div>
+    <div class="selects">
+      <div class="sel"><div><small>Select ZEISS Area</small>ZEISS Group</div><svg viewBox="0 0 14 14"><path d="M3 5l4 4 4-4"/></svg></div>
+      <div class="sel"><div><small>Select website</small>Global website (English)</div><svg viewBox="0 0 14 14"><path d="M3 5l4 4 4-4"/></svg></div>
+    </div>
+  </div></div>
+  <div class="legal"><div class="wrap">
+    <a href="https://www.zeiss.com/corporate/en/contact.html" target="_blank" rel="noopener">Contact</a>
+    <a href="https://www.zeiss.com/corporate/en/legal-information/publisher.html" target="_blank" rel="noopener">Publisher</a>
+    <a href="https://www.zeiss.com/corporate/en/legal-information/legal-notice-and-general-terms-and-conditions.html" target="_blank" rel="noopener">Legal Notice</a>
+    <a href="https://www.zeiss.com/privacy" target="_blank" rel="noopener">Privacy Notice</a>
+  </div></div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"Visionary minds. Enhanced by AI | ZEISS Live Webinar",
+    start:"2026-12-10T16:00:00+01:00",
+    end:"2026-12-10T16:45:00+01:00",
+    startUTC:"20261210T150000Z",
+    endUTC:"20261210T154500Z",
+    details:"From the fab to the lab: how ZEISS puts AI to work. Streaming live and on-demand on zeiss.com.",
+    location:window.location.href
+  };
+  var start=new Date(EVENT.start).getTime(), end=new Date(EVENT.end).getTime();
+
+  /* viewer's own timezone */
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var lt=new Date(start).toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    if(tz && !/Berlin|Paris|Amsterdam|Brussels|Vienna|Zurich|Rome|Madrid|Stockholm|Oslo|Copenhagen|Warsaw|Prague/.test(tz)){document.getElementById('localTime').textContent='That is '+lt+' where you are.';}
+  }catch(e){}
+
+  /* calendar links from one EVENT object */
+  document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sequel//Webinar//EN","BEGIN:VEVENT","UID:zeiss-ai-20261210@sequel","DTSTAMP:20261104T000000Z","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+  /* countdown, live state, and graceful on-demand fallback */
+  var cd=document.getElementById('countdown');
+  function pad(n){return String(n).padStart(2,'0');}
+  function onDemand(){
+    document.getElementById('badgeTxt').textContent='On Demand';
+    document.querySelector('#badge .dot').style.background='#0072ef';
+    document.getElementById('cdLabel').textContent='Recording available';
+    cd.innerHTML='<a class="btn btn-blue" href="#watch">Watch the recording</a>';
+    document.getElementById('gcal').style.display='none';document.getElementById('ical').style.display='none';
+    document.getElementById('localTime').textContent='';
+    document.getElementById('announce').innerHTML='Now on demand &middot; <a href="#watch">Watch the recording</a>';
+    document.querySelectorAll('.btn-blue,#ctaMain').forEach(function(b){if(/Register/.test(b.textContent))b.textContent='Watch on demand';});
+    document.getElementById('ctaSub').textContent='45 minutes on AI from the fab to the lab, on demand on zeiss.com.';
+  }
+  function tick(){
+    var now=Date.now();
+    if(now>=end+3600e3){onDemand();return false;}
+    if(now>=start){cd.innerHTML='<div class="cd-live"><span class="dot"></span>We’re live now. Join below</div>';return true;}
+    var diff=start-now,set={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(set[el.getAttribute('data-cd')]);});
+    return true;
+  }
+  if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv);},1000);}
+
+  /* nav */
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+  setTimeout(function(){document.querySelectorAll('.kv .reveal,.hero .reveal').forEach(function(el){el.classList.add('in');});},60);
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});
+  (function stripBorder(){
+    var root=document.getElementById("sequel_root"), c=root&&root.firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+});
+</script>
+</body>
+</html>
