@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Engineered for Your Agentic AI: Running Apps, Data and AI Anywhere | Nutanix</title>
+<meta name="description" content="One platform to run apps, data and AI anywhere, from the hybrid cloud platform for the AI-powered enterprise.">
+<meta property="og:title" content="Engineered for Your Agentic AI: Running Apps, Data and AI Anywhere">
+<meta property="og:description" content="One platform to run apps, data and AI anywhere, from the hybrid cloud platform for the AI-powered enterprise.">
+<meta property="og:image" content="https://www.nutanix.com/content/dam/nutanix/images/img-default-og.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/nutanix/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.nutanix.com/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>:root{--page:#ffffff;--ink:#131313;--ink2:#3b4452;--muted:#6b7280;--line:#e3e6eb;--wrap-fg:#ffffff;--badge-bg:rgba(255,255,255,.12);--badge-fg:#ffffff;--live:#ff4d5e;--kicker:rgba(255,255,255,.7);--chip-line:rgba(255,255,255,.28);--card-bg:rgba(255,255,255,.06);--card-line:rgba(255,255,255,.14);--s1:#ffffff;--s2:#f6f6f6;--node-bg:rgba(255,255,255,.06);--node-line:rgba(255,255,255,.16);--row-hover:rgba(0,0,0,.02);--ft-fg:#ffffff;--ft-line:rgba(255,255,255,.14);--ft-logo:#ffffff;--util-fg:rgba(255,255,255,.8);--hdr-fg:#ffffff;--logo-fg:#ffffff;--hdr-line:rgba(255,255,255,.08);--rad:20px;--dw:700;--dls:-.025em;--ann-fg:#ffffff;--display:'Montserrat',sans-serif;--body:'Montserrat','Helvetica Neue',Arial,sans-serif;--accent:#7855fa;--accent-fg:#ffffff;--accent2:#7855fa;--hdr-bg:#131313;--util-bg:#0b0b0c;--wrap-bg:#131313;--glow1:rgba(120,85,250,.38);--glow2:rgba(224,79,184,.20);--stat-c:#131313;--mech-bg:#1f1f20;--mech-fg:#ffffff;--band-bg:#7855fa;--band-fg:#ffffff;--band-btn-bg:#ffffff;--band-btn-fg:#131313;--ft-bg:#131313;--av-bg:#ece7ff;--av-fg:#482af6;--ann-bg:#482af6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);color:var(--ink);background:var(--page);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+:root{--ease:cubic-bezier(.16,1,.3,1);--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+/* announce */
+.announce{background:var(--ann-bg);color:var(--ann-fg);font-size:13.5px;text-align:center;padding:9px 16px;font-weight:500}
+.announce a{text-decoration:underline;text-underline-offset:3px;margin-left:6px;font-weight:600}
+/* header */
+.util{background:var(--util-bg);color:var(--util-fg);font-size:12.5px}
+.util .wrap{display:flex;justify-content:flex-end;gap:22px;height:34px;align-items:center}
+.util a{opacity:.85}.util a:hover{opacity:1}
+header.nav{position:sticky;top:0;z-index:50;background:var(--hdr-bg);color:var(--hdr-fg);transition:box-shadow .3s var(--ease),height .3s var(--ease);border-bottom:1px solid var(--hdr-line)}
+header.nav.scrolled{box-shadow:0 8px 30px -12px rgba(0,0,0,.25);backdrop-filter:blur(10px)}
+header.nav .wrap{display:flex;align-items:center;gap:30px;height:72px;transition:height .3s var(--ease)}
+header.nav.scrolled .wrap{height:62px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;color:var(--logo-fg)}
+.nav-links{display:flex;gap:22px;font-size:14px;font-weight:500;flex:1;min-width:0;overflow:hidden}
+.nav-links a{display:flex;align-items:center;gap:5px;white-space:nowrap;color:var(--hdr-fg);opacity:.92}
+.nav-links a:hover{opacity:1}
+.caret{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.6}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:var(--rad);transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s;white-space:nowrap;border:1.5px solid transparent;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.35)}
+.btn-p{background:var(--accent);color:var(--accent-fg)}
+.btn-g{border-color:currentColor;color:inherit;background:transparent}
+.nav-cta a.btn-p{color:var(--accent-fg)}
+.btn-t{padding:0;color:var(--hdr-cta-t,var(--accent));background:none}.btn-t:hover{box-shadow:none}
+.btn-d{background:var(--dark-btn,#111);color:#fff}.nav-cta a.btn-d{color:#fff}
+.deco{position:absolute;z-index:1;pointer-events:none}
+.search{width:17px;height:17px;border:1.8px solid currentColor;border-radius:50%;position:relative;opacity:.8}
+.search:after{content:"";position:absolute;width:7px;height:1.8px;background:currentColor;right:-6px;bottom:-3px;transform:rotate(45deg)}
+/* hero + embed */
+.dark-wrap{position:relative;overflow:hidden;background:var(--wrap-bg);color:var(--wrap-fg)}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:85%;background:radial-gradient(circle at 70% 40%,var(--glow1),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;background:radial-gradient(circle at 20% 60%,var(--glow2),transparent 62%);pointer-events:none}
+.hero{padding:72px 0 40px;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:end}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;background:var(--badge-bg);color:var(--badge-fg);font-size:12.5px;font-weight:600;letter-spacing:.02em}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 var(--live);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 60%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.kicker{margin:22px 0 14px;color:var(--kicker)}
+h1.title{font-family:var(--display);font-weight:var(--dw);font-size:clamp(38px,5.6vw,72px);line-height:1.03;letter-spacing:var(--dls);text-wrap:balance;max-width:16ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 12px}
+.chip{font-size:13.5px;padding:7px 13px;border-radius:999px;border:1px solid var(--chip-line);color:var(--wrap-fg);opacity:.95}
+.sub{font-size:15px;opacity:.82;margin-bottom:6px}
+.localtime{font-size:13px;opacity:.65;margin-bottom:26px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cal{display:flex;gap:16px;font-size:13.5px;margin-top:18px;opacity:.85}
+.cal a{text-decoration:underline;text-underline-offset:3px}
+.cd-card{background:var(--card-bg);border:1px solid var(--card-line);border-radius:18px;padding:24px 24px 22px;backdrop-filter:blur(6px)}
+.cd-card .mono{opacity:.7;margin-bottom:14px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cd div{text-align:center}
+.cd b{display:block;font-family:var(--display);font-size:40px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.cd span{font-size:11px;opacity:.65;letter-spacing:.1em;text-transform:uppercase}
+.cd-live{font-weight:600;font-size:18px;display:flex;align-items:center;gap:10px}
+.embed-sec{padding:8px 0 80px;position:relative;z-index:2}
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+/* stat band */
+.stat{padding:110px 0 90px;background:var(--s1);color:var(--ink)}
+.stat .big{font-family:var(--display);font-weight:var(--dw);font-size:clamp(64px,12vw,156px);line-height:.92;letter-spacing:-.035em;color:var(--stat-c)}
+.stat .turn{font-size:clamp(19px,2.2vw,26px);max-width:34ch;margin-top:22px;line-height:1.35;text-wrap:balance}
+.stat .src{margin-top:18px;color:var(--muted)}
+/* lede */
+.lede{padding:30px 0 110px;background:var(--s1)}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:40px}
+.side{position:sticky;top:110px;align-self:start;color:var(--muted)}
+.lede p{font-size:19px;max-width:64ch;margin-bottom:20px;color:var(--ink2)}
+.lede p:first-child{font-size:23px;color:var(--ink);line-height:1.45}
+/* mechanism */
+.mech{background:var(--mech-bg);color:var(--mech-fg);padding:100px 0;position:relative;overflow:hidden}
+.mech h2{font-family:var(--display);font-weight:var(--dw);font-size:clamp(30px,3.6vw,46px);letter-spacing:var(--dls);line-height:1.1;max-width:22ch;margin:14px 0 54px}
+.flow{display:flex;align-items:center;gap:0}
+.node{flex:0 0 auto;padding:16px 20px;border-radius:14px;background:var(--node-bg);border:1px solid var(--node-line);min-width:170px}
+.node .mono{opacity:.6;font-size:10.5px}
+.node b{display:block;font-size:16px;margin-top:6px;font-weight:600}
+.dashes{flex:1;min-width:24px;height:2px;background-image:linear-gradient(90deg,var(--accent2) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march .9s linear infinite}
+@keyframes march{to{background-position:12px 0}}
+/* learn rows */
+.learn{padding:110px 0;background:var(--s2)}
+.learn h2,.spk h2{font-family:var(--display);font-weight:var(--dw);font-size:clamp(30px,3.6vw,46px);letter-spacing:var(--dls);margin:12px 0 40px;line-height:1.1}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--accent2);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--row-hover)}
+.row .n{color:var(--accent2);font-family:var(--mono);font-size:13px;padding-top:6px}
+.row h3{font-family:var(--display);font-weight:var(--dw);font-size:23px;line-height:1.25;letter-spacing:-.01em}
+.row p{color:var(--ink2);font-size:16.5px}
+/* speakers */
+.spk{padding:100px 0;background:var(--s1)}
+.spk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:40px}
+.person{display:flex;gap:18px;align-items:center}
+.av{width:76px;height:76px;border-radius:50%;background:var(--av-bg);color:var(--av-fg);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:22px;flex-shrink:0}
+.person b{display:block;font-size:18px}
+.person span{color:var(--muted);font-size:14.5px}
+.flag{margin-top:26px;color:var(--muted)}
+/* CTA band */
+.band{background:var(--band-bg);color:var(--band-fg);padding:90px 0}
+.band .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.band h2{font-family:var(--display);font-weight:var(--dw);font-size:clamp(28px,3.4vw,44px);letter-spacing:var(--dls);max-width:22ch;line-height:1.1}
+.band .btn{background:var(--band-btn-bg);color:var(--band-btn-fg)}
+/* footer */
+footer{background:var(--ft-bg);color:var(--ft-fg);padding:70px 0 34px;font-size:14px}
+.ft-grid{display:grid;grid-template-columns:1.2fr repeat(var(--ftcols),1fr);gap:30px}
+footer h4{font-size:13px;font-weight:700;margin-bottom:14px;opacity:.95}
+footer ul{list-style:none;display:grid;gap:9px}
+footer li a{opacity:.72}footer li a:hover{opacity:1}
+.legal{border-top:1px solid var(--ft-line);margin-top:50px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;opacity:.7;font-size:13px}
+.legal div{display:flex;gap:18px;flex-wrap:wrap}
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+@media (max-width:960px){.nav-links{display:none}.hero-grid{grid-template-columns:1fr;gap:34px}.lede-grid{grid-template-columns:1fr;gap:14px}.side{position:static}.flow{flex-direction:column;align-items:stretch}.dashes{height:26px;width:2px;min-width:0;flex:none;margin-left:30px;background-image:linear-gradient(180deg,var(--accent2) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y}.row{grid-template-columns:40px 1fr;gap:14px}.row p{grid-column:2}.ft-grid{grid-template-columns:1fr 1fr}.spk-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.wrap{padding:0 18px}.util{display:none}.nav-cta .btn-g{display:none}.nav-cta .btn{padding:9px 14px;font-size:13.5px}header.nav .wrap{gap:14px;height:62px}.hero{padding:44px 0 30px}.cd b{font-size:30px}#sequel_root{min-height:420px}.stat{padding:80px 0 60px}.learn,.spk,.mech{padding:76px 0}.band{padding:64px 0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1;transform:none}}
+.dark-wrap{background:repeating-linear-gradient(118deg,rgba(120,85,250,.10) 0 2px,transparent 2px 16px),linear-gradient(118deg,#131313 35%,#2a1858 70%,#4a1f6e 100%)}.grad{background:linear-gradient(90deg,#b9a6ff,#7855fa 45%,#e04fb8);-webkit-background-clip:text;background-clip:text;color:transparent}</style>
+</head>
+<body>
+<div class="announce">New webinar: what agentic AI asks of your infrastructure. <a href="#register">Save your seat</a></div>
+<div class="util"><div class="wrap"><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Support</a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Services</a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Contact Us</a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">English</a></div></div>
+<header class="nav" id="nav"><div class="wrap">
+<a class="logo" href="https://www.nutanix.com/" target="_blank" rel="noopener" aria-label="Nutanix"><svg viewBox="0 0 385 47" width="140" height="17" aria-hidden="true"><path fill="currentColor" d="m173.36,9.84h-18.15s-.03.01-.03.03v35.31c0,.38-.3.68-.68.68h-8.76c-.38,0-.68-.3-.68-.68V9.87s-.01-.03-.03-.03h-18.1c-.38,0-.68-.3-.68-.68V1.25c0-.38.3-.68.68-.68h46.42c.38,0,.68.3.68.68v7.91c0,.38-.3.68-.68.68ZM302.3.57h-8.77c-.38,0-.68.3-.68.68v43.93c0,.38.3.68.68.68h8.77c.38,0,.68-.3.68-.68V1.25c0-.38-.3-.68-.68-.68Zm70.84,44.19c.2.17.27.45.18.69-.09.24-.33.41-.59.41h-13.5c-.15,0-.3-.05-.41-.15l-14.83-12.84c-.14-.12-.22-.29-.22-.47s.08-.35.22-.47l6.75-5.84c.23-.2.58-.2.82,0l21.58,18.68Zm-22.4-24.410c.12.1.26.15.41.15s.29-.05.41-.15l21.58-18.68c.2-.17.27-.45.18-.69-.09-.24-.33-.41-.59-.41h-13.5c-.15,0-.3.05-.41.15l-14.83,12.84c-.14.12-.22.29-.22.47s.08.35.22.47l6.75,5.84Zm-2.83,2.87c0-.18-.08-.35-.22-.47L322.25.73c-.11-.1-.26-.15-.41-.15h-13.5c-.26,0-.5.16-.59.41-.09.25-.02.52.18.69l24.87,21.52s.01.03,0,.04l-24.87,21.52c-.2.17-.27.45-.18.69.09.24.33.41.59.41h13.5c.15,0,.3-.05.41-.15l25.44-22.020c.14-.12.22-.29.22-.47ZM21.77,15.29s.03-.04.05-.02c1.33,1.19,31.63,28.32,33.09,29.47,1.29,1.01,2.78,1.64,4.72,1.35,2.51-.31,5.28-2.450,5.28-6.07V1.25c0-.38-.3-.68-.68-.68h-8.77c-.38,0-.68.3-.68.68v29.86s-.03.04-.05.02c-1.33-1.19-31.63-28.32-33.09-29.47-1.29-1.01-2.78-1.64-4.72-1.35-2.51.31-5.28,2.46-5.28,6.07v38.81c0,.38.3.68.68.68h8.76c.38,0,.68-.3.68-.68V15.29Zm222.52,0s.03-.04.05-.02c1.33,1.19,31.63,28.32,33.09,29.47,1.29,1.01,2.78,1.64,4.72,1.35,2.51-.31,5.28-2.45,5.28-6.07V1.25c0-.38-.3-.68-.68-.68h-8.77c-.38,0-.68.3-.68.68v29.86s-.03.04-.05.02c-1.33-1.19-31.63-28.32-33.09-29.47-1.29-1.01-2.78-1.64-4.72-1.35-2.51.31-5.28,2.46-5.28,6.07v38.81c0,.38.3.68.68.68h8.76c.38,0,.68-.3.68-.68V15.29Zm-145.79,31.47c5.46-.01,11.55-.32,15.28-2.53,4.97-2.94,7.39-7.01,7.39-12.46V1.25c0-.37-.3-.68-.68-.68h-8.85c-.38,0-.68.3-.68.68v29.93c-.09,5.96-7.47,6.02-12.79,6.02h-4.84c-5.32,0-12.7-.06-12.79-6.02V1.25c0-.38-.31-.68-.68-.68h-8.85c-.37,0-.68.31-.68.68v30.53c0,5.45,2.42,9.52,7.39,12.46,3.74,2.21,9.82,2.52,15.28,2.53h5.49Zm131.49-1.92c.14.2.16.46.05.67-.11.22-.33.35-.57.35h-10.82c-.22,0-.42-.11-.55-.29l-6.31-9.03s-.01-.01-.02-.01h-32.46s-.02,0-.02.01l-6.34,9.04c-.12.17-.32.27-.52.27h-10.82c-.24,0-.46-.13-.57-.35-.11-.21-.09-.47.05-.67,0,0,27.53-39.29,29.23-41.64,1.7-2.35,3.41-2.96,5.25-2.96,2.03,0,3.59.76,5.1,2.78l29.35,41.82Zm-24.8-17.62l-9.63-13.64s-.03-.02-.05,0l-9.64,13.64s0,.04.02.04h19.27s.04-.03.02-.04Z"/></svg></a>
+<nav class="nav-links"><a href="https://www.nutanix.com/" target="_blank" rel="noopener">What We Do<i class=caret></i></a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Agentic AI<i class=caret></i></a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Products<i class=caret></i></a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Solutions<i class=caret></i></a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Resources<i class=caret></i></a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Partners<i class=caret></i></a></nav>
+<div class="nav-cta"><i class="search" aria-hidden="true"></i><a class="btn btn-p" href="https://www.nutanix.com/" target="_blank" rel="noopener">Test Drive</a></div>
+</div></header>
+<div class="dark-wrap">
+<section class="hero"><div class="wrap hero-grid">
+<div class="reveal in">
+<span class="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></span>
+<div class="kicker mono">Nutanix Live · Hybrid Cloud for AI</div>
+<h1 class="title">Engineered for your <span class="grad">agentic AI</span></h1>
+<div class="meta"><span class="chip">Thursday, December 3, 2026</span><span class="chip">10:00 AM PT</span><span class="chip">45 min</span></div>
+<p class="sub">Streaming live and on-demand on nutanix.com</p>
+<p class="localtime" id="localtime"></p>
+<div class="cta-row"><a class="btn btn-p" id="heroCta" href="#register">Save your seat</a></div>
+<div class="cal"><a id="gcal" href="#" target="_blank" rel="noopener">Add to Google Calendar</a><a id="ical" href="#" download="nutanix-webinar.ics">Download .ics</a></div>
+</div>
+<div class="cd-card reveal in"><div class="mono">Starts in</div>
+<div class="cd" id="countdown"><div><b data-cd="d">00</b><span>Days</span></div><div><b data-cd="h">00</b><span>Hrs</span></div><div><b data-cd="m">00</b><span>Min</span></div><div><b data-cd="s">00</b><span>Sec</span></div></div></div>
+</div></section>
+<section class="embed-sec" id="register"><div class="wrap"><div id="sequel_root"></div></div></section>
+</div>
+<section class="stat"><div class="wrap reveal"><div class="big"><span class="grad">3x</span> a Leader</div><p class="turn">in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure. One platform for AI, containers, and VMs. You're in control.</p><div class="src mono">Source: nutanix.com</div></div></section>
+<section class="lede"><div class="wrap lede-grid"><div class="side mono">About the session</div><div class="reveal"><p>We offer a unified platform that seamlessly integrates infrastructure and management to enable smooth operations of data and apps across clouds.</p><p>Agentic AI changes what you ask of that platform. This session covers what it takes to run AI next to the apps and data it depends on, across datacenter, edge and public cloud, without adding a new silo to manage.</p></div></div></section>
+<section class="mech"><div class="wrap"><div class="mono" style="opacity:.65">One platform</div><h2 class="reveal">The hybrid cloud platform for the AI-powered enterprise</h2><div class="flow stagger"><div class="node"><div class="mono">Run</div><b>Apps</b></div><i class="dashes"></i><div class="node"><div class="mono">Manage</div><b>Data</b></div><i class="dashes"></i><div class="node"><div class="mono">Deploy</div><b>AI agents</b></div><i class="dashes"></i><div class="node"><div class="mono">Anywhere</div><b>Any cloud</b></div></div></div></section>
+<section class="learn"><div class="wrap"><div class="mono" style="color:var(--muted)">What you'll learn</div><h2>What we&#x27;ll cover</h2><div class="stagger"><div class="row"><div class="n">01</div><h3>The foundation agentic AI needs</h3><p>Where AI workloads land, and how to keep them close to your data.</p></div><div class="row"><div class="n">02</div><h3>Kubernetes without the overhead</h3><p>How developers thrive with Nutanix Kubernetes Platform.</p></div><div class="row"><div class="n">03</div><h3>Lower TCO across distributed sites</h3><p>What Westgate learned simplifying operations across 60 resorts.</p></div><div class="row"><div class="n">04</div><h3>One control plane for hybrid multicloud</h3><p>Running AI, containers and VMs side by side, and staying in control.</p></div></div></div></section>
+<section class="spk"><div class="wrap"><div class="mono" style="color:var(--muted)">Speakers</div><h2>Who you'll hear from</h2><div class="spk-grid stagger"><div class="person"><div class="av">NX</div><div><b>Speaker to be announced</b><span>Nutanix host</span></div></div><div class="person"><div class="av">NX</div><div><b>Speaker to be announced</b><span>Nutanix customer guest</span></div></div></div><p class="flag mono">Speakers to be announced</p></div></section>
+<section class="band"><div class="wrap"><h2>One platform to run apps, data, and AI anywhere.</h2><a class="btn" href="#register">Save your seat</a></div></section>
+<footer><div class="wrap"><div class="ft-grid" style="--ftcols:3"><div><a class="logo" href="https://www.nutanix.com/" target="_blank" rel="noopener" style="color:var(--ft-logo)"><svg viewBox="0 0 385 47" width="140" height="17" aria-hidden="true"><path fill="currentColor" d="m173.36,9.84h-18.15s-.03.01-.03.03v35.31c0,.38-.3.68-.68.68h-8.76c-.38,0-.68-.3-.68-.68V9.87s-.01-.03-.03-.03h-18.1c-.38,0-.68-.3-.68-.68V1.25c0-.38.3-.68.68-.68h46.42c.38,0,.68.3.68.68v7.91c0,.38-.3.68-.68.68ZM302.3.57h-8.77c-.38,0-.68.3-.68.68v43.93c0,.38.3.68.68.68h8.77c.38,0,.68-.3.68-.68V1.25c0-.38-.3-.68-.68-.68Zm70.84,44.19c.2.17.27.45.18.69-.09.24-.33.41-.59.41h-13.5c-.15,0-.3-.05-.41-.15l-14.83-12.84c-.14-.12-.22-.29-.22-.47s.08-.35.22-.47l6.75-5.84c.23-.2.58-.2.82,0l21.58,18.68Zm-22.4-24.410c.12.1.26.15.41.15s.29-.05.41-.15l21.58-18.68c.2-.17.27-.45.18-.69-.09-.24-.33-.41-.59-.41h-13.5c-.15,0-.3.05-.41.15l-14.83,12.84c-.14.12-.22.29-.22.47s.08.35.22.47l6.75,5.84Zm-2.83,2.87c0-.18-.08-.35-.22-.47L322.25.73c-.11-.1-.26-.15-.41-.15h-13.5c-.26,0-.5.16-.59.41-.09.25-.02.52.18.69l24.87,21.52s.01.03,0,.04l-24.87,21.52c-.2.17-.27.45-.18.69.09.24.33.41.59.41h13.5c.15,0,.3-.05.41-.15l25.44-22.020c.14-.12.22-.29.22-.47ZM21.77,15.29s.03-.04.05-.02c1.33,1.19,31.63,28.32,33.09,29.47,1.29,1.01,2.78,1.64,4.72,1.35,2.51-.31,5.28-2.450,5.28-6.07V1.25c0-.38-.3-.68-.68-.68h-8.77c-.38,0-.68.3-.68.68v29.86s-.03.04-.05.02c-1.33-1.19-31.63-28.32-33.09-29.47-1.29-1.01-2.78-1.64-4.72-1.35-2.51.31-5.28,2.46-5.28,6.07v38.81c0,.38.3.68.68.68h8.76c.38,0,.68-.3.68-.68V15.29Zm222.52,0s.03-.04.05-.02c1.33,1.19,31.63,28.32,33.09,29.47,1.29,1.01,2.78,1.64,4.72,1.35,2.51-.31,5.28-2.45,5.28-6.07V1.25c0-.38-.3-.68-.68-.68h-8.77c-.38,0-.68.3-.68.68v29.86s-.03.04-.05.02c-1.33-1.19-31.63-28.32-33.09-29.47-1.29-1.01-2.78-1.64-4.72-1.35-2.51.31-5.28,2.46-5.28,6.07v38.81c0,.38.3.68.68.68h8.76c.38,0,.68-.3.68-.68V15.29Zm-145.79,31.47c5.46-.01,11.55-.32,15.28-2.53,4.97-2.94,7.39-7.01,7.39-12.46V1.25c0-.37-.3-.68-.68-.68h-8.85c-.38,0-.68.3-.68.68v29.93c-.09,5.96-7.47,6.02-12.79,6.02h-4.84c-5.32,0-12.7-.06-12.79-6.02V1.25c0-.38-.31-.68-.68-.68h-8.85c-.37,0-.68.31-.68.68v30.53c0,5.45,2.42,9.52,7.39,12.46,3.74,2.21,9.82,2.52,15.28,2.53h5.49Zm131.49-1.92c.14.2.16.46.05.67-.11.22-.33.35-.57.35h-10.82c-.22,0-.42-.11-.55-.29l-6.31-9.03s-.01-.01-.02-.01h-32.46s-.02,0-.02.01l-6.34,9.04c-.12.17-.32.27-.52.27h-10.82c-.24,0-.46-.13-.57-.35-.11-.21-.09-.47.05-.67,0,0,27.53-39.29,29.23-41.64,1.7-2.35,3.41-2.96,5.25-2.96,2.03,0,3.59.76,5.1,2.78l29.35,41.82Zm-24.8-17.62l-9.63-13.64s-.03-.02-.05,0l-9.64,13.64s0,.04.02.04h19.27s.04-.03.02-.04Z"/></svg></a><p style="opacity:.65;margin-top:16px;max-width:30ch">The hybrid cloud platform for the AI-powered enterprise.</p></div><div><h4>What We Do</h4><ul><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Solutions</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Products</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Resources</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Our Customers</a></li></ul></div><div><h4>Company</h4><ul><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Careers</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Leadership</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Newsroom</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Investor Relations</a></li></ul></div><div><h4>Support</h4><ul><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Support Portal Login</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Contact Support</a></li><li><a href="https://www.nutanix.com/" target=_blank rel=noopener>Product Support</a></li></ul></div></div>
+<div class="legal"><span>© Nutanix 2026</span><div><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Trust</a><a href="https://www.nutanix.com/" target="_blank" rel="noopener">Contact Us</a></div></div></div></footer>
+<script>
+(function(){
+var EVENT={"start": "2026-12-03T10:00:00-08:00", "end": "2026-12-03T10:45:00-08:00", "startUTC": "20261203T180000Z", "endUTC": "20261203T184500Z", "label": "Thursday, December 3, 2026", "time": "10:00 AM PT", "dur": "45 min", "title": "Engineered for Your Agentic AI: Running Apps, Data and AI Anywhere | Nutanix", "details": "One platform to run apps, data and AI anywhere, from the hybrid cloud platform for the AI-powered enterprise. Streaming live on nutanix.com.", "uid": "nutanix-20261203@sequel-demo"};
+var target=new Date(EVENT.start).getTime(),endT=new Date(EVENT.end).getTime();
+var cd=document.getElementById('countdown');
+function pad(n){return String(n).padStart(2,'0')}
+function stale(){
+  document.getElementById('badgeTxt').textContent='On Demand';
+  document.querySelectorAll('.cal,.localtime').forEach(function(el){el.style.display='none'});
+  cd.innerHTML='<div class="cd-live">Watch the recording below</div>';
+  var p=document.getElementById('heroCta');if(p)p.textContent='Watch the recording';
+}
+function tick(){
+  var now=Date.now(),diff=target-now;
+  if(now>endT+3600e3){stale();return false}
+  if(diff<=0){cd.innerHTML='<div class="cd-live"><span class="dot"></span> We’re live now — join below</div>';return true}
+  var s={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+  cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(s[el.getAttribute('data-cd')])});return true;
+}
+if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000)}
+try{var lt=new Date(EVENT.start).toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});document.getElementById('localtime').textContent='Your time: '+lt}catch(x){}
+document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(location.href);
+var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sequel//Webinar//EN","BEGIN:VEVENT","UID:"+EVENT.uid,"DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+location.href,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById('ical').href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+var nav=document.getElementById('nav');function os(){nav.classList.toggle('scrolled',scrollY>8)}os();addEventListener('scroll',os,{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});
+document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el)});
+(function stripBorder(){var c=document.getElementById("sequel_root").firstElementChild;if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st)}else{setTimeout(stripBorder,200)}})();
+})();
+</script>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+</body>
+</html>
