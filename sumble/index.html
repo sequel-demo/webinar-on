@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>How Sumble Uses Sumble | Sumble</title>
+<meta name="description" content="Find the teams, technologies, and active initiatives inside your target accounts - so you reach the right people with the right message.">
+<meta property="og:title" content="How Sumble Uses Sumble">
+<meta property="og:description" content="Know your accounts like you work there. A live look at how Sumble's own GTM team runs on Sumble.">
+<meta property="og:image" content="https://sumble.com/marketing/homepage/hero-mobile.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/sumble/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://sumble.com/logo512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="speaker.css">
+<style>
+:root{
+  --green:#00a63e;--green-d:#008236;--green-wm:#16a34a;--green-l:#7bf1a8;--green-50:#f0fdf4;
+  --ink:#1d293d;--body:#314158;--muted:#62748e;--line:#e2e8f0;--canvas:#fefefe;--slate50:#f8fafc;
+  --night:#0f172b;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",Arial,sans-serif;
+  --disp:"Figtree",var(--sans);--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(29,41,61,.06);--sh-md:0 8px 24px -10px rgba(29,41,61,.18);--sh-lg:0 30px 60px -24px rgba(15,23,43,.35);
+  --r:17px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.shell{max-width:1360px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin-top:12px;overflow:hidden;position:relative}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em}
+
+/* announce */
+.announce{display:flex;justify-content:center;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:12px;min-height:40px;padding:8px 16px;margin-top:20px;font-size:14px;font-weight:500;text-align:center;flex-wrap:wrap}
+.tag{background:#fff;color:var(--ink);font-size:10px;font-weight:700;letter-spacing:.06em;border-radius:999px;padding:3px 8px;line-height:1}
+.announce a{color:var(--green-l);display:inline-flex;align-items:center;gap:4px}
+.announce a:hover{text-decoration:underline}
+
+/* header */
+.hdr-sticky{position:sticky;top:0;z-index:50;padding-top:12px}
+.hdr{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--r);height:64px;padding:0 24px;transition:box-shadow .35s var(--ease),height .35s var(--ease);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hdr-sticky.scrolled .hdr{box-shadow:var(--sh-md);height:56px}
+.logo{display:flex;align-items:center;gap:8px;color:var(--green-wm)}
+.logo img{width:28px;height:28px;border-radius:7px}
+.logo svg{height:22px;width:auto}
+.nav{display:flex;gap:30px;font-size:14px;font-weight:500;color:var(--ink)}
+.nav a{display:inline-flex;align-items:center;gap:6px}
+.nav a:hover{color:var(--green)}
+.hdr-r{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;font-weight:500;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .2s;cursor:pointer;border:0;font-family:var(--sans)}
+.btn-g{background:var(--green);color:#fff}
+.btn-g:hover{background:var(--green-d);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,166,62,.7)}
+.btn-sm{font-size:13px;padding:7px 14px}
+.hdr-r a.btn-g{color:#fff}
+.btn-w{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:var(--sh-sm)}
+.btn-w:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-lg{font-size:16px;padding:13px 22px;border-radius:9px}
+.burger{display:none;background:none;border:0;width:28px;height:28px;color:var(--muted)}
+
+/* dark wrap: hero + embed */
+.dark-wrap{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto 30%;height:85%;background:radial-gradient(circle,rgba(0,166,62,.30),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto 40% -25% -15%;height:70%;background:radial-gradient(circle,rgba(123,241,168,.12),transparent 62%);pointer-events:none}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(180deg,#000,transparent 70%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);pointer-events:none}
+.hero{position:relative;z-index:2;padding-top:72px;padding-bottom:40px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 13px 6px 10px;font-size:13px;font-weight:600}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green-l);box-shadow:0 0 0 0 rgba(123,241,168,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(123,241,168,0)}100%{box-shadow:0 0 0 0 rgba(123,241,168,0)}}
+.hero h1{font-size:clamp(42px,6.2vw,80px);line-height:.98;font-weight:700;margin:22px 0 20px;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--green-l)}
+.hero .lede-s{font-size:18px;line-height:1.55;color:#cad5e2;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 10px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:7px 11px;font-size:13.5px;color:#e2e8f0}
+.chip svg{width:14px;height:14px;opacity:.8}
+.sub{font-size:13.5px;color:#90a1b9;margin-top:8px}
+.sub b{color:#fff;font-weight:600}
+.tzline{font-size:13px;color:#90a1b9;margin-top:4px;min-height:18px}
+.cd{display:flex;gap:10px;margin:28px 0 26px}
+.cd div{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;min-width:74px;padding:11px 10px 9px;text-align:center}
+.cd b{display:block;font-family:var(--disp);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.cd span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#90a1b9}
+.cd.live{display:none}
+.livenow{display:none;font-family:var(--disp);font-size:22px;font-weight:600;margin:28px 0 26px;color:var(--green-l)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22);font-size:14px;padding:11px 16px}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+/* hero side: signature eyes + account card */
+.side{position:relative}
+.eyes-tile{width:132px;height:132px;border-radius:30px;background:#2fbf62;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 24px 50px -18px rgba(0,166,62,.7),inset 0 -6px 0 rgba(0,0,0,.08);position:absolute;top:-58px;right:-14px;z-index:3;transform:rotate(6deg)}
+.eye{width:40px;height:44px;border-radius:50%;background:#fff;border:3px solid #10331d;position:relative;overflow:hidden}
+.pupil{width:20px;height:22px;border-radius:50%;background:#10331d;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transition:transform .12s linear}
+.pupil::after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;top:4px;left:4px}
+.acct{background:#fff;color:var(--ink);border-radius:14px;box-shadow:var(--sh-lg);overflow:hidden;font-size:13px;position:relative;z-index:2}
+.acct-top{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--slate50)}
+.acct-top i{width:9px;height:9px;border-radius:50%;background:#e2e8f0;display:block}
+.acct-top .url{margin-left:10px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:11.5px;color:var(--muted);flex:1}
+.acct-h{padding:16px 16px 10px;display:flex;align-items:center;gap:10px}
+.acct-h img{width:30px;height:30px;border-radius:7px}
+.acct-h b{font-size:15px;display:block}
+.acct-h small{color:var(--muted);font-size:12px}
+.crumb{padding:0 16px;color:var(--muted);font-size:11.5px}
+.trow{display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:8px;padding:10px 16px;border-top:1px solid var(--line);align-items:center}
+.trow.th{font-size:11px;color:var(--muted);background:var(--slate50);margin-top:10px}
+.pill{display:inline-block;font-size:11px;font-weight:600;border-radius:6px;padding:2px 7px;background:var(--green-50);color:var(--green-d);border:1px solid #b9f8cf}
+.pill.s{background:#eff6ff;color:#1447e6;border-color:#bedbff}
+.trow .indent{padding-left:14px;position:relative}
+.trow .indent::before{content:"";position:absolute;left:2px;top:50%;width:8px;height:1px;background:#cad5e2}
+
+/* embed */
+.embed-sec{position:relative;z-index:2;padding-top:8px;padding-bottom:64px}
+#sequel_root{min-height:520px;border-radius:14px;overflow:hidden}
+
+/* stat band */
+.stat{padding:96px 0 88px}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:end}
+.big{font-family:var(--disp);font-weight:800;font-size:clamp(110px,17vw,220px);line-height:.8;letter-spacing:-.05em;color:var(--green)}
+.big small{font-size:.32em;letter-spacing:-.02em;color:var(--ink);margin-left:6px}
+.stat p.q{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);line-height:1.3;color:var(--ink);font-weight:500;max-width:30ch}
+.stat p.q s{color:var(--muted);text-decoration-thickness:2px;text-decoration-color:#cad5e2}
+.stat .turn{margin-top:18px;font-size:16px;line-height:1.6;color:var(--body);max-width:60ch}
+.stat .src{margin-top:16px;color:var(--muted)}
+
+/* lede */
+.lede{padding:88px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:48px}
+.side-label{position:sticky;top:110px;align-self:start;color:var(--green-d)}
+.side-label span{display:block;color:var(--muted);margin-top:8px;letter-spacing:.08em}
+.lede h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08;font-weight:700;max-width:22ch;margin-bottom:26px}
+.lede p{font-size:17px;line-height:1.65;color:var(--body);max-width:65ch;margin-bottom:18px}
+
+/* mechanism */
+.mech{background:var(--night);color:#fff;border-color:var(--night);padding:92px 0}
+.mech .mono{color:var(--green-l)}
+.mech h2{font-size:clamp(28px,3.4vw,44px);line-height:1.1;font-weight:700;max-width:24ch;margin:14px 0 14px}
+.mech .intro{color:#90a1b9;font-size:16px;line-height:1.6;max-width:60ch;margin-bottom:50px}
+.flow{display:grid;grid-template-columns:repeat(9,auto);align-items:center;justify-content:start;gap:0}
+.node{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;min-width:150px;transition:border-color .3s,transform .4s var(--ease)}
+.node:hover{border-color:var(--green-l);transform:translateY(-4px)}
+.node .mono{font-size:10px;color:#90a1b9;display:block;margin-bottom:6px}
+.node b{font-family:var(--disp);font-size:16px;font-weight:600}
+.node.hot{border-color:rgba(123,241,168,.55);background:rgba(0,166,62,.12)}
+.dashes{width:36px;height:2px;background-image:linear-gradient(90deg,var(--green-l) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march .9s linear infinite;opacity:.8}
+@keyframes march{to{background-position:12px 0}}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:56px;border-top:1px solid rgba(255,255,255,.12)}
+.vs div{padding:26px 26px 0 0;font-size:16px;line-height:1.6;color:#cad5e2}
+.vs div+div{padding-left:26px;border-left:1px solid rgba(255,255,255,.12)}
+.vs .mono{display:block;margin-bottom:10px;color:#90a1b9}
+.vs div+div .mono{color:var(--green-l)}
+.vs strong{color:#fff;font-weight:600}
+
+/* learn rows */
+.learn{padding:92px 0 72px}
+.learn h2{font-size:clamp(28px,3.4vw,44px);font-weight:700;margin:12px 0 36px}
+.learn .mono{color:var(--green-d)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--green);transition:width .5s var(--ease)}
+.row:hover::before{width:100%}
+.row:hover{background:var(--slate50)}
+.row .n{font-family:var(--mono);font-size:13px;color:var(--green-d);padding-top:6px}
+.row h3{font-size:22px;line-height:1.25;font-weight:600}
+.row p{font-size:16px;line-height:1.6;color:var(--body);max-width:56ch}
+
+/* speaker */
+.spk{padding:88px 0;background:var(--slate50)}
+.spk .mono{color:var(--green-d)}
+.spk-grid{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:center;margin-top:28px}
+.sp-photo{width:300px;height:300px;border-radius:20px;background-color:#dfe7ef;background-size:cover;background-position:center;box-shadow:var(--sh-lg);position:relative}
+.sp-photo::after{content:"";position:absolute;right:-12px;bottom:-12px;width:54px;height:54px;border-radius:14px;background:url(https://sumble.com/logo512.png) center/cover;box-shadow:var(--sh-md);border:3px solid #fff}
+.spk h3{font-size:clamp(30px,3.4vw,42px);font-weight:700;line-height:1.05}
+.spk .role{font-size:17px;color:var(--body);margin:10px 0 22px}
+.spk .role b{color:var(--ink);font-weight:600}
+.spk p.bio{font-size:16.5px;line-height:1.65;color:var(--body);max-width:60ch}
+.spk .li{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;font-weight:600;color:var(--green-d)}
+.spk .li:hover{text-decoration:underline}
+
+/* cta */
+.cta{background:var(--green-50);border-color:#b9f8cf;text-align:center;padding:80px 0}
+.cta .mono{color:var(--green-d)}
+.cta h2{font-size:clamp(28px,3.6vw,44px);font-weight:700;line-height:1.12;max-width:24ch;margin:14px auto 30px}
+.cta .ctas{justify-content:center}
+.cta .rocket{width:70px;margin:0 auto 18px}
+
+/* footer */
+.foot{padding:44px 0 40px;margin-bottom:20px}
+.foot-grid{display:grid;grid-template-columns:120px repeat(4,auto) 1fr;gap:56px;align-items:start}
+.foot-grid img.mascot{width:64px;height:64px;border-radius:16px}
+.foot h4{font-family:var(--disp);font-size:16px;font-weight:600;margin-bottom:14px;letter-spacing:0}
+.foot ul{list-style:none;display:grid;gap:9px;font-size:14px;color:var(--body)}
+.foot li a:hover{color:var(--green)}
+.legal2{padding-top:30px}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(n+6){transition-delay:.4s}
+
+@media (max-width:1080px){
+  .nav{gap:20px}
+  .hero-grid{grid-template-columns:1fr}
+  .side{max-width:520px;margin-top:40px}
+  .flow{grid-template-columns:1fr;justify-items:start}
+  .dashes{width:2px;height:28px;margin-left:30px;background-image:linear-gradient(180deg,var(--green-l) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv .9s linear infinite}
+  @keyframes marchv{to{background-position:0 12px}}
+  .foot-grid{grid-template-columns:repeat(3,auto);gap:36px}
+  .foot-grid .mascot-col{grid-column:1/-1}
+}
+@media (max-width:900px){.nav{display:none}.burger{display:block}.hdr-r .si{display:none}}
+@media (max-width:720px){
+  .shell{padding:0 12px}
+  .wrap{padding:0 20px}
+  .announce{font-size:13px;gap:8px}
+  .hdr{padding:0 16px}
+  .hero{padding-top:52px;padding-bottom:30px}
+  .hero .lede-s{font-size:16.5px}
+  .cd{gap:7px}.cd div{min-width:0;flex:1;padding:10px 4px 8px}.cd b{font-size:24px}
+  .eyes-tile{width:96px;height:96px;border-radius:22px;top:-44px;right:-6px}
+  .eye{width:28px;height:32px;border-width:2px}.pupil{width:14px;height:16px}.pupil::after{width:4px;height:4px;top:3px;left:3px}
+  .trow{grid-template-columns:1.3fr 1fr;}.trow>*:nth-child(3){display:none}
+  .stat{padding:64px 0}
+  .stat-grid,.lede-grid,.spk-grid,.vs{grid-template-columns:1fr;gap:28px}
+  .side-label{position:static}
+  .vs div+div{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.12);margin-top:26px}
+  .row{grid-template-columns:40px 1fr;gap:12px 16px;padding:26px 6px}
+  .row p{grid-column:2}
+  .sp-photo{width:220px;height:220px}
+  .lede,.mech,.learn,.spk{padding:64px 0}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="announce" id="announce"><span class="tag" id="tagtxt">LIVE</span><span>How Sumble Uses Sumble: a live webinar from the Sumble team</span><a href="#watch">Save your seat <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3.5 8.5l5-5M4 3.5h4.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+</div>
+
+<div class="shell hdr-sticky" id="hdr">
+  <header class="hdr">
+    <a class="logo" href="https://sumble.com/" target="_blank" rel="noopener" aria-label="Sumble home">
+      <img src="https://sumble.com/logo512.png" alt="">
+      <svg viewBox="0 0 482.31 125.9" fill="currentColor" aria-hidden="true"><path d="M21.27,31.22c0-6.69,4.97-11.83,13.21-11.83l24.7,8.75V5.83c-6.86-3.26-15.44-5.83-26.42-5.83C14.92,0,.34,12.87.34,31.56c0,38.08,44.6,36.71,44.6,60.21,0,10.12-7.72,14.75-16.64,14.75L0,96.91v22.13c9.6,4.29,20.07,6.86,30.36,6.86,20.07,0,35.68-13.04,35.68-34.3,0-38.59-44.77-37.91-44.77-60.38Z"/><path d="M114.92,96.23c0,6.69-2.57,11.15-8.92,11.15s-8.92-4.46-8.92-11.15v-56.09h-21.1v55.92c0,17.84,10.63,29.85,30.02,29.85s30.02-12.01,30.02-29.85v-55.92h-21.1v56.09Z"/><path d="M227.26,38.08c-8.75,0-15.61,3.94-20.24,10.63-4.29-6.69-11.32-10.63-20.07-10.63-7.72,0-13.72,2.74-18.01,8.23v-6.17h-19.04v83.7h21.1v-54.89c0-7.72,3.6-12.35,9.78-12.35s9.78,4.63,9.78,12.35v54.89h21.1v-54.89c0-7.55,3.6-12.35,9.78-12.35s9.78,4.63,9.78,12.35v54.89h21.1v-57.29c0-17.67-9.95-28.47-25.04-28.47Z"/><path d="M313.71,38.08c-10.12,0-18.87,3.6-26.24,10.63V2.06h-21.27v121.78h20.24v-9.43c7.38,7.38,16.98,11.49,27.27,11.49,22.98,0,43.4-17.5,43.4-43.91s-20.41-43.91-43.4-43.91ZM311.65,107.03c-13.72,0-24.18-10.29-24.18-25.04v-1.03c.51-14.41,10.81-24.01,24.18-24.01s24.19,10.29,24.19,25.04-10.46,25.04-24.19,25.04Z"/><rect x="368.25" y="2.06" width="21.1" height="121.78"/><path d="M482.31,71.01c-4.29-20.07-19.04-32.93-40.31-32.93-23.5,0-41.51,18.01-41.51,43.91s17.67,43.91,45.28,43.91c11.66,0,22.47-3.95,30.53-9.26v-19.04l-29.16,10.81c-13.72,0-23.67-6.52-25.56-19.04h60.72v-18.35ZM421.42,73.07c1.89-11.15,9.78-17.15,20.58-17.15s18.52,5.49,20.58,17.15h-41.17Z"/></svg>
+    </a>
+    <nav class="nav">
+      <a href="https://sumble.com/use-cases" target="_blank" rel="noopener">Use cases</a>
+      <a href="https://sumble.com/guides" target="_blank" rel="noopener">How-to Guides <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2.5 4l2.5 2.5L7.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://sumble.com/customers" target="_blank" rel="noopener">Customers</a>
+      <a href="https://sumble.com/pricing" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://apply.workable.com/sumble-inc/" target="_blank" rel="noopener">We're hiring</a>
+      <a href="https://docs.sumble.com" target="_blank" rel="noopener">Docs</a>
+    </nav>
+    <div class="hdr-r">
+      <a class="si" href="https://sumble.com/" target="_blank" rel="noopener">Sign in</a>
+      <a class="btn btn-g btn-sm" href="https://sumble.com/" target="_blank" rel="noopener">Try for free</a>
+      <button class="burger" aria-label="Menu"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </header>
+</div>
+
+<main class="shell">
+  <!-- HERO + EMBED: one surface -->
+  <section class="panel dark-wrap" id="top">
+    <div class="dots"></div>
+    <div class="wrap hero">
+      <div class="hero-grid">
+        <div class="stagger" id="heroCopy">
+          <span class="badge"><span class="live-dot"></span><span id="badgeTxt">Live Webinar</span></span>
+          <h1>How Sumble <em>Uses</em> Sumble</h1>
+          <p class="lede-s">Know your accounts like you work there. Sumble's own team walks through how they find the teams, technologies, and active initiatives inside the accounts they sell to, and how that turns into campaigns people actually show up for.</p>
+          <div>
+            <div class="chips">
+              <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg><span id="dateTxt">Thu, Dec 10, 2026</span></span>
+              <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg><span id="timeTxt">11:00 AM PT</span></span>
+              <span class="chip"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8h10M8 3l5 5-5 5"/></svg>45 minutes</span>
+            </div>
+            <p class="sub">Streaming live and on-demand on <b>sumble.com</b></p>
+            <p class="tzline" id="tzLine"></p>
+          </div>
+          <div class="cd" id="cd"><div><b id="dd">00</b><span>DAYS</span></div><div><b id="hh">00</b><span>HRS</span></div><div><b id="mm">00</b><span>MIN</span></div><div><b id="ss">00</b><span>SEC</span></div></div>
+          <div class="livenow" id="liveNow">We're live now. Join below.</div>
+          <div class="ctas">
+            <a class="btn btn-g btn-lg" href="#watch" id="mainCta">Save my seat</a>
+            <a class="btn btn-ghost" id="gcal" target="_blank" rel="noopener">Google Calendar</a>
+            <a class="btn btn-ghost" id="ical" download="how-sumble-uses-sumble.ics">Apple / Outlook</a>
+          </div>
+        </div>
+
+        <div class="side reveal">
+          <div class="eyes-tile" aria-hidden="true"><div class="eye"><div class="pupil"></div></div><div class="eye"><div class="pupil"></div></div></div>
+          <div class="acct">
+            <div class="acct-top"><i></i><i></i><i></i><span class="url">sumble.com/organizations/sumble</span></div>
+            <div class="acct-h"><img src="https://sumble.com/logo512.png" alt=""><div><b>Sumble</b><small>Account intelligence for GTM teams</small></div></div>
+            <div class="crumb">Organizations &rsaquo; Sumble &rsaquo; Teams</div>
+            <div class="trow th"><span>Team</span><span>Active initiative</span><span>Signal</span></div>
+            <div class="trow"><span><b>Marketing</b></span><span>Live webinar</span><span><span class="pill">New</span></span></div>
+            <div class="trow"><span class="indent">Campaigns &amp; Experiences</span><span>How Sumble Uses Sumble</span><span><span class="pill">Live</span></span></div>
+            <div class="trow"><span class="indent">Hosted on</span><span>sumble.com</span><span><span class="pill s">1st-party</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap embed-sec" id="watch">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+
+  <!-- STAT / PULL QUOTE -->
+  <section class="panel stat">
+    <div class="wrap stat-grid reveal">
+      <div class="big">72<small>people</small></div>
+      <div>
+        <p class="q"><s>Maybe Wells Fargo uses Grafana.</s><br>The Platform Engineering team at Wells Fargo uses Grafana, and it has 72 people.</p>
+        <p class="turn">That jump, from a guess about a logo to a named team with a leader, a location and a fresh job post, is the whole Sumble thesis. This session shows what it looks like when the team that built it points it at their own pipeline.</p>
+        <p class="mono src">Example from sumble.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEDE -->
+  <section class="panel lede">
+    <div class="wrap lede-grid">
+      <div class="mono side-label">About the session<span>45 min &middot; Live Q&amp;A</span></div>
+      <div class="reveal">
+        <h2>Most tools give you fragments of the account. Here's what the full picture looks like in practice.</h2>
+        <p>Sumble gives GTM teams a structured view of each target account: teams, reporting lines, technologies, hiring activity and buying signals. Plenty of teams have seen the demo. Fewer have seen how the people who built it actually run their own go-to-market on top of it.</p>
+        <p>In this session, Sumble's marketing team opens up their own workflow. How they decide which accounts deserve attention this week, how they find the team inside an account that actually owns the problem, and how they turn signals like a new job post or a shift in tech usage into campaigns and events that land with the right people.</p>
+        <p>Expect real screens, real accounts and an honest look at what changed once the guesswork came out of their own pipeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANISM -->
+  <section class="panel mech">
+    <div class="wrap">
+      <span class="mono">From account to message</span>
+      <h2>Who to reach, why now, and what to say.</h2>
+      <p class="intro">The path Sumble's own team follows before any campaign goes out, end to end in one structured view.</p>
+      <div class="flow stagger" id="flow">
+        <div class="node"><span class="mono">Account</span><b>Target org</b></div>
+        <div class="dashes"></div>
+        <div class="node"><span class="mono">Team</span><b>Who owns it</b></div>
+        <div class="dashes"></div>
+        <div class="node"><span class="mono">Technology</span><b>What they run</b></div>
+        <div class="dashes"></div>
+        <div class="node"><span class="mono">Signal</span><b>What's changing</b></div>
+        <div class="dashes"></div>
+        <div class="node hot"><span class="mono">Outreach</span><b>The right message</b></div>
+      </div>
+      <div class="vs reveal">
+        <div><span class="mono">Without the context</span>Filter a list by title, guess at the stack, send the same email to everyone and hope the timing works out.</div>
+        <div><span class="mono">With Sumble</span><strong>Know which team matters, what's changing inside it, and where to break in</strong>, before your competitors do.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="panel learn">
+    <div class="wrap">
+      <span class="mono">What you'll learn</span>
+      <h2>Four things to steal for your own team</h2>
+      <div class="stagger" id="rows">
+        <div class="row"><span class="n">01</span><h3>Map the whole TAM, not just the logos</h3><p>How the team finds net-new companies that look like their best customers, and the decision-makers a simple title search would miss.</p></div>
+        <div class="row"><span class="n">02</span><h3>Find the team that actually owns the problem</h3><p>Going from "the company uses X" to the specific team, its size, who leads it and who controls the budget.</p></div>
+        <div class="row"><span class="n">03</span><h3>Catch buyers when budgets are live</h3><p>Using hiring, projects and shifts in tech usage as timing signals, so outreach and event invites arrive when they're relevant.</p></div>
+        <div class="row"><span class="n">04</span><h3>Turn account context into campaigns</h3><p>How Marketing uses the same view as Sales to plan campaigns and experiences that the right people actually want to attend.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKER -->
+  <section class="panel spk">
+    <div class="wrap">
+      <span class="mono">Your host</span>
+      <div class="spk-grid reveal">
+        <div class="sp-photo sp-lisa" role="img" aria-label="Lisa K. Harshman"></div>
+        <div>
+          <h3>Lisa K. Harshman</h3>
+          <p class="role"><b>Marketing Lead, Campaigns and Experiences</b> &middot; Sumble</p>
+          <p class="bio">Lisa leads campaigns and experiences at Sumble. Before Sumble she was Head of Marketing at Evo Security and Head of Demand Generation at Port.io, and spent more than seven years at NinjaOne across demand generation, field marketing and customer marketing, running events, programs and webinars for the Americas.</p>
+          <a class="li" href="https://www.linkedin.com/in/lisakharshman/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Connect on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="panel cta">
+    <div class="wrap reveal">
+      <img class="rocket" src="https://sumble.com/marketing/homepage/rocket.svg" alt="">
+      <span class="mono">Get started</span>
+      <h2>Know what's happening inside your accounts - before your competitors do.</h2>
+      <div class="ctas">
+        <a class="btn btn-g btn-lg" href="#watch">Save my seat</a>
+        <a class="btn btn-w btn-lg" href="https://sumble.com/" target="_blank" rel="noopener">Try for free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="panel foot">
+    <div class="wrap foot-grid">
+      <div class="mascot-col"><img class="mascot" src="https://sumble.com/logo512.png" alt="Sumble"></div>
+      <div><h4>Product</h4><ul><li><a href="https://docs.sumble.com/api" target="_blank" rel="noopener">API</a></li><li><a href="https://sumble.com/pricing" target="_blank" rel="noopener">Pricing</a></li></ul></div>
+      <div><h4>Resources</h4><ul><li><a href="https://docs.sumble.com" target="_blank" rel="noopener">Documentation</a></li><li><a href="https://blog.sumble.com" target="_blank" rel="noopener">Blog</a></li><li><a href="https://sumble.com/guides/territory-planning" target="_blank" rel="noopener">Sales territory planning</a></li><li><a href="https://sumble.com/guides/account-scoring-1" target="_blank" rel="noopener">Account scoring</a></li><li><a href="https://sumble.com/guides/account-scoring-2" target="_blank" rel="noopener">ICP scoring model</a></li><li><a href="https://sumble.com/tech" target="_blank" rel="noopener">Technologies</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="https://apply.workable.com/sumble-inc/" target="_blank" rel="noopener">Careers</a></li><li><a href="mailto:support@sumble.com">Contact</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="https://sumble.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></li><li><a href="https://sumble.com/terms-of-service" target="_blank" rel="noopener">Terms of Service</a></li></ul></div>
+      <div class="legal2"><ul><li><a href="https://sumble.com/dpa" target="_blank" rel="noopener">Data Processing Agreement</a></li><li><a href="https://sumble.com/privacy#california-privacy-rights" target="_blank" rel="noopener">CA Privacy Notice</a></li></ul></div>
+    </div>
+  </footer>
+</main>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+<script>
+(function stripBorder(){
+  var r=document.getElementById("sequel_root"),c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else{setTimeout(stripBorder,200);}
+})();
+
+/* event */
+var EVENT={title:"How Sumble Uses Sumble",start:new Date("2026-12-10T11:00:00-08:00"),mins:45,
+  url:"https://sequel-demo.github.io/webinar-on/sumble/",
+  desc:"Sumble's own team walks through how they find the teams, technologies, and active initiatives inside their target accounts. Streaming live and on-demand on sumble.com."};
+var end=new Date(EVENT.start.getTime()+EVENT.mins*60000);
+function utc(d){return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");}
+document.getElementById("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+utc(EVENT.start)+"/"+utc(end)+"&details="+encodeURIComponent(EVENT.desc+"\n\n"+EVENT.url)+"&location="+encodeURIComponent(EVENT.url);
+var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Sumble//Webinar//EN","BEGIN:VEVENT","UID:sumble-uses-sumble@sumble.com","DTSTAMP:"+utc(new Date()),"DTSTART:"+utc(EVENT.start),"DTEND:"+utc(end),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.desc,"URL:"+EVENT.url,"LOCATION:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ical").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+/* viewer timezone */
+try{
+  var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if(tz&&tz!=="America/Los_Angeles"){
+    var lt=EVENT.start.toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+    document.getElementById("tzLine").textContent="That's "+lt+" for you";
+  }
+}catch(e){}
+
+/* countdown + stale degrade */
+function pad(n){return String(n).padStart(2,"0");}
+function tick(){
+  var now=Date.now(),s=EVENT.start.getTime(),e=end.getTime();
+  if(now>=e){ // on-demand
+    document.getElementById("badgeTxt").textContent="On Demand";
+    document.getElementById("tagtxt").textContent="ON DEMAND";
+    document.getElementById("cd").style.display="none";
+    var ln=document.getElementById("liveNow");ln.style.display="block";ln.textContent="Watch the recording below.";
+    document.getElementById("mainCta").textContent="Watch the recording";
+    document.getElementById("gcal").style.display="none";document.getElementById("ical").style.display="none";
+    document.querySelector(".live-dot").style.animation="none";
+    return;
+  }
+  if(now>=s){
+    document.getElementById("cd").style.display="none";
+    document.getElementById("liveNow").style.display="block";
+    document.getElementById("mainCta").textContent="Join now";
+  }else{
+    var d=Math.floor((s-now)/1000);
+    document.getElementById("dd").textContent=pad(Math.floor(d/86400));
+    document.getElementById("hh").textContent=pad(Math.floor(d%86400/3600));
+    document.getElementById("mm").textContent=pad(Math.floor(d%3600/60));
+    document.getElementById("ss").textContent=pad(d%60);
+  }
+  setTimeout(tick,1000);
+}
+tick();
+
+/* sticky header */
+var hdr=document.getElementById("hdr");
+addEventListener("scroll",function(){hdr.classList.toggle("scrolled",scrollY>8);},{passive:true});
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target);}});},{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(function(el){io.observe(el);});
+document.getElementById("heroCopy").classList.add("in");
+
+/* signature: the eyes follow you */
+var pupils=document.querySelectorAll(".pupil");
+addEventListener("pointermove",function(ev){
+  pupils.forEach(function(p){
+    var r=p.parentElement.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+    var a=Math.atan2(ev.clientY-cy,ev.clientX-cx),k=r.width*0.22;
+    p.style.transform="translate(calc(-50% + "+Math.cos(a)*k+"px), calc(-50% + "+Math.sin(a)*k+"px))";
+  });
+},{passive:true});
+</script>
+</body>
+</html>
