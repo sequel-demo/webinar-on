@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Autonomous Testing in the Agentic Era | ACCELQ</title>
+<meta name="description" content="A live ACCELQ session on moving enterprise QA from scripts to agents across Web, Mobile, API, Desktop and packaged apps.">
+<meta property="og:title" content="Autonomous Testing in the Agentic Era | ACCELQ Live Webinar">
+<meta property="og:description" content="The Most Powerful Enterprise QA Platform for the Agentic Era, live and on-demand on accelq.com.">
+<meta property="og:image" content="https://cdn.accelq.com/wp-content/uploads/2025/12/accelq-preview.jpg">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/accelq/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://cdn.accelq.com/wp-content/uploads/2021/10/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F1115;--ink2:#353E51;--slate:#42526E;--muted:#6B778C;
+  --green:#04A334;--neon:#00E065;--cyan:#21ADC3;--sky:#32C5FF;--violet:#7856FF;
+  --t1:#11605B;--t2:#15908E;--t3:#178C8E;--t4:#1FA9A6;--t5:#0ADAC1;
+  --paper:#FFFFFF;--mist:#F6F9FC;--line:#E3E8EF;--line-d:rgba(255,255,255,.1);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(15,17,21,.06),0 1px 3px rgba(15,17,21,.08);
+  --sh-md:0 6px 18px rgba(17,96,91,.12);
+  --sh-lg:0 24px 60px rgba(4,163,52,.18);
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink2);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce */
+.announce{background:var(--violet);color:#fff;font-size:13.5px;text-align:center;padding:9px 16px;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.announce a{background:var(--neon);color:var(--ink);font-weight:600;font-size:12.5px;padding:4px 14px;border-radius:999px;transition:transform .3s var(--ease)}
+.announce a:hover{transform:translateY(-1px)}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:var(--ink);transition:box-shadow .3s var(--ease),background .3s var(--ease)}
+header.nav.scrolled{background:rgba(15,17,21,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.util{display:flex;justify-content:flex-end;gap:22px;padding-top:10px;font-size:13.5px;color:var(--sky)}
+.util a:hover{color:#fff}
+.mainnav{display:flex;align-items:center;justify-content:space-between;height:62px;transition:height .3s var(--ease)}
+.scrolled .mainnav{height:54px}
+.logo{color:#fff;display:flex;align-items:center}
+.logo svg{height:22px;width:auto}
+.links{display:flex;align-items:center;gap:22px;font-size:14.5px;color:#F6F9FC}
+.links a{display:inline-flex;align-items:center;gap:5px}
+.links a:hover{color:var(--neon)}
+.caret{width:8px;height:8px;opacity:.75}
+.links a.trial{background:var(--green);color:#F6F9FC;font-weight:600;font-size:14.4px;letter-spacing:.8px;padding:10px 16px;border-radius:4px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.links a.trial:hover{color:#fff;transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.burger{display:none;background:none;border:0;color:#fff}
+
+/* dark wrap: hero + embed one surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--ink);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto -10%;height:80%;background:radial-gradient(circle at 50% 40%,rgba(21,144,142,.30),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -20% -10%;height:70%;background:radial-gradient(circle at 50% 60%,rgba(4,163,52,.16),transparent 62%);pointer-events:none}
+.hero{padding:72px 0 36px;position:relative;z-index:2;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(0,224,101,.35);background:rgba(0,224,101,.08);color:var(--neon);padding:7px 14px;border-radius:999px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 0 0 rgba(0,224,101,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(0,224,101,0)}100%{box-shadow:0 0 0 0 rgba(0,224,101,0)}}
+.hero h1{font-weight:600;font-size:clamp(34px,5.4vw,60px);line-height:1.12;letter-spacing:-.025em;margin:22px auto 0;max-width:900px;color:#fff}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .sub{color:rgba(255,255,255,.72);font-size:18px;max-width:640px;margin:18px auto 0}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.chip{border:1px solid var(--line-d);background:rgba(255,255,255,.04);padding:8px 14px;border-radius:4px;font-size:14px;color:#E8ECF2}
+.streaming{margin-top:14px;font-size:14px;color:var(--sky)}
+.local{margin-top:4px;font-size:13px;color:rgba(255,255,255,.5)}
+.count{display:flex;gap:12px;justify-content:center;margin-top:30px}
+.cell{min-width:78px;padding:12px 8px;border:1px solid var(--line-d);background:rgba(255,255,255,.03);border-radius:4px}
+.cell b{display:block;font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;color:#fff;line-height:1.1}
+.cell span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.5)}
+.live-now{margin-top:30px;font-size:20px;color:var(--neon);font-weight:600;display:none}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;font-weight:600;font-size:14.5px;letter-spacing:.06em;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s}
+.btn-demo{background:var(--cyan);color:#fff}
+.btn-demo:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(33,173,195,.35)}
+.btn-ghost{border:1px solid rgba(255,255,255,.55);color:#fff;font-weight:500}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.shapes{display:inline-flex;align-items:flex-end;gap:7px}
+.shapes i{display:block}
+.s1{width:32px;height:23px;background:var(--t1);clip-path:polygon(32.6% 0,100% 0,67.4% 100%,0 100%)}
+.s2{width:25px;height:27px;background:var(--t2);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.s3{width:24px;height:24px;background:var(--t4)}
+.s4{width:20px;height:31px;background:var(--t3)}
+.s5{width:36px;height:25px;background:var(--t5)}
+.hero .shapes{margin-top:44px;opacity:.95}
+.embed-sec{padding:6px 0 84px;position:relative;z-index:2}
+#sequel_root{min-height:520px;max-width:1040px;margin:0 auto;border-radius:6px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.45)}
+
+/* stat */
+.stat{padding:110px 0 90px;background:var(--paper)}
+.stat .big{font-size:clamp(96px,15vw,180px);font-weight:700;letter-spacing:-.045em;line-height:.9;color:var(--ink);display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.stat .big small{font-size:.32em;color:var(--green);letter-spacing:-.02em;padding-bottom:.22em}
+.stat p.cap{max-width:640px;font-size:20px;color:var(--slate);margin-top:22px}
+.stat p.turn{max-width:640px;font-size:20px;color:var(--ink);font-weight:600;margin-top:10px}
+.src{margin-top:18px;color:var(--muted)}
+
+/* lede */
+.lede{padding:40px 0 110px;background:var(--paper)}
+.lede .grid{display:grid;grid-template-columns:240px 1fr;gap:48px;border-top:1px solid var(--line);padding-top:48px}
+.side{position:sticky;top:120px;align-self:start;color:var(--t2)}
+.lede .body{max-width:66ch}
+.lede .body p{font-size:18px;margin-bottom:20px}
+.lede .body p:first-child{font-size:22px;color:var(--ink);font-weight:500;line-height:1.5}
+
+/* mechanism */
+.mech{background:#08090B;color:#fff;padding:110px 0;position:relative;overflow:hidden}
+.mech h2{font-size:clamp(30px,4vw,46px);font-weight:600;letter-spacing:-.025em;line-height:1.15;max-width:760px}
+.mech h2 em{font-style:normal;color:var(--t5)}
+.mech .kicker{color:var(--t5);margin-bottom:16px}
+.flow{display:grid;grid-template-columns:repeat(9,auto);align-items:center;margin-top:64px;gap:0}
+.node{border:1px solid var(--line-d);background:rgba(255,255,255,.03);border-radius:4px;padding:18px 18px 16px;min-width:130px;transition:transform .4s var(--ease),border-color .4s}
+.node:hover{transform:translateY(-6px);border-color:rgba(10,218,193,.5)}
+.node .shp{height:31px;display:flex;align-items:flex-end;margin-bottom:14px}
+.node b{display:block;font-weight:600;font-size:16px}
+.node span{font-size:12.5px;color:rgba(255,255,255,.55)}
+.dashes{height:2px;min-width:28px;background-image:linear-gradient(90deg,var(--t5) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.8}
+@keyframes march{to{background-position:12px 0}}
+.mech .foot{margin-top:56px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line-d);padding-top:28px}
+.mech .foot p{max-width:560px;color:rgba(255,255,255,.7)}
+.mech .apps{display:flex;gap:18px;flex-wrap:wrap;color:rgba(255,255,255,.55);font-size:14px}
+
+/* learn rows */
+.learn{padding:110px 0;background:var(--mist)}
+.learn h2{font-size:clamp(28px,3.6vw,42px);font-weight:600;letter-spacing:-.025em;color:var(--ink);margin-bottom:44px}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--green);transition:width .5s var(--ease)}
+.row:hover{background:#fff}
+.row:hover::before{width:100%}
+.row .n{color:var(--t2);padding-top:6px}
+.row h3{font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-.015em;line-height:1.3}
+.row p{color:var(--slate);font-size:16.5px}
+
+/* speakers */
+.speakers{padding:110px 0;background:#fff}
+.speakers .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.speakers h2{font-size:clamp(28px,3.6vw,42px);font-weight:600;letter-spacing:-.025em;color:var(--ink)}
+.flag{background:#FFF4D6;color:#7A5A00;border-radius:4px;padding:6px 10px}
+.sp{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.person .ph{aspect-ratio:1;border-radius:4px;background:linear-gradient(135deg,var(--t1),var(--t5));position:relative;overflow:hidden;margin-bottom:18px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.person:hover .ph{transform:translateY(-6px);box-shadow:var(--sh-md)}
+.person .ph .shapes{position:absolute;left:20px;bottom:20px;filter:brightness(1.6) saturate(.6);opacity:.55}
+.person b{display:block;color:var(--ink);font-size:18px;font-weight:600}
+.person span{color:var(--muted);font-size:15px}
+
+/* cta */
+.cta{background:var(--neon);color:var(--ink);padding:96px 0}
+.cta .in{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta h2{font-size:clamp(30px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.08;max-width:720px}
+.cta p{margin-top:12px;font-size:17px;max-width:560px}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(15,17,21,.3)}
+.cal{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cal a{font-size:14px;font-weight:600;border-bottom:2px solid currentColor;padding-bottom:1px}
+
+/* footer */
+footer{background:var(--mist);color:var(--muted);padding:72px 0 30px;font-size:14px}
+.fcols{display:grid;grid-template-columns:repeat(5,1fr) 1.1fr;gap:28px}
+.fcols h4{color:var(--ink2);font-size:14px;font-weight:600;margin-bottom:14px}
+.fcols a{display:block;margin-bottom:9px}
+.fcols a:hover{color:var(--green)}
+.fcols a.strong{color:var(--ink2);font-weight:600}
+.addr{text-align:right;line-height:1.55}
+.legal{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+.legal .logo{color:var(--ink)}
+.soc{display:flex;gap:10px}
+.soc a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink2);transition:all .3s var(--ease)}
+.soc a:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.soc svg{width:15px;height:15px;fill:currentColor}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.4s}.stagger.in>*:nth-child(7){transition-delay:.48s}.stagger.in>*:nth-child(8){transition-delay:.56s}.stagger.in>*:nth-child(9){transition-delay:.64s}
+
+@media (max-width:1080px){.links .hide-m{display:none}.flow{grid-template-columns:1fr;gap:10px}.dashes{width:2px;height:22px;min-width:0;margin-left:30px;background-image:linear-gradient(180deg,var(--t5) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y}@keyframes march{to{background-position:0 12px}}.fcols{grid-template-columns:repeat(3,1fr)}.addr{text-align:left}}
+@media (max-width:760px){
+  .util{display:none}.links a:not(.trial){display:none}.mainnav{height:58px}
+  .links a.trial{padding:8px 12px;font-size:13px}
+  .hero{padding:52px 0 28px}.hero .sub{font-size:16px}
+  .cell{min-width:64px}.cell b{font-size:24px}
+  #sequel_root{min-height:420px}
+  .lede .grid{grid-template-columns:1fr;gap:18px}.side{position:static}
+  .row{grid-template-columns:1fr;gap:8px;padding:28px 6px}
+  .sp{grid-template-columns:1fr;gap:32px}
+  .fcols{grid-template-columns:1fr 1fr}
+  .announce{font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="announce"><span>ACCELQ Live: Autonomous Testing in the Agentic Era</span><a href="#watch">Save your seat</a></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="util">
+      <a href="https://www.accelq.com/blog/" target="_blank" rel="noopener">Resources ⌄</a>
+      <a href="https://www.accelq.com/contact-us/" target="_blank" rel="noopener">Support</a>
+      <a href="https://www.accelq.com/partners/" target="_blank" rel="noopener">Partners</a>
+      <a href="https://www.accelq.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://www.accelq.com/about-us/" target="_blank" rel="noopener">Company ⌄</a>
+    </div>
+    <div class="mainnav">
+      <a class="logo" href="https://www.accelq.com/" target="_blank" rel="noopener" aria-label="ACCELQ">
+        <svg viewBox="0 0 350 63.49" fill="currentColor" aria-hidden="true"><use href="#lq"/></svg>
+      </a>
+      <nav class="links">
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Platform <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Products <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Enterprise Automation <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Cloud Apps &amp; ERP <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Industries <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="hide-m" href="https://www.accelq.com/" target="_blank" rel="noopener">Why ACCELQ <svg class="caret" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></a>
+        <a class="trial" href="https://www.accelq.com/freetrial/" target="_blank" rel="noopener">FREE TRIAL</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="lq">
+<path d="M221.92,37.26h-12.7a5.3,5.3,0,0,1,0-10.6h12.7a5.3,5.3,0,1,1,0,10.6Z"/><path d="M225.22,61.16h-33.1a5.53,5.53,0,0,1-5.6-5.6V7.66a5.53,5.53,0,0,1,5.6-5.6h32.7a5.19,5.19,0,0,1,5.1,5.1,5.12,5.12,0,0,1-5.1,5.1h-27.2v38.8h27.6a5.19,5.19,0,0,1,5.1,5.1A5.1,5.1,0,0,1,225.22,61.16Z"/><path d="M55.42,62.76a6,6,0,0,1-5.5-3.5l-23-50.2a6,6,0,1,1,11-5l23,50.2a6,6,0,0,1-3,8A5.590,5.590,0,0,1,55.42,62.76Z"/><path d="M6.82,62.76a6,6,0,0,0,5.5-3.5l14.2-31.1a6,6,0,0,0-11-5L1.32,54.26a6,6,0,0,0,3,8A5.59,5.59,0,0,0,6.82,62.76Z"/><path d="M277.72,60.56h-28.6a5.76,5.76,0,0,1-5.7-5.7v-47a5.7,5.7,0,1,1,11.4,0v41.3h22.9a5.7,5.7,0,0,1,0,11.4Z"/><path d="M317.62,63.36a31.6,31.6,0,1,1,31.6-31.6A31.67,31.67,0,0,1,317.62,63.36Zm0-51.8a20.2,20.2,0,1,0,20.2,20.2A20.27,20.27,0,0,0,317.62,11.56Z"/><path d="M335.92,55.76a5.61,5.61,0,0,1-4-1.7,5.8,5.8,0,0,1,0-8.1,20.150,20.150,0,0,0-28.5-28.5,5.8,5.8,0,0,1-8.1,0,5.7,5.7,0,0,1,0-8.1A31.61,31.61,0,0,1,340,54.06,6.21,6.21,0,0,1,335.92,55.76Z"/><path d="M343.22,63.06a5.61,5.61,0,0,1-4-1.7l-23.5-23.5a5.73,5.73,0,1,1,8.1-8.1l23.5,23.5a5.8,5.8,0,0,1,0,8.1A5.59,5.59,0,0,1,343.22,63.06Z"/><path d="M117.92,49.46a5.45,5.45,0,0,0-7.6-1.2,20.47,20.47,0,1,1-11.9-37.1,20,20,0,0,1,12,3.9,5.44,5.44,0,0,0,6.4-8.8A31,31,0,0,0,98.52.36a31.3,31.3,0,0,0,0,62.6,30.75,30.75,0,0,0,18.3-5.9A5.52,5.52,0,0,0,117.92,49.46Z"/><path d="M175.52,49.46a5.45,5.45,0,0,0-7.6-1.2A20.47,20.47,0,1,1,156,11.160a20,20,0,0,1,12,3.9,5.44,5.44,0,1,0,6.4-8.8,31,31,0,0,0-18.3-5.9,31.3,31.3,0,0,0,0,62.6,30.75,30.75,0,0,0,18.3-5.9A5.52,5.52,0,0,0,175.52,49.46Z"/>
+</g></defs></svg>
+
+<div class="dark-wrap" id="watch">
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge mono reveal"><i class="dot"></i><span id="badgeTxt">Live Webinar</span></span>
+      <h1 class="reveal">Autonomous Testing in the <em>Agentic Era</em></h1>
+      <p class="sub reveal">Inside the Forrester Wave™ Leader &amp; Customer Favorite: how enterprise QA teams are moving from brittle scripts to agents that design, run and heal tests across the whole stack.</p>
+      <div class="chips reveal">
+        <span class="chip" id="chipDate">Thu, Dec 10, 2026</span>
+        <span class="chip" id="chipTime">9:00 AM CT</span>
+        <span class="chip">45 min + live Q&amp;A</span>
+      </div>
+      <p class="streaming reveal">Streaming live and on-demand on accelq.com</p>
+      <p class="local reveal" id="localTime"></p>
+      <div class="count reveal" id="count">
+        <div class="cell"><b id="cd">00</b><span>DAYS</span></div>
+        <div class="cell"><b id="ch">00</b><span>HRS</span></div>
+        <div class="cell"><b id="cm">00</b><span>MIN</span></div>
+        <div class="cell"><b id="cs">00</b><span>SEC</span></div>
+      </div>
+      <p class="live-now" id="liveNow">We're live now, join below</p>
+      <div class="ctas reveal" id="ctas">
+        <a class="btn btn-demo" href="#sequel_root">SAVE MY SEAT</a>
+        <a class="btn btn-ghost" id="gcal" href="#" target="_blank" rel="noopener">▶ ADD TO CALENDAR</a>
+      </div>
+      <div class="shapes reveal" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i></div>
+    </div>
+  </section>
+  <section class="embed-sec">
+    <div class="wrap">
+      <div id="sequel_root"></div>
+    </div>
+  </section>
+</div>
+
+<section class="stat">
+  <div class="wrap reveal">
+    <div class="big">1.1M+<small>business processes automated</small></div>
+    <p class="cap">That's how many business processes teams have automated on the ACCELQ platform, across health care, financial services and travel.</p>
+    <p class="turn">The next million won't be written by hand. They'll be designed, maintained and healed by agents.</p>
+    <p class="src mono">Source: accelq.com</p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap grid">
+    <div class="side mono">The session</div>
+    <div class="body reveal">
+      <p>Enterprise QA has outgrown the script. Release trains run weekly, packaged apps like Salesforce, Oracle and SAP push their own updates on their own schedule, and every brittle locator becomes someone's afternoon.</p>
+      <p>In this live session, the ACCELQ team walks through what changes when testing becomes agentic: business-process-focused automation that spans Web, Mobile, API, Desktop and Backend in one place, with zero coding and self-healing built in.</p>
+      <p>You'll see how manual testers, automation engineers and product owners work from the same model, so go/no-go decisions come from shared evidence instead of a status meeting. Stay for live Q&amp;A with the people who build the platform.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <p class="kicker mono reveal">Multi channel automation</p>
+    <h2 class="reveal">One platform that seamlessly connects to <em>all your testing needs</em></h2>
+    <div class="flow stagger">
+      <div class="node"><div class="shp"><i class="s1"></i></div><b>Web</b><span>Browsers &amp; packaged UIs</span></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="shp"><i class="s2"></i></div><b>Mobile</b><span>No-code, no-setup</span></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="shp"><i class="s3"></i></div><b>API</b><span>Microservices, MQ, ESB</span></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="shp"><i class="s4"></i></div><b>Desktop</b><span>Thick clients &amp; mainframes</span></div>
+      <div class="dashes"></div>
+      <div class="node"><div class="shp"><i class="s5"></i></div><b>Backend</b><span>SSH, data &amp; services</span></div>
+    </div>
+    <div class="foot reveal">
+      <p>ACCELQ LIVE brings the same business-process model to cloud and packaged apps, with real-time release alignment.</p>
+      <div class="apps mono"><span>Salesforce</span><span>Oracle</span><span>SAP</span><span>Workday</span><span>ServiceNow</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <h2 class="reveal">What you'll see</h2>
+    <div class="stagger">
+      <div class="row"><div class="n mono">01</div><h3>From test scripts to test agents</h3><p>How agentic AI designs, generates and maintains tests from business processes, and where humans stay in the loop.</p></div>
+      <div class="row"><div class="n mono">02</div><h3>Self-healing that survives release day</h3><p>Why codeless, model-based automation keeps passing when the UI moves, and what that does to maintenance hours.</p></div>
+      <div class="row"><div class="n mono">03</div><h3>Packaged apps without the fire drill</h3><p>Keeping Salesforce, Oracle and SAP updates aligned with your regression suite using ACCELQ LIVE.</p></div>
+      <div class="row"><div class="n mono">04</div><h3>Quality as a shared language</h3><p>Giving testers, engineers and product owners one view of automation and manual coverage for confident go/no-go calls.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="head reveal"><h2>Speakers</h2><span class="flag mono">Placeholder speakers</span></div>
+    <div class="sp stagger">
+      <div class="person"><div class="ph"><div class="shapes"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div></div><b>Speaker Name</b><span>Title, ACCELQ</span></div>
+      <div class="person"><div class="ph" style="background:linear-gradient(135deg,#15908E,#0ADAC1)"><div class="shapes"><i class="s3"></i><i class="s4"></i><i class="s5"></i></div></div><b>Speaker Name</b><span>Title, ACCELQ</span></div>
+      <div class="person"><div class="ph" style="background:linear-gradient(135deg,#0F1115,#11605B)"><div class="shapes"><i class="s2"></i><i class="s5"></i></div></div><b>Customer Speaker</b><span>QA Leader, Customer Company</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap in reveal">
+    <div>
+      <h2>Get started on your codeless test automation journey</h2>
+      <p>Join live on accelq.com, or catch the recording on-demand right here.</p>
+      <div class="cal" id="calLinks"><a id="gcal2" href="#" target="_blank" rel="noopener">Google Calendar</a><a id="ics" href="#" download="accelq-webinar.ics">Outlook / iCal</a></div>
+    </div>
+    <a class="btn btn-dark" href="#watch">SAVE MY SEAT →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4>Why ACCELQ</h4><a href="https://www.accelq.com/" target="_blank" rel="noopener">Differentiators</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Return on Investment</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">ACCELQ vs. Conventional Testing Tools</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Migrate to ACCELQ</a></div>
+      <div><h4>Product</h4><a href="https://www.accelq.com/" target="_blank" rel="noopener">Automate Web</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Automate API</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Automate Mobile</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">ACCELQ Manual</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">ACCELQ Unified</a></div>
+      <div><h4>Cloud Apps &amp; ERP</h4><a href="https://www.accelq.com/" target="_blank" rel="noopener">Salesforce</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">nCino</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Workday</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Oracle</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">ServiceNow</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">MS Dynamics</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Pega</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">SAP</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Coupa</a></div>
+      <div><h4>Resources</h4><a href="https://www.accelq.com/blog/" target="_blank" rel="noopener">Blogs</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Video</a><a href="https://community.accelq.com/" target="_blank" rel="noopener">QCommunity</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Help Center</a><a class="strong" href="https://www.accelq.com/pricing/" target="_blank" rel="noopener">Pricing</a><a class="strong" href="https://www.accelq.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></div>
+      <div><h4>Company</h4><a href="https://www.accelq.com/about-us/" target="_blank" rel="noopener">About Us</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">News</a><a href="https://www.accelq.com/" target="_blank" rel="noopener">Careers</a><a class="strong" href="https://www.accelq.com/partners/" target="_blank" rel="noopener">Partners</a><a class="strong" href="https://www.accelq.com/" target="_blank" rel="noopener">Support</a><a class="strong" href="https://www.accelq.com/contact-us/" target="_blank" rel="noopener">Contact Us</a></div>
+      <div class="addr">14241 Dallas Parkway,<br>Suite 520, Dallas<br>Texas 75254<br>United States</div>
+    </div>
+    <div class="legal">
+      <a class="logo" href="https://www.accelq.com/" target="_blank" rel="noopener" aria-label="ACCELQ"><svg viewBox="0 0 350 63.49" fill="currentColor" style="height:18px;width:auto"><use href="#lq"/></svg></a>
+      <span>© 2026 ACCELQ. All rights reserved.</span>
+      <div class="soc">
+        <a href="https://twitter.com/accelq" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.7l-5.2-6.8L5 22H2l8.1-9.3L1.5 2h6.9l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 3.9H5.5L17.7 20z"/></svg></a>
+        <a href="https://www.facebook.com/ACCELQ/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6 1-.6z"/></svg></a>
+        <a href="https://www.linkedin.com/company/accelq/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        <a href="https://www.youtube.com/c/accelq" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.5 12a31 31 0 00.5 4.8 3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1 31 31 0 00.5-4.8 31 31 0 00-.5-4.8zM9.8 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg></a>
+        <a href="https://www.instagram.com/accelq_inc/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.2a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zM17.3 5.5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zM12 2.2c-2.7 0-3 0-4 .1-3.6.2-5.5 2.1-5.7 5.7-.1 1-.1 1.3-.1 4s0 3 .1 4c.2 3.6 2.1 5.5 5.7 5.7 1 .1 1.3.1 4 .1s3 0 4-.1c3.6-.2 5.5-2.1 5.7-5.7.1-1 .1-1.3.1-4s0-3-.1-4c-.2-3.6-2.1-5.5-5.7-5.7-1-.1-1.3-.1-4-.1z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="embedScripts"></div>
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+<script>
+(function stripBorder(){
+  const r=document.getElementById("sequel_root");const c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){const st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else{setTimeout(stripBorder,200);}
+})();
+
+const EVENT={title:"Autonomous Testing in the Agentic Era | ACCELQ Live",
+  start:new Date("2026-12-10T09:00:00-06:00"),mins:45,
+  details:"ACCELQ Live webinar. Watch at https://sequel-demo.github.io/webinar-on/accelq/",
+  url:"https://sequel-demo.github.io/webinar-on/accelq/"};
+EVENT.end=new Date(EVENT.start.getTime()+EVENT.mins*60000);
+const z=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+const g="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+z(EVENT.start)+"/"+z(EVENT.end)+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.url);
+document.getElementById("gcal").href=g;document.getElementById("gcal2").href=g;
+const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//ACCELQ//Webinar//EN","BEGIN:VEVENT","UID:accelq-agentic-20261210@sequel-demo","DTSTAMP:"+z(new Date()),"DTSTART:"+z(EVENT.start),"DTEND:"+z(EVENT.end),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"URL:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ics").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+try{const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if(!/Chicago/.test(tz)){document.getElementById("localTime").textContent="That's "+EVENT.start.toLocaleString(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"})+" for you";}}catch(e){}
+
+const pad=n=>String(n).padStart(2,"0");
+function tick(){const ms=EVENT.start-Date.now();
+  if(Date.now()>EVENT.end.getTime()+3600000){ // past: on-demand
+    document.getElementById("badgeTxt").textContent="On Demand";
+    document.getElementById("count").style.display="none";
+    document.getElementById("gcal").style.display="none";document.getElementById("calLinks").style.display="none";
+    document.querySelector("#ctas .btn-demo").textContent="WATCH THE RECORDING";
+    document.getElementById("chipTime").textContent="Recorded";document.getElementById("localTime").textContent="";
+    return;}
+  if(ms<=0){document.getElementById("count").style.display="none";document.getElementById("liveNow").style.display="block";document.getElementById("badgeTxt").textContent="Live Now";return;}
+  const s=Math.floor(ms/1000);
+  document.getElementById("cd").textContent=pad(Math.floor(s/86400));document.getElementById("ch").textContent=pad(Math.floor(s%86400/3600));
+  document.getElementById("cm").textContent=pad(Math.floor(s%3600/60));document.getElementById("cs").textContent=pad(s%60);
+  setTimeout(tick,1000);}
+tick();
+
+const nav=document.getElementById("nav");addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
