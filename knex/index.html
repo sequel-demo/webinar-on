@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Agentic AI for the Systems You Already Run | KNEX Technology</title>
+<meta name="description" content="A live KNEX session on putting production-ready agentic AI to work across Oracle Fusion, PeopleSoft, E-Business Suite and JD Edwards.">
+<meta property="og:title" content="Agentic AI for the Systems You Already Run | KNEX Live Webinar">
+<meta property="og:description" content="Simplify the complex. Then make it intelligent. Live and on-demand on knextech.com.">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/knex/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Crect width='24' height='28' fill='%23000'/%3E%3Cpath d='M4 3V25M4 14L20 3M4 14L20 25' stroke='%23e6fd36' stroke-width='3' stroke-linecap='square' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;--ink:#0B0B0B;--lime:#E6FD36;--stone:#CECDC8;
+  --w62:rgba(255,255,255,.62);--w40:rgba(255,255,255,.4);--w24:rgba(255,255,255,.24);--w13:rgba(255,255,255,.13);
+  --b66:rgba(0,0,0,.66);--bline:rgba(0,0,0,.16);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;background:var(--black);color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
+.lime{color:var(--lime)}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0);transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+header.nav.scrolled{background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--w13)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:78px;transition:height .3s var(--ease)}
+.scrolled .bar{height:64px}
+.logo{display:flex;color:#fff}
+.logo svg{width:84px;height:21px}
+.links{display:flex;align-items:center;gap:30px}
+.links a{font-family:var(--mono);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;color:var(--w62);transition:color .25s}
+.links a:hover{color:#fff}
+.links a.gs{border:1px solid var(--w24);padding:11px 20px;font-weight:380}
+.links a.gs:hover{border-color:var(--lime);color:var(--lime)}
+.ticker{border-top:1px solid var(--w13);border-bottom:1px solid var(--w13);overflow:hidden;white-space:nowrap;background:var(--black)}
+.ticker .row{display:inline-flex;animation:scroll 36s linear infinite;padding:14px 0}
+.ticker .item{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--w40);padding-left:54px}
+.ticker .item::before{content:"/";color:var(--lime);margin-right:28px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* dark-wrap: hero + embed one surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--black)}
+.dark-wrap::before{content:"";position:absolute;inset:-20% -20% auto 30%;height:70%;background:radial-gradient(circle,rgba(230,253,54,.07),transparent 62%);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto 40% -15% -20%;height:60%;background:radial-gradient(circle,rgba(230,253,54,.05),transparent 62%);pointer-events:none}
+.chev{position:absolute;right:-40px;top:20px;width:400px;height:840px;pointer-events:none;z-index:1}
+.chev path{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.4s var(--ease) .2s forwards}
+.chev path:nth-child(2){animation-delay:.45s}.chev path:nth-child(3){animation-delay:.7s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero{padding:76px 0 40px;position:relative;z-index:2}
+.kick{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:10px;color:var(--lime)}
+.dot{width:8px;height:8px;background:var(--lime);box-shadow:0 0 0 0 rgba(230,253,54,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(230,253,54,0)}100%{box-shadow:0 0 0 0 rgba(230,253,54,0)}}
+.sep{color:var(--w40)}
+.hero h1{font-weight:520;font-size:clamp(44px,6.4vw,82px);line-height:1.02;letter-spacing:-.035em;margin-top:26px;max-width:880px}
+.hero h1 em{font-style:normal;color:var(--lime);white-space:nowrap}
+.hero .sub{color:var(--w62);font-size:18px;max-width:600px;margin-top:26px;font-weight:300}
+.meta{display:flex;gap:0;flex-wrap:wrap;margin-top:32px;border:1px solid var(--w13);width:fit-content}
+.meta span{padding:12px 18px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:#fff;border-right:1px solid var(--w13)}
+.meta span:last-child{border-right:0}
+.streaming{margin-top:16px;font-size:15px;color:var(--w62)}
+.streaming b{color:#fff;font-weight:600}
+.local{margin-top:2px;font-size:13px;color:var(--w40);font-family:var(--mono);letter-spacing:.04em}
+.lower{display:flex;gap:36px;align-items:flex-end;flex-wrap:wrap;margin-top:34px}
+.count{display:flex;border:1px solid var(--w13)}
+.cell{min-width:82px;padding:12px 14px;border-right:1px solid var(--w13)}
+.cell:last-child{border-right:0}
+.cell b{display:block;font-size:34px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.05;letter-spacing:-.02em}
+.cell span{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--w40)}
+.live-now{font-size:20px;color:var(--lime);font-weight:600;display:none}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;font-weight:600;font-size:15px;letter-spacing:.005em;border:1px solid transparent;transition:transform .3s var(--ease),background .3s,border-color .3s,color .3s}
+.btn-lime{background:var(--lime);color:#000}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(230,253,54,.22)}
+.btn-ghost{border-color:var(--w24);color:#fff}
+.btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
+.embed-sec{padding:12px 0 92px;position:relative;z-index:2}
+#sequel_root{min-height:520px;max-width:1080px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(230,253,54,.0)}
+
+/* stats (their pattern: big lime number) */
+.stat{background:var(--stone);color:#000;padding:110px 0 96px}
+.stat .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:end}
+.stat .big{font-size:clamp(110px,16vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.85}
+.stat .big sup{font-size:.4em;vertical-align:top;position:relative;top:.12em}
+.stat .lbl{margin-top:18px;color:var(--b66)}
+.stat .turn{font-size:clamp(22px,2.4vw,30px);font-weight:540;letter-spacing:-.02em;line-height:1.25}
+.stat .minis{display:flex;gap:40px;margin-top:30px;border-top:1px solid var(--bline);padding-top:22px}
+.stat .minis b{display:block;font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.stat .minis span{color:var(--b66)}
+.src{margin-top:26px;color:rgba(0,0,0,.45)}
+
+/* lede */
+.lede{background:var(--stone);color:#000;padding:0 0 120px}
+.lede .grid{display:grid;grid-template-columns:240px 1fr;gap:48px;border-top:1px solid var(--bline);padding-top:52px}
+.side{position:sticky;top:110px;align-self:start;color:rgba(0,0,0,.55)}
+.side i{font-style:normal;color:#000}
+.lede .body{max-width:66ch}
+.lede .body p{font-size:18px;margin-bottom:20px;color:var(--b66)}
+.lede .body p:first-child{font-size:24px;color:#000;font-weight:500;line-height:1.42;letter-spacing:-.01em}
+
+/* mechanism */
+.mech{background:var(--black);padding:120px 0;position:relative;overflow:hidden}
+.mech h2{font-size:clamp(34px,4.4vw,54px);font-weight:540;letter-spacing:-.03em;line-height:1.06;max-width:780px;margin-top:18px}
+.mech h2 em{font-style:normal;color:var(--lime)}
+.mech .lead{color:var(--w62);max-width:620px;margin-top:20px;font-size:17px;font-weight:300}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;margin-top:64px}
+.node{border:1px solid var(--w13);padding:22px 20px 20px;transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.node:hover{border-color:var(--lime);transform:translateY(-6px)}
+.node .st{color:var(--lime);font-size:10.5px}
+.node .st.exp{color:var(--w40)}
+.node b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:18px}
+.node p{font-size:14px;color:var(--w62);margin-top:6px}
+.link{display:flex;align-items:center;padding:0 10px}
+.link svg{width:34px;height:46px}
+.link path{stroke:var(--lime);stroke-width:2;fill:none;stroke-dasharray:4 5;animation:march 900ms linear infinite}
+@keyframes march{to{stroke-dashoffset:-9}}
+
+/* learn rows */
+.learn{background:var(--ink);padding:120px 0;border-top:1px solid var(--w13)}
+.learn h2{font-size:clamp(32px,3.8vw,48px);font-weight:540;letter-spacing:-.03em;margin:16px 0 48px}
+.row{display:grid;grid-template-columns:72px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--w13);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--w13)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--lime);transition:width .5s var(--ease)}
+.row:hover{background:rgba(255,255,255,.025)}
+.row:hover::before{width:100%}
+.row .n{color:var(--lime);padding-top:6px}
+.row h3{font-size:23px;font-weight:560;letter-spacing:-.02em;line-height:1.3}
+.row p{color:var(--w62);font-size:16.5px;font-weight:300}
+
+/* speakers */
+.speakers{background:var(--black);padding:120px 0;border-top:1px solid var(--w13)}
+.speakers .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.speakers h2{font-size:clamp(32px,3.8vw,48px);font-weight:540;letter-spacing:-.03em;margin-top:16px}
+.flag{border:1px dashed var(--lime);color:var(--lime);padding:6px 10px}
+.sp{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.person .ph{aspect-ratio:1;border:1px solid var(--w13);position:relative;overflow:hidden;margin-bottom:18px;background:#070707;transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.person:hover .ph{border-color:var(--lime);transform:translateY(-6px)}
+.person .ph svg{position:absolute;inset:18% 22%;width:56%;height:64%}
+.person b{display:block;font-size:19px;font-weight:600}
+.person span{color:var(--w40);font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+
+/* cta */
+.cta{background:var(--lime);color:#000;padding:104px 0;position:relative;overflow:hidden}
+.cta .in{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;flex-wrap:wrap;position:relative;z-index:2}
+.cta h2{font-size:clamp(36px,5vw,66px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.cta p{margin-top:16px;font-size:18px;max-width:540px;color:rgba(0,0,0,.72)}
+.cal{display:flex;gap:22px;margin-top:22px}
+.cal a{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #000;padding-bottom:2px}
+.btn-black{background:#000;color:#fff}
+.btn-black:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.cta .chevbg{position:absolute;right:6%;top:-10%;height:120%;opacity:.14}
+
+/* footer */
+footer{background:var(--ink);padding:80px 0 34px;border-top:1px solid var(--w13)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+.fgrid p{color:var(--w62);max-width:320px;margin-top:20px;font-size:15px;font-weight:300}
+.fgrid h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--w40);font-weight:500;margin-bottom:16px}
+.fgrid a{display:block;color:var(--w62);margin-bottom:10px;font-size:15px}
+.fgrid a:hover{color:var(--lime)}
+.legal{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:60px;padding-top:24px;border-top:1px solid var(--w13);font-family:var(--mono);font-size:12px;color:var(--w40);letter-spacing:.04em}
+.legal a:hover{color:#fff}
+.soc{display:flex;gap:10px}
+.soc a{width:36px;height:36px;border:1px solid var(--w24);display:grid;place-items:center;color:var(--w62);transition:all .3s var(--ease)}
+.soc a:hover{border-color:var(--lime);color:var(--lime)}
+.soc svg{width:15px;height:15px;fill:currentColor}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.4s}.stagger.in>*:nth-child(7){transition-delay:.48s}
+
+@media (max-width:1000px){
+  .links a:not(.gs){display:none}
+  .flow{grid-template-columns:1fr;gap:0}.link{padding:6px 0 6px 22px}.link svg{transform:rotate(90deg)}
+  .stat .grid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .chev{opacity:.45;right:-160px}
+}
+@media (max-width:700px){
+  .wrap{padding:0 20px}
+  .bar{height:64px}
+  .hero{padding:48px 0 28px}.hero .sub{font-size:16px}
+  .meta span{font-size:11.5px;padding:10px 12px}
+  .cell{min-width:0;flex:1;padding:10px}.cell b{font-size:26px}
+  .count{width:100%}
+  #sequel_root{min-height:420px}
+  .lede .grid{grid-template-columns:1fr;gap:18px}.side{position:static}
+  .lede .body p:first-child{font-size:20px}
+  .row{grid-template-columns:1fr;gap:8px;padding:28px 6px}
+  .sp{grid-template-columns:1fr}
+  .stat .minis{gap:24px;flex-wrap:wrap}
+  .fgrid{grid-template-columns:1fr}
+  .chev{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1;transform:none}.chev path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap bar">
+    <a class="logo" href="https://www.knextech.com/" target="_blank" rel="noopener" aria-label="KNEX Technology">
+      <svg viewBox="0 0 112 28" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="square" aria-hidden="true"><path d="M4 3 V25 M4 14 L20 3 M4 14 L20 25"/><path d="M30 25 V3 M30 3 L48 25 M48 3 V25"/><path d="M58 4 H76 M58 14 H72 M58 24 H76"/><path d="M85 3 L103 25 M103 3 L85 25"/></svg>
+    </a>
+    <nav class="links">
+      <a href="https://www.knextech.com/#ai" target="_blank" rel="noopener">Oracle AI</a>
+      <a href="https://www.knextech.com/#cloud" target="_blank" rel="noopener">Oracle Fusion</a>
+      <a href="https://www.knextech.com/#approach" target="_blank" rel="noopener">Services</a>
+      <a href="https://www.knextech.com/#products" target="_blank" rel="noopener">Products</a>
+      <a href="https://www.knextech.com/#why" target="_blank" rel="noopener">Why KNEX</a>
+      <a href="https://www.knextech.com/about.html" target="_blank" rel="noopener">About</a>
+      <a class="gs" href="https://www.knextech.com/#contact" target="_blank" rel="noopener">Get Started</a>
+    </nav>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="row">
+    <span class="item">Live webinar</span><span class="item">Oracle ACE Directors</span><span class="item">Fusion Inner Circle</span><span class="item">Fusion Cloud Applications</span><span class="item">AI Agent Studio</span><span class="item">Oracle AI Marketplace</span><span class="item">Fusion AI Agents</span><span class="item">AI Agent Factory</span><span class="item">AI for E-Business Suite</span><span class="item">AI for PeopleSoft</span><span class="item">AI for JD Edwards</span>
+    <span class="item">Live webinar</span><span class="item">Oracle ACE Directors</span><span class="item">Fusion Inner Circle</span><span class="item">Fusion Cloud Applications</span><span class="item">AI Agent Studio</span><span class="item">Oracle AI Marketplace</span><span class="item">Fusion AI Agents</span><span class="item">AI Agent Factory</span><span class="item">AI for E-Business Suite</span><span class="item">AI for PeopleSoft</span><span class="item">AI for JD Edwards</span>
+  </div></div>
+</header>
+
+<div class="dark-wrap" id="watch">
+  <svg class="chev" viewBox="0 0 360 760" fill="none" stroke="#e6fd36" stroke-width="2" aria-hidden="true">
+    <path d="M40 40 L300 380 L40 720"/>
+    <path d="M150 40 L410 380 L150 720" opacity=".5"/>
+    <path d="M40 40 L300 380 L40 720" transform="translate(-150 0)" opacity=".22"/>
+  </svg>
+  <section class="hero">
+    <div class="wrap">
+      <div class="kick mono reveal"><span class="badge"><i class="dot"></i><span id="badgeTxt">Live Webinar</span></span><span class="sep">/</span><span class="lime">Built for the agentic era</span></div>
+      <h1 class="reveal">Agentic AI for the systems you <em>already run.</em></h1>
+      <p class="sub reveal">While much of the market is still planning for enterprise AI, KNEX is already delivering it. See how Fusion AI Agents and AI Agent Packs turn new capability into real operational value, piece by piece.</p>
+      <div class="meta reveal"><span id="chipDate">Wed, Dec 9, 2026</span><span id="chipTime">10:00 AM PT</span><span>45 min + live Q&amp;A</span></div>
+      <p class="streaming reveal">Streaming live and on-demand on <b>knextech.com</b></p>
+      <p class="local reveal" id="localTime"></p>
+      <div class="lower reveal">
+        <div class="count" id="count">
+          <div class="cell"><b id="cd">00</b><span>DAYS</span></div>
+          <div class="cell"><b id="ch">00</b><span>HRS</span></div>
+          <div class="cell"><b id="cm">00</b><span>MIN</span></div>
+          <div class="cell"><b id="cs">00</b><span>SEC</span></div>
+        </div>
+        <p class="live-now" id="liveNow">We're live now, join below</p>
+        <div class="ctas" id="ctas">
+          <a class="btn btn-lime" id="mainCta" href="#sequel_root">Save my seat</a>
+          <a class="btn btn-ghost" id="gcal" href="#" target="_blank" rel="noopener">Add to calendar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="embed-sec">
+    <div class="wrap"><div id="sequel_root"></div></div>
+  </section>
+</div>
+
+<section class="stat">
+  <div class="wrap">
+    <div class="grid reveal">
+      <div>
+        <div class="big">400<sup>+</sup></div>
+        <p class="lbl mono">Collective years on the team</p>
+      </div>
+      <div>
+        <p class="turn">Decades of Oracle Fusion expertise, now paired with agents that are already in production.</p>
+        <div class="minis">
+          <div><b>11</b><span>Global delivery centers</span></div>
+          <div><b>3</b><span>Legacy platforms agent-enabled</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="src mono">Source: knextech.com</p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap grid">
+    <div class="side mono"><i>/</i> The session</div>
+    <div class="body reveal">
+      <p>AI is reshaping the enterprise. The question for most Oracle teams is no longer whether to use it, but where it actually earns its keep inside the systems they already depend on.</p>
+      <p>In this live session, KNEX's Oracle experts walk through what production-ready agentic AI looks like today: Fusion AI Agents built on Oracle AI Agent Studio and published to the Oracle AI Marketplace, and AI Agent Packs that bring conversational intelligence to PeopleSoft, E-Business Suite and JD Edwards.</p>
+      <p>You'll see real agents at work, how they inherit Fusion security, data lineage and governance, and the fastest path from first use case to scaled value. Stay for live Q&amp;A.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <p class="mono lime reveal">/ AI Agent Packs</p>
+    <h2 class="reveal">Bring agentic AI to <em>the systems you already run.</em></h2>
+    <p class="lead reveal">Embedded agents that extend modern cloud and modernize your systems of record, without ripping anything out.</p>
+    <div class="flow stagger">
+      <div class="node"><span class="st mono">Available now / Cloud</span><b>Oracle Fusion</b><p>Procure-to-Pay, Expense Assistant and HCM Self-Service agents.</p></div>
+      <div class="link"><svg viewBox="0 0 34 46"><path d="M6 3 L28 23 L6 43"/></svg></div>
+      <div class="node"><span class="st mono">Available now / HR</span><b>PeopleSoft</b><p>The KNEX AI Agent Pack for PeopleSoft HR.</p></div>
+      <div class="link"><svg viewBox="0 0 34 46"><path d="M6 3 L28 23 L6 43"/></svg></div>
+      <div class="node"><span class="st exp mono">Expanding / Finance</span><b>E-Business Suite</b><p>Agentic intelligence for finance teams on EBS.</p></div>
+      <div class="link"><svg viewBox="0 0 34 46"><path d="M6 3 L28 23 L6 43"/></svg></div>
+      <div class="node"><span class="st exp mono">Expanding / Operations</span><b>JD Edwards</b><p>Conversational agents for operations on JDE.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <p class="mono lime reveal">/ What you'll see</p>
+    <h2 class="reveal">AI that is already at work.</h2>
+    <div class="stagger">
+      <div class="row"><div class="n mono">01</div><h3>Agents, published where Oracle customers find them</h3><p>How KNEX engineers Fusion AI Agents on Oracle AI Agent Studio and ships them through the Oracle AI Marketplace, deployable in days.</p></div>
+      <div class="row"><div class="n mono">02</div><h3>Built on Oracle's AI fabric</h3><p>Why agents that inherit Fusion security, data lineage and governance beat bolted-on AI, from the AI Agent Factory to retrieval-grounded reasoning.</p></div>
+      <div class="row"><div class="n mono">03</div><h3>New life for PeopleSoft, EBS and JD Edwards</h3><p>Where AI Agent Packs fit when your system of record isn't moving to the cloud this year.</p></div>
+      <div class="row"><div class="n mono">04</div><h3>A guided path to AI value</h3><p>How KNEX AI Assist finds the use cases that matter, proves them quickly and scales what works.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <div class="head reveal"><div><p class="mono lime">/ Speakers</p><h2>Hosted by KNEX</h2></div><span class="flag mono">Placeholder speakers</span></div>
+    <div class="sp stagger">
+      <div class="person"><div class="ph"><svg viewBox="0 0 360 760" preserveAspectRatio="xMidYMid meet" fill="none" stroke="#e6fd36" stroke-width="5"><path d="M40 40 L300 380 L40 720"/></svg></div><b>Speaker Name</b><span>Oracle ACE Director, KNEX</span></div>
+      <div class="person"><div class="ph"><svg viewBox="0 0 360 760" preserveAspectRatio="xMidYMid meet" fill="none" stroke="#e6fd36" stroke-width="5"><path d="M40 40 L300 380 L40 720" opacity=".5"/><path d="M110 40 L370 380 L110 720"/></svg></div><b>Speaker Name</b><span>AI Practice Lead, KNEX</span></div>
+      <div class="person"><div class="ph"><svg viewBox="0 0 360 760" preserveAspectRatio="xMidYMid meet" fill="none" stroke="#e6fd36" stroke-width="5"><path d="M40 40 L300 380 L40 720" opacity=".22"/><path d="M110 40 L370 380 L110 720" opacity=".5"/><path d="M180 40 L440 380 L180 720"/></svg></div><b>Customer Speaker</b><span>Oracle Customer</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <svg class="chevbg" viewBox="0 0 360 760" fill="none" stroke="#000" stroke-width="3" aria-hidden="true"><path d="M40 40 L300 380 L40 720"/><path d="M150 40 L410 380 L150 720"/></svg>
+  <div class="wrap in reveal">
+    <div>
+      <h2>Simplify the complex.<br>Then make it intelligent.</h2>
+      <p>Join live on knextech.com, or watch the recording on-demand right here.</p>
+      <div class="cal" id="calLinks"><a id="gcal2" href="#" target="_blank" rel="noopener">Google Calendar</a><a id="ics" href="#" download="knex-webinar.ics">Outlook / iCal</a></div>
+    </div>
+    <a class="btn btn-black" href="#watch">Save my seat →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="https://www.knextech.com/" target="_blank" rel="noopener" aria-label="KNEX Technology"><svg viewBox="0 0 112 28" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="square" style="width:84px;height:21px"><path d="M4 3 V25 M4 14 L20 3 M4 14 L20 25"/><path d="M30 25 V3 M30 3 L48 25 M48 3 V25"/><path d="M58 4 H76 M58 14 H72 M58 24 H76"/><path d="M85 3 L103 25 M103 3 L85 25"/></svg></a>
+        <p>Trusted Oracle consultants helping enterprises achieve clarity, agility, and results in the agentic era. Digital transformation, simplified.</p>
+      </div>
+      <div><h4>EXPERTISE</h4><a href="https://www.knextech.com/#ai" target="_blank" rel="noopener">Oracle AI</a><a href="https://www.knextech.com/#cloud" target="_blank" rel="noopener">Oracle Fusion</a><a href="https://www.knextech.com/#approach" target="_blank" rel="noopener">Services</a><a href="https://www.knextech.com/#products" target="_blank" rel="noopener">Products</a></div>
+      <div><h4>AI PORTFOLIO</h4><a href="https://www.knextech.com/#ai" target="_blank" rel="noopener">Fusion AI Agents</a><a href="https://www.knextech.com/#ai" target="_blank" rel="noopener">AI Agent Packs</a><a href="https://www.knextech.com/ai-assist.html" target="_blank" rel="noopener">KNEX AI Assist</a><a href="https://www.knextech.com/#why" target="_blank" rel="noopener">Why KNEX</a></div>
+      <div><h4>COMPANY</h4><a href="https://www.knextech.com/about.html" target="_blank" rel="noopener">About Us</a><a href="https://www.knextech.com/oracle-ace-directors.html" target="_blank" rel="noopener">Oracle ACE Directors</a><a href="https://www.knextech.com/about-journey.html" target="_blank" rel="noopener">Our Journey</a><a href="https://www.knextech.com/about-careers.html" target="_blank" rel="noopener">Careers</a><a href="https://www.knextech.com/answers-from-an-expert.html" target="_blank" rel="noopener">Get Started</a></div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Knex Technology Inc. All rights reserved. / <a href="https://www.knextech.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> / <a href="https://www.knextech.com/terms-of-service/" target="_blank" rel="noopener">Terms of Service</a></span>
+      <div class="soc">
+        <a href="https://www.linkedin.com/company/knextech/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        <a href="https://twitter.com/knextech" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.7l-5.2-6.8L5 22H2l8.1-9.3L1.5 2h6.9l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 3.9H5.5L17.7 20z"/></svg></a>
+        <a href="https://www.youtube.com/user/knextechnology" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.5 12a31 31 0 00.5 4.8 3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1 31 31 0 00.5-4.8 31 31 0 00-.5-4.8zM9.8 15.1V8.9l5.8 3.1-5.8 3.1z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+<script>
+(function stripBorder(){
+  const r=document.getElementById("sequel_root");const c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){const st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else{setTimeout(stripBorder,200);}
+})();
+
+const EVENT={title:"Agentic AI for the Systems You Already Run | KNEX Live",
+  start:new Date("2026-12-09T10:00:00-08:00"),mins:45,
+  details:"KNEX Technology live webinar. Watch at https://sequel-demo.github.io/webinar-on/knex/",
+  url:"https://sequel-demo.github.io/webinar-on/knex/"};
+EVENT.end=new Date(EVENT.start.getTime()+EVENT.mins*60000);
+const z=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+const g="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+z(EVENT.start)+"/"+z(EVENT.end)+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.url);
+document.getElementById("gcal").href=g;document.getElementById("gcal2").href=g;
+const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//KNEX//Webinar//EN","BEGIN:VEVENT","UID:knex-agentic-20261209@sequel-demo","DTSTAMP:"+z(new Date()),"DTSTART:"+z(EVENT.start),"DTEND:"+z(EVENT.end),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"URL:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+document.getElementById("ics").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+
+try{const tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if(!/Los_Angeles|Vancouver|Tijuana/.test(tz)){document.getElementById("localTime").textContent="That's "+EVENT.start.toLocaleString(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"})+" for you";}}catch(e){}
+
+const pad=n=>String(n).padStart(2,"0");
+function tick(){const ms=EVENT.start-Date.now();
+  if(Date.now()>EVENT.end.getTime()+3600000){
+    document.getElementById("badgeTxt").textContent="On Demand";
+    document.getElementById("count").style.display="none";
+    document.getElementById("gcal").style.display="none";document.getElementById("calLinks").style.display="none";
+    document.getElementById("mainCta").textContent="Watch the recording";
+    document.getElementById("chipTime").textContent="Recorded";document.getElementById("localTime").textContent="";
+    return;}
+  if(ms<=0){document.getElementById("count").style.display="none";document.getElementById("liveNow").style.display="block";document.getElementById("badgeTxt").textContent="Live Now";return;}
+  const s=Math.floor(ms/1000);
+  document.getElementById("cd").textContent=pad(Math.floor(s/86400));document.getElementById("ch").textContent=pad(Math.floor(s%86400/3600));
+  document.getElementById("cm").textContent=pad(Math.floor(s%3600/60));document.getElementById("cs").textContent=pad(s%60);
+  setTimeout(tick,1000);}
+tick();
+
+const nav=document.getElementById("nav");addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:0,rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
+document.querySelectorAll(".hero .reveal").forEach(el=>el.classList.add("in"));
+</script>
+</body>
+</html>
