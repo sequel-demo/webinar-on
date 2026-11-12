@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Why EDR fails at AI security | Ent</title>
+<meta name="description" content="A live session on reading intent at the endpoint: telling normal work from risky action, AI misuse, and mistakes, and stepping in at the moment of risk.">
+<meta property="og:title" content="Why EDR fails at AI security: Reading intent at the endpoint">
+<meta property="og:description" content="Security tools tell you what happened. Prevention requires intent in the moment.">
+<meta property="og:image" content="https://ent.ai/images/og-preview.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/ent/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ent.ai/favicon-32x32-dark.png">
+<link rel="apple-touch-icon" href="https://ent.ai/apple-touch-icon-dark.png">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=sentient@200,300,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1F1D17;--deep:#181512;--stone:#C1BAAF;--cream:#F8F6F2;--mint:#BAFFD5;--mint2:#A6F3C5;
+  --forest:#07361C;--moss:#5D6B5F;--ink:#181512;--line-d:rgba(248,246,242,.12);--line-l:rgba(24,21,18,.14);
+  --serif:"Sentient",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 1px 2px rgba(0,0,0,.25);--sh-md:0 10px 30px -12px rgba(0,0,0,.45);--sh-lg:0 30px 70px -30px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+
+/* ---------- header (replica of ent.ai chrome) ---------- */
+#nav{position:fixed;inset:0 0 auto 0;z-index:50;height:88px;transition:height .4s var(--ease),background .4s var(--ease),backdrop-filter .4s}
+#nav.scrolled{height:72px;background:rgba(31,29,23,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line-d)}
+.nav-in{height:100%;max-width:1440px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.logo{display:flex;align-items:center;color:var(--mint);height:30px}
+.logo .rune{width:0;opacity:0;overflow:hidden;height:30px;margin-right:0;transition:width .45s var(--ease),opacity .45s var(--ease),margin .45s var(--ease)}
+#nav.scrolled .logo .rune{width:30px;opacity:1;margin-right:10px}
+.logo svg{display:block;height:30px;width:auto;fill:currentColor}
+.nav-links{display:flex;gap:40px;align-items:center;font-size:16px;color:var(--cream)}
+.nav-links>a,.nav-links .dd>span{opacity:.92;transition:opacity .2s}
+.nav-links>a:hover,.nav-links .dd:hover>span{opacity:1;color:var(--mint)}
+.dd{position:relative;cursor:pointer}
+.dd>span{display:inline-flex;align-items:center;gap:6px}
+.dd>span i{font-style:normal;font-size:9px;transform:translateY(-1px)}
+.dd-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translate(-50%,6px);min-width:180px;background:var(--deep);border:1px solid var(--line-d);border-radius:14px;padding:10px;opacity:0;pointer-events:none;transition:all .25s var(--ease);box-shadow:var(--sh-lg)}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.dd-menu a{display:block;padding:8px 12px;border-radius:8px;font-size:15px}
+.dd-menu a:hover{background:rgba(186,255,213,.08);color:var(--mint)}
+.nav-cta{justify-self:end}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;border-radius:100px;background:var(--mint);color:var(--forest);font-weight:600;font-size:15px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(186,255,213,.55);background:#cdffe0}
+.nav-cta a.pill{color:var(--forest)}
+
+/* ---------- dark-wrap: hero + embed as one surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--bg)}
+.dark-wrap::before{content:"";position:absolute;inset:-10% -10% auto 30%;height:70%;background:radial-gradient(closest-side,rgba(166,243,197,.08),transparent 70%);pointer-events:none;z-index:1}
+.dark-wrap::after{content:"";position:absolute;inset:auto -10% -15% -10%;height:55%;background:radial-gradient(closest-side,rgba(24,21,18,.9),transparent 75%);pointer-events:none;z-index:1}
+#field{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero{position:relative;z-index:2;padding:176px 0 44px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:end}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 12px;border-radius:100px;border:1px solid rgba(186,255,213,.28);background:rgba(186,255,213,.06);color:var(--mint)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(186,255,213,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(186,255,213,.55)}70%{box-shadow:0 0 0 10px rgba(186,255,213,0)}100%{box-shadow:0 0 0 0 rgba(186,255,213,0)}}
+h1{font-family:var(--serif);font-weight:200;font-size:clamp(44px,6.4vw,84px);line-height:1.02;letter-spacing:-.02em;margin:26px 0 22px;color:var(--cream)}
+h1 em{font-style:italic;color:var(--mint2)}
+.lead{font-size:18px;line-height:1.5;color:var(--stone);max-width:52ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 12px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:100px;border:1px solid var(--line-d);background:rgba(24,21,18,.55);font-size:14px;color:var(--cream)}
+.chip svg{width:14px;height:14px;stroke:var(--mint);fill:none;stroke-width:1.8}
+.local{font-size:13px;color:var(--stone);opacity:.85;min-height:20px}
+.streaming{margin-top:6px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mint2)}
+.side{justify-self:end;width:100%;max-width:400px}
+.cd-label{color:var(--stone);margin-bottom:12px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd div{background:rgba(24,21,18,.6);border:1px solid var(--line-d);border-radius:16px;padding:14px 6px 10px;text-align:center;backdrop-filter:blur(4px)}
+.cd b{display:block;font-family:var(--serif);font-weight:300;font-size:38px;line-height:1;font-variant-numeric:tabular-nums;color:var(--cream)}
+.cd small{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+.cd-live{grid-column:1/-1;font-family:var(--serif);font-size:26px;font-weight:300;color:var(--mint)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ghost{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:100px;border:1px solid rgba(248,246,242,.22);color:var(--cream);font-size:14px;font-weight:500;transition:all .3s var(--ease)}
+.ghost:hover{border-color:var(--mint);color:var(--mint);transform:translateY(-2px)}
+.embed-sec{position:relative;z-index:2;padding:8px 0 96px}
+#sequel_root{min-height:520px;border-radius:24px;overflow:hidden;box-shadow:var(--sh-lg)}
+
+/* ---------- stat band (stone) ---------- */
+.stat{background:var(--stone);color:var(--ink);padding:120px 0 110px}
+.stat .mono{color:var(--moss)}
+.big{font-family:var(--serif);font-weight:200;font-size:clamp(72px,13vw,168px);line-height:.92;letter-spacing:-.035em;margin:26px 0 34px}
+.big span{color:var(--moss)}
+.turn{display:grid;grid-template-columns:1fr 1fr;gap:48px;border-top:1px solid var(--line-l);padding-top:28px}
+.turn blockquote{font-family:var(--serif);font-size:24px;font-weight:300;line-height:1.35}
+.turn cite{display:block;margin-top:14px;font-style:normal;font-size:14px;font-weight:600}
+.turn cite span{font-weight:400}
+.turn p{font-size:17px;line-height:1.6;color:#3a352e;max-width:46ch}
+
+/* ---------- lede (cream) ---------- */
+.lede{background:var(--cream);color:var(--ink);padding:120px 0}
+.lede-grid{display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+.sticky{position:sticky;top:110px;align-self:start;color:var(--moss)}
+.sticky .rule{display:block;width:28px;height:1px;background:var(--moss);margin-top:14px}
+.lede h2{font-family:var(--serif);font-weight:200;font-size:clamp(34px,4.2vw,54px);line-height:1.08;letter-spacing:-.02em;max-width:20ch;margin-bottom:34px}
+.lede .body{max-width:66ch;font-size:18px;color:#2b2722}
+.lede .body p+p{margin-top:20px}
+.lede .body strong{font-weight:600;color:var(--ink)}
+
+/* ---------- mechanism (deep) ---------- */
+.mech{background:var(--deep);padding:120px 0;position:relative;overflow:hidden}
+.mech::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(248,246,242,.07) 13px,transparent 14px);background-size:36px 36px;mask-image:linear-gradient(180deg,#000,transparent 70%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);pointer-events:none}
+.mech .head{position:relative;display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:64px}
+.mech h2{font-family:var(--serif);font-weight:200;font-size:clamp(34px,4.2vw,56px);line-height:1.05;letter-spacing:-.02em;max-width:16ch}
+.mech .head p{color:var(--stone);max-width:40ch}
+.flow{position:relative;display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:center}
+.node{border:1px solid var(--line-d);border-radius:24px;padding:28px 26px 30px;background:rgba(31,29,23,.85);transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.node:hover{border-color:rgba(186,255,213,.4);transform:translateY(-4px)}
+.node .mono{color:var(--mint)}
+.node h3{font-family:var(--serif);font-weight:300;font-size:26px;line-height:1.2;margin:18px 0 10px}
+.node p{color:var(--stone);font-size:15px}
+.node .sig{display:flex;gap:6px;margin-top:22px}
+.node .sig i{width:10px;height:10px;border-radius:50%;background:rgba(248,246,242,.14)}
+.node .sig i.on{background:var(--mint)}
+.dashes{height:2px;background-image:linear-gradient(90deg,var(--mint) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.8}
+@keyframes march{to{background-position:12px 0}}
+.verdicts{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.verdicts span{font-size:13px;padding:8px 14px;border-radius:100px;border:1px solid var(--line-d);color:var(--stone)}
+.verdicts span b{color:var(--mint);font-weight:600}
+
+/* ---------- learn rows (cream) ---------- */
+.learn{background:var(--cream);color:var(--ink);padding:120px 0}
+.learn .top{display:grid;grid-template-columns:220px 1fr;gap:56px;margin-bottom:40px}
+.learn h2{font-family:var(--serif);font-weight:200;font-size:clamp(34px,4.2vw,54px);line-height:1.05;letter-spacing:-.02em}
+.learn .mono{color:var(--moss)}
+.rows{border-bottom:1px solid var(--line-l)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line-l);position:relative;transition:background .35s var(--ease)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--forest);transition:width .5s var(--ease)}
+.row:hover{background:rgba(193,186,175,.18)}
+.row:hover::before{width:100%}
+.row .n{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--moss);padding-top:6px}
+.row h3{font-family:var(--serif);font-weight:300;font-size:28px;line-height:1.15}
+.row h3 small{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);margin-bottom:10px}
+.row p{font-size:17px;color:#3a352e;max-width:52ch}
+
+/* ---------- speakers (dark) ---------- */
+.speakers{background:var(--bg);padding:120px 0}
+.speakers .top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:48px}
+.speakers h2{font-family:var(--serif);font-weight:200;font-size:clamp(34px,4.2vw,54px);line-height:1.05;letter-spacing:-.02em}
+.speakers .top p{color:var(--stone);max-width:40ch}
+.sp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.sp{border-top:1px solid var(--line-d);padding-top:26px}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--deep);border:1px solid var(--line-d);display:grid;place-items:center;margin-bottom:20px;color:var(--mint)}
+.avatar svg{width:30px;height:30px;fill:currentColor}
+.sp h3{font-family:var(--serif);font-weight:300;font-size:24px}
+.sp p{color:var(--stone);font-size:15px}
+.sp .tag{display:inline-block;margin-top:12px;color:var(--moss);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- CTA band (mint) ---------- */
+.cta{background:var(--mint);color:var(--forest);padding:110px 0}
+.cta-in{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end}
+.cta h2{font-family:var(--serif);font-weight:200;font-size:clamp(40px,5.6vw,76px);line-height:1;letter-spacing:-.025em}
+.cta p{font-size:18px;max-width:44ch;margin-top:22px;color:#0b3d22}
+.cta .btns{display:flex;flex-direction:column;gap:12px;align-items:flex-start;justify-self:end}
+.btn-dark{display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:100px;background:var(--forest);color:var(--mint);font-weight:600;font-size:16px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(7,54,28,.7)}
+.cta .ics{font-size:14px;font-weight:600;border-bottom:1px solid rgba(7,54,28,.4)}
+
+/* ---------- footer ---------- */
+footer{position:relative;background:var(--bg);padding:120px 0 56px;overflow:hidden}
+#grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+.f-in{position:relative;display:grid;grid-template-columns:repeat(4,max-content);gap:20px 96px}
+.f-col h4{font-family:var(--serif);font-weight:300;font-size:25px;color:var(--stone);margin-bottom:18px}
+.f-col a,.f-col button{display:block;font-size:15px;color:#fefefe;margin-bottom:8px;background:none;border:0;font-family:inherit;cursor:pointer;text-align:left;opacity:.92}
+.f-col a:hover{color:var(--mint)}
+.copy{position:relative;margin-top:140px;font-family:var(--serif);font-weight:300;font-size:25px;color:var(--stone)}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+.ondemand .live-only{display:none!important}
+.od-only{display:none}
+.ondemand .od-only{display:inline-flex}
+
+@media (max-width:960px){
+  .nav-in{padding:0 20px;grid-template-columns:auto 1fr auto}
+  .nav-links{display:none}
+  .wrap{padding:0 20px}
+  .hero{padding:132px 0 36px}
+  .hero-grid,.turn,.lede-grid,.learn .top,.cta-in{grid-template-columns:1fr;gap:32px}
+  .side{justify-self:start;max-width:none}
+  .sticky{position:static}
+  .flow{grid-template-columns:1fr;gap:0}
+  .flow .dashes{width:2px;height:40px;margin:0 auto;background-image:linear-gradient(180deg,var(--mint) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  .mech .head,.speakers .top{flex-direction:column;align-items:start}
+  .row{grid-template-columns:40px 1fr;gap:14px 16px;padding:28px 6px}
+  .row p{grid-column:2}
+  .sp-grid{grid-template-columns:1fr}
+  .cta .btns{justify-self:start}
+  .f-in{grid-template-columns:repeat(2,1fr);gap:36px 24px}
+  .stat,.lede,.mech,.learn,.speakers{padding:84px 0}
+  .cta{padding:80px 0}
+  #sequel_root{min-height:420px;border-radius:16px}
+  .copy{margin-top:80px}
+}
+@keyframes marchv{to{background-position:0 12px}}
+@media (max-width:420px){
+  .cd b{font-size:30px}
+  .pill{height:40px;padding:0 16px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header id="nav">
+  <div class="nav-in">
+    <a class="logo" href="https://ent.ai/" target="_blank" rel="noopener" aria-label="Ent home">
+      <span class="rune" aria-hidden="true"><svg viewBox="0 0 142 141"><path d="M36.5257 91.39V82.4162C36.5257 77.3623 38.5506 72.5137 42.1406 68.9359L75.1155 36.1102H54.3973L36.5257 53.8916V44.9178C36.5257 39.864 38.5506 35.0154 42.1406 31.4376L52.3627 21.2614H21.8724V140.99H0V0H142V141H36.5257V119.905C36.5257 114.851 38.5506 110.002 42.1406 106.424L95.9706 52.8359H75.2524L36.5355 91.3802L36.5257 91.39Z"/></svg></span>
+      <svg viewBox="0 0 390 178" style="width:74px;height:30px;object-fit:contain" aria-hidden="true"><path d="M349.463 36.1672L349.501 58.4575H306.268V125.146C306.268 140.235 318.461 152.498 333.591 152.498H347.57C348.707 152.498 349.476 153.347 349.476 154.494V176.643H333.797C305.251 176.643 282.122 153.564 282.122 125.107V0H304.331C305.468 0 306.268 0.759271 306.268 1.90622V34.1027H347.393C348.53 34.1027 349.463 35.0202 349.463 36.1672Z"/><path d="M264.33 176.689H242.338C241.199 176.689 240.184 175.734 240.184 174.603V94.0408C240.184 73.7078 224.299 57.2136 203.966 57.2136C183.632 57.2136 167.747 73.7078 167.747 94.0408L167.643 174.63C167.643 175.774 166.72 176.689 165.593 176.689H143.601L143.601 95.9775C143.601 61.0002 170.329 33.7011 203.38 33.053C237.191 32.405 264.33 59.7294 264.33 94.9483V176.676V176.689Z"/><path d="M105.939 139.245C90.6097 154.698 67.3625 157.413 49.2378 147.405C61.7341 134.809 116.273 79.8326 130.287 65.7062C130.995 64.9922 131.096 63.8575 130.515 63.0415C128.225 59.8414 125.696 56.858 122.938 54.0786C96.3773 26.1061 48.0994 25.9659 21.4499 54.0786C-44.94 125.489 57.8891 223.431 124.987 154.379C125.835 153.512 126.29 152.326 126.29 151.115V123.755C126.29 121.906 124.077 120.988 122.787 122.289L105.952 139.258L105.939 139.245ZM30.3542 128.447C7.15752 87.1764 54.3223 39.6844 95.2263 63.0415C96.4152 63.7172 96.6429 65.3492 95.6816 66.3309C86.1703 75.9185 43.1287 119.305 33.6047 128.906C32.6435 129.875 31.0245 129.645 30.3415 128.447H30.3542Z"/><path d="M365 2.03758V0H374.92V2.03758H371.211V12H368.717V2.03758H365Z"/><path d="M376.64 12V0H380.455L382.427 5.50873C382.509 5.76644 382.601 6.09933 382.705 6.50738C382.813 6.91544 382.922 7.3557 383.031 7.82819C383.139 8.30067 383.24 8.75973 383.332 9.20537C383.43 9.65101 383.509 10.0376 383.569 10.3651H383.088C383.147 10.043 383.224 9.66175 383.316 9.22148C383.414 8.77584 383.517 8.31678 383.626 7.8443C383.734 7.37181 383.84 6.92886 383.944 6.51544C384.052 6.10201 384.147 5.76644 384.229 5.50873L386.169 0H390V12H387.498V6.34631C387.498 6.08322 387.5 5.7557 387.506 5.36376C387.517 4.97181 387.527 4.55034 387.538 4.09933C387.555 3.64295 387.568 3.18658 387.579 2.7302C387.59 2.26846 387.598 1.83356 387.604 1.4255H387.758C387.655 1.87114 387.541 2.33289 387.416 2.81074C387.291 3.28322 387.163 3.74228 387.033 4.18792C386.908 4.63356 386.788 5.0443 386.674 5.42013C386.56 5.7906 386.462 6.09933 386.381 6.34631L384.367 12H382.273L380.227 6.34631C380.145 6.09933 380.047 5.79329 379.933 5.42819C379.819 5.05772 379.697 4.64966 379.566 4.20403C379.441 3.75839 379.314 3.29933 379.183 2.82685C379.053 2.34899 378.931 1.88188 378.816 1.4255H379.004C379.009 1.81208 379.017 2.23356 379.028 2.68993C379.039 3.14631 379.05 3.60537 379.061 4.06711C379.077 4.52349 379.088 4.95034 379.094 5.34765C379.104 5.7396 379.11 6.07248 379.11 6.34631V12H376.64Z"/></svg>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="https://ent.ai/platform/" target="_blank" rel="noopener">Platform</a>
+      <div class="dd" tabindex="0"><span>Resources <i>&#9660;</i></span>
+        <div class="dd-menu">
+          <a href="https://ent.ai/blog/" target="_blank" rel="noopener">Blog</a>
+          <a href="https://ent.ai/news/" target="_blank" rel="noopener">News</a>
+          <a href="https://ent.ai/press/" target="_blank" rel="noopener">Press Release</a>
+        </div>
+      </div>
+      <a href="https://ent.ai/company/" target="_blank" rel="noopener">Company</a>
+    </nav>
+    <div class="nav-cta"><a class="pill" href="https://ent.ai/contact/" target="_blank" rel="noopener">Schedule a Demo</a></div>
+  </div>
+</header>
+
+<!-- ===== Hero + embed: one surface ===== -->
+<div class="dark-wrap">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="badge mono"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></span>
+        <h1>Why EDR fails at <em>AI security.</em></h1>
+        <p class="lead">Security tools tell you what happened. Prevention requires intent in the moment. A live session on reading human and agent activity at the endpoint, and stepping in before risky action becomes an incident.</p>
+        <div class="meta">
+          <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span id="dateTxt">Thursday, December 10, 2026</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10:00 AM PT</span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>45 minutes</span>
+        </div>
+        <div class="local" id="localTime"></div>
+        <div class="streaming">Streaming live and on-demand on ent.ai</div>
+      </div>
+      <div class="side reveal">
+        <div class="cd-label mono live-only">Starts in</div>
+        <div class="cd live-only" id="countdown">
+          <div><b data-cd="d">00</b><small>Days</small></div>
+          <div><b data-cd="h">00</b><small>Hours</small></div>
+          <div><b data-cd="m">00</b><small>Min</small></div>
+          <div><b data-cd="s">00</b><small>Sec</small></div>
+        </div>
+        <div class="actions">
+          <a class="pill" href="#watch" id="heroCta">Save my seat</a>
+          <a class="ghost live-only" id="gcal" target="_blank" rel="noopener">Google Calendar</a>
+          <a class="ghost live-only" id="ical" download="ent-webinar.ics">iCal / Outlook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="embed-sec" id="watch">
+    <div class="wrap reveal"><div id="sequel_root"></div></div>
+  </section>
+</div>
+
+<!-- ===== Stat pull-quote ===== -->
+<section class="stat">
+  <div class="wrap">
+    <div class="mono reveal">From the field</div>
+    <div class="big reveal">5 days, <span>not 5 months.</span></div>
+    <div class="turn stagger">
+      <div>
+        <blockquote>&ldquo;Ent caught what no EDR or UEBA tool in the stack did. The investigation closed in five days, not five months.&rdquo;</blockquote>
+        <cite>CISO, <span>Fortune 500 Hospitality</span></cite>
+      </div>
+      <p>The stack saw the events. It just couldn&rsquo;t say what the person, or the agent, meant to do. That gap is where this session lives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Lede ===== -->
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="sticky mono">About the session<span class="rule"></span></div>
+    <div class="reveal">
+      <h2>Prevention requires intent in the moment.</h2>
+      <div class="body">
+        <p>Most endpoint tools were built to answer one question after the fact: <strong>what happened?</strong> That worked when the risky actor was malware. It breaks down when the actor is a trusted employee pasting data into an unapproved AI tool, an agent running a workflow nobody reviewed, or a user following a ClickFix prompt they were socially engineered into.</p>
+        <p>In this session, the Ent team walks through how an intent-aware endpoint reads user and agent activity in real time, tells normal work from risky actions, AI misuse, and mistakes, and steps in at the moment of risk, not days later. Expect live examples, the timeline as it builds, and the decisions a security team actually has to make.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mechanism ===== -->
+<section class="mech">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>One platform. Three moves.</h2>
+      <p>See how the same activity can earn two different decisions, depending on who is acting and why.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="node"><span class="mono">01 &middot; Observe</span><h3>Every app, AI tool and workflow</h3><p>Understand what users and agents do across the whole working surface.</p><div class="sig"><i class="on"></i><i></i><i></i></div></div>
+      <div class="dashes" aria-hidden="true"></div>
+      <div class="node"><span class="mono">02 &middot; Investigate</span><h3>The timeline, as it happens</h3><p>Built as events happen, annotated in plain language.</p><div class="sig"><i class="on"></i><i class="on"></i><i></i></div></div>
+      <div class="dashes" aria-hidden="true"></div>
+      <div class="node"><span class="mono">03 &middot; Intervene</span><h3>At the moment of risk</h3><p>Customized actions, from a soft nudge to a hard block.</p><div class="sig"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+    </div>
+    <div class="verdicts stagger">
+      <span>HR user opens the command line &rarr; <b>blocked, with an explanation</b></span>
+      <span>DevOps user, same action &rarr; <b>temporary shell access</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== What you'll learn ===== -->
+<section class="learn">
+  <div class="wrap">
+    <div class="top reveal">
+      <div class="mono" style="padding-top:12px">What you&rsquo;ll see</div>
+      <h2>Built to cover where intent changes the answer.</h2>
+    </div>
+    <div class="rows stagger">
+      <div class="row"><span class="n">01</span><h3><small>Insider risk</small>Malicious insider, or legitimate workflow?</h3><p>How to see intent before data leaves, and tell the two apart without drowning the team in alerts.</p></div>
+      <div class="row"><span class="n">02</span><h3><small>Last-mile threats</small>Catching ClickFix before the script runs</h3><p>Social engineering that lands on the endpoint: block the payload, delete the file, alert in plain language.</p></div>
+      <div class="row"><span class="n">03</span><h3><small>AI usage control</small>Safe adoption without blocking the work</h3><p>Guiding sensitive data away from unapproved AI tools, and telling human action from agentic action.</p></div>
+      <div class="row"><span class="n">04</span><h3><small>Data security</small>The channels traditional DLP doesn&rsquo;t cover</h3><p>Copy-paste, chat apps and shadow AI: where data actually walks out, and how to stop it in the moment.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Speakers ===== -->
+<section class="speakers">
+  <div class="wrap">
+    <div class="top reveal">
+      <h2>Who you&rsquo;ll hear from</h2>
+      <p>Security engineers who&rsquo;ve seen your problem, plus a practitioner running intent-aware security today.</p>
+    </div>
+    <div class="sp-grid stagger">
+      <div class="sp"><div class="avatar"><svg viewBox="0 0 142 141"><path d="M36.5257 91.39V82.4162C36.5257 77.3623 38.5506 72.5137 42.1406 68.9359L75.1155 36.1102H54.3973L36.5257 53.8916V44.9178C36.5257 39.864 38.5506 35.0154 42.1406 31.4376L52.3627 21.2614H21.8724V140.99H0V0H142V141H36.5257V119.905C36.5257 114.851 38.5506 110.002 42.1406 106.424L95.9706 52.8359H75.2524L36.5355 91.3802L36.5257 91.39Z"/></svg></div><h3>Speaker Name</h3><p>Security Engineering, Ent</p><span class="tag">Host</span></div>
+      <div class="sp"><div class="avatar"><svg viewBox="0 0 142 141"><path d="M36.5257 91.39V82.4162C36.5257 77.3623 38.5506 72.5137 42.1406 68.9359L75.1155 36.1102H54.3973L36.5257 53.8916V44.9178C36.5257 39.864 38.5506 35.0154 42.1406 31.4376L52.3627 21.2614H21.8724V140.99H0V0H142V141H36.5257V119.905C36.5257 114.851 38.5506 110.002 42.1406 106.424L95.9706 52.8359H75.2524L36.5355 91.3802L36.5257 91.39Z"/></svg></div><h3>Speaker Name</h3><p>Product, Ent</p><span class="tag">Live demo</span></div>
+      <div class="sp"><div class="avatar"><svg viewBox="0 0 142 141"><path d="M36.5257 91.39V82.4162C36.5257 77.3623 38.5506 72.5137 42.1406 68.9359L75.1155 36.1102H54.3973L36.5257 53.8916V44.9178C36.5257 39.864 38.5506 35.0154 42.1406 31.4376L52.3627 21.2614H21.8724V140.99H0V0H142V141H36.5257V119.905C36.5257 114.851 38.5506 110.002 42.1406 106.424L95.9706 52.8359H75.2524L36.5355 91.3802L36.5257 91.39Z"/></svg></div><h3>Speaker Name</h3><p>CISO, Customer Organization</p><span class="tag">Guest practitioner</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <div class="wrap cta-in">
+    <div class="reveal">
+      <h2>See whether intent-aware changes the answer.</h2>
+      <p>Join live on ent.ai, bring your questions, and leave with a clear picture of what your endpoint stack is missing.</p>
+    </div>
+    <div class="btns reveal">
+      <a class="btn-dark" href="#watch" id="ctaBtn">Save my seat</a>
+      <a class="ics live-only" id="ical2" download="ent-webinar.ics">Add to calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer (mirrors ent.ai) ===== -->
+<footer>
+  <canvas id="grain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="f-in">
+      <div class="f-col"><h4>Legal</h4>
+        <a href="https://ent.ai/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://ent.ai/terms/" target="_blank" rel="noopener">Terms of Use</a>
+        <a href="https://ent.ai/subscription/" target="_blank" rel="noopener">Subscription Terms</a>
+        <a href="https://ent.ai/sub-processors/" target="_blank" rel="noopener">Sub-Processors</a>
+        <a href="https://ent.ai/dpa/" target="_blank" rel="noopener">Data Processing Addendum</a>
+        <a href="https://ent.ai/" target="_blank" rel="noopener">Cookie Preferences</a>
+      </div>
+      <div class="f-col"><h4>Company</h4>
+        <a href="https://ent.ai/company/" target="_blank" rel="noopener">About</a>
+        <a href="https://ent.ai/joinus/" target="_blank" rel="noopener">Careers</a>
+      </div>
+      <div class="f-col"><h4>Resources</h4>
+        <a href="https://ent.ai/blog/" target="_blank" rel="noopener">Blog</a>
+        <a href="https://ent.ai/news/" target="_blank" rel="noopener">News</a>
+        <a href="https://ent.ai/press/" target="_blank" rel="noopener">Press Release</a>
+      </div>
+      <div class="f-col"><h4>Social</h4>
+        <a href="https://www.linkedin.com/company/ent-security" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/Ent_Security" target="_blank" rel="noopener">X</a>
+      </div>
+    </div>
+    <div class="copy">&copy;2026</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EVENT={
+    title:"Why EDR fails at AI security: Reading intent at the endpoint",
+    start:"2026-12-10T10:00:00-08:00",
+    end:"2026-12-10T10:45:00-08:00",
+    startUTC:"20261210T180000Z", endUTC:"20261210T184500Z",
+    details:"A live Ent session on intent-aware security: reading human and agent activity in real time and stepping in at the moment of risk. Streaming on ent.ai.",
+    location:location.href.split('?')[0]
+  };
+  var startMs=new Date(EVENT.start).getTime(), endMs=new Date(EVENT.end).getTime();
+
+  /* viewer's own timezone */
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    if(tz!=='America/Los_Angeles'){
+      var f=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+      document.getElementById('localTime').textContent='That’s '+f.format(new Date(startMs))+' where you are.';
+    }
+  }catch(e){}
+
+  /* stale date: degrade to on-demand */
+  if(Date.now()>endMs){
+    document.body.classList.add('ondemand');
+    document.getElementById('badgeTxt').textContent='On Demand';
+    document.getElementById('heroCta').textContent='Watch the recording';
+    document.getElementById('ctaBtn').textContent='Watch the recording';
+    document.getElementById('localTime').textContent='';
+  }
+
+  /* countdown */
+  var cd=document.getElementById('countdown');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var diff=startMs-Date.now();
+    if(diff<=0){cd.innerHTML='<div class="cd-live">We’re live now. Join below.</div>';clearInterval(iv);return;}
+    var v={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    cd.querySelectorAll('[data-cd]').forEach(function(el){el.textContent=pad(v[el.getAttribute('data-cd')]);});
+  }
+  var iv=setInterval(tick,1000);tick();
+
+  /* calendar links from one EVENT object */
+  document.getElementById('gcal').href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+EVENT.startUTC+"/"+EVENT.endUTC+"&details="+encodeURIComponent(EVENT.details)+"&location="+encodeURIComponent(EVENT.location);
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ent//Webinar//EN","BEGIN:VEVENT","UID:ent-webinar-20261210@ent.ai","DTSTAMP:20261112T000000Z","DTSTART:"+EVENT.startUTC,"DTEND:"+EVENT.endUTC,"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details,"LOCATION:"+EVENT.location,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  var icsHref="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+  document.getElementById('ical').href=icsHref;document.getElementById('ical2').href=icsHref;
+
+  /* nav */
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>8);}
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* signature device: the Ent rune rendered as drifting green particles over a grain field */
+  var RUNE="M36.5257 91.39V82.4162C36.5257 77.3623 38.5506 72.5137 42.1406 68.9359L75.1155 36.1102H54.3973L36.5257 53.8916V44.9178C36.5257 39.864 38.5506 35.0154 42.1406 31.4376L52.3627 21.2614H21.8724V140.99H0V0H142V141H36.5257V119.905C36.5257 114.851 38.5506 110.002 42.1406 106.424L95.9706 52.8359H75.2524L36.5355 91.3802L36.5257 91.39Z";
+  function grainField(cv,opts){
+    var ctx=cv.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2),W,H,pts=[],rune=[],t0=performance.now();
+    function build(){
+      W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+      pts=[];var n=Math.round(W*H/opts.density);
+      for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,a:Math.random()*.5+.08,g:Math.random()<opts.greenShare,p:Math.random()*6.28});
+      rune=[];
+      if(opts.rune){
+        var off=document.createElement('canvas'),S=Math.min(W*.32,H*.5,460);if(W<700)S=Math.min(W*.8,360);
+        off.width=142;off.height=141;var o=off.getContext('2d');o.fill(new Path2D(RUNE));
+        var data=o.getImageData(0,0,142,141).data,ox=W<700?W-S*.8:W*.64,oy=W<700?60:56,sc=S/142;
+        // particles concentrate on the rune's edges, like the live site
+        for(var k=0;k<90000&&rune.length<(W<700?2600:5200);k++){
+          var x=Math.random()*142,y=Math.random()*141,ix=x|0,iy=y|0;
+          // the glyph Ent draws in particles is the mark's negative space (the branch)
+          if(data[(iy*142+ix)*4+3]>127)continue;
+          var edge=0;[[3,0],[-3,0],[0,3],[0,-3]].forEach(function(d){var jx=ix+d[0],jy=iy+d[1];if(jx>=0&&jy>=0&&jx<=141&&jy<=140&&data[(jy*142+jx)*4+3]>127)edge=1;});
+          if(!edge&&Math.random()<.9)continue;
+          rune.push({x:ox+x*sc,y:oy+y*sc,a:(edge?Math.random()*.5+.45:Math.random()*.35+.15)*(W<700?.5:1),p:Math.random()*6.28,r:Math.random()*1.3+.7});
+        }
+      }
+    }
+    function draw(now){
+      var t=(now-t0)/1000;ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){var q=pts[i],tw=reduce?1:(.55+.45*Math.sin(t*1.3+q.p));
+        ctx.fillStyle=q.g?'rgba(166,243,197,'+(q.a*tw).toFixed(3)+')':'rgba(248,246,242,'+(q.a*.45*tw).toFixed(3)+')';ctx.fillRect(q.x,q.y,1,1);}
+      for(var j=0;j<rune.length;j++){var r=rune[j],dx=reduce?0:Math.sin(t*.6+r.p)*1.6,dy=reduce?0:Math.cos(t*.5+r.p)*1.6,tw2=reduce?1:(.6+.4*Math.sin(t*2+r.p));
+        ctx.fillStyle='rgba(166,243,197,'+(r.a*tw2).toFixed(3)+')';ctx.fillRect(r.x+dx,r.y+dy,r.r,r.r);}
+      if(!reduce&&visible)requestAnimationFrame(draw);
+    }
+    var visible=true;
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible&&!reduce)requestAnimationFrame(draw);}).observe(cv);
+    build();requestAnimationFrame(draw);
+    var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){build();if(reduce)requestAnimationFrame(draw);},150);});
+  }
+  grainField(document.getElementById('field'),{density:900,greenShare:.35,rune:true});
+  grainField(document.getElementById('grain'),{density:700,greenShare:.55,rune:false});
+
+  /* strip the Sequel iframe border inside its shadow root */
+  (function stripBorder(){
+    var c=document.getElementById("sequel_root").firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+})();
+</script>
+
+<!-- Sequel embed (dark) -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+</body>
+</html>
