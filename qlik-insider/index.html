@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Qlik Insider | 2026 Product Roadmap Edition | Qlik</title>
+<meta name="description" content="Qlik's Roadmap for AI-Ready Data and Analytics. A candid, fast-paced conversation on where Qlik's strategy is headed.">
+<meta property="og:title" content="Qlik Insider | Qlik's Roadmap for AI-Ready Data and Analytics">
+<meta property="og:description" content="The way organizations build, govern, and act on data is being rewritten by agentic AI. Watch on qlik.com.">
+<meta property="og:image" content="https://pages.qlik.com/rs/049-DKK-796/images/Qlik_Insider_FY26Q4_1200x630.png?version=0">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/qlik-insider/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://www.qlik.com/favicon-32x32.png?v=2d8023c3b2369d28e981716a746231f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#19426C;--navy-d:#0F2E4E;--navy-dd:#0A2238;--green:#008936;--green-b:#009845;--green-l:#2FBF5B;--teal:#006580;--cyan:#01A7D1;
+  --ink:#19426C;--grey:#54565A;--mist:#F4F6F8;--line:#E3E7EC;--line-d:rgba(255,255,255,.14);
+  --sans:"Inter",system-ui,-apple-system,sans-serif;--ease:cubic-bezier(.16,1,.3,1);
+  --sh-sm:0 2px 6px rgba(25,66,108,.08);--sh-md:0 10px 20px rgba(0,0,0,.15);--sh-lg:0 30px 60px -24px rgba(10,34,56,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:#000;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:500}
+
+/* ---------- header: Qlik's floating pill card ---------- */
+.hdr{position:fixed;top:10px;left:0;right:0;z-index:60;padding:0 10px;transition:top .4s var(--ease)}
+.hdr-card{max-width:1420px;margin:0 auto;background:#fff;border-radius:40px;box-shadow:var(--sh-md);padding:8px 28px 14px;transition:padding .4s var(--ease),box-shadow .4s var(--ease)}
+.hdr.scrolled .hdr-card{padding:4px 28px 8px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.util{display:flex;justify-content:flex-end;align-items:center;gap:26px;font-size:12px;color:var(--grey);height:24px;overflow:hidden;transition:height .4s var(--ease),opacity .3s}
+.hdr.scrolled .util{height:0;opacity:0}
+.util a:hover{color:var(--green)}
+.util svg{width:15px;height:15px}
+.main{display:flex;align-items:center;gap:22px;height:52px}
+.logo{display:flex;align-items:center;padding-right:20px;border-right:1px solid var(--line);height:30px}
+.logo svg{height:28px;width:auto}
+.nav{display:flex;gap:4px;font-size:16px;font-weight:500;color:var(--grey)}
+.nav>div{position:relative}
+.nav>div>span{display:block;padding:8px 10px;border-radius:20px;cursor:pointer;transition:color .2s}
+.nav>div:hover>span{color:var(--navy)}
+.menu{position:absolute;top:calc(100% + 18px);left:0;min-width:240px;background:#fff;border-radius:0 0 24px 24px;box-shadow:var(--sh-md);padding:14px;opacity:0;pointer-events:none;transform:translateY(6px);transition:all .25s var(--ease)}
+.nav>div:hover .menu,.nav>div:focus-within .menu{opacity:1;pointer-events:auto;transform:none}
+.menu a{display:block;padding:8px 12px;border-radius:12px;font-size:14px;color:var(--grey);font-weight:400}
+.menu a:hover{background:var(--mist);color:var(--green)}
+.right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.search{width:40px;height:40px;display:grid;place-items:center;color:var(--green)}
+.search svg{width:20px;height:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:30px;font-size:14px;font-weight:700;border:2px solid var(--green);transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s;white-space:nowrap}
+.btn-o{color:var(--green);background:transparent}
+.btn-o:hover{background:var(--green);color:#fff}
+.btn-g{background:var(--green);color:#fff}
+.btn-g:hover{background:#007a30;border-color:#007a30;transform:translateY(-2px);box-shadow:0 10px 20px -8px rgba(0,137,54,.6)}
+.right a.btn-g{color:#fff}
+.burger{display:none}
+
+/* ---------- dark-wrap: hero + embed as one navy surface ---------- */
+.dark-wrap{position:relative;overflow:hidden;background:var(--navy);color:#fff}
+.dark-wrap::before{content:"";position:absolute;right:-12%;top:-8%;width:62%;height:78%;background:radial-gradient(closest-side,rgba(1,167,209,.30),rgba(1,124,166,.12) 55%,transparent 75%);pointer-events:none;z-index:0}
+.dark-wrap::after{content:"";position:absolute;left:-10%;bottom:-12%;width:80%;height:60%;background:radial-gradient(closest-side,rgba(0,152,69,.16),transparent 72%);pointer-events:none;z-index:0}
+.mosaic{position:absolute;top:0;right:0;width:46%;height:340px;z-index:1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(225deg,#000 10%,transparent 70%);mask-image:linear-gradient(225deg,#000 10%,transparent 70%)}
+.streaks{position:absolute;left:0;right:0;bottom:0;height:100%;z-index:1;pointer-events:none}
+.hero{position:relative;z-index:2;padding:200px 0 48px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:end}
+.badge{display:inline-flex;align-items:center;gap:10px;height:30px;padding:0 14px;border-radius:30px;background:rgba(0,152,69,.18);border:1px solid rgba(47,191,91,.45);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#d7f5e0}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green-l);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,191,91,.6)}70%{box-shadow:0 0 0 10px rgba(47,191,91,0)}100%{box-shadow:0 0 0 0 rgba(47,191,91,0)}}
+.series{margin-top:22px;font-size:15px;font-weight:500;color:rgba(255,255,255,.78);letter-spacing:.01em}
+.series b{color:#fff;font-weight:600}
+h1{font-weight:600;font-size:clamp(40px,5.8vw,78px);line-height:1.02;letter-spacing:-.025em;margin:14px 0 22px;max-width:16ch}
+h1 span{color:var(--green-l)}
+.lead{font-size:19px;line-height:1.55;color:rgba(255,255,255,.86);max-width:56ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 14px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:30px;background:rgba(10,34,56,.38);border:1px solid var(--line-d);font-size:14px}
+.chip svg{width:15px;height:15px;stroke:var(--green-l);fill:none;stroke-width:2}
+.streaming{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9fe3b6}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn-lg{height:48px;padding:0 24px;font-size:15px}
+.btn-w{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-w:hover{background:#fff;color:var(--navy);border-color:#fff;transform:translateY(-2px)}
+.panel{background:rgba(10,34,56,.42);border:1px solid var(--line-d);border-radius:28px;padding:26px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.panel .eyebrow{color:#9fe3b6;font-size:12px}
+.host{display:flex;gap:16px;align-items:center;margin:18px 0 20px;padding-bottom:20px;border-bottom:1px solid var(--line-d)}
+.host img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--green-l)}
+.host b{display:block;font-size:17px;font-weight:600}
+.host small{display:block;font-size:13px;color:rgba(255,255,255,.72);line-height:1.4}
+.stack{display:flex;align-items:center}
+.stack img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--navy);margin-left:-10px;background:#fff}
+.stack img:first-child{margin-left:0}
+.stack span{margin-left:12px;font-size:13px;color:rgba(255,255,255,.8);line-height:1.35}
+.embed-sec{position:relative;z-index:2;padding:8px 0 90px}
+#sequel_root{min-height:520px;border-radius:24px;overflow:hidden;box-shadow:var(--sh-lg)}
+
+/* ---------- stat ---------- */
+.stat{padding:130px 0 110px;background:#fff}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:end}
+.big{font-size:clamp(120px,19vw,250px);font-weight:600;line-height:.82;letter-spacing:-.05em;color:var(--navy)}
+.big sup{font-size:.32em;color:var(--green);vertical-align:top;position:relative;top:.18em;margin-left:.04em}
+.stat h2{font-size:clamp(28px,3.2vw,42px);font-weight:600;letter-spacing:-.02em;line-height:1.12;color:var(--navy);max-width:16ch}
+.stat h2 em{font-style:normal;color:var(--green)}
+.stat p{margin-top:18px;font-size:18px;color:var(--grey);max-width:46ch}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:#7a7c80;max-width:110ch;line-height:1.5}
+
+/* ---------- lede ---------- */
+.lede{background:var(--mist);padding:120px 0}
+.lede-grid{display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px}
+.side{position:sticky;top:130px;align-self:start}
+.side .rule{display:block;width:32px;height:3px;background:var(--green);margin-top:14px;border-radius:2px}
+.lede h2{font-size:clamp(30px,3.6vw,48px);font-weight:600;letter-spacing:-.025em;line-height:1.1;color:var(--navy);max-width:22ch;margin-bottom:30px}
+.lede .body{max-width:66ch;font-size:18px;color:#2a2c30}
+.lede .body p+p{margin-top:20px}
+.lede .body b{color:var(--navy);font-weight:600}
+
+/* ---------- mechanism ---------- */
+.mech{position:relative;background:var(--navy-dd);color:#fff;padding:120px 0;overflow:hidden}
+.mech .streaks{opacity:.55}
+.mech .head{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:60px}
+.mech h2{font-size:clamp(34px,4.4vw,60px);font-weight:600;letter-spacing:-.03em;line-height:1.02}
+.mech h2 span{color:var(--green-l)}
+.mech .head p{color:rgba(255,255,255,.75);max-width:42ch;font-size:17px}
+.mech .eyebrow{color:#9fe3b6}
+.flow{position:relative;z-index:2;display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch}
+.lane{border-top:2px solid var(--green-l);padding-top:22px}
+.lane .eyebrow{font-size:12px}
+.lane h3{font-size:24px;font-weight:600;margin:10px 0 18px}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line-d);transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s}
+.step:hover{transform:translateX(6px);border-color:rgba(47,191,91,.55);background:rgba(47,191,91,.06)}
+.step b{display:block;font-size:16px;font-weight:600}
+.step small{display:block;font-size:14px;color:rgba(255,255,255,.72);line-height:1.45}
+.step i{flex:0 0 26px;height:26px;border-radius:50%;border:2px solid var(--green-l);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;color:var(--green-l)}
+.link{display:flex;align-items:center;justify-content:center}
+.dashes{width:100%;height:2px;background-image:linear-gradient(90deg,var(--green-l) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+@keyframes march{to{background-position:12px 0}}
+
+/* ---------- what you'll hear ---------- */
+.learn{padding:120px 0;background:#fff}
+.learn .top{display:grid;grid-template-columns:240px 1fr;gap:56px;margin-bottom:40px}
+.learn h2{font-size:clamp(32px,4vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--navy)}
+.rows{border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:72px 1fr 1.1fr;gap:28px;padding:34px 18px 34px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--green);transition:width .5s var(--ease)}
+.row:hover{background:var(--mist)}
+.row:hover::before{width:100%}
+.row .n{font-size:15px;font-weight:700;color:var(--green);padding-top:6px;font-variant-numeric:tabular-nums}
+.row h3{font-size:26px;font-weight:600;letter-spacing:-.015em;line-height:1.2;color:var(--navy)}
+.row p{font-size:17px;color:var(--grey);max-width:52ch}
+
+/* ---------- speakers ---------- */
+.speakers{padding:110px 0 120px;background:var(--mist)}
+.speakers .top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:48px}
+.speakers h2{font-size:clamp(32px,4vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--navy)}
+.speakers .top p{color:var(--grey);max-width:40ch}
+.feature{display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center;padding:28px;border-radius:32px;background:#fff;box-shadow:var(--sh-sm);margin-bottom:28px}
+.feature img{width:200px;height:200px;border-radius:50%;object-fit:cover}
+.feature .eyebrow{color:var(--green)}
+.feature h3{font-size:32px;font-weight:600;letter-spacing:-.02em;color:var(--navy);margin:6px 0 4px}
+.feature p{color:var(--grey);font-size:17px}
+.sp-row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.sp{border-top:1px solid #d5dbe2;padding-top:22px}
+.sp img{width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:16px;background:#fff}
+.sp h4{font-size:19px;font-weight:600;color:var(--navy)}
+.sp p{font-size:14px;color:var(--grey);line-height:1.45;margin-top:4px}
+
+/* ---------- CTA ---------- */
+.cta{position:relative;background:var(--green);color:#fff;padding:100px 0;overflow:hidden}
+.cta .streaks{opacity:.35}
+.cta-in{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end}
+.cta h2{font-size:clamp(36px,5vw,68px);font-weight:600;letter-spacing:-.03em;line-height:1.02}
+.cta p{margin-top:18px;font-size:19px;max-width:46ch;color:#fff}
+.cta .btns{display:flex;flex-wrap:wrap;gap:12px;justify-self:end}
+.btn-white{background:#fff;color:var(--green);border-color:#fff}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(0,0,0,.35)}
+.btn-ow{border-color:#fff;color:#fff}
+.btn-ow:hover{background:#fff;color:var(--green)}
+
+/* ---------- footer (Qlik) ---------- */
+footer{background:#fff;padding:90px 0 40px;font-size:14px}
+.f-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
+.f-col h5{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:14px}
+.f-col h6{font-size:14px;font-weight:600;color:var(--green);margin:16px 0 6px}
+.f-col a{display:block;color:var(--grey);padding:3px 0}
+.f-col a:hover{color:var(--green)}
+.f-bot{margin-top:56px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.f-bot .logo{border:0;padding:0}
+.f-soc{display:flex;align-items:center;gap:18px;font-size:13px;font-weight:600;color:var(--navy)}
+.f-soc svg{width:18px;height:18px;fill:#8a8c90}
+.f-soc a:hover svg{fill:var(--green)}
+.legal{margin-top:18px;font-size:12px;color:var(--grey);display:flex;flex-wrap:wrap;gap:8px}
+.legal i{font-style:normal;color:#b0b3b8}
+.copy{margin-top:10px;font-size:12px;color:#7a7c80}
+
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+
+@media (max-width:1080px){
+  .nav,.util,.btn-o{display:none}
+  .hdr-card{padding:6px 10px 6px 22px}
+  .hdr.scrolled .hdr-card{padding:6px 10px 6px 22px}
+  .logo{border:0}
+  .burger{display:grid;place-items:center;width:40px;height:40px;color:var(--navy)}
+  .burger svg{width:22px;height:22px}
+}
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  .hero{padding:124px 0 36px}
+  .hero-grid,.lede-grid,.learn .top,.cta-in,.stat-grid,.feature{grid-template-columns:1fr;gap:28px}
+  .side{position:static}
+  .flow{grid-template-columns:1fr;gap:0}
+  .link{height:48px}.dashes{width:2px;height:100%;background-image:linear-gradient(180deg,var(--green-l) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  .mech .head,.speakers .top{flex-direction:column;align-items:start}
+  .row{grid-template-columns:44px 1fr;gap:12px 14px;padding:26px 6px}
+  .row p{grid-column:2}
+  .sp-row{grid-template-columns:1fr 1fr;gap:24px}
+  .feature{padding:24px;text-align:left}
+  .feature img{width:140px;height:140px}
+  .cta .btns{justify-self:start}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .stat,.lede,.mech,.learn,.speakers{padding:80px 0}
+  .cta{padding:76px 0}
+  #sequel_root{min-height:420px;border-radius:16px}
+  .mosaic{width:80%;height:220px}
+  .btn{padding:0 14px}
+}
+@keyframes marchv{to{background-position:0 12px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.stagger>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header (replica of qlik.com floating card) ===== -->
+<header class="hdr" id="hdr">
+  <div class="hdr-card">
+    <div class="util">
+      <a href="https://customerportal.qlik.com/" target="_blank" rel="noopener">Support</a>
+      <a href="https://www.qlik.com/us/company" target="_blank" rel="noopener">Company</a>
+      <a href="https://qlikcloud.com/" target="_blank" rel="noopener">Login</a>
+      <a href="https://www.qlik.com/us" target="_blank" rel="noopener" aria-label="Select language"><svg viewBox="0 0 24 24" fill="none" stroke="#008936" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
+    </div>
+    <div class="main">
+      <a class="logo" href="https://www.qlik.com/us" target="_blank" rel="noopener" aria-label="Qlik">
+        <svg viewBox="0 0 71.39 29.74" aria-hidden="true"><g fill="#54565a"><path d="M70.47 27.52c.05-.07.07-.15.07-.24s-.02-.17-.07-.24-.1-.11-.16-.14a.38.38 0 0 0-.17-.04h-.66v1.31h.29v-.44h.29l.23.44h.32l-.27-.51a.47.47 0 0 0 .15-.13Zm-.71-.45h.27s.07.01.12.04c.04.03.07.08.07.16s-.02.14-.07.18c-.05.04-.09.06-.13.06h-.27v-.44Z"/><path d="M71.28 26.97c-.07-.17-.17-.32-.31-.45-.13-.13-.28-.23-.45-.31s-.36-.11-.55-.11-.38.04-.55.11-.32.18-.45.31-.23.28-.3.45c-.07.17-.11.36-.11.55s.04.38.11.55c.07.17.17.32.3.45.13.13.28.23.45.31s.36.11.55.11.38-.04.55-.11.32-.18.45-.31.23-.28.31-.45c.07-.17.11-.36.11-.55s-.04-.38-.11-.55Zm-.37 1.1c-.1.16-.23.29-.39.39-.16.1-.34.15-.54.15s-.38-.05-.54-.15c-.16-.1-.29-.23-.39-.39-.1-.16-.15-.34-.15-.54s.05-.38.15-.54c.1-.16.23-.29.39-.39.16-.1.34-.15.54-.15s.38.05.54.15c.16.1.29.23.39.39.1.16.15.34.15.54s-.05.38-.15.54ZM34.9.65h2.96v28.32H34.9zM42.95 9.19h2.95v19.78h-2.95z"/><circle cx="44.45" cy="2.67" r="2.02"/><path d="M66.62 9.19h-4.11l-8.52 7.46-.02-16h-2.94v28.32h2.94v-9.14l8.75 9.14h4.1L56.39 18.39l10.23-9.2zM14.87 26.69c-6.53 0-11.82-5.29-11.82-11.82 0-2.77.96-5.32 2.55-7.34L3.44 5.34A14.922 14.922 0 0 0 0 14.87c0 8.21 6.66 14.87 14.87 14.87 3.56 0 6.83-1.25 9.39-3.34l-2.16-2.19c-2 1.55-4.5 2.47-7.23 2.47Z"/></g><path fill="#009445" d="m26.31 24.34.17-.17a14.83 14.83 0 0 0 3.26-9.3C29.74 6.66 23.08 0 14.87 0c-3.54 0-6.79 1.24-9.34 3.3-.74.6-1.41 1.26-2.03 1.98-.02.02-.03.04-.05.06l2.16 2.19s.04-.05.06-.07c.59-.74 1.27-1.4 2.02-1.97a11.74 11.74 0 0 1 7.18-2.44c6.53 0 11.82 5.29 11.82 11.82 0 2.75-.94 5.29-2.52 7.3-.57.73-1.23 1.39-1.95 1.96l-.12.09 2.16 2.19 2.54 2.57h4.1l-4.59-4.64Z"/></svg>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <div tabindex="0"><span>Why Qlik</span><div class="menu">
+          <a href="https://www.qlik.com/us/why-qlik" target="_blank" rel="noopener">Why Qlik for AI</a>
+          <a href="https://www.qlik.com/us/platform/technology/analytics-engine" target="_blank" rel="noopener">Analytics Engine</a>
+          <a href="https://www.qlik.com/us/da/capabilities/agentic-ai" target="_blank" rel="noopener">Agentic Architecture</a>
+          <a href="https://www.qlik.com/us/company/trust" target="_blank" rel="noopener">Trust &amp; Security</a></div></div>
+        <div tabindex="0"><span>Products</span><div class="menu">
+          <a href="https://www.qlik.com/us/di/products/qlik-talend-cloud" target="_blank" rel="noopener">Qlik Talend Cloud</a>
+          <a href="https://www.qlik.com/us/da/products/qlik-cloud-analytics" target="_blank" rel="noopener">Qlik Cloud Analytics</a>
+          <a href="https://www.qlik.com/us/da/products/qlik-answers" target="_blank" rel="noopener">Conversational AI</a>
+          <a href="https://www.qlik.com/us/all-products" target="_blank" rel="noopener">See All Products</a></div></div>
+        <div tabindex="0"><span>Solutions</span><div class="menu">
+          <a href="https://www.qlik.com/us/solutions/industry/financial-services" target="_blank" rel="noopener">Financial Services</a>
+          <a href="https://www.qlik.com/us/solutions/industry/healthcare" target="_blank" rel="noopener">Healthcare</a>
+          <a href="https://www.qlik.com/us/solutions/industry/manufacturing" target="_blank" rel="noopener">Manufacturing</a>
+          <a href="https://www.qlik.com/us/solutions/industry/retail" target="_blank" rel="noopener">Retail</a></div></div>
+        <div tabindex="0"><span>Customer Success</span><div class="menu">
+          <a href="https://www.qlik.com/us/customer-success/services" target="_blank" rel="noopener">Services</a>
+          <a href="https://www.qlik.com/us/customer-success/learn/qlik-learning" target="_blank" rel="noopener">Training</a>
+          <a href="https://community.qlik.com/" target="_blank" rel="noopener">Community</a></div></div>
+        <div tabindex="0"><span>Resources</span><div class="menu">
+          <a href="https://www.qlik.com/resources/blog" target="_blank" rel="noopener">Blog</a>
+          <a href="https://www.qlik.com/us/resources/events-and-webinars" target="_blank" rel="noopener">Events &amp; Webinars</a>
+          <a href="https://www.qlik.com/us/resources/customer-stories" target="_blank" rel="noopener">Customer Stories</a>
+          <a href="https://www.qlik.com/us/roadmap" target="_blank" rel="noopener">Product Roadmap</a></div></div>
+      </nav>
+      <div class="right">
+        <a class="search" href="https://www.qlik.com/us" target="_blank" rel="noopener" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></a>
+        <a class="btn btn-o" href="https://www.qlik.com/us/free-trial" target="_blank" rel="noopener">Try for Free</a>
+        <a class="btn btn-g" href="https://www.qlik.com/us/contact-sales" target="_blank" rel="noopener">Contact Us</a>
+        <span class="burger" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero + embed ===== -->
+<div class="dark-wrap">
+  <canvas class="mosaic" id="mosaic" aria-hidden="true"></canvas>
+  <canvas class="streaks" id="streaks1" aria-hidden="true"></canvas>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="badge"><span class="dot"></span><span id="badgeTxt">On-Demand Webinar</span></span>
+        <div class="series"><b>Qlik Insider</b> &nbsp;|&nbsp; 2026 Product Roadmap Edition</div>
+        <h1>Qlik&rsquo;s Roadmap for <span>AI-Ready</span> Data and Analytics</h1>
+        <p class="lead">The way organizations build, govern, and act on data is being rewritten by agentic AI, and Qlik&rsquo;s product leaders are shaping that shift as it happens. Join a candid, fast-paced conversation on where Qlik&rsquo;s strategy is headed.</p>
+        <div class="meta">
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch anytime</span>
+          <span class="chip"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 4.5a3 3 0 0 1 0 6M21 20c0-2.6-1.6-4.8-4-5.6"/></svg>5 speakers</span>
+          <span class="chip"><svg viewBox="0 0 24 24"><path d="M4 18 9 12l4 4 7-9"/></svg>Product roadmap + live Q&amp;A</span>
+        </div>
+        <div class="streaming">Streaming live and on-demand on qlik.com</div>
+        <div class="actions">
+          <a class="btn btn-g btn-lg" href="#watch">Watch now</a>
+          <a class="btn btn-w btn-lg" href="https://www.qlik.com/us/roadmap" target="_blank" rel="noopener">Explore the roadmap</a>
+        </div>
+      </div>
+      <aside class="panel reveal" aria-label="Session hosts">
+        <div class="eyebrow">Your host</div>
+        <div class="host">
+          <img src="data:image/jpeg;base64,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" alt="Holly Johnson">
+          <div><b>Holly Johnson</b><small>Global MarTech Operations Manager, Qlik</small></div>
+        </div>
+        <div class="eyebrow" style="margin-bottom:12px">With Qlik&rsquo;s product leaders</div>
+        <div class="stack">
+          <img src="https://pages.qlik.com/rs/049-DKK-796/images/Dan_Potter_150x150.png?version=0" alt="Dan Potter">
+          <img src="https://pages.qlik.com/rs/049-DKK-796/images/Nick_Magnuson.png?version=0" alt="Nick Magnuson">
+          <img src="https://pages.qlik.com/rs/049-DKK-796/images/Paul.jpg?version=0" alt="Paul Peterson">
+          <img src="https://pages.qlik.com/rs/049-DKK-796/images/Tim_Garrod.jpeg?version=0" alt="Tim Garrod">
+          <span>Dan, Nick, Paul<br>and Tim</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="embed-sec" id="watch">
+    <div class="wrap reveal"><div id="sequel_root"></div></div>
+  </section>
+</div>
+
+<!-- ===== Stat ===== -->
+<section class="stat">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="big reveal">75<sup>%</sup></div>
+      <div class="reveal">
+        <div class="eyebrow">Modern data integration, AI, and analytics</div>
+        <h2 style="margin-top:14px">of the Fortune 500&reg; use Qlik.<em>*</em></h2>
+        <p>The question on every one of those roadmaps is the same: how do you get the AI you were promised? This session is Qlik&rsquo;s answer.</p>
+      </div>
+    </div>
+    <div class="foot">*Based on the list of 2025 Fortune 500&reg; companies with recurring revenue to Qlik during the 12-month period ending June, 2025. Fortune 500 is a registered trademark of Fortune Media IP Limited. Qlik is not affiliated with or endorsed by Fortune.</div>
+  </div>
+</section>
+
+<!-- ===== Lede ===== -->
+<section class="lede">
+  <div class="wrap lede-grid">
+    <div class="side eyebrow">About the session<span class="rule"></span></div>
+    <div class="reveal">
+      <h2>Make your data work for AI with trust, context, and the freedom to adapt.</h2>
+      <div class="body">
+        <p>The way organizations build, govern, and act on data is being rewritten by agentic AI. <b>Data engineering is moving from human hands to AI collaboration.</b> Analytics is being rebuilt for AI systems that act directly on data. And as AI takes on more autonomy, control over where it runs and how it&rsquo;s governed decides who you can trust.</p>
+        <p>In this Qlik Insider, Qlik&rsquo;s product leaders walk through the 2026 roadmap for AI-ready data and analytics: what&rsquo;s shipping, what&rsquo;s next, and how One Qlik brings it together on an open architecture that gives you choice over lock-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Mechanism ===== -->
+<section class="mech">
+  <canvas class="streaks" id="streaks2" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="head reveal">
+      <div><div class="eyebrow" style="margin-bottom:14px">New &middot; Qlik Agentic AI Experience</div><h2>AI that does <span>the work.</span></h2></div>
+      <p>Seamless data integration and powerful agentic AI analytics, connected end to end, so insight turns into action.</p>
+    </div>
+    <div class="flow stagger">
+      <div class="lane">
+        <div class="eyebrow">Data Integration</div><h3>Qlik Talend Cloud&reg;</h3>
+        <div class="steps">
+          <div class="step"><i>1</i><div><b>Move</b><small>Deliver enterprise data where it&rsquo;s needed: on-premises or in the cloud.</small></div></div>
+          <div class="step"><i>2</i><div><b>Transform</b><small>Keep your data accurate, secure, and up to date at every stage of its lifecycle.</small></div></div>
+          <div class="step"><i>3</i><div><b>Trust</b><small>High-quality, curated, and trusted data you can count on.</small></div></div>
+        </div>
+      </div>
+      <div class="link" aria-hidden="true"><div class="dashes"></div></div>
+      <div class="lane">
+        <div class="eyebrow">Analytics &amp; AI</div><h3>Qlik Cloud Analytics&reg;</h3>
+        <div class="steps">
+          <div class="step"><i>4</i><div><b>Analyze</b><small>Create dashboards and see unique visualizations of your data.</small></div></div>
+          <div class="step"><i>5</i><div><b>Answer</b><small>Ask any question about your data with Qlik Answers&reg; and find new connections.</small></div></div>
+          <div class="step"><i>6</i><div><b>Act</b><small>Automate reports, share with key team members, and connect 3rd party apps.</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== What you'll hear ===== -->
+<section class="learn">
+  <div class="wrap">
+    <div class="top reveal">
+      <div class="eyebrow" style="padding-top:14px">What you&rsquo;ll hear</div>
+      <h2>Four shifts shaping Qlik&rsquo;s 2026 roadmap.</h2>
+    </div>
+    <div class="rows stagger">
+      <div class="row"><span class="n">01</span><h3>Data engineering is agentic now.</h3><p>The work of building and managing pipelines is moving from human hands to AI collaboration. Hear how Qlik is building for it on an open architecture that gives you choice over lock-in.</p></div>
+      <div class="row"><span class="n">02</span><h3>Analytics is being rebuilt for AI agents.</h3><p>The next wave is AI systems acting directly on data. Learn what that means for how analytics gets designed and delivered.</p></div>
+      <div class="row"><span class="n">03</span><h3>Trust and sovereignty come first.</h3><p>As AI takes on more autonomy, control over where it runs and how it&rsquo;s governed decides who you can trust.</p></div>
+      <div class="row"><span class="n">04</span><h3>One Qlik is one vision, not simply one interface.</h3><p>See how Qlik is removing barriers and empowering every user across the platform.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Speakers ===== -->
+<section class="speakers">
+  <div class="wrap">
+    <div class="top reveal">
+      <h2>Speakers</h2>
+      <p>Qlik&rsquo;s product leaders, in a candid conversation on where the strategy is headed.</p>
+    </div>
+    <div class="feature reveal">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCADcANwDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAQFAwYHAgEI/8QAQRAAAgEDAQUEBwcCBQIHAAAAAQIDAAQRBQYSITFREyJBYQcUIzJxkcFCUoGhsdHwM2IVJENy4TSiCBYXJYKT8f/EABkBAQADAQEAAAAAAAAAAAAAAAABAgMEBf/EACIRAQEAAwADAAIDAQEAAAAAAAABAgMREiExQVEEEzIicf/aAAwDAQACEQMRAD8A73SlKBSlKBSlKBSlKBSlKBSlKBSlKBSsc88VvGZJ5EjjHNnOAKi2WraffSMlnfW07rzWOQMR+AoJ1KUoFKUoFKUoFKUoFKUoFKUoFKUoFKUoFKUoFKUoFKV5dlRSzkKoGST4UHqtQ2o9ImzmzkjQ3t6JLpf9CEb7Z6HwH4mueelP0myGaTTNAldI14SzpwLeQPgK489t6w3bSKSzcyTnPnVLnI1x12/XZNT9NVxJn/CtNjROs7kt8hWv/wDq/tDdK6qY4DyDCMHj5VoMVvKxA75XlzzVpbabI1swCHfzkEjFZ3Y0mrqxvduNdvlxeXRuPDdOAKhrtEsk0O+y2U0Z7skSbrZ673CqyWPVLYsRCzKvSq251O3uCsN5GAxOPd45+NPOpuvj9B+jj0j+u3CaVrsimc4WG65CToG6Hzrq1fjD2ttEjwEui8VIPEV+i/RHtzb7SaTHZXU2NVt1wyseMij7Q6+daY5dY54cdEpSlXZlKUoFKUoFKUoFKUoFKUoFKUoFKUoFKUoFcu9L21klpCdJ05sSOPasDx/2/vW97UazBoOiXN/csAI17gP2m8BX5g1LVpNTvZLydySzM548sf8ANZ7MuTjXVj29qnezudS1VbGzch+csnPGa6Hofo/hECie4md/Els1h9HWlCO2W6nXE1wxkOfAHkPlXVLSJQigD5Vx5ZX5HqatU52tYsNirSEg8WI61cHQrQJudkMVsES4GD18a9Og3uQqlaySNE1PZ5BDIYRgkcuNcx2i2ejlaRXhCS5JUgV+gbm3UrxHHnWsa7pEd1GxwA491seNRLcTLHHKccCsjLbM0Mxxk4PxHI/Ss1pd3On38N/pkpgu4HDAqfGrPbLTZrS7duzZWHHgOdalDelsq/Ne7+HhXThl+Xn7MfG8frf0abaQ7X6Rvuoi1CABZ4/DP3h5Gtyr8mejXa3/AMua7FcOGKA7kwB95D/M1+qtPvINQsobu0kWWCVQyMviK6McuuTPHxqTSlKuoUpSgUpSgUpSgUpSgUpSgUpSgUpWK5cxwsw5+GaDjvpx1B7qSGyjb2MPEgHm3ifw5fOuIW5aa8W3GQssghX4Z731ro3pK1BLnW7pUOUAKL5nr+lc60uULr0LKhcwKWCD7THA+tcud7XbqnOO26HCI0RBjGMAVuVlEd0ceOK5faPtB2YlihtiCAQpfBFbDpW0uqQyqmo2iIni6nlWHi9CZOiRwZUZ514eFgcBsDNR7W+M8IdDkEZ51Ta1c3UrbltO0beO7U2Sk7+VzeJuDe8Bz41TXc6HI4ZrXWtYllzqmqyDJHc7TrXyXTtNulJ068uIpRyYSEg/OouBKrtrLRL22dd0EqMg1w3Wo44Lpwg3WHAg13S0M6yyW96Q7KMBwPeH71yr0qaT6rdrdQDuvzx4Gr6vvK5v5E9eTU1n3MOrEedfov8A8N+0r3tleaPO+92PtouPIHgR+nzNfmW2kDoVfga6H6FNZbRNubFmz2crmJwOh4fqRXRPVcV94v2JSvKMHUMpyCMg16rZgUpSgUpSgUpSgUpSgUpSgUpSgVVbSXHqulTTH3UBJ+GKta0v0q6k1js3JHGR2kx3ceVRbyJxna/PGt3DTy3MxPed23fhmqzYi2a51q6ON4xxK345NZrxytvNM44KrAZ8Tk/uKs/RTGGv9Rc8yka/rXJb+XoYTtkWKahqzi8eO4S3EK+zjJyz/hn96srCfUrmBjMHwSV3t3HDeIBxk8wA3hjOPCtztNAt2k7UrxxyCg1j1S1SGMxox+PSnnOc46Jqy8u2rHZS8ZdHPbe8vCsUjTTvO0cgXAyAeBP4190mExaIGHJmIqXYxozfZY+IrLvK38fTQ9ptNWSGGO3jneYyBpmZ2UHDryxw5b344JzUPZ7TLy2uYcPcPurmZD7pOfAnjyArrIs4d0nsRk18FoI8kRKvnjnWl2dx4xx08z8mtTWuLLtiDvdOlcx9KnGzQniCMEV1rXJRFEwXkRxrme21oNShihB77MAPxrPXfZvx7i59sNoUGpQajLeQySIm5GhU43GYnjTQ4ZLDWLWR8h45OHng11TZjZ0aFos0DEM0jLOzHxHDh+FaPqaR3LRvEMObgkH4nP1q9ztyrG6pjrn7fq7Za9W/0eGdDlHGR5dR881b1z70QyyHT7+JmJRJFKg+GRXQa7ML5YyvOzx8crClKVZQpSlApSlApSlApSlApSlArknpKmN/d9lvjdQ9eVdWuc+rybpw26cHpwr897Tak8+rSRxHuqOvyrHdlzFvox7k0LaVRHGLdeQ8POpPoun7PW72AnGY0b5E/vXvaa3EKwsx7zZx+VVGxqzW+0UVwo7koeJuPLHEfpXPj7dkvMpX6LsbmNbXLkcBWo67qyz3MioCLeL32UeNeTeyiywgJY8BUeNbdEWKSRcnJbJ4kmqcehbJPTbVvbZdFREcbu7kYNU9lf8ArEq+rJJHIp4l1K/jXm10yyeAH1wgr9nNW8JsbdRuupPiTU+KvbPwsrHVix7K4XckXnnx86m3VwGg3s8K1fVL6xlAMN1CLhPdG8Mnyr7DePPa5wwPIg+FVs4mWVG1qbeibjk+FapcWxluo3JwFI49Kvb0O2Qx58appNW0+wu44b+UK7h3QYzwUZJPkBUxln9SdtNRbTtBleRhvPH2ar5n+ZrntsCjhpTkIwfPxFZttNXbW2s7eLvJF7TeH2sjh+Vebe3kuLeVADwKqufE/wANJOsNmfb/AOOq+ijUpLDaL1WZ8x3i4Izw3sZX6/Ou2VwzZS2RtdsjKoXsWRSR/bwzn413Icq7dfzjztv3r7SlK0ZFKUoFKUoFKUoFKUoFKUoKTbK+On7OXkytuuV3FPQnhmuJx6artvy535oi2COPUD8Biu1bbae+pbM3tvECZNzeUDxI41yee0mu9Nhlt2KyIBgk8VxwOfhXPunXTovHPNbRmuBc3BLQxIxAHi3T51SWubOZZ2JETOsvw8T+YNbZqljdNK1rJCweQnKHhg1r+q2hjjnhfgEhK/iDWMnHTb7dj2YSK509gQrEDeXNa3BpFnp22Mt9cQ9vYXSESLxLRMM4wPEHP6VXejjXX/wqNZD34u4fPHI1tU8Zm3JAN5c1E/5rqx5nIvrOw2cMW9vspXc4ZI6ZFTrm60SzjZ9P05rmZHVhhBy5Hi3zqp05jHEVVHOfGpkCthso2TzJq9saeH7ytVcGlf4lcR3GqW9uttFJ2kNvGviM4Lnx4Hlj51b3ESgTMqgGQ5GPgB9KkRx7kBc1X3l2uCMjAHGsc70kk+KLVCI18wK41tBcTXG0l1NEQWgjMSBhkbpUhvyJrq9/KbmSQqcogyT51yKVsazcg/bbBPkc1fH1HLuveJ9paNBZ+syZLBRGA3h/MVd7KMJnvopMb67sqD9f551XzXSSW8cSkcCGPxrDazCGU3EM25KrFdzHvLUSdZ30696OANU127DHuxRhvxzXZk9wZGOFcc9BNtK2o6pcyxnszGoV/AnJ/auy12a/8uHb/opSlaMylKUClKUClKUClKUClKUHyqa62bsJpnmRDDI5ydzgCeuKuqVFkv1MtnxrOr7J2d9p8yNGGu24pLyKMOWOgrl+1/o31Ts2azjE8mO8y/bJ5mu61R7UbS2Wz8MfrDb9zNkRQjm2BxPkBVbhKvhnl3kcA0vYfXdPdHmh9QtZXy80/COPAOSx8BWz6FqNrK9za213HdJE26sqghWI6ZrWNudob7aOaSa8uJBaRZxGpwn4D61UbEq/+HGZSVMzF1x4DOB+QrHZjjJx6Gi5Y3tdj0hwYyZWAI8KsI2XDYIrnkV/fKndfe+NSItQ1B+G9jzrHjt/slbXr+pR2tp2asN4itQF3Nc5VM4Y8TWQWMlzJvTuznzq1tbNYlAAqqlvUF7QLZlMHLcCa51q2ymrXN7d32nWjz28ThGEfFhnjnHThXWniz8BUjZnU49n9Tlnud4Wkybsu6ucY4hsfP51bCzy5XPul8e4uBWOzm0tw/rNrpV7PAx3TuRE4PiMVbads/eXGs29nfJPZZYBjJEQVz4kV+q9I1bStRgEul3dtLG3H2bDOfMdanskZYOyoWHJiBkV1XTHB/df00f0YbGS7NWMj3d3JNcyOSNyQ7hT7OV61vleVZWzukHHQ16rSTnpjb33SlKVKClKUClKUClKUClKUClVet63aaRDvXD5lI7sS+837DzrSL3aXVdRdxE4tbccwnP4Z61aY2rTG10S4u7e2GbieOIf3sBVFfbY6VbI5jeS4KcD2a8M/E4rS/USiBpGaS6nPNzkgVGuoUGcD2EH/c1W8I1mr9p2ubdak1uxtkSyQjOQN9wvUk8PyrkVnrz69tnEl9cTSCRHiEkjb24N0kfM/rW3a/HNJYtF/rTjjge4la1o2z62bi6cESZ316jp+/4VPPxGmOMx+K3bNimmyCNSqyN2SAcMc8n5Zq22WiEemWygYCqBWXaKzOo7M294+76wGDOFGMgnAb5GsmigLbRqOYFcG6cvHbrnfbYrW27pJ4ZqfDAOAxUuxtj6ujEcxUtYMY4Vz2tfjHb2+BkCshQfnU7swirgV5KKOJoi1g7LgB1qPdQJ2TB/hjrU4ku6pEpZugr1HYG5ue+2ccyOQ/er4actl9KZZzGe3M7nZC7v9ULaXvJh8uVYqo68RW3aZoT2idm9/e3suMM00rdknkFzj55rajErr6vZ4jiX3nHjWDcaQGC23REvvyGvR14eE5b1x5SW949ejueK21fUtNSQuxRZcnlkHB/UVv8AXKtOkj03a+zuLcbtsWMczE8OIxnPTOK6rTL65dk5SlKVVQpSlApSlApSlAqq2j1dNG09p2XfkPdjTqf2q1rm+3d2brUbiMH2VogjH+5sEn9BVsZ2rYY+V4167uJrzVWe4cvM26WY+BP04/lWw2VtHjeIxBFx4/aPWtdt4GuNYCKMiQ8+mMftW2lFeQQJwgj4seprV1ScRZyyhpyPaSd2NegqK8ScEPGKEbznq1TZnLM0+OHuRL59awtGoHZE9xO/Kep6USpLq37TO+MNL3m/tQVS63/ltIu7kDBCFUHQngPkP1rZ5u+MuMGXvt5IPCqbXoTc6TcLjnugDqzEY+lRfiZ9VF5H6jskqSqS7xxxZ88hsfJTWPZiyadxw4CrTaSFZtKNs3ExMrZ6k8z+dWexcAitu1lGCfHHCvP/AJF/7dumcx62u0s1S0QHicVFmjBuVjTlnJrPNdgLuow4dDUSGYByc5Y9K5+xfn5qXKEUZJHCq9ZfW7n1eBh2nToOtSrKSOa5lN1wiiAwueLE/wD5WXbCOzm0m1u7feguoSpUx5VuRyD1BOP+K6tOns8smGzZy+MZIIAAbeA8v6sn0rISJP8ALW/diX3361V6Pfz3mmwq8BtA2d9mPv45kVLeZJIyka7lqnvOftfCu2TnxzX2yvLG69jAwS3X33zzqHeXMZRVDGO2zgEc5D0A8ax300zW6djAu7vbscRbdB82PP8AAf8ANQ7TRpDrXaXd411Pu5IRd1Ih0UZoMeop63G6seytIh3lU4Zj5n6VZaBthPZ9lBfo81vy3ubRr4EnxrPbx28KzSSKDGDuxxk7283wqPOge3a0WMdtNxcj7IqbFMp5OiwTR3EKSwuHjYZDDkayVyrQdUudmr0WcYku7HOZOPFfMeddL02/ttRtVuLOVZIzwyPA9D0NZ3HjmyxsSqUpVVSlKUClKUGK5mS2t5Z5SBHGpdj0AGa5DqFyLi1uZ+O/O4dviWzw+dbr6SNRFvpEdijYmvXEfDwUcWP6D8a0CWQ3YFvbr7MMqqfgeJrTCem+mfatdn43jt2nYe2kdkj+GedXbJgLaxnvHjI1RrEpFD259xRuRDrWYuY4QOdxN+Qq7ZjmdQ5df6UIwo6tWBk4CJjw/qTH6VnYLvCMf0oe8x6moxBeNQ3B523m8lqEotwd/vNw7Y8vuoKhKTNLGuDgZnPxHu/nipF2xk3ivOU9mnkg5msNhh3ncA4aRIV6buaW+k4z2wa1b9pBvR8QWXPmCeH51eafGLWBI/Bhn4Go90nY6aqvxMcixt8N4EGoc09zPfKqgpDGcOCvBuhzXm/yLyx2a76W0vZ5HBSTw5V8SRe1WOMZkI5Copm3pFRfyq+0ewY2U80KgzS8ASfD+ZqdOnz91Xbt8FXa27yS3F0cLCgxx45NSHhZLSPtCZLm4OBvHgorHqGowW/Zaf2oDKd6c593rUGTW2urkz2qHsIRhC3AZ61344zGcjltyy+rDULGO8EdjlgkIDlwd3dbrn+c6r4GlniEEd7JcTK3dARQiDhxOBXi2S6njee8dnec9yMcM/8AFTbVBa2zrGQF/wBSQc2P3RVjnGSwtE3jPeys6Rd2Nc8Wbr8azW8xRZyi9mGOZJOn9o86xBd0ADjOw5DlEtZI1Ese8e7aQ8RnnI1FXxUaNVfdzNJwij+6OtZFhZD6vbnemfjLL0rJCexha7kG9cS92NTXpleGMW8ZzczcXbpQQLi3EmbW0GFH9SSq+wvptB1BTpK9pDn26E91h+/nV1dbqL6nAwCgZlk/XNUl07XCdjYIVhOcykYz50VsldQ029g1GzjubVw0bj5HxB86lVy30f6uum682k75a2n4hieCyeHzxj5V1KsrOOXKcpSlKhBSlVe02pLpOiXV2Th1Xdj82PAfnQct241L/EtrHSNspB7FMeXvH9flWPTmjWCRozxRRGvxPM/nWsJKzXcsqks5BA+Jzx/Wr7TU3I44wcntASeuAM1vx14eo2aGRGYhv6VuAMdTWQMy+0PGeXgg+6KpbOYuioeUsxY/AVaw3G8Jrn3m3uzjFEsxQEi3U90d6VqxSsXV5F4NL7OMdBWTsyFW3B9pJ3pW8q8SyLvPKo7kQ3Ix1NQsgXQIWUx/ZxDH8fGoemjeuZ7ZThFiKD/fnOfyq1dNxkXwiUu/xNUU/aW01qYuEjP2zH4HNKmLfVZBJp8jE/1od7/5Lx+leWf2KselQNobpYdLumjYdnwdD5Pw+tYL3Ud23iihHaTsoAGOA+P7Vx7cLnlJHRhl4zte5r1IH7zd4j5DrU+w2i1JFlmhEa2e6EjSQZJIzxH51XxaSd5Y3O9Mw3pXPHHlVxY2oZzJu+zgHc3hwU9fj5V0YYeOPIxzsyttQIrCWUlX793cMZJZHHu55k1awQW8UaRxKXjTkvjIevwrLFH2dnJPMSTIcKvLe+P7VnaLsYEt4gO3m98+X8+tacVuTEiyTxSSsd1eTP5fdUV6ZeytFll4seEMQ5DzxUmWNZZorRDiGMbz48f59awyXCNM1yR7GLuxj7zUVte2iaKGO2XAmm4vjnivchjdlt4+FtAMyN1NYh2qKGzvXtzy/sH/ABQxAyR2MByB3pXoM8MgO/fTDuIN2FK8iZ4IzKRm6nOFHQfz6V8kdJ58HAtLYcehNYllchrxk3pX7kEZ/n840Hy4WGKIwzNke9Lg8XPSoN20tzEwRRb2oHPkSKldlBp8e9ct6xdMd4gceJqHcxy3LK184iiJyEHCoL+mrahKLXUYmssr2Efa7/jvA5B/Ku6aZdLfafb3KcpUDYznGRyriGsOk+q3AgQJbw25VQftHFdI9Ft761s20THvQTOv4E5H6mq5MNk9dbjSlKoxK5X6XNVMt3BpkLd2EdpJj77DAH4DJ/Gul6leR6fp9xdzHEcKFz+FfnXVr+W9ubm8nbemmdj+J548gOA+FXwn5X1zt6xWcwjmZyO6qk/QfWth0titrFI57yqXb4nkK1i0w7IrcmbJ+AH71f6XcB7UNzAO+R1OcKK0b99LWLMBQczGmMf3t4VZ6dGI3VWOUgXeb/carbZgjtJIciIZP9zmpKyERiEnBb2kzdB0omLEyt2TOP61wcL5CvgZA44+xtxknq1RUdyBKBh5O5Ev3R1rIxjVhCW9lF3pG6moWZDl4gh4S3DbzeS1WauAEuZl4KiiNCKmid2JdQe3m4Iv3V61HvUR7d1Jxb2/Fz95qCm1GF5rLTbYoXMxWMrz905Hxq9ttLjhu8k4EK5Ynjx6/Gq3Sbwy3qEqDJbJlV6O+cf9v61eHLN6sG7zd+Z/pUSfla31x7g3YLd7jHtZWxGOdSNzuxWaHvHvynp/P2qJ2ykm5YeyiG5CvU9a+lnijEYObq4OWP3RVlU0SJNNv8ra3HDzNfI7kpHJeycZJDuxL+lQ5XRwLZDi2hGZH6npXhpyU9akGPswR9POnEdSkLMTbKT2j96d+g6V9jKPIZMbtrbju/3GsGGghS3TjcTnLny/n1pcMJJY7GE+zj70hFBnS5MUMl5JxlkO7GD4Dwr0C9paiMHN5cnJ8qwRyJLOZnOLa3Hd4cCfL+dK8SXRjja6l/6ifuxL91fCoSkInbSLaofYx8ZW6n+fzhWOKSfUL15Lf2drF7NHPD4kVBu7pbS1W1Ukyznv44nzqaiTTW6q7erWijGM4J+NAaSKKcpaoZ5h9rzrFLHHb71xqEnazHlGOOKNciOCUabGAiA70r+J8vnUKeMJDbSu7PLKy8T0oitc1CQvqNzJKezZk3Y4/iedbl6JLsrq2p2Z91kEi/gxH1rT7yXt767RQBvyquf58Ks9g39W28tRC2FkLo6+GCGP0FRfcZ5z07dSlKyc7nXpe1jsbK30mBvbXB33x4IOX5/pXHruUDO77o7i/WrrbW9nu9ptZnmbLxytCnRVBwAPlWsXLEzwp9kBfz4/StZ6jfGciVE5RXYc1AjB8zzq40iYQjdJyEJf4kcB+dUETHs4f7pCx+NWOlMWmXP2m4/hk1MWra4JdxcNxWLvN/c5qSPsxOe83tJj0HSqezYsLTJ992dvM1J7RvU7h8995N0nyqwtluWI7deDN3IV6DrWVIl9YS3JLKnfkP3j51DQ/wDuMCfZSPIFfO1YWl5LnvsxBPlULSp4uQgnujzPcjFQbyTMK2/MAhpOPNjyWsZY9vDH9mOLtAPPrVfeu3qIOeLqzsfPIX9CaJj7ordjcXl8uW7V8IDz+6v5VsGd1Rao2ZpO9K/QVTIoR7GNRhN0yY88VIikddJecMe1lbDN5Z8KSI6sRcI7mQ/9Nb8FH3mr527xx9qcm6uDhB90VDdQJrS3x7LG8R1NZ4HL6jPI3ExLhfKgkFAWjsoz3R35W61kSVJ7oynhb24wvQn+fSq62kZdNuJwfau2CfxxS4YxabbInAPgt5+NEdThd9nHNeuRvv3UH8/nCvEZe3tMZ/zFwfx/n71EuRvajbQf6SrkD+fCs0LmTVX3uO4vd8uX71CYz3MioI7Te9mg35D9KieuCV2vZB3QdyBevn/PpVRd3EjQSsT3pX3WPlUrU3MUkqpwW2gzGPAEnGalMWWntELgTTDtLhjuxg8l6mpkc5kv5u2btI4hkcO6D8PnUIKI9QskQYVUwB+Br7ASBqLDnx+tVWfVkb/CJXbnI/8AP0NfNSdY5LKMnhGhP5Y+lR52K6Nb48X/AHqLtDIwu5cH3Lfh+dSqpLSUvcq5+3Kzj4D+GrDYp2k2s0coe/JdFz/tAP0qhtJGVFIPKFmHxzV76Mzv7c6TvclVsf8A1sais8v8v0BSlKyc7//Z" alt="Holly Johnson">
+      <div><div class="eyebrow">Host</div><h3>Holly Johnson</h3><p>Global MarTech Operations Manager, Qlik</p></div>
+    </div>
+    <div class="sp-row stagger">
+      <div class="sp"><img src="https://pages.qlik.com/rs/049-DKK-796/images/Dan_Potter_150x150.png?version=0" alt="Dan Potter"><h4>Dan Potter</h4><p>Vice President, Product Marketing Data Integration, Qlik</p></div>
+      <div class="sp"><img src="https://pages.qlik.com/rs/049-DKK-796/images/Nick_Magnuson.png?version=0" alt="Nick Magnuson"><h4>Nick Magnuson</h4><p>Head of AI, Qlik</p></div>
+      <div class="sp"><img src="https://pages.qlik.com/rs/049-DKK-796/images/Paul.jpg?version=0" alt="Paul Peterson"><h4>Paul Peterson</h4><p>Senior Director of Product Management, Qlik</p></div>
+      <div class="sp"><img src="https://pages.qlik.com/rs/049-DKK-796/images/Tim_Garrod.jpeg?version=0" alt="Tim Garrod"><h4>Tim Garrod</h4><p>Head of Cloud Data Transformation and CDC, Qlik</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <canvas class="streaks" id="streaks3" aria-hidden="true"></canvas>
+  <div class="wrap cta-in">
+    <div class="reveal">
+      <h2>Start solving your data challenges today.</h2>
+      <p>Watch the full Qlik Insider on qlik.com, then see the roadmap for yourself.</p>
+    </div>
+    <div class="btns reveal">
+      <a class="btn btn-white btn-lg" href="#watch">Watch now</a>
+      <a class="btn btn-ow btn-lg" href="https://www.qlik.com/us/free-trial" target="_blank" rel="noopener">Try for Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer (mirrors qlik.com) ===== -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-col"><h5>Why Qlik</h5>
+        <h6>What Sets Us Apart</h6>
+        <a href="https://www.qlik.com/us/why-qlik" target="_blank" rel="noopener">Why Qlik for AI</a>
+        <a href="https://www.qlik.com/us/platform/technology/analytics-engine" target="_blank" rel="noopener">Analytics Engine</a>
+        <a href="https://www.qlik.com/us/da/capabilities/agentic-ai" target="_blank" rel="noopener">Agentic Architecture</a>
+        <h6>About Us</h6>
+        <a href="https://www.qlik.com/us/company" target="_blank" rel="noopener">Company</a>
+        <a href="https://www.qlik.com/us/leadership" target="_blank" rel="noopener">Leadership</a>
+        <a href="https://www.qlik.com/us/careers" target="_blank" rel="noopener">Careers</a>
+        <a href="https://www.qlik.com/us/company/newsroom" target="_blank" rel="noopener">Newsroom</a>
+      </div>
+      <div class="f-col"><h5>Products</h5>
+        <h6>Integration</h6>
+        <a href="https://www.qlik.com/us/di/products/qlik-talend-cloud" target="_blank" rel="noopener">Qlik Talend Cloud</a>
+        <a href="https://www.qlik.com/us/di/capabilities/agentic-data-engineering" target="_blank" rel="noopener">Agentic Data Engineering</a>
+        <a href="https://www.qlik.com/us/di/capabilities/data-movement" target="_blank" rel="noopener">Data Movement &amp; CDC</a>
+        <h6>Analytics</h6>
+        <a href="https://www.qlik.com/us/da/products/qlik-cloud-analytics" target="_blank" rel="noopener">Qlik Cloud Analytics</a>
+        <a href="https://www.qlik.com/us/da/capabilities/agentic-analytics" target="_blank" rel="noopener">Agentic Analytics</a>
+        <a href="https://www.qlik.com/us/da/products/qlik-answers" target="_blank" rel="noopener">Conversational AI</a>
+      </div>
+      <div class="f-col"><h5>Solutions</h5>
+        <h6>Industry</h6>
+        <a href="https://www.qlik.com/us/solutions/industry/financial-services" target="_blank" rel="noopener">Financial Services</a>
+        <a href="https://www.qlik.com/us/solutions/industry/us-public-sector" target="_blank" rel="noopener">Government</a>
+        <a href="https://www.qlik.com/us/solutions/industry/healthcare" target="_blank" rel="noopener">Healthcare</a>
+        <a href="https://www.qlik.com/us/solutions/industry/manufacturing" target="_blank" rel="noopener">Manufacturing</a>
+        <a href="https://www.qlik.com/us/solutions/industry/retail" target="_blank" rel="noopener">Retail</a>
+      </div>
+      <div class="f-col"><h5>Customer Success</h5>
+        <h6>Training &amp; Support</h6>
+        <a href="https://www.qlik.com/us/customer-success/learn/qlik-learning" target="_blank" rel="noopener">Training</a>
+        <a href="https://community.qlik.com/" target="_blank" rel="noopener">Community</a>
+        <a href="https://help.qlik.com/" target="_blank" rel="noopener">Qlik Help</a>
+        <h6>Connect</h6>
+        <a href="https://qlik.dev/" target="_blank" rel="noopener">Developers</a>
+        <a href="https://www.qlik.com/us/platform/partners" target="_blank" rel="noopener">Partners</a>
+      </div>
+      <div class="f-col"><h5>Resources</h5>
+        <a href="https://www.qlik.com/resources/blog" target="_blank" rel="noopener">Blog</a>
+        <a href="https://www.qlik.com/us/resources/events-and-webinars" target="_blank" rel="noopener">Events &amp; Webinars</a>
+        <a href="https://www.qlik.com/us/resources/glossary" target="_blank" rel="noopener">Glossary</a>
+        <a href="https://www.qlik.com/us/resources/customer-stories" target="_blank" rel="noopener">Customer Stories</a>
+        <h6>Documentation</h6>
+        <a href="https://www.qlik.com/us/roadmap" target="_blank" rel="noopener">Product Roadmap</a>
+        <a href="https://www.qlik.com/us/product-releases/2026/october" target="_blank" rel="noopener">Product Releases</a>
+      </div>
+    </div>
+    <div class="f-bot">
+      <a class="logo" href="https://www.qlik.com/us" target="_blank" rel="noopener" aria-label="Qlik" id="flogo"></a>
+      <div class="f-soc">
+        <a href="https://community.qlik.com/" target="_blank" rel="noopener">Qlik Community</a>
+        <a href="https://twitter.com/qlik" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/qlik" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 2H3.6C2.7 2 2 2.7 2 3.6v16.8c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V3.6c0-.9-.7-1.6-1.6-1.6ZM8 19H5V9.5h3V19ZM6.5 8.2a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5ZM19 19h-3v-4.6c0-1.1 0-2.5-1.5-2.5S12.8 13 12.8 14.3V19h-3V9.5h2.8v1.3h.1c.4-.7 1.4-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5V19Z"/></svg></a>
+        <a href="https://www.facebook.com/qlik" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+      </div>
+    </div>
+    <div class="legal">
+      <a href="https://www.qlik.com/us/legal/legal-agreements" target="_blank" rel="noopener">Legal</a><i>/</i>
+      <a href="https://www.qlik.com/us/legal/privacy-and-cookie-notice" target="_blank" rel="noopener">Privacy &amp; Cookie Notice</a><i>/</i>
+      <a href="https://www.qlik.com/us/legal/trademarks" target="_blank" rel="noopener">Trademarks</a><i>/</i>
+      <a href="https://www.qlik.com/us/company/trust" target="_blank" rel="noopener">Trust</a><i>/</i>
+      <a href="https://www.qlik.com/us/legal/terms-of-use" target="_blank" rel="noopener">Terms of Use</a>
+    </div>
+    <div class="copy">&copy; 1993-2026 QlikTech International AB, All Rights Reserved</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* reuse header logo in footer */
+  document.getElementById('flogo').innerHTML=document.querySelector('.hdr .logo').innerHTML;
+
+  var hdr=document.getElementById('hdr');
+  function onScroll(){hdr.classList.toggle('scrolled',scrollY>8);}
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Qlik signature 1: the green/teal pixel mosaic from the Qlik Insider key art */
+  (function(){
+    var cv=document.getElementById('mosaic'),ctx=cv.getContext('2d'),cells=[],W,H,dpr=Math.min(devicePixelRatio||1,2),S=14,G=3;
+    var pal=['0,152,69','47,191,91','1,167,209','1,124,166','12,109,90','159,227,182'];
+    function build(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);cells=[];
+      for(var y=0;y<H;y+=S+G)for(var x=0;x<W;x+=S+G){var d=Math.hypot(W-x,y)/Math.hypot(W,H);if(Math.random()>1.15-d*1.6)continue;
+        cells.push({x:x,y:y,c:pal[(Math.random()*pal.length)|0],a:Math.random()*.7+.15,p:Math.random()*6.28,s:Math.random()*.8+.3});}}
+    function draw(t){ctx.clearRect(0,0,W,H);for(var i=0;i<cells.length;i++){var c=cells[i],k=reduce?1:(.6+.4*Math.sin(t/1000*c.s+c.p));ctx.fillStyle='rgba('+c.c+','+(c.a*k).toFixed(3)+')';ctx.fillRect(c.x,c.y,S,S);}
+      if(!reduce)requestAnimationFrame(draw);}
+    build();requestAnimationFrame(draw);addEventListener('resize',function(){build();});
+  })();
+
+  /* Qlik signature 2: green vertical light streaks rising behind product art */
+  function streaks(id,opt){
+    var cv=document.getElementById(id);if(!cv)return;var ctx=cv.getContext('2d'),bars=[],W,H,dpr=Math.min(devicePixelRatio||1,2),vis=true;
+    function build(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);bars=[];
+      var n=Math.round(W/opt.gap);for(var i=0;i<n;i++){if(Math.random()<opt.skip)continue;bars.push({x:i*opt.gap+Math.random()*opt.gap*.6,w:Math.random()<.25?3:1.5,h:(Math.random()*.55+.12)*H*opt.reach,p:Math.random()*6.28,s:Math.random()*.6+.25});}}
+    function draw(t){ctx.clearRect(0,0,W,H);for(var i=0;i<bars.length;i++){var b=bars[i],k=reduce?1:(.75+.25*Math.sin(t/1000*b.s+b.p)),h=b.h*k,y0=H-h;
+        var g=ctx.createLinearGradient(0,H,0,y0);g.addColorStop(0,'rgba('+opt.col+','+opt.a+')');g.addColorStop(1,'rgba('+opt.col+',0)');ctx.fillStyle=g;ctx.fillRect(b.x,y0,b.w,h);}
+      if(!reduce&&vis)requestAnimationFrame(draw);}
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!reduce)requestAnimationFrame(draw);}).observe(cv);
+    build();requestAnimationFrame(draw);addEventListener('resize',build);
+  }
+  streaks('streaks1',{gap:22,skip:.35,reach:.32,col:'47,191,91',a:.55});
+  streaks('streaks2',{gap:18,skip:.3,reach:.7,col:'47,191,91',a:.5});
+  streaks('streaks3',{gap:20,skip:.35,reach:.8,col:'255,255,255',a:.28});
+
+  /* strip the Sequel iframe border inside its shadow root */
+  (function stripBorder(){
+    var c=document.getElementById("sequel_root").firstElementChild;
+    if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+    else{setTimeout(stripBorder,200);}
+  })();
+})();
+</script>
+
+<!-- Sequel embed (dark) -->
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"})});</script>
+</body>
+</html>
