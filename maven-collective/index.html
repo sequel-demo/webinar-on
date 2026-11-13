@@ -59,8 +59,8 @@ header.nav.scrolled .wrap{height:80px}
 
 /* dark wrap: hero + embed as one surface */
 .dark-wrap{position:relative;overflow:hidden;background:var(--slate);color:#fff}
-.dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto 30%;height:80%;background:radial-gradient(circle,rgba(255,115,229,.20),transparent 62%);pointer-events:none}
-.dark-wrap::after{content:"";position:absolute;inset:auto 40% -15% -20%;height:70%;background:radial-gradient(circle,rgba(95,161,201,.20),transparent 65%);pointer-events:none}
+.dark-wrap::before{content:"";position:absolute;inset:-20% -10% auto 30%;height:80%;background:radial-gradient(closest-side,rgba(255,115,229,.22),transparent);pointer-events:none}
+.dark-wrap::after{content:"";position:absolute;inset:auto 40% -15% -20%;height:70%;background:radial-gradient(closest-side,rgba(95,161,201,.22),transparent);pointer-events:none}
 .hero{padding:76px 0 40px;position:relative;z-index:2}
 .hero .grid{display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:center}
 .badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.28);padding:7px 14px;border-radius:999px;margin-bottom:26px}
@@ -241,7 +241,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.14);margin-top:56px;padding
       <div class="reveal">
         <div class="badge mono"><span class="dot"></span><span id="badgeTxt">On-Demand Webinar</span></div>
         <div class="kicker">Strategy backed by real Partner data</div>
-        <h1>The FY27 Trifecta: Getting Aligned, Prioritized &amp; Co-Sell Ready</h1>
+        <h1>The FY27 Trifecta: Getting Aligned, Prioritized &amp; <span style="white-space:nowrap">Co-Sell</span> Ready</h1>
         <p class="lead">Uncover FY27 priorities, Partner program changes, Co-Sell best practices, and exclusive benchmark insights from hundreds of Microsoft Partners.</p>
         <div class="chips">
           <span class="chip"><b>&#9679;</b> Watch on demand</span>
@@ -391,8 +391,9 @@ document.addEventListener("DOMContentLoaded",function(){Sequel.renderEvent({even
 (function(){
   var nav=document.getElementById("nav");
   addEventListener("scroll",function(){nav.classList.toggle("scrolled",scrollY>8)},{passive:true});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.15});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.05});
   document.querySelectorAll(".reveal,.stagger").forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll(".reveal,.stagger").forEach(function(el){el.classList.add("in")})},4000);
   var big=document.querySelector("[data-count]");
   var bo=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;bo.disconnect();
     if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
