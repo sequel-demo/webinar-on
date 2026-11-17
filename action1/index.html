@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Vulnerability Digest from Action1: December 2026 | Action1</title>
+<meta name="description" content="A live review of the most critical vulnerabilities patched in the past month, both by Microsoft and other software providers.">
+<meta property="og:title" content="Vulnerability Digest from Action1: December 2026">
+<meta property="og:description" content="A review of the most critical vulnerabilities patched in the past month, both by Microsoft and other software providers. Live on Wednesday, December 9.">
+<meta property="og:image" content="https://www.action1.com/assets/graphics/openGraph/brand/BrandEnUS.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/action1/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Action1">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="https://www.action1.com/assets/graphics/favicons/Action1.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#0337A0;--brand-d:#02297a;--sky:#B6D9FC;--ink:#090A0B;--gray:#F7F7F7;--line:#D4D4D4;--muted:#5f6368;--muted2:#8A8A8A;--dline:#2F3031;
+--ease:cubic-bezier(.16,1,.3,1);--sh-sm:0 1px 2px rgba(3,55,160,.08);--sh-md:0 8px 24px -8px rgba(3,55,160,.22);--sh-lg:0 30px 70px -24px rgba(2,20,70,.55);
+--disp:"Inter Tight",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);color:var(--ink);background:#fff;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1288px;margin:0 auto;padding:0 32px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce bar */
+.announce{background:var(--sky);font-size:13px;color:var(--ink)}
+.announce .wrap{display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding-top:6px;padding-bottom:6px;text-align:center;flex-wrap:wrap}
+.chip{background:var(--brand);color:#fff;border-radius:3px;padding:2px 7px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;font-weight:500}
+.announce a.u{text-decoration:underline;text-underline-offset:3px;font-weight:500}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid #ececec;transition:box-shadow .3s var(--ease),background .3s var(--ease)}
+header.nav.scrolled{box-shadow:0 6px 24px -12px rgba(9,10,11,.18);background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav .wrap{display:flex;align-items:center;height:66px;transition:height .3s var(--ease)}
+.nav.scrolled .wrap{height:60px}
+.logo{color:var(--brand);display:flex;align-items:center}
+.logo svg{width:115px;height:20px}
+.links{display:flex;align-items:center;margin-left:36px;gap:2px}
+.links a{font-size:14px;padding:7px 12px;border-radius:4px;display:flex;align-items:center;gap:6px;transition:background .2s}
+.links a:hover{background:#f2f2f2}
+.links svg{width:12px;height:12px}
+.right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.right .ico{padding:8px 10px;display:flex}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;border-radius:4px;padding:8px 12px;border:1px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s;white-space:nowrap;cursor:pointer;font-family:var(--body)}
+.btn:hover{transform:translateY(-2px)}
+.btn-out{border-color:var(--brand);color:var(--brand)}
+.btn-sol{background:var(--brand);border-color:var(--brand);color:#fff}
+.nav .right a.btn-sol{color:#fff}
+.nav .right a.btn-out{color:var(--brand)}
+.sep{width:1px;height:24px;background:var(--line);margin:0 4px}
+.burger{display:none;padding:8px}
+
+/* dark wrap: hero + embed as one surface */
+.dark-wrap{position:relative;overflow:hidden;background:var(--brand);color:#fff}
+.dark-wrap::before{content:"";position:absolute;inset:-25% -10% auto 35%;height:75%;background:radial-gradient(closest-side,rgba(182,217,252,.30),transparent 70%);pointer-events:none;z-index:0}
+.dark-wrap::after{content:"";position:absolute;inset:auto 30% -15% -15%;height:55%;background:radial-gradient(closest-side,rgba(1,18,64,.55),transparent 75%);pointer-events:none;z-index:0}
+.beams{position:absolute;top:0;right:0;height:100%;width:72%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 92%);mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 92%)}
+.hero{padding:44px 0 44px;position:relative;z-index:2}
+.crumbs{font-size:13px;color:rgba(255,255,255,.72);display:flex;gap:8px;align-items:center;margin-bottom:44px;flex-wrap:wrap}
+.crumbs a{text-decoration:underline;text-underline-offset:3px;color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:end}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);padding:6px 12px 6px 10px;border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.dot{width:8px;height:8px;border-radius:50%;background:#7CD958;box-shadow:0 0 0 0 rgba(124,217,88,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(124,217,88,0)}100%{box-shadow:0 0 0 0 rgba(124,217,88,0)}}
+h1{font-family:var(--disp);font-weight:500;font-size:clamp(42px,6.1vw,84px);line-height:1.02;letter-spacing:-.037em;margin:22px 0 22px}
+h1 .h1s{display:block;font-size:.34em;font-weight:400;letter-spacing:-.01em;line-height:1.2;color:var(--sky);margin-top:16px}
+.sub{font-size:18px;line-height:1.55;max-width:56ch;color:rgba(255,255,255,.86)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 14px}
+.meta div{display:flex;align-items:center;gap:8px;font-size:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:7px 11px}
+.meta svg{width:15px;height:15px;opacity:.85}
+.onsite{font-size:14px;color:rgba(255,255,255,.78)}
+.onsite b{color:#fff;font-weight:500}
+.local{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;min-height:20px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn-lg{font-size:15px;padding:12px 18px}
+.btn-white{background:#fff;color:var(--brand);border-color:#fff;font-weight:500}
+.btn-white:hover{box-shadow:0 12px 28px -10px rgba(0,0,0,.45)}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:26px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.card .mono{color:var(--sky)}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 22px}
+.cd div{background:rgba(1,20,70,.35);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:12px 6px 10px;text-align:center}
+.cd b{display:block;font-family:var(--disp);font-weight:500;font-size:34px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.cd span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.6)}
+.live-now{display:none;font-family:var(--disp);font-size:22px;margin:14px 0 22px}
+.hosts{border-top:1px solid rgba(255,255,255,.16);padding-top:18px;display:flex;align-items:center;gap:14px}
+.faces{display:flex;flex-shrink:0}
+.faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--brand);margin-left:-10px;background:#0b0c0e}
+.faces img:first-child{margin-left:0}
+.hosts p{font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.82)}
+.hosts p b{color:#fff;font-weight:500}
+
+.embed-sec{padding:10px 0 84px;position:relative;z-index:2}
+.player{border-radius:10px;overflow:hidden;box-shadow:var(--sh-lg);background:rgba(1,20,70,.4)}
+#sequel_root{min-height:520px}
+
+/* stat pull-quote */
+.stat{padding:120px 0 100px;border-bottom:1px solid #ececec}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:end}
+.big{font-family:var(--disp);font-weight:500;font-size:clamp(110px,15vw,210px);line-height:.82;letter-spacing:-.05em;color:var(--brand)}
+.big small{font-size:.42em;letter-spacing:-.03em;vertical-align:.95em;margin-left:4px}
+.stat .mono{color:var(--muted);margin-bottom:16px}
+.turn{font-family:var(--disp);font-size:clamp(24px,2.6vw,34px);line-height:1.22;letter-spacing:-.02em;max-width:30ch}
+.turn em{font-style:normal;color:var(--brand)}
+.src{font-size:13px;color:var(--muted);margin-top:16px}
+
+/* lede */
+.lede{padding:110px 0}
+.lede-grid{display:grid;grid-template-columns:260px 1fr;gap:56px}
+.side{position:sticky;top:110px;align-self:start;color:var(--muted)}
+.side .mono{display:block;padding-top:6px;border-top:1px solid var(--ink);color:var(--ink)}
+.side p{font-size:14px;margin-top:12px;line-height:1.5}
+.lede h2{font-family:var(--disp);font-weight:500;font-size:clamp(30px,3.4vw,46px);line-height:1.08;letter-spacing:-.03em;max-width:22ch;margin-bottom:28px}
+.lede .body{max-width:66ch}
+.lede .body p{font-size:18px;line-height:1.65;color:#25282b;margin-bottom:18px}
+.lede .body p b{font-weight:600;color:var(--ink)}
+
+/* mechanism band */
+.mech{background:var(--ink);color:#fff;padding:110px 0 120px;position:relative;overflow:hidden}
+.mech .beams{width:60%;opacity:.55}
+.mech .inner{position:relative;z-index:2}
+.mech .mono{color:#8fb9f0}
+.mech h2{font-family:var(--disp);font-weight:500;font-size:clamp(32px,4vw,56px);line-height:1.04;letter-spacing:-.035em;max-width:18ch;margin:16px 0 18px}
+.mech .lead{color:#a9adb2;max-width:58ch;font-size:17px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);margin-top:64px;position:relative}
+.flow::before{content:"";position:absolute;left:10%;right:10%;top:23px;height:2px;background-image:linear-gradient(90deg,var(--sky) 55%,transparent 0);background-size:12px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite;opacity:.75}
+@keyframes march{to{background-position:12px 0}}
+.node{padding:0 14px;text-align:center;position:relative}
+.node i{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 20px;border-radius:50%;background:var(--ink);border:1px solid var(--dline);position:relative;z-index:1;transition:transform .35s var(--ease),border-color .35s}
+.node:hover i{transform:translateY(-4px);border-color:var(--sky)}
+.node i svg{width:20px;height:20px;color:var(--sky)}
+.node.hot i{background:var(--brand);border-color:var(--brand)}
+.node.hot i svg{color:#fff}
+.node .mono{font-size:10.5px;color:#8a8f96}
+.node h3{font-family:var(--disp);font-weight:500;font-size:19px;letter-spacing:-.01em;margin:6px 0 6px}
+.node p{font-size:14px;line-height:1.5;color:#a9adb2;max-width:22ch;margin:0 auto}
+
+/* learn rows */
+.learn{padding:110px 0 90px}
+.learn-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:46px}
+.learn h2{font-family:var(--disp);font-weight:500;font-size:clamp(32px,3.8vw,52px);line-height:1.04;letter-spacing:-.035em}
+.learn-head p{max-width:40ch;color:var(--muted)}
+.row{display:grid;grid-template-columns:72px 1fr 1.1fr;gap:28px;padding:34px 18px 34px 8px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--brand);transition:width .55s var(--ease)}
+.row:hover{background:#fafbfd}
+.row:hover::before{width:100%}
+.row .n{font-family:var(--mono);font-size:13px;color:var(--brand);padding-top:6px}
+.row h3{font-family:var(--disp);font-weight:500;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.row p{color:#3c4043;font-size:16px}
+
+/* speakers */
+.speakers{background:var(--gray);padding:104px 0 110px}
+.speakers h2{font-family:var(--disp);font-weight:500;font-size:clamp(30px,3.4vw,46px);letter-spacing:-.03em;line-height:1.06;margin:14px 0 48px}
+.spk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.spk{border-top:1px solid var(--ink);padding-top:26px}
+.spk img{width:96px;height:96px;border-radius:50%;object-fit:cover;background:#0b0c0e;margin-bottom:20px;transition:transform .4s var(--ease)}
+.spk:hover img{transform:translateY(-6px)}
+.spk .role{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.spk h3{font-family:var(--disp);font-weight:500;font-size:24px;letter-spacing:-.02em;margin:6px 0 2px}
+.spk .t{font-size:14.5px;color:var(--muted);margin-bottom:14px}
+.spk p.bio{font-size:15px;line-height:1.6;color:#3c4043}
+
+/* CTA band */
+.cta{background:var(--sky);position:relative;overflow:hidden;padding:110px 0}
+.cta .beams{width:70%;opacity:.95;-webkit-mask-image:none;mask-image:none}
+.cta .inner{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+.cta h2{font-family:var(--disp);font-weight:500;font-size:clamp(36px,4.6vw,64px);line-height:1.02;letter-spacing:-.04em}
+.cta p{font-size:17px;max-width:46ch;color:#1d2a3a}
+.cta .actions{margin-top:24px}
+.cta .btn-sol:hover{box-shadow:var(--sh-md)}
+.cta .btn-out{background:rgba(255,255,255,.55)}
+
+/* footer */
+footer{background:var(--ink);color:#8a8a8a;padding:80px 0 46px;font-size:14px}
+.fcols{display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.fcols h4{font-family:var(--body);font-weight:500;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.fcols a{display:block;line-height:1.5;margin-bottom:9px;transition:color .2s}
+.fcols a:hover{color:#fff}
+.fmid{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:64px;padding-bottom:22px;border-bottom:1px solid var(--dline);flex-wrap:wrap}
+.fmid .logo{color:#fff}
+.soc{display:flex;gap:18px;align-items:center}
+.soc a{color:#fff;opacity:.85;display:flex}
+.soc a:hover{opacity:1}
+.soc svg{width:18px;height:18px}
+.contact{display:flex;gap:26px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px;font-size:13px}
+.contact span{display:flex;align-items:center;gap:8px}
+.contact svg{width:15px;height:15px}
+.legal{margin-top:46px;font-size:12px;line-height:1.6;max-width:62ch}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}
+
+/* responsive */
+@media (max-width:1120px){.links{display:none}.burger{display:flex}}
+@media (max-width:960px){
+ .hero-grid,.cta .inner,.stat-grid{grid-template-columns:1fr;gap:36px}
+ .lede-grid{grid-template-columns:1fr;gap:24px}.side{position:static}
+ .flow{grid-template-columns:1fr;gap:30px;text-align:left}
+ .flow::before{left:23px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background-image:linear-gradient(180deg,var(--sky) 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchy 900ms linear infinite}
+ @keyframes marchy{to{background-position:0 12px}}
+ .node{display:grid;grid-template-columns:48px 1fr;column-gap:18px;text-align:left;padding:0}
+ .node i{margin:0;grid-row:span 3}.node p{margin:0;max-width:none}
+ .row{grid-template-columns:44px 1fr;gap:10px 16px}.row p{grid-column:2}
+ .spk-grid{grid-template-columns:1fr;gap:34px}
+ .fcols{grid-template-columns:repeat(2,1fr)}
+ .learn-head{flex-direction:column;align-items:start;gap:16px}
+ .beams{width:100%;opacity:.6}
+}
+@media (max-width:600px){
+ .wrap{padding:0 20px}
+ .right .ico,.right .login,.sep{display:none}
+ .right{gap:8px}.nav .btn{padding:7px 10px;font-size:13px}
+ .logo svg{width:96px;height:17px}
+ .crumbs{margin-bottom:30px;font-size:12px}
+ .sub{font-size:16.5px}
+ .cd b{font-size:28px}
+ .stat{padding:84px 0 72px}.lede,.learn,.mech,.speakers,.cta{padding-top:80px;padding-bottom:84px}
+ .embed-sec{padding-bottom:60px}
+ #sequel_root{min-height:420px}
+ .announce{font-size:12px}
+ .contact{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.stagger>*{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <linearGradient id="bmA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B6D9FC" stop-opacity=".34"/><stop offset="1" stop-color="#B6D9FC" stop-opacity="0"/></linearGradient>
+  <linearGradient id="bmB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B6D9FC" stop-opacity="0"/><stop offset=".6" stop-color="#B6D9FC" stop-opacity=".22"/><stop offset="1" stop-color="#B6D9FC" stop-opacity=".05"/></linearGradient>
+  <linearGradient id="bmW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="bmW2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
+  <g id="beamset">
+   <g transform="rotate(12 0 0)">
+    <rect x="300" y="-300" width="193" height="2600" fill="url(#bmA)"/><rect x="300.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".2"/>
+    <rect x="470" y="-300" width="193" height="2600" fill="url(#bmB)"/><rect x="470.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".16"/>
+    <rect x="640" y="-300" width="193" height="2600" fill="url(#bmA)"/><rect x="640.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".2"/>
+    <rect x="810" y="-300" width="193" height="2600" fill="url(#bmB)"/><rect x="810.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".16"/>
+    <rect x="980" y="-300" width="193" height="2600" fill="url(#bmA)"/><rect x="980.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".2"/>
+    <rect x="1150" y="-300" width="193" height="2600" fill="url(#bmB)"/><rect x="1150.5" y="-300" width="192" height="2600" fill="none" stroke="#fff" stroke-opacity=".16"/>
+   </g>
+  </g>
+  <g id="beamsetLight">
+   <g transform="rotate(12 0 0)">
+    <rect x="300" y="-300" width="193" height="2600" fill="url(#bmW)"/>
+    <rect x="470" y="-300" width="193" height="2600" fill="url(#bmW2)"/>
+    <rect x="640" y="-300" width="193" height="2600" fill="url(#bmW)"/>
+    <rect x="810" y="-300" width="193" height="2600" fill="url(#bmW2)"/>
+    <rect x="980" y="-300" width="193" height="2600" fill="url(#bmW)"/>
+    <rect x="1150" y="-300" width="193" height="2600" fill="url(#bmW2)"/>
+   </g>
+  </g>
+  <symbol id="logo" viewBox="0 0 112 20"><path fill="currentColor" d="M2.852 7.186c.857-3.794 3.424-5.76 7.015-6.6 2.128-.498 4.311-.335 6.39.171 2.627.64 4.383 2.268 4.002 5.714-.267 2.443-.905 4.844-1.396 7.257-.393 1.92-1.337 5.94-1.337 5.94H12.25c.38-1.813.758-3.627 1.155-5.53H7.118c.994-1.225 2.134-2.33 3.186-3.505a1.59 1.59 0 0 1 1.371-.6c.906.046 1.836.012 2.83.012.115-1.24.266-2.417.32-3.599a1.66 1.66 0 0 0-1.393-1.802 8 8 0 0 0-2.019-.118C9.451 4.63 8.19 5.739 7.806 7.66c-.807 3.998-1.616 7.998-2.372 12.006-1.81 0-3.623.012-5.434.012.684-4.21 1.91-8.334 2.852-12.492m59.194 11.172c-2.512-1.712-3.202-4.662-1.758-7.424 1.17-2.236 3.043-3.628 5.35-4.535 2.729-1.052 5.46-1.209 8.179.022 3.394 1.542 4.492 5.255 2.473 8.407-2.067 3.226-5.662 4.961-8.514 4.945-2.28.015-3.738-.128-5.73-1.415m2.883-5.152c.027.837.507 1.454 1.31 1.86 1.822.923 4.24-.028 5.154-1.35 1.034-1.496.466-3.206-1.302-3.67-1.69-.454-3.168.02-4.381 1.25a2.61 2.61 0 0 0-.783 1.913zm-39.263 6.189c-2.166-.68-3.553-2.585-3.71-5.04-.225-3.464 1.316-5.929 4.64-7.462a11.7 11.7 0 0 1 4.635-1.134c2.087-.05 4.173-.013 6.337-.013-.052.453-.09.857-.143 1.258-.11.819-.255 1.637-.332 2.46-.05.531-.227.744-.804.733-1.695-.032-3.394 0-5.09 0a4.3 4.3 0 0 0-2.98 1.157c-.82.737-1.041 1.7-.647 2.78.321.877 1.02 1.338 2.136 1.36 1.677.025 3.354.025 5.031.037h.86l-.86 4.258c-2.944 0-6.255.495-9.073-.395m17.367.229c-2.632-.762-3.985-2.82-3.476-5.527.776-4.129 1.648-8.21 2.476-12.33.104-.516.19-1.033.288-1.55 1.78 0 3.603.11 5.408.11q-.179 1.765-.362 3.532c-.015.168-.04.338-.047.506-.052 1.183.31 1.567 1.502 1.587h1.252c-.192 1.107-.373 2.138-.557 3.175l-.013.054c-.252 1.29-.252 1.29-1.584 1.29-.68 0-1.358-.029-2.037.019a.75.75 0 0 0-.566.38 19 19 0 0 0-.489 2.663c-.131 1.417.66 2.184 2.096 2.136.26 0 .518-.036.89-.061-.113.944-.223 1.89-.34 2.832-.188 1.174-.977 1.308-1.412 1.356-1.023 0-2.118.076-3.029-.172m57.801.045 3.198-14.928h-3.169s1.569-2.706 2.385-3.948a.97.97 0 0 1 .679-.383c1.893-.025 6.966-.021 6.966-.021s-2.334 10.077-3.394 14.568c-.374 1.573-.759 3.143-1.132 4.714zm-50.366.113c.346-1.827.679-3.66 1.039-5.485.507-2.565 1.052-5.123 1.554-7.69.1-.51.301-.739.853-.727 1.505.031 3.01.01 4.592.01-.056.339-.092.629-.154.908-.849 4.06-2.679 12.975-2.679 12.975zm45.581-.154-5.069.03.835-4.946c.077-.454.16-.889.238-1.333.341-1.948-.86-3.34-2.831-3.286-2.069.056-3.703 1.315-4.16 3.333s-.83 4.13-1.24 6.193l-5.728.014c.604-2.311 1.131-4.642 1.83-6.928.61-2.016 1.685-3.776 3.43-5.054a8.6 8.6 0 0 1 4.399-1.617c2.229-.198 4.445-.157 6.574.666 2.669 1.03 3.952 3.266 3.365 6.069-.481 2.301-1.09 4.573-1.642 6.86M54.645.313l5.102.022c-.32 1.334-.639 2.67-.942 3.944z"/></symbol>
+  <symbol id="chev" viewBox="0 0 12 12"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+ </defs>
+</svg>
+
+<div class="announce">
+ <div class="wrap"><span class="chip">LIVE · DEC 9</span><span>Vulnerability Digest: December's most critical patches, reviewed live on action1.com.</span><a class="u" href="#watch">Save your spot</a></div>
+</div>
+
+<header class="nav" id="nav">
+ <div class="wrap">
+  <a class="logo" href="https://www.action1.com/" target="_blank" rel="noopener" aria-label="Action1"><svg><use href="#logo"/></svg></a>
+  <nav class="links">
+   <a href="https://www.action1.com/patch-management/" target="_blank" rel="noopener">Platform <svg><use href="#chev"/></svg></a>
+   <a href="https://www.action1.com/msp" target="_blank" rel="noopener">Solutions <svg><use href="#chev"/></svg></a>
+   <a href="https://www.action1.com/webinars" target="_blank" rel="noopener">Resources <svg><use href="#chev"/></svg></a>
+   <a href="https://www.action1.com/about-us" target="_blank" rel="noopener">Company <svg><use href="#chev"/></svg></a>
+   <a href="https://www.action1.com/free-edition/" target="_blank" rel="noopener">Free edition</a>
+   <a href="https://www.action1.com/pricing/" target="_blank" rel="noopener">Pricing</a>
+  </nav>
+  <div class="right">
+   <a class="ico" href="https://www.action1.com/" target="_blank" rel="noopener" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+   <a class="btn btn-out" href="https://www.action1.com/schedule-a-demo/" target="_blank" rel="noopener">Get demo</a>
+   <span class="sep"></span>
+   <a class="btn login" href="https://app.action1.com/login" target="_blank" rel="noopener">Log in</a>
+   <a class="btn btn-sol" href="https://www.action1.com/signup/" target="_blank" rel="noopener">Sign up</a>
+   <span class="burger" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+  </div>
+ </div>
+</header>
+
+<div class="dark-wrap" id="top">
+ <svg class="beams" viewBox="0 0 1100 1400" preserveAspectRatio="xMinYMin slice" aria-hidden="true"><use href="#beamset"/></svg>
+ <section class="hero">
+  <div class="wrap">
+   <div class="crumbs reveal"><a href="https://www.action1.com/" target="_blank" rel="noopener">Action1</a><span>›</span><a href="https://www.action1.com/webinars/" target="_blank" rel="noopener">Webinars and Events</a><span>›</span><span>Vulnerability Digest</span></div>
+   <div class="hero-grid">
+    <div class="reveal">
+     <span class="badge" id="badge"><span class="dot"></span><span id="badgeTxt">Live Webinar</span></span>
+     <h1>Vulnerability Digest<span class="h1s">from Action1 · December 2026</span></h1>
+     <p class="sub">A review of the most critical vulnerabilities patched in the past month, both by Microsoft and other software providers, the day after December's Patch Tuesday.</p>
+     <div class="meta">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Wednesday, December 9, 2026</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>11 AM EST / 5 PM CET</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="12" rx="2"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg>Live + on-demand</div>
+     </div>
+     <p class="onsite">Streaming live and on-demand on <b>action1.com</b></p>
+     <p class="local" id="local"></p>
+     <div class="actions">
+      <a class="btn btn-lg btn-white" href="#watch" id="primary">Save your spot</a>
+      <a class="btn btn-lg btn-ghost cal" id="gcal" target="_blank" rel="noopener" href="#">Google Calendar</a>
+      <a class="btn btn-lg btn-ghost cal" id="ical" download="action1-vulnerability-digest-dec-2026.ics" href="#">Outlook / iCal</a>
+     </div>
+    </div>
+    <aside class="card reveal">
+     <span class="mono" id="cdLabel">Starts in</span>
+     <div class="cd" id="cd"><div><b id="d">00</b><span>DAYS</span></div><div><b id="h">00</b><span>HRS</span></div><div><b id="m">00</b><span>MIN</span></div><div><b id="s">00</b><span>SEC</span></div></div>
+     <div class="live-now" id="liveNow">We're live now. Join below.</div>
+     <div class="hosts">
+      <div class="faces"><img src="kate-owen.jpg" alt="Kate Owen"><img src="jack-bicer.jpg" alt="Jack Bicer"><img src="gene-moody.jpg" alt="Gene Moody"></div>
+      <p>Hosted by <b>Kate Owen</b> with <b>Jack Bicer</b> and <b>Gene Moody</b></p>
+     </div>
+    </aside>
+   </div>
+  </div>
+ </section>
+ <section class="embed-sec" id="watch">
+  <div class="wrap"><div class="player reveal"><div id="sequel_root"></div></div></div>
+ </section>
+</div>
+
+<section class="stat">
+ <div class="wrap stat-grid">
+  <div class="big reveal">99<small>%</small></div>
+  <div class="reveal">
+   <div class="mono">Patch success rate · Action1</div>
+   <p class="turn">Deploying the patch is the reliable part. <em>Knowing which of last month's releases can't wait</em> is what the Digest is for.</p>
+   <p class="src">Source: action1.com · 10M+ endpoints protected · 5K+ customers</p>
+  </div>
+ </div>
+</section>
+
+<section class="lede">
+ <div class="wrap lede-grid">
+  <div class="side"><span class="mono">About the session</span><p>Monthly series<br>The day after Patch Tuesday</p></div>
+  <div class="reveal">
+   <h2>When new patches land, you must act quickly.</h2>
+   <div class="body">
+    <p>When new patches and product updates are released, you must act quickly before threat actors target your organization with malicious attacks. Action1 is here for you with a review of the most critical vulnerabilities patched in the past month, both by Microsoft and other software providers.</p>
+    <p>Don't miss this live webinar with Action1's <b>Jack Bicer</b>, Director of Vulnerability Research, and <b>Gene Moody</b>, Field CTO, hosted by <b>Kate Owen</b>, Online Events Manager.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="mech">
+ <svg class="beams" viewBox="0 0 1100 1400" preserveAspectRatio="xMinYMin slice" aria-hidden="true"><use href="#beamset"/></svg>
+ <div class="wrap inner">
+  <span class="mono reveal">Patch Tuesday → patched</span>
+  <h2 class="reveal">From Patch Tuesday to patched in less than 24 hours.</h2>
+  <p class="lead reveal">The Digest sits one day after Patch Tuesday, so every recommendation lands while there's still time to act on it across Windows, macOS, Linux and third-party apps.</p>
+  <div class="flow stagger">
+   <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i><span class="mono">Tue · Dec 8</span><h3>Patch Tuesday</h3><p>Microsoft and third-party releases land</p></div>
+   <div class="node hot"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5.5" width="18" height="12" rx="2"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></i><span class="mono">Wed · Dec 9</span><h3>The Digest</h3><p>Jack and Gene walk the critical ones, live</p></div>
+   <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18h4V9H4zM10 18h4V5h-4zM16 18h4v-6h-4z"/></svg></i><span class="mono">Prioritize</span><h3>Rank by risk</h3><p>CVSS score and CISA KEV status</p></div>
+   <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="9.5"/></svg></i><span class="mono">Deploy</span><h3>Ring-based rollouts</h3><p>Staged, with maintenance windows</p></div>
+   <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12.2 2.2 2.2 4.3-4.6"/></svg></i><span class="mono">Verify</span><h3>Prove compliance</h3><p>Patch status and remaining exposure</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="learn">
+ <div class="wrap">
+  <div class="learn-head reveal">
+   <h2>What you'll learn</h2>
+   <p>Three takeaways you can act on before the end of the week.</p>
+  </div>
+  <div class="stagger">
+   <div class="row"><span class="n">01</span><h3>Key Microsoft and third-party vulnerabilities that need immediate attention</h3><p>The most critical vulnerabilities patched in the past month, from December's Patch Tuesday through the third-party apps running on your endpoints.</p></div>
+   <div class="row"><span class="n">02</span><h3>Actionable recommendations on which patches to prioritize</h3><p>Where to start when everything looks urgent, so your team spends the first hours on the fixes that close the most exposure.</p></div>
+   <div class="row"><span class="n">03</span><h3>Tips on how to patch all of your endpoints in less than 24 hours</h3><p>Automation, approvals and staged rollouts that keep endpoints up to date without disrupting operations.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="speakers">
+ <div class="wrap">
+  <span class="mono reveal" style="color:var(--muted)">Speakers</span>
+  <h2 class="reveal">The team behind the Digest</h2>
+  <div class="spk-grid stagger">
+   <div class="spk"><img src="kate-owen.jpg" alt="Kate Owen" loading="lazy"><span class="role">Host</span><h3>Kate Owen</h3><div class="t">Online Events Manager, Action1</div><p class="bio">Kate leads the online event strategy at Action1, turning cybersecurity expertise and timely industry topics into webinars that educate audiences, strengthen the brand and build pipeline.</p></div>
+   <div class="spk"><img src="jack-bicer.jpg" alt="Jack Bicer" loading="lazy"><span class="role">Speaker</span><h3>Jack Bicer</h3><div class="t">Director of Vulnerability Research, Action1</div><p class="bio">With over four decades in technology, Jack invented QR Login, Mobile Push Login, and other innovations used by billions worldwide. A multi-time CTO, he's been honored by the U.S. Congress and California State Assembly for advancing cybersecurity and digital innovation.</p></div>
+   <div class="spk"><img src="gene-moody.jpg" alt="Gene Moody" loading="lazy"><span class="role">Speaker</span><h3>Gene Moody</h3><div class="t">Field CTO, Action1</div><p class="bio">At Action1, Gene drives global advocacy for modernized patch management and evolving security standards. With 30 years in IT, he translates complex challenges into actionable guidance and helps organizations strengthen resilience, streamline operations, and achieve security compliance.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="cta">
+ <svg class="beams" viewBox="0 0 1100 1400" preserveAspectRatio="xMinYMin slice" aria-hidden="true"><use href="#beamsetLight"/></svg>
+ <div class="wrap inner">
+  <h2 class="reveal">December's patches,<br>reviewed live.</h2>
+  <div class="reveal">
+   <p>Join Jack, Gene and Kate on Wednesday, December 9 at 11 AM EST / 5 PM CET, or catch the recording right here on action1.com.</p>
+   <div class="actions"><a class="btn btn-lg btn-sol" href="#watch" id="primary2">Save your spot</a><a class="btn btn-lg btn-out cal" id="gcal2" target="_blank" rel="noopener" href="#">Add to calendar</a></div>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap">
+  <div class="fcols">
+   <div><h4>Platform</h4><a href="https://www.action1.com/patch-management/" target="_blank" rel="noopener">Patch Management</a><a href="https://www.action1.com/endpoint-management/" target="_blank" rel="noopener">Endpoint Management</a><a href="https://www.action1.com/vulnerability-management/" target="_blank" rel="noopener">Vulnerability Management</a><a href="https://www.action1.com/software-deployment" target="_blank" rel="noopener">Software Deployment</a><a href="https://www.action1.com/remote-access" target="_blank" rel="noopener">Remote Access</a><a href="https://www.action1.com/patch-management/third-party-patching/" target="_blank" rel="noopener">Third-party</a><a href="https://www.action1.com/free-edition/" target="_blank" rel="noopener">Free edition</a><a href="https://www.action1.com/pricing/" target="_blank" rel="noopener">Pricing</a></div>
+   <div><h4>Solutions</h4><a href="https://www.action1.com/patch-management/manageengine" target="_blank" rel="noopener">vs ManageEngine</a><a href="https://www.action1.com/patch-management/ninjaone" target="_blank" rel="noopener">vs NinjaOne</a><a href="https://www.action1.com/patch-management/pdq" target="_blank" rel="noopener">vs PDQ Deploy</a><a href="https://www.action1.com/ms-intune-action1" target="_blank" rel="noopener">vs Intune</a><a href="https://www.action1.com/patch-management-for-education" target="_blank" rel="noopener">Education</a><a href="https://www.action1.com/patch-management/government" target="_blank" rel="noopener">Government</a><a href="https://www.action1.com/msp" target="_blank" rel="noopener">MSP</a></div>
+   <div><h4>Resources</h4><a href="https://www.action1.com/blog" target="_blank" rel="noopener">Blog</a><a href="https://www.action1.com/research" target="_blank" rel="noopener">Research &amp; guides</a><a href="https://www.action1.com/patch-tuesday" target="_blank" rel="noopener">Patch Tuesday watch</a><a href="https://www.action1.com/webinars" target="_blank" rel="noopener">Webinars &amp; events</a><a href="https://www.action1.com/webinars/on-demand-webinars/watch-action1-demo" target="_blank" rel="noopener">Watch product demo</a><a href="https://www.action1.com/roadmap" target="_blank" rel="noopener">Product roadmap</a><a href="https://www.action1.com/documentation" target="_blank" rel="noopener">Documentation</a></div>
+   <div><h4>Company</h4><a href="https://www.action1.com/about-us" target="_blank" rel="noopener">About</a><a href="https://www.action1.com/team/" target="_blank" rel="noopener">Leadership</a><a href="https://www.action1.com/company-news" target="_blank" rel="noopener">News</a><a href="https://www.action1.com/career" target="_blank" rel="noopener">Careers</a><a href="https://www.action1.com/case-studies" target="_blank" rel="noopener">Customer stories</a><a href="https://www.action1.com/become-partner" target="_blank" rel="noopener">Become an Action1 partner</a><a href="https://www.action1.com/contact-us/" target="_blank" rel="noopener">Contact us</a></div>
+   <div><h4>Legal</h4><a href="https://www.action1.com/legal/security" target="_blank" rel="noopener">Security</a><a href="https://www.action1.com/legal/vulnerability-disclosure/" target="_blank" rel="noopener">Vulnerability disclosure</a><a href="https://www.action1.com/legal/terms-of-use/" target="_blank" rel="noopener">Terms of service</a><a href="https://www.action1.com/legal/privacy-policy" target="_blank" rel="noopener">Privacy policy</a><a href="https://www.action1.com/legal/cookie-policy/" target="_blank" rel="noopener">Cookie policy</a><a href="https://www.action1.com/legal/gdpr-compliance/" target="_blank" rel="noopener">GDPR compliance</a><a href="https://www.action1.com/security" target="_blank" rel="noopener">Security &amp; trust center</a></div>
+  </div>
+  <div class="fmid">
+   <a class="logo" href="https://www.action1.com/" target="_blank" rel="noopener" aria-label="Action1"><svg><use href="#logo"/></svg></a>
+   <div class="soc">
+    <a href="https://www.linkedin.com/company/action1" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5M3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.97c0-1.19-.02-2.71-1.65-2.71-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/></svg></a>
+    <a href="https://www.reddit.com/r/Action1" target="_blank" rel="noopener" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.1a2.2 2.2 0 0 0-3.73-1.58 10.8 10.8 0 0 0-5.84-1.85l1-4.67 3.25.69a1.57 1.57 0 1 0 .16-.77l-3.63-.77a.4.4 0 0 0-.47.3l-1.1 5.21a10.8 10.8 0 0 0-5.92 1.85A2.2 2.2 0 1 0 3.3 14a4.3 4.3 0 0 0-.05.66c0 3.37 3.92 6.1 8.75 6.1s8.75-2.73 8.75-6.1a4.3 4.3 0 0 0-.05-.66A2.2 2.2 0 0 0 22 12.1M7.25 13.6a1.57 1.57 0 1 1 1.57 1.57 1.57 1.57 0 0 1-1.57-1.57m8.78 4.15a5.8 5.8 0 0 1-4.03 1.25 5.8 5.8 0 0 1-4.03-1.25.4.4 0 0 1 .56-.56 4.95 4.95 0 0 0 3.47 1 4.95 4.95 0 0 0 3.47-1 .4.4 0 1 1 .56.56m-.29-2.58a1.57 1.57 0 1 1 1.57-1.57 1.57 1.57 0 0 1-1.57 1.57"/></svg></a>
+    <a href="https://discord.com/servers/action1-841428478669881356" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.3A16.6 16.6 0 0 0 15.5 4l-.5 1.1a15.3 15.3 0 0 0-6 0L8.5 4a16.6 16.6 0 0 0-4.1 1.3C1.8 9.2 1.1 13 1.5 16.8a16.8 16.8 0 0 0 5 2.6l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.4 0l.4.3a10.8 10.8 0 0 1-1.7.8l1.1 1.7a16.8 16.8 0 0 0 5-2.6c.5-4.4-.8-8.2-2.9-11.5M8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2m6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2"/></svg></a>
+    <a href="https://www.youtube.com/channel/UCObfQzkJMURvIhrJsDaKVnw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2a2.8 2.8 0 0 0-2-2C18.7 4.7 12 4.7 12 4.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 4.8 2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-4.8M9.8 15V9l5.7 3z"/></svg></a>
+    <a href="https://twitter.com/Action1corp" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a>
+   </div>
+  </div>
+  <div class="contact">
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.6 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.1 6.1l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2.1-2.2"/></svg>+1-346-444-8530</span>
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.6 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6.1 6.1l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2.1-2.2"/></svg>833-444-8530</span>
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>708 Main St, 10th FL, Houston, TX 77002</span>
+  </div>
+  <p class="legal">Copyright © Action1 Corporation 2026. All rights reserved.</p>
+ </div>
+</footer>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+ if(window.Sequel){Sequel.renderEvent({eventId:"a49d8688-11b4-4e4f-af4a-7be67c8dce7a"});}
+ (function stripBorder(n){
+  var r=document.getElementById("sequel_root"),c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else if(n<150){setTimeout(function(){stripBorder(n+1)},200);}
+ })(0);
+});
+
+var EVENT={title:"Vulnerability Digest from Action1: December 2026",start:"2026-12-09T11:00:00-05:00",end:"2026-12-09T12:00:00-05:00",
+ details:"A review of the most critical vulnerabilities patched in the past month, both by Microsoft and other software providers. With Jack Bicer, Gene Moody and Kate Owen.",
+ url:"https://sequel-demo.github.io/webinar-on/action1/"};
+(function(){
+ var S=new Date(EVENT.start),E=new Date(EVENT.end);
+ function z(d){return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");}
+ var g="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(EVENT.title)+"&dates="+z(S)+"/"+z(E)+"&details="+encodeURIComponent(EVENT.details+"\n\nJoin: "+EVENT.url)+"&location="+encodeURIComponent(EVENT.url);
+ var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Action1//Vulnerability Digest//EN","BEGIN:VEVENT","UID:a1-vd-2026-12@action1.com","DTSTAMP:"+z(new Date()),"DTSTART:"+z(S),"DTEND:"+z(E),"SUMMARY:"+EVENT.title,"DESCRIPTION:"+EVENT.details+"\\nJoin: "+EVENT.url,"LOCATION:"+EVENT.url,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+ ["gcal","gcal2"].forEach(function(id){var a=document.getElementById(id);if(a)a.href=g;});
+ document.getElementById("ical").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+ try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;var f=new Intl.DateTimeFormat(undefined,{weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"});
+  if(tz&&!/^(America\/New_York|Europe\/(Paris|Berlin|Amsterdam|Madrid|Rome|Brussels|Vienna|Prague|Warsaw|Stockholm|Oslo|Copenhagen|Zurich))$/.test(tz))document.getElementById("local").textContent="That's "+f.format(S)+" where you are.";}catch(e){}
+ var el={d:document.getElementById("d"),h:document.getElementById("h"),m:document.getElementById("m"),s:document.getElementById("s")};
+ function p(n){return String(n).padStart(2,"0");}
+ function onDemand(){
+  document.getElementById("badgeTxt").textContent="On Demand";document.querySelector(".dot").style.animation="none";document.querySelector(".dot").style.background="#B6D9FC";
+  document.getElementById("cdLabel").textContent="Recording available";document.getElementById("cd").style.display="none";
+  var ln=document.getElementById("liveNow");ln.style.display="block";ln.textContent="Watch the recording below.";
+  document.querySelectorAll(".cal").forEach(function(a){a.style.display="none";});
+  ["primary","primary2"].forEach(function(id){var a=document.getElementById(id);if(a)a.textContent="Watch the recording";});
+  var ch=document.querySelector(".announce .chip");if(ch)ch.textContent="ON DEMAND";
+ }
+ function tick(){
+  var now=Date.now(),diff=S-now;
+  if(now>E.getTime()+30*60000){onDemand();return;}
+  if(diff<=0){document.getElementById("cd").style.display="none";document.getElementById("liveNow").style.display="block";document.getElementById("cdLabel").textContent="Happening now";setTimeout(tick,30000);return;}
+  var t=Math.floor(diff/1000);el.d.textContent=p(Math.floor(t/86400));el.h.textContent=p(Math.floor(t%86400/3600));el.m.textContent=p(Math.floor(t%3600/60));el.s.textContent=p(t%60);
+  setTimeout(tick,1000-(now%1000));
+ }
+ tick();
+})();
+
+(function(){
+ var nav=document.getElementById("nav");
+ function sc(){nav.classList.toggle("scrolled",window.scrollY>8);}
+ window.addEventListener("scroll",sc,{passive:true});sc();
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.15});
+ document.querySelectorAll(".reveal,.stagger").forEach(function(n){io.observe(n);});
+ setTimeout(function(){document.querySelectorAll(".hero .reveal,.embed-sec .reveal").forEach(function(n){n.classList.add("in");});},60);
+})();
+</script>
+</body>
+</html>
