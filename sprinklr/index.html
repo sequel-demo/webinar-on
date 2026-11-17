@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>The Agentic Customer Experience: One Unified-CXM Platform | Sprinklr</title>
+<meta property="og:title" content="The Agentic Customer Experience: One Unified-CXM Platform">
+<meta property="og:description" content="Unify customer journeys with Sprinklr's AI-native platform. Connect every touchpoint, empower teams, and elevate conversations to earn lasting loyalty.">
+<meta property="og:image" content="https://images.ctfassets.net/ukazlt65o6hl/5Iyl5MAQM4uN6QaVAaMaGL/73b2420b42e92a1b69adef9757ed8d91/og-default-image.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/sprinklr/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="https://www.sprinklr.com/apple-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://prod-assets.sequelvideo.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000;
+    --blue:#0d7cb7;
+    --blue-d:#0a6396;
+    --cyan:#00bae9;
+    --green:#70bf54;
+    --amber:#faa21b;
+    --sub:#3d4147;
+    --mist:#f4f7fa;
+    --line:#dfe4ea;
+    --grad:linear-gradient(90deg,#70bf54,#00bae9 55%,#118acb);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-weight:800;line-height:1.08;letter-spacing:-0.035em;color:var(--ink)}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  ::selection{background:var(--cyan);color:#000}
+  .label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .ul{display:block;width:100px;height:3px;border-radius:2px;background:var(--grad)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .stagger.in>*{opacity:1;transform:none}
+  .stagger.in>*:nth-child(2){transition-delay:.08s}
+  .stagger.in>*:nth-child(3){transition-delay:.16s}
+  .stagger.in>*:nth-child(4){transition-delay:.24s}
+
+  /* ---------- HEADER ---------- */
+  .nav{position:sticky;top:0;z-index:60;background:#fff;transition:box-shadow .25s,backdrop-filter .25s}
+  .nav.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.09)}
+  .nav-in{max-width:1360px;margin:0 auto;padding:0 80px;position:relative}
+  .util{display:flex;justify-content:flex-end;gap:26px;font-size:13px;color:#222;padding-top:15px;height:34px;transition:height .25s,opacity .25s,padding .25s;overflow:hidden}
+  .nav.scrolled .util{height:0;padding-top:0;opacity:0}
+  .util span.car{display:inline-block;width:7px;height:7px;border-right:1.5px solid #222;border-bottom:1.5px solid #222;transform:rotate(45deg);margin:0 3px 3px 8px}
+  .bar{display:flex;align-items:center;height:68px;transition:height .25s var(--ease)}
+  .nav.scrolled .bar{height:58px}
+  .logo{display:block;margin-right:40px;color:#000}
+  .logo svg{height:28px;width:130px;display:block}
+  .menu{display:flex;gap:30px;font-size:15px;font-weight:500;flex:1}
+  .menu a{display:inline-flex;align-items:center;gap:8px;padding:8px 0}
+  .menu a:hover{color:var(--blue)}
+  .menu i{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);display:inline-block;margin-left:4px}
+  .btn-demo{background:var(--blue);color:#fff;font-weight:800;font-size:17px;padding:11px 36px;border-radius:999px;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .15s}
+  .btn-demo:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,124,183,.38);background:var(--blue-d)}
+  @media(max-width:1100px){.nav-in{padding:0 28px}.menu{display:none}.logo{margin-right:auto}}
+  @media(max-width:760px){.util{display:none}}
+
+  /* ---------- HERO + EMBED: one light surface with their gradient wash ---------- */
+  .light-wrap{position:relative;overflow:hidden;background:#fff}
+  .light-wrap::before{content:"";position:absolute;inset:-18% -20% auto -20%;height:75%;background:radial-gradient(60% 75% at 0% 20%,rgba(250,162,27,.30),transparent 62%),radial-gradient(55% 70% at 100% 15%,rgba(0,186,233,.30),transparent 62%),radial-gradient(40% 55% at 55% 0%,rgba(112,191,84,.20),transparent 65%);pointer-events:none}
+  .light-wrap::after{content:"";position:absolute;inset:auto -10% -22% -10%;height:55%;background:radial-gradient(55% 80% at 0% 100%,rgba(112,191,84,.22),transparent 65%),radial-gradient(55% 80% at 100% 100%,rgba(17,138,203,.24),transparent 65%);pointer-events:none}
+  .hero{padding:78px 0 34px;position:relative;z-index:2}
+  .badge{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);color:#000;padding:7px 16px 7px 12px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:26px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:#e5484d;animation:pulse 1.7s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,72,77,.6)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}}
+  h1{font-size:clamp(38px,5.6vw,78px);font-weight:900;letter-spacing:-0.045em;max-width:1000px;line-height:1.02;margin-bottom:20px}
+  h1 .g{background:linear-gradient(90deg,#118acb,#00bae9 45%,#70bf54);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:20px;color:var(--sub);margin-bottom:26px;font-weight:500}
+  .metarow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-bottom:30px}
+  .chip{display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:600}
+  .chip svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;flex-shrink:0;stroke-linecap:round;stroke-linejoin:round}
+  .hero-foot{display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 34px;border-radius:999px;font-weight:800;font-size:17px;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .15s;cursor:pointer;border:0}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(13,124,183,.4);background:var(--blue-d)}
+  .btn-white{background:#fff;color:#000}
+  .btn-white:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+  .hint{font-size:15px;color:var(--sub);font-weight:500}
+  .embed-sec{padding:8px 0 84px;position:relative;z-index:2}
+  #sequel_root{min-height:520px;border-radius:24px;overflow:hidden}
+  .poster{min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;border-radius:24px;background:linear-gradient(160deg,#fff 0%,#f1f7fb 100%);border:1px solid var(--line);box-shadow:0 30px 70px rgba(13,124,183,.12)}
+  .poster .plogo{width:190px;height:40px;margin-bottom:30px}
+  .poster .play{width:78px;height:78px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+  .poster .play svg{width:30px;height:30px;fill:#fff;margin-left:4px}
+  .poster .ptitle{font-weight:800;font-size:clamp(24px,3vw,38px);letter-spacing:-.035em;line-height:1.1;max-width:760px;margin-bottom:12px}
+  .poster .pmeta{font-size:15px;font-weight:600;color:var(--sub)}
+
+  /* ---------- PULL-QUOTE BAND ---------- */
+  .quote{background:#fff;padding:120px 0 92px;text-align:center}
+  .quote .label{color:var(--blue);margin-bottom:22px}
+  .quote .big{font-weight:900;font-size:clamp(110px,22vw,300px);letter-spacing:-.07em;line-height:.85;background:linear-gradient(90deg,#faa21b,#70bf54 40%,#00bae9 75%,#118acb);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .quote .big sup{font-size:.5em;vertical-align:top;position:relative;top:.05em;letter-spacing:-.02em}
+  .quote .words{font-weight:800;font-size:clamp(26px,3.6vw,48px);letter-spacing:-.04em;margin-top:6px}
+  .quote .turn{max-width:640px;margin:22px auto 0;font-size:clamp(18px,2vw,23px);color:var(--sub);font-weight:500}
+
+  /* ---------- LEDE ---------- */
+  .lede{padding:16px 0 112px;background:#fff}
+  .ledgrid{display:grid;grid-template-columns:200px 1fr;gap:40px;max-width:1080px;margin:0 auto}
+  .sidelabel{position:sticky;top:120px;align-self:start;color:var(--sub)}
+  .sidelabel::before{content:"";display:block;width:34px;height:3px;background:var(--grad);margin-bottom:14px;border-radius:2px}
+  .body-col{max-width:62ch;font-size:21px;line-height:1.6;color:#17191c}
+  .body-col p{margin-bottom:24px}
+  .body-col strong{font-weight:800}
+  @media(max-width:760px){.ledgrid{grid-template-columns:1fr;gap:14px}.sidelabel{position:static}}
+
+  /* ---------- MECHANISM BAND: four suites, one platform ---------- */
+  .mech{background:#000;color:#fff;padding:112px 0 120px;position:relative;overflow:hidden}
+  .mech::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:80%;background:radial-gradient(45% 70% at 0% 40%,rgba(250,162,27,.22),transparent 65%),radial-gradient(45% 70% at 100% 30%,rgba(0,186,233,.26),transparent 65%);pointer-events:none}
+  .mech .wrap{position:relative;z-index:2}
+  .mech .label{color:#7fd6f2;margin-bottom:20px}
+  .mech h2{font-size:clamp(34px,4.8vw,64px);color:#fff;max-width:880px;margin-bottom:18px}
+  .mech .lead{color:rgba(255,255,255,.82);max-width:640px;font-size:19px;margin-bottom:60px}
+  .suites{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1100px}
+  .suite{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:26px 22px 24px;position:relative;min-height:230px}
+  .suite .ni{width:46px;height:46px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .suite .ni svg{width:26px;height:26px;fill:none;stroke:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .suite h3{color:#fff;font-size:22px;letter-spacing:-.03em;margin-bottom:12px}
+  .suite .ul{width:70px;margin-bottom:14px}
+  .suite p{font-size:15px;color:rgba(255,255,255,.8);line-height:1.5}
+  .suite::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:40px;background-image:linear-gradient(180deg,#00bae9 55%,transparent 0);background-size:2px 12px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  @keyframes marchv{to{background-position:0 12px}}
+  .hub{max-width:1100px;margin-top:40px;border:2px solid transparent;border-radius:18px;padding:24px 30px;display:flex;align-items:center;gap:22px;background:linear-gradient(#0a0a0a,#0a0a0a) padding-box,var(--grad) border-box}
+  .hub b{font-size:32px;letter-spacing:-.04em;font-weight:900;color:#fff}
+  .hub span{font-size:17px;color:rgba(255,255,255,.9);font-weight:500}
+  .hub .tag{margin-left:auto;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#7fd6f2;white-space:nowrap}
+  @media(max-width:980px){.suites{grid-template-columns:repeat(2,1fr)}.suite::after{display:none}}
+  @media(max-width:560px){.suites{grid-template-columns:1fr}.hub{flex-wrap:wrap;gap:8px 18px}.hub .tag{margin-left:0;width:100%}}
+
+  /* ---------- LEARN ---------- */
+  .learn{padding:112px 0 64px;background:#fff}
+  .learn h2{font-size:clamp(34px,4.4vw,60px);margin-bottom:52px}
+  .row{display:grid;grid-template-columns:64px 1fr 1.25fr;gap:28px;padding:34px 4px;border-top:1px solid var(--line);position:relative}
+  .row:last-child{border-bottom:1px solid var(--line)}
+  .row::before{content:"";position:absolute;left:0;top:-1px;height:3px;width:0;background:var(--grad);transition:width .5s var(--ease)}
+  .row:hover::before{width:100%}
+  .row .num{font-size:22px;font-weight:800;color:var(--blue)}
+  .row h3{font-size:27px;letter-spacing:-.035em}
+  .row p{font-size:17.5px;color:var(--sub)}
+  @media(max-width:700px){.row{grid-template-columns:40px 1fr;row-gap:8px}.row p{grid-column:2}}
+
+  /* ---------- SPEAKERS (placeholders) ---------- */
+  .speakers{background:#fff;padding:56px 0 112px}
+  .speakers h2{font-size:clamp(32px,4vw,52px);margin-bottom:36px}
+  .spgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1000px}
+  .sp{display:flex;align-items:center;gap:22px;background:var(--mist);border-radius:24px;padding:26px 28px}
+  .sp .av{width:92px;height:92px;border-radius:50%;flex-shrink:0;background:conic-gradient(from 200deg,#faa21b,#70bf54,#00bae9,#118acb,#faa21b);display:flex;align-items:center;justify-content:center}
+  .sp .av i{width:80px;height:80px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+  .sp .av svg{width:38px;height:38px;fill:none;stroke:#9aa3ad;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .sp b{display:block;font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .sp span{font-size:16px;color:var(--sub)}
+  @media(max-width:760px){.spgrid{grid-template-columns:1fr}}
+
+  /* ---------- CTA BAND ---------- */
+  .cta{background:var(--blue);color:#fff;padding:104px 0;text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:auto -10% -55% -10%;height:90%;background:radial-gradient(50% 70% at 10% 100%,rgba(112,191,84,.55),transparent 65%),radial-gradient(50% 70% at 90% 100%,rgba(0,186,233,.55),transparent 65%);pointer-events:none}
+  .cta .wrap{position:relative;z-index:2}
+  .cta h2{font-size:clamp(34px,5vw,66px);color:#fff;max-width:900px;margin:0 auto 18px}
+  .cta p{font-size:21px;font-weight:600;max-width:620px;margin:0 auto 34px;color:#fff}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#000;color:#fff;padding:56px 0 34px;font-size:15px;position:relative;overflow:hidden}
+  footer::before{content:"";position:absolute;inset:auto -10% -40% 30%;height:100%;background:radial-gradient(50% 60% at 70% 100%,rgba(17,138,203,.22),transparent 65%);pointer-events:none}
+  .f-in{max-width:1200px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  .ftop{display:grid;grid-template-columns:260px 1fr;gap:40px}
+  .fhelp{border-right:1px solid rgba(255,255,255,.28);padding-right:40px}
+  .fhelp h4{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+  .fhelp .btn{background:var(--blue);color:#fff;padding:12px 28px;font-size:16px}
+  .fhelp hr{border:0;border-top:1px solid rgba(255,255,255,.28);margin:34px 0 28px}
+  .soc{display:flex;flex-wrap:wrap;gap:14px;max-width:176px}
+  .soc a{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+  .soc svg{width:18px;height:18px;fill:#000}
+  .fcols{display:grid;grid-template-columns:repeat(5,1fr);gap:26px}
+  .fcols h4{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+  .fcols h5{font-size:14.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;margin:22px 0 10px}
+  .fcols h5:first-of-type{margin-top:0}
+  .fcols a{display:block;margin-bottom:12px;color:rgba(255,255,255,.92);line-height:1.35}
+  .fcols a:hover{color:#7fd6f2}
+  .fbot{border-top:1px solid rgba(255,255,255,.28);margin-top:34px;padding-top:26px;display:flex;align-items:flex-start;gap:34px;font-size:13px}
+  .fbot .flogo svg{width:114px;height:24px;display:block;color:#fff}
+  .fbot .legal{display:flex;flex-wrap:wrap;gap:8px 0}
+  .fbot .legal a{padding:0 14px;border-right:1px solid rgba(255,255,255,.7);line-height:1.2}
+  .fbot .legal a:first-child{padding-left:0}
+  .fbot .copy{width:100%;margin-top:14px}
+  @media(max-width:1000px){.ftop{grid-template-columns:1fr}.fhelp{border-right:0;padding-right:0}.fcols{grid-template-columns:repeat(2,1fr)}.fbot{flex-direction:column;gap:18px}}
+
+  @media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}
+    .badge .dot,.suite::after{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sp-logo" viewBox="0 0 191 41"><path fill="currentColor" d="M62.273 25.528c1.19.77 3.33 1.692 5.552 1.692 1.903 0 3.252-.846 3.252-2.461 0-3.615-9.915-2.462-9.915-8.692 0-3.538 3.173-5.384 6.98-5.384 2.697 0 4.124.846 5.949 2l-1.507 2.23c-1.825-.769-2.776-1.308-4.6-1.308-1.825 0-3.253.77-3.253 2.385 0 3.692 9.915 2.385 9.915 8.692 0 3.154-2.776 5.461-6.9 5.461-3.173 0-5.553-1.308-6.98-2.384zM79.328 39.911V11.143h3.41v2.154c0 .538-.079 1-.079 1h.08s1.665-3.538 6.424-3.538c5.156 0 8.408 4 8.408 9.769 0 5.922-3.649 9.768-8.725 9.768-4.362 0-5.949-3.307-5.949-3.307h-.079s.08.692.08 1.615v11.46h-3.57zm8.963-12.769c3.014 0 5.552-2.384 5.552-6.614 0-4.077-2.22-6.692-5.394-6.692-2.855 0-5.552 1.922-5.552 6.692 0 3.307 1.904 6.615 5.394 6.615M112.399 14.451c-3.728 0-7.059 4-7.059 7.615v7.77h-3.649V11.143h3.57v3.307c0 .77-.08 1.385-.08 1.385h.08c.872-2.462 4.283-4.923 7.217-4.923v3.538zM116.211 29.912V11.144h3.648v18.69h-3.648zM138.814 29.912v-11.23c0-2.615-.555-4.692-3.569-4.692-3.728 0-6.425 3-6.425 6.846v9h-3.648V11.144h3.569v2.846c0 .539-.079 1.077-.079 1.077h.079a8.06 8.06 0 0 1 7.297-4.384c4.521 0 6.583 2.384 6.583 7.153v12h-3.807zM160.548 29.912l-5.79-8.846h-2.856v8.846h-3.648V1.067h3.648v16.846h2.777l5.393-6.77h3.887l-6.187 8.154v.077l6.9 10.461zM174.901 29.912c-3.014 0-6.424-.538-6.424-5.154V1.068h3.648V24.22c0 2.308 1.983 2.385 2.776 2.385zM190.051 14.297c-3.727 0-7.059 4-7.059 7.615v7.769h-3.648V10.99h3.569v3.307c0 .77-.079 1.385-.079 1.385h.079c.872-2.462 4.283-4.923 7.218-4.923v3.538zM118.031 7.22c1.27 0 2.3-.999 2.3-2.23 0-1.233-1.03-2.231-2.3-2.231-1.271 0-2.301.998-2.301 2.23s1.03 2.231 2.301 2.231"></path><path fill="#70BF54" d="M16.489 31.428c-1.321-4.56-7.858-12.133-12.655-12.133-2.504 0-3.964 2.206-3.825 4.191.14 2.5 2.156 3.75 3.964 3.75 4.102 0 9.039 1.839 12.099 4.486.208.147.486 0 .417-.294"></path><path fill="#FAA21B" d="M3.012 6.363c.138-2.145 1.87-4.003 4.156-3.86.624.071 1.386.071 2.563 1 5.127 4.647 8.175 12.795 7.274 19.872-.07.357-.415.357-.554 0C14.996 18.3 10.216 12.51 5.99 10.723c-2.01-.786-3.118-2.287-2.98-4.36"></path><path fill="#00BAE9" d="M21.953 36.618c-.07.358-.422.358-.562 0C15.908 19.24 25.749.144 33.059.001c3.866-.071 6.537 2.79 6.537 6.008 0 2.217-.702 4.005-3.233 5.435-6.397 3.647-13.566 13.088-14.41 25.174"></path><path fill="#118ACB" d="M28.465 31.722c-.202.147-.47 0-.404-.294 1.277-4.56 7.596-12.133 12.234-12.133 2.42 0 3.831 2.206 3.697 4.191-.135 2.5-2.084 3.75-3.832 3.75-3.898 0-8.67 1.986-11.695 4.486"></path></symbol>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <div class="util"><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Login</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Support</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">English (US)<span class="car"></span></a></div>
+    <div class="bar">
+      <a class="logo" href="https://www.sprinklr.com/" target="_blank" rel="noopener" aria-label="Sprinklr home"><svg viewBox="0 0 191 41"><use href="#sp-logo"/></svg></a>
+      <div class="menu">
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Products <i></i></a>
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Solutions <i></i></a>
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr AI <i></i></a>
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Customers <i></i></a>
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Company <i></i></a>
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Resources <i></i></a>
+      </div>
+      <a class="btn-demo" href="https://www.sprinklr.com/demo/" target="_blank" rel="noopener">Demo</a>
+    </div>
+  </div>
+</nav>
+
+<div class="light-wrap">
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge reveal in"><span class="dot"></span> Live webinar</div>
+      <h1 class="reveal in">The Agentic Customer Experience: <span class="g">One Unified-CXM Platform</span></h1>
+      <p class="sub reveal in">Streaming live and on-demand on sprinklr.com</p>
+      <div class="metarow reveal in">
+        <div class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Wednesday, December 9, 2026</div>
+        <div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>11:00 AM ET &middot; 45 min</div>
+        <div class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg><span id="localTz">Local time shown below</span></div>
+      </div>
+      <div class="hero-foot reveal in">
+        <a href="#embed" class="btn btn-blue" id="heroCta">Register below &darr;</a>
+        <span class="hint">Live Q&amp;A included. Recording sent to every registrant.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="embed-sec" id="embed">
+    <div class="wrap">
+      <div id="sequel_root"><div class="poster" id="poster" aria-hidden="true">
+        <svg class="plogo" viewBox="0 0 191 41"><use href="#sp-logo"/></svg>
+        <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 001.5.86l10.5-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z"/></svg></div>
+        <div class="ptitle">The Agentic Customer Experience: One Unified-CXM Platform</div>
+        <div class="pmeta">December 9, 2026 &nbsp;&middot;&nbsp; 11:00 AM ET &nbsp;&middot;&nbsp; Live on sprinklr.com</div>
+      </div></div>
+      <script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+      <script>document.addEventListener("DOMContentLoaded",(e)=>{Sequel.renderEvent({eventId:"3cb4efc0-e4fb-4f0e-8387-25149770f30b"})});</script>
+    </div>
+  </section>
+</div>
+
+<section class="quote">
+  <div class="wrap reveal">
+    <div class="label">Sprinklr Social</div>
+    <div class="big">30<sup>+</sup></div>
+    <div class="words">digital and social channels.</div>
+    <p class="turn">One customer, one conversation. The hard part has never been reaching every channel. It&rsquo;s connecting them.</p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="wrap">
+    <div class="ledgrid">
+      <div class="sidelabel label reveal">The Session</div>
+      <div class="body-col reveal">
+        <p><strong>Customer-facing teams are working in silos.</strong> Insights live in one tool, campaigns in another, and service conversations in a third, so every touchpoint starts from zero.</p>
+        <p>In this session, we show what changes when the whole customer journey runs on one AI-native platform: how AI agents connect conversations across every touchpoint, and how teams use them to build the kind of experiences that earn lasting loyalty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mech">
+  <div class="wrap">
+    <div class="label reveal">The platform</div>
+    <h2 class="reveal">Four AI-native product suites. One Unified-CXM platform.</h2>
+    <p class="lead reveal">Every suite shares the same data, the same AI, and the same view of the customer.</p>
+    <div class="suites stagger">
+      <div class="suite"><div class="ni"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.500 15.500L21 21"/></svg></div><h3>Sprinklr Insights</h3><span class="ul"></span><p>Uncover real-time consumer, product and market insights to build great products and drive loyalty.</p></div>
+      <div class="suite"><div class="ni"><svg viewBox="0 0 24 24"><path d="M4 4h10v16H4zM18 8v12M21 11v9"/></svg></div><h3>Sprinklr Marketing</h3><span class="ul"></span><p>Orchestrate on-brand global marketing campaigns across social and digital channels, and boost marketing ROI.</p></div>
+      <div class="suite"><div class="ni"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 12l5 6M12 7l5-1.500M3 20c0-3 2.500-5 6-5"/></svg></div><h3>Sprinklr Social</h3><span class="ul"></span><p>Reach, engage and listen to your audience across 30+ digital and social channels to maximize engagement.</p></div>
+      <div class="suite"><div class="ni"><svg viewBox="0 0 24 24"><path d="M12 20s-8-4.500-8-10.500A4.500 4.500 0 0112 7a4.500 4.500 0 018 2.500C20 15.500 12 20 12 20z"/></svg></div><h3>Sprinklr Service</h3><span class="ul"></span><p>Give service teams the insights they need to connect with context and empathy, at every touchpoint.</p></div>
+    </div>
+    <div class="hub reveal"><b>Unified-CXM</b><span>One platform, powered by Sprinklr AI</span><span class="tag">AI+ &middot; AI Agents</span></div>
+  </div>
+</section>
+
+<section class="learn">
+  <div class="wrap">
+    <h2 class="reveal">What you&rsquo;ll learn</h2>
+    <div class="rows">
+      <div class="row reveal"><div class="num">01</div><h3>Unify the customer journey</h3><p>How to break down silos and connect conversations across every touchpoint.</p></div>
+      <div class="row reveal"><div class="num">02</div><h3>Put AI agents to work</h3><p>Where Sprinklr AI Agents take on repeatable work in service and marketing, and where people stay in the loop.</p></div>
+      <div class="row reveal"><div class="num">03</div><h3>Hear the voice of the customer, live</h3><p>Turning real-time consumer, product and market insights into decisions your teams can act on.</p></div>
+      <div class="row reveal"><div class="num">04</div><h3>Build loyalty on one platform</h3><p>What it takes to elevate every interaction with AI and deliver the experiences customers remember.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="speakers">
+  <div class="wrap">
+    <h2 class="reveal">Meet your speakers</h2>
+    <div class="spgrid reveal">
+      <div class="sp"><div class="av"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.500 3.500-7 8-7s8 2.500 8 7"/></svg></i></div><div><b>Speaker name</b><span>Title, Sprinklr</span></div></div>
+      <div class="sp"><div class="av"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.500 3.500-7 8-7s8 2.500 8 7"/></svg></i></div><div><b>Customer guest</b><span>Title, Brand</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap reveal">
+    <h2>Elevate every interaction with AI.</h2>
+    <p>Save your spot for December 9. Can&rsquo;t make it live? Register and we&rsquo;ll send the recording.</p>
+    <a class="btn btn-white" href="#embed">Register now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-in">
+    <div class="ftop">
+      <div class="fhelp">
+        <h4>How can we help you?</h4>
+        <a class="btn" href="https://www.sprinklr.com/" target="_blank" rel="noopener">Contact Us</a>
+        <hr>
+        <div class="soc">
+          <a href="https://www.facebook.com/sprinklr" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.500c0-.7.3-1 1-1h2V2h-3c-3 0-4.500 1.800-4.500 4.300V8H7v3.500h2.500V22H14V11.500h2.800L17.300 8H14z"/></svg></a>
+          <a href="https://twitter.com/Sprinklr" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.800 3h3.100l-6.800 7.700L22 21h-6.200l-4.900-6.300L5.300 21H2.200l7.200-8.300L1.800 3h6.400l4.400 5.800L17.800 3zm-1.100 16.200h1.700L7.200 4.700H5.400l11.300 14.500z"/></svg></a>
+          <a href="https://www.linkedin.com/company/sprinklr/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1zm2.200 7.500V18h2.600v-7.500H6.200zM7.500 6.200a1.500 1.500 0 100 3 1.500 1.500 0 000-3zM10.500 10.500V18h2.600v-4c0-1.100.5-1.800 1.500-1.800s1.400.7 1.400 1.800v4h2.600v-4.500c0-2-1.100-3.200-2.900-3.200-1.100 0-1.900.5-2.300 1.200v-1h-2.900z"/></svg></a>
+          <a href="https://www.youtube.com/c/sprinklr" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.600 7.200a2.500 2.500 0 00-1.800-1.800C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 002.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 001.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 001.800-1.800C22 15.200 22 12 22 12s0-3.200-.4-4.800zM10 15V9l5.200 3-5.200 3z"/></svg></a>
+          <a href="https://www.instagram.com/sprinklr/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.500 2h9A5.500 5.500 0 0122 7.500v9a5.500 5.500 0 01-5.500 5.500h-9A5.500 5.500 0 012 16.500v-9A5.500 5.500 0 017.500 2zm0 2A3.500 3.500 0 004 7.500v9A3.500 3.500 0 007.500 20h9a3.500 3.500 0 003.500-3.500v-9A3.500 3.500 0 0016.500 4h-9zM12 7a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm5.300-3.300a1.200 1.200 0 110 2.400 1.200 1.200 0 010-2.400z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcols">
+        <div><h4>Products</h4>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr Service</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr Insights</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr Marketing</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr Social</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Unified-CXM Platform</a>
+          <h5>Sprinklr AI</h5>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Overview</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr AI+</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Sprinklr AI Agents</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">AI+ Studio</a>
+        </div>
+        <div><h4>Solutions</h4>
+          <h5>Industries</h5>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">CPG</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Financial Services</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Government</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Retail</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Technology</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Telecommunication</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Travel &amp; Hospitality</a>
+          <h5>Teams</h5>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Marketing</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Customer Service</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">CX Teams</a>
+        </div>
+        <div><h4>Company</h4>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Our Story</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Newsroom</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Partners</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Careers</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Investor Relations</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Security &amp; Privacy</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Customer Stories</a>
+          <h5>Support</h5>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Developer Portal</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Integrations</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Help Center</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Contact Us</a>
+        </div>
+        <div><h4>Resources</h4>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Analyst Reports</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Demo Center</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Podcasts</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Blog</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Videos</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">eBooks</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Events &amp; Webinars</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Masterclass</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Factsheet</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Services</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Training</a>
+        </div>
+        <div><h4>Trending Topics</h4>
+          <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Agentic AI</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Voice of the Customer</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Social Listening</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Contact Center as a Service</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Social Media Management</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Contact Center Intelligence</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Customer Feedback Management</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">AI in Content Marketing</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Campaign Management</a>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">
+      <a class="flogo" href="https://www.sprinklr.com/" target="_blank" rel="noopener" aria-label="Sprinklr home"><svg viewBox="0 0 191 41"><use href="#sp-logo"/></svg></a>
+      <div class="legal">
+        <a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Supplier Code of Conduct</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Privacy</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Legal</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Do Not Sell or Share My Info</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Cookies</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Modern Slavery Statement</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Index Egalit&eacute;</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Terms</a><a href="https://www.sprinklr.com/" target="_blank" rel="noopener">Website Accessibility</a>
+        <div class="copy">&copy;2026, Sprinklr Inc.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* event config: drives the on-demand degrade only; the live embed owns countdown/register/calendar */
+  const EVENT = { start: "2026-12-09T11:00:00-05:00" };
+  const startDate = new Date(EVENT.start);
+
+  function tick(){
+    if (startDate - new Date() <= 0){
+      document.querySelector('.badge').innerHTML = 'On demand';
+      const p = document.getElementById('heroCta');
+      if(p) p.textContent = 'Watch the recording ↓';
+    }
+  }
+  tick(); setInterval(tick, 60000);
+
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const local = new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(startDate);
+    const el = document.getElementById('localTz');
+    if (el) el.textContent = "That's " + local + " your time (" + tz + ")";
+  } catch(e){}
+
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY>8);
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+
+  /* kill Sequel's default iframe border inside its shadow DOM; drop the poster once the widget paints */
+  (function stripBorder(){
+    const root = document.getElementById("sequel_root");
+    const c = root && [...root.children].find(e => e.shadowRoot);
+    if (c){
+      const st = document.createElement("style");
+      st.textContent = "iframe.sequel-iframe{border:none !important}";
+      c.shadowRoot.appendChild(st);
+      const p = document.getElementById("poster"); if (p) p.remove();
+    } else { setTimeout(stripBorder, 200); }
+  })();
+</script>
+
+</body>
+</html>
