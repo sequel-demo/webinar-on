@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Agentic SOAR in Practice: How a Team of 3 Does the Work of 30 | Tracecat</title>
+<meta name="description" content="Tracecat helps AI-native security teams build agents and automate cyber defense.">
+<meta property="og:title" content="Agentic SOAR in Practice: How a Team of 3 Does the Work of 30">
+<meta property="og:description" content="Tracecat helps AI-native security teams build agents and automate cyber defense. Live webinar, streaming on tracecat.com.">
+<meta property="og:image" content="https://www.tracecat.com/icon.png">
+<meta property="og:url" content="https://sequel-demo.github.io/webinar-on/tracecat/">
+<meta property="og:site_name" content="Tracecat">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Agentic SOAR in Practice: How a Team of 3 Does the Work of 30">
+<meta name="twitter:image" content="https://www.tracecat.com/icon.png">
+<link rel="icon" href="https://www.tracecat.com/favicon.ico">
+<link rel="icon" type="image/png" href="https://www.tracecat.com/icon.png">
+<link rel="apple-touch-icon" href="https://www.tracecat.com/apple-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#09090B; --ink-2:#27272A; --muted:#71717A; --line:#E4E4E7; --line-2:#F4F4F5;
+  --bg:#FFFFFF; --soft:#FAFAFA;
+  --accent:#6E7ED8; --accent-d:#5866C4; --accent-10:rgba(110,126,216,.10); --accent-20:rgba(110,126,216,.20);
+  --sh-sm:0 1px 2px rgba(9,9,11,.05);
+  --sh-md:0 6px 20px -6px rgba(40,48,110,.14),0 2px 4px rgba(9,9,11,.04);
+  --sh-lg:0 24px 60px -20px rgba(40,48,110,.22),0 4px 10px rgba(9,9,11,.04);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* announce */
+.announce{background:var(--accent-10);border-bottom:1px solid var(--accent-20);font-size:13.5px;color:var(--ink-2)}
+.announce .wrap{display:flex;align-items:center;justify-content:center;gap:10px;height:38px;text-align:center}
+.announce a{color:var(--accent-d);font-weight:500;white-space:nowrap}
+.announce a:hover{text-decoration:underline}
+.announce .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-d);border:1px solid var(--accent-20);background:#fff;border-radius:999px;padding:1px 8px}
+
+/* header (replica) */
+#nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);transition:box-shadow .3s var(--ease),background .3s var(--ease)}
+#nav.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+#nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px}
+.logo img{height:24px;width:auto}
+.nav-links{display:flex;gap:4px;font-size:14px;font-weight:500}
+.nav-links a{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:6px;color:var(--ink);transition:background .2s}
+.nav-links a:hover{background:var(--line-2)}
+.nav-links svg{width:12px;height:12px;opacity:.6}
+.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:14px;font-size:14px;font-weight:500}
+.gh{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px}
+.gh:hover{background:var(--line-2)}
+.gh svg{width:16px;height:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:32px;padding:0 10px;border-radius:6px;font-size:14px;font-weight:500;border:1px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s;white-space:nowrap;cursor:pointer;font-family:inherit}
+.btn-p{background:#6E7ED8;color:#fff}
+.btn-p:hover{background:#6273d0;transform:translateY(-2px);box-shadow:var(--sh-md)}
+.nav-right a.btn-p{color:#fff}
+.btn-o{background:#fff;color:var(--ink);border-color:var(--line);box-shadow:var(--sh-sm)}
+.btn-o:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
+.btn-lg{height:40px;padding:0 16px;font-size:15px}
+.menu-t{display:none;width:32px;height:32px;border-radius:6px;align-items:center;justify-content:center}
+
+/* hero + embed: ONE surface */
+.hero-wrap{position:relative;overflow:hidden;background:#fff}
+.hero-wrap::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(9,9,11,.09) 1px,transparent 1.2px);background-size:18px 18px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 60% at 70% 30%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse 75% 60% at 70% 30%,#000 10%,transparent 70%);pointer-events:none}
+.hero-wrap::after{content:"";position:absolute;inset:-10% -10% auto -10%;height:85%;background:radial-gradient(ellipse 55% 60% at 72% 35%,rgba(110,126,216,.16),transparent 70%);pointer-events:none}
+.hero{position:relative;z-index:2;padding:64px 0 36px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:start}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 13px;border-radius:999px;background:var(--accent-10);border:1px solid var(--accent-20);color:var(--accent-d);font-size:14px;font-weight:500}
+.chip svg{width:14px;height:14px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);position:relative}
+.dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--accent);opacity:0;animation:pulse 1.8s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+h1{font-size:clamp(34px,4.4vw,52px);line-height:1.12;font-weight:500;letter-spacing:-.025em;max-width:20ch}
+.lead{margin-top:20px;font-size:18px;color:var(--muted);max-width:56ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.meta span{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:13.5px;font-weight:500;box-shadow:var(--sh-sm)}
+.meta svg{width:14px;height:14px;color:var(--muted)}
+.streams{margin-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.streams svg{display:inline-block;vertical-align:-2px;margin-right:6px}
+.streams b{font-weight:500;color:var(--accent-d)}
+.tz{margin-top:6px;font-size:13px;color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+
+/* hero card: workspace-style panel */
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh-lg);overflow:hidden}
+.panel-h{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;font-weight:500}
+.panel-h .crumb{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.panel-h .crumb i{font-style:normal;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:4px;background:var(--line-2);font-family:var(--mono);font-size:10px;color:var(--ink-2)}
+.panel-h .crumb b{color:var(--ink);font-weight:500}
+.kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--muted)}
+.count{padding:18px 16px 16px;border-bottom:1px solid var(--line)}
+.count .mono{color:var(--muted)}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.cd div{border:1px solid var(--line);border-radius:8px;padding:10px 0 8px;text-align:center;background:var(--soft)}
+.cd b{display:block;font-size:26px;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.cd small{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+#livenow{display:none;margin-top:10px;font-weight:500;color:var(--accent-d)}
+.cal{display:flex;gap:8px;margin-top:12px}
+.cal a{flex:1;justify-content:center;height:30px;font-size:13px}
+.grp{padding:12px 8px 8px}
+.grp .mono{display:block;padding:4px 8px 6px;color:var(--muted);font-size:10.5px}
+.task{display:flex;align-items:flex-start;gap:10px;padding:8px;border-radius:8px;transition:background .2s}
+.task:hover{background:var(--soft)}
+.task .ring{flex:none;width:15px;height:15px;margin-top:3px;border-radius:50%;border:1.5px solid #A1A1AA}
+.task .ring.done{border-color:var(--accent);background:var(--accent);box-shadow:inset 0 0 0 2.5px #fff}
+.task .ring.live{border-color:var(--accent);border-style:dashed;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.task p{font-size:13.5px;font-weight:500;line-height:1.35}
+.task small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
+.task .t{margin-left:auto;font-size:11.5px;color:var(--muted);font-family:var(--mono);white-space:nowrap}
+
+.embed-sec{position:relative;z-index:2;padding:12px 0 84px}
+#sequel_root{min-height:520px}
+
+/* stat band */
+.stat{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:96px 0}
+.stat-grid{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:end}
+.big{font-size:clamp(84px,13vw,168px);font-weight:500;letter-spacing:-.05em;line-height:.9;display:flex;align-items:center;gap:.12em}
+.big .arr{color:var(--accent);font-weight:400;font-size:.6em}
+.turn{font-size:clamp(20px,2.2vw,26px);line-height:1.35;letter-spacing:-.01em;max-width:30ch;font-weight:500}
+.turn span{color:var(--muted)}
+.src{margin-top:14px;color:var(--muted)}
+
+/* lede */
+.lede{padding:110px 0}
+.lede-grid{display:grid;grid-template-columns:220px 1fr;gap:56px}
+.side{position:sticky;top:96px;align-self:start;color:var(--muted)}
+.side .mono{display:block;color:var(--accent-d)}
+.side p{margin-top:10px;font-size:13px}
+.body{max-width:66ch}
+.body h2{font-size:clamp(28px,3.2vw,38px);line-height:1.15;font-weight:500;letter-spacing:-.025em;margin-bottom:24px}
+.body p{font-size:17.5px;color:var(--ink-2);margin-bottom:18px}
+.body p strong{font-weight:600;color:var(--ink)}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:40px}
+.figs div{padding:22px 18px 0 0}
+.figs b{display:block;font-size:34px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.figs span{display:block;margin-top:8px;font-size:13.5px;color:var(--muted)}
+
+/* mechanism: their canvas */
+.mech{padding:100px 0;background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mech-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:40px}
+.mech-head h2{font-size:clamp(28px,3.4vw,40px);line-height:1.12;font-weight:500;letter-spacing:-.025em;max-width:20ch}
+.mech-head p{max-width:44ch;color:var(--muted);font-size:16.5px}
+.canvas{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh-md);overflow:hidden}
+.canvas-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13.5px;font-weight:500}
+.canvas-top .st{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:400}
+.canvas-body{position:relative;padding:72px 32px;background-image:radial-gradient(rgba(9,9,11,.12) 1px,transparent 1.2px);background-size:16px 16px}
+.flow{display:flex;align-items:center;justify-content:center}
+.node{position:relative;flex:none;width:200px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--sh-sm);transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease)}
+.node .k{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500}
+.node .k i{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--line-2);border:1px solid var(--line);font-style:normal}
+.node .k i svg{width:12px;height:12px}
+.node small{display:block;margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.node.on{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-10),var(--sh-md);transform:translateY(-3px)}
+.node .flag{position:absolute;top:-11px;right:10px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;background:#fff;border:1px solid var(--accent-20);color:var(--accent-d);border-radius:4px;padding:1px 6px}
+.edge{flex:1;min-width:28px;max-width:80px;height:2px;margin:0 8px;position:relative}
+.dashes{height:2px;background-image:linear-gradient(90deg,#A1A1AA 55%,transparent 0);background-size:10px 2px;background-repeat:repeat-x;animation:march 900ms linear infinite}
+.edge::after{content:"";position:absolute;right:-2px;top:-3px;border:4px solid transparent;border-left:6px solid #A1A1AA;border-right:0}
+@keyframes march{to{background-position:10px 0}}
+.canvas-foot{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;border-top:1px solid var(--line);background:#fff}
+.canvas-foot code{font-family:var(--mono);font-size:12px;background:var(--line-2);border:1px solid var(--line);border-radius:5px;padding:3px 8px;color:var(--ink-2)}
+
+/* learn rows */
+.learn{padding:110px 0}
+.learn h2{font-size:clamp(28px,3.4vw,40px);line-height:1.12;font-weight:500;letter-spacing:-.025em;margin:12px 0 44px;max-width:22ch}
+.learn .mono{color:var(--accent-d)}
+.row{display:grid;grid-template-columns:64px 1fr 1.15fr;gap:28px;padding:32px 18px 32px 10px;border-top:1px solid var(--line);position:relative;transition:background .35s var(--ease)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--accent);transition:width .5s var(--ease)}
+.row:hover{background:var(--soft)}
+.row:hover::before{width:100%}
+.row .n{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:4px}
+.row h3{font-size:21px;line-height:1.3;font-weight:500;letter-spacing:-.015em}
+.row p{color:var(--muted);font-size:16px}
+
+/* speakers */
+.spk{padding:0 0 110px}
+.spk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.sp{display:flex;gap:18px;align-items:center;padding:28px 24px 28px 0}
+.sp + .sp{border-left:1px solid var(--line);padding-left:28px}
+.av{flex:none;width:64px;height:64px;border-radius:50%;background:var(--accent-10);border:1px solid var(--accent-20);display:grid;place-items:center;color:var(--accent-d);font-weight:500;font-size:20px}
+.sp b{display:block;font-size:17px;font-weight:500}
+.sp span{display:block;font-size:14px;color:var(--muted)}
+.spk .mono{color:var(--accent-d);display:block;margin-bottom:18px}
+
+/* CTA band */
+.ctab{background:var(--accent-d);color:#fff;position:relative;overflow:hidden}
+.ctab::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1.2px);background-size:18px 18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 70%);mask-image:linear-gradient(90deg,transparent,#000 70%)}
+.ctab .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;gap:40px;padding-top:88px;padding-bottom:88px}
+.ctab h2{font-size:clamp(30px,4vw,48px);line-height:1.1;font-weight:500;letter-spacing:-.03em;max-width:18ch}
+.ctab p{margin-top:14px;font-size:17px;max-width:48ch;color:#fff}
+.btn-w{background:#fff;color:var(--ink)}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+.btn-ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+/* footer (replica) */
+footer{padding:80px 0 0;background:#fff}
+.f-grid{display:grid;grid-template-columns:1.6fr repeat(5,1fr);gap:32px}
+.f-brand img{height:24px;width:auto;margin-bottom:28px}
+.f-feat{display:flex;gap:12px;margin-bottom:18px}
+.f-feat svg{flex:none;width:18px;height:18px;margin-top:2px;color:var(--ink-2)}
+.f-feat b{display:block;font-size:14px;font-weight:500;line-height:1.3}
+.f-feat span{font-size:12px;color:var(--muted)}
+.f-col h4{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.f-col a{display:block;font-size:14px;color:var(--ink-2);margin-bottom:12px;line-height:1.4}
+.f-col a:hover{color:var(--ink)}
+.hiring{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:999px;background:var(--accent-10);color:var(--accent-d);margin-left:4px;vertical-align:1px}
+.soc a{display:flex;align-items:center;gap:8px}
+.soc svg{width:14px;height:14px}
+.legal{display:flex;gap:22px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:56px;padding:28px 0 36px;font-size:13px;color:var(--muted)}
+.legal a:hover{color:var(--ink)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stagger.in>*{opacity:1;transform:none}
+.stagger.in>*:nth-child(2){transition-delay:.08s}.stagger.in>*:nth-child(3){transition-delay:.16s}.stagger.in>*:nth-child(4){transition-delay:.24s}.stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.4s}
+
+@media (max-width:1000px){
+  .nav-links{display:none}
+  #nav .wrap{grid-template-columns:1fr auto}
+  .menu-t{display:inline-flex}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .stat-grid,.lede-grid{grid-template-columns:1fr;gap:28px}
+  .side{position:static}
+  .mech-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .flow{flex-direction:column}
+  .edge{width:2px;height:34px;min-width:0;max-width:none;flex:none;margin:6px 0}
+  .dashes{width:2px;height:34px;background-image:linear-gradient(180deg,#A1A1AA 55%,transparent 0);background-size:2px 10px;background-repeat:repeat-y;animation:marchv 900ms linear infinite}
+  .edge::after{right:auto;left:-3px;top:auto;bottom:-4px;border:4px solid transparent;border-top:6px solid #A1A1AA;border-bottom:0}
+  .f-grid{grid-template-columns:repeat(2,1fr)}
+  .f-brand{grid-column:1/-1}
+  .ctab .wrap{flex-direction:column;align-items:flex-start}
+}
+@keyframes marchv{to{background-position:0 10px}}
+@media (max-width:640px){
+  .announce .wrap{height:auto;padding-top:8px;padding-bottom:8px;flex-wrap:wrap;gap:6px;font-size:12.5px}
+  .gh{display:none}
+  .hero{padding:40px 0 28px}
+  .row{grid-template-columns:1fr;gap:8px;padding:26px 6px}
+  .spk-grid{grid-template-columns:1fr}
+  .sp + .sp{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .figs{grid-template-columns:1fr}
+  .figs div{padding:18px 0;border-bottom:1px solid var(--line)}
+  .stat,.lede,.mech,.learn{padding:72px 0}
+  .canvas-body{padding:44px 16px}
+  .cal{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.stagger>*{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="announce"><div class="wrap">
+  <span class="tag">Live webinar</span>
+  <span>Agentic SOAR in practice, streaming Thursday, December 10 on tracecat.com</span>
+  <a href="#watch">Save your seat &rarr;</a>
+</div></div>
+
+<header id="nav"><div class="wrap">
+  <a class="logo" href="https://www.tracecat.com/" target="_blank" rel="noopener"><img src="https://www.tracecat.com/brand/tracecat.svg" alt="Tracecat" width="120" height="24"></a>
+  <nav class="nav-links">
+    <a href="https://www.tracecat.com/#agents" target="_blank" rel="noopener">Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+    <a href="https://docs.tracecat.com/overview/introduction" target="_blank" rel="noopener">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+    <a href="https://www.tracecat.com/mcp" target="_blank" rel="noopener">Integrations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></a>
+    <a href="https://www.tracecat.com/pricing" target="_blank" rel="noopener">Pricing</a>
+    <a href="https://www.tracecat.com/blog" target="_blank" rel="noopener">Blog</a>
+    <a href="https://www.tracecat.com/changelog" target="_blank" rel="noopener">Changelog</a>
+  </nav>
+  <div class="nav-right">
+    <a class="gh" href="https://github.com/TracecatHQ/tracecat" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>3.8k</a>
+    <a class="btn btn-p" href="https://www.tracecat.com/contact" target="_blank" rel="noopener">Book a demo</a>
+    <span class="menu-t" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+  </div>
+</div></header>
+
+<div class="hero-wrap">
+  <section class="hero"><div class="wrap hero-grid">
+    <div class="reveal">
+      <div class="chips">
+        <span class="chip" id="badge"><span class="dot"></span>Live Webinar</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Agents</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>Cases</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6"/></svg>Workflows</span>
+      </div>
+      <h1>Agentic SOAR in practice: how a team of 3 does the work of 30</h1>
+      <p class="lead">A live build session on Tracecat. Watch a SOC analyst agent triage a real cloud finding, pull EDR context, and stage containment, with a human approval on every sensitive action.</p>
+      <div class="meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Thu, Dec 10, 2026</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10:00 AM PT / 1:00 PM ET</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>45 minutes + live Q&amp;A</span>
+      </div>
+      <p class="streams"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Streaming live and on-demand on <b>tracecat.com</b></p>
+      <p class="tz" id="tzline"></p>
+      <div class="cta-row">
+        <a class="btn btn-p btn-lg" href="#watch">Save your seat</a>
+        <a class="btn btn-o btn-lg" href="https://docs.tracecat.com/overview/getting-started" target="_blank" rel="noopener">Self-host today</a>
+      </div>
+    </div>
+
+    <aside class="panel reveal" aria-label="Session details">
+      <div class="panel-h">
+        <span class="crumb"><i>/</i>Webinars <span>/</span> <b>Agentic SOAR in practice</b></span>
+        <span class="kbd">&#8984;N</span>
+      </div>
+      <div class="count">
+        <span class="mono" id="countlabel">Starts in</span>
+        <div class="cd" id="count">
+          <div><b id="d">00</b><small>Days</small></div>
+          <div><b id="h">00</b><small>Hrs</small></div>
+          <div><b id="m">00</b><small>Min</small></div>
+          <div><b id="s">00</b><small>Sec</small></div>
+        </div>
+        <p id="livenow">We're live now. Join below.</p>
+        <div class="cal">
+          <a class="btn btn-o" id="gcal" href="#" target="_blank" rel="noopener">Google Calendar</a>
+          <a class="btn btn-o" id="ical" href="#" download="tracecat-agentic-soar.ics">iCal / Outlook</a>
+        </div>
+      </div>
+      <div class="grp">
+        <span class="mono">Agenda &middot; 4</span>
+        <div class="task"><span class="ring done"></span><p>Triage Wiz cloud finding<small>SOC analyst agent &middot; Wiz MCP &middot; Falcon MCP</small></p><span class="t">10:00</span></div>
+        <div class="task"><span class="ring live"></span><p>Revoke risky OAuth grant<small>Human approval before tenant-wide revoke</small></p><span class="t">10:12</span></div>
+        <div class="task"><span class="ring"></span><p>Prompt to deterministic workflow<small>Tracecat MCP from your coding agent</small></p><span class="t">10:25</span></div>
+        <div class="task"><span class="ring"></span><p>Live Q&amp;A<small>Bring your backlog</small></p><span class="t">10:35</span></div>
+      </div>
+    </aside>
+  </div></section>
+
+  <section class="embed-sec" id="watch"><div class="wrap">
+    <div id="sequel_root"></div>
+  </div></section>
+</div>
+
+<section class="stat"><div class="wrap stat-grid reveal">
+  <div class="big" aria-label="3 to 30">3<span class="arr">&rarr;</span>30</div>
+  <div>
+    <p class="turn">Turn analysts into builders and builders into architects, so a team of 3 can do the work of 30. <span>Most security teams are not short on alerts or tools. They are short on hands.</span></p>
+    <p class="mono src">From tracecat.com</p>
+  </div>
+</div></section>
+
+<section class="lede"><div class="wrap lede-grid">
+  <div class="side reveal"><span class="mono">The session</span><p>45 min live build<br>Recording on tracecat.com</p></div>
+  <div class="body reveal">
+    <h2>Scale your security workforce with agents you own.</h2>
+    <p>Legacy SOAR promised automation and delivered a maintenance job. Every playbook was brittle, every integration was a project, and the backlog grew faster than the team could write code for it.</p>
+    <p>In this session we build the other way around. <strong>Start from a prompt, end with a deterministic workflow</strong>: an agent that triages the alert, a case that collects the evidence, and an approval gate that keeps a human on the trigger for anything that touches production.</p>
+    <p>Everything runs on open source you can self-host in your own VPC, on-prem, or on Tracecat cloud. Your prompts and detections stay yours, and every prompt, tool call, and decision lands in an audit log you can read.</p>
+    <div class="figs stagger">
+      <div><b>500+</b><span>integrations across SIEM, EDR, MDM, and IdP</span></div>
+      <div><b>50+</b><span>hosted MCP servers, no integration code</span></div>
+      <div><b>3.8k</b><span>GitHub stars on the open source core</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="mech"><div class="wrap">
+  <div class="mech-head reveal">
+    <h2>Turn prompts into deterministic workflows.</h2>
+    <p>The exact runbook we build live: a Wiz finding comes in, an agent enriches it, and containment waits for one approval.</p>
+  </div>
+  <div class="canvas reveal">
+    <div class="canvas-top"><span>Triage Wiz cloud finding</span><span class="st"><span class="dot"></span>Running</span></div>
+    <div class="canvas-body">
+      <div class="flow">
+        <div class="node on"><div class="k"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></i>Wiz alert</div><small>wiz.finding.created</small></div>
+        <div class="edge"><div class="dashes"></div></div>
+        <div class="node"><div class="k"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></i>SOC analyst agent</div><small>Wiz MCP &middot; Falcon MCP</small></div>
+        <div class="edge"><div class="dashes"></div></div>
+        <div class="node"><span class="flag">APPROVAL</span><div class="k"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>Human review</div><small>approve &middot; reject</small></div>
+        <div class="edge"><div class="dashes"></div></div>
+        <div class="node"><div class="k"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg></i>Isolate host</div><small>falcon.isolate_host</small></div>
+      </div>
+    </div>
+    <div class="canvas-foot"><code>triage_phishing_email</code><code>enrich_alert_with_falcon</code><code>isolate_host</code><code>revoke_oauth_grant</code></div>
+  </div>
+</div></section>
+
+<section class="learn"><div class="wrap">
+  <span class="mono reveal">What you'll learn</span>
+  <h2 class="reveal">Everything you need to make security agents work.</h2>
+  <div class="stagger">
+    <div class="row"><span class="n">01</span><h3>Automate Tier 1 alert triage with an agent</h3><p>Route a cloud finding through a SOC analyst agent that pulls asset context, correlates EDR telemetry, and opens an actionable case.</p></div>
+    <div class="row"><span class="n">02</span><h3>Keep a human on sensitive actions</h3><p>Pause workflows for explicit approval before a quarantine or a tenant-wide revoke, with every approval and tool call logged.</p></div>
+    <div class="row"><span class="n">03</span><h3>Drive Tracecat from your coding agent</h3><p>Use Tracecat MCP from Claude Code, Codex, or Copilot to draft workflows, skills, and integrations, then sync it all to Git.</p></div>
+    <div class="row"><span class="n">04</span><h3>Self-host anywhere</h3><p>Deploy in your own VPC, on-prem, or on Tracecat cloud, bring your own LLMs, and keep your prompts and detections yours.</p></div>
+  </div>
+</div></section>
+
+<section class="spk"><div class="wrap">
+  <span class="mono reveal">Speakers</span>
+  <div class="spk-grid stagger">
+    <div class="sp"><div class="av">TC</div><div><b>Speaker Name</b><span>Co-founder, Tracecat</span></div></div>
+    <div class="sp"><div class="av">FD</div><div><b>Speaker Name</b><span>Forward Deployed Security Engineer, Tracecat</span></div></div>
+  </div>
+</div></section>
+
+<section class="ctab"><div class="wrap">
+  <div class="reveal">
+    <h2>Build agents free today.</h2>
+    <p>Join live on December 10 or catch the recording here on tracecat.com.</p>
+  </div>
+  <div class="cta-row reveal" style="margin-top:0">
+    <a class="btn btn-w btn-lg" href="#watch">Save your seat</a>
+    <a class="btn btn-ghost btn-lg" href="https://www.tracecat.com/contact" target="_blank" rel="noopener">Book a demo</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="f-grid">
+    <div class="f-brand">
+      <a href="https://www.tracecat.com/" target="_blank" rel="noopener"><img src="https://www.tracecat.com/brand/tracecat.svg" alt="Tracecat" width="120" height="24"></a>
+      <div class="f-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Enterprise-grade security</b><span>SOC 2 Type II &amp; air-gappable</span></div></div>
+      <div class="f-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 10a4 4 0 0 1-1 8H7Z"/></svg><div><b>Deployable anywhere</b><span>Managed cloud, own cloud, or on-prem</span></div></div>
+      <div class="f-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-11 5.5"/></svg><div><b>Open source</b><span>AGPL v3.0</span></div></div>
+    </div>
+    <div class="f-col"><h4>Platform</h4>
+      <a href="https://www.tracecat.com/#agents" target="_blank" rel="noopener">Agent builder</a>
+      <a href="https://www.tracecat.com/" target="_blank" rel="noopener">Open source SOAR</a>
+      <a href="https://www.tracecat.com/mcp" target="_blank" rel="noopener">MCP catalog</a>
+      <a href="https://www.tracecat.com/security-automation-examples" target="_blank" rel="noopener">Security automation examples</a>
+    </div>
+    <div class="f-col"><h4>Resources</h4>
+      <a href="https://docs.tracecat.com/overview/introduction" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://www.tracecat.com/pricing" target="_blank" rel="noopener">Pricing</a>
+      <a href="https://docs.tracecat.com/overview/getting-started" target="_blank" rel="noopener">Self-hosting</a>
+      <a href="https://www.tracecat.com/blog" target="_blank" rel="noopener">Blog</a>
+      <a href="https://www.tracecat.com/changelog" target="_blank" rel="noopener">Changelog</a>
+    </div>
+    <div class="f-col"><h4>Compare</h4>
+      <a href="https://www.tracecat.com/alternatives/best-soar-platforms" target="_blank" rel="noopener">Top 10 SOAR platforms</a>
+      <a href="https://www.tracecat.com/alternatives/open-source-soar" target="_blank" rel="noopener">Open source SOAR platforms</a>
+      <a href="https://www.tracecat.com/alternatives/tines" target="_blank" rel="noopener">Tines alternatives</a>
+      <a href="https://www.tracecat.com/alternatives/tracecat-vs-tines" target="_blank" rel="noopener">Tracecat vs Tines</a>
+      <a href="https://www.tracecat.com/alternatives/tracecat-vs-n8n" target="_blank" rel="noopener">Tracecat vs n8n</a>
+    </div>
+    <div class="f-col"><h4>Company</h4>
+      <a href="https://www.ycombinator.com/companies/tracecat" target="_blank" rel="noopener">About</a>
+      <a href="https://www.ycombinator.com/companies/tracecat/jobs" target="_blank" rel="noopener">Careers <span class="hiring">Hiring</span></a>
+      <a href="https://www.tracecat.com/contact" target="_blank" rel="noopener">Contact us</a>
+      <a href="https://statuspage.incident.io/tracecat-cloud" target="_blank" rel="noopener">Status</a>
+      <a href="https://trust.tracecat.com/" target="_blank" rel="noopener">Trust center</a>
+    </div>
+    <div class="f-col soc"><h4>Socials</h4>
+      <a href="https://x.com/tracecathq" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.25h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9.1L.9 2.25h7l4.8 6.4 5.5-6.4Zm-1.2 18h1.9L7.1 4.1H5.1L17 20.25Z"/></svg>X</a>
+      <a href="https://github.com/TracecatHQ/tracecat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/company/tracecathq" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+      <a href="https://discord.gg/H4XZwsYzY4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.1-4.6A9 9 0 1 1 21 12Z"/></svg>Discord</a>
+    </div>
+  </div>
+  <div class="legal">
+    <span>&copy; 2026 Tracecat</span>
+    <a href="https://www.tracecat.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+    <a href="https://www.tracecat.com/terms" target="_blank" rel="noopener">Terms of Service</a>
+    <a href="https://www.tracecat.com/dpa" target="_blank" rel="noopener">Data Processing Addendum</a>
+  </div>
+</div></footer>
+
+<script>
+var EVENT = {
+  title: "Agentic SOAR in Practice: How a Team of 3 Does the Work of 30 | Tracecat",
+  details: "A live build session on Tracecat: a SOC analyst agent triages a cloud finding and stages containment, with a human approval on every sensitive action. Streaming live and on-demand on tracecat.com.",
+  location: "https://sequel-demo.github.io/webinar-on/tracecat/",
+  start: new Date("2026-12-10T10:00:00-08:00"),
+  end:   new Date("2026-12-10T10:45:00-08:00")
+};
+(function(){
+  try{
+    var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var f=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+    document.getElementById('tzline').textContent="That's "+f.format(EVENT.start)+" where you are.";
+  }catch(e){document.getElementById('tzline').style.display='none';}
+})();
+(function(){
+  function z(n){return (n<10?'0':'')+n;}
+  function utc(d){return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+'T'+z(d.getUTCHours())+z(d.getUTCMinutes())+'00Z';}
+  document.getElementById('gcal').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(EVENT.title)+'&dates='+utc(EVENT.start)+'/'+utc(EVENT.end)+'&details='+encodeURIComponent(EVENT.details)+'&location='+encodeURIComponent(EVENT.location);
+  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Tracecat//Webinar//EN','BEGIN:VEVENT','UID:agentic-soar-2026-12-10@tracecat.com','DTSTAMP:'+utc(new Date()),'DTSTART:'+utc(EVENT.start),'DTEND:'+utc(EVENT.end),'SUMMARY:'+EVENT.title,'DESCRIPTION:'+EVENT.details,'LOCATION:'+EVENT.location,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('ical').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+})();
+(function(){
+  var el={d:document.getElementById('d'),h:document.getElementById('h'),m:document.getElementById('m'),s:document.getElementById('s')};
+  function hideCal(){document.getElementById('gcal').style.display='none';document.getElementById('ical').style.display='none';document.getElementById('count').style.display='none';}
+  function tick(){
+    var now=new Date(), diff=EVENT.start-now;
+    if(diff<=0){
+      hideCal();
+      var ln=document.getElementById('livenow'); ln.style.display='block';
+      if(now>EVENT.end){
+        ln.textContent="Watch the recording below.";
+        document.getElementById('countlabel').textContent="On demand";
+        document.getElementById('badge').innerHTML='<span class="dot"></span>On Demand';
+        document.querySelector('.announce .tag').textContent='On demand';
+      } else { document.getElementById('countlabel').textContent="Live"; }
+      return;
+    }
+    var s=Math.floor(diff/1000);
+    el.d.textContent=('0'+Math.floor(s/86400)).slice(-2);
+    el.h.textContent=('0'+Math.floor(s%86400/3600)).slice(-2);
+    el.m.textContent=('0'+Math.floor(s%3600/60)).slice(-2);
+    el.s.textContent=('0'+(s%60)).slice(-2);
+    setTimeout(tick,1000);
+  }
+  tick();
+})();
+(function(){var n=document.getElementById('nav');var on=function(){n.classList.toggle('scrolled',window.scrollY>8);};window.addEventListener('scroll',on,{passive:true});on();})();
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+})();
+(function(){
+  var nodes=document.querySelectorAll('.flow .node');if(!nodes.length)return;var i=0;
+  setInterval(function(){nodes.forEach(function(n){n.classList.remove('on');});i=(i+1)%nodes.length;nodes[i].classList.add('on');},2200);
+})();
+</script>
+
+<script src="https://prod-assets.sequelvideo.com/uploads/toolkit/sequel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){ Sequel.renderEvent({eventId:"6adb0060-3c6d-4281-aed3-01fa3c940538"}); });
+(function stripBorder(){
+  var r=document.getElementById("sequel_root");
+  var c=r&&r.firstElementChild;
+  if(c&&c.shadowRoot){var st=document.createElement("style");st.textContent="iframe.sequel-iframe{border:none !important}";c.shadowRoot.appendChild(st);}
+  else{setTimeout(stripBorder,200);}
+})();
+</script>
+</body>
+</html>
